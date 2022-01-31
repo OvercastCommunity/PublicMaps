@@ -1,0 +1,261 @@
+<map proto="1.4.0">
+<name>Athirk</name>
+<version>1.2</version>
+<authors>
+    <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
+</authors>
+<objective>Leak the enemy team's cores and destroy their monuments to win!</objective>
+<teams>
+    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red" color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="gold axe"/>
+        <item slot="30" unbreakable="true" material="gold spade"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="31" amount="64" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="6" material="bucket"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="golden carrot"/>
+        <helmet unbreakable="true" material="iron helmet">
+            <enchantment level="4">blast_protection</enchantment>
+        </helmet>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+        <effect duration="4" amplifier="3">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <cylinder base="384.5,103,-77.5" height="1" radius="2"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="90">
+            <cylinder base="263.5,24.5,-77.5" radius="2" height="1"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="-90">
+            <cylinder base="505,24.5,-77.5" radius="2" height="1"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <all id="only-world">
+        <any id="materials">
+            <material id="only-gold">gold block</material>
+            <material>water</material>
+            <material>stationary water</material>
+        </any>
+        <cause>world</cause>
+    </all>
+    <deny id="deny-gold">
+        <filter id="only-gold"/>
+    </deny>
+</filters>
+<regions>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <rectangle min="254,-90" max="274,-64"/>
+            <rectangle min="288,-66" max="274,-88"/>
+            <rectangle min="515,-64" max="495,-91"/>
+            <rectangle min="481,-88" max="495,-66"/>
+        </union>
+    </negative>
+    <complement id="void-regions">
+        <everywhere/>
+        <rectangle min="412,-129" max="357,-26"/>
+        <rectangle min="412,-46" max="441,-108"/>
+        <rectangle min="357,-108" max="327,-46"/>
+    </complement>
+    <union id="spawners">
+        <cylinder id="blue-gapple-drop" base="356.5,13,-77.5" height="2" radius="1"/>
+        <cylinder id="blue-gapple-activation" base="356.5,12,-77.5" height="6" radius="5"/>
+        <cylinder id="red-gapple-drop" base="412.5,13,-77.5" height="1" radius="1"/>
+        <cylinder id="red-gapple-activation" base="412.5,12,-77.5" height="6" radius="5"/>
+    </union>
+    <union id="spawner-protection">
+        <cuboid id="blue-gapple-prot" min="355,9,-81" max="358,16.5,-74"/>
+        <cuboid id="red-gapple-prot" min="411,9,-81" max="414,16.5,-74"/>
+    </union>
+    <apply block-break="materials" block-place="only-world" region="spawns" message="You may only edit gold blocks in this area!"/>
+    <apply block-place="deny-gold" region="not-spawns"/>
+    <apply block="never" region="spawner-protection" message="You may not interfere with the golden apple spawner!"/>
+    <apply block="no-void" region="void-regions" message="You may not edit this area!"/>
+</regions>
+<renewables>
+    <renewable region="spawns" particles="false" sound="false" renew-filter="materials"/>
+</renewables>
+<spawners>
+    <spawners>
+        <spawner id="blue-gapple" spawn-region="blue-gapple-drop" player-region="blue-gapple-activation" delay="7s">
+            <item material="golden apple"/>
+        </spawner>
+        <spawner id="red-gapple" spawn-region="red-gapple-drop" player-region="red-gapple-activation" delay="7s">
+            <item material="golden apple"/>
+        </spawner>
+    </spawners>
+</spawners>
+<modes>
+    <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
+</modes>
+<cores repairable="false" material="obsidian" leak="2" modes="gold-core ice-core">
+    <cores team="blue">
+        <core name="North Core">
+            <region>
+                <cuboid min="285,22,-115" max="291,30,-121"/>
+            </region>
+        </core>
+        <core name="South Core">
+            <region>
+                <cuboid min="291,22,-39" max="285,30,-33"/>
+            </region>
+        </core>
+    </cores>
+    <cores team="red">
+        <core name="North Core">
+            <region>
+                <cuboid min="477,22,-115" max="483,30,-121"/>
+            </region>
+        </core>
+        <core name="South Core">
+            <region>
+                <cuboid min="477,22,-33" max="483,30,-39"/>
+            </region>
+        </core>
+    </cores>
+</cores>
+<destroyables repairable="false" material="emerald block">
+    <destroyables owner="blue">
+        <destroyable name="North Monument">
+            <region>
+                <cuboid min="326,24,-117" max="329,15,-120"/>
+            </region>
+        </destroyable>
+        <destroyable name="South Monument">
+            <region>
+                <cuboid min="326,24,-38" max="329,15,-35"/>
+            </region>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="red">
+        <destroyable name="North Monument">
+            <region>
+                <cuboid min="443,24,-117" max="440,15,-120"/>
+            </region>
+        </destroyable>
+        <destroyable name="South Monument">
+            <region>
+                <cuboid min="443,24,-35" max="440,15,-38"/>
+            </region>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>gold axe</tool>
+    <tool>arrow</tool>
+    <tool>gold spade</tool>
+</toolrepair>
+<itemremove>
+    <item>golden carrot</item>
+    <item>iron helmet</item>
+    <item>leather boots</item>
+    <item>emerald block</item>
+    <item>obsidian</item>
+    <item>packed ice</item>
+    <item>sapling</item>
+    <item>bucket</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>glass</material>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+    <rule region="not-spawns">
+        <filter>
+            <material>gold block</material>
+        </filter>
+        <drops>
+            <item chance="0" material="gold block"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>log</material>
+        </filter>
+        <drops>
+            <item chance="0" material="log"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>wood</item>
+    <item>glass</item>
+    <item>water bucket</item>
+    <item>golden apple</item>
+    <item>bucket</item>
+</itemkeep>
+<kill-reward>
+    <item amount="32" material="wood"/>
+    <item amount="16" material="glass"/>
+    <item material="golden apple"/>
+</kill-reward>
+<item-mods>
+    <rule>
+        <match>
+            <material>gold helmet</material>
+        </match>
+        <modify unbreakable="true">
+            <enchantment level="4">blast_protection</enchantment>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <material>gold chestplate</material>
+            <material>gold leggings</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>gold boots</material>
+        </match>
+        <modify unbreakable="true">
+            <enchantment>feather_falling</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<maxbuildheight>31</maxbuildheight>
+</map>

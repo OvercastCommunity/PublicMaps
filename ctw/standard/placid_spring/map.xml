@@ -1,0 +1,290 @@
+<map proto="1.4.2">
+<name>Placid Spring</name>
+<version>1.2.4</version>
+<objective>Grab your enemy's wools and place them on your side.</objective>
+<authors>
+    <author uuid="4a57e6bc-6100-47a8-a02f-fef8c23952b4" contribution="Map idea and building"/> <!-- 9grenier -->
+    <author uuid="61442dd6-9be9-4804-918f-74e097ac4ca5" contribution="XML, map corrections and map feedback"/> <!-- Darkcranidos -->
+</authors>
+<contributors>
+    <contributor uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Server hosting, feedback and building help"/> <!-- iLifting -->
+    <contributor uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Feedback, map updates"/> <!-- Matic0B -->
+    <contributor uuid="ec80a24a-4e83-4049-8e1d-77abad67e8f3" contribution="Building help"/> <!-- Bamby_ -->
+    <contributor uuid="b7ccced1-2e67-4333-895b-9a024932fc43" contribution="Feedback"/> <!-- LoveRokenbok -->
+    <contributor uuid="ecbc58c1-ae7f-45c4-945c-cb3ab3e104cc" contribution="Minor aesthetics"/> <!-- Sbongkh -->
+    <contributor uuid="52bb4ec5-6904-4b54-b66a-e065df3d546d" contribution="XML help"/> <!-- jolteony -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="13">Blue</team>
+    <team id="red" color="dark red" max="13">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="5" amount="32" material="glass"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="cooked beef"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" material="chainmail chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings">
+            <enchantment>projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="0" region="default-spawn"/>
+    <spawn team="blue" kit="spawn-kit" yaw="0" region="blue-spawn"/>
+    <spawn team="red" kit="spawn-kit" yaw="180" region="red-spawn"/>
+</spawns>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <not id="blue-in-wr">
+        <any>
+            <material>chest</material>
+            <material>trapped chest</material>
+            <material>stone</material>
+            <material>grass</material>
+            <team id="only-red">red</team>
+        </any>
+    </not>
+    <not id="red-in-wr">
+        <any>
+            <material>chest</material>
+            <material>trapped chest</material>
+            <material>stone</material>
+            <material>grass</material>
+            <team id="only-blue">blue</team>
+        </any>
+    </not>
+    <not id="boat-carry-blue">
+        <any>
+            <filter id="only-red"/>
+            <carrying>
+                <item material="boat"/>
+            </carrying>
+        </any>
+    </not>
+    <not id="boat-carry-red">
+        <any>
+            <filter id="only-blue"/>
+            <carrying>
+                <item material="boat"/>
+            </carrying>
+        </any>
+    </not>
+    <not id="boat-carry-blue-inverse">
+        <all>
+            <any>
+                <carrying>
+                    <item material="boat"/>
+                </carrying>
+            </any>
+            <filter id="only-blue"/>
+        </all>
+    </not>
+    <not id="boat-carry-red-inverse">
+        <all>
+            <any>
+                <carrying>
+                    <item material="boat"/>
+                </carrying>
+            </any>
+            <filter id="only-red"/>
+        </all>
+    </not>
+</filters>
+<regions>
+    <!-- Regions -->
+    <union id="portals-to-map">
+        <cuboid id="portal-to-map-blue" min="1.0,23.0,-65.0" max="-2.0,25.0,-64.0"/>
+        <cuboid id="portal-to-map-red" min="-2.0,23.0,68.0" max="1.0,25.0,67.0"/>
+    </union>
+    <union id="portals-to-spawn">
+        <cuboid id="portal-to-spawn-blue" min="-2,6,-53" max="1,8,-54"/>
+        <cuboid id="portal-to-spawn-red" min="1,6,56" max="-2,8,57"/>
+    </union>
+    <!-- Spawns -->
+    <cuboid id="blue-spawn" min="1,19.5,-80" max="-1,19.5,-79"/>
+    <cuboid id="red-spawn" min="-1,19.5,83" max="1,19.5,82"/>
+    <cuboid id="default-spawn" min="-6.0,40.0,-2.0" max="5.0,40.0,4.0"/>
+    <union id="spawn-protection">
+        <rectangle id="blue-spawn-protection" min="-7.0,-88.0" max="7.0,-62.0"/>
+        <rectangle id="red-spawn-protection" min="-7.0,65.0" max="7.0,91.0"/>
+    </union>
+    <union id="spawn-build">
+        <cuboid id="blue-spawn-build" min="-7.0,17.0,-88.0" max="7.0,28.0,-62.0"/>
+        <cuboid id="red-spawn-build" min="-7.0,17.0,65.0" max="7.0,28.0,91.0"/>
+        <cuboid id="obs-spawn" min="-12.0,37.0,-5.0" max="12.0,44.0,8.0"/>
+    </union>
+    <!-- Wool Rooms -->
+    <union id="wool-rooms">
+        <union id="blue-wool-rooms">
+            <rectangle min="-24.0,-84.0" max="-12.0,-72.0"/>
+            <rectangle min="11.0,-84.0" max="23.0,-72.0"/>
+        </union>
+        <union id="red-wool-rooms">
+            <rectangle min="11.0,75.0" max="23.0,86.0"/>
+            <rectangle min="-24.0,75.0" max="-12.0,86.0"/>
+        </union>
+    </union>
+    <union id="portal-protection">
+        <rectangle min="-3.0,-55.0" max="3.0,-47.0"/>
+        <rectangle min="3.0,50.0" max="-3.0,58.0"/>
+    </union>
+    <union id="to-spawn-portals">
+        <cuboid min="-2,6,-53" max="1,8,-54"/>
+        <cuboid min="1,6,55" max="-2,8,56"/>
+    </union>
+    <complement id="void-regions">
+        <everywhere/>
+        <rectangle id="bridging1" min="13.0,-11.0" max="23.0,14.0"/>
+        <rectangle id="bridging2" min="-5.0,-11.0" max="5.0,14.0"/>
+        <rectangle id="bridging3" min="-23.0,-11.0" max="-13.0,14.0"/>
+    </complement>
+    <!-- Applies -->
+    <apply enter="only-blue" message="You may not enter the enemy spawn area!" region="blue-spawn-build"/>
+    <apply enter="only-red" message="You may not enter the enemy spawn area!" region="red-spawn-build"/>
+    <apply enter="only-blue" message="You may not enter your own wool room" region="red-wool-rooms"/>
+    <apply enter="only-red" message="You may not enter your own wool rooms" region="blue-wool-rooms"/>
+    <apply enter="boat-carry-red-inverse" message="`k!!`r`4You may not enter your spawn with a boat in your inventory.`r`k!!" region="portal-to-spawn-red"/>
+    <apply enter="boat-carry-blue-inverse" message="`k!!`r`4You may not enter your spawn with a boat in your inventory.`r`k!!" region="portal-to-spawn-blue"/>
+    <apply block="never" message="You may not destroy the spawn area!" region="spawn-build"/>
+    <apply block="never" message="You may not edit around the portals!" region="portal-protection"/>
+    <apply block="blue-in-wr" use="only-blue" region="red-wool-rooms"/>
+    <apply block="red-in-wr" use="only-red" region="blue-wool-rooms"/>
+    <apply block="no-void" message="You may not modify the void area!" region="void-regions"/>
+</regions>
+<wools>
+    <wools team="blue">
+        <wool id="pink-wool-for-blue" color="pink" location="-17.5,9.0,84.5">
+            <monument>
+                <block>-3,7,-54</block>
+            </monument>
+        </wool>
+        <wool id="purple-wool-for-blue" color="purple" location="17.5,9.0,84.5">
+            <monument>
+                <block>2,7,-54</block>
+            </monument>
+        </wool>
+    </wools>
+    <wools team="red">
+        <wool id="green-wool-for-red" color="green" location="17.5,9.0,-81.8">
+            <monument>
+                <block>2,7,56</block>
+            </monument>
+        </wool>
+        <wool id="lime-wool-for-red" color="lime" location="-17.5,9.0,-81.5">
+            <monument>
+                <block>-3,7,56</block>
+            </monument>
+        </wool>
+    </wools>
+</wools>
+<portals>
+    <!-- blue portal to map -->
+    <portal x="@0" y="@6" z="@-51" filter="only-blue" region="portal-to-map-blue"/>
+    <!-- red portal to map -->
+    <portal x="@0" y="@6" z="@54" filter="only-red" region="portal-to-map-red"/>
+    <!-- blue portal to spawn -->
+    <portal x="@0" y="@23" z="@-70" yaw="@0" filter="boat-carry-blue" region="portal-to-spawn-blue"/>
+    <!-- red portal to spawn -->
+    <portal x="@-0" y="@23" z="@73" yaw="@180" filter="boat-carry-red" region="portal-to-spawn-red"/>
+</portals>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>cooked beef</item>
+    <item>sapling</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>glass</material>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>wood</item>
+    <item>glass</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item amount="32" material="wood"/>
+    <item amount="16" material="glass"/>
+    <item material="golden apple"/>
+    <item amount="16" material="arrow"/>
+</kill-reward>
+<maxbuildheight>20</maxbuildheight>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>This map is a Capture the Wool (CTW) map.</line>
+            <line>The objective is to grab the wools on the other team's side and return them to your base.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="90">0,90,1</point>
+        </teleport>
+    </stage>
+    <stage title="Portal">
+        <message>
+            <line>Walk through these portals to enter the playing field.</line>
+            <line>This is a one way portal, once you go through you cannot come back up.</line>
+            <line>You cannot jump off of the spawn platform.</line>
+        </message>
+        <teleport>
+            <point yaw="-130" pitch="0">-3.5,24,71.5</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Rooms">
+        <message>
+            <line>These are the wool rooms which hold wools and gear.</line>
+            <line>You cannot enter your own wool room, only the enemy wool rooms.</line>
+            <line>You should defend your own wool rooms or get the enemy's wools.</line>
+        </message>
+        <teleport>
+            <point yaw="42" pitch="0">-9,8,72</point>
+        </teleport>
+    </stage>
+    <stage title="Victory Monuments">
+        <message>
+            <line>These are the victory monuments.</line>
+            <line>You have to place the enemy wools here to win the game.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="25">0,8,51</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

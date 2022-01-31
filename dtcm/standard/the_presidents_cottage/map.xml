@@ -1,0 +1,221 @@
+<map proto="1.4.0">
+<name>The President's Cottage</name>
+<version>1.2</version>
+<objective>Leak the enemy team's obsidian core.</objective>
+<authors>
+    <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="Main author, updating the xml and the map"/> <!-- chle_ -->
+</authors>
+<contributors>
+    <contributor uuid="9ccbf0e7-f32c-4966-a963-b6eef474b930" contribution="Building the diamond house"/> <!-- Danno428 -->
+    <contributor uuid="a4266139-34f3-46c5-a730-f8828376a15a" contribution="Decorations and building the balcony in front of spawn"/> <!-- LArrowHead -->
+    <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Help with the President's Cottage"/> <!-- rockymine -->
+    <contributor uuid="b5071a63-bba3-491a-909f-02db314f4319" contribution="Suggestions and feedback"/> <!-- dcstarwars -->
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Help with the bridges"/> <!-- Timothee38 -->
+    <contributor uuid="ba6d0091-b63a-4b22-8751-1432865b95a1" contribution="Waterfalls"/> <!-- pulbos -->
+    <contributor uuid="bdb417b7-8d57-460f-951e-69dfaf764430" contribution="Minor decorations"/> <!-- CeFour -->
+    <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" contribution="XML"/> <!-- Kroest -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red" color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="64" damage="1" material="wood"/>
+        <item slot="31" amount="64" damage="1" material="wood"/>
+        <item slot="5" amount="64" damage="1" material="leaves"/>
+        <item slot="7" amount="1" material="golden apple"/>
+        <item slot="8" amount="64" material="golden carrot"/>
+        <effect duration="3" amplifier="2">heal</effect>
+        <effect duration="4" amplifier="2">damage resistance</effect>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="334CB2" material="leather helmet"/>
+        <chestplate unbreakable="true" color="334CB2" material="leather chestplate"/>
+        <leggings unbreakable="true" color="334CB2" material="leather leggings"/>
+        <boots unbreakable="true" color="334CB2" material="leather boots"/>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="993333" material="leather helmet"/>
+        <chestplate unbreakable="true" color="993333" material="leather chestplate"/>
+        <leggings unbreakable="true" color="993333" material="leather leggings"/>
+        <boots unbreakable="true" color="993333" material="leather boots"/>
+    </kit>
+    <kit id="speed-house" force="true">
+        <effect amplifier="2">speed</effect>
+        <walk-speed>1.6</walk-speed>
+    </kit>
+    <kit id="remove-speed-house" force="true">
+        <effect duration="0" amplifier="0">speed</effect>
+        <walk-speed>1</walk-speed>
+    </kit>
+    <kit id="jump-pad-prot" force="true">
+        <effect amplifier="100" duration="3">heal</effect>
+        <effect amplifier="100" duration="3">damage resistance</effect>
+        <effect amplifier="100" duration="3">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <block>-75.5,47,0.5</block>
+        </region>
+    </default>
+    <spawn team="blue" kit="blue-kit">
+        <region yaw="-90">
+            <cuboid min="-30,23,-128" max="-31,23,-126"/>
+        </region>
+        <region yaw="90">
+            <cuboid min="31,23,-128" max="32,23,-126"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <region yaw="-90">
+            <cuboid min="-30,23,129" max="-31,23,127"/>
+        </region>
+        <region yaw="90">
+            <cuboid min="31,23,129" max="32,23,127"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <not id="deny-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <complement id="kit-houses">
+        <union id="spawns">
+            <rectangle id="blue-spawn" min="-35,-135" max="36,-119"/>
+            <rectangle id="red-spawn" min="-35,120" max="36,136"/>
+        </union>
+        <rectangle min="-30,-128" max="-31,-126"/>
+        <rectangle min="31,-128" max="32,-126"/>
+        <rectangle min="-30,129" max="-31,127"/>
+        <rectangle min="31,129" max="32,127"/>
+    </complement>
+    <negative id="remove-kit">
+        <region id="kit-houses"/>
+    </negative>
+    <union id="jump-pads">
+        <cuboid id="blue-pad" min="-1.5,17,-111.5" max="2.5,20,-112.5"/>
+        <cuboid id="red-pad" min="-1.5,20,114.5" max="2.5,17,112.5"/>
+    </union>
+    <union id="jump-pads-d">
+        <rectangle min="-1.5,114.5" max="2.5,112.5"/>
+        <rectangle min="-1.5,-111.5" max="2.5,-113.5"/>
+    </union>
+    <complement id="void">
+        <everywhere/>
+        <rectangle min="-38,-13" max="39,14"/>
+        <circle id="obs-spawn" center="-73.5,0.5" radius="7"/>
+    </complement>
+    <apply kit="speed-house" region="kit-houses"/>
+    <apply kit="remove-speed-house" region="remove-kit"/>
+    <apply kit="jump-pad-prot" region="jump-pads"/>
+    <apply velocity="0.0,0.6,2.7" region="blue-pad"/>
+    <apply velocity="0.0,0.6,-2.7" region="red-pad"/>
+    <apply use="never" region="obs-spawn"/>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
+    <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
+    <apply block="never" message="You may not modify the spawns!" region="spawns"/>
+    <apply block="never" message="You may not destroy the jump pads!" region="jump-pads-d"/>
+    <apply block="never" message="You may not build in the void!" region="obs-spawn"/>
+    <apply block-place="deny-void" block-break="always" message="You may not build in the void!" region="void"/>
+</regions>
+<modes>
+    <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="5" modes="gold-core ice-core">
+    <core team="blue">
+        <region>
+            <cuboid min="-3,14,-52" max="4,21,-45"/>
+        </region>
+    </core>
+    <core team="red">
+        <region>
+            <cuboid min="-3,14,46" max="4,21,53"/>
+        </region>
+    </core>
+</cores>
+<renewables>
+    <renewable grow="false" particles="true" sound="true">
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>golden carrot</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>packed ice</item>
+    <item>diamond block</item>
+    <item>item frame</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>log</material>
+        </filter>
+        <drops>
+            <item chance="0" material="log"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>leaves</material>
+        </filter>
+        <drops>
+            <item chance="0" material="leaves"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>wood</item>
+    <item>leaves</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item amount="32" damage="1" material="wood"/>
+    <item amount="16" dmaage="1" material="leaves"/>
+    <item material="golden apple"/>
+</kill-reward>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<maxbuildheight>41</maxbuildheight>
+</map>

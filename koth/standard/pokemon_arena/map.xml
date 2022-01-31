@@ -1,0 +1,106 @@
+<map proto="1.4.2">
+<name>Pokemon Arena</name>
+<version>1.0.2</version>
+<objective>Be the first team to reach 2500 points!</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="74948888-fdb8-4446-9340-f7688c2435cc"/> <!-- Zero_Frosty -->
+</authors>
+<contributors>
+    <contributor uuid="b8add1ba-8e13-4673-bc73-4e3ed524d40e" contribution="XML"/> <!-- Blazy -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="4" amplifier="10">resistance</effect>
+        <effect duration="4" amplifier="10">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <point>-142.5,153,-163.5</point>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-283.5,79,-163.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="90">
+            <point>-197.5,79,-163.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <not id="no-use">
+        <material>trap door</material>
+    </not>
+</filters>
+<regions>
+    <union id="north">
+        <cuboid min="-243,88,-195" max="-238,92,-188"/>
+        <cuboid min="-244,88,-194" max="-237,92,-189"/>
+    </union>
+    <union id="mid">
+        <cuboid min="-244,83,-161" max="-237,87,-166"/>
+        <cuboid min="-243,83,-160" max="-238,87,-167"/>
+    </union>
+    <union id="south">
+        <cuboid min="-238,88,-132" max="-243,92,-139"/>
+        <cuboid min="-237,88,-133" max="-244,92,-138"/>
+    </union>
+    <apply block="never" use="no-use"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="North" capture="north" progress="north"/>
+        <hill name="Middle" capture="mid" progress="mid"/>
+        <hill name="South" capture="south" progress="south"/>
+    </hills>
+</king>
+<score>
+    <limit>2500</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<respawn auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

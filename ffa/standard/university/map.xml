@@ -1,0 +1,127 @@
+<map proto="1.4.0">
+<name>University</name>
+<version>1.0.1</version>
+<objective>Have the most kills after 5 minutes</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/>
+    <!--  Yoyo  -->
+</authors>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="2" max="5" colors="true"/>
+<kits>
+    <kit id="spawn" force="true">
+        <clear/>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2">golden apple</item>
+        <item slot="8" amount="16">arrow</item>
+        <helmet unbreakable="true" team-color="true">leather helmet</helmet>
+        <chestplate unbreakable="true" team-color="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots unbreakable="true" team-color="true" enchantment="protection fall:2">leather boots</boots>
+        <potion duration="2.5" amplifier="10">resistance</potion>
+    </kit>
+    <kit id="kill-reward">
+        <item>golden apple</item>
+        <item amount="8">arrow</item>
+    </kit>
+</kits>
+<spawns>
+    <spawn kit="spawn" spread="true" safe="true">
+        <regions angle="61.5,5,-29.5">
+            <point>30.5,6,-1.5</point>
+            <point>30.5,13,-1.5</point>
+            <point>30.5,13,-29.5</point>
+            <point>30.5,13,-56.5</point>
+            <point>30.5,13,-56.5</point>
+            <point>61.5,6,12.5</point>
+            <point>61.5,6,-71.5</point>
+            <point>61.5,2,-36.5</point>
+            <point>61.5,2,-23.5</point>
+            <point>51.5,9,-29.5</point>
+            <point>71.5,9,-29.5</point>
+            <point>92.5,6,-1.5</point>
+            <point>92.5,13,-1.5</point>
+            <point>92.5,13,-29.5</point>
+            <point>92.5,13,-56.5</point>
+            <point>92.5,13,-56.5</point>
+            <point>36.5,5,-29.5</point>
+            <point>86.5,5,-29.5</point>
+            <point>61.5,2,-45.5</point>
+            <point>61.5,2,-14.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="59,16,-31" max="63,16,-27"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <any id="apply-some">
+        <material>glass</material>
+        <material>stained glass pane</material>
+        <material>leaves</material>
+        <material>leaves 2</material>
+        <material>long grass</material>
+        <material>double plant</material>
+    </any>
+</filters>
+<regions>
+    <apply block-place="no-void" message="You may not modify the void region">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+    <apply block="apply-some" message="You may only modify glass and leaves">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+    <apply block-place="no-void" message="You may not modify the void region">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+    <apply use="never">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>glass</item>
+    <item>golden apple</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>seeds</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple" amount="1"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<timelock>on</timelock>
+</map>

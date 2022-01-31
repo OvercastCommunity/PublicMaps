@@ -1,0 +1,309 @@
+<map proto="1.4.0">
+<name>Xion</name>
+<version>1.2.4</version>
+<objective>Capture the other team's wools to win the game!</objective>
+<authors>
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<contributors>
+    <contributor contribution="Various map improvements and XML" uuid="10c1b730-49b9-4f75-9212-91facc371477"/> <!-- Qixit -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red" color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="31" amount="64" material="wood"/>
+        <item slot="5" amount="64" material="leaves"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="cooked beef"/>
+        <effect duration="7" amplifier="10">heal</effect>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet color="0000ff" unbreakable="true" material="leather helmet"/>
+        <chestplate color="0000ff" unbreakable="true" material="leather chestplate">
+            <enchantment level="2">projectile_protection</enchantment>
+        </chestplate>
+    </kit>
+   <kit id="red-kit" parents="spawn-kit">
+        <helmet color="ff0000" unbreakable="true" material="leather helmet"/>
+        <chestplate color="ff0000" unbreakable="true" material="leather chestplate">
+            <enchantment level="2">projectile_protection</enchantment>
+        </chestplate>
+    </kit>
+    <kit id="leaves" force="true">
+        <item amount="16" material="leaves"/>
+    </kit>
+    <kit id="wool-carrier" force="true">
+        <effect>regeneration</effect>
+        <effect>speed</effect>
+        <effect duration="1" amplifier="5">heal</effect>
+    </kit>
+    <kit id="protection-spawn" force="true">
+        <effect amplifier="10">damage resistance</effect>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <block>-34.5,31,-151.5</block>
+        </region>
+    </default>
+    <spawn team="blue" kit="blue-kit">
+        <region yaw="0">
+            <block>32.5,9,-84.5</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <region yaw="0">
+            <block>-101.5,9,-218.5</block>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="blue-in-wr">
+        <any>
+            <material>chest</material>
+            <material>beacon</material>
+            <team id="only-red">red</team>
+        </any>
+    </not>
+    <not id="red-in-wr">
+        <any>
+            <material>chest</material>
+            <material>beacon</material>
+            <team id="only-blue">blue</team>
+        </any>
+    </not>
+    <not id="only-blue-usage">
+        <all>
+            <any>
+                <material>chest</material>
+                <material>workbench</material>
+                <material>trap door</material>
+            </any>
+            <filter id="only-red"/>
+        </all>
+    </not>
+    <not id="only-red-usage">
+        <all>
+            <any>
+                <material>chest</material>
+                <material>workbench</material>
+                <material>trap door</material>
+            </any>
+            <filter id="only-blue"/>
+        </all>
+    </not>
+    <not id="deny-void">
+        <void/>
+    </not>
+    <deny id="deny-usage">
+        <any>
+            <material>dispenser</material>
+            <material>beacon</material>
+        </any>
+    </deny>
+</filters>
+<regions>
+    <union id="spawns">
+        <complement id="blue-spawn">
+            <union>
+                <rectangle min="27,-87" max="35,-82"/>
+                <rectangle min="30,-79" max="35,-82"/>
+                <rectangle min="38,-82" max="35,-87"/>
+                <rectangle min="35,-90" max="30,-87"/>
+                <rectangle min="30,-87" max="35,-82"/>
+                <rectangle min="43,-74" max="22,-95"/>
+            </union>
+            <below y="0"/>
+        </complement>
+        <complement id="red-spawn">
+            <union>
+                <rectangle min="-96,-221" max="-104,-216"/>
+                <rectangle min="-104,-216" max="-99,-213"/>
+                <rectangle min="-104,-216" max="-107,-221"/>
+                <rectangle min="-104,-221" max="-99,-224"/>
+                <rectangle min="-99,-216" max="-104,-221"/>
+                <rectangle min="-91,-208" max="-112,-229"/>
+            </union>
+            <below y="0"/>
+        </complement>
+    </union>
+    <union id="blue-leaves">
+        <cuboid min="33,6,-89" max="32,8,-88"/>
+        <cuboid min="28,6,-85" max="29,8,-84"/>
+        <cuboid min="33,6,-80" max="32,8,-81"/>
+        <cuboid min="37,6,-84" max="36,8,-85"/>
+    </union>
+    <union id="red-leaves">
+        <cuboid min="-101,6,-214" max="-102,8,-215"/>
+        <cuboid min="-106,6,-218" max="-105,8,-219"/>
+        <cuboid min="-102,6,-223" max="-101,8,-222"/>
+        <cuboid min="-97,6,-219" max="-98,8,-218"/>
+    </union>
+    <union id="wool-rooms">
+        <union id="blue-wools"> <!-- Blue must get -->
+            <rectangle id="orange-room" min="-164,-183" max="-179,-198"/>
+            <rectangle id="red-room" min="-81,-281" max="-66,-296"/>
+        </union>
+        <union id="red-wools"> <!-- Red must get -->
+            <rectangle id="blue-wool-room" min="-3,-22" max="12,-7"/>
+            <rectangle id="light-blue-room" min="95,-105" max="110,-120"/>
+        </union>
+    </union>
+    <union id="iron-regen">
+        <rectangle id="red-iron" min="-131,-219" max="-103,-248"/>
+        <rectangle id="blue-iron" min="62,-84" max="34,-55"/>
+    </union>
+    <apply use="deny-usage"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-blue" region="blue-wools" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-red" region="red-wools" message="You may not enter your team's own wool rooms!"/>
+    <apply filter="only-blue" region="blue-spawn" lend-kit="protection-spawn"/>
+    <apply filter="only-red" region="red-spawn" lend-kit="protection-spawn"/>
+    <apply filter="only-blue" region="blue-leaves" kit="leaves"/>
+    <apply filter="only-red" region="red-leaves" kit="leaves"/>
+    <apply filter="only-blue" region="blue-wools" kit="wool-carrier"/>
+    <apply filter="only-red" region="red-wools" kit="wool-carrier"/>
+    <apply block="never" block-physics="never" region="spawns" message="You may not destroy the spawn areas!"/>
+    <apply block="blue-in-wr" use="only-blue-usage" region="blue-wools"/>
+    <apply block="red-in-wr" use="only-red-usage" region="red-wools"/>
+    <apply block="deny-void" message="You may not break or place blocks in the void area!"/>
+</regions>
+<wools>
+    <wool team="blue" color="orange" location="-172,9,-190">
+        <monument>
+            <block location="42.5,6,-75.5"/>
+        </monument>
+    </wool>
+    <wool team="blue" color="red" location="-73,9,-288">
+        <monument>
+            <block location="41.5,6,-74.5"/>
+        </monument>
+    </wool>
+    <wool team="red" color="blue" location="4,9,-14">
+        <monument>
+            <block location="-111.5,6,-227.5"/>
+        </monument>
+    </wool>
+    <wool team="red" color="light blue" location="102,9,-112">
+        <monument>
+            <block location="-110.5,6,-228.5"/>
+        </monument>
+    </wool>
+</wools>
+<renewables>
+    <renewable region="iron-regen" rate="2" grow="false" particles="true" sound="true">
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+    </renewable>
+</renewables>
+<blockdrops>
+    <!-- Custom smooth sandstone block will drop normal sandstone, as opposed to it dropping two sandstone slabs -->
+    <rule>
+        <filter>
+            <material>double step:9</material>
+        </filter>
+        <drops>
+            <item>sandstone</item>
+        </drops>
+    </rule>
+</blockdrops>
+<crafting>
+    <disable>anvil</disable>
+    <!-- Ruediger_LP's crafting mods from Columbia CTW XML -->
+    <shaped override="false">
+        <result material="iron helmet" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron chestplate" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>III</row>
+            <row>III</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron leggings" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron boots" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="bucket" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>.I.</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+</crafting>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>wood</item>
+    <item>leaves</item>
+    <item>cooked beef</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>log</item>
+    <item>fence</item>
+    <item>seeds</item>
+    <item>cauldron</item>
+    <item>trap door</item>
+    <item>carrot</item>
+    <item>string</item>
+    <item>cauldron</item>
+    <item>redstone</item>
+    <item>redstone torch on</item>
+    <item>redstone lamp off</item>
+    <item>redstone block</item>
+    <item>beacon</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item amount="8" material="wood"/>
+    <item amount="4" material="leaves"/>
+    <item material="golden apple"/>
+</kill-reward>
+<maxbuildheight>25</maxbuildheight>
+</map>

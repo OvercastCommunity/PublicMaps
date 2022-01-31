@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Eternal Virus</name>
+<version>1.0.1</version>
+<gamemode>koth</gamemode>
+<phase>development</phase>
+<objective>You have one chance to capture the hill. Make it worth it!</objective>
+<authors>
+    <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- ViceTechnicolour -->
+    <author uuid="1865ac01-271f-4f69-b979-b43a78c39989"/> <!-- Zintenka -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="green" color="green" max="16">Green</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" material="iron sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="6" material="bread" amount="16"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" material="arrow" amount="16"/>
+        <potion duration="8">damage resistance</potion>
+    </kit>
+    <kit id="green-kit" parents="spawn">
+        <helmet color="45b711" material="leather helmet"/>
+        <chestplate color="45b711" material="leather chestplate"/>
+        <leggings color="45b711" material="leather leggings"/>
+        <boots color="45b711" material="leather boots"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="0000ff" material="leather helmet"/>
+        <chestplate color="0000ff" material="leather chestplate"/>
+        <leggings color="0000ff" material="leather leggings"/>
+        <boots color="0000ff" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="green" kit="green-kit">
+        <regions>
+            <point yaw="-135">-49,16,44</point>
+            <point yaw="135">47,16,44</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions>
+            <point yaw="45">47,16,-52</point>
+            <point yaw="-45">-48,16,51</point>
+        </regions>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <point>-1,43,-4</point>
+        </region>
+    </default>
+</spawns>
+<filters>
+    <team id="only-green">green</team>
+    <team id="only-blue">blue</team>
+</filters>
+<regions>
+    <union id="spawns">
+        <union id="green-spawn">
+            <cylinder base="-49,16,44" height="4" radius="5"/>
+            <cylinder base="47,16,44" height="4" radius="5"/>
+        </union>
+        <union id="blue-spawn">
+            <cylinder base="47,16,-52" height="4" radius="5"/>
+            <cylinder base="-48,16,-51" height="4" radius="5"/>
+        </union>
+    </union>
+    <everywhere/>
+    <!-- Applicators -->
+    <apply enter="only-green" region="green-spawn" message="You may not enter Green team's spawn!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter Blue team's spawn!"/>
+    <apply build="never" region="everywhere"/>
+</regions>
+<control-points required="true" permanent="true" show-progress="true">
+    <control-point name="Center" capture-time="5s">
+        <capture>
+            <cylinder base="-1,1,-4" height="2" radius="4"/>
+        </capture>
+        <progress>
+            <cuboid min="-61,-8,-57" max="62,31,-66"/>
+        </progress>
+    </control-point>
+</control-points>
+<timelock>on</timelock>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item material="arrow" amount="8"/>
+    </kill-reward>
+</kill-rewards>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>bread</item>
+    <item>golden apple</item>
+</itemremove>
+</map>

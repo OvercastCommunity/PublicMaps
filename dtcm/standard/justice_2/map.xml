@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto= "1.4.2">
+	<name>Justice 2</name>
+	<spec>1.0.0</spec>
+	<version>1.1.0</version>
+	<gamemode>dtm</gamemode>
+	<objective>Destroy the enemies monuments!</objective>
+	<authors>
+		<author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- Evocal -->
+	</authors>
+	<teams>
+		<team max="25" min="1" color="red" id="red-team">Red</team>
+		<team max="25" min="1" color="yellow" id="yellow-team">Yellow</team>
+	</teams>
+	<kits>
+		<kit id="spawn">
+			<item material="stone sword" show-unbreakable="false" unbreakable="true" slot="0"/>
+			<item material="bow" slot="1">
+				<enchantment level="1">arrow_infinite</enchantment>
+			</item>
+			<item material="diamond pickaxe" slot="2"/>
+			<item material="golden apple" amount="3" slot="3"/>
+			<item material="log" amount="64" slot="4"/>
+			<item material="glass" amount="32" slot="5"/>
+			<item material="apple" amount="24" slot="7"/>
+			<item material="arrow" amount="1" slot="27"/>
+		</kit>
+		<kit id="red-kit" parents="spawn">
+			<helmet unbreakable="true" color="B02E26">leather helmet</helmet>
+		</kit>
+		<kit id="yellow-kit" parents="spawn">
+			<helmet unbreakable="true" color="FED83D">leather helmet</helmet>
+		</kit>
+	</kits>
+	<spawns>
+		<default>
+			<regions>
+				<point yaw="-90">-1322.5,83,-324.5</point>
+			</regions>
+		</default>
+		<spawn safe="true" kit="red-kit" team="red-team">
+			<regions>
+				<point yaw="0">-1199.5,27,-457.5</point>
+			</regions>
+		</spawn>
+		<spawn safe="true" kit="yellow-kit" team="yellow-team">
+			<regions>
+				<point yaw="180">-1199.5,27,-191.5</point>
+			</regions>
+		</spawn>
+	</spawns>
+	<destroyables materials="obsidian">
+		<!-- Yellow needs to destroy -->
+		<destroyable name="Left Monument" owner="red-team">
+			<region><cuboid min="-1270,30,-401" max="-1267,32,-404"/></region>
+		</destroyable>
+		<destroyable name="Right Monument" owner="red-team">
+			<region><cuboid min="-1132,30,-401" max="-1129,32,-404"/></region>
+		</destroyable>
+		<!-- Red needs to destroy -->
+		<destroyable name="Left Monument" owner="yellow-team">
+			<region><cuboid min="-1132,30,-245" max="-1128,32,-248"/></region>
+		</destroyable>
+		<destroyable name="Right Monument" owner="yellow-team">
+			<region><cuboid min="-1270,30,-245" max="-1267,32,-248"/></region>
+		</destroyable>
+	</destroyables>
+	<kill-rewards>
+		<kill-reward>
+			<item material="golden apple" amount="1"/>
+		</kill-reward>
+	</kill-rewards>
+	<itemremove>
+		<item>stone sword</item>
+		<item>apple</item>
+		<item>glass</item>
+		<item>log</item>
+		<item>arrow</item>
+		<item>leather helmet</item>
+	</itemremove>
+	<toolrepair>
+		<tool>iron sword</tool>
+		<tool>bow</tool>
+		<tool>diamond pickaxe</tool>
+	</toolrepair>
+	<filters>
+		<team id="only-red">yellow-team</team>
+		<team id="only-yellow">yellow-team</team>
+	</filters>
+	<regions>
+		<cuboid id="playing-field" min="-1293.5,0,-168.5" max="-1105.5,200,-480.5"/>
+		<apply message="You may not place blocks outside the playing field!" block-break="never" block-place="never">
+			<region>
+				<negative>
+					<region id="playing-field"/>
+				</negative>
+			</region>
+		</apply>
+		<cylinder id="red-spawn" base="-1999.5,24,-457.5" radius="15" height="20"/>
+		<apply region="red-spawn" block-place="never" block-break="never" enter="only-red"/>
+		<apply region="red-spawn" enter="only-red" message="You may not enter Red's base!"/>
+		<cylinder id="yellow-spawn" base="-1999.5,24,-191.5" radius="15" height="20"/>
+		<apply region="yellow-spawn" block-place="never" block-break="never" enter="only-yellow"/>
+		<apply region="yellow-spawn" enter="only-yellow" message="You may not enter Yellow's base!"/>
+	</regions>
+	<timelock>on</timelock>
+</map>

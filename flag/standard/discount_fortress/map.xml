@@ -1,0 +1,150 @@
+<map proto="1.4.2">
+<name>Discount Fortress</name>
+<version>1.2.5</version>
+<objective>Capture the enemy team's flag as many times as possible within 12 minutes!</objective>
+<time result="score" overtime="1m" max-overtime="2m">12m</time>
+<broadcasts>
+    <alert after="1s" every="6m" count="2">A mercy limit of 3 flag captures is active!</alert>
+    <alert after="3s" every="6m" count="2">A team that gains a 3 capture lead will automatically win!</alert>
+</broadcasts>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <author uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Winnerizor -->
+</authors>
+<contributors>
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+    <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655"/> <!-- wylt -->
+    <contributor uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa"/> <!-- Antnecb -->
+    <contributor uuid="eb1f6661-e01f-4062-b2ae-cd01a9dc4b92"/> <!-- latiku3 -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="20">Blue</team>
+    <team id="red" color="dark red" max="20">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" material="shears"/>
+        <item slot="3" amount="12" material="leaves"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="5" amplifier="255">heal</effect>
+        <effect duration="5" amplifier="255">damage resistance</effect>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="0">
+            <point>14.5,26.5,-413.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="180">
+            <point>18.0,1,-299.0</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="0">
+            <point>-19.0,1,-442.0</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <any id="playable-blocks">
+        <material>leaves</material>
+        <material>glass</material>
+    </any>
+    <time id="flag-respawns">0</time>
+</filters>
+<regions>
+    <union id="flag-nets">
+        <cuboid id="blue-net" min="-17,9,-313" max="-14,14,-310"/>
+        <cuboid id="red-net" min="16,9,-428" max="13,14,-431"/>
+    </union>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="28,-295" max="8,-317"/>
+        <rectangle id="red-spawn" min="-29,-446" max="-9,-424"/>
+    </union>
+    <negative id="void">
+        <union id="playable-region">
+            <rectangle min="-36,-418" max="35,-323"/>
+            <rectangle min="6,-418" max="29,-434"/>
+            <rectangle min="-7,-323" max="-30,-307"/>
+        </union>
+    </negative>
+    <apply block="never" region="spawns" message="You may not modify the spawns!"/>
+    <apply block="never" region="flag-nets" message="You may not place blocks around the flag!"/>
+    <apply block="playable-blocks" region="playable-region" message="You may only break or place leaves and glass!"/>
+    <apply block="never" region="void" message="You may not build in the void!"/>
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          color="blue"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-red" recover-time="20s" respawn-time="15s">-15.5,10,-311.5</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red"
+          color="red"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-blue" recover-time="20s" respawn-time="15s">14.5,10,-429.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>sapling</item>
+    <item>cactus</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>leaves</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="10" material="arrow"/>
+    <item amount="6" material="leaves"/>
+</kill-reward>
+<maxbuildheight>15</maxbuildheight>
+<respawn delay="3s"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

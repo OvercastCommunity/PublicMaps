@@ -1,0 +1,69 @@
+<map proto="1.4.2">
+<name>Treasure Town</name>
+<version>1.1.1</version>
+<objective>Be the player with the most kills at the end of 5 minutes!</objective>
+<gamemode>ffa</gamemode>
+<authors>
+    <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- bend -->
+</authors>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="2" max="5" colors="true"/>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16">arrow</item>
+        <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
+        <boots locked="true" unbreakable="true" team-color="true" material="leather boots">
+            <enchantment>depth_strider</enchantment>
+        </boots>
+        <effect duration="2" amplifier="255">heal</effect>
+        <effect duration="2" amplifier="255">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <cylinder base="-74,59,0" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn kit="spawn-kit" spread="true" safe="true">
+        <region angle="0,14,0">
+            <cylinder base="0,7,0" radius="50" height="18"/>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemremove>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>suffocation</damage>
+</disabledamage>
+<respawn auto="true"/>
+</map>

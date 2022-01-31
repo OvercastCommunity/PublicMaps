@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Cake Wars 2</name>
+<version>1.2.3</version>
+<objective> Destroy the enemy team's core before they destroy your team's.</objective>
+<authors>
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/>
+    <!-- GammaRay89 -->
+</authors>
+<filters>
+    <filter name="only-Fishnets" parents="deny-players deny-world">
+        <allow>
+            <team>Fishnets</team>
+        </allow>
+    </filter>
+    <filter name="only-ButterHeads" parents="deny-players deny-world">
+        <allow>
+            <team>ButterHeads</team>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply leave="deny-all" message="You may not leave the battlefield.">
+    <union name="playable">
+        <rectangle name="main-area" min="123,136" max="372,283"/>
+        <rectangle name="only-ButterHeads" min="141,217" max="119,210"/>
+        <rectangle name="only-Fishnets" min="342,210" max="364,217"/>
+    </union>
+    </apply>
+    <apply enter="only-ButterHeads" message="You may not enter the ButterHeads spawn!">
+        <region name="only-ButterHeads"/>
+    </apply>
+    <apply enter="only-Fishnets" message="You may not enter the Fishnets spawn!">
+        <region name="only-Fishnets"/>
+    </apply>
+    <apply block="deny-all">
+        <region name="only-Fishnets"/>
+        <region name="only-ButterHeads"/>
+    </apply>
+</regions>
+<playable>
+    <region name="playable"/>
+</playable>
+<teams>
+    <team color="blue" max="75">Fishnets</team>
+    <team color="red" max="75">ButterHeads</team>
+</teams>
+<spawns>
+    <spawn team="ButterHeads" yaw="-90">
+        <cuboid min="123,72,214" max="122,72,213"/>
+    </spawn>
+    <spawn team="Fishnets" yaw="90">
+        <cuboid min="360,72,213" max="361,72,214"/>
+    </spawn>
+    <default yaw="0">
+        <cuboid min="232,81,213" max="251,96,214"/>
+    </default>
+</spawns>
+<!-- default gold core mode in 15 minutes, default glass core mode in 20 minutes -->
+<cores material="obsidian" leak="3">
+    <core team="Fishnets" name="Fishnets core">
+        <cuboid min="317,91,216" max="321,84,213"/>
+    </core>
+    <core team="ButterHeads" name="ButterHeads core">
+        <cuboid min="167,91,212" max="163,84,216"/>
+    </core>
+</cores>
+<maxbuildheight>110</maxbuildheight>
+<timelock>off</timelock>
+</map>

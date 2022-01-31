@@ -1,0 +1,168 @@
+<map proto="1.4.0">
+<name>A New Day II</name>
+<version>1.0.7</version>
+<objective>Capture the enemy's wools!</objective>
+<authors>
+    <author uuid="b5071a63-bba3-491a-909f-02db314f4319"/> <!-- dcstarwars -->
+</authors>
+<contributors>
+    <contributor uuid="63b88dff-c6b4-4e08-bd17-aae089b12e95" contribution="Original XML for Atlas"/> <!-- Riilo -->
+    <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac" contribution="XML for current version of PGM"/> <!-- mame_BT -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="14">Blue</team>
+    <team id="red" color="dark red" max="14">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" material="iron axe"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" damage="1" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="grilled pork"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="0000FF" material="leather helmet"/>
+        <chestplate unbreakable="true" color="0000FF" material="leather chestplate">
+            <enchantment>projectile_protection</enchantment>
+        </chestplate>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="FF0000" material="leather helmet"/>
+        <chestplate unbreakable="true" color="FF0000" material="leather chestplate">
+            <enchantment>projectile_protection</enchantment>
+        </chestplate>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <point>23.5,23.5,300.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="blue-kit">
+        <region yaw="90">
+            <point>122,9.5,211.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <region yaw="-90">
+            <point>-75,9.5,211.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="deny-players">
+        <cause>player</cause>
+    </not>
+    <all id="blue-in-wr">
+        <material>web</material>
+        <team id="only-blue">blue</team>
+    </all>
+    <all id="red-in-wr">
+        <material>web</material>
+        <team id="only-red">red</team>
+    </all>
+    <material id="only-iron">iron block</material>
+    <not id="deny-void">
+        <void/>
+    </not>
+    <deny id="deny-web">
+        <material>web</material>
+    </deny>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" max="132,225" min="84,197"/>
+        <rectangle id="red-spawn" max="-37,197" min="-85,225"/>
+    </union>
+    <union id="blue-wool-rooms">
+        <rectangle max="99,193" min="130,161"/>
+        <rectangle max="99,261" min="130,229"/>
+    </union>
+    <union id="red-wool-rooms">
+        <rectangle max="-83,193" min="-52,161"/>
+        <rectangle max="-83,261" min="-52,229"/>
+    </union>
+    <rectangle id="mid-map" min="-18,179" max="64,243"/>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
+    <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
+    <apply enter="only-blue" message="You may not enter your own wool rooms!" region="red-wool-rooms"/>
+    <apply enter="only-red" message="You may not enter your own wool rooms!" region="blue-wool-rooms"/>
+    <apply block-break="only-iron" block-place="deny-players" message="You may only break iron in spawn!" region="spawns"/>
+    <apply block="blue-in-wr" use="only-blue" region="red-wool-rooms"/>
+    <apply block="red-in-wr" use="only-red" region="blue-wool-rooms"/>
+    <apply block="deny-web" region="mid-map"/>
+    <apply block-place="deny-void" message="You may not build in the void!"/>
+</regions>
+<renewables>
+    <renewable rate="2.5" particles="true" sound="true" region="spawns">
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<wools team="blue">
+    <wool color="lime" location="-67,9,177" craftable="false">
+        <monument>
+            <block>126,10,213</block>
+        </monument>
+    </wool>
+    <wool color="purple" location="-67,9,245" craftable="false">
+        <monument>
+            <block>126,10,209</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="orange" location="113,9,245" craftable="false">
+        <monument>
+            <block>-80,10,213</block>
+        </monument>
+    </wool>
+    <wool color="yellow" location="113,9,177" craftable="false">
+        <monument>
+            <block>-80,10,209</block>
+        </monument>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>stone spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>wood</item>
+    <item>glass</item>
+    <item>grilled pork</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>log</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" damage="1" material="wood"/>
+</kill-reward>
+<maxbuildheight>24</maxbuildheight>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<world>
+    <timeset>6000</timeset>
+</world>
+</map>

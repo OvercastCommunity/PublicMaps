@@ -1,0 +1,182 @@
+<map proto="1.4.0">
+<name>Parallax</name>
+<gamemode>rfw</gamemode>
+<version>0.1.3</version>
+<phase>development</phase>
+<objective>Secure the three wools and place them at your team's victory monument!</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="50">Blue</team>
+    <team id="red" color="dark red" max="50">Red</team>
+</teams>
+<spawns>
+    <default yaw="0">
+        <region>
+            <point>-88,21,319</point>
+        </region>
+    </default>
+    <spawn team="blue" yaw="180">
+        <regions>
+            <point>-105,21,250</point>
+            <point>-120,25,250</point>
+            <point>-136,30,250</point>
+        </regions>
+    </spawn>
+    <spawn team="red" yaw="180">
+        <regions>
+            <point>-72,21,250</point>
+            <point>-56,25,250</point>
+            <point>-40,30,250</point>
+        </regions>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <all id="only-liquids">
+        <not>
+            <cause>player</cause>
+        </not>
+        <any>
+            <material>water</material>
+            <material>stationary water</material>
+            <material>lava</material>
+            <material>stationary lava</material>
+        </any>
+    </all>
+    <all id="protect-monuments">
+        <any>
+            <material>wool:2</material>
+            <material>wool:9</material>
+            <material>wool:5</material>
+        </any>
+    </all>
+</filters>
+<regions>
+    <!-- Blue spawn rooms -->
+    <union id="blue-spawn-rooms">
+        <cuboid id="blue-spawn-room-low" min="-110,20,242" max="-98,28,257" />
+        <cuboid id="blue-spawn-room-med" min="-126,24,242" max="-114,33,257" />
+        <cuboid id="blue-spawn-room-hi" min="-142,29,242" max="-130,37,257" />
+    </union>
+    <!-- Red spawn rooms -->
+    <union id="red-spawn-rooms">
+        <cuboid id="red-spawn-room-low" min="-78,20,242" max="-66,28,257" />
+        <cuboid id="red-spawn-room-med" min="-62,24,242" max="-50,33,257" />
+        <cuboid id="red-spawn-room-hi" min="-46,29,242" max="-34,37,257" />
+    </union>
+    <negative id="outside-lanes">
+        <union id="both-lanes">
+            <union id="blue-lane-total">
+                <!-- Main lanes -->
+                <rectangle id="blue-lane" min="-144,-224" max="-96,243"/>
+                <!-- Last chest area -->
+                <rectangle id="blue-chest-walkway" min="-121, -234" max="-119,-224"/>
+                <rectangle id="blue-chest-chestway" min="-123, -240" max="-117,-234"/>
+            </union>
+            <union id="red-lane-total">
+                <!-- Main lanes -->
+                <rectangle id="red-lane" min="-80,-224" max="-32,243"/>
+                <!-- Last chest area -->
+                <rectangle id="red-chest-walkway" min="-57,-234" max="-55,-224"/>
+                <rectangle id="red-chest-chestway" min="-59,-240" max="-53,-234"/>
+            </union>
+        </union>
+    </negative>
+    <union id="start-finish">
+        <rectangle id="start-line" min="-144,240" max="-32,243"/>
+        <rectangle id="finish-line" min="-144,-224" max="-32,-221"/>
+    </union>
+    <cuboid id="green-wool-buttons" min="-90,31,-202" max="-86,34,-200"/>
+    <union id="green-wool">
+        <circle id="green-wool-circle" center="-88,-192" radius="10" />
+        <rectangle id="green-wool-weirdarea" min="-90,-206" max="-86,-201" />
+    </union>
+    <union id="wool-monuments">
+        <cuboid id="blue-wool-room" min="-124,23,-125" max="-114,32,-110"/>
+        <cuboid id="red-wool-room" min="-62,23,-125" max="-52,32,-110"/>
+    </union>
+    <!-- Lane module should prevent this, but just in case -->
+    <apply enter="only-blue" region="blue-lane-total">
+        <message>
+            {"translate":"match.laneExit"}
+        </message>
+    </apply>
+    <apply enter="only-red" region="red-lane-total">
+        <message>
+            {"translate":"match.laneExit"}
+        </message>
+    </apply>
+    <!-- prevent blocks from being placed / destroyed outside of the lanes -->
+    <apply block="only-liquids" message="You may not place or break blocks outside of your lane" region="outside-lanes"/>
+    <!-- protect monuments -->
+    <apply block="protect-monuments" message="You may not damage the wool monuments." region="wool-monuments"/>
+    <!-- prevent spawner button destruction -->
+    <apply block="never" use="always" message="You may not damage the wave spawner buttons!" region="green-wool-buttons"/>
+    <!-- prevent blocks from being destroyed on the finish lines -->
+    <apply block="never" message="You may not damage the start or finish lines." region="start-finish"/>
+</regions>
+<lanes>
+    <lane team="blue">
+        <region>
+            <union>
+                <region id="blue-lane-total"/>
+                <region id="blue-spawn-rooms"/>
+                <region id="green-wool"/> <!-- Green-wool is shared -->
+            </union>
+        </region>
+    </lane>
+    <lane team="red">
+        <region>
+            <union>
+                <region id="red-lane-total"/>
+                <region id="red-spawn-rooms"/>
+                <region id="green-wool"/> <!-- Green-wool is shared -->
+            </union>
+        </region>
+    </lane>
+</lanes>
+<wools team="blue" craftable="false" wool-proximity-metric="none" monument-proximity-metric="none">
+    <wool color="magenta" location="-105,2,149">
+        <monument>
+            <block>-117,26,-115</block>
+        </monument>
+    </wool>
+    <wool color="cyan" location="-106,6,-27">
+        <monument>
+            <block>-117,26,-118</block>
+        </monument>
+    </wool>
+    <wool color="lime" location="-88,31,-192">
+        <monument>
+            <block>-117,26,-121</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="red" craftable="false" wool-proximity-metric="none" monument-proximity-metric="none">
+    <wool color="magenta" location="-72,2,149">
+        <monument>
+            <block>-60,26,-115</block>
+        </monument>
+    </wool>
+    <wool color="cyan" location="-71,6,-27">
+        <monument>
+            <block>-60,26,-118</block>
+        </monument>
+    </wool>
+    <wool color="lime" location="-88,31,-192">
+        <monument>
+            <block>-60,26,-121</block>
+        </monument>
+    </wool>
+</wools>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<maxbuildheight>76</maxbuildheight>
+<timelock>off</timelock>
+</map>

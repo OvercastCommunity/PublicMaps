@@ -1,0 +1,188 @@
+<map proto="1.4.0">
+<name>Retaliation 2</name>
+<version>1.5.1</version>
+<objective>Destroy each of the enemy's monuments and leak their core to win!</objective>
+<authors>
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draeyx fka Draco_Rogue -->
+</authors>
+<contributors>
+    <contributor uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27" contribution="Map support and assistance"/> <!-- HardstyleRaver fka HardstyleRaver2 -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red" color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit" force="true">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" material="diamond sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="28" amount="64" material="arrow"/>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" material="diamond axe"/>
+        <item slot="4" amount="48" material="wood"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="golden carrot"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="334CB2" material="leather helmet"/>
+        <chestplate unbreakable="true" color="334CB2" material="leather chestplate">
+            <enchantment level="3">blast_protection</enchantment>
+            <enchantment>projectile_protection</enchantment>
+        </chestplate>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="993333" material="leather helmet"/>
+        <chestplate unbreakable="true" color="993333" material="leather chestplate">
+            <enchantment level="3">blast_protection</enchantment>
+            <enchantment>projectile_protection</enchantment>
+        </chestplate>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="90">
+            <point>12.5,45,48.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="blue-kit">
+        <region yaw="180">
+            <point>58.5,46,144.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <region yaw="0">
+            <point>58.5,46,-47.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+    <material id="only-tnt">tnt</material>
+    <not id="deny-players">
+        <cause>player</cause>
+    </not>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="55,121" max="62,151"/>
+        <rectangle id="red-spawn" min="55,-54" max="62,-24"/>
+    </union>
+    <complement id="spawn-exits">
+        <union>
+            <rectangle id="blue-spawn-exit" min="55,116" max="62,122"/>
+            <rectangle id="red-spawn-exit" min="55,-25" max="62,-19"/>
+        </union>
+        <above y="60"/>
+        <below id="no-underbridging" y="40"/>
+    </complement>
+    <union id="height-limits">
+        <above id="tnt-height-limit" y="77"/>
+        <above id="above-height-limit" y="78"/>
+    </union>
+    <negative id="playable-inverse">
+        <rectangle min="23,-25" max="94,122"/>
+    </negative>
+    <apply use="deny-beacon"/>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
+    <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
+    <apply block="never" region="above-height-limit" message="You may not break or place any blocks at this height!"/>
+    <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
+    <apply block="deny-players" message="You may not build underneath the map!" region="no-underbridging"/>
+    <apply block="never" message="You may not block the spawn exits!" region="spawn-exits"/>
+    <apply block="never" message="You may build outside of the map area!" region="playable-inverse"/>
+</regions>
+<modes>
+    <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
+</modes>
+<destroyables completion="100%" materials="ender stone" show-progress="true" sparks="true">
+    <destroyables owner="blue">
+        <destroyable name="West Monument">
+            <region>
+                <cylinder base="31.5,54,95.5" radius="3" height="9"/>
+            </region>
+        </destroyable>
+        <destroyable name="East Monument">
+            <region>
+                <cylinder base="85.5,54,95.5" radius="3" height="9"/>
+            </region>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="red">
+        <destroyable name="West Monument">
+            <region>
+                <cylinder base="31.5,54,1.5" radius="3" height="9"/>
+            </region>
+        </destroyable>
+        <destroyable name="East Monument">
+            <region>
+                <cylinder base="85.5,54,1.5" radius="3" height="9"/>
+            </region>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<cores material="obsidian" leak="5" modes="gold-core ice-core">
+    <core team="blue">
+        <region>
+            <cuboid min="55,53,85" max="62,60,92"/>
+        </region>
+    </core>
+    <core team="red">
+        <region>
+            <cuboid min="55,53,5" max="62,60,12"/>
+        </region>
+    </core>
+</cores>
+<blockdrops>
+    <rule>
+        <filter>
+            <material>stone</material>
+        </filter>
+        <drops>
+            <item>stone</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>cobblestone</material>
+        </filter>
+        <drops>
+            <item>stone</item>
+        </drops>
+    </rule>
+</blockdrops>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>diamond axe</tool>
+</toolrepair>
+<itemremove>
+    <item>wood</item>
+    <item>golden carrot</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>cobblestone</item>
+    <item>beacon</item>
+    <item>ender stone</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>packed ice</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item amount="16" material="arrow"/>
+    <item material="golden apple"/>
+</kill-reward>
+</map>

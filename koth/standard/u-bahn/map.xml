@@ -1,0 +1,125 @@
+<map proto="1.4.2">
+<name>U-Bahn</name>
+<version>1.0.2</version>
+<objective>Be the first team to reach 1250 points by controlling hills and killing the enemy!</objective>
+<gamemode>koth</gamemode>
+<gamemode>tdm</gamemode>
+<phase>development</phase>
+<authors>
+    <author uuid="135737b8-7f2b-4f90-aa37-ec395c7c6a9b"/> <!-- lumaaaaaaa -->
+    <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- Vicei -->
+</authors>
+<contributors>
+    <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac" contribution="PGM XML"/> <!-- mameBT -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="16">Red</team>
+    <team id="yellow" color="yellow" max="16">Yellow</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <cylinder base="45,31,-48" radius="1.5" height="0"/>
+        </region>
+    </default>
+    <spawn team="red" kit="spawn-kit">
+        <regions yaw="0">
+            <point>7,6,-101</point>
+            <point>84,6,-101</point>
+        </regions>
+        <region yaw="90">
+            <point>98,6,-87</point>
+        </region>
+        <region yaw="-90">
+            <point>-7,6,-87</point>
+        </region>
+    </spawn>
+    <spawn team="yellow" kit="spawn-kit">
+        <regions yaw="180">
+            <point>7,6,6</point>
+            <point>84,6,6</point>
+        </regions>
+        <region yaw="90">
+            <point>98,6,-8</point>
+        </region>
+        <region yaw="-90">
+            <point>-7,6,-8</point>
+        </region>
+    </spawn>t
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" show-progress="true" neutral-state="true" recovery="1" decay="0" points="1.75">
+        <hill name="Hill A">
+            <capture>
+                <cylinder base="23.5,6,-69.5" height="3" radius="4.5"/>
+            </capture>
+            <progress>
+                <cylinder base="23.5,5,-69.5" height="8" radius="4.5"/>
+            </progress>
+        </hill>
+        <hill name="Mid">
+            <capture>
+                <cylinder base="45.5,6,-47.5" height="3" radius="4"/>
+            </capture>
+            <progress>
+                <cylinder base="45.5,5,-47.5" height="8" radius="4"/>
+            </progress>
+        </hill>
+        <hill name="Hill B">
+            <capture>
+                <cylinder base="67.5,6,-25.5" height="3" radius="4.5"/>
+            </capture>
+            <progress>
+                <cylinder base="67.5,5,-25.5" height="8" radius="4.5"/>
+            </progress>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>1250</limit>
+    <kills>1</kills>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<respawn auto="true" delay="5s"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<world>
+    <timelock>off</timelock>
+</world>
+</map>

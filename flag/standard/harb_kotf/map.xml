@@ -1,0 +1,207 @@
+<map proto="1.4.2">
+<name>Harb KotF</name>
+<version>2.2.4</version>
+<objective>Control the flag for 200 seconds to win!</objective>
+<gamemode>kotf</gamemode>
+<authors>
+    <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0"/> <!-- SH4D0W_HAWK -->
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red" color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="3" amount="32" material="ladder"/>
+        <item slot="4" amount="2" material="tnt"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <leggings locked="true" unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots locked="true" unbreakable="true" material="iron boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
+        <health>20</health>
+        <game-mode>adventure</game-mode>
+        <effect duration="5">heal</effect>
+        <effect duration="5">damage resistance</effect>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet locked="true" unbreakable="true" color="0066cc" material="leather helmet"/>
+        <chestplate locked="true" unbreakable="true" color="0066cc" material="leather chestplate">
+            <enchantment level="3">blast_protection</enchantment>
+        </chestplate>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet locked="true" unbreakable="true" color="cd0000" material="leather helmet"/>
+        <chestplate locked="true" unbreakable="true" color="cd0000" material="leather chestplate">
+            <enchantment level="3">blast_protection</enchantment>
+        </chestplate>
+    </kit>
+    <kit id="flag-kit" force="true">
+        <effect amplifier="-3">health boost</effect>
+        <effect duration="3" amplifier="2">absorption</effect>
+    </kit>
+    <kit id="reset-health" force="true">
+        <effect duration="1" amplifier="0">health boost</effect>
+        <effect duration="2" amplifier="10">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="90">
+            <cuboid min="-75.5,42.5,-0.5" max="-73.5,42.5,1.5"/>
+        </region>
+    </default>
+    <spawns safe="true" sequential="true" filter="has-flag">
+        <spawn team="blue" kit="blue-kit">
+            <regions yaw="0">
+                <cuboid min="-15,32,-57" max="16,42,-32"/>
+                <point>0.5,33,-47.5</point>
+            </regions>
+        </spawn>
+        <spawn team="red" kit="red-kit">
+            <regions yaw="180">
+                <cuboid min="-15,32,33" max="16,42,58"/>
+                <point>0.5,33,48.5</point>
+            </regions>
+        </spawn>
+    </spawns>
+</spawns>
+<filters>
+    <deny id="no-lantern">
+        <material>sea lantern</material>
+    </deny>
+    <deny id="no-sewers">
+        <material>stained glass</material>
+    </deny>
+    <not id="no-carrier">
+        <carrying-flag>flag</carrying-flag>
+    </not>
+    <any id="has-flag">
+        <carrying-flag>flag</carrying-flag>
+        <not>
+            <same-team>
+                <carrying-flag>flag</carrying-flag>
+            </same-team>
+        </not>
+    </any>
+</filters>
+<regions>
+    <negative id="outside-map">
+        <union id="map">
+            <rectangle id="main-area" min="-50,-32" max="51,33"/>
+            <union id="bases">
+                <rectangle name="blue-base" min="-20,-62" max="21,-32"/>
+                <rectangle name="red-base" min="-20,33" max="21,63"/>
+            </union>
+        </union>
+    </negative>
+    <complement id="portals-area">
+        <rectangle min="-56,-2" max="57,3"/>
+        <region id="main-area"/>
+    </complement>
+    <apply enter="no-carrier" region="bases" message="The flag carrier may not enter the bases!"/>
+    <apply enter="never" region="outside-map" message="You may not exit the map area!"/>
+    <apply block="never" region="portals-area" message="You may not edit the portal area!"/>
+    <apply block-break="no-lantern" message="You may not destroy the flag post!"/>
+    <apply block-break="no-sewers" message="You may not enter the sewers!"/>
+</regions>
+<portals filter="no-carrier">
+    <portal x="110">
+        <region>
+            <cuboid min="-56,33,-1" max="-55,35,2"/>
+        </region>
+    </portal>
+    <portal x="-110">
+        <region>
+            <cuboid min="56,33,-1" max="57,35,2"/>
+        </region>
+    </portal>
+</portals>
+<flags>
+    <flag id="flag"
+          name="Flag"
+          color="white"
+          shared="true"
+          post="centre-post"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health"
+          flag-proximity-metric="none"
+          show-respawn-on-pickup="true">
+        <post id="centre-post" return-time="0s" respawn-time="20s" name="Centre Post">0.5,33,0.5</post>
+        <post id="west-tower" return-time="0s" respawn-time="20s" name="West Tower">-29.5,40,0.5</post>
+        <post id="west-post" return-time="0s" respawn-time="20s" name="West Portal">-47.5,32,0.5</post>
+        <post id="east-tower" return-time="0s" respawn-time="20s" name="East Tower">30.5,40,0.5</post>
+        <post id="east-post" return-time="0s" respawn-time="20s" name="East Portal">48.5,32,0.5</post>
+    </flag>
+</flags>
+<score>
+    <limit>200</limit>
+</score>
+<item-mods>
+    <rule>
+        <match>
+            <material>ladder</material>
+            <material>tnt</material>
+        </match>
+        <modify show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </modify>
+    </rule>
+</item-mods>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>ladder</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>glass bottle</item>
+    <item>clay ball</item>
+    <item>glowstone dust</item>
+    <item>string</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>tnt</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item material="tnt"/>
+    <item amount="10" material="arrow"/>
+</kill-reward>
+<maxbuildheight>48</maxbuildheight>
+<respawn spectate="true" auto="true">
+    <message>
+        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
+    </message>
+</respawn>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tnt>
+    <instantignite>on</instantignite>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+</map>

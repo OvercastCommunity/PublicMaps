@@ -1,0 +1,146 @@
+<map proto="1.4.0">
+<name>Grenouille de l'armée</name>
+<version>1.1.2</version>
+<objective>Capture and return the other teams' wool</objective>
+<authors>
+    <author uuid="96f9aa16-9c93-4b1d-9bce-18b8c212074b"/> <!-- _ArmyFrog -->
+</authors>
+<teams>
+    <team id="cyan" max="12" max-overfill="16" color="dark aqua">Cyan</team>
+    <team id="red" max="12" max-overfill="16" color="dark red">Red</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
+        <item slot="2" enchantment="dig speed:1" unbreakable="true">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:1" unbreakable="true">stone axe</item>
+        <item slot="4" amount="16" damage="1">wood</item>
+        <item slot="7" amount="1">golden apple</item>
+        <item slot="8" amount="64">cooked beef</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="5">heal</potion>
+        <potion duration="5">damage resistance</potion>
+        <chestplate enchantment="protection_environmental:1" unbreakable="true">chainmail chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+    </kit>
+    <kit id="cyan-kit" parents="spawn">
+        <item slot="5" amount="64">smooth brick</item>
+        <item slot="6" damage="15" amount="64">stained clay</item>
+        <helmet color="00AAAA" unbreakable="true">leather helmet</helmet>
+        <boots color="00AAAA" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <item slot="5" amount="64">nether brick</item>
+        <item slot="6" amount="48">stained clay</item>
+        <helmet color="AA0000" unbreakable="true">leather helmet</helmet>
+        <boots color="AA0000" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region>
+            <cylinder base="0,47,0" radius="4" height="1"/>
+        </region>
+    </default>
+    <spawn yaw="90" kit="cyan-kit" team="cyan">
+        <region>
+            <cuboid max="94,13,-12" min="91,13,-9"/>
+        </region>
+    </spawn>
+    <spawn yaw="-90" kit="red-kit" team="red">
+        <region>
+            <cuboid max="-93,13,13" min="-90,13,10"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <deny id="deny-world">
+        <cause>world</cause>
+    </deny>
+    <team id="only-cyan">cyan</team>
+    <team id="only-red">red</team>
+    <deny id="deny-cyan">
+        <team>cyan</team>
+    </deny>
+    <deny id="deny-red">
+        <team>red</team>
+    </deny>
+    <not id="antivoid">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <apply block="always">
+        <region>
+            <rectangle min="37,16" max="-36,-15"/>
+        </region>
+    </apply>
+    <apply block="never" message="`eYou may not modify the spawns or wool rooms!">
+        <region>
+            <cuboid min="68,0,-16" max="80,21,4"/>
+            <cuboid min="80,0,-20" max="103,21,19"/>
+            <cuboid min="-68,0,16" max="-80,21,-4"/>
+            <cuboid min="-80,0,20" max="-103,21,-19"/>
+        </region>
+    </apply>
+    <apply enter="deny-cyan" message="`eYou may not enter your own wool room!">
+        <region>
+            <cuboid min="80,9,17" max="105,21,7"/>
+        </region>
+    </apply>
+    <apply enter="deny-red" message="`eYou may not enter your own wool room!">
+        <region>
+            <cuboid min="-80,9,-17" max="-105,21,-7"/>
+        </region>
+    </apply>
+    <apply enter="only-cyan" message="`eYou may not enter Cyan Team's spawn area!">
+        <region>
+            <cuboid id="cyan-spawn" min="55,0,3" max="105,21,-20"/>
+        </region>
+    </apply>
+    <apply enter="only-red" message="`eYou may not enter Red Team's spawn area!">
+        <region>
+            <cuboid id="red-spawn" min="-55,0,-3" max="-105,21,20"/>
+        </region>
+    </apply>
+    <apply block-place="antivoid" message="`eYou may not build outside the map!"/>
+</regions>
+<wools>
+    <wool team="cyan" color="red" location="-98,16,-11" craftable="false">
+        <monument>
+            <block>77,8,-2</block>
+        </monument>
+    </wool>
+    <wool team="red" color="cyan" location="99,16,12" craftable="false">
+        <monument>
+            <block>-77,8,2</block>
+        </monument>
+    </wool>
+</wools>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>stone axe</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+    <item>wood</item>
+    <item>smooth brick</item>
+    <item>nether brick</item>
+    <item>stained clay</item>
+    <item>arrow</item>
+</itemremove>
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="6">arrow</item>
+    <item amount="2">iron ingot</item>
+</killreward>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<maxbuildheight>17</maxbuildheight>
+</map>

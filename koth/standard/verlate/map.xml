@@ -1,0 +1,206 @@
+<map proto="1.4.0">
+<name>Verlate</name>
+<version>1.1.4</version>
+<objective>Capture and hold the two hills for as long as possible.</objective>
+<authors>
+    <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Map building and XML"/> <!-- Obelistics -->
+    <author uuid="5c6751aa-96b0-478b-b46d-c55a7d8b6ed1" contribution="Map building"/> <!-- Ceroh -->
+</authors>
+<teams>
+    <team id="blue-team" color="blue" max="18">Blue</team>
+    <team id="red-team" color="dark red" max="18">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <clear/>
+        <item slot="0" material="iron sword" unbreakable="true" locked="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <!-- No pick
+        <item slot="2" material="iron pickaxe" unbreakable="true" show-can-destroy="false" locked="true">
+            <can-destroy>
+                <material>iron block</material>
+            </can-destroy>
+        </item>
+        -->
+        <item slot="2" amount="1"  material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <chestplate material="iron chestplate" enchantment="projectile_protection:2" unbreakable="true"/>
+        <effect duration="3s" amplifier="5">resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet material="leather helmet" color="334CB2" unbreakable="true"/>
+        <leggings material="leather leggings" color="334CB2" unbreakable="true"/>
+        <boots material="leather boots" color="334CB2" enchantment="protection fall:2" unbreakable="true"/>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet material="leather helmet" color="993333" unbreakable="true"/>
+        <leggings material="leather leggings" color="993333" unbreakable="true"/>
+        <boots material="leather boots" color="993333" enchantment="protection fall:2" unbreakable="true"/>
+    </kit>
+    <!-- No pick
+    <kit id="remove-pickaxe" force="true">
+        <item slot="2" material="air"/>
+    </kit>
+    -->
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="blue-kit">
+        <regions yaw="-45">
+            <cylinder base="-35,35,-97" radius="2" height="1"/>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="red-kit">
+        <regions yaw="135">
+            <cylinder base="-104,35,-166" radius="2" height="1"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <cylinder base="-69.5,73,-131.5" radius="3" height="1"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
+<regions>
+    <everywhere/>
+    <negative id="outside-spawns">
+        <union>
+            <rectangle id="red-spawn"  min="-97,-159" max="-119,-181"/>
+            <rectangle id="blue-spawn" min="-42,-104" max="-20,-82"/>
+        </union>
+    </negative>
+    <apply block-physics="never"/>
+    <apply enter="only-blue" region="blue-spawn" message="You cannot enter blue spawn"/>
+    <apply enter="only-red" region="red-spawn" message="You cannot enter red spawn"/>
+    <apply block="never" region="everywhere"/> <!-- Prevents TNT mutations from damaging map -->
+    <!-- No pick
+    <apply kit="remove-pickaxe" region="outside-spawns"/>
+    -->
+</regions>
+<score>
+    <limit>500</limit>
+</score>
+<control-points capture-players="lead" incremental="true" show-progress="true" neutral-state="true" required="false" points="0.75">
+    <control-point name="Upper Hill" capture-time="5s">
+        <capture>
+            <cuboid min="-67,39,-129" max="-72,42,-134"/>
+        </capture>
+        <progress>
+            <cuboid min="-60,41,-141" max="-79,39,-122"/>
+        </progress>
+        <captured>
+            <cuboid min="-60,51,-141" max="-79,39,-122"/>
+        </captured>
+    </control-point>
+    <control-point name="Lower Hill" capture-time="5s">
+        <capture>
+            <cuboid min="-67,23,-129" max="-72,26,-134"/>
+        </capture>
+        <progress>
+            <cuboid min="-60,25,-141" max="-79,21,-122"/>
+        </progress>
+        <captured>
+            <cuboid min="-60,34,-141" max="-79,21,-122"/>
+        </captured>
+    </control-point>
+</control-points>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather boots</item>
+    <item>leather leggings</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>leather chestplate</item>
+    <item>sapling</item>
+</itemremove>
+<itemkeep>
+    <item>gold ingot</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<item-mods>
+    <rule>
+        <match>
+            <material>gold helmet</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>gold chestplate</material>
+        </match>
+        <modify unbreakable="true">
+            <enchantment level="4">protection</enchantment>
+            <enchantment level="4">protection projectile</enchantment>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <material>gold leggings</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>gold boots</material>
+        </match>
+        <modify unbreakable="true">
+            <enchantment level="2">protection fall</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<killreward>
+    <item material="gold ingot"/>
+    <item material="arrow" amount="5"/>
+    <item material="golden apple" amount="1"/>
+</killreward>
+<!-- No pick
+<block-drops>
+    <rule wrong-tool="false">
+        <region>
+            <cuboid min="-109,34,-171" max="-118,37,-180"/>
+            <cuboid min="-30,34,-92" max="-21,37,-83"/>
+        </region>
+        <filter>
+            <any>
+                <material>iron block</material>
+            </any>
+        </filter>
+        <drops>
+            <item material="iron chestplate"/>
+        </drops>
+    </rule>
+</block-drops>
+<renewables>
+    <renewable rate="0.5" grow="true" particles="false" sound="true" avoid-players="2">
+        <region>
+            <cuboid min="-109,34,-171" max="-118,37,-180"/>
+            <cuboid min="-30,34,-92" max="-21,37,-83"/>
+        </region>
+        <renew-filter>
+            <any>
+                <material>iron block</material>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <material>air</material>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+-->
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

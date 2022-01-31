@@ -1,0 +1,77 @@
+<map proto="1.4.0">
+<name>Canyon: TDM</name>
+<version>1.0.1</version>
+<objective>Get the most kills after 7 minutes!</objective>
+<authors>
+    <author uuid="be49b1a8-600e-4751-9725-a8aead777363"/> <!-- IzJust4Fun -->
+    <author uuid="c660918b-4000-44d4-b735-d3fa6f166110"/> <!-- RED_DEAD -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="20">Red</team>
+    <team id="orange" color="gold" max="20">Orange</team>
+</teams>
+<kits>
+    <kit id="parent">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="12">arrow</item>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <potion amplifier="10" duration="3s">damage resistance</potion>
+    </kit>
+    <kit id="red-kit" parent="parent">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <boots color="cd0000" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit id="orange-kit" parent="parent">
+        <helmet color="d87f33" unbreakable="true">leather helmet</helmet>
+        <chestplate color="d87f33" unbreakable="true">leather chestplate</chestplate>
+        <boots color="d87f33" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red-kit" yaw="0">
+        <region>
+            <point>-1274.5,33,-1196.5</point>
+        </region>
+    </spawn>
+    <spawn team="orange" kit="orange-kit" yaw="180">
+        <region>
+            <point>-1282.5,33,-1100.5</point>
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <point>-1278.5,38,-1148.5</point>
+        </region>
+    </default>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="6" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<score>
+    <kills>1</kills>
+</score>
+<time>7m</time>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

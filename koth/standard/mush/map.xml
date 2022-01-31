@@ -1,0 +1,139 @@
+<map proto="1.4.2">
+<name>Mush</name>
+<version>1.0.8</version>
+<objective>Capture the hills to be the first to reach 2500 points!</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<contributors>
+    <contributor uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+    <contributor uuid="52bcb4dd-a1a0-4d9b-94e0-49e145e318e4"/> <!-- Lich_of_Flowers -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-45">
+            <point>-403.5,30,-324.5</point>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="-45">
+            <point>-436.5,11,-357.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="135">
+            <point>-370.5,11,-291.5</point>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <cuboid id="a-left-to-mid" min="-443,12,-324" max="-440,13,-327"/>
+    <cuboid id="a-right-to-mid" min="-404,12,-285" max="-401,13,-288"/>
+    <cuboid id="mid-to-a-right" min="-389,14,-306" max="-392,15,-303"/>
+    <cuboid id="mid-to-b-left" min="-385,14,-310" max="-382,15,-313"/>
+    <cuboid id="b-left-to-mid" min="-364,12,-325" max="-367,13,-322"/>
+    <cuboid id="b-right-to-mid" min="-403,12,-364" max="-406,13,-361"/>
+    <cuboid id="mid-to-b-right" min="-418,14,-343" max="-415,15,-346"/>
+    <cuboid id="mid-to-a-left" min="-422,14,-339" max="-425,15,-336"/>
+    <cuboid id="a-bottom" min="-438,2,-290" max="-435,3,-293"/>
+    <cuboid id="b-bottom" min="-369,2,-359" max="-372,3,-356"/>
+    <apply region="a-right-to-mid" velocity="2.4,0.9,-2.4"/>
+    <apply region="a-left-to-mid" velocity="2.4,0.9,-2.4"/>
+    <apply region="mid-to-a-right" velocity="-3.2,0.8,3.2"/>
+    <apply region="mid-to-b-left" velocity="3.2,0.8,-3.2"/>
+    <apply region="b-left-to-mid" velocity="-2.4,0.9,2.4"/>
+    <apply region="b-right-to-mid" velocity="-2.4,0.9,2.4"/>
+    <apply region="mid-to-b-right" velocity="3.2,0.8,-3.2"/>
+    <apply region="mid-to-a-left" velocity="-3.2,0.8,3.2"/>
+    <apply region="a-bottom" velocity="-0.2,1.7,0.2"/>
+    <apply region="b-bottom" velocity="0.2,1.7,-0.2"/>
+    <apply block="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Point A">
+            <capture>
+                <cuboid min="-432,11,-296" max="-424,15,-304"/>
+            </capture>
+            <progress>
+                <cuboid min="-432,10,-296" max="-424,15,-304"/>
+            </progress>
+            <captured>
+                <cuboid min="-408,16,-278" max="-450,29,-320"/>
+            </captured>
+        </hill>
+        <hill name="Middle">
+            <capture>
+                <cuboid min="-399,11,-329" max="-408,15,-320"/>
+            </capture>
+            <progress>
+                <cuboid min="-399,10,-329" max="-408,15,-320"/>
+            </progress>
+            <captured>
+                <cuboid min="-400,24,-328" max="-407,29,-321"/>
+            </captured>
+        </hill>
+        <hill name="Point B">
+            <capture>
+                <cuboid min="-375,11,-353" max="-383,15,-345"/>
+            </capture>
+            <progress>
+                <cuboid min="-375,10,-353" max="-383,15,-345"/>
+            </progress>
+            <captured>
+                <cuboid min="-399,16,-371" max="-357,29,-329"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>2500</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn auto="true"/>
+</map>

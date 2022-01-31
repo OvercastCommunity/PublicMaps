@@ -1,0 +1,131 @@
+<map proto="1.4.2">
+<name>Limbo II</name>
+<version>1.0.9</version>
+<edition>standard</edition>
+<objective>Be the first team to 2500 points!</objective>
+<authors>
+    <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- VCRHeadCleaner -->
+</authors>
+<contributors>
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Tourney Dude"/> <!-- Reshif -->
+</contributors>
+<teams>
+    <team id="cyan" color="dark aqua" max="16">Cyan</team>
+    <team id="orange" color="gold" max="16">Orange</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">protection_projectile</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+        <effect duration="5" amplifier="4">heal</effect>
+        <effect duration="5" amplifier="4">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="180">
+            <cylinder base="0.5,42,0.5" radius="2" height="1"/>
+        </region>
+    </default>
+    <spawn team="cyan" kit="spawn-kit">
+        <region yaw="90">
+            <cylinder base="53.5,19,0.5" radius="2" height="1"/>
+        </region>
+    </spawn>
+    <spawn team="orange" kit="spawn-kit">
+        <region yaw="-90">
+            <cylinder base="-52.5,19,0.5" radius="2" height="1"/>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <apply velocity="@0,1.7,-0.1">
+        <region>
+            <cuboid min="-1,6,24" max="2,9,27"/>
+        </region>
+    </apply>
+    <apply velocity="@0,1.7,0.1">
+        <region>
+            <cuboid min="-1,6,-26" max="2,9,-23"/>
+        </region>
+    </apply>
+    <apply block="never" use="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Point A">
+            <capture>
+                <cuboid min="-2,18,9" max="3,22,14"/>
+            </capture>
+            <progress>
+                <cuboid min="-2,18,9" max="3,22,14"/>
+            </progress>
+            <captured>
+                <cuboid min="-2,26,9" max="3,31,14"/>
+            </captured>
+        </hill>
+        <hill name="Point B">
+            <capture>
+                <cuboid min="-2,18,-13" max="3,22,-8"/>
+            </capture>
+            <progress>
+                <cuboid min="-2,18,-13" max="3,22,-8"/>
+            </progress>
+            <captured>
+                <cuboid min="-2,26,-13" max="3,31,-8"/>
+            </captured>
+        </hill>
+        <hill name="Point C">
+            <capture>
+                <cuboid min="-2,8,-2" max="3,12,3"/>
+            </capture>
+            <progress>
+                <cuboid min="-2,8,-2" max="3,12,3"/>
+            </progress>
+            <captured>
+                <cuboid min="-2,21,-2" max="3,26,3"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>2500</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<respawn auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

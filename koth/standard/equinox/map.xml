@@ -1,0 +1,150 @@
+<map proto="1.4.2">
+<name>Equinox</name>
+<version>1.3.6</version>
+<objective>Control the points and be the first to reach 750 points!</objective>
+<authors>
+    <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
+    <author uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c"/> <!-- ItzaMeLuigi_ -->
+</authors>
+<contributors>
+    <contributor uuid="bf331953-4f92-43ee-8abc-7544b8234936" contribution="1.3 update help"/> <!-- ViceWatercolour -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="red" color="dark red" max="16">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="7">heal</effect>
+        <effect duration="8">speed</effect>
+        <effect duration="9" amplifier="4">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <cuboid min="-2,54,-140" max="0,54,-138"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-135">
+            <cylinder base="-70,23,-128" radius="4" height="0"/> <!-- West -->
+        </region>
+        <region yaw="-45">
+            <cylinder base="-70,23,-150" radius="4" height="0"/> <!-- East -->
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="135">
+            <cylinder base="68,23,-128" radius="4" height="0"/> <!-- West -->
+        </region>
+        <region yaw="45">
+            <cylinder base="68,23,-150" radius="4" height="0"/> <!-- East -->
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never"/>
+    <apply velocity="-1.0,1.2,0.0">
+        <region>
+            <cuboid min="-32,15,-141" max="-28,16,-137"/>
+        </region>
+    </apply>
+    <apply velocity="1.0,1.2,0.0">
+        <region>
+            <cuboid min="30,15,-137" max="26,16,-141"/>
+        </region>
+    </apply>
+</regions>
+<king>
+    <hills required="false" neutral-state="false" time-multiplier="0" show-progress="true" decay="0" recovery="1" points="1">
+        <hill name="Top Hill" capture-time="10s">
+            <capture>
+                <cylinder base="-0.5,29,-138.5" radius="8" height="2"/>
+            </capture>
+            <progress>
+                <cylinder base="-0.5,29,-138.5" radius="8" height="10"/>
+            </progress>
+            <captured>
+                <cuboid min="-6,37,-144" max="4,37,-134"/>
+            </captured>
+        </hill>
+        <hill name="Bottom Hill" capture-time="8s">
+            <capture>
+                <cylinder base="-0.5,17,-138.5" radius="4" height="2"/>
+            </capture>
+            <progress>
+                <cylinder base="-0.5,16,-138.5" radius="4" height="1"/>
+            </progress>
+            <captured>
+                <cuboid min="-9.5,15,-129.5" max="8.5,25,-147.5"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+</score>
+<portals>
+    <!-- Mid Portals -->
+    <portal yaw="@-90" x="@-17" y="@33" z="@-139">
+        <region>
+            <cuboid min="-8,26,-138" max="-9,24,-140"/>
+        </region>
+    </portal>
+    <portal yaw="@90" x="@15" y="@33" z="@-139">
+        <region>
+            <cuboid min="8,26,-140" max="7,24,-138"/>
+        </region>
+    </portal>
+    <!-- Side Portals -->
+    <portal yaw="@0" x="@-0.5" y="@33" z="@-170.5">
+        <region>
+            <cuboid min="-2,15,-160" max="1,17,-161"/>
+        </region>
+    </portal>
+    <portal yaw="@180" x="@-0.5" y="@33" z="@-106.5">
+        <region>
+            <cuboid min="-2,15,-117" max="1,17,-116"/>
+        </region>
+    </portal>
+</portals>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

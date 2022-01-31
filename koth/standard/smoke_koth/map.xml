@@ -1,0 +1,119 @@
+<map proto="1.4.2">
+<name>Smoke KotH</name>
+<version>1.2.12</version>
+<objective>Be the first team to reach 2500 points!</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+</authors>
+<contributors>
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="14">Red</team>
+    <team id="yellow" color="yellow" max="14">Yellow</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment>fire_protection</enchantment>
+        </boots>
+        <effect duration="4" amplifier="10">resistance</effect>
+        <effect duration="4" amplifier="10">regeneration</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="135">
+            <cylinder base="101,38,-272" radius="0.5" height="0"/>
+        </region>
+    </default>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="-90">
+            <cylinder base="49.5,22,-265.5" radius="1" height="1"/>
+        </region>
+    </spawn>
+    <spawn team="yellow" kit="spawn-kit">
+        <region yaw="0">
+            <cylinder base="107.5,22,-323.5" radius="1" height="1"/>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Top">
+            <capture>
+                <cuboid min="60,20,-313" max="67,26,-306"/>
+            </capture>
+            <progress>
+                <cuboid min="60,20,-313" max="67,26,-306"/>
+            </progress>
+            <captured>
+                <cuboid min="60,20,-313" max="67,26,-306"/>
+            </captured>
+        </hill>
+        <hill name="Bottom">
+            <capture>
+                <cuboid min="77,13,-296" max="84,19,-289"/>
+            </capture>
+            <progress>
+                <cuboid min="77,13,-296" max="84,19,-289"/>
+            </progress>
+            <captured>
+                <cuboid min="77,13,-296" max="84,19,-289"/>
+            </captured>
+        </hill>
+        <hill name="Cave">
+            <capture>
+                <cuboid min="61,8,-312" max="68,14,-305"/>
+            </capture>
+            <progress>
+                <cuboid min="61,8,-312" max="68,14,-305"/>
+            </progress>
+            <captured>
+                <cuboid min="61,8,-312" max="68,14,-305"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>2500</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn delay="3s" auto="true"/>
+</map>

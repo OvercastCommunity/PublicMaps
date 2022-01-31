@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Fortress of an Easterly Battle</name>
+<version>1.0.2</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<rules>
+    <rule>You cannot place dispensers on the map!</rule>
+    <rule>Players have resistance and reduced knockback in spawn!</rule>
+</rules>
+<authors>
+    <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
+    <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
+</authors>
+<teams>
+    <team color="gold" id="orange" max="24">Orange</team>
+    <team color="light purple" id="pink" max="24">Pink</team>
+</teams>
+<kits>
+    <kit id="spawn-protection">
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit id="spawn">
+        <item slot="0" enchantment="sharpness:1">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" enchantment="durability:3">gold axe</item>>
+        <item slot="4" amount="64">glass</item>
+        <item slot="6">bucket</item>
+        <item slot="8" amount="64">golden carrot</item>
+        <chestplate enchantment="protection explosions:4">chainmail chestplate</chestplate>
+        <effect duration="10" amplifier="2">regeneration</effect>
+        <effect duration="5" amplifier="10">heal</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="orange" kit="spawn" yaw="90">
+        <regions>
+            <point>27.5,65.5,-79.5</point>
+        </regions>
+    </spawn>
+    <spawn team="pink" kit="spawn" yaw="-90">
+        <regions>
+            <point>61.5,65.5,-79.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <cylinder base="44.5,64.5,-79.5" radius="7" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <deny id="deny-dispenser">
+        <material>dispenser</material>
+    </deny>
+    <!--
+    <deny id="deny-chest-break">
+        <material>chest</material>
+    </deny>
+    -->
+    <deny id="only-orange">
+        <team>pink</team>
+    </deny>
+    <deny id="only-pink">
+        <team>orange</team>
+    </deny>
+</filters>
+<regions>
+    <cuboid name="orange-spawn-protect" min="16,61,-84" max="11,68,-51"/>
+    <cuboid name="pink-spawn-protect" min="72,61,-84" max="77,68,-51"/>
+    <negative id="outside-map">
+        <rectangle id="map" min="4,40" max="85,-47"/>
+    </negative>
+    <union id="spawns">
+        <!-- Orange tunnel -->
+        <rectangle min="11,-45" max="17,-83"/>
+        <rectangle min="29,-77" max="17,-83"/>
+        <!-- Pink tunnel -->
+        <rectangle min="78,-45" max="72,-83"/>
+        <rectangle min="59,-77" max="72,-83"/>
+    </union>
+    <apply lend-kit="spawn-protection" filter="only-orange">
+       <region name="orange-spawn-protect"/>
+    </apply>
+    <apply lend-kit="spawn-protection" filter="only-pink">
+        <region name="pink-spawn-protect"/>
+    </apply>
+    <!--
+    <apply block="deny-chest-break" message="This block can not be placed or broken on this map!">
+        <rectangle min="1,-50" max="85,39"/>
+    </apply>
+    -->
+    <apply block="never" region="outside-map" message="You may not build outside the playable region!"/>
+    <apply block="deny-dispenser" region="map" message="Dispensers are disabled on this map!"/>
+    <apply enter="never" build="never" region="spawns" message="You may not enter the spawns!"/>
+    <apply enter="never" message="You may not enter the observer spawn!">
+        <circle center="44.5,64.5,-79.5" radius="16"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="4" mode-change="true" name="Core">
+    <core team="orange">
+        <region>
+            <cuboid min="5,60,0" max="10,66,-7"/>
+        </region>
+    </core>
+    <core team="pink">
+        <region>
+            <cuboid min="84,60,0" max="79,66,-7"/>
+        </region>
+    </core>
+</cores>
+<modes>
+    <mode after="15m" material="lapis block"/>
+    <mode after="25m" material="glass"/>
+</modes>
+<maxbuildheight>130</maxbuildheight>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+        <item amount="16" material="glass"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>gold axe</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>lapis block</item>
+    <item>glass</item>
+    <item>arrow</item>
+    <item>wool</item>
+    <item>golden carrot</item>
+    <item>bucket</item>
+    <item>chainmail chestplate</item>
+    <item>golden apple</item>
+</itemremove>
+<crafting>
+    <disable>chest</disable>
+    <disable>boat</disable>
+</crafting>
+</map>

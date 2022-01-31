@@ -1,0 +1,138 @@
+<map proto="1.4.2">
+<name>Affinity</name>
+<version>1.0.14</version>
+<objective>Control the flag for 200 seconds to win!</objective>
+<gamemode>kotf</gamemode>
+<edition>standard</edition>
+<authors>
+    <author uuid="74948888-fdb8-4446-9340-f7688c2435cc"/> <!--  Zero_Frosty  -->
+</authors>
+<contributors>
+    <contributor uuid="f1352a57-4fe3-4f0c-b867-56b771fc1a0f"/> <!-- teagod -->
+    <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b"/> <!-- Jexel -->
+    <contributor uuid="0a359aef-794b-4d88-97ca-5672d9421532"/> <!-- xTrina -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="xml"/> <!--  Ruediger_LP  -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="20">Blue</team>
+    <team id="red-team" color="dark red" max="20">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+        <health>20</health>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="flag-kit" force="true">
+        <effect>slowness</effect>
+        <effect amplifier="-3">health boost</effect>
+        <effect duration="3" amplifier="2">absorption</effect>
+    </kit>
+    <kit id="reset-health" force="true">
+        <effect duration="0" amplifier="0">slowness</effect>
+        <effect duration="0" amplifier="0">health boost</effect>
+        <effect duration="1" amplifier="10">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <cylinder base="189.5,94,233.5" radius="1.5" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit" filter="has-flag">
+        <region yaw="-90">
+            <point>109.5,19,190.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit" filter="has-flag">
+        <region yaw="90">
+            <point>269.5,19,190.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <any id="has-flag">
+        <carrying-flag>flag</carrying-flag>
+        <not>
+            <same-team>
+                <carrying-flag>flag</carrying-flag>
+            </same-team>
+        </not>
+    </any>
+</filters>
+<regions>
+    <cuboid id="blue-jumppad" min="146,21,189" max="148,22,192"/>
+    <cuboid id="red-jumppad" min="231,21,189" max="233,22,192"/>
+    <apply region="blue-jumppad" velocity="130,3.5,0"/>
+    <apply region="red-jumppad" velocity="-130,3.5,0"/>
+    <apply block="never"/>
+</regions>
+<flags>
+    <flag id="flag"
+          name="Flag"
+          color="purple"
+          shared="true"
+          post="centre-post"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health"
+          flag-proximity-metric="none"
+          show-respawn-on-pickup="true">
+        <post id="centre-post" name="Centre Post" return-time="0s" respawn-time="20s">
+            <block>189,13,190</block>
+        </post>
+        <post id="north-post" name="North Post" return-time="0s" respawn-time="20s">
+            <block>189,22,180</block>
+        </post>
+        <post id="south-post" name="South Post" return-time="0s" respawn-time="20s">
+            <block>189,22,200</block>
+        </post>
+    </flag>
+</flags>
+<score>
+    <limit>200</limit>
+</score>
+<respawn auto="true" spectate="true">
+    <message>
+        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
+    </message>
+</respawn>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="10" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

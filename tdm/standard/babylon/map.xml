@@ -1,0 +1,140 @@
+<map proto="1.4.0">
+<name>Babylon</name>
+<version>1.2.5</version>
+<objective>Get the most kills in 10 minutes!</objective>
+<authors>
+    <author uuid="75d87bcf-3921-4871-9330-e83736580a95"/> <!-- Rixiot -->
+    <author uuid="5cbdeae7-824e-494e-8667-91165718c30b"/> <!-- xSugoix -->
+    <author uuid="f64546c7-917b-4caf-a0c9-caa120156a84"/> <!-- BrunoTheMiner -->
+    <author uuid="d556bcdf-57ad-4220-92f6-150a9b12380b"/> <!-- three_two -->
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+    <author uuid="4cdc642e-36a9-4208-8ca2-81a9461b497d"/> <!-- raid3r -->
+    <author uuid="6261860b-b738-426d-9425-975bd3045383"/> <!-- Aaron215 -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="green" color="green" max="16">Green</team>
+    <team id="red" color="dark red" max="16">Red</team>
+    <team id="yellow" color="yellow" max="16">Yellow</team>
+</teams>
+<kits>
+    <!-- This kit is given on spawn, and if someone somehow flys/enderpearls back to spawn -->
+    <!-- The only way to ender pearl to a spawn is to shoot one straight up before you warp to the map -->
+    <kit id="ender-kit" reset-ender-pearls="true">
+        <clear-items/>
+        <item slot="0" amount="1" material="ender pearl"/>
+    </kit>
+    <kit id="spawn-kit" parents="ender-kit">
+        <helmet team-color="true" unbreakable="true" lock="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" lock="true" material="leather chestplate">
+            <enchantment level="2">projectile_protection</enchantment>
+        </chestplate>
+        <boots team-color="true" unbreakable="true" lock="true" material="leather boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <!-- This kit is given to players when they enderpearl into the playing field -->
+     <kit id="playing-kit" reset-ender-pearls="true">
+        <item slot="0" unbreakable="true" material="iron axe"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>power</enchantment>
+        </item>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <leggings unbreakable="true" lock="true" material="iron leggings"/>
+        <effect duration="6">damage resistance</effect>
+    </kit>
+</kits>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-green">green</team>
+    <team id="only-red">red</team>
+    <team id="only-yellow">yellow</team>
+</filters>
+<regions>
+    <!-- Team spawns -->
+    <union id="spawns">
+        <cylinder id="blue-spawn" base="-90.5,30,0.5" radius="1" height="0"/>
+        <cylinder id="green-spawn" base="0.5,30,91.5" radius="1" height="0"/>
+        <cylinder id="red-spawn" base="91.5,30,0.5" radius="1" height="0"/>
+        <cylinder id="yellow-spawn" base="0.5,30,-90.5" radius="1" height="0"/>
+    </union>
+    <union id="spawn-prot">
+        <circle id="blue-spawn-prot" center="-90.5,0.5" radius="20"/>
+        <circle id="green-spawn-prot" center="0.5,91.5" radius="20"/>
+        <circle id="red-spawn-prot" center="91.5,0.5" radius="20"/>
+        <circle id="yellow-spawn-prot" center="0.5,-90.5" radius="20"/>
+    </union>
+    <negative id="non-playing">
+        <circle id="playing" center="0.5,0.5" radius="70"/>
+    </negative>
+    <!-- Ender pearl refill stations -->
+    <union id="refill-pearl">
+        <cuboid min="-96,30,-2" max="-95,34,3"/> <!-- Blue -->
+        <cuboid min="-2,30,96" max="3,34,97"/> <!-- Green -->
+        <cuboid min="96,30,-2" max="97,34,3"/> <!-- Red -->
+        <cuboid min="-2,30,-96" max="3,34,-95"/> <!-- Yellow -->
+    </union>
+    <!-- Team spawn protections -->
+    <apply enter="only-blue" region="blue-spawn-prot"/>
+    <apply enter="only-green" region="green-spawn-prot"/>
+    <apply enter="only-red" region="red-spawn-prot"/>
+    <apply enter="only-yellow" region="yellow-spawn-prot"/>
+    <!-- playing field, apply the playing kit -->
+    <apply kit="playing-kit" region="playing"/>
+    <!-- outside of playing field, apply the spawn kit -->
+    <apply kit="ender-kit" region="non-playing"/>
+    <apply kit="ender-kit" region="refill-pearl"/>
+    <apply block="never"/>
+</regions>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <region id="blue-spawn"/>
+        </region>
+        <region yaw="180">
+            <region id="green-spawn"/>
+        </region>
+        <region yaw="90">
+            <region id="red-spawn"/>
+        </region>
+        <region yaw="0">
+            <region id="yellow-spawn"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit" yaw="-90" region="blue-spawn"/>
+    <spawn team="green" kit="spawn-kit" yaw="180" region="green-spawn"/>
+    <spawn team="red" kit="spawn-kit" yaw="90" region="red-spawn"/>
+    <spawn team="yellow" kit="spawn-kit" yaw="0" region="yellow-spawn"/>
+</spawns>
+<toolrepair>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>ender pearl</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item amount="16" material="arrow"/>
+    <item material="golden apple"/>
+</kill-reward>
+<score>
+    <kills>1</kills>
+</score>
+<time result="score">10m</time>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>suffocation</damage>
+</disabledamage>
+</map>

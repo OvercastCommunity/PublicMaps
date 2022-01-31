@@ -1,0 +1,290 @@
+<map proto="1.4.0">
+<name>Golden Drought CTF</name>
+<version>1.4.3</version>
+<objective>Capture the flags from the enemy flag rooms and place them on your flag monument while defending your own flags.</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<contributors>
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Beautificationalist and consultant"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="7e424329-5f61-4f8e-9b85-eaad59ae2a50" contribution="Mindless slave"/> <!-- magnussvoge -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="40">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" material="gold axe"/>
+        <item slot="4" amount="64" material="sandstone"/>
+        <item slot="31" amount="64" material="sandstone"/>
+        <item slot="5" amount="64" damage="2" material="wood"/>
+        <item slot="6" amount="64" material="ladder"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="cooked chicken"/>
+        <item slot="32" amount="4" material="web"/>
+        <item slot="33" material="bucket"/>
+        <effect duration="10" amplifier="4">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="225">
+            <cylinder base="116,12,-461" radius="2" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="135">
+            <cylinder base="136,17,-346" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="315">
+            <cylinder base="2,17,-481" radius="1" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="blue-in-wr">
+        <any>
+            <material>chest</material>
+            <team id="only-red">red</team>
+        </any>
+    </not>
+    <not id="red-in-wr">
+        <any>
+            <material>chest</material>
+            <team id="only-blue">blue</team>
+        </any>
+    </not>
+    <not id="only-blue-usage">
+        <all>
+            <any>
+                <material>chest</material>
+                <material>workbench</material>
+            </any>
+            <filter id="only-red"/>
+        </all>
+    </not>
+    <not id="only-red-usage">
+        <all>
+            <any>
+                <material>chest</material>
+                <material>workbench</material>
+            </any>
+            <filter id="only-blue"/>
+        </all>
+    </not>
+    <material id="only-gold">gold block</material>
+</filters>
+<regions>
+    <union id="bases">
+        <rectangle id="blue-base" min="119,-364" max="154,-329"/>
+        <rectangle id="red-base" min="-15,-498" max="20,-463"/>
+    </union>
+    <union id="base-void">
+        <complement id="blue-base-void">
+            <rectangle min="107,-376" max="166,-316"/>
+            <region id="blue-base"/>
+        </complement>
+        <complement id="red-base-void">
+            <rectangle min="-27,-510" max="32,-451"/>
+            <region id="red-base"/>
+        </complement>
+    </union>
+    <complement id="void-area">
+        <everywhere/>
+        <complement id="blue-area">
+            <rectangle min="92,-391" max="181,-302"/>
+            <rectangle min="152,-331" max="181,-302"/> <!-- behind wool rooms -->
+            <region id="blue-base-void"/>
+        </complement>
+        <complement id="red-area">
+            <rectangle min="-42,-525" max="47,-436"/>
+            <rectangle min="-42,-525" max="-13,-496"/> <!-- behind wool rooms -->
+            <region id="red-base-void"/>
+        </complement>
+        <rectangle id="mid" min="32,-451" max="107,-376"/>
+    </complement>
+    <union id="wool-rooms">
+        <union id="blue-wool-rooms"> <!-- these are the wools blue has to get -->
+            <rectangle id="pink-wool" min="-13,-525" max="2,-510"/>
+            <rectangle id="purple-wool" min="-42,-496" max="-27,-481"/>
+        </union>
+        <union id="red-wool-rooms"> <!-- these are the wools red has to get -->
+            <rectangle id="green-wool" min="137,-317" max="152,-302"/>
+            <rectangle id="lime-wool" min="166,-346" max="181,-331"/>
+        </union>
+    </union>
+    <apply enter="only-blue" message="You may not enter the enemy team's base!" region="blue-base"/>
+    <apply enter="only-red" message="You may not enter the enemy team's base!" region="red-base"/>
+    <apply enter="only-blue" message="You may not enter your own flag rooms!" region="blue-wool-rooms"/>
+    <apply enter="only-red" message="You may not enter your own flag rooms!" region="red-wool-rooms"/>
+    <apply block="blue-in-wr" use="only-blue-usage" region="blue-wool-rooms"/>
+    <apply block="red-in-wr" use="only-red-usage" region="red-wool-rooms"/>
+    <apply block="only-gold" message="You may only modify gold blocks in the base!" region="bases"/>
+    <apply block="never" region="void-area" message="You may not break or place blocks here!"/>
+</regions>
+<flags>
+    <flags owner="blue" pickup-filter="only-red">
+        <flag id="green-flag" name="Green Flag">
+            <post>143.5,16,-309.5</post>
+        </flag>
+        <flag id="lime-flag" name="Lime Flag">
+            <post>173.5,16,-339.5</post>
+        </flag>
+        <net post="blue-monument" flags="pink-flag purple-flag">
+            <region>
+                <cuboid min="121,13,-362" max="125,15,-358"/>
+            </region>
+        </net>
+        <post id="blue-monument" owner="blue" yaw="-45" permanent="true" sequential="true">
+            <block>121.5, 14, -360.5</block>
+            <block>122.5, 14, -361.5</block>
+        </post>
+    </flags>
+    <flags owner="red" pickup-filter="only-blue">
+        <flag id="pink-flag" name="Pink Flag">
+            <post>-4.5,16,-517.5</post>
+        </flag>
+        <flag id="purple-flag" name="Purple Flag">
+            <post>-34.5,16,-487.5</post>
+        </flag>
+        <net post="red-monument" flags="green-flag lime-flag">
+            <region>
+                <cuboid min="14,13,-469" max="18,15,-465"/>
+            </region>
+        </net>
+        <post id="red-monument" owner="red" yaw="135" permanent="true" sequential="true">
+            <block>17.5, 14, -466.5</block>
+            <block>16.5, 14, -465.5</block>
+        </post>
+    </flags>
+</flags>
+<renewables>
+    <renewable region="bases" renew-filter="only-gold" rate="3" grow="false" particles="true" sound="true"/>
+</renewables>
+<item-mods>
+    <rule>
+        <match>
+            <material>gold sword</material>
+            <material>gold pickaxe</material>
+            <material>gold axe</material>
+            <material>gold helmet</material>
+            <material>gold chestplate</material>
+            <material>gold leggings</material>
+            <material>gold boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<crafting>
+    <shaped>
+        <result damage="1" material="golden apple"/>
+        <shape>
+            <row>GGG</row>
+            <row>GAG</row>
+            <row>GGG</row>
+        </shape>
+        <ingredient symbol="G">gold block</ingredient>
+        <ingredient symbol="A">apple</ingredient>
+    </shaped>
+</crafting>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>gold axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>sandstone</item>
+    <item>wood</item>
+    <item>ladder</item>
+    <item>cooked chicken</item>
+    <item>web</item>
+    <item>bucket</item>
+    <item>glass bottle</item>
+    <item>string</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+</kill-reward>
+<maxbuildheight>45</maxbuildheight>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
+            <line>The objective is to grab the wool on the other team's side and return it to your base.</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="10">111.5,15,-455.5</point>
+        </teleport>
+    </stage>
+    <stage title="Blue Team Base">
+        <message>
+            <line>`rThis is the `9Blue Team `rbase. You spawn with gear ready to go into battle!</line>
+            <line>To your right and to your left are `bchests `rfilled with extra equipment.</line>
+            <line>To the back is one set of `6gold block `rsupplies.</line>
+        </message>
+        <teleport>
+            <point yaw="-45" pitch="10">121.5,19,-361.5</point>
+        </teleport>
+    </stage>
+    <stage title="Gold Supplies">
+        <message>
+            <line>Here is the `6gold `rsupply for `9Blue Team`r. Note that `cRed Team `rhas the same thing on their side.</line>
+            <line>You can craft `6gold armor `rto prepare yourself for battle.</line>
+            <line>If you happen to run out of gold, there may be some left in the center ceiling or on the upper level.</line>
+        </message>
+        <teleport>
+            <point yaw="-45">133.5,8,-349.5</point>
+        </teleport>
+    </stage>
+    <stage title="Red Wool Rooms">
+        <message>
+            <line>These are `cRed Team`r's wool rooms housing `5purple`r and `dpink `rwools.</line>
+            <line>`9Blue Team `rhas `alime`r and `2green `rwools.</line>
+            <line>`cRed Team`r should defend these rooms against `9Blue Team`r invaders who are trying to steal the wool and make it back alive.</line>
+            <line>There are special goodies inside that will help you fight your way out.</line>
+        </message>
+        <teleport>
+            <point yaw="135">-3.5,21,-486.5</point>
+        </teleport>
+    </stage>
+    <stage title="Notch Apples">
+        <message>
+            <line>There are `b4 `rislands with a chest and golden blocks.</line>
+            <line>The chest contains an apple with which you can craft a `aNotch Apple`r.</line>
+            <line>This will help when trying to defend and get in wool rooms</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="90">69.5,35,-413.5</point>
+        </teleport>
+    </stage>
+    <stage title="Victory Monument">
+        <message>
+            <line>This is the `9Blue Team`r's victory monument.</line>
+            <line>The two colored wools from the `cRed Team`r's wool rooms must be placed in the victory monuments for the match to end.</line>
+            <line>Note that `cRed Team`r has two identical victory monuments for their respective wools.</line>
+        </message>
+        <teleport>
+            <point yaw="135">124.5,13,-358.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

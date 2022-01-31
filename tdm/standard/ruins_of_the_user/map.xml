@@ -1,0 +1,104 @@
+<map proto="1.4.0">
+<name>Ruins of the User</name>
+<version>1.0.1</version>
+<objective>Be the team with the most points after 7 minutes!</objective>
+<authors>
+    <author uuid="fbc05e3b-2acf-427e-b598-79a0742d1a72"/> <!-- Jiloker -->
+    <author uuid="a2010860-4735-4de0-b9f3-1130961ea955"/> <!-- Flaan -->
+    <author uuid="0e561165-60bf-49e6-aa38-3db002ad7d08"/> <!-- AbusiveUser -->
+</authors>
+<teams>
+    <team id="green" max="10" color="dark green">Green</team>
+    <team id="orange" max="10" color="gold">Orange</team>
+</teams>
+<kits>
+    <kit id="default">
+        <clear/>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2">golden apple</item>
+        <item slot="8" amount="32">arrow</item>
+        <helmet unbreakable="true" team-color="true">leather helmet</helmet>
+        <chestplate unbreakable="true" team-color="true">leather chestplate</chestplate>
+        <leggings unbreakable="true" >chainmail leggings</leggings>
+        <boots unbreakable="true" team-color="true">leather boots</boots>
+        <effect duration="3s">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="green" kit="default" yaw="-90">
+        <region>
+            <point>809.5,57,561.5</point>
+        </region>
+    </spawn>
+    <spawn team="orange" kit="default" yaw="90">
+        <region>
+            <point>879.5,57,561.5</point>
+        </region>
+    </spawn>
+    <default>
+        <region>
+            <point>844,75,522</point>
+        </region>
+    </default>
+</spawns>
+<respawn delay="2.5s"/>
+<filters>
+    <team id="only-green">green</team>
+    <team id="only-orange">orange</team>
+</filters>
+<regions>
+    <cuboid id="green-base" min="814,65,568" max="805,53,554"/>
+    <cuboid id="orange-base" min="874,65,554" max="883,53,568"/>
+    <union id="scorebox-green-side">
+        <cuboid min="820,63,582" max="817,55,585"/>
+        <cuboid min="820,63,541" max="817,55,538"/>
+    </union>
+    <union id="scorebox-orange-side">
+        <cuboid min="869,63,541" max="872,55,538"/>
+        <cuboid min="869,63,582" max="872,55,585"/>
+    </union>
+    <union id="dumb-portal-points">
+        <point id="destination-green-scorebox">879,57,561</point>
+        <point id="destination-orange-scorebox">809,57,561</point>
+    </union>
+    <apply block="never"/>
+    <apply enter="only-green" region="scorebox-orange-side" message="Only `2Green `rmay enter this scorebox!"/>
+    <apply enter="only-orange" region="scorebox-green-side" message="Only `6Orange `rmay enter this scorebox!"/>
+</regions>
+<score>
+    <kills>1</kills>
+    <box points="2" filter="only-green" region="scorebox-orange-side"/>
+    <box points="2" filter="only-orange" region="scorebox-green-side"/>
+</score>
+<time>7m</time>
+<portals>
+    <portal yaw="@90" region="scorebox-green-side" destination="destination-green-scorebox"/>
+    <portal yaw="@-90" region="scorebox-orange-side" destination="destination-orange-scorebox"/>
+</portals>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<kill-rewards>
+    <kill-reward>
+        <item>golden apple</item>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

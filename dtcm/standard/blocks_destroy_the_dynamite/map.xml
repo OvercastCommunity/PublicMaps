@@ -1,0 +1,286 @@
+<map proto="1.4.0">
+<name>Blocks: Destroy the Dynamite</name>
+<version>1.0.8</version>
+<objective>Destroy both of the enemy tnt blocks to win!</objective>
+<authors>
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
+    <author uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f"/> <!-- Veiyl -->
+    <author uuid="d341db34-f1ab-406e-b290-da6a6703565e"/> <!-- MlgCheetoPuff -->
+</authors>
+<contributors>
+    <contributor uuid="32a37239-8500-4904-8690-3cbda23d5a72"/> <!-- silverstream9898 -->
+</contributors>
+<rules>
+    <rule>You may not trade items between classes!</rule>
+    <rule>Fall damage is disabled on this map!</rule>
+</rules>
+<teams>
+    <team id="blue" color="blue" max="40">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit id="teams">
+        <potion duration="oo">invisibility</potion>
+    </kit>
+    <kit id="cannoneer">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite">bow</item>
+        <item slot="2" unbreakable="true">iron pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="30" unbreakable="true">iron spade</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="31" amount="64">wood</item>
+        <item slot="22" amount="64">wood</item>
+        <item slot="5" amount="64">tnt</item>
+        <item slot="32" amount="64">tnt</item>
+        <item slot="23" amount="64">tnt</item>
+        <item slot="14" amount="64">tnt</item>
+        <item slot="6">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="7" amount="16">wood step</item>
+        <item slot="8" amount="32">redstone</item>
+        <item slot="34" amount="16">fence</item>
+        <item slot="35" amount="16">ladder</item>
+        <item slot="25" amount="16">diode</item>
+        <item slot="26" amount="16">stone button</item>
+        <item slot="17" amount="16">lever</item>
+        <item slot="28">arrow</item>
+        <helmet locked="true">tnt</helmet>
+        <chestplate unbreakable="true" enchantment="protection explosions:4">chainmail chestplate</chestplate>
+    </kit>
+    <kit id="cannoneer-red" parents="cannoneer">
+        <leggings unbreakable="true" color="993333">leather leggings</leggings>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit id="cannoneer-blue" parents="cannoneer">
+        <leggings unbreakable="true" color="334cb2">leather leggings</leggings>
+        <boots unbreakable="true" color="334cb2">leather boots</boots>
+    </kit>
+    <kit id="engineer">
+        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:10">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite">bow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:5">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:5">diamond axe</item>
+        <item slot="4" unbreakable="true" enchantment="dig speed:5">diamond spade</item>
+        <item slot="5" amount="64">smooth brick</item>
+        <item slot="32" amount="64">smooth brick</item>
+        <item slot="6" amount="64">gravel</item>
+        <item slot="7">water bucket</item>
+        <item slot="34">water bucket</item>
+        <item slot="8" amount="64" damage="9" name="`aTNT Repair Block" lore="`7Place this in your TNT to repair it!">ender stone</item>
+        <item slot="28">arrow</item>
+        <helmet damage="6" locked="true">piston base</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection explosions:10;protection environmental:1;protection fall:10" attributes="generic.movementSpeed:base:-0.30">diamond chestplate</chestplate>
+    </kit>
+    <kit id="engineer-red" parents="engineer">
+        <leggings unbreakable="true" color="993333">leather leggings</leggings>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit id="engineer-blue" parents="engineer">
+        <leggings unbreakable="true" color="334cb2">leather leggings</leggings>
+        <boots unbreakable="true" color="334cb2">leather boots</boots>
+    </kit>
+    <kit id="archer">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:2">bow</item>
+        <item slot="2" unbreakable="true">stone pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="31" amount="32">wood</item>
+        <item slot="28">arrow</item>
+        <helmet locked="true">leaves</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection explosions:4;protection projectile:5;protection fall:3" attributes="generic.movementSpeed:base:0.15">gold chestplate</chestplate>
+    </kit>
+    <kit id="archer-red" parents="archer">
+        <leggings unbreakable="true" color="993333">leather leggings</leggings>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit id="archer-blue" parents="archer">
+        <leggings unbreakable="true" color="334cb2">leather leggings</leggings>
+        <boots unbreakable="true" color="334cb2">leather boots</boots>
+    </kit>
+    <kit id="debuff" force="true">
+        <effect duration="1" amplifier="1" force="true">invisibility</effect>
+        <effect duration="5" amplifier="3" force="true">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="-90">
+        <region>
+            <cuboid min="250,34,-54" max="246,34,-58"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="teams" yaw="0">
+        <region>
+            <point>152,28,-169</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="teams" yaw="180">
+        <region>
+            <point>152,28,55</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="only-blue">
+        <team>red</team>
+    </not>
+    <not id="only-red">
+        <team>blue</team>
+    </not>
+    <not id="deny-players">
+        <any>
+            <team>blue</team>
+            <team>red</team>
+        </any>
+    </not>
+    <not id="no-storage">
+        <any>
+            <material>chest</material>
+            <material>furnace</material>
+            <material>burning furnace</material>
+            <material>trapped chest</material>
+            <material>ender chest</material>
+            <material>dropper</material>
+            <material>dispenser</material>
+            <material>hopper</material>
+            <material>beacon</material>
+        </any>
+    </not>
+    <material id="grass">long grass</material>
+</filters>
+<regions>
+    <negative id="no-build">
+        <rectangle id="map" min="224,27" max="80,-141"/>
+    </negative>
+    <rectangle id="void-gap" min="80,-42" max="223,-72"/>
+    <union id="spawns">
+        <!-- Blue Spawns -->
+        <cuboid id="blue-west" min="105,54,-136" max="89,15,-109"/>
+        <cuboid id="blue-center" min="145,32,-135" max="160,15,-120"/>
+        <cuboid id="blue-east" min="200,52,-136" max="217,15,-109"/>
+        <!-- Red Spawns -->
+        <cuboid id="red-west" min="104,52,22" max="88,15,-4"/>
+        <cuboid id="red-center" min="159,32,21" max="145,15,7"/>
+        <cuboid id="red-east" min="199,54,22" max="216,15,-4"/>
+        <!-- Enchanting Tables -->
+        <rectangle min="160,43" max="144,59"/>
+        <rectangle min="160,-157" max="144,-173"/>
+    </union>
+    <union id="spawn-block">
+        <cuboid id="no-block-blue" min="151,15,-122" max="154,23,-114"/>
+        <cuboid id="no-block-red" min="153,15,8" max="151,23,1"/>
+    </union>
+    <cuboid id="obs-spawn" min="240,30,-48" max="256,63,-64"/>
+    <union id="portals">
+        <!-- Blue portals -->
+        <cuboid id="blue-archer" min="156,27,-166" max="158,30,-163"/>
+        <cuboid id="blue-cannoneer" min="153,27,-160" max="150,30,-159"/>
+        <cuboid id="blue-engineer" min="147,27,-163" max="146,30,-166"/>
+        <!-- Red portals -->
+        <cuboid id="red-archer" min="147,27,51" max="146,30,49"/>
+        <cuboid id="red-cannoneer" min="150,27,46" max="153,30,45"/>
+        <cuboid id="red-engineer" min="156,27,49" max="158,30,52"/>
+    </union>
+    <!-- Applied -->
+    <apply block="never" message="`6You have to destroy the other island using `ccannons`6! You cannot bridge to the other side!" region="void-gap"/>
+    <apply block="never" message="You may not place or break blocks in the spawns!" region="spawns"/>
+    <apply block-place="never" block-break="grass" message="You may not place blocks near the spawn exit!" region="spawn-block"/>
+    <apply block="no-storage" message="Storage blocks can not be placed on this map!" region="map"/>
+    <apply block="never" message="You may not build outside of the map!" region="no-build"/>
+    <apply enter="deny-players" message="`b[`6!!`b] `4You are not allowed to enter observer spawn! `b[`6!!`b]" region="obs-spawn"/>
+    <!-- Red kits -->
+    <apply kit="archer-red" region="red-archer"/>
+    <apply kit="cannoneer-red" region="red-cannoneer"/>
+    <apply kit="engineer-red" region="red-engineer"/>
+    <!-- Blue kits -->
+    <apply kit="archer-blue" region="blue-archer"/>
+    <apply kit="cannoneer-blue" region="blue-cannoneer"/>
+    <apply kit="engineer-blue" region="blue-engineer"/>
+    <apply kit="debuff" region="portals"/>
+</regions>
+<portals protect="true" sound="false">
+    <!-- Blue portals-->
+    <portal x="@208" y="@39" z="@-128" yaw="@0" pitch="@0" filter="only-blue" region="blue-archer"/>
+    <portal x="@152" y="@19" z="@-128" yaw="@0" pitch="@0" filter="only-blue" region="blue-cannoneer"/>
+    <portal x="@97" y="@39" z="@-127" yaw="@0" pitch="@0" filter="only-blue" region="blue-engineer"/>
+    <!-- Red portals-->
+    <portal x="@96" y="@39" z="@14" yaw="@180" pitch="@0" filter="only-red" region="red-archer"/>
+    <portal x="@152" y="@19" z="@14" yaw="@180" pitch="@0" filter="only-red" region="red-cannoneer"/>
+    <portal x="@206" y="@39" z="@14" yaw="@180" pitch="@0" filter="only-red" region="red-engineer"/>
+</portals>
+<destroyables show-progress="true" completion="75%" repairable="true" materials="ender stone">
+    <destroyable name="West Blue TNT" owner="blue">
+        <region>
+            <cuboid min="127,32,-103" max="113,18,-89"/>
+        </region>
+    </destroyable>
+    <destroyable name="West Red TNT" owner="red">
+        <region>
+            <cuboid min="113,31,-11" max="127,17,-25"/>
+        </region>
+    </destroyable>
+    <destroyable name="East Blue TNT" owner="blue">
+        <region>
+            <cuboid min="191,31,-103" max="177,17,-89"/>
+        </region>
+    </destroyable>
+    <destroyable name="East Red TNT" owner="red">
+        <region>
+            <cuboid min="191,32,-11" max="177,18,-25"/>
+        </region>
+    </destroyable>
+</destroyables>
+<itemremove>
+    <item>cobblestone</item>
+    <item>dirt</item>
+    <item>wool</item>
+    <item>stained clay</item>
+    <item>tnt</item>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>sapling</item>
+    <item>red rose</item>
+    <item>seeds</item>
+    <item>quartz block</item>
+    <item>step:3</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>water bucket</item>
+    <item>wood step</item>
+    <item>fence</item>
+    <item>ladder</item>
+    <item>lever</item>
+    <item>stone button</item>
+    <item>diode</item>
+    <item>redstone</item>
+    <item>leaves</item>
+    <item>gold chestplate</item>
+    <item>smooth brick</item>
+    <item>ender stone</item>
+    <item>diamond chestplate</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>diamond spade</item>
+    <item>stone pickaxe</item>
+    <item>iron axe</item>
+    <item>iron spade</item>
+    <item>iron pickaxe</item>
+    <item>stone sword</item>
+    <item>iron block</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn auto="true"/>
+<maxbuildheight>62</maxbuildheight>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

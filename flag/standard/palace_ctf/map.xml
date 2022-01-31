@@ -1,0 +1,109 @@
+<map proto="1.4.2">
+<name>Palace CTF</name>
+<version>1.2</version>
+<objective>Have the most flag captures in 12 minutes!</objective>
+<time result="score" overtime="1m" max-overtime="2m">12m</time>
+<broadcasts>
+    <alert after="1s" every="6m" count="2">A mercy limit of 3 flag captures is active!</alert>
+    <alert after="3s" every="6m" count="2">A team that gains a 3 capture lead will automatically win!</alert>
+</broadcasts>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
+    <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042" /> <!-- Diamyx -->
+</authors>
+<contributors>
+    <contributor uuid="337ae91f-960b-4562-906d-f52f9e56d392" /> <!-- Aalhond -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="24">Red</team>
+    <team id="yellow" color="yellow" max="24">Yellow</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
+        <effect duration="2">heal</effect>
+        <effect duration="4">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect ambient="true">slowness</effect>
+        <effect amplifier="-1" ambient="true">health boost</effect>
+        <effect duration="2" amplifier="3" ambient="true">regeneration</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect amplifier="0" duration="0" ambient="true">slowness</effect>
+        <effect duration="0" amplifier="0" ambient="true">health boost</effect>
+        <effect duration="1" amplifier="10" ambient="true">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default region="default-spawn" yaw="-90"/>
+    <spawn team="red" kit="spawn-kit" region="red-spawn" yaw="-90"/>
+    <spawn team="yellow" kit="spawn-kit" region="yellow-spawn" yaw="-90"/>
+</spawns>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-yellow">yellow</team>
+    <deny id="deny-access">
+        <material>anvil</material>
+    </deny>
+</filters>
+<regions>
+    <union id="spawns">
+        <cuboid id="default-spawn" min="706,26,-1166" max="705,26,-1164"/>
+        <cuboid id="red-spawn" min="725,4,-1082" max="726,4,-1084"/>
+        <cuboid id="yellow-spawn" min="725,4,-1246" max="726,4,-1248"/>
+    </union>
+    <cuboid id="red-net" min="759,8,-1079" max="764,5,-1084"/>
+    <cuboid id="yellow-net" min="764,8,-1251" max="759,5,-1246"/>
+    <apply block="never" use="deny-access"/>
+</regions>
+<flags>
+    <flag id="red-flag" name="Red Flag" color="red" pickup-kit="flag-pickup" drop-kit="flag-drop" respawn-time="10s">
+        <post pickup-filter="only-yellow">762.5,6,-1082.5</post>
+        <net points="1" region="yellow-net"/>
+    </flag>
+    <flag id="yellow-flag" name="Yellow Flag" color="yellow" pickup-kit="flag-pickup" drop-kit="flag-drop" respawn-time="10s">
+        <post pickup-filter="only-red">762.5,6,-1248.5</post>
+        <net points="1" region="red-net"/>
+    </flag>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>potion</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="10" material="arrow"/>
+</kill-reward>
+<respawn delay="4s" auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

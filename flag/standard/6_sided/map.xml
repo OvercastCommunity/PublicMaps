@@ -1,0 +1,150 @@
+<map proto="1.4.2">
+<name>6 Sided</name>
+<version>1.0.5</version>
+<edition>standard</edition>
+<phase>development</phase>
+<gamemode>kotf</gamemode>
+<objective>Hold the flag for 200 seconds to win!</objective>
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- ogel/GoldenOre -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="red" color="red" max="16">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" amount="20" material="arrow"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="7" amplifier="2">speed</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="flag-kit" force="true">
+        <effect>slowness</effect>
+        <effect amplifier="-3">health boost</effect>
+        <effect duration="3" amplifier="2">absorption</effect>
+    </kit>
+    <kit id="reset-health" force="true">
+        <effect duration="0" amplifier="0">slowness</effect>
+        <effect duration="0" amplifier="0">health boost</effect>
+        <effect duration="1" amplifier="10">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="-90">
+        <region>
+            <cylinder base="1177.5,31,-883.5" radius="2" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit" filter="has-flag">
+        <region yaw="90">
+            <point>1217.5,16,-883.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" filter="has-flag">
+        <region yaw="-90">
+            <point>1245.5,16,-883.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <any id="has-flag">
+        <carrying-flag>flag</carrying-flag>
+        <not>
+            <same-team>
+                <carrying-flag>flag</carrying-flag>
+            </same-team>
+        </not>
+    </any>
+    <all id="blue-shortcut-unlock">
+        <team>blue</team>
+        <objective>hill</objective>
+    </all>
+    <all id="red-shortcut-unlock">
+        <team>red</team>
+        <objective>hill</objective>
+    </all>
+</filters>
+<regions>
+    <apply block="never"/>
+</regions>
+<control-points incremental="true" neutral-state="true" required="false" capture-time="5s" points="0" capture-rule="lead">
+    <control-point id="hill" name="Hill">
+        <capture>
+            <cuboid min="1236,26,-941" max="1227,30,-934"/>
+        </capture>
+        <progress>
+            <cuboid min="1236,26,-941" max="1227,30,-934"/>
+        </progress>
+        <owner>
+            <cuboid min="1236,26,-941" max="1227,30,-934"/>
+        </owner>
+    </control-point>
+</control-points>
+<portals>
+    <portal x="@1233" y="@27" z="@-948" yaw="0" filter="blue-shortcut-unlock">
+        <region>
+            <cuboid min="1175,17,-885" max="1176,23,-882"/>
+        </region>
+    </portal>
+    <portal x="@1233" y="@27" z="@-948" yaw="0" filter="red-shortcut-unlock">
+        <region>
+            <cuboid min="1287,17,-885" max="1288,23,-882"/>
+        </region>
+    </portal>
+</portals>
+<flags>
+    <flag id="flag"
+          name="Flag"
+          color="white"
+          shared="true"
+          post="centre-post"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health"
+          flag-proximity-metric="closest player"
+          show-respawn-on-pickup="true">
+        <post id="centre-post" return-time="0s" respawn-time="1s" name="Centre Post">1231.5,25,-883.5</post>
+        <post id="south-post" return-time="0s" respawn-time="1s" name="South Post">1231.5,27,-828.5</post>
+    </flag>
+</flags>
+<score>
+    <limit>200</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>golden carrot</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>leather chestplate</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item amount="10" material="arrow"/>
+    <item material="golden apple"/>
+</kill-reward>
+<respawn spectate="true">
+    <message>
+        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
+    </message>
+</respawn>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

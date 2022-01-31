@@ -1,0 +1,249 @@
+<map proto="1.4.0">
+<name>Rallypoint Delta</name>
+<version>1.0.0</version>
+<objective>Bring flags back to your base to earn the most points!</objective>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/>
+</authors>
+<contributors>
+    <contributor contribution="Design inspiration">Ustin_Jay</contributor>
+</contributors>
+<teams>
+    <team id="purple-team" color="dark purple" max="32">Purple</team>
+    <team id="orange-team" color="gold" max="32">Orange</team>
+</teams>
+<spawns>
+    <spawn team="purple-team" kit="purple-kit">
+        <regions yaw="180">
+            <point>-766.5,36.5,17.5</point>
+            <point>-814.5,36.5,17.5</point>
+        </regions>
+    </spawn>
+    <spawn team="orange-team" kit="orange-kit">
+        <regions yaw="0">
+            <point>-766.5,36.5,-218.5</point>
+            <point>-814.5,36.5,-218.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions angle="-790.5,186.5,-103.5">
+            <cylinder base="-790.5,185,-99.5" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true">
+            <enchantment>arrow infinite</enchantment>
+        </item>
+        <item slot="2" material="stone axe" unbreakable="true">
+            <enchantment>dig speed</enchantment>
+        </item>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <chestplate material="chainmail chestplate" unbreakable="true"/>
+        <boots material="iron boots" unbreakable="true">
+            <enchantment>protection fall</enchantment>
+        </boots>
+        <effect duration="4s">speed</effect>
+        <effect duration="4s" amplifier="8">damage resistance</effect>
+        <effect duration="4s" amplifier="8">regeneration</effect>
+        <effect duration="4s" amplifier="8">strength</effect>
+    </kit>
+    <kit id="purple-kit" parents="spawn-kit">
+        <helmet material="leather helmet" color="7F3FB2" unbreakable="true"/>
+        <leggings material="leather leggings" color="7F3FB2" unbreakable="true"/>
+        <item slot="3" material="wood" damage="1" amount="64"/>
+        <item slot="4" material="wood" damage="1" amount="64"/>
+    </kit>
+    <kit id="orange-kit" parents="spawn-kit">
+        <helmet material="leather helmet" color="D87F33" unbreakable="true"/>
+        <leggings material="leather leggings" color="D87F33" unbreakable="true"/>
+        <item slot="3" material="wood" damage="2" amount="64"/>
+        <item slot="4" material="wood" damage="2" amount="64"/>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+    <kill-reward filter="only-purple">
+        <item material="wood" damage="1" amount="16"/>
+    </kill-reward>
+    <kill-reward filter="only-orange">
+        <item material="wood" damage="2" amount="16"/>
+    </kill-reward>
+</kill-rewards>
+<filters>
+    <team id="only-purple">purple-team</team>
+    <team id="only-orange">orange-team</team>
+    
+    <random id="chance-1">[0.00, 0.33]</random>
+    <random id="chance-2">(0.33, 0.66]</random>
+    <random id="chance-3">(0.66, 1.00]</random>
+    
+    <all id="purple-chance-1">
+        <filter id="only-purple"/>
+        <filter id="chance-1"/>
+    </all>
+    <all id="purple-chance-2">
+        <filter id="only-purple"/>
+        <filter id="chance-2"/>
+    </all>
+    <all id="purple-chance-3">
+        <filter id="only-purple"/>
+        <filter id="chance-3"/>
+    </all>
+    <all id="orange-chance-1">
+        <filter id="only-orange"/>
+        <filter id="chance-1"/>
+    </all>
+    <all id="orange-chance-2">
+        <filter id="only-orange"/>
+        <filter id="chance-2"/>
+    </all>
+    <all id="orange-chance-3">
+        <filter id="only-orange"/>
+        <filter id="chance-3"/>
+    </all>
+    
+    <any id="block-whitelist">
+        <material>wood</material>
+        <material>stained glass:7</material>
+        <material>leaves</material>
+        <material>long grass</material>
+        <material>powered rail</material>
+        <material>rails</material>
+        <material>redstone torch on</material>
+        <material>redstone torch off</material>
+        <material>wood step</material>
+        <material>wood double step</material>
+        <material>spruce wood stairs</material>
+        <material>birch wood stairs</material>
+        <material>spruce door</material>
+        <material>birch door</material>
+        <material>wood plate</material>
+        <material>trap door</material>
+        <material>spruce fence</material>
+        <material>spruce fence gate</material>
+        <material>birch fence</material>
+        <material>birch fence gate</material>
+        <material>wall sign</material>
+        <material>sign post</material>
+        <material>wood button</material>
+        <material>workbench</material>
+        <material>note block</material>
+        <material>lever</material>
+        <material>skull</material>
+    </any>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+</filters>
+<regions>
+    <union id="post-pads">
+        <cuboid id="purple-inner" min="-789,34,5" max="-792,34,2"/>
+        <cuboid id="purple-outer" min="-789,38,-54" max="-792,38,-57"/>
+        <cuboid id="purple-upper" min="-789,61,-32" max="-792,61,-35"/>
+        <mirror id="orange-inner" origin="-790.5,55,-100.5" normal="0,0,-1" region="purple-inner"/>
+        <mirror id="orange-outer" origin="-790.5,55,-100.5" normal="0,0,-1" region="purple-outer"/>
+        <mirror id="orange-upper" origin="-790.5,55,-100.5" normal="0,0,-1" region="purple-upper"/>
+        <cuboid id="purple-inner-protection" min="-789,34,5" max="-792,44,2"/>
+        <cuboid id="purple-outer-protection" min="-789,38,-54" max="-792,46,-57"/>
+        <cuboid id="purple-upper-protection" min="-789,61,-32" max="-792,69,-35"/>
+        <mirror id="orange-inner-protection" origin="-790.5,55,-100.5" normal="0,0,-1" region="purple-inner"/>
+        <mirror id="orange-outer-protection" origin="-790.5,55,-100.5" normal="0,0,-1" region="purple-outer"/>
+        <mirror id="orange-upper-protection" origin="-790.5,55,-100.5" normal="0,0,-1" region="purple-upper"/>
+        <cuboid id="middle-east" min="-674,35,-99" max="-671,43,-102"/>
+        <cuboid id="middle-center" min="-789,37,-99" max="-792,45,-102"/>
+        <cuboid id="middle-west" min="-907,35,-102" max="-910,43,-98"/>
+    </union>
+    <union id="center-shield">
+        <sphere id="center-pad-cover" origin="-790.5,37,-100.5" radius="8"/>
+        <block id="center-beacon-cover">-791,53,-101</block>
+    </union>
+    <sphere id="purple-return" origin="-790.5,34,3.5" radius="20"/>
+    <sphere id="orange-return" origin="-790.5,34,-204.5" radius="20"/>
+    
+    <apply block="deny-void"/>
+    <apply region="post-pads" block="never"/>
+    <apply block="block-whitelist"/>
+</regions>
+<score>
+    <limit>7500</limit>
+</score>
+<flags beam="false">
+    <post id="purple-inner-pad" owner="purple-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-orange" yaw="180"><region id="purple-inner"/></post>
+    <post id="purple-outer-pad" owner="purple-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-orange" yaw="180"><region id="purple-outer"/></post>
+    <post id="purple-upper-pad" owner="purple-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-orange" yaw="180"><region id="purple-upper"/></post>
+    <post id="orange-inner-pad" owner="orange-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-purple" yaw="0"><region id="orange-inner"/></post>
+    <post id="orange-outer-pad" owner="orange-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-purple" yaw="0"><region id="orange-outer"/></post>
+    <post id="orange-upper-pad" owner="orange-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-purple" yaw="0"><region id="orange-upper"/></post>
+    
+    <flag id="middle-east-minor-1" shared="true"><post recover-time="12s" respawn-time="3s">-672,35,-102</post></flag>
+    <flag id="middle-east-minor-2" shared="true"><post recover-time="12s" respawn-time="3s">-672,35,-101</post></flag>
+    <flag id="middle-east-minor-3" shared="true"><post recover-time="12s" respawn-time="3s">-672,35,-100</post></flag>
+    <flag id="middle-east-minor-4" shared="true"><post recover-time="12s" respawn-time="3s">-673,35,-102</post></flag>
+    <flag id="middle-east-minor-5" shared="true"><post recover-time="12s" respawn-time="3s">-673,35,-100</post></flag>
+    <flag id="middle-east-minor-6" shared="true"><post recover-time="12s" respawn-time="3s">-674,35,-102</post></flag>
+    <flag id="middle-east-minor-7" shared="true"><post recover-time="12s" respawn-time="3s">-674,35,-101</post></flag>
+    <flag id="middle-east-minor-8" shared="true"><post recover-time="12s" respawn-time="3s">-674,35,-100</post></flag>
+    <flag id="middle-east-manjor-1" shared="true"><post recover-time="12s" respawn-time="3s">-673,35,-101</post></flag>
+    
+    <flag id="middle-center-major-1" shared="true"><post recover-time="12s" respawn-time="3s">-792,37,-102</post></flag>
+    <flag id="middle-center-major-2" shared="true"><post recover-time="12s" respawn-time="3s">-791,37,-102</post></flag>
+    <flag id="middle-center-major-3" shared="true"><post recover-time="12s" respawn-time="3s">-790,37,-102</post></flag>
+    <flag id="middle-center-major-4" shared="true"><post recover-time="12s" respawn-time="3s">-792,37,-100</post></flag>
+    <flag id="middle-center-major-5" shared="true"><post recover-time="12s" respawn-time="3s">-791,37,-100</post></flag>
+    <flag id="middle-center-major-6" shared="true"><post recover-time="12s" respawn-time="3s">-790,37,-100</post></flag>
+    <flag id="middle-center-super-1" shared="true"><post recover-time="12s" respawn-time="3s">-791,37,-101</post></flag>
+    
+    <flag id="middle-west-minor-1" shared="true"><post recover-time="12s" respawn-time="3s">-910,35,-100</post></flag>
+    <flag id="middle-west-minor-2" shared="true"><post recover-time="12s" respawn-time="3s">-910,35,-101</post></flag>
+    <flag id="middle-west-minor-3" shared="true"><post recover-time="12s" respawn-time="3s">-910,35,-102</post></flag>
+    <flag id="middle-west-minor-4" shared="true"><post recover-time="12s" respawn-time="3s">-909,35,-100</post></flag>
+    <flag id="middle-west-minor-5" shared="true"><post recover-time="12s" respawn-time="3s">-909,35,-101</post></flag>
+    <flag id="middle-west-minor-6" shared="true"><post recover-time="12s" respawn-time="3s">-908,35,-100</post></flag>
+    <flag id="middle-west-minor-7" shared="true"><post recover-time="12s" respawn-time="3s">-908,35,-101</post></flag>
+    <flag id="middle-west-minor-8" shared="true"><post recover-time="12s" respawn-time="3s">-908,35,-102</post></flag>
+    <flag id="middle-west-manjor-1" shared="true"><post recover-time="12s" respawn-time="3s">-909,35,-102</post></flag>
+    
+    <net region="purple-return" owner="purple-team" post="purple-inner-pad" capture-filter="purple-chance-1"/>
+    <net region="purple-return" owner="purple-team" post="purple-outer-pad" capture-filter="purple-chance-2"/>
+    <net region="purple-return" owner="purple-team" post="purple-upper-pad" capture-filter="purple-chance-3"/>
+    
+    <net region="orange-return" owner="orange-team" post="orange-inner-pad" capture-filter="orange-chance-1"/>
+    <net region="orange-return" owner="orange-team" post="orange-outer-pad" capture-filter="orange-chance-2"/>
+    <net region="orange-return" owner="orange-team" post="orange-upper-pad" capture-filter="orange-chance-3"/>
+</flags>
+<destroyables show="false" materials="stained clay:0;stained glass:3" mode-changes="true">
+    <destroyable id="center-shield-control" name="center-shield-control" region="center-shield" owner="purple-team"/>
+</destroyables>
+<modes>
+    <mode name="Central Shield deactivated" after="8m" material="air"/>
+</modes>
+<broadcasts>
+    <alert after="7m">`c`lCentral Shield `r`3will be deactivated in `b1 `3minute!</alert>
+    <alert after="7m50s">`c`lCentral Shield `r`3will be deactivated in `b10 `3seconds!</alert>
+    <alert after="8m">`c`lCentral Shield `r`3has been deactivated!</alert>
+</broadcasts>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>stone axe</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>golden apple</item>
+</itemkeep>
+</map>

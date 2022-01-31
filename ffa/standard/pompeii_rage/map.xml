@@ -1,0 +1,79 @@
+<map proto="1.4.0">
+<name>Pompeii RAGE</name>
+<version>1.2.4</version>
+<authors>
+    <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" />
+    <!--  KRo_oOH  -->
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" />
+    <!--  GoldenOre  -->
+</authors>
+<objective>Be the player with the most kills after 7 minutes. There are no teams, so watch your back!</objective>
+<gamemode>ffa</gamemode>
+<gamemode>rage</gamemode>
+<score>
+    <kills>1</kills>
+</score>
+<time>7m</time>
+<rage />
+<respawn spectate="true" />
+<players min="2" max="64"/>
+<spawns>
+    <spawn kit="players" spread="true" safe="true">
+        <regions>
+            <cylinder base="249.5,68,-2113.5" radius="150" height="5" />
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <cylinder base="128.5,70,-2010.5" radius="3" height="0" />
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="players" force="true">
+        <item slot="0" enchantment="damage all:10">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="2">arrow</item>
+        <potion duration="2" amplifier="20">damage resistance</potion>
+        <chestplate locked="true" unbreakable="true" color="667F33">leather chestplate</chestplate>
+        <leggings color="E5E533" unbreakable="true">leather leggings</leggings>
+        <boots enchantment="protection fall:2;protection environmental:1" color="E5E533" damage="-3000">leather boots</boots>
+        <double-jump power="3" recharge-before-landing="true" />
+    </kit>
+</kits>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<itemremove>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>water lily</item>
+    <item>chest</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>arrow</item>
+    <item>red mushroom</item>
+    <item>leather chestplate</item>
+    <item>leaves</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<filters>
+    <any id="lily">
+        <material>water lily</material>
+    </any>
+</filters>
+<regions>
+    <apply block="lily" />
+</regions>
+</map>

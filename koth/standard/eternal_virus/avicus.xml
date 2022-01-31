@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<map name="Eternal Virus" version="1.0.0" description="You have one chance to capture the hill. Make it worth it!">
+  <include src="defaults.xml"/>
+
+  <authors>
+    <author uuid="d9b4ffbc11d0453aa93f82dc59fca4b6"/>  <!-- Wulfcaspice -->
+    <author uuid="1865ac01271f4f69b979b43a78c39989"/> <!-- Zintenka -->
+  </authors>
+
+  <teams>
+    <team id="blue" color="blue" min="12" max="16">{colors.blue}</team>
+    <team id="green" color="green" min="12" max="16">{colors.green}</team>
+  </teams>
+
+  <spawns>
+    <spawn yaw="180">
+      <regions><block>-1, 43, -4</block></regions>
+    </spawn>
+
+    <spawn team="blue" loadout="default">
+      <regions>
+        <block yaw="45">47, 16, -52</block>
+        <block yaw="-45">-48, 16, -51</block>
+      </regions>
+    </spawn>
+    <spawn team="green" loadout="default">
+      <regions>
+        <block yaw="-135">-49, 16, 44</block>
+        <block yaw="135">47, 16, 44</block>
+      </regions>
+    </spawn>
+  </spawns>
+
+  <objectives>
+    <hill name="{directions.center}" capture-time="5s" permanent="true">
+      <capture><cylinder base="-1, 1, -4" height="2" radius="4"/></capture>
+      <progress><cuboid min="-61, -8, 57" max="62, 31, -66"/></progress>
+    </hill>
+  </objectives>
+
+  <loadouts>
+    <loadout id="kill-reward">
+      <item material="golden apple"/>
+    </loadout>
+    <loadout id="default">
+      <effect duration="8s">damage resistance</effect>
+      <helmet material="leather helmet" team-color="true"/>
+      <chestplate material="leather chestplate" team-color="true"/>
+      <leggings material="leather leggings" team-color="true"/>
+      <boots material="leather boots" team-color="true"/>
+      <item slot="0" material="iron sword"/>
+      <item slot="1" material="bow"/>
+      <item slot="6" material="bread" amount="16"/>
+      <item slot="7" material="golden apple"/>
+      <item slot="8" material="arrow" amount="16"/>
+    </loadout>
+  </loadouts>
+  <zones>
+    <zone>
+      <region>
+        <join>
+          <cylinder base="-49, 16, 44" height="4" radius="5"/>
+          <cylinder base="47, 16, 44" height="4" radius="5"/>
+        </join>
+      </region>
+      <enter>
+        <team>green</team>
+      </enter>
+      <message>{errors.spawn-restricted}</message>
+    </zone>
+    <zone>
+      <region>
+        <join>
+          <cylinder base="47, 16, -52" height="4" radius="5"/>
+          <cylinder base="-48, 16, -51" height="4" radius="5"/>
+        </join>
+      </region>
+      <enter>
+        <team>blue</team>
+      </enter>
+      <message>{errors.spawn-restricted}</message>
+    </zone>
+    <zone modify="never" region="everywhere">
+      <message>{errors.cannot-build-map}</message>
+    </zone>
+  </zones>
+  <world>
+    <gamerules>
+      <doDaylightCycle>false</doDaylightCycle>
+    </gamerules>
+  </world>
+</map>

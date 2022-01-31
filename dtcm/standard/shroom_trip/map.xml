@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Shroom Trip</name>
+<version>1.7.8</version>
+<objective>Leak lava from the enemy's obsidian shroom into the void.</objective>
+<authors>
+    <author uuid="8b210772-8b0c-44b4-a4e2-2b543707ffc6"/> <!-- Omnigarde -->
+</authors>
+<rules>
+    <rule>Carpet Bombing is illegal: The creation of a large pillar/structure made to drop seemingly endless quantities of TNT onto an enemy structure.</rule>
+</rules>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="29">shears</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">huge mushroom 1</item>
+        <item slot="31" amount="16">wood</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="6">water bucket</item>
+        <item slot="7" amount="64">ladder</item>
+        <item slot="16" amount="64">brown mushroom</item>
+        <item slot="8">mushroom soup</item>
+        <item slot="35">mushroom soup</item>
+        <item slot="26">mushroom soup</item>
+        <item slot="17" amount="64">red mushroom</item>
+        <chestplate enchantment="protection explosions:4">chainmail chestplate</chestplate>
+        <effect duration="10" amplifier="2">regeneration</effect>
+        <effect duration="10" amplifier="4">resistance</effect>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<crafting>
+    <disable>boat</disable>
+</crafting>
+<killreward>
+    <item amount="16">arrow</item>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>arrow</item>
+    <item>brown mushroom</item>
+    <item>red mushroom</item>
+    <item>bowl</item>
+    <item>mushroom soup</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>glass</item>
+    <item>ladder</item>
+    <item>huge mushroom 1</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>golden apple</item>
+</itemremove>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cuboid min="-1047.5,74,-348.5" max="-1045.5,74,-346.5"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="-1047.5,74,-310.5" max="-1045.5,74,-308.5"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-1046.5,74,-328.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<playable>
+    <rectangle min="-1017,-400" max="-940,-270"/> <!-- main area -->
+    <rectangle min="-1031,-359" max="-1017,-298"/> <!-- area between spawn tunnels -->
+</playable>
+<maxbuildheight>128</maxbuildheight>
+<cores material="obsidian" leak="5">
+    <core team="blue">
+        <cuboid min="-981,84,-354" max="-986,90,-349"/>
+    </core>
+    <core team="red">
+        <cuboid min="-981,84,-304" max="-986,90,-309"/>
+    </core>
+</cores>
+</map>

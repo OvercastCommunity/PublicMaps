@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Bedrock Fortress Battles</name>
+<phase>development</phase>
+<version>1.0</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author>Torn_Ares</author>
+    <author>Thungon</author>
+    <author>GammaRay_89</author>
+</authors>
+<rules>
+    <rule>Do not glitch or bybass over/through the bedrock wall!</rule>
+</rules>
+<teams>
+    <team color="blue" max="100">Blue Team</team>
+    <team color="dark red" max="100">Red Team</team>
+</teams>
+<spawns>
+    <spawn team="red" yaw="90"><point>1249,27,519</point></spawn>
+    <spawn team="blue" yaw="270"><point>1286,27,519</point></spawn>
+    <default yaw="180"><cylinder base="1267,27,518" radius="7" height="0"/></default>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not build outside the playable region">
+    <negative name="playable-inverse">
+        <rectangle min="1336,549" max="1199,637"/>
+    </negative>
+    </apply>
+    <apply enter="deny-all" message="You may not enter spawns">
+        <rectangle min="1301,547" max="1234,517"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="5">
+    <core team="red"><cuboid min="1233,22,597" max="1227,30,589"/></core>
+    <core team="blue"><cuboid min="1302,22,589" max="1307,30,597"/></core>
+</cores>
+<destroyables>
+    <destroyable name="Wall" show="false" completion="0%" materials="bedrock;air" mode-changes="true" owner="blue">
+        <cuboid min="1268,0,540" max="1267,95,646"/>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode name="The bedrock wall is now down!" after="15m" material="air"/>
+</modes>
+<maxbuildheight>72</maxbuildheight>
+<broadcasts>
+    <alert after="1s" every="3m" count="5">The wall will drop at the 15 minute mark!</alert>
+</broadcasts>
+<itemremove>
+    <item>obsidian</item>
+</itemremove>
+</map>

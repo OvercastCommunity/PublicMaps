@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Cake Wars</name>
+<version>1.7.5</version>
+<objective>Leak lava from the enemy's gold core below the cakeline.</objective>
+<authors>
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
+    <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
+</authors>
+<rules>
+    <rule>No blocking the spawn tunnels!</rule>
+</rules>
+<teams>
+    <team color="dark red" max="13">Red</team>
+    <team color="blue" max="13">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2">stone pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4" amount="16" damage="1">wood</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="8" amount="64">cooked fish</item>
+        <item slot="7">golden apple</item>
+        <potion duration="8" amplifier="4">heal</potion>
+        <potion duration="8" amplifier="10">damage resistance</potion>
+        <potion duration="8" amplifier="2">haste</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="270">
+        <cuboid min="16.5,66,-32.5" max="18.5,66,-30.5"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="90">
+        <cuboid min="-17.5,66,-32.5" max="-15.5,66,-30.5"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="0.5,65,-31.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="anti-chest-red">
+        <not>
+            <all>
+                <team>red</team>
+                <block>chest</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-chest-blue">
+        <not>
+            <all>
+                <team>blue</team>
+                <block>chest</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-chest">
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You cannot build outside of the map!">
+        <negative>
+            <rectangle min="-42,0" max="43,60"/> <!-- Main playing region -->
+            <rectangle min="-24,-4" max="25,1"/> <!-- Area between spawn tunnels -->
+        </negative>
+    </apply>
+    <apply enter="deny-all" message="You cannot leave the playing field!">
+        <negative>
+            <rectangle min="-42,0" max="43,60"/> <!-- Main playing region -->
+            <rectangle min="-24,-6" max="25,1"/> <!-- Area between spawn tunnels -->
+        </negative>
+    </apply>
+    <union name="chests">
+        <union name="red-chests">
+            <cuboid min="-19,62,9" max="-21,69,12"/>
+            <cuboid min="-34,62,9" max="-32,69,12"/>
+            <cuboid min="-24,83,42" max="-18,85,43"/>
+        </union>
+        <union name="blue-chests">
+            <cuboid min="35,62,9" max="33,69,12"/>
+            <cuboid min="20,62,9" max="22,69,12"/>
+            <cuboid min="25,83,42" max="19,85,43"/>
+        </union>
+    </union>
+    <apply block-break="anti-chest-red" message="You are not allowed to break your chests!">
+        <region name="red-chests"/>
+    </apply>
+    <apply block-break="anti-chest-blue" message="You are not allowed to break your chests!">
+        <region name="blue-chests"/>
+    </apply>
+    <apply block-place="deny-chest">
+        <region name="chests"/>
+    </apply>
+</regions>
+<maxbuildheight>100</maxbuildheight>
+<mobs>
+    <filter parents="deny-all">
+        <allow>
+            <mob>cave spider</mob>
+            <spawn>spawner egg</spawn>
+        </allow>
+    </filter>
+</mobs>
+<cores material="gold block" leak="5">
+    <core team="blue">
+        <cuboid min="25,64,13" max="30,70,20"/>
+    </core>
+    <core team="red">
+        <cuboid min="-29,64,13" max="-24,70,20"/>
+    </core>
+</cores>
+<killreward>
+    <item amount="16">arrow</item>
+    <item damage="1" amount="8">wood</item>
+    <item>golden apple</item>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>stone pickaxe</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>glass</item>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+    <item>glass bottle</item>
+</itemremove>
+</map>

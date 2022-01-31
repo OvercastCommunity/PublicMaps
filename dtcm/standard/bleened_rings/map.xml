@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.3.0">
+  <name>Bleened Rings</name>
+  <version>1.1.3</version>
+  <objective>Break the monuments to win!</objective>
+  <authors>
+    <author uuid="0c20aa0d-82f9-46cd-aeae-29cf1f112aa2"/> <!-- resepignev -->
+  </authors>
+  <teams>
+    <team color="dark green" max="32">Green</team>
+    <team color="blue" max="32">Blue</team>
+  </teams>
+  <timelock>on</timelock>
+  <spawns>
+    <spawn team="green" kit="green" yaw="0">
+      <cylinder base="0.5,5,-107.5" height="0" radius="1" />
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+      <cylinder base="0.5,5,25.5" height="0" radius="1" />
+    </spawn>
+    <default yaw="-90">
+      <cylinder base="-100.5,55,-37.5" height="0" radius="1" />
+    </default>
+  </spawns>
+  <destroyables materials="obsidian">
+    <destroyable name="Left" owner="green">
+      <block>-69,12,-75</block>
+    </destroyable>
+    <destroyable name="Right" owner="green">
+      <block>69,12,-75</block>
+    </destroyable>
+    <destroyable name="Back" owner="green">
+      <block>0,12,-168</block>
+    </destroyable>
+    <destroyable name="Left" owner="blue">
+      <block>69,12,0</block>
+    </destroyable>
+    <destroyable name="Right" owner="blue">
+      <block>-69,12,0</block>
+    </destroyable>
+    <destroyable name="Back" owner="blue">
+      <block>0,12,93</block>
+    </destroyable>
+  </destroyables>
+  <regions>
+    <cuboid name="greenspawn" min="5,15,-83" max="-4,0,-114"/>
+    <cuboid name="bluespawn" min="-4,15,8" max="5,0,39"/>
+    <apply block="deny-all" message="You may not modify the spawn area.">
+      <region name="greenspawn" />
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn area.">
+      <region name="bluespawn" />
+    </apply>
+  </regions>
+  <kits>
+     <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:1">diamond pickaxe</item>
+        <item slot="3" amount="2">golden apple</item>
+        <item slot="4" amount="32">cooked beef</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="6" amount="64">log</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+     </kit>
+     <kit name="green" parents="spawn">
+        <helmet color="00AA00">leather helmet</helmet>
+        <chestplate color="00AA00">leather chestplate</chestplate>
+     </kit>
+     <kit name="blue" parents="spawn">
+        <helmet color="5555FF">leather helmet</helmet>
+        <chestplate color="5555FF">leather chestplate</chestplate>
+     </kit>
+  </kits>
+  <toolrepair>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+  </toolrepair>
+  <itemremove>
+    <item>arrow</item>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>cooked beef</item>
+  </itemremove>
+</map>

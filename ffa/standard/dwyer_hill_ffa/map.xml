@@ -1,0 +1,93 @@
+<map proto="1.4.2">
+<name>Dwyer Hill FFA</name>
+<version>1.1.5</version>
+<objective>Get the most kills after 5 minutes!</objective>
+<gamemode>ffa</gamemode>
+<phase>development</phase>
+<authors>
+    <author uuid="bada87c3-3383-42cb-973d-99032a0724b9"/> <!-- Holdfast33 -->
+</authors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<broadcasts>
+    <alert after="2s">Fall damage is disabled on this map!</alert>
+</broadcasts>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="2" max="5" colors="true"/>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16">arrow</item>
+        <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
+        <boots locked="true" unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="2" amplifier="255">heal</effect>
+        <effect duration="2" amplifier="255">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="0" kit="default-kit">
+        <region yaw="0">
+            <cylinder base="-252,35,902.5" radius="2" height="0"/>
+        </region>
+    </default>
+    <spawn kit="spawn-kit" safe="true" spread="true">
+        <regions angle="-253,6,878">
+            <cylinder base="-237.5,5,904.5" radius="3" height="0"/>
+            <cylinder base="-267.5,5,904.5" radius="3" height="0"/>
+            <cylinder base="-252.5,5,869.5" radius="1.5" height="0"/>
+            <point>-281,9,859</point>
+            <point>-224,9,859</point>
+        </regions>
+        <regions yaw="0">
+            <cylinder base="-226,9,887" radius="1" height="0"/>
+            <cylinder base="-248,9,887" radius="1" height="0"/>
+        </regions>
+        <region yaw="-145">
+            <cylinder base="-226,5,876.5" radius="2" height="0"/>
+        </region>
+        <region yaw="145">
+            <cylinder base="-279,5,876.5" radius="2" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemremove>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<respawn auto="true"/>
+</map>

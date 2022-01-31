@@ -1,0 +1,122 @@
+<map proto="1.4.0">
+<name>Hot Dam</name>
+<version>1.3.3</version>
+<objective>Leak lava from the enemy's obsidian core onto the dam.</objective>
+<authors>
+    <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Spawn"/> <!-- Plastix -->
+    <contributor>Overcast Network Map Team</contributor>
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="40">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="diamond sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2" material="iron axe"/>
+        <item slot="4" amount="64" damage="2" material="wood"/>
+        <item slot="31" amount="64" damage="2" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="6" amount="64" material="stone"/>
+        <item slot="7" amount="64" material="ladder"/>
+        <item slot="8" amount="64" material="golden carrot"/>
+        <item slot="28" amount="64" material="arrow"/>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <effect duration="8" amplifier="4">damage resistance</effect>
+        <effect duration="8" amplifier="1">increase damage</effect>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="-45">
+        <region>
+            <cylinder base="-33.5,36,-54.5" radius="2" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="blue-kit" yaw="90">
+        <region>
+            <cylinder base="-101,75,-55" radius="2" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit" yaw="180">
+        <region>
+            <cylinder base="-33,75,-123" radius="2" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <not id="deny-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <union id="supply-rooms">
+        <cuboid id="blue-supply-room" min="-167,71,-51" max="-143,79,-42"/>
+        <cuboid id="red-supply-room" min="-29,71,-189" max="-20,79,-165"/>
+    </union>
+    <union id="spawn-protect">
+        <cuboid id="blue-spawn-protect" min="-96,73,-59" max="-118,80,-45"/>
+        <cuboid id="blue-spawn-protect2" min="-118,75,-46" max="-128,74,-49"/>
+        <cuboid id="red-spawn-protect" min="-37,73,-118" max="-23,80,-140"/>
+        <cuboid id="red-spawn-protect2" min="-24,75,-140" max="-27,74,-150"/>
+    </union>
+    <apply enter="only-blue" message="You are not allowed in Blue's supply room!" region="blue-supply-room"/>
+    <apply enter="only-red" message="You are not allowed in Red's supply room!" region="red-supply-room"/>
+    <apply block="never" message="You may not place or break blocks in the supply rooms!" region="supply-rooms"/>
+    <apply block="never" message="You may not interfere with the spawn platforms!" region="spawn-protect"/>
+    <apply block="deny-void" message="You may not build outside of the map!"/>
+</regions>
+<cores material="obsidian" leak="2" mode-changes="true">
+    <core team="blue">
+        <region>
+            <cuboid min="-153,76,-93" max="-149,82,-88"/>
+        </region>
+    </core>
+    <core team="red">
+        <region>
+            <cuboid min="-71,76,-175" max="-66,82,-171"/>
+        </region>
+    </core>
+</cores>
+<modes>
+    <mode after="20m" material="gold block" name="`6GOLD CORE MODE"/>
+</modes>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>glass</item>
+    <item>stone</item>
+    <item>wood</item>
+    <item>ladder</item>
+    <item>golden carrot</item>
+    <item>leather boots</item>
+    <item>chainmail chestplate</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item>golden apple</item>
+    <item amount="16">arrow</item>
+</kill-reward>
+</map>

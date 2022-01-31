@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Dorreak</name>
+<version>1.1.4</version>
+<objective>Capture and place both of the enemies wool</objective>
+<!--Authors-->
+<authors>
+	<author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Map building and XML"/>    <!--Obelistics-->
+</authors>
+<!--Teams-->
+<teams>
+	<team id="red-team" color="dark red" max="13">Red</team>
+	<team id="blue-team" color="blue" max="13">Blue</team>
+</teams>
+<!--Kits-->
+<kits>
+	<kit id="spawn-kit" force="true">
+		<item slot="0" material="iron sword" unbreakable="true"/>
+		<item slot="1" material="bow" unbreakable="true"/>
+		<item slot="2" material="iron pickaxe" unbreakeble="true"/>
+		<item slot="3" material="iron axe" unbreakable="true"/>
+		<item slot="4" material="wood" damage="5" amount="32"/>
+		<item slot="5" material="ladder" amount="12"/>
+		<item slot="6" material="golden apple"/>
+		<item slot="7" material="golden carrot" amount="32"/>
+		<item slot="8" material="arrow" amount="16"/>
+		<leggings unbreakable="true">chainmail leggings</leggings>
+		<effect duration="3s" amplifier="5">resistance</effect>
+	</kit>
+	<kit id="red-kit" parents="spawn-kit">
+		<chestplate material="leather chestplate" color="993333" unbreakable="true" prevent-sharing="true"/>
+		<boots material="leather boots" color="993333" unbreakable="true" prevent-sharing="true"/>
+		<helmet material="leather helmet" color="993333" unbreakable="true" prevent-sharing="true"/>
+	</kit>
+	<kit id="blue-kit" parents="spawn-kit">
+		<chestplate material="leather chestplate" color="334CB2" unbreakable="true" prevent-sharing="true"/>
+		<boots material="leather boots" color="334CB2" unbreakable="true" prevent-sharing="true"/>
+		<helmet material="leather helmet" color="334CB2" unbreakable="true" prevent-sharing="true"/>
+	</kit>
+	<kit id="chainmail-kit">
+		<chestplate material="chainmail chestplate"/>
+	</kit>
+</kits>
+<!--Filters-->
+<filters>
+	<team id="only-red">red-team</team>
+	<team id="only-blue">blue-team</team>
+	<not id="no-void">
+        <void/>
+    </not>
+</filters>
+<!--Regions-->
+<regions>
+	<union id="red-wool-room">
+		<rectangle min="2,18" max="-12,32"/><!--Cyan Wool-->
+		<rectangle min="58,18" max="44,32"/><!--Light Blue Wool-->
+	</union>
+	<union id="blue-wool-room">
+		<rectangle min="86,-136" max="100,-150"/><!--Magenta room-->
+		<rectangle min="44,-150" max="30,-136"/><!--Pink Wool -->
+	</union>
+	<union id="red-spawn-room">
+		<rectangle min="58,-122" max="72,-136"/>
+	</union>
+	<union id="blue-spawn-room">
+		<rectangle min="30,4" max="16,18"/>
+	</union>
+	<!--Enter apply-->
+	<apply enter="only-red" region="red-wool-room" message="You cannot enter the enemies wool rooms"/>
+	<apply enter="only-blue" region="blue-wool-room" message="You cannot enter the enemies wool rooms"/>
+	<apply enter="only-red" region="red-spawn-room" message="You cannot enter the enemies spawn"/>
+	<apply enter="only-blue" region="blue-spawn-room" message="You cannot enter the enemies spawn"/>
+	<!--Block apply-->
+	<apply block="only-red" region="red-wool-room" message="You cannot modify your enemies wool room"/>
+	<apply block="only-blue" region="blue-wool-room" message="You cannot modify your enemies wool room"/>
+	<apply block="never" region="red-spawn-room" message="You cannot modify spawn regions"/>
+	<apply block="never" region="blue-spawn-room" message="You cannot modify spawn regions"/>
+	<apply block="no-void" message="You cannot modify the void" region="everywhere"/>
+</regions>
+<!--Wools-->
+<wools team="red-team">
+	<wool color="cyan" location="-5,20,25">
+		<monument><block>66,11,-132</block></monument>
+	</wool>
+	<wool color="light blue" location="51,20,25">
+		<monument><block>63.5,11,-131.5</block></monument>
+	</wool>
+</wools>
+<wools team="blue-team">
+	<wool color="magenta" location="93,20,-143">
+		<monument><block>21,11,13</block></monument>
+	</wool>
+	<wool color="pink" location="37,20,-143">
+		<monument><block>24.5,11,13.5</block></monument>
+	</wool>
+</wools>
+<!--Spawns-->
+<spawns>
+	<spawn team="red-team" kit="red-kit">
+		<regions yaw="0">
+			<cylinder base="65,10.5,-129" radius="2" height="0"/>
+		</regions>
+	</spawn>
+	<spawn team="blue-team" kit="blue-kit">
+		<regions yaw="180">
+			<cylinder base="23,10.5,11" radius="2" height="0"/>
+		</regions>
+	</spawn>
+	<default>
+		<regions yaw="90">
+			<cylinder base="44,55,-59" radius="2" height="0"/>
+		</regions>
+	</default>
+</spawns>
+<!--Iron block respawn-->
+<renewables>
+	<renewable rate="2.5" grow="false" particles="true" sound="true" avoid-players="4">
+		<region>
+			<rectangle min="44,-22" max="58,11"/>
+			<rectangle min="44,-96" max="30,-128"/>
+			<rectangle min="100,-128" max="86,-96"/>
+			<rectangle min="-12,11" max="2,-22"/>
+		</region>
+		<renew-filter>
+			<any>
+				<material>gold block</material>
+			</any>
+		</renew-filter>
+		<replace-filter>
+			<any>
+				<material>air</material>
+			</any>
+		</replace-filter>
+	</renewable>
+</renewables>
+<!--Kill reward-->
+<kill-reward>
+	<item material="golden apple"/>
+	<item material="arrow" amount="6"/>
+</kill-reward>
+<!--Item remove-->
+<itemremove>
+	<item>stone</item>
+	<item>iron sword</item>
+	<item>bow</item>
+	<item>iron pickaxe</item>
+	<item>iron axe</item>
+	<item>sugar cane</item>
+	<item>wheat</item>
+	<item>seeds</item>
+	<item>red rose</item>
+	<item>yellow flower</item>
+	<item>dirt</item>
+	<item>grass</item>
+	<item>gravel</item>
+	<item>flint</item>
+	<item>prismarine crystals</item>
+	<item>string</item>
+	<item>iron fence</item>
+	<item>sapling</item>
+	<item>chainmail leggings</item>
+	<item>golden carrot</item>
+</itemremove>
+<!--broadcasts-->
+<broadcasts>
+	<tip after="4s" every="3m">There is a limited amount of iron, and regenerating gold across the bridges from spawn</tip>
+</broadcasts>
+<!--Small things-->
+<timelock>on</timelock>
+<maxbuildheight>40</maxbuildheight>
+<!--End of XML-->
+</map>

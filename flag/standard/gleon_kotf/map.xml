@@ -1,0 +1,424 @@
+<map proto="1.4.0">
+<name>Gleon KotF</name>
+<version>1.4.6</version>
+<objective>Hold the flag for 200 seconds to win!</objective>
+<authors>
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!-- Qixit -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red" color="dark red" max="32">Red</team>
+</teams>
+<gamemode>kotf</gamemode>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" name="`fGold Ore/Block Breaker" material="stone pickaxe">
+            <enchantment level="2">efficiency</enchantment>
+        </item>
+        <item slot="6" amount="32" material="arrow"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="10" material="gold nugget"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate">
+            <enchantment>protection_projectile</enchantment>
+        </chestplate>
+        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots unbreakable="true" locked="true" name="`6`lFeather Falling Boots" material="iron boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+    </kit>
+    <kit id="spawn-protection-b" force="true" filter="only-blue">
+        <effect amplifier="100" duration="oo">damage resistance</effect>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit id="spawn-protection-r" force="true" filter="only-red">
+        <effect amplifier="100" duration="oo">damage resistance</effect>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit id="flag-hold" force="true">
+        <effect amplifier="-3" duration="oo">health boost</effect>
+        <effect duration="oo">absorption</effect>
+        <effect duration="15">speed</effect>
+    </kit>
+    <kit id="return-kit" force="true">
+        <effect amplifier="0" duration="1">health boost</effect>
+        <effect amplifier="10" duration="1">regeneration</effect>
+    </kit>
+    <kit id="kill-reward-base-kit">
+        <effect amplifier="3" duration="0.5">night vision</effect>
+        <effect duration="2">absorption</effect>
+        <effect duration="3">regeneration</effect>
+        <effect duration="3">speed</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="45">
+            <point>-12.5,126.5,-1038.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit" filter="no-flag">
+        <region yaw="-45">
+            <point>-60.5,121.5,-1086.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" filter="no-flag">
+        <region yaw="135">
+            <point>35.5,121.5,-990.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="no-flag">
+        <same-team>
+            <carrying-flag>flag</carrying-flag>
+        </same-team>
+    </not>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <any id="breakable-blocks">
+        <material>long grass</material>
+        <material>red rose</material>
+        <material>double plant</material>
+        <material>water lily</material>
+        <material>stained glass</material>
+        <material>red mushroom</material>
+        <material>brown mushroom</material>
+        <material>stationary water</material>
+        <material>gold block</material>
+        <material>gold ore</material>
+        <material>long grass</material>
+        <material>long grass:2</material>
+        <material>leaves:2</material>
+        <material>leaves:3</material>
+        <material>leaves:4</material>
+        <material>leaves</material>
+        <material>leaves 2</material>
+        <material>leaves:1</material>
+        <material>red rose</material>
+        <material>red rose:1</material>
+        <material>red rose:2</material>
+        <material>red rose:3</material>
+        <material>red rose:4</material>
+        <material>red rose:5</material>
+        <material>red rose:6</material>
+        <material>red rose:7</material>
+        <material>red rose:8</material>
+        <not>
+            <cause>mine</cause>
+        </not>
+    </any>
+    <allow id="deny-break">
+        <all>
+            <cause>trample</cause>
+            <material>grass</material>
+        </all>
+    </allow>
+    <deny id="deny-void">
+        <void />
+    </deny>
+</filters>
+<regions>
+    <union id="blue-spawn">
+        <!-- Main spawn area -->
+        <cuboid min="-55,59,-1081" max="-65,130,-1091"/>
+        <!-- Drop down -->
+        <rectangle min="-64,-1090" max="-66,-1092"/>
+        <!-- two sides -->
+        <cuboid min="-66,37,-1092" max="-54,45,-1088"/>
+        <cuboid min="-66,37,-1092" max="-62,45,-1080"/>
+    </union>
+    <union id="red-spawn">
+        <!-- Main spawn area -->
+        <cuboid min="30,59,-996" max="40,80,-986"/>
+        <!-- Drop down -->
+        <rectangle min="39,-987" max="41,-985"/>
+        <!-- two sides -->
+        <cuboid min="41,37,-985" max="29,45,-989"/>
+        <cuboid min="41,37,-985" max="37,45,-997"/>
+    </union>
+    <union id="blue-spawn-protection">
+        <!-- Main spawn area -->
+        <cuboid min="-55,59,-1081" max="-65,90,-1091"/>
+        <!-- Drop down -->
+        <rectangle min="-64,-1090" max="-66,-1092"/>
+        <!-- two sides -->
+        <cuboid min="-66,37,-1092" max="-54,45,-1088"/>
+        <cuboid min="-66,37,-1092" max="-62,45,-1080"/>
+    </union>
+    <union id="red-spawn-protection">
+        <!-- Main spawn area -->
+        <cuboid min="30,59,-996" max="40,90,-986"/>
+        <!-- Drop down -->
+        <rectangle min="39,-987" max="41,-985"/>
+        <!-- two sides -->
+        <cuboid min="41,37,-985" max="29,45,-989"/>
+        <cuboid min="41,37,-985" max="37,45,-997"/>
+    </union>
+    <!-- Never -->
+    <apply block="deny-void" message="`lYou may not place blocks in the void! `e⚠"/>
+    <apply block="never" region="blue-spawn" message="`lYou may not obstruct `1`lBlue Spawn! `e⚠"/>
+    <apply block="never" region="red-spawn" message="`lYou may not obstruct `4`lRed Spawn! `e⚠"/>
+    <!-- general never -->
+    <apply block-physics="never"/>
+    <apply block="breakable-blocks"/>
+    <apply block="deny-break"/>
+    <!-- Enters -->
+    <apply enter="only-blue" message="`lYou may not enter the opposing team's spawn! `e⚠" region="blue-spawn"/>
+    <apply enter="only-red" message="`lYou may not enter the opposing team's spawn! `e⚠" region="red-spawn"/>
+    <!-- Spawn protection -->
+    <apply lend-kit="spawn-protection-b" region="blue-spawn-protection" filter="only-blue"/>
+    <apply lend-kit="spawn-protection-r" region="red-spawn-protection" filter="only-red"/>
+</regions>
+<renewables>
+    <!-- gold blocks -->
+    <renewable interval="1200s" grow="false" avoid-entities="false" particles="true" sound="true">
+        <renew-filter>
+            <material>gold block</material>
+        </renew-filter>
+    </renewable>
+    <!-- gold ores -->
+    <renewable interval="500s" grow="false" avoid-entities="false" particles="true" sound="false">
+        <renew-filter>
+            <material>gold ore</material>
+        </renew-filter>
+    </renewable>
+    <!-- shrubs/etc that have been destroyed (NOT REPLACED) are renewed -->
+    <renewable interval="10000s" grow="true" avoid-entities="false" particles="false" sound="false">
+        <renew-filter>
+            <any>
+                <material>long grass</material>
+                <material>red rose</material>
+                <material>double plant</material>
+                <material>vine</material>
+                <material>red mushroom</material>
+                <material>brown mushroom</material>
+                <material>long grass</material>
+                <material>long grass:2</material>
+                <material>leaves:2</material>
+                <material>leaves 2</material>
+                <material>red rose</material>
+                <material>red rose:1</material>
+                <material>red rose:2</material>
+                <material>red rose:3</material>
+                <material>red rose:4</material>
+                <material>red rose:5</material>
+                <material>red rose:6</material>
+                <material>red rose:7</material>
+                <material>red rose:8</material>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
+    <!-- diorite blocks -->
+    <renewable interval="10s" grow="false" avoid-entities="false" particles="true" sound="true">
+        <renew-filter>
+            <material>stone:3</material>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <material>grass</material>
+                <material>mossy cobblestone</material>
+                <material>cobblestone</material>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+<item-mods>
+    <rule>
+        <match>
+            <material>gold helmet</material>
+        </match>
+        <modify unbreakable="true">
+            <enchantment level="10">durability</enchantment>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <material>gold chestplate</material>
+        </match>
+        <modify unbreakable="true">
+            <enchantment level="10">durability</enchantment>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <material>gold leggings</material>
+        </match>
+        <modify unbreakable="true">
+            <enchantment level="10">durability</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<block-drops>
+    <rule trample="true" region="everywhere">
+        <filter>
+            <all>
+                <material>leaves:2</material>
+                <cause>trample</cause>
+            </all>
+        </filter>
+        <replacement>air</replacement>
+    </rule>
+    <rule trample="true" region="everywhere">
+        <filter>
+            <all>
+                <material>leaves</material>
+                <cause>trample</cause>
+            </all>
+        </filter>
+        <replacement>air</replacement>
+    </rule>
+    <rule trample="true" region="everywhere">
+        <filter>
+            <all>
+                <material>grass</material>
+                <cause>trample</cause>
+                <carrying-flag>flag</carrying-flag>
+            </all>
+        </filter>
+        <replacement>stone:3</replacement>
+    </rule>
+    <rule trample="true" region="everywhere">
+        <filter>
+            <all>
+                <material>cobblestone</material>
+                <cause>trample</cause>
+                <carrying-flag>flag</carrying-flag>
+            </all>
+        </filter>
+        <replacement>stone:3</replacement>
+    </rule>
+    <rule trample="true" region="everywhere">
+        <filter>
+            <all>
+                <material>mossy cobblestone</material>
+                <cause>trample</cause>
+                <carrying-flag>flag</carrying-flag>
+            </all>
+        </filter>
+        <replacement>stone:3</replacement>
+    </rule>
+    <rule trample="true" region="everywhere">
+        <filter>
+            <all>
+                <material>stone:3</material>
+                <cause>trample</cause>
+                <not>
+                    <carrying-flag>flag</carrying-flag>
+                </not>
+            </all>
+        </filter>
+        <replacement>grass</replacement>
+    </rule>
+    <!-- Make gold blocks drop gold ingots -->
+    <rule region="everywhere">
+        <filter>
+            <material>gold block</material>
+        </filter>
+        <drops>
+            <item amount="7" material="gold ingot"/>
+        </drops>
+    </rule>
+    <!-- Make gold ores drop golden apples -->
+    <rule region="everywhere">
+        <filter>
+            <material>gold ore</material>
+        </filter>
+        <drops>
+            <item material="golden apple"/>
+        </drops>
+    </rule>
+</block-drops>
+<flags>
+    <post id="post" return-time="0s" respawn-time="25s">
+        <block>-12.5,62,-1038.5</block>
+        <block>29.5,62,-1093.5</block>
+        <block>-54.5,62,-983.5</block>
+    </post>
+    <flag id="flag" name="Flag" color="lime" shared="true" post="post" points-rate="1" pickup-kit="flag-hold" drop-kit="return-kit" carry-message="`f`lStay alive to score points!"/>
+</flags>
+<respawn spectate="true">
+    <message>
+        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
+    </message>
+</respawn>
+<score>
+    <limit>200</limit>
+</score>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>stone pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>iron leggings</item>
+    <item>seeds</item>
+    <item>wood</item>
+    <item>stick</item>
+    <item>sapling</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>gold chestplate</item>
+    <item>gold helmet</item>
+    <item>gold leggings</item>
+    <item>iron helmet</item>
+    <item>sign</item>
+    <item>stone button</item>
+    <item>red rose</item>
+    <item>water lily</item>
+    <item>leather boots</item>
+    <item>brown mushroom</item>
+    <item>red mushroom</item>
+    <item>sapling</item>
+    <item>sapling:2</item>
+    <item>sapling:5</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>long grass:2</item>
+    <item>red rose</item>
+    <item>double plant</item>
+    <item>diamond block</item>
+    <item>gold block</item>
+    <item>gold ore</item>
+    <item>leaves:2</item>
+    <item>red rose</item>
+    <item>red rose:1</item>
+    <item>red rose:2</item>
+    <item>red rose:3</item>
+    <item>red rose:4</item>
+    <item>red rose:5</item>
+    <item>red rose:6</item>
+    <item>red rose:7</item>
+    <item>red rose:8</item>
+    <item>vine</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item>golden apple</item>
+    <item amount="10">arrow</item>
+    <kit id="kill-reward-base-kit"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<crafting>
+    <disable>gold block</disable>
+</crafting>
+<gamerules>
+    <doFireTick>false</doFireTick>
+    <naturalRegeneration>true</naturalRegeneration>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<terrain pre-match-physics="false"/>
+</map>

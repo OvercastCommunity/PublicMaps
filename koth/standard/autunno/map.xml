@@ -1,0 +1,127 @@
+<map proto="1.4.2">
+<name>Autunno</name>
+<version>1.2</version>
+<objective>Capture all the hills to be the first to 1250 points!</objective>
+<authors>
+    <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- Moo8x8 -->
+</authors>
+<contributors>
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Original XML"/> <!-- ElectroidFilms -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="20">Blue</team>
+    <team id="red" color="dark red" max="20">Red</team>
+</teams>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="6" amplifier="3">heal</effect>
+        <effect duration="6" amplifier="3">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <cylinder base="-56,46,-95" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-90">
+            <cylinder base="-134,23,-95" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="90">
+            <cylinder base="22,23,-95" radius="1" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <rectangle id="blue-spawn" min="-136,-103" max="-127,-87"/>
+    <rectangle id="red-spawn" min="15,-103" max="25,-87"/>
+    <apply enter="only-blue" region="blue-spawn"/>
+    <apply enter="only-red" region="red-spawn"/>
+    <apply block="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="1.5" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Blue Hill">
+            <capture>
+                <cylinder base="-83.5,11,-102.5" radius="4.5" height="3.5"/>
+            </capture>
+            <progress>
+                <cuboid min="-89,9,-108" max="-78,12,-97"/>
+            </progress>
+            <captured>
+                <cuboid min="-89,16,-108" max="-78,17,-97"/>
+            </captured>
+        </hill>
+        <hill name="Centre">
+            <capture>
+                <cylinder base="-56,7,-95" radius="4" height="3.5"/>
+            </capture>
+            <progress>
+                <cylinder base="-56,4,-95" radius="4" height="3"/>
+            </progress>
+            <captured>
+                <cylinder base="-56,4,-95" radius="4" height="3"/>
+            </captured>
+        </hill>
+        <hill name="Red Hill">
+            <capture>
+                <cylinder base="-28.5,11,-87.5" radius="4.5" height="3.5"/>
+            </capture>
+            <progress>
+                <cuboid min="-23,9,-93" max="-34,12,-82"/>
+            </progress>
+            <captured>
+                <cuboid min="-23,16,-93" max="-34,17,-82"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>1250</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

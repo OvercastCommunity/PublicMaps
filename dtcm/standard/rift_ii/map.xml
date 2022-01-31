@@ -1,0 +1,400 @@
+<map proto="1.4.0">
+<name>Rift II</name>
+<version>1.1.3</version>
+<phase>development</phase>
+<objective>Destroy both of the enemy's monuments made up of packed ice and stained glass.</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+</authors>
+<teams>
+    <team id="purple" color="dark purple" max="32">Purple</team>
+    <team id="red" color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <default>
+        <region>
+            <point yaw="45">76.5,33.5,-75.5</point>
+        </region>
+        <region>
+            <point yaw="0">76.5,33.5,-73.5</point>
+        </region>
+        <region>
+            <point yaw="90">74.5,33.5,-75.5</point>
+        </region>
+    </default>
+    <spawn team="purple" kit="purple-kit" angle="-95.5,26.5,-34.5">
+        <region>
+            <cuboid min="-100,25.25,-29" max="-91,26,-31"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit" angle="96.5,26.5,35.5">
+        <region>
+            <cuboid min="101,25.25,30" max="92,26,32"/>
+        </region>
+    </spawn>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" name="`b`lLv.1 Doran's Blade" unbreakable="true" material="stone sword"/>
+        <item slot="1" name="`b`lLv.1 Doran's Bow" enchantment="arrow infinite:1" unbreakable="true" material="bow"/>
+        <item slot="28" material="arrow"/>
+        <item slot="8" amount="64" name="`b`lPoro Snacks" lore="`9`o&quot;You'll love them too, though!&quot;" material="golden carrot"/>
+        <chestplate name="`b`lLv.1 Ranged Armor" enchantment="protection projectile:2" unbreakable="true" material="chainmail chestplate"/>
+        <leggings name="`b`lLv.1 Legs" unbreakable="true" material="leather leggings"/>
+        <boots name="`b`lLv.1 Boots" unbreakable="true" material="leather boots"/>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet color="cd0000" name="`b`lTeam Cap" unbreakable="true" material="leather helmet"/>
+    </kit>
+    <kit id="purple-kit" parents="spawn-kit">
+        <helmet color="7F3FB2" name="`b`lTeam Cap" unbreakable="true" material="leather helmet"/>
+    </kit>
+    <kit id="give-resistance" force="true">
+        <effect duration="oo">damage resistance</effect>
+    </kit>
+    <kit id="take-resistance" force="true">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit>
+    <kit id="give-heal" force="true">
+        <effect duration="5" amplifier="5">regeneration</effect>
+    </kit>
+</kits>
+<filters>
+    <allow id="allow-place">
+        <material>tnt</material>
+    </allow>
+    <allow id="allow-break">
+        <any>
+            <material>stained glass</material>
+            <material>packed ice</material>
+        </any>
+    </allow>
+    <team id="only-purple">purple</team>
+    <team id="only-red">red</team>
+    <not id="only-purple-torch">
+        <all>
+            <team>purple</team>
+            <material>redstone torch on</material>
+        </all>
+    </not>
+    <not id="only-red-torch">
+        <all>
+            <team>red</team>
+            <material>redstone torch on</material>
+        </all>
+    </not>
+    <not id="not-some">
+        <any>
+            <material>dropper</material>
+            <material>dispenser</material>
+            <material>trap door</material>
+            <material>wooden door</material>
+            <material>beacon</material>
+        </any>
+    </not>
+    <allow id="allow-world">
+        <cause>world</cause>
+    </allow>
+</filters>
+<regions>
+    <cuboid id="above-10" min="-oo,11,-oo" max="oo,oo,oo"/>
+    <union id="portals-to-platform">
+        <cylinder id="purple-to-platform-portal" base="-95.5,19,-68.5" radius="3" height="2"/>
+        <cylinder id="red-to-platform-portal" base="96.5,19,69.5" radius="3" height="2"/>
+    </union>
+    <union id="platforms">
+        <circle id="purple-platform" center="-75.5,-75.5" radius="8"/>
+        <circle id="red-platform" center="76.5,76.5" radius="8"/>
+    </union>
+    <union id="bases">
+        <rectangle id="purple-base" min="-84,-25" max="-107,-79"/>
+        <rectangle id="red-base" min="85,26" max="108,80"/>
+    </union>
+    <union id="monuments">
+        <union id="purple-monuments">
+            <cuboid id="purple-right-monument" min="-59,11,-24" max="-52,16,-31"/>
+            <cuboid id="purple-left-monument" min="-31,11,-52" max="-24,16,-59"/>
+        </union>
+        <union id="red-monuments">
+            <cuboid id="red-right-monument" min="60,11,25" max="53,16,32"/>
+            <cuboid id="red-left-monument" min="32,11,53" max="25,16,60"/>
+        </union>
+    </union>
+    <union id="towers">
+        <union id="purple-towers">
+            <cylinder id="purple-left-tower-a" base="30.5,6,-59.5" radius="7" height="15"/>
+            <cylinder id="purple-left-tower-b" base="-8.5,6,-67.5" radius="7" height="15"/>
+            <cylinder id="purple-left-tower-c" base="-12.5,6,-38.5" radius="7" height="15"/>
+            <cylinder id="purple-right-tower-a" base="-41.5,6,25.5" radius="7" height="15"/>
+            <cylinder id="purple-right-tower-b" base="-67.5,6,-8.5" radius="7" height="15"/>
+            <cylinder id="purple-right-tower-c" base="-38.5,6,-12.5" radius="7" height="15"/>
+        </union>
+        <union id="red-towers">
+            <cylinder id="red-left-tower-a" base="-29.5,6,60.5" radius="7" height="15"/>
+            <cylinder id="red-left-tower-b" base="9.5,6,68.5" radius="7" height="15"/>
+            <cylinder id="red-left-tower-c" base="13.5,6,39.5" radius="7" height="15"/>
+            <cylinder id="red-right-tower-a" base="42.5,6,-24.5" radius="7" height="15"/>
+            <cylinder id="red-right-tower-b" base="68.5,6,9.5" radius="7" height="15"/>
+            <cylinder id="red-right-tower-c" base="39.5,6,13.5" radius="7" height="15"/>
+        </union>
+    </union>
+    <union id="resistance">
+        <union id="purple-resistance">
+            <cylinder id="purple-left-resistance-a" base="30.5,15,-59.5" radius="6" height="3"/>
+            <cylinder id="purple-left-resistance-b" base="-8.5,15,-67.5" radius="6" height="3"/>
+            <cylinder id="purple-left-resistance-c" base="-12.5,15,-38.5" radius="6" height="3"/>
+            <cylinder id="purple-right-resistance-a" base="-41.5,15,25.5" radius="6" height="3"/>
+            <cylinder id="purple-right-resistance-b" base="-67.5,15,-8.5" radius="6" height="3"/>
+            <cylinder id="purple-right-resistance-c" base="-38.5,15,-12.5" radius="6" height="3"/>
+        </union>
+        <union id="red-resistance">
+            <cylinder id="red-left-resistance-a" base="-29.5,15,60.5" radius="6" height="3"/>
+            <cylinder id="red-left-resistance-b" base="9.5,15,68.5" radius="6" height="3"/>
+            <cylinder id="red-left-resistance-c" base="13.5,15,39.5" radius="6" height="3"/>
+            <cylinder id="red-right-resistance-a" base="42.5,15,-24.5" radius="6" height="3"/>
+            <cylinder id="red-right-resistance-b" base="68.5,15,9.5" radius="6" height="3"/>
+            <cylinder id="red-right-resistance-c" base="39.5,15,13.5" radius="6" height="3"/>
+        </union>
+    </union>
+    <union id="portals">
+        <union id="purple-portals">
+            <block id="purple-left-portal-a">30.5,16,-59.5</block>
+            <block id="purple-left-portal-b">-8.5,16,-67.5</block>
+            <block id="purple-left-portal-c">-12.5,16,-38.5</block>
+            <block id="purple-right-portal-a">-41.5,16,25.5</block>
+            <block id="purple-right-portal-b">-67.5,16,-8.5</block>
+            <block id="purple-right-portal-c">-38.5,16,-12.5</block>
+            <block id="purple-main-portal-d">-53.5,19,-66.5</block>
+            <block id="purple-main-portal-e">-66.5,19,-53.5</block>
+        </union>
+        <union id="red-portals">
+            <block id="red-left-portal-a">-29.5,16,60.5</block>
+            <block id="red-left-portal-b">9.5,16,68.5</block>
+            <block id="red-left-portal-c">13.5,16,39.5</block>
+            <block id="red-right-portal-a">42.5,16,-24.5</block>
+            <block id="red-right-portal-b">68.5,16,9.5</block>
+            <block id="red-right-portal-c">39.5,16,13.5</block>
+            <block id="red-main-portal-d">67.5,19,54.5</block>
+            <block id="red-main-portal-e">54.5,19,67.5</block>
+        </union>
+    </union>
+    <union id="torches">
+        <union id="purple-torch">
+            <block id="purple-left-torch-a">30.5,7,-59.5</block>
+            <block id="purple-left-torch-b">-8.5,7,-67.5</block>
+            <block id="purple-left-torch-c">-12.5,7,-38.5</block>
+            <block id="purple-right-torch-a">-41.5,7,25.5</block>
+            <block id="purple-right-torch-b">-67.5,7,-8.5</block>
+            <block id="purple-right-torch-c">-38.5,7,-12.5</block>
+        </union>
+        <union id="red-torch">
+            <block id="red-left-torch-a">-29.5,7,60.5</block>
+            <block id="red-left-torch-b">9.5,7,68.5</block>
+            <block id="red-left-torch-c">13.5,7,39.5</block>
+            <block id="red-right-torch-a">42.5,7,-24.5</block>
+            <block id="red-right-torch-b">68.5,7,9.5</block>
+            <block id="red-right-torch-c">39.5,7,13.5</block>
+        </union>
+    </union>
+    <union id="baron-portals">
+        <block id="into-arena-a">78.5,7,-60.5</block>
+        <block id="ex-arena-a">85.5,5,-66.5</block>
+        <block id="into-arena-b">-77.5,7,61.5</block>
+        <block id="ex-arena-b">-84.5,5,67.5</block>
+    </union>
+    <complement id="no-trees">
+        <region id="above-10"/>
+        <region id="bases"/>
+        <region id="towers"/>
+        <region id="platforms"/>
+        <region id="monuments"/>
+        <rectangle id="red-over-base" min="83,83" max="18,18"/>
+        <rectangle id="purple-over-base" min="-82,-82" max="-17,-17"/>
+    </complement>
+    <!-- Applied -->
+    <apply block="allow-break" use="not-some" region="monuments"/>
+    <apply block="never" use="not-some">
+        <region>
+            <region id="bases"/>
+            <region id="platforms"/>
+        </region>
+    </apply>
+    <apply enter="only-red" message="`aYou may not enter the enemy's base area!">
+        <region>
+            <region id="red-base"/>
+            <region id="red-platform"/>
+        </region>
+    </apply>
+    <apply enter="only-purple" message="`aYou may not enter the enemy's base area!">
+        <region>
+            <region id="purple-base"/>
+            <region id="purple-platform"/>
+        </region>
+    </apply>
+    <apply block-place="only-purple-torch" message="`aYou may not place the torch in your own tower!" region="purple-torch"/>
+    <apply block-place="only-red-torch" message="`aYou may not place the torch in your own tower!" region="red-torch"/>
+    <apply block="allow-world" region="towers"/>
+    <apply kit="give-resistance" region="resistance"/>
+    <apply kit="take-resistance">
+        <region>
+            <negative>
+                <region id="resistance"/>
+            </negative>
+        </region>
+    </apply>
+    <apply kit="give-heal" enter="only-purple" message="`aYou may not enter the enemy's portal!" region="purple-portals"/>
+    <apply kit="give-heal" enter="only-red" message="`aYou may not enter the enemy's portal!" region="red-portals"/>
+    <apply enter="never" message="`cYou are not allowed to climb the trees!" region="no-trees"/>
+    <apply block-break="never" block-place="always" use="not-some">
+        <region>
+            <complement>
+                <region id="everywhere"/>
+                <region id="bases"/>
+                <region id="platforms"/>
+                <region id="torches"/>
+                <region id="monuments"/>
+            </complement>
+        </region>
+    </apply>
+</regions>
+<destroyables name="Right Monument" materials="packed ice;stained glass" completion="100%">
+    <destroyable owner="purple" region="purple-right-monument"/>
+    <destroyable owner="red" region="red-right-monument"/>
+</destroyables>
+<destroyables name="Left Monument" materials="packed ice;stained glass" completion="100%">
+    <destroyable owner="purple" region="purple-left-monument"/>
+    <destroyable owner="red" region="red-left-monument"/>
+</destroyables>
+<portals>
+    <portal x="@-95.5" y="@25.25" z="@-30.5" yaw="@180" pitch="@10" filter="only-purple" region="purple-portals"/>
+    <portal x="@-75.5" y="@11.25" z="@-75.5" yaw="@-45" pitch="@0" filter="only-purple" region="purple-to-platform-portal"/>
+    <portal x="@76.5" y="@11.25" z="@76.5" yaw="@135" pitch="@0" filter="only-red" region="red-to-platform-portal"/>
+    <portal x="@96.5" y="@25.25" z="@31.5" yaw="@0" pitch="@10" filter="only-red" region="red-portals"/>
+    <portal x="@69.5" y="@4" z="@-82.5" yaw="@-45" pitch="@0" region="into-arena-a"/>
+    <portal x="@68.5" y="@6" z="@-53.5" yaw="@-150" pitch="@0" region="ex-arena-a"/>
+    <portal x="@-68.5" y="@4" z="@83.5" yaw="@135" pitch="@0" region="into-arena-b"/>
+    <portal x="@-67.5" y="@6" z="@54.5" yaw="@30" pitch="@0" region="ex-arena-b"/>
+</portals>
+<toolrepair> 
+    <tool>bow</tool>
+    <tool>arrow</tool>
+    <tool>stone sword</tool>
+    <tool>leather helmet</tool>
+    <tool>chainmail chestplate</tool>
+    <tool>leather leggings</tool>
+    <tool>leather boots</tool>
+</toolrepair>
+<itemremove>
+    <item>gold helmet</item>
+    <item>glass bottle</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>golden apple</item>
+    <item>diamond pickaxe</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>ladder</item>
+    <item>carpet</item>
+    <item>smooth brick</item>
+    <item>smooth stairs</item>
+    <item>stained clay</item>
+    <item>sign</item>
+    <item>cobble wall</item>
+    <item>wood</item>
+    <item>packed ice</item>
+    <item>ice</item>
+    <item>stained glass</item>
+    <item>gold nugget</item>
+    <item>rotten flesh</item>
+    <item>golden carrot</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>redstone torch on</item>
+    <item>iron sword</item>
+    <item>diamond sword</item>
+    <item>gold sword</item>
+    <item>bow</item>
+    <item>iron chestplate</item>
+    <item>diamond chestplate</item>
+    <item>chainmail chestplate</item>
+    <item>gold chestplate</item>
+    <item>leather chestplate</item>
+    <item>potion</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+    <item>gold boots</item>
+    <item>potion</item>
+    <item>gold ingot</item>
+</itemkeep>
+<kill-reward>
+    <item name="`e`lGold Piece" lore="`9`oTrade these in for upgrades|`9`oat your home base!" material="gold ingot"/>
+</kill-reward>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<tnt>
+    <instantignite>on</instantignite>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>on</blockdamage>
+    <yield>0</yield>
+</tnt>
+</map>
+<!--
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Rift II: DTM with a twist">
+        <message>
+            <line>This map is a `bDTM`r, with a `bvillager trading system.</line>
+            <line>The objective is to destroy the `atwo monuments`r in the other team's base.</line>
+            <line>This is an example of one of the monuments!</line>
+        </message>
+        <teleport>
+            <point yaw="-140" pitch="10">-63,12,-18</point>
+        </teleport>
+    </stage>
+    <stage title="Villager Trading System">
+        <message>
+            <line>This map has a `bvillager trading system.</line>
+            <line>`cKill people `rto get `e`lGold Pieces `rto trade with the `cvilagers`r.</line>
+            <line>You lose your gold when you die, but you keep all the upgrades you recieved!</line>
+        </message>
+        <teleport>
+            <point yaw="-30" pitch="15">94.5,20,49.5</point>
+        </teleport>
+    </stage>
+    <stage title="Default Items">
+        <message>
+            <line>If you ever lose any default items, use these dispensers to re-gain them.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="15">95,23,43</point>
+        </teleport>
+    </stage>
+    <stage title="Getting back to spawn">
+        <message>
+            <line>Use any one of the `d8 towers `rin your base to get `aback to spawn`r.</line>
+            <line>`eDestroy `rthe other team's towers by placing a `credstone torch `rat the bottom!</line>
+        </message>
+        <teleport>
+            <point yaw="105" pitch="30">66,23,71</point>
+        </teleport>
+    </stage>
+    <stage title="The Baron">
+        <message>
+            <line>`5Beware of the Baron! `rHe is `dsuper overpowered`r. Don't attack him unless you have the gear.</line>
+            <line>However, he drops a `2very good loot `rif you manage to kill him.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="5">-73.5,6,61.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+-->
