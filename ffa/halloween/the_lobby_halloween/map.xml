@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>The Lobby: Halloween</name>
+<version>1.0.0</version>
+<objective>Get the most kills after 5 minutes!</objective>
+<authors>
+    <author contribution="Lobby Builder">bleangamer</author>
+    <author uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="Map concept and XML"/> <!-- Crazy_ -->
+</authors>
+<rules>
+    <rule>Fall damage is disabled.</rule>
+</rules>
+<rage/>
+<gamerules>
+    <doTileDrops>false</doTileDrops>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<players min="2" max="50" colors="true"/>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<broadcasts>
+    <alert after="1s" every="1m">The terrain will slowly regenerate, so go nuts with the explosives!</alert>
+    <tip after="25s" every="2m">Different types of explosive items are given as a reward for kill streaks!</tip>
+    <tip after="40s" every="1m">The ender pearl acts like a kamikaze; you'll die on impact.</tip>
+</broadcasts>
+<spawns>
+    <spawn kit="play" spread="true" safe="true">
+        <regions>
+            <cylinder radius="65" base="-1257.5,3,1552.5" height="25"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <point>-1286.5,7.5,1544.5</point>
+        </regions>
+    </default>
+</spawns>
+<respawns>
+    <respawn auto="true" delay="2.5s"/>
+</respawns>
+<kits>
+    <kit id="play">
+        <chestplate unbreakable="true" locked="true" color="D87F33">leather chestplate</chestplate>
+        <leggings unbreakable="true" locked="true" color="D87F33">leather leggings</leggings>
+        <boots unbreakable="true" locked="true" color="191919" material="leather boots"/>
+        <item slot="0" enchantments="damage_all:10">iron sword</item>
+        <item slot="1" enchantments="arrow_damage:10">bow</item>
+        <item slot="2" amount="2">arrow</item>
+        <potion duration="2" amplifier="10">resistance</potion>
+        <item slot="3" amount="3" grenade="true" name="Grenade" grenade-power="1.5">snow ball</item>
+        <double-jump enabled="true" recharge-before-landing="true" power="3.5"/>
+        <potion time="oo" amplifier="1">speed</potion>
+        <potion time="oo" amplifier="1">fire resistance</potion>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="fireball" name="fireball" projectile="LargeFireball" velocity="3.5" damage="50" throwable="true"/>
+</projectiles>
+<regions>
+    <apply velocity="0,2.5,0">
+        <region>
+            <cuboid max="-1259,10,1550" min="-1256,8,1554"/> <!-- center lauchpad -->
+        </region>
+    </apply>
+</regions>
+<tnt>
+    <instantignite>on</instantignite>
+    <power>5</power>
+    <fuse>2s</fuse>
+</tnt>
+<kill-rewards>
+    <kill-reward>
+        <item amount="1">arrow</item>
+        <item amount="1" grenade="true" name="Grenade" grenade-power="1.5">snow ball</item>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <kill-streak count="2"/>
+            </all>
+        </filter>
+        <item amount="2" grenade="true" name="Chicken Bomb" grenade-power="3">egg</item>
+        <!--<item amount="1" grenade="true" name="Molotov Cocktail" grenade-fire="true" grenade-destroy="false" grenade-power="1" damage="16429">potion</item>-->
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <kill-streak count="3" repeat="true"/>
+            </all>
+        </filter>
+        <item amount="1" grenade="true" name="Tele-boomer" lore="You might want to think twice about using this one..." grenade-power="7.5">ender pearl</item>
+    </kill-reward>
+  <kill-reward>
+    <filter>
+      <all>
+        <kill-streak count="4" repeat="true"/>
+      </all>
+    </filter>
+    <item projectile="fireball" grenade="true" grenade-power="4" name="`aFireball Wand" material="blaze rod"/>
+  </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <kill-streak count="5" repeat="true"/>
+            </all>
+        </filter>
+        <item amount="2">tnt</item>
+    </kill-reward>
+</kill-rewards>
+<renewables>
+    <renewable sound="false" interval="20s" particles="false">
+        <!-- Each block renews after approx 20 seconds -->
+        <region>
+            <everywhere/>
+        </region>
+        <!-- These are the blocks that will renew -->
+        <renew-filter>
+            <any>
+                <material>wool</material>
+                <material>stained clay</material>
+                <material>smooth brick</material>
+                <material>piston base</material>
+                <material>quartz block</material>
+                <material>step</material>
+                <material>double step</material>
+                <material>smooth stairs</material>
+                <material>spruce wood stairs</material>
+                <material>birch wood stairs</material>
+                <material>quartz stairs</material>
+                <material>grass</material>
+                <material>stone</material>
+                <material>iron fence</material>
+                <material>trap door</material>
+                <material>wood</material>
+                <material>redstone lamp on</material>
+                <material>redstone lamp off</material>
+                <material>redstone block</material>
+                <material>cobblestone</material>
+                <material>packed ice</material>
+                <material>leaves</material>
+                <material>furnace</material>
+                <material>cobble wall</material>
+                <material>carpet</material>
+                <material>dirt</material>
+                <material>coal block</material>
+                <material>gold block</material>
+                <material>iron block</material>
+                <material>glowstone</material>
+                <material>beacon</material>
+                <material>jack o lantern</material>
+                <material>sandstone</material>
+                <material>nether fence</material>
+                <material>leaves_2</material>
+                <material>log_2</material>
+                <material>torch</material>
+                <material>sign</material>
+                <material>beacon</material>
+                <material>pumpkin</material>
+                <material>lever</material>
+                <material>anvil</material>
+            </any>
+        </renew-filter>
+        <!-- These blocks can be replaced by renewing blocks -->
+        <replace-filter>
+            <any>
+                <material>air</material>
+                <material>lava</material>
+                <material>stationary lava</material>
+                <material>fire</material>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>egg</item>
+    <item>snow ball</item>
+    <item>ender pearl</item>
+    <item>tnt</item>
+    <item>skull</item>
+    <item>potion</item>
+    <item>blaze rod</item>
+</itemremove>
+<itemkeep>
+    <item>ender pearl</item>
+    <item>blaze rod</item>
+    <item>tnt</item>
+</itemkeep>
+</map>
