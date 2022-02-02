@@ -1,0 +1,131 @@
+<map proto="1.4.2">
+<name>Seaside Plaza</name>
+<version>1.4.2</version>
+<objective>Reach 750 points before the opposing team!</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
+    <author uuid="b8add1ba-8e13-4673-bc73-4e3ed524d40e"/> <!-- Blazy -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="7">Blue</team>
+    <team id="red" color="dark red" max="7">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="2" amplifier="255">resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="0">
+            <cuboid min="-69,46,266" max="-70,46,267"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-114.5,6,314.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="90">
+            <point>-24.5,6,314.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <deny id="deny-trapdoors">
+        <material>trap door</material>
+    </deny>
+</filters>
+<regions>
+    <union id="spawn-exits">
+        <union id="blue-spawn">
+            <cuboid min="-99,5,289" max="-101,10,299"/>
+            <cuboid min="-99,5,340" max="-101,10,330"/>
+        </union>
+        <union id="red-spawn">
+            <cuboid min="-40,5,340" max="-38,10,330"/>
+            <cuboid min="-40,5,289" max="-38,10,299"/>
+        </union>
+    </union>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the opposing team's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the opposing team's spawn!"/>
+    <apply use="deny-trapdoors" block="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="North">
+            <capture>
+                <cuboid min="-66,3,290" max="-73,6,297"/>
+            </capture>
+            <progress>
+                <cuboid min="-66,3,290" max="-73,6,297"/>
+            </progress>
+            <captured>
+                <cuboid min="-65,27,279" max="-74,36,282"/>
+            </captured>
+        </hill>
+        <hill name="Mid">
+            <capture>
+                <cuboid min="-66,11,311" max="-73,14,318"/>
+            </capture>
+            <progress>
+                <cuboid min="-66,11,311" max="-73,14,318"/>
+            </progress>
+            <captured>
+                <cuboid min="-66,11,311" max="-73,14,318"/>
+            </captured>
+        </hill>
+        <hill name="South">
+            <capture>
+                <cuboid min="-66,3,332" max="-73,6,339"/>
+            </capture>
+            <progress>
+                <cuboid min="-66,3,332" max="-73,6,339"/>
+            </progress>
+            <captured>
+                <cuboid min="-74,36,350" max="-65,27,347"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<respawn delay="3s" auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
