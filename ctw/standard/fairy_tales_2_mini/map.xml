@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Fairy Tales 2: Mini</name>
-<version>2.1.0</version>
+<version>2.1.1</version>
 <objective>Capture both wools!</objective>
 <gamemode>ctw</gamemode>
 <authors>
@@ -29,7 +29,9 @@
         <item slot="29" material="shears" unbreakable="true"/>
         <item slot="30" material="iron spade" unbreakable="true"/>
         <helmet material="iron helmet" unbreakable="true"/>
-        <chestplate material="chainmail chestplate" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="2471A3" unbreakable="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
+        <boots material="leather boots" team-color="2471A3" unbreakable="true"/>
         <effect duration="oo" amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resitance-kit">
@@ -37,13 +39,9 @@
     </kit>
     <kit id="green-kit" parent="spawn-kit">
         <item slot="5" material="stained clay" damage="5" amount="48"/>
-        <leggings material="leather leggings" color="2471A3" unbreakable="true"/>
-        <boots material="leather boots" color="2471A3" unbreakable="true"/>
     </kit>
     <kit id="red-kit" parent="spawn-kit">
         <item slot="5" material="stained clay" damage="14" amount="48"/>
-        <leggings material="leather leggings" color="CB4335" unbreakable="true"/>
-        <boots material="leather boots" color="CB4335" unbreakable="true"/>
     </kit>
 </kits>
 <spawns>
@@ -174,8 +172,8 @@
 </itemkeep>
 <itemremove>
     <item>iron helmet</item>
-    <item>chainmail chestplate</item>
-    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
     <item>leather boots</item>
     <item>stone</item>
 </itemremove>
@@ -260,14 +258,14 @@
 <maxbuildheight>25</maxbuildheight>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple" amount="1"/>
-        <item material="wood" amount="16"/>
+        <item material="golden apple"/>
+        <item material="wood" amount="20"/>
     </kill-reward>
     <kill-reward filter="only-green">
-        <item material="stained clay" damage="5" amount="48"/>
+        <item material="stained clay" damage="5" amount="10"/>
     </kill-reward>
     <kill-reward filter="only-red">
-        <item material="stained clay" damage="14" amount="48"/>
+        <item material="stained clay" damage="14" amount="10"/>
     </kill-reward>
 </kill-rewards>
 </map>
