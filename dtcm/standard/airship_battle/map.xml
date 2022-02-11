@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Airship Battle</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <authors>
     <author uuid="30e27366-0b14-4076-8f55-0819ece49ce3"/> <!-- Dewtroid -->
@@ -50,7 +50,7 @@
         <item slot="28" amount="64">arrow</item>
         <item slot="2">diamond pickaxe</item>
         <item slot="3">diamond axe</item>
-        <item slot="4" damage="1" amount="16">log</item>
+        <item slot="4" damage="1" amount="64">wood</item>
         <item slot="5" amount="64">ladder</item>
         <item slot="6">water bucket</item>
         <item slot="8" amount="64">cooked fish</item>
@@ -110,7 +110,7 @@
 </crafting>
 <killreward>
     <item amount="16">arrow</item>
-    <item damage="1" amount="8">log</item>
+    <item damage="1" amount="32">wood</item>
 	<item>golden apple</item>
 </killreward>
 <toolrepair>
@@ -127,7 +127,6 @@
     <item>obsidian</item>
     <item>arrow</item>
     <item>wood</item>
-    <item>log</item>
     <item>cooked fish</item>
     <item>ladder</item>
     <item>gold block</item>

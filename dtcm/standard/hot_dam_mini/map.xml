@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Hot Dam Mini</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <objective>Leak lava from the enemy's obsidian core onto the dam.</objective>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
@@ -20,6 +20,7 @@
         <item slot="28" amount="64">arrow</item>
         <item slot="2" unbreakable="true">diamond pickaxe</item>
         <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="30" unbreakable="true">iron spade</item>
         <item slot="4" amount="48" damage="2">wood</item>
         <item slot="5" amount="24">glass</item>
         <item slot="6" amount="16">ladder</item>
@@ -97,6 +98,7 @@
     <tool>iron sword</tool>
     <tool>diamond pickaxe</tool>
     <tool>iron axe</tool>
+    <tool>iron spade</tool>
     <tool>bow</tool>
 </toolrepair>
 <itemremove>

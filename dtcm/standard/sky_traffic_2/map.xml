@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Sky Traffic 2</name>
-<version>1.3.5</version>
+<version>1.3.6</version>
 <objective>Leak lava from the enemy's obsidian core in their yellow submarine.</objective>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
@@ -26,7 +26,7 @@
         <item slot="28" amount="64">arrow</item>
         <item slot="2">diamond pickaxe</item>
         <item slot="3">diamond axe</item>
-        <item slot="4" amount="16">log</item>
+        <item slot="4" amount="64">wood</item>
         <item slot="6">water bucket</item>
         <item slot="8" amount="64">cooked fish</item>
         <potion duration="15s" amplifier="2">regeneration</potion>
@@ -159,7 +159,6 @@
     <item>obsidian</item>
     <item>arrow</item>
     <item>wood</item>
-    <item>log</item>
     <item>cooked fish</item>
     <item>bucket</item>
     <item>water bucket</item>
