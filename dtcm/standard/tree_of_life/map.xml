@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Tree of Life</name>
-<version>3.0.4</version>
+<version>3.0.5</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
@@ -30,6 +30,7 @@
         <item slot="1" material="bow"/>
         <item slot="2" material="diamond pickaxe"/>
         <item slot="3" material="diamond axe"/>
+        <item slot="30" material="diamond spade"/>
         <item slot="4" material="bread" amount="64"/>
         <item slot="5" material="log" amount="64"/>
         <item slot="6" material="ladder" amount="64"/>
@@ -53,6 +54,7 @@
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
     <tool>diamond axe</tool>
+    <tool>diamond spade</tool>
 </toolrepair>
 <itemremove>
     <item>log</item>
