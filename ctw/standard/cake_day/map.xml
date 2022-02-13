@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Cake Day</name>
-<version>1.5.2</version>
+<version>1.5.3</version>
 <objective>Capture both enemy wools!</objective>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
@@ -24,6 +24,7 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
+        <item slot="30" unbreakable="true" material="shears"/>
         <item slot="4" material="wood" damage="1" amount="64"/>
         <item slot="31" material="wood" damage="1" amount="64"/>
         <item slot="5" material="sandstone" amount="64"/>
@@ -204,6 +205,7 @@
     <tool>iron pickaxe</tool>
     <tool>iron axe</tool>
     <tool>arrow</tool>
+    <tool>shears</tool>
 </toolrepair>
 <itemremove>
     <item>golden carrot</item>
