@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Mystic Point</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Destroy the enemy team's left and right monuments!</objective>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df" contribution="Map Design"/> <!-- Nadastorm -->
@@ -26,7 +26,7 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="30" material="iron spade"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
         <item slot="4" amount="64" material="wood"/>
         <item slot="31" amount="64" material="wood"/>
         <item slot="5" amount="64" material="glass"/>
