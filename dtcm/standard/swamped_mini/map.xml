@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Swamped Mini</name>
-<version>1.0.0</version>
+<version>1.0.1</version>
+<phase>development</phase>
 <objective>Destroy the enemy's core above their large tree.</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design"/>
@@ -72,7 +73,7 @@
     <item>cooked fish</item>
     <item>seeds</item>
 </itemremove>
-<!-- 
+<!--
 <include src="tutorial.xml"/>
 <tutorial>
     <stage title="Destroy the Core">
