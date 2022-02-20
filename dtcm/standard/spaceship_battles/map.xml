@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Spaceship Battles</name>
-<version>1.2.11</version>
+<version>1.2.12</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
