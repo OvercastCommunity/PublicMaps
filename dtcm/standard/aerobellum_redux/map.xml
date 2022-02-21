@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Aerobellum Redux</name>
-<version>1.0.1</version>
+<version>1.0</version>
 <objective>Leak lava from the enemy team's engine to win the match!</objective>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
@@ -9,7 +9,7 @@
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
 </authors>
 <contributors>
-    <contributor uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609"/> <!--  Technodono  -->
+    <contributor uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609" contribution="Redux"/> <!--  Technodono  -->
 </contributors>
 <teams>
     <team id="red" color="dark red" max="24">Red</team>
