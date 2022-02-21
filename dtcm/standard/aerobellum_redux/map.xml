@@ -1,0 +1,177 @@
+<map proto="1.4.0">
+<name>Aerobellum Redux</name>
+<version>1.0.1</version>
+<objective>Leak lava from the enemy team's engine to win the match!</objective>
+<rules>
+    <rule>Players have resistance and reduced knockback in spawn!</rule>
+</rules>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609"/> <!--  Technodono  -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue" color="blue" max="24">Blue</team>
+</teams>
+<broadcasts>
+    <alert after="1s">`7Engines are `4`lINVULNERABLE `7for `b120 seconds`7. `7`lBuild your defences!</alert>
+</broadcasts>
+<maxbuildheight>50</maxbuildheight>
+<spawns>
+    <spawn team="red" kit="red_kit" yaw="90">
+        <regions>
+            <cylinder base="-59,23,22" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue_kit" yaw="90">
+        <regions>
+            <cylinder base="-59,23,-39" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <default yaw="-90">
+        <regions>
+            <cylinder base="-108.5,33.1,-7.5" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <!-- Recent changes to implement spawn and chest protection -->
+    <deny id="deny-chest-break">
+        <any>
+            <material>chest</material>
+            <material>trapped_chest</material>
+        </any>
+    </deny>
+    <deny id="only-red">
+        <team>blue</team>
+    </deny>
+    <deny id="only-blue">
+        <team>red</team>
+    </deny>
+</filters>
+<tnt>
+    <yeild>0</yeild>
+</tnt>
+<regions>
+    <!-- Recent changes to implement spawn and chest protection -->
+    <union id="team-spawns">
+        <cylinder id="red-spawn-protect" base="-58.5,21,22.5" radius="3" height="5"/>
+        <cylinder id="blue-spawn-protect" base="-58.5,21,-37.5" radius="3" height="5"/>
+    </union>
+    <apply lend-kit="spawn-protection" filter="only-blue" region="blue-spawn-protect"/>
+    <apply lend-kit="spawn-protection" filter="only-red" region="red-spawn-protect"/>
+    <apply block="never" region="team-spawns"/>
+    <apply block="deny-chest-break" message="This block can not be placed or broken on this map!"/>
+    <!-- Line where recent changes end -->
+    <apply block="never" message="You may not build into the void!">
+        <region>
+            <negative>
+                <rectangle min="-98,-67" max="3,51"/>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<kits>
+    <kit id="spawn-protection">
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow_infinite:1" unbreakable="true">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" damage="1" amount="64">wood</item>
+        <item slot="31" damage="1" amount="64">wood</item>
+        <item slot="22" damage="1" amount="64">wood</item>
+        <item slot="13" damage="1" amount="64">wood</item>
+        <item slot="5" amount="64">ladder</item>
+        <item slot="6">water bucket</item>
+        <item slot="7" lore="More tnt can be found in your ship!" amount="32">tnt</item>
+        <item slot="8" amount="64">grilled pork</item>
+        <potion duration="5" amplifier="10">heal</potion>
+        <chestplate enchantment="protection explosions:4">chainmail chestplate</chestplate>
+    </kit>
+    <kit id="red_kit" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit id="blue_kit" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<crafting>
+    <disable>chest</disable>
+</crafting>
+<modes>
+    <mode after="3s" material="bedrock" name="`7Engines are `4`lINVULNERABLE `7for `b120 seconds`7."/>
+    <mode after="120s" material="obsidian" name="`7Engines are now `4`lVULNERABLE`7!"/>
+    <mode after="20m" material="gold block" name="`6`lGOLD `7engine mode now active!"/>
+    <mode after="25m" material="glass" name="`f`lGLASS `7engine mode now active!"/>
+</modes>
+<cores material="obsidian" leak="5" name="Engine" mode-changes="true">
+    <core team="blue">
+        <region>
+            <cuboid min="-29,24,-36" max="-33,29,-39"/>
+        </region>
+    </core>
+    <core team="red">
+        <region>
+            <cuboid min="-29,24,24" max="-33,29,21"/>
+        </region>
+    </core>
+</cores>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>grilled pork</item>
+    <item>ladder</item>
+    <item>iron barding</item>
+    <item>flower pot item</item>
+    <item>sapling</item>
+    <item>daylight detector</item>
+    <item>tripwire hook</item>
+    <item>carpet</item>
+    <item>torch</item>
+    <item>item frame</item>
+    <item>gold block</item>
+    <item>bed</item>
+    <item>skull</item>
+    <item>skull item</item>
+    <item>shears</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>quartz_stairs</item>
+    <item>wool</item>
+</itemremove>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron axe</material>
+            <material>shears</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+</map>
