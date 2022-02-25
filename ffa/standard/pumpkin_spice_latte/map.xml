@@ -1,7 +1,6 @@
 <map proto="1.4.0">
 <name>Pumpkin Spice Latte: Venti</name>
-<slug>pumpkin_spice_latte</slug>
-<version>1.2.6</version>
+<version>1.2.7</version>
 <objective>Be the player with the most kills after 5 minutes!</objective>
 <authors>
     <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/>
