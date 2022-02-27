@@ -1,0 +1,236 @@
+<map proto="1.4.2">
+<name>Scorched</name>
+<version>1.3.8</version>
+<objective>Control the flag for 200 seconds to win!</objective>
+<gamemode>kotf</gamemode>
+<edition>standard</edition>
+<authors>
+    <author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
+</authors>
+<contributors>
+    <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Middle aesthetics"/> <!-- rockymine -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="24">Blue</team>
+    <team id="red" color="dark red" max="24">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+        <effect duration="6" amplifier="255">resistance</effect>
+    </kit>
+    <kit id="flag-kit" force="true">
+        <effect>slowness</effect>
+        <effect amplifier="-3">health boost</effect>
+        <effect duration="3" amplifier="2">absorption</effect>
+    </kit>
+    <kit id="reset-health" force="true">
+        <effect duration="0" amplifier="0">slowness</effect>
+        <effect duration="0" amplifier="0">health boost</effect>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="-90">
+            <cylinder base="-351.5,20,510.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit" filter="has-flag">
+        <region yaw="180">
+            <point>-351.5,16,583.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" filter="has-flag">
+        <region yaw="0">
+            <point>-351.5,16,437.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+    <any id="has-flag">
+        <carrying-flag>flag</carrying-flag>
+        <not>
+            <same-team>
+                <carrying-flag>flag</carrying-flag>
+            </same-team>
+        </not>
+    </any>
+</filters>
+<regions>
+    <apply use="deny-beacon" block="never" block-physics="never"/>
+</regions>
+<spawners>
+    <spawner delay="9s">
+        <spawn-region>
+            <block>-352,6,510</block>
+        </spawn-region>
+        <player-region>
+            <cylinder base="-351.5,5,510.5" height="8" radius="7"/>
+        </player-region>
+        <item material="golden apple"/>
+    </spawner>
+</spawners>
+<flags>
+    <flag id="flag"
+          name="Flag"
+          color="purple"
+          shared="true"
+          post="mid-post"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health"
+          flag-proximity-metric="none"
+          show-respawn-on-pickup="true"
+          sequential="true">
+        <post id="mid-post" name="Mid Post" return-time="0s" respawn-time="20s">-351.5,12,510.5</post>
+        <post id="post-a-west" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west2" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east2" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west3" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east3" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west4" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east4" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west5" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east5" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west6" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east6" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west7" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east7" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west8" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east8" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west9" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east9" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west10" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east10" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west11" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east11" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west12" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east12" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west13" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east13" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west14" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east14" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west15" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east15" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west16" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east16" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west17" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east17" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west18" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east18" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west19" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east19" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west20" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east20" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west21" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east21" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west22" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east22" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west23" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east23" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west24" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east24" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west25" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east25" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west26" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east26" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west27" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east27" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west28" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east28" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west29" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east29" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west30" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east30" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west31" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east31" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west32" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east32" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west33" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east33" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west34" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east34" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west35" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east35" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west36" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east36" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west37" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east37" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west38" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east38" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west39" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east39" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west40" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east40" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west41" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east41" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west42" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east42" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west43" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east43" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west44" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east44" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west45" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east45" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west46" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east46" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west47" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east47" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west48" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east48" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west49" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east49" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+        <post id="post-a-west50" name="Post A" return-time="0s" respawn-time="20s" yaw="-90">-377.5,9,510.5</post>
+        <post id="post-b-east50" name="Post B" return-time="0s" respawn-time="20s" yaw="90">-325.5,9,510.5</post>
+    </flag>
+</flags>
+<score>
+    <limit>200</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="10" material="arrow"/>
+</kill-reward>
+<respawn spectate="true" auto="true">
+    <message>
+        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
+    </message>
+</respawn>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
