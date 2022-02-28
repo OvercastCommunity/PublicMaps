@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Jurassic</name>
-<version>2.7.6</version>
+<version>2.7.7</version> <!-- v2.7.6 competitive -->
 <objective>Capture the enemy's two wools!</objective>
 <edition>standard</edition>
 <authors>
@@ -10,8 +10,8 @@
     <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Most of obs-spawn Dino"/> <!-- rockymine -->
 </contributors>
 <teams>
-    <team id="purple-team" color="dark purple" max="24">Purple</team>
-    <team id="yellow-team" color="yellow" max="24">Yellow</team>
+    <team id="purple-team" color="dark purple" max="32">Purple</team>
+    <team id="yellow-team" color="yellow" max="32">Yellow</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
