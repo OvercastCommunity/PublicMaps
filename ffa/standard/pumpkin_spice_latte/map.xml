@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Pumpkin Spice Latte: Venti</name>
-<version>1.2.7</version>
+<version>1.2.8</version>
 <objective>Be the player with the most kills after 5 minutes!</objective>
 <authors>
     <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/>
@@ -38,8 +38,8 @@
     <item>arrow</item>
     <item>leather chestplate</item>
     <item>leather boots</item>
-    <tool>iron sword</tool>
-    <tool>bow</tool>
+    <item>iron sword</item>
+    <item>bow</item>
 </itemremove>
 <disabledamage>
     <damage>fall</damage>
