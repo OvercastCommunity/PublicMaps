@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Moonlight Summit</name>
-<version>1.5.5</version>
+<version>1.5.6</version>
 <objective>Destroy 90% of all three of the enemy's monuments!</objective>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- Chicky -->
@@ -18,49 +18,79 @@
     <team id="blue" color="blue" max="45">Blue</team>
     <team id="red" color="dark red" max="45">Red</team>
 </teams>
+<item-mods>
+    <rule>
+        <match>
+            <material>wood sword</material>
+            <material>bow</material>
+            <material>wood pickaxe</material>
+            <material>wood axe</material>
+            <material>leather chestplate</material>
+            <material>leather leggings</material>
+            <material>leather boots</material>
+            <material>stone sword</material>
+            <material>stone pickaxe</material>
+            <material>stone axe</material>
+            <material>chainmail helmet</material>
+            <material>gold chestplate</material>
+            <material>chainmail leggings</material>
+            <material>iron pickaxe</material>
+            <material>iron axe</material>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>gold boots</material>
+            <material>diamond pickaxe</material>
+            <material>diamond axe</material>
+            <material>diamond helmet</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
 <kits>
-    <kit id="spawn-kit">
+    <kit id="clear-kit">
         <clear/>
-        <item slot="0" unbreakable="true" name="`rWooden Training Sword" material="wood sword"/>
-        <item slot="1" unbreakable="true" name="`rOak Training Bow" material="bow"/>
+    </kit>
+    <kit id="spawn-kit" parents="clear-kit">
+        <item slot="0" name="`rWooden Training Sword" material="wood sword"/>
+        <item slot="1" name="`rOak Training Bow" material="bow"/>
         <item slot="28" amount="64" material="arrow"/>
-        <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:2" material="wood pickaxe"/>
-        <item slot="3" unbreakable="true" attributes="generic.attackDamage:add:2" material="wood axe"/>
+        <item slot="2" attributes="generic.attackDamage:add:2" material="wood pickaxe"/>
+        <item slot="3" attributes="generic.attackDamage:add:2" material="wood axe"/>
         <item slot="4" amount="48" material="wood"/>
         <item slot="5" amount="4" material="torch"/>
-        <item slot="6" name="`6Golden Coins" material="gold nugget"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="24" material="golden carrot"/>
-        <chestplate unbreakable="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="leather leggings"/>
-        <boots unbreakable="true" material="leather boots"/>
+        <chestplate material="leather chestplate"/>
+        <leggings material="leather leggings"/>
+        <boots material="leather boots"/>
     </kit>
     <kit id="unlockable-a" force="true">
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:3" material="stone pickaxe"/>
-        <item slot="3" unbreakable="true" attributes="generic.attackDamage:add:3" material="stone axe"/>
-        <helmet unbreakable="true" material="chainmail helmet"/>
-        <chestplate unbreakable="true" material="gold chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings"/>
-        <boots unbreakable="true" name="`rAgile Leather Boots" lore="`7Speed I" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.025" material="leather boots"/>
+        <item slot="0" material="stone sword"/>
+        <item slot="2" attributes="generic.attackDamage:add:3" material="stone pickaxe"/>
+        <item slot="3" attributes="generic.attackDamage:add:3" material="stone axe"/>
+        <helmet material="chainmail helmet"/>
+        <chestplate material="gold chestplate"/>
+        <leggings material="chainmail leggings"/>
+        <boots name="`rAgile Leather Boots" lore="`7Speed I" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.025" material="leather boots"/>
     </kit>
     <kit id="unlockable-b" force="true">
-        <item slot="0" unbreakable="true" name="`rSharpened Stone Sword" enchantment="damage all:1" attributes="generic.attackDamage:add:5.75" material="stone sword"/>
-        <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:4" material="iron pickaxe"/>
-        <item slot="3" unbreakable="true" attributes="generic.attackDamage:add:4" material="iron axe"/>
-        <helmet unbreakable="true" name="`rHard Iron Helmet" enchantment="protection projectile:2" material="iron helmet"/>
-        <chestplate unbreakable="true" material="iron chestplate"/>
-        <leggings unbreakable="true" material="iron leggings"/>
-        <boots unbreakable="true" name="`rAgile Golden Boots" lore="`7Speed II" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.05" material="gold boots"/>
+        <item slot="0" name="`rSharpened Stone Sword" enchantment="damage all:1" attributes="generic.attackDamage:add:5.75" material="stone sword"/>
+        <item slot="2" attributes="generic.attackDamage:add:4" material="iron pickaxe"/>
+        <item slot="3" attributes="generic.attackDamage:add:4" material="iron axe"/>
+        <helmet name="`rHard Iron Helmet" enchantment="protection projectile:2" material="iron helmet"/>
+        <chestplate material="iron chestplate"/>
+        <leggings material="iron leggings"/>
+        <boots name="`rAgile Golden Boots" lore="`7Speed II" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.05" material="gold boots"/>
     </kit>
     <kit id="unlockable-c" force="true">
-        <item slot="0" unbreakable="true" material="iron sword"/>
-        <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:5" material="diamond pickaxe"/>
-        <item slot="3" unbreakable="true" attributes="generic.attackDamage:add:5" material="diamond axe"/>
-        <helmet unbreakable="true" material="diamond helmet"/>
-        <chestplate unbreakable="true" enchantment="protection environmental:1" material="iron chestplate"/>
-        <leggings unbreakable="true" name="`rBlast Proof Iron Leggings" enchantment="protection explosions:1" material="iron leggings"/>
-        <boots unbreakable="true" name="`rAgile Iron Boots" lore="`7Speed III" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.075" material="iron boots"/>
+        <item slot="0" material="iron sword"/>
+        <item slot="2" attributes="generic.attackDamage:add:5" material="diamond pickaxe"/>
+        <item slot="3" attributes="generic.attackDamage:add:5" material="diamond axe"/>
+        <helmet material="diamond helmet"/>
+        <chestplate enchantment="protection environmental:1" material="iron chestplate"/>
+        <leggings name="`rBlast Proof Iron Leggings" enchantment="protection explosions:1" material="iron leggings"/>
+        <boots name="`rAgile Iron Boots" lore="`7Speed III" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.075" material="iron boots"/>
     </kit>
 </kits>
 <spawns>
