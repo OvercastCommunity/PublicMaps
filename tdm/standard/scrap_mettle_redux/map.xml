@@ -1,8 +1,8 @@
 <map proto="1.4.2">
 <name>Scrap Mettle Redux</name>
 <edition>standard</edition> <!-- based on Scrap Mettle TE; version 2.1.1 -->
-<time result="score">10m</time>
-<version>1.1</version>
+<time result="score" overtime="30s" max-overtime="90s">8m</time>
+<version>1.1.1</version>
 <objective>Score points by killing the other team and entering your team's goal on the other side.</objective>
 <gamemode>tdm</gamemode>
 <gamemode>scorebox</gamemode>
@@ -11,8 +11,7 @@
 </authors>
 <contributors>
     <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Aesthetics and original XML"/> <!-- Plastix -->
-    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="Edits and adaptations for casual from TE"/> <!-- Strangey -->
-    <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac" contribution="Adapations for casual from TE"/> <!-- mameBT -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="Redux"/> <!-- Strangey -->
 </contributors>
 <teams>
     <team id="blue" color="blue" max="24">Blue</team>
@@ -107,8 +106,8 @@
 </itemkeep>
 <kill-reward>
     <item material="golden apple"/>
-    <item material="iron ingot"/>
     <item amount="8" material="arrow"/>
+    <item material="iron ingot"/>
 </kill-reward>
 <respawn delay="3s" auto="true"/>
 <item-mods>
