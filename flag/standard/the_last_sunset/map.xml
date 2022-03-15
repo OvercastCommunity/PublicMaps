@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>The Last Sunset</name>
-<version>1.4.2</version>
+<version>1.4.3</version>
 <objective>Capture both enemy flags two times!</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomyBoy -->
@@ -56,40 +56,40 @@
             <cylinder base="-887.5,47,-452.5" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit" filter="blue-uncaptured">
-        <region yaw="0">
-            <block>-817,4,-394</block>
-        </region>
+    <spawn team="blue" kit="spawn-kit" filter="face-both">
         <region yaw="180">
             <block>-817,4,-394</block>
         </region>
-    </spawn>
-    <spawn team="red" kit="spawn-kit" filter="red-uncaptured">
-        <region yaw="0">
-            <point>-958.5,4,-393.5</point>
-        </region>
-        <region yaw="180">
-            <point>-958.5,4,-393.5</point>
-        </region>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit" filter="nb-capped">
         <region yaw="0">
             <block>-817,4,-394</block>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" filter="nr-capped">
+    <spawn team="red" kit="spawn-kit" filter="face-both">
+        <region yaw="180">
+            <block>-959,4,-394</block>
+        </region>
         <region yaw="0">
-            <point>-958.5,4,-393.5</point>
+            <block>-959,4,-394</block>
         </region>
     </spawn>
-    <spawn team="blue" kit="spawn-kit" filter="sb-capped">
+    <spawn team="blue" kit="spawn-kit" filter="only-face-north">
         <region yaw="180">
             <block>-817,4,-394</block>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" filter="sr-capped">
+    <spawn team="red" kit="spawn-kit" filter="only-face-north">
         <region yaw="180">
-            <point>-958.5,4,-393.5</point>
+            <block>-959,4,-394</block>
+        </region>
+    </spawn>
+    <spawn team="blue" kit="spawn-kit" filter="only-face-south">
+        <region yaw="0">
+            <block>-817,4,-394</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" filter="only-face-south">
+        <region yaw="0">
+            <block>-959,4,-394</block>
         </region>
     </spawn>
 </spawns>
@@ -99,16 +99,16 @@
     <not id="not-spawner">
         <material>mob spawner</material>
     </not>
-    <not id="blue-uncaptured">
+    <not id="face-both">
         <any>
-            <flag-captured id="nb-capped">north-blue-flag</flag-captured>
-            <flag-captured id="sb-capped">south-blue-flag</flag-captured>
-        </any>
-    </not>
-    <not id="red-uncaptured">
-        <any>
-            <flag-captured id="nr-capped">north-red-flag</flag-captured>
-            <flag-captured id="sr-capped">south-red-flag</flag-captured>
+            <all id="only-face-north">
+                <flag-captured>south-blue-flag</flag-captured>
+                <flag-captured>south-red-flag</flag-captured>
+            </all>
+            <all id="only-face-south">
+                <flag-captured>north-blue-flag</flag-captured>
+                <flag-captured>north-red-flag</flag-captured>
+            </all>
         </any>
     </not>
 </filters>
