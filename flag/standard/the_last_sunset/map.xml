@@ -56,19 +56,13 @@
             <cylinder base="-887.5,47,-452.5" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit" filter="face-both">
-        <region yaw="180">
-            <block>-817,4,-394</block>
-        </region>
-        <region yaw="0">
+    <spawn team="blue" kit="spawn-kit" filter="face-neither">
+        <region yaw="90">
             <block>-817,4,-394</block>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" filter="face-both">
-        <region yaw="180">
-            <block>-959,4,-394</block>
-        </region>
-        <region yaw="0">
+    <spawn team="red" kit="spawn-kit" filter="face-neither">
+        <region yaw="-90">
             <block>-959,4,-394</block>
         </region>
     </spawn>
@@ -99,7 +93,7 @@
     <not id="not-spawner">
         <material>mob spawner</material>
     </not>
-    <not id="face-both">
+    <not id="face-neither">
         <any>
             <all id="only-face-north">
                 <flag-captured>south-blue-flag</flag-captured>
