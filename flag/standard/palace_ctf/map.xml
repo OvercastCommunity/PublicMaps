@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Palace CTF</name>
-<version>1.2</version>
+<version>1.2.1</version>
 <objective>Have the most flag captures in 12 minutes!</objective>
 <time result="score" overtime="1m" max-overtime="2m">12m</time>
 <broadcasts>
@@ -70,7 +70,7 @@
     <cuboid id="yellow-net" min="764,8,-1251" max="759,5,-1246"/>
     <apply block="never" use="deny-access"/>
 </regions>
-<flags>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
     <flag id="red-flag" name="Red Flag" color="red" pickup-kit="flag-pickup" drop-kit="flag-drop" respawn-time="10s">
         <post pickup-filter="only-yellow">762.5,6,-1082.5</post>
         <net points="1" region="yellow-net"/>
