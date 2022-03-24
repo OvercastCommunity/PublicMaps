@@ -1,0 +1,105 @@
+<map proto="1.4.2">
+<name>Blitzkrieg CTF</name>
+<version>1.1.4</version>
+<objective>Capture the enemy's flag as many times as possible in 12 minutes!</objective>
+<time result="score" overtime="2m" max-overtime="6m">12m</time>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="orange" color="gold" max="16">Orange</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" name="Topaz Blade" attributes="generic.attackDamage:add:5" material="gold sword"/>
+        <item slot="1" unbreakable="true" name="Deer Horn Bow" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+        <effect duration="3" amplifier="20">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <point>-724.5,99,-895.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="180">
+            <point>-784.5,27,-833.5</point>
+        </region>
+    </spawn>
+    <spawn team="orange" kit="spawn-kit">
+        <region yaw="0">
+            <point>-784.5,27,-957.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-orange">orange</team>
+</filters>
+<regions>
+    <union id="bases">
+        <cylinder id="blue-base" base="-784.5,27,-833.5" radius="3" height="5"/>
+        <cylinder id="orange-base" base="-784.5,27,-957.5" radius="3" height="5"/>
+    </union>
+    <apply enter="only-blue" message="You may not enter the enemy base!" region="blue-base"/>
+    <apply enter="only-orange" message="You may not enter the enemy base!" region="orange-base"/>
+    <apply block="never"/>
+</regions>
+<flags>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" color="light blue" pickup-filter="only-orange">
+        <post yaw="180" return-time="20s">-784.5,20,-845.5</post>
+        <net points="1">
+            <region>
+                <cylinder base="-784.5,18,-945.5" radius="3" height="5"/>
+            </region>
+        </net>
+    </flag>
+    <flag id="orange-flag" name="Orange Flag" owner="orange" color="orange" pickup-filter="only-blue">
+        <post yaw="0" return-time="20s">-784.5,20,-945.5</post>
+        <net points="1">
+            <region>
+                <cylinder base="-784.5,18,-845.5" radius="3" height="5"/>
+            </region>
+        </net>
+    </flag>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>gold sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="10" material="arrow"/>
+</kill-reward>
+<timelock>off</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn auto="true"/>
+</map>

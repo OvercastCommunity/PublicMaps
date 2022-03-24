@@ -1,0 +1,247 @@
+<map proto="1.4.2">
+<name>Woolirium</name>
+<version>1.1.2</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="20">Blue</team>
+    <team id="red" color="dark red" max="20">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="4" amount="64" damage="2" material="wood"/>
+        <item slot="31" amount="64" damage="2" material="wood"/>
+        <item slot="8" material="golden apple"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <item slot="5" amount="64" damage="11" material="stained glass"/>
+        <chestplate unbreakable="true" color="0000FF" material="leather chestplate"/>
+        <boots unbreakable="true" color="0000FF" material="leather boots"/>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <item slot="5" amount="64" damage="14" material="stained glass"/>
+        <chestplate unbreakable="true" color="FF0000" material="leather chestplate"/>
+        <boots unbreakable="true" color="FF0000" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-180">
+            <cylinder base="1433.5,51,-1384.5" radius="0.5" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="blue-kit">
+        <region yaw="90">
+            <cylinder base="1527.5,4,-1384.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <region yaw="-90">
+            <cylinder base="1339.5,4,-1384.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="only-blue-usage">
+        <all>
+            <any>
+                <material>chest</material>
+                <material>workbench</material>
+            </any>
+            <filter id="only-red"/>
+        </all>
+    </not>
+    <not id="only-red-usage">
+        <all>
+            <any>
+                <material>chest</material>
+                <material>workbench</material>
+            </any>
+            <filter id="only-blue"/>
+        </all>
+    </not>
+    <deny id="blue-in-wr">
+        <any>
+            <team id="only-red">red</team>
+            <material>chest</material>
+            <material>tnt</material>
+        </any>
+    </deny>
+    <deny id="red-in-wr">
+        <any>
+            <team id="only-blue">blue</team>
+            <material>chest</material>
+            <material>tnt</material>
+        </any>
+    </deny>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <deny id="deny-lava">
+        <any>
+            <material>lava</material>
+            <material>stationary lava</material>
+        </any>
+    </deny>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="1501,-1391" max="1538,-1378"/>
+        <rectangle id="red-spawn" min="1329,-1391" max="1366,-1378"/>
+    </union>
+    <union id="blue-wrs"> <!-- blue must get, red defends -->
+        <rectangle id="green-wr" min="1329,-1417" max="1343,-1406"/>
+        <rectangle id="light-blue-wr" min="1329,-1363" max="1343,-1352"/>
+    </union>
+    <union id="red-wrs"> <!-- red must get, blue defends -->
+        <rectangle id="orange-wr" min="1524,-1417" max="1538,-1406"/>
+        <rectangle id="yellow-wr" min="1524,-1363" max="1538,-1352"/>
+    </union>
+    <complement id="void">
+        <everywhere/>
+        <rectangle min="1401,-1420" max="1466,-1349"/>
+    </complement>
+    <apply enter="only-blue" message="You may not enter the enemy team's base!" region="blue-spawn"/>
+    <apply enter="only-red" message="You may not enter the enemy team's base!" region="red-spawn"/>
+    <apply enter="only-blue" message="You may not enter your team's own wool rooms!" region="blue-wrs"/>
+    <apply enter="only-red" message="You may not enter your team's own wool rooms!" region="red-wrs"/>
+    <apply block="never" message="You may not modify the bases!" region="spawns"/>
+    <apply block="blue-in-wr" use="only-blue-usage" region="blue-wrs"/>
+    <apply block="red-in-wr" use="only-red-usage" region="red-wrs"/>
+    <apply block="deny-void" message="You may not build in the void area!" region="void"/>
+    <apply block="deny-lava" use="deny-lava" message="You may not place this block!"/>
+</regions>
+<wools team="blue">
+    <wool color="green" location="1332,7,-1411.5">
+        <monument>
+            <block location="1535,5,-1386"/>
+        </monument>
+    </wool>
+    <wool color="light blue" location="1332,7,-1357.5">
+        <monument>
+            <block location="1535,5,-1384"/>
+        </monument>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="orange" location="1535,7,-1411.5">
+        <monument>
+            <block location="1331,5,-1384"/>
+        </monument>
+    </wool>
+    <wool color="yellow" location="1535,7,-1357.5">
+        <monument>
+            <block location="1331,5,-1386"/>
+        </monument>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>iron pickaxe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>string</item>
+    <item>redstone</item>
+    <item>redstone torch off</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>stained glass</material>
+        </filter>
+        <drops>
+            <item chance="0" material="stained glass"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>log</material>
+        </filter>
+        <drops>
+            <item chance="0" material="log"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>wood</item>
+    <item>stained glass</item>
+    <item>golden apple</item>
+    <item>log</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" damage="2" material="wood"/>
+        <item material="golden apple"/>
+    </kill-reward>
+    <kill-reward filter="only-blue">
+        <item amount="8" damage="11" material="stained glass"/>
+    </kill-reward>
+    <kill-reward filter="only-red">
+        <item amount="8" damage="14" material="stained glass"/>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>24</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool (CTW) `rmap.</line>
+            <line>`rThe objective is to capture both of the enemy's wools and place it at your victory monument!</line>
+        </message>
+        <teleport>
+            <point yaw="-50" pitch="15">1429,23,-1429</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Room">
+        <message>
+            <line>`rThis is the `eYellow `rwool room.</line>
+            <line>`rThe `9Blue Team `rmust defend this.</line>
+            <line>`rThe `cRed Team `rmust enter this.</line>
+            <line>`rThere are some goodies such as `cTNT `rin the wool room!</line>
+        </message>
+        <teleport>
+            <point yaw="-130" pitch="10">1523,10,-1346</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Monument">
+        <message>
+            <line>`rPlace the other team's wools here to win.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">1536,4,-1384</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

@@ -1,0 +1,239 @@
+<map proto="1.4.2">
+<name>The 4th Law</name>
+<version>1.2.1</version>
+<objective>Capture both enemy wools and leak both enemy cores.</objective>
+<gamemode>ctw</gamemode>
+<gamemode>dtc</gamemode>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c" contribution="Moral support and Invisibility Dilemma."/> <!-- ItzaMeLuigi -->
+    <contributor uuid="a348a860-8c8b-475f-b793-d556d45252a7" contribution="Original XML"/> <!-- i2 -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="40">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="4" unbreakable="true" material="iron spade"/>
+        <item slot="5" amount="64" material="wood"/>
+        <item slot="32" amount="64" material="wood"/>
+        <item slot="6" amount="64" material="glass"/>
+        <item slot="8" material="golden apple"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="8" amplifier="255">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="0">
+            <cylinder base="0.5,63,0.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-90">
+            <cylinder base="-74.5,14,0.5" radius="2" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="90">
+            <cylinder base="75.5,14,0.5" radius="2" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="blue-in-wr">
+        <any>
+            <material>mob spawner</material>
+            <material>chest</material>
+            <team id="only-red">red</team>
+        </any>
+    </not>
+    <not id="red-in-wr">
+        <any>
+            <material>mob spawner</material>
+            <material>chest</material>
+            <team id="only-blue">blue</team>
+        </any>
+    </not>
+    <all id="only-iron-regen">
+        <any id="only-iron">
+            <material>iron block</material>
+            <material>ladder</material>
+        </any>
+        <cause>world</cause>
+    </all>
+    <deny id="deny-dispenser">
+        <material>dispenser</material>
+    </deny>
+    <not id="deny-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <union id="spawns">
+        <circle id="blue-spawn" center="-74.5,0.5" radius="8"/>
+        <circle id="red-spawn" center="75.5,0.5" radius="8"/>
+    </union>
+    <union id="team-iron">
+        <circle id="blue-iron" center="-102.5,0.5" radius="9"/>
+        <circle id="red-iron" center="103.5,0.5" radius="9"/>
+    </union>
+    <union id="wool-rooms">
+        <complement id="blue-access-top">
+            <union>
+                <rectangle id="green-room-t" min="172,-8" max="140,-34"/>
+                <rectangle id="lime-room-t" min="172,10" max="140,36"/>
+            </union>
+            <below y="28"/>
+        </complement>
+        <complement id="red-access-top">
+            <union>
+                <rectangle id="blue-room-t" min="-170,-8" max="-139,-34"/>
+                <rectangle id="cyan-room-t" min="-170,10" max="-139,36"/>
+            </union>
+            <below y="28"/>
+        </complement>
+    </union>
+    <complement id="void">
+        <everywhere/>
+        <rectangle min="170,-34" max="135,-8"/>
+        <rectangle min="170,35" max="135,9"/>
+        <rectangle min="12,-44" max="-11,45"/>
+        <rectangle min="-169,35" max="-134,9"/>
+        <rectangle min="-169,-34" max="-134,-8"/>
+    </complement>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy base!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy base!"/>
+    <apply enter="only-blue" region="blue-access-top" message="You may not enter your own wool room!"/>
+    <apply enter="only-red" region="red-access-top" message="You may not enter your own wool room!"/>
+    <apply use="deny-dispenser" block="deny-dispenser"/>
+    <apply block-break="only-iron" block-place="only-iron-regen" region="team-iron" message="You may only break iron blocks here!"/>
+    <apply block="blue-in-wr" use="only-blue" region="blue-access-top"/>
+    <apply block="red-in-wr" use="only-red" region="red-access-top"/>
+    <apply block="never" region="spawns" message="You may not modify the bases!"/>
+    <apply block="deny-void" region="void" message="You may not build in the void!"/>
+</regions>
+<modes>
+    <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode id="ice-core" after="25m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="4" modes="gold-core ice-core">
+    <core team="blue" name="North Core">
+        <region>
+            <cylinder base="-74.5,32,-43.5" height="6" radius="2.5"/>
+        </region>
+    </core>
+    <core team="blue" name="South Core">
+        <region>
+            <cylinder base="-74.5,32,44.5" height="6" radius="2.5"/>
+        </region>
+    </core>
+    <core team="red" name="North Core">
+        <region>
+            <cylinder base="75.5,32,-43.5" height="6" radius="2.5"/>
+        </region>
+    </core>
+    <core team="red" name="South Core">
+        <region>
+            <cylinder base="75.5,32,44.5" height="6" radius="2.5"/>
+        </region>
+    </core>
+</cores>
+<wools craftable="false">
+    <wool team="blue" color="green" location="158,38,-22">
+        <monument>
+            <block>-75,15,8</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="lime" location="158,38,22">
+        <monument>
+            <block>-75,15,-8</block>
+        </monument>
+    </wool>
+    <wool team="red" color="cyan" location="-158,38,22">
+        <monument>
+            <block>75,15,8</block>
+        </monument>
+    </wool>
+    <wool team="red" color="light blue" location="-158,38,-22">
+        <monument>
+            <block>75,15,-8</block>
+        </monument>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>packed ice</item>
+    <item>flint</item>
+    <item>gravel</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>glass</material>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>log</material>
+        </filter>
+        <drops>
+            <item chance="0" material="log"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>golden apple</item>
+    <item>wood</item>
+    <item>glass</item>
+</itemkeep>
+<kill-reward>
+    <item>golden apple</item>
+</kill-reward>
+<tnt>
+    <instantignite>off</instantignite>
+    <blockdamage>off</blockdamage>
+</tnt>
+<maxbuildheight>36</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

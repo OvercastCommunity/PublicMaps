@@ -1,0 +1,154 @@
+<map proto="1.4.2">
+<name>Justice</name>
+<version>0.9.2</version>
+<time overtime="2m" max-overtime="6m" result="score">12m</time>
+<objective>Capture the enemy's flag as many times as possible in 12 minutes!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="green" max="16" color="dark green">Green</team>
+    <team id="purple" max="16" color="dark purple">Purple</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+        <effect duration="4" amplifier="5">heal</effect>
+        <effect duration="4" amplifier="5">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-reset" force="true">
+        <effect duration="0" amplifier="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <cylinder base="146.5,23,180.5" radius="1" height="1"/>
+        </region>
+    </default>
+    <spawn team="green" kit="spawn-kit">
+        <region yaw="0">
+            <cylinder base="200.5,7,123.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="purple" kit="spawn-kit">
+        <region yaw="180">
+            <cylinder base="200.5,7,237.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-green">green</team>
+    <team id="only-purple">purple</team>
+    <material id="only-cobweb">web</material>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+</filters>
+<regions>
+    <union id="spawns">
+        <cylinder id="green-spawn" base="200.5,7,123.5" radius="5" height="3"/>
+        <cylinder id="purple-spawn" base="200.5,7,237.5" radius="5" height="3"/>
+    </union>
+    <cylinder id="green-net" base="200.5,12,123.5" radius="3" height="3"/>
+    <cylinder id="purple-net" base="200.5,12,237.5" radius="3" height="3"/>
+    <above id="above-map" y="22"/>
+    <apply enter="only-green" message="You may not enter the enemy spawn area!" region="green-spawn"/>
+    <apply enter="only-purple" message="You may not enter the enemy spawn area!" region="purple-spawn"/>
+    <apply enter="never" message="This area is off limits!" region="above-map"/>
+    <apply block="only-cobweb" use="deny-beacon"/>
+</regions>
+<flags drop-on-water="false">
+    <flag id="green-flag"
+          name="Green Flag"
+          owner="green"
+          color="green"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-reset">
+        <post yaw="0" recover-time="20s" pickup-filter="only-purple">200.5,13,123.5</post>
+        <net points="1" region="purple-net"/>
+    </flag>
+    <flag id="purple-flag"
+          name="Purple Flag"
+          owner="purple"
+          color="purple"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-reset">
+        <post yaw="180" recover-time="20s" pickup-filter="only-green">200.5,13,237.5</post>
+         <net points="1" region="green-net"/>
+     </flag>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>string</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>web</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="10" material="arrow"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="3"/>
+        </filter>
+        <material>web</material>
+    </kill-reward>
+</kill-rewards>
+<item-mods>
+    <rule>
+        <match>
+            <material>web</material>
+        </match>
+        <modify show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <all-materials/>
+            <all-blocks/>
+        </match>
+        <modify show-can-destroy="false">
+            <can-destroy>
+                <material>web</material>
+            </can-destroy>
+        </modify>
+    </rule>
+</item-mods>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

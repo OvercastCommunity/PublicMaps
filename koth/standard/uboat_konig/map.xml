@@ -1,0 +1,131 @@
+<map proto="1.4.2">
+<name>UBoat König</name>
+<version>3.9</version>
+<objective>Be the team with the most amount of points within 8 minutes.</objective>
+<time result="score">8m</time>
+<gamemode>tdm</gamemode>
+<gamemode>koth</gamemode>
+<gamemode>scorebox</gamemode>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="20">Blue</team>
+    <team id="red" color="dark red" max="20">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment level="3">feather_falling</enchantment>
+        </boots>
+        <effect duration="7" amplifier="5">heal</effect>
+        <effect duration="7" amplifier="10">damage resistance</effect>
+    </kit>
+    <kit id="score-kit">
+        <effect duration="2" amplifier="10">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <block>1764,39,-1098</block>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-135">
+            <block>1726,20,-1066</block>
+        </region>
+        <region yaw="-45">
+            <block>1726,20,-1130</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" >
+        <region yaw="135">
+            <block>1802,20,-1066</block>
+        </region>
+        <region yaw="45">
+            <block>1802,20,-1130</block>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="1801,10,-1100" max="1796,12,-1095"/>
+        <cuboid id="red-scorebox" min="1727,10,-1095" max="1732,12,-1100"/>
+    </union>
+    <union id="score-region">
+        <union id="blue-score">
+            <block>1798,8,-1098</block>
+            <block>1799,8,-1098</block>
+        </union>
+        <union id="red-score">
+            <block>1729,8,-1098</block>
+            <block>1730,8,-1098</block>
+        </union>
+    </union>
+    <apply kit="score-kit" filter="only-blue" region="blue-score"/>
+    <apply kit="score-kit" filter="only-red" region="red-score"/>
+    <apply enter="only-blue" region="blue-scorebox" message="You may not enter your team's own scorebox!"/>
+    <apply enter="only-red" region="red-scorebox" message="You may not enter your team's own scorebox!"/>
+    <apply block="never"/>
+</regions>
+<score>
+    <kills>1</kills>
+    <box value="7" team="blue" filter="only-blue" region="blue-score"/>
+    <box value="7" team="red" filter="only-red" region="red-score"/>
+</score>
+<portals>
+    <portal x="@1725" y="@20" z="@-1130" yaw="@-45" pitch="@0" filter="only-blue" region="blue-score"/>
+    <portal x="@1803" y="@20" z="@-1064" yaw="@135" pitch="@0" filter="only-red" region="red-score"/>
+</portals>
+<king>
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="false" incremental="true" permanent="false" capture-rule="majority">
+        <hill name="Submarine">
+            <capture>
+                <cuboid min="1779,0,-1093" max="1750,9,-1102"/>
+            </capture>
+            <progress>
+                <cuboid min="1779,0,-1093" max="1750,9,-1102"/>
+            </progress>
+            <captured>
+                <cuboid min="1779,0,-1093" max="1750,9,-1102"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item count="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
