@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.2">
 <name>Donut Wars</name>
-<version>1.3.9</version>
+<version>1.3.10</version>
 <objective>Leak the enemy team's core and destroy their two monuments!</objective>
 <rules>
     <rule>Dispensers are disabled</rule>
@@ -37,7 +37,7 @@
         <item slot="28" amount="64">arrow</item>
         <item slot="2">diamond pickaxe</item>
         <item slot="3">diamond axe</item>
-        <item slot="4" amount="16">log</item>
+        <item slot="4" amount="64">wood</item>
         <item slot="5" amount="64">ladder</item>
         <item slot="6">water bucket</item>
         <item slot="8" amount="64">golden carrot</item>
@@ -198,7 +198,6 @@
     <item>sign</item>
     <item>ender stone</item>
     <item>wood</item>
-    <item>log</item>
     <item>cooked fish</item>
     <item>golden carrot</item>
     <item>ladder</item>

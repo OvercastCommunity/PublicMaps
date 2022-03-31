@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Cargo</name>
-<version>1.2.9</version>
+<version>1.2.11</version>
 <objective>Capture the enemy's wools!</objective>
+<created>2013-12-27</created>
 <authors>
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
     <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->
@@ -36,13 +37,10 @@
         <item slot="3" amount="64" damage="2" material="wood"/>
         <item slot="4" amount="48" material="leaves"/>
         <item slot="5" amount="32" material="ladder"/>
-        <item slot="7" material="golden apple"/>
-        <item slot="8" amount="64" material="cooked beef"/>
+        <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment>projectile_protection</enchantment>
-        </leggings>
+        <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" material="iron boots">
             <enchantment>feather_falling</enchantment>
         </boots>
@@ -51,17 +49,17 @@
 <spawns>
     <default>
         <region yaw="-90">
-            <cylinder base="76,88,93" height="0" radius="3"/>
+            <cylinder base="76,52,93" height="0" radius="3"/>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="-180">
-            <cylinder base="116,43.5,170" height="0" radius="1"/>
+            <cylinder base="116,7.5,170" height="0" radius="1"/>
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
         <region yaw="0">
-            <cylinder base="116,43.5,16" height="0" radius="1"/>
+            <cylinder base="116,7.5,16" height="0" radius="1"/>
         </region>
     </spawn>
 </spawns>
@@ -83,15 +81,19 @@
     </not>
 </filters>
 <regions>
-    <union id="spawns">
-        <cuboid id="blue-spawn" min="119,43,154" max="113,51,175"/>
-        <cuboid id="red-spawn" min="113,43,32" max="119,51,11"/>
+    <union id="spawn-entry">
+        <rectangle id="blue-spawn" min="113,156" max="119,164"/>
+        <rectangle id="red-spawn" min="113,22" max="119,30"/>
+    </union>
+    <union id="spawn-no-block">
+        <cuboid id="blue-spawn-no-block" min="119,7,154" max="113,15,175"/>
+        <cuboid id="red-spawn-no-block" min="113,7,32" max="119,15,11"/>
     </union>
     <union id="wool-monuments">
-        <cuboid id="purple-monument" min="122,50,157" max="119,47,155"/>
-        <cuboid id="cyan-monument" min="113,50,157" max="101,47,155"/>
-        <cuboid id="orange-monument" min="113,50,29" max="110,47,31"/>
-        <cuboid id="yellow-monument" min="119,50,31" max="122,47,29"/>
+        <cuboid id="purple-monument" min="122,14,157" max="119,11,155"/>
+        <cuboid id="cyan-monument" min="113,14,157" max="101,11,155"/>
+        <cuboid id="orange-monument" min="113,14,29" max="110,11,31"/>
+        <cuboid id="yellow-monument" min="119,14,31" max="122,11,29"/>
     </union>
     <union id="blue-wool-rooms"> <!-- blue must get from red -->
         <rectangle id="cyan-wr" min="69,-7" max="98,14"/>
@@ -102,52 +104,52 @@
         <rectangle id="yellow-wr" min="133,172" max="163,193"/>
     </union>
     <union id="underside">
-        <cuboid id="red-underside" min="-oo,-oo,-oo" max="oo,41,40"/>
-        <mirror id="blue-underside" region="red-underside" origin="116,44,93" normal="0,0,1"/>
-        <below y="37"/>
+        <cuboid id="red-underside" min="-oo,-oo,-oo" max="oo,5,40"/>
+        <mirror id="blue-underside" region="red-underside" origin="116,8,93" normal="0,0,1"/>
+        <below y="1"/>
     </union>
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-blue" region="blue-wool-rooms" message="You may not enter your team's own wool rooms!"/>
     <apply enter="only-red" region="red-wool-rooms" message="You may not enter your team's own wool rooms!"/>
-    <apply block="never" region="spawns" message="You may not break or place blocks in the spawns!"/>
+    <apply block="never" region="spawn-no-block" message="You may not break or place blocks in the spawns!"/>
     <apply block="never" region="wool-monuments" message="You may not modify the victory monuments!"/>
     <apply block="blue-in-wr" use="only-blue" region="blue-wool-rooms"/>
     <apply block="red-in-wr" use="only-red" region="red-wool-rooms"/>
     <apply block="never" region="underside" message="You may not under-bridge!"/>
-    <apply block="deny-void" message="You may not build in the void!"/>
+    <apply block="deny-void" message="You may not build in the void!"/> <!-- uses block 36 -->
 </regions>
 <renewables>
-    <renewable rate="1" grow="false" avoid-entities="false">
+    <renewable>
         <region>
             <union>
-                <block>74,51,187</block>
-                <block>157,51,187</block>
-                <block>157,51,-2</block>
-                <block>74,51,-2</block>
+                <block>74,15,187</block>
+                <block>157,15,187</block>
+                <block>157,15,-2</block>
+                <block>74,15,-2</block>
             </union>
         </region>
     </renewable>
 </renewables>
 <wools craftable="false">
-    <wool team="blue" color="cyan" location="85,47,-2">
+    <wool team="blue" color="cyan" location="85,11,-2">
         <monument>
-            <block>111.5,48,156.5</block>
+            <block>111,12,156</block>
         </monument>
     </wool>
-    <wool team="blue" color="purple" location="146,47,-2">
+    <wool team="blue" color="purple" location="146,11,-2">
         <monument>
-            <block>120.5,48,156.5</block>
+            <block>120,12,156</block>
         </monument>
     </wool>
-    <wool team="red" color="orange" location="85,47,187">
+    <wool team="red" color="orange" location="85,11,187">
         <monument>
-            <block>111.5,48,29.5</block>
+            <block>111,12,29</block>
         </monument>
     </wool>
-    <wool team="red" color="yellow" location="146,47,187">
+    <wool team="red" color="yellow" location="146,11,187">
         <monument>
-            <block>120.5,48,29.5</block>
+            <block>120,12,29</block>
         </monument>
     </wool>
 </wools>
@@ -158,7 +160,6 @@
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
-    <item>cooked beef</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
@@ -171,26 +172,14 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
+            <any>
+                <material>wood</material>
+                <material>leaves</material>
+                <material>ladder</material>
+            </any>
         </filter>
         <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>leaves</material>
-        </filter>
-        <drops>
-            <item chance="0" material="leaves"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>ladder</material>
-        </filter>
-        <drops>
-            <item chance="0" material="ladder"/>
+            <item chance="0" material="glass"/>
         </drops>
     </rule>
 </block-drops>
@@ -201,12 +190,15 @@
     <item>golden apple</item>
 </itemkeep>
 <kill-reward>
+    <item material="golden apple"/>
     <item amount="16" damage="2" material="wood"/>
     <item amount="12" material="leaves"/>
-    <item material="golden apple"/>
 </kill-reward>
-<maxbuildheight>64</maxbuildheight>
+<maxbuildheight>28</maxbuildheight>
 <gamerules>
     <doFireTick>false</doFireTick>
 </gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Moonlight Summit</name>
-<version>1.5.5</version>
+<version>1.5.7</version>
 <objective>Destroy 90% of all three of the enemy's monuments!</objective>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- Chicky -->
@@ -19,8 +19,10 @@
     <team id="red" color="dark red" max="45">Red</team>
 </teams>
 <kits>
-    <kit id="spawn-kit">
+    <kit id="clear-kit">
         <clear/>
+    </kit>
+    <kit id="spawn-kit" parents="clear-kit">
         <item slot="0" unbreakable="true" name="`rWooden Training Sword" material="wood sword"/>
         <item slot="1" unbreakable="true" name="`rOak Training Bow" material="bow"/>
         <item slot="28" amount="64" material="arrow"/>
@@ -28,7 +30,6 @@
         <item slot="3" unbreakable="true" attributes="generic.attackDamage:add:2" material="wood axe"/>
         <item slot="4" amount="48" material="wood"/>
         <item slot="5" amount="4" material="torch"/>
-        <item slot="6" name="`6Golden Coins" material="gold nugget"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="24" material="golden carrot"/>
         <chestplate unbreakable="true" material="leather chestplate"/>

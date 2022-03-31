@@ -1,0 +1,105 @@
+<map proto="1.4.2">
+<name>Voltage</name>
+<version>1.0.6</version>
+<objective>Capture the opposing team's flag 4 times!</objective>
+<time result="score" overtime="1m" max-overtime="1m">10m</time>
+<authors>
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
+</authors>
+<teams>
+    <team id="green" color="dark green" max="6">Green</team>
+    <team id="purple" color="dark purple" max="6">Purple</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment>feather_falling</enchantment>
+        </boots>
+        <effect duration="1s" amplifier="255">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-135">
+            <cylinder base="-10.5,19,48.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="green" kit="spawn-kit">
+        <region yaw="180">
+            <point>1,6,74.5</point>
+        </region>
+    </spawn>
+    <spawn team="purple" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-36.5,6,37</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-green">green</team>
+    <team id="only-purple">purple</team>
+</filters>
+<regions>
+    <apply block="never"/>
+</regions>
+<flags>
+    <flag id="green-flag" name="Green Flag" color="lime" pickup-kit="flag-pickup" drop-kit="flag-drop" recover-time="8s" respawn-time="3s">
+        <post pickup-filter="only-purple" yaw="135">-12,11,60</post>
+        <net points="1">
+            <region>
+                <cuboid min="-22,11,49" max="-23,13,50"/>
+            </region>
+        </net>
+    </flag>
+    <flag id="purple-flag" name="Purple Flag" color="purple" pickup-kit="flag-pickup" drop-kit="flag-drop" recover-time="8s" respawn-time="3s">
+        <post pickup-filter="only-green" yaw="-45">-23,11,49</post>
+        <net points="1">
+            <region>
+                <cuboid min="-11,11,61" max="-12,13,60"/>
+            </region>
+        </net>
+    </flag>
+</flags>
+<score>
+    <limit>4</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<respawn delay="3s"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

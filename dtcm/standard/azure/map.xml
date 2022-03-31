@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Azure</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Destroy both enemy team monuments to win!</objective>
 <authors>
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b"/> <!-- _3Each -->
@@ -22,11 +22,10 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="4" unbreakable="true" material="iron spade"/>
-        <item slot="5" material="wood" amount="64"/>
-        <item slot="6" material="glass" amount="32"/>
-        <item slot="7" material="golden apple"/>
-        <item slot="8" material="cooked beef" amount="64"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" material="wood" amount="64"/>
+        <item slot="5" material="glass" amount="32"/>
+        <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
@@ -79,27 +78,25 @@
     <mode id="gold-mode" after="15m" material="gold block" name="`6GOLD MONUMENT MODE"/>
     <mode id="coal-mode" after="30m" material="coal block" name="`8COAL MONUMENT MODE"/>
 </modes>
-<destroyables name="West Monument" materials="emerald block" completion="100%" modes="gold-mode coal-mode" show-progress="true">
-    <destroyable owner="blue">
+<destroyables materials="emerald block" modes="gold-mode coal-mode" show-progress="true">
+    <destroyable name="East Monument" owner="blue">
         <region>
-            <cylinder base="-138.5,16,182.5" height="5" radius="2.5"/>
+            <cylinder base="-50.5,15,182.5" height="6.5" radius="3"/>
         </region>
     </destroyable>
-    <destroyable owner="red">
+    <destroyable name="West Monument" owner="blue">
         <region>
-            <cylinder base="-138.5,16,312.5" height="5" radius="2.5"/>
+            <cylinder base="-138.5,15,182.5" height="6.5" radius="3"/>
         </region>
     </destroyable>
-</destroyables>
-<destroyables name="East Monument" materials="emerald block" completion="100%" modes="gold-mode coal-mode" show-progress="true">
-    <destroyable owner="blue">
+    <destroyable name="East Monument" owner="red">
         <region>
-            <cylinder base="-50.5,16,182.5" height="5" radius="2.5"/>
+            <cylinder base="-50.5,15,312.5" height="6.5" radius="3"/>
         </region>
     </destroyable>
-    <destroyable owner="red">
+    <destroyable name="West Monument" owner="red">
         <region>
-            <cylinder base="-50.5,16,312.5" height="5" radius="2.5"/>
+            <cylinder base="-138.5,15,312.5" height="6.5" radius="3"/>
         </region>
     </destroyable>
 </destroyables>
@@ -112,7 +109,6 @@
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
-    <item>cooked beef</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
@@ -132,15 +128,10 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
@@ -158,4 +149,7 @@
     <item amount="8" material="glass"/>
 </kill-reward>
 <maxbuildheight>28</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

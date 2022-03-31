@@ -1,0 +1,374 @@
+<map proto="1.4.2">
+<name>Ouroboros</name>
+<version>6.4.5</version>
+<objective>Capture the other team's wools to win the game!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="10" max-overfill="12">Blue</team>
+    <team id="purple" color="dark purple" max="10" max-overfill="12">Purple</team>
+    <team id="red" color="dark red" max="10" max-overfill="12">Red</team>
+    <team id="yellow" color="yellow" max="10" max-overfill="12">Yellow</team>
+</teams>
+<rules>
+    <rule>Creating alliances with other team(s) is allowed.</rule>
+    <rule>Block glitching will not be tolerated.</rule>
+</rules>
+<broadcasts>
+    <tip after="4s" every="1m">`6Your `aWool Room `6is above your Spawn, `aDefend it`6!</tip>
+</broadcasts>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="4" unbreakable="true" material="iron spade"/>
+        <item slot="31" unbreakable="true" material="flint and steel"/>
+        <item slot="5" amount="48" damage="2" material="wood"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="cooked beef"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment>projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment level="3">feather_falling</enchantment>
+        </boots>
+        <effect duration="3">heal</effect>
+        <effect duration="3" amplifier="2">damage resistance</effect>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <item slot="6" amount="16" damage="11" material="stained clay"/>
+        <helmet unbreakable="true" color="0066cc" material="leather helmet"/>
+        <chestplate unbreakable="true" color="0066cc" material="leather chestplate"/>
+    </kit>
+    <kit id="purple-kit" parents="spawn-kit">
+        <item slot="6" amount="16" damage="10" material="stained clay"/>
+        <helmet unbreakable="true" color="551a8b" material="leather helmet"/>
+        <chestplate unbreakable="true" color="551a8b" material="leather chestplate"/>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <item slot="6" amount="16" damage="14" material="stained clay"/>
+        <helmet unbreakable="true" color="cd0000" material="leather helmet"/>
+        <chestplate unbreakable="true" color="cd0000" material="leather chestplate"/>
+    </kit>
+    <kit id="yellow-kit" parents="spawn-kit">
+        <item slot="6" amount="16" damage="4" material="stained clay"/>
+        <helmet unbreakable="true" color="ffff00" material="leather helmet"/>
+        <chestplate unbreakable="true" color="ffff00" material="leather chestplate"/>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <cylinder base="0.5,11,0.5" radius="2" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="blue-kit">
+        <region yaw="-90">
+            <point>-8.5,4,-69.5</point>
+        </region>
+    </spawn>
+    <spawn team="purple" kit="purple-kit">
+        <region yaw="90">
+            <point>9.5,4,70.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <region yaw="180">
+            <point>-69.5,4,9.5</point>
+        </region>
+    </spawn>
+    <spawn team="yellow" kit="yellow-kit">
+        <region yaw="0">
+            <point>70.5,4,-8.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <deny id="deny-blue">
+        <team id="only-blue">blue</team>
+    </deny>
+    <deny id="deny-purple">
+        <team id="only-purple">purple</team>
+    </deny>
+    <deny id="deny-red">
+        <team id="only-red">red</team>
+    </deny>
+    <deny id="deny-yellow">
+        <team id="only-yellow">yellow</team>
+    </deny>
+    <deny id="deny-beacon">
+        <material id="beacons">beacon</material>
+    </deny>
+    <deny id="denied-blocks">
+        <any>
+            <filter id="beacons"/>
+            <material>obsidian</material>
+            <material>wall sign</material>
+            <material>sign post</material>
+        </any>
+    </deny>
+    <not id="deny-void">
+        <void/>
+    </not>
+    <deny id="deny-wool">
+        <material>wool</material>
+    </deny>
+</filters>
+<regions>
+    <above id="above-23" y="23"/>
+    <union id="spawns">
+        <cylinder id="blue-spawn" base="-8.5,3,-69.5" radius="9" height="7"/>
+        <cylinder id="purple-spawn" base="9.5,3,70.5" radius="9" height="7"/>
+        <cylinder id="red-spawn" base="-69.5,3,9.5" radius="9" height="7"/>
+        <cylinder id="yellow-spawn" base="70.5,3,-8.5" radius="9" height="7"/>
+    </union>
+    <union id="spawns-entry">
+        <cylinder id="blue-se" base="-8.5,3,-69.5" radius="9" height="4"/>
+        <cylinder id="purple-se" base="9.5,3,70.5" radius="9" height="4"/>
+        <cylinder id="red-se" base="-69.5,3,9.5" radius="9" height="4"/>
+        <cylinder id="yellow-se" base="70.5,3,-8.5" radius="9" height="4"/>
+    </union>
+    <union id="wool-rooms-b"> <!-- Apply block scope -->
+        <cylinder id="blue-wool-room-b" base="-19.5,17,-76.5" radius="9" height="20"/>
+        <cylinder id="purple-wool-room-b" base="20.5,17,77.5" radius="9" height="20"/>
+        <cylinder id="red-wool-room-b" base="-76.5,17,20.5" radius="9" height="20"/>
+        <cylinder id="yellow-wool-room-b" base="77.5,17,-19.5" radius="9" height="20"/>
+    </union>
+    <union id="wool-rooms-e"> <!-- Apply enter scope -->
+        <sphere id="blue-wool-room-e" origin="-19.5,17,-76.5" radius="8"/>
+        <sphere id="purple-wool-room-e" origin="20.5,17,77.5" radius="8"/>
+        <sphere id="red-wool-room-e" origin="-76.5,17,20.5" radius="8"/>
+        <sphere id="yellow-wool-room-e" origin="77.5,17,-19.5" radius="8"/>
+    </union>
+    <!-- No block placing or breaking on the gates zones except cobwebs
+    <union id="gates">
+        <rectangle id="blue-gate" min="-7.5,-79.5" max="7.5,-59.5"/>
+        <rectangle id="purple-gate" min="8.5,80.5" max="-6.5,60.5"/>
+        <rectangle id="red-gate" min="-79.5,8.5" max="-59.5,-6.5"/>
+        <rectangle id="yellow-gate" min="80.5,-7.5" max="60.5,7.5"/>
+    </union> -->
+    <union id="wool-placement">
+        <!-- Blue monument -->
+        <block>-16.5,5,-68.5</block> <!-- purple -->
+        <block>-16.5,5,-69.5</block> <!-- red -->
+        <block>-16.5,5,-70.5</block> <!-- yellow -->
+        <!-- Purple monument -->
+        <block>17.5,5,69.5</block> <!-- blue -->
+        <block>17.5,5,70.5</block> <!-- red -->
+        <block>17.5,5,71.5</block> <!-- yellow -->
+        <!-- Red monument -->
+        <block>-69.5,5,17.5</block> <!-- blue -->
+        <block>-68.5,5,17.5</block> <!-- purple -->
+        <block>-70.5,5,17.5</block> <!-- yellow -->
+        <!-- Yellow monument -->
+        <block>70.5,5,-16.5</block> <!-- blue -->
+        <block>69.5,5,-16.5</block> <!-- purple -->
+        <block>71.5,5,-16.5</block> <!-- red -->
+    </union>
+    <complement id="no-wool-placement">
+        <everywhere/>
+        <region id="wool-placement"/>
+    </complement>
+    <!-- Applied -->
+    <apply use="deny-beacon"/>
+    <apply enter="only-blue" message="You may not enter enemy spawns!" region="blue-se"/>
+    <apply enter="only-purple" message="You may not enter enemy spawns!" region="purple-se"/>
+    <apply enter="only-red" message="You may not enter enemy spawns!" region="red-se"/>
+    <apply enter="only-yellow" message="You may not enter enemy spawns!" region="yellow-se"/>
+    <apply enter="deny-blue" message="You may not enter your own wool room!" region="blue-wool-room-e"/>
+    <apply enter="deny-purple" message="You may not enter your own wool room!" region="purple-wool-room-e"/>
+    <apply enter="deny-red" message="You may not enter your own wool room!" region="red-wool-room-e"/>
+    <apply enter="deny-yellow" message="You may not enter your own wool room!" region="yellow-wool-room-e"/>
+    <apply block="never" message="You may not edit above the height limit! (20 Blocks)" region="above-23"/>
+    <apply block="never" message="You may not edit the spawn areas!" region="spawns"/>
+    <!-- Outting the gate
+    <apply block-place="never" block-break="always" message="`7You may not go anti-clockwise or build around the hurdles!" region="gates"/> -->
+    <apply block="never" use="deny-red" region="red-wool-room-b"/>
+    <apply block="never" use="deny-blue" region="blue-wool-room-b"/>
+    <apply block="never" use="deny-purple" region="purple-wool-room-b"/>
+    <apply block="never" use="deny-yellow" region="yellow-wool-room-b"/>
+    <apply block="deny-wool" message="You may not place safeties!" region="no-wool-placement"/>
+    <apply block="denied-blocks" message="This block is disabled on this map!"/>
+    <apply block="deny-void" message="You may not edit the void area!"/>
+</regions>
+<wools team="blue">
+    <wool color="purple" location="20.5,18,80.5">
+        <monument>
+            <block>-16.5,5,-68.5</block>
+        </monument>
+    </wool>
+    <wool color="red" location="-79.5,18,20.5">
+        <monument>
+            <block>-16.5,5,-69.5</block>
+        </monument>
+    </wool>
+    <wool color="yellow" location="80.5,18,-19.5">
+        <monument>
+            <block>-16.5,5,-70.5</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="purple">
+    <wool color="blue" location="-19.5,18,-79.5">
+        <monument>
+            <block>17.5,5,69.5</block>
+        </monument>
+    </wool>
+    <wool color="red" location="-79.5,18,20.5">
+        <monument>
+            <block>17.5,5,70.5</block>
+        </monument>
+    </wool>
+    <wool color="yellow" location="80.5,18,-19.5">
+        <monument>
+            <block>17.5,5,71.5</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="blue" location="-19.5,18,-79.5">
+        <monument>
+            <block>-69.5,5,17.5</block>
+        </monument>
+    </wool>
+    <wool color="purple" location="20.5,18,80.5">
+        <monument>
+            <block>-68.5,5,17.5</block>
+        </monument>
+    </wool>
+    <wool color="yellow" location="80.5,18,-19.5">
+        <monument>
+            <block>-70.5,5,17.5</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="yellow">
+    <wool color="blue" location="-19.5,18,-79.5">
+        <monument>
+            <block>71.5,5,-16.5</block>
+        </monument>
+    </wool>
+    <wool color="red" location="-79.5,18,20.5">
+        <monument>
+            <block>70.5,5,-16.5</block>
+        </monument>
+    </wool>
+    <wool color="purple" location="20.5,18,80.5">
+        <monument>
+            <block>69.5,5,-16.5</block>
+        </monument>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+    <tool>flint and steel</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked beef</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>wool</item>
+    <item>glass</item>
+    <item>string</item>
+    <item>web</item>
+    <item>redstone</item>
+    <item>glowstone dust</item>
+    <item>redstone block</item>
+    <item>redstone lamp off</item>
+    <item>sapling</item>
+    <item>quartz block</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>stained clay</material>
+        </filter>
+        <drops>
+            <item chance="0" material="stained clay"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>wood</item>
+    <item>stained clay</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="12" damage="2" material="wood"/>
+    </kill-reward>
+    <kill-reward filter="only-blue">
+        <item amount="4" damage="11" material="stained clay"/>
+    </kill-reward>
+    <kill-reward filter="only-purple">
+        <item amount="4" damage="10" material="stained clay"/>
+    </kill-reward>
+    <kill-reward filter="only-red">
+        <item amount="4" damage="14" material="stained clay"/>
+    </kill-reward>
+    <kill-reward filter="only-yellow">
+        <item amount="4" damage="4" material="stained clay"/>
+    </kill-reward>
+</kill-rewards>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool (CTW) `rmap.</line>
+            <line>The objective is to capture all needed wools for your team.</line>
+        </message>
+    </stage>
+    <stage title="The Base">
+        <message>
+            <line>`rThis is the `9Blue Team's Base`r.</line>
+            <line>`rThis is where the `9Blue Team `rspawns. You spawn with gear ready to go into battle!</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="20">-8.5,4,-69.5</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Room">
+        <message>
+            <line>`rThis is the a `fWool Room`r.</line>
+            <line>`rThe other three teams need to get the wool from the chests back to their base to win.</line>
+        </message>
+        <teleport>
+            <point yaw="-33" pitch="0">-19.5,19,-76.5</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Monument">
+        <message>
+            <line>`rThis is the Wool Monument`r.</line>
+            <line>`rplace the other teams' wools here to win.</line>
+        </message>
+        <teleport>
+            <point yaw="90">-8.5,4,-69.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

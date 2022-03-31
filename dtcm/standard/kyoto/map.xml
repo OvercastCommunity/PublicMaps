@@ -1,11 +1,10 @@
 <map proto="1.4.0">
 <name>Kyoto</name>
-<version>1.1.1</version>
-<gamemode>dtm</gamemode>
+<version>1.1.4</version>
+<phase>development</phase>
 <objective>Destroy the other team’s two monuments to win!</objective>
 <authors>
-    <author uuid="c1d94f18-6ea3-495a-8d1b-7d9eaf393f64"/>
-    <!--   KyotoSquid   -->
+    <author uuid="c1d94f18-6ea3-495a-8d1b-7d9eaf393f64"/> <!-- KyotoSquid -->
 </authors>
 <contributors>
     <contributor uuid="2df2bef6-6f50-4e4e-a891-048990bf1f5c"/> <!-- Blaszczak -->
@@ -17,44 +16,31 @@
    <team id="yellow" color="yellow" max="15">Yellow</team>
 </teams>
 <kits>
-    <kit id="white-kit">
-        <helmet color="FFFFFF">leather helmet</helmet>
-        <chestplate>gold chestplate</chestplate>
-        <leggings>chainmail leggings</leggings>
-        <boots color="FFFFFF">leather boots</boots>
-        <item slot="0">iron sword</item>
-        <item slot="1" enchantment="arrow infinite:1">bow</item>
-        <item slot="2">diamond pickaxe</item>
-        <item slot="3" amount="2">golden apple</item>
-        <item slot="4" amount="48">log</item>
-        <item slot="5" amount="32">glass</item>
-        <item slot="6">iron axe</item>
-        <item slot="7" amount="32">cooked beef</item>
-        <item slot="28">arrow</item>
-    </kit>
-    <kit id="yellow-kit">
-        <helmet color="E5E533">leather helmet</helmet>
-        <chestplate>gold chestplate</chestplate>
-        <leggings>chainmail leggings</leggings>
-        <boots color="E5E533">leather boots</boots>
-        <item slot="0">iron sword</item>
-        <item slot="1" enchantment="arrow infinite:1">bow</item>
-        <item slot="2">diamond pickaxe</item>
-        <item slot="3" amount="2">golden apple</item>
-        <item slot="4" amount="48">log</item>
-        <item slot="5" amount="32">glass</item>
-        <item slot="6">iron axe</item>
-        <item slot="7" amount="32">cooked beef</item>
-        <item slot="28">arrow</item>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" enchantment="arrow infinite:1" unbreakable="true"/>
+        <item slot="2" material="diamond pickaxe" unbreakable="true"/>
+        <item slot="3" material="iron axe" unbreakable="true"/>
+        <item slot="4" material="wood" amount="64"/>
+        <item slot="5" material="wood" amount="64"/>
+        <item slot="6" material="glass" amount="32"/>
+        <item slot="8" material="golden apple" amount="2"/>
+        <item slot="28" material="arrow"/>
+        <item slot="31" material="wood" amount="64"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
+        <chestplate material="gold chestplate" unbreakable="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true"/>
     </kit>
 </kits>
 <spawns>
-    <spawn team="white" kit="white-kit">
+    <spawn team="white" kit="spawn-kit">
         <regions yaw="0">
             <cylinder base="-2,75,-40" radius="1" height="0"/>
         </regions>
     </spawn>
-    <spawn team="yellow" kit="yellow-kit">
+    <spawn team="yellow" kit="spawn-kit">
         <regions yaw="180">
             <cylinder base="-2,75,156" radius="1" height="0"/>
         </regions>
@@ -65,26 +51,6 @@
         </regions>
     </default>
 </spawns>
-<filters>
-    <team id="white-filter">white</team>
-    <team id="yellow-filter">yellow</team>
-    <any id="can-break">
-        <material>diamond block</material>
-        <material>iron block</material>
-    </any>
-</filters>
-<regions>
-    <negative id="play">
-        <cuboid min="47,58,-59" max="-51,88,175"/>
-    </negative>
-    <cuboid id="white-spawn-area" min="-9,74,-44" max="6,90,-33"/>
-    <cuboid id="yellow-spawn-area" min="6,74,160" max="-9,90,150"/>
-    <apply enter="white-filter" region="white-spawn-area" message="You may not enter the other team's spawn!"/>
-    <apply enter="yellow-filter" region="yellow-spawn-area" message="You may not enter the other team's spawn!"/>
-    <apply block-place="never" region="yellow-spawn-area" block-break="can-break" message="You can only break iron and diamond blocks in spawn!"/>
-    <apply block-place="never" region="white-spawn-area" block-break="can-break" message="You can only break iron and diamond blocks in spawn!"/>
-    <apply block="never" region="play" message="You may not interact with blocks outside the playing field."/>
-</regions>
 <destroyables name="Left Monument" materials="gold block;obsidian" completion="100%">
     <destroyable owner="white">
         <region>
@@ -109,12 +75,31 @@
         </region>
     </destroyable>
 </destroyables>
+<filters>
+    <team id="white-filter">white</team>
+    <team id="yellow-filter">yellow</team>
+    <any id="can-break">
+        <material>diamond block</material>
+        <material>iron block</material>
+    </any>
+</filters>
+<regions>
+    <negative id="play">
+        <cuboid min="47,58,-59" max="-51,88,175"/>
+    </negative>
+    <cuboid id="white-spawn-area" min="-9,74,-44" max="6,90,-33"/>
+    <cuboid id="yellow-spawn-area" min="6,74,160" max="-9,90,150"/>
+    <apply enter="white-filter" region="white-spawn-area" message="You may not enter the other team's spawn!"/>
+    <apply enter="yellow-filter" region="yellow-spawn-area" message="You may not enter the other team's spawn!"/>
+    <apply block-place="never" region="yellow-spawn-area" block-break="can-break" message="You can only break iron and diamond blocks in spawn!"/>
+    <apply block-place="never" region="white-spawn-area" block-break="can-break" message="You can only break iron and diamond blocks in spawn!"/>
+    <apply block="never" region="play" message="You may not interact with blocks outside the playing field."/>
+</regions>
 <itemremove>
     <item>leather helmet</item>
     <item>gold chestplate</item>
     <item>chainmail leggings</item>
     <item>leather boots</item>
-    <item>cooked beef</item>
     <item>gold block</item>
     <item>obsidian</item>
 </itemremove>
@@ -125,4 +110,16 @@
     <tool>iron axe</tool>
     <tool>arrow</tool>
 </toolrepair>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>glass</item>
+</itemkeep>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

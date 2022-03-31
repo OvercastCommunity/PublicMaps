@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Deserted Sanctuary</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Control the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>
@@ -11,8 +11,8 @@
     <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!--  Timotheeee  -->
 </contributors>
 <teams>
-    <team id="orange" color="gold" max="24">Orange</team>
-    <team id="purple" color="dark purple" max="24">Purple</team>
+    <team id="orange" color="gold" max="20">Orange</team>
+    <team id="purple" color="dark purple" max="20">Purple</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
