@@ -1,135 +1,159 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
-<!-- <include src="tutorial.xml"/> -->
-<name>Wrath Altar</name>
-<version>2.4</version>
-<objective>Be the team with the highest score after 9 minutes!</objective>
+<id>Wrath Tor RAGE</id>
+<version>1.4.1</version>
+<objective>Be the team with the most kills after 8 minutes!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team id="purple" color="dark purple" max="32">Purple</team>
-    <team id="orange" color="gold" max="32">Orange</team>
+    <team color="dark red" max="10">Red</team>
+    <team color="blue" max="10">Blue</team>
 </teams>
-<rules>
-    <rule>Fall damage is disabled!</rule>
-</rules>
-<score>
-    <kills>1</kills>
-</score>
-<time result="score">9m</time>
-<rage/>
- <!-- Exit the hill for spreading players away from mid 
-<king>
-    <hills>
-        <hill name="Altar" capture-time="5s" points="1" show="true">
-            <capture><cylinder name="Altar" base="1687.5,8,-1461.5" radius="7" height="7"/> </capture>
-            <progress><cuboid min="0,0,0" max="0,0,0"/></progress>
-            <captured><cuboid min="0,0,0" max="0,0,0"/></captured>
-        </hill>
-    </hills>
-</king>
--->
 <kits>
-    <kit id="spawn-kit">
+    <kit id="spawn">
         <item slot="0" unbreakable="true" enchantment="damage all:10" lore="`aOne hit slice!">iron sword</item>
         <item slot="1" unbreakable="true" enchantment="arrow damage:10" lore="`aOne shot pierce!">bow</item>
-        <item slot="2" amount="2">ender pearl</item>
-        <item slot="8" amount="6">arrow</item>
-        <effect duration="oo">speed</effect>
-        <effect duration="4" amplifier="100">heal</effect>
-        <effect duration="4" amplifier="100">damage resistance</effect>
+        <item slot="2" amount="4">arrow</item>
+        <leggings>iron leggings</leggings>
+        <potion duration="3" amplifier="100">heal</potion>
+        <potion duration="6" amplifier="100">damage resistance</potion>
     </kit>
-    <kit id="purple-kit" parents="spawn-kit">
-        <helmet color="AA00AA">leather helmet</helmet>
-        <chestplate color="AA00AA">leather chestplate</chestplate>
-        <leggings color="AA00AA">leather leggings</leggings>
-        <boots color="AA00AA">leather boots</boots>
+    <kit id="red" parents="spawn">
+        <helmet color="FF0000">leather helmet</helmet>
+        <chestplate color="FF0000">leather chestplate</chestplate>
+        <boots color="FF0000">leather boots</boots>
     </kit>
-    <kit id="orange-kit" parents="spawn-kit">
-        <helmet color="FFAA00">leather helmet</helmet>
-        <chestplate color="FFAA00">leather chestplate</chestplate>
-        <leggings color="FFAA00">leather leggings</leggings>
-        <boots color="FFAA00">leather boots</boots>
+    <kit id="blue" parents="spawn">
+        <helmet color="3333FF">leather helmet</helmet>
+        <chestplate color="3333FF">leather chestplate</chestplate>
+        <boots color="3333FF">leather boots</boots>
     </kit>
 </kits>
-<kill-reward>
-    <item amount="2" material="arrow"/>
-    <item material="ender pearl"/>
-</kill-reward>
-<kill-reward>
-    <filter>
-        <kill-streak count="5"/>
-    </filter>
-    <item name="`bSpeed II" lore="`7Speed tier 2!" damage="8194" potions="speed:54000:1:true" material="potion"/>
-</kill-reward>
-<kill-reward>
-    <filter>
-        <kill-streak count="15"/>
-    </filter>
-    <item name="`bSpeed III" lore="`7Speed tier 3!" damage="8194" potions="speed:54000:2:true" material="potion"/>
-</kill-reward>
-<filters>
-    <not id="deny-fence">
-        <material>fence</material>
-    </not>
-</filters>
-<regions>
-    <apply block="never" use="deny-fence" region="everywhere"/>
-</regions>
 <spawns>
-    <spawn team="purple" kit="purple-kit" yaw="0">
-        <region><cuboid min="1694,8,-1566" max="1681,8,-1565"/></region>
-    </spawn>
-    <spawn team="orange" kit="orange-kit" yaw="180">
-        <region><cuboid min="1681,8,-1357" max="1694,8,-1357"/></region>
-    </spawn>
-    <default angle="1692.5,100.5,-1461.5">
-        <region><cuboid min="1689,100,-1465" max="1686,100,-1458"/></region>
+    <spawns team="blue" kit="blue">
+        <spawn yaw="45">
+            <point>1871,13,-1407</point>
+        </spawn>
+    </spawns>
+    <spawns team="red" kit="red">
+        <spawn yaw="-135">
+            <point>1820,13,-1356</point>
+        </spawn>
+    </spawns>
+    <default yaw="0">
+        <point>1845,23,-1385</point>
     </default>
 </spawns>
-<timelock>on</timelock>
-<toolrepair>
-    <tool>iron sword</tool>
-    <tool>bow</tool>
-    <tool>arrow</tool>
-</toolrepair>
+<rage/>
+<time>8m</time>
+<score>
+    <box value="10" team="red" filter="only-red" cooldown="1">
+        <region id="red-scorebox"/>
+        <redeemables>
+            <item points="2">emerald</item>
+        </redeemables>
+    </box>
+    <box value="10" team="blue" filter="only-blue" cooldown="1">
+        <region id="blue-scorebox"/>
+        <redeemables>
+            <item points="2">emerald</item>
+        </redeemables>
+    </box>
+</score>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <cylinder id="blue-scorebox" base="1826,7,-1363" radius="1" height="2"/>
+    <cylinder id="red-scorebox" base="1864,7,-1401" radius="1" height="2"/>
+    <cylinder id="main-area" base="1845,0,-1382" radius="40" height="30"/>
+    <apply block="never">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply exit="never" message="You may not leave the map!">
+        <region id="main-area"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own scorebox!">
+        <rectangle min="1829,-1365" max="1824,-1360"/>
+    </apply>
+        <apply enter="only-red" message="You may not enter your own scorebox!">
+        <rectangle min="1862,-1398" max="1867,-1403"/>
+    </apply>
+</regions>
+<spawners>
+    <spawner max-entities="3" min-delay="2s" max-delay="10s">
+        <spawn-region>
+            <cuboid min="1846,8,-1354" max="1845,10,-1355"/>
+        </spawn-region>
+        <player-region>
+            <cuboid min="1847,7,-1353" max="1844,11,-1356"/>
+        </player-region>
+        <item amount="1" material="arrow"/>
+    </spawner>
+    <spawner max-entities="3" min-delay="2s" max-delay="10s">
+        <spawn-region>
+            <cuboid min="1846,8,-1408" max="1845,10,-1409"/>
+        </spawn-region>
+        <player-region>
+            <cuboid min="1847,7,-1407" max="1844,11,-1410"/>
+        </player-region>
+        <item amount="1" material="arrow"/>
+    </spawner>
+    <spawner max-entities="3" min-delay="2s" max-delay="10s">
+        <spawn-region>
+            <cuboid min="1818,8,-1381" max="1819,10,-1382"/>
+        </spawn-region>
+        <player-region>
+            <cuboid min="1817,7,-1380" max="1820,11,-1383"/>
+        </player-region>
+        <item amount="1" material="arrow"/>
+    </spawner>
+    <spawner max-entities="3" min-delay="2s" max-delay="10s">
+        <spawn-region>
+            <cuboid min="1872,8,-1381" max="1873,10,-1382"/>
+        </spawn-region>
+        <player-region>
+            <cuboid min="1871,7,-1380" max="1874,11,-1383"/>
+        </player-region>
+        <item amount="1" material="arrow"/>
+    </spawner>
+</spawners>
+<portals>
+    <portal x="@1871" y="@13" z="@-1407" yaw="@45" filter="only-blue">
+        <region id="blue-scorebox"/>
+    </portal>
+    <portal x="@1820" y="@13" z="@-1356" yaw="@-135" filter="only-red">
+        <region id="red-scorebox"/>
+    </portal>
+</portals>
 <itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
-    <item>leather leggings</item>
+    <item>iron leggings</item>
     <item>leather boots</item>
     <item>potion</item>
-    <item>golden apple</item>
-    <item>ender pearl</item>
-    <item>glass bottle</item>
-    <item>arrow</item>
 </itemremove>
+<broadcasts>
+    <tip after="30s">Jump into the scoreboxes with Emeralds to score more points!</tip>
+    <tip after="1m">Jump into the scoreboxes with Emeralds to score more points!</tip>
+    <tip after="3m" count="oo">Jump into the scoreboxes with Emeralds to score more points!</tip>
+    <tip after="8m" count="oo">Don't forget to hydrate and stretch!</tip>
+</broadcasts>
+<timelock>on</timelock>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<!--
-<tutorial>
-    <stage title="TDM Rage">
-        <message>
-            <line>`rThis map is a `aTeam Death Match `r(RAGE) map.</line>
-            <line>`rThe objective is to get the most points before the end of the time limit!</line>
-        </message>
-        <teleport>
-            <point yaw="-150" pitch="10">1675.5,35,-1382.5</point>
-        </teleport>
-    </stage>
-    <stage title="Spawns">
-        <message>
-            <line>`rThis the `cRed Team`r's spawn area.</line>
-        </message>
-        <teleport>
-            <point yaw="-50" pitch="20">1672.5,10,-1366.5</point>
-        </teleport>
-    </stage>
-</tutorial>
--->
+<kill-rewards>
+    <kill-reward>
+        <item amount="1" material="arrow"/>
+        <item amount="1" material="emerald"/> <!-- Used to score more points in boxes -->
+    </kill-reward>
+</kill-rewards>
 </map>
