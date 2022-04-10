@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.1">
 <name>Ultra Twizz</name>
-<version>1.3.0</version>
+<version>1.3.1</version>
 <objective>Capture the wool and return it to your victory monument.</objective>
 <authors>
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="Building."/> <!-- _3Each -->
@@ -90,6 +90,12 @@
             <team>pink</team>
         </not>
     </filter>
+    <filter name="only-trees">
+        <any>
+            <block>leaves</block>
+            <block>log</block>
+        </any>
+    </filter>
 </filters>
 <regions>
     <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
@@ -133,7 +139,10 @@
     <apply block="only-yellow-usage">
         <region name="yellow-wools"/>
     </apply>
-    <apply block="deny-void" message="You cannot build outside the map area!">
+    <apply block-break="only-trees">
+        <everywhere/>
+    </apply>
+    <apply block-place="deny-void" message="You cannot build outside the map area!">
         <negative>
             <region name="bridgezone"/>
         </negative>
