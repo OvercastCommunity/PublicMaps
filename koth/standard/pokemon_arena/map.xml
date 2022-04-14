@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Pokemon Arena</name>
-<version>1.0.2</version>
+<version>1.0.5</version>
 <objective>Be the first team to reach 2500 points!</objective>
 <edition>standard</edition>
 <authors>
@@ -70,14 +70,14 @@
     <apply block="never" use="no-use"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
         <hill name="North" capture="north" progress="north"/>
         <hill name="Middle" capture="mid" progress="mid"/>
         <hill name="South" capture="south" progress="south"/>
     </hills>
 </king>
 <score>
-    <limit>2500</limit>
+    <limit>750</limit>
 </score>
 <toolrepair>
     <tool>stone sword</tool>

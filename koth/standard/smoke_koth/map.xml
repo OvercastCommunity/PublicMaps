@@ -55,7 +55,7 @@
     <apply block="never"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
         <hill name="Top">
             <capture>
                 <cuboid min="60,20,-313" max="67,26,-306"/>
@@ -92,7 +92,7 @@
     </hills>
 </king>
 <score>
-    <limit>2500</limit>
+    <limit>750</limit>
 </score>
 <toolrepair>
     <tool>stone sword</tool>

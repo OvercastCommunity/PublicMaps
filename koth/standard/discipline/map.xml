@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Discipline</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Be the first team to get to 2500 points by capturing the points!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -114,14 +114,14 @@
     <apply block-break="never" block-place="allow-tnt"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
         <hill name="Point A" capture="point-a-capture" progress="point-a-progress"/>
         <hill name="Centre" capture="centre-point-capture" progress="centre-point-progress"/>
         <hill name="Point B" capture="point-b-capture" progress="point-b-progress"/>
     </hills>
 </king>
 <score>
-    <limit>2500</limit>
+    <limit>750</limit>
 </score>
 <item-mods>
     <rule>

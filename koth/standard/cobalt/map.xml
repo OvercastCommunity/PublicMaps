@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Cobalt</name> <!-- Cobalt - Colorblind -->
-<version>2.2.5</version>
+<version>2.2.6</version>
 <objective>Reach 2500 points before the opposing team!</objective>
 <edition>standard</edition>
 <authors>
@@ -70,7 +70,7 @@
     <apply block="never"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
         <hill name="West Hill" capture="cap-region-west" progress="cap-region-west">
             <captured>
                 <cuboid min="259,34,92" max="266,41,99"/>
@@ -89,7 +89,7 @@
     </hills>
 </king>
 <score>
-    <limit>2500</limit>
+    <limit>750</limit>
 </score>
 <spawners>
     <spawner spawn-region="mid-spawn-area" player-region="mid-spawn-radius" delay="6s">

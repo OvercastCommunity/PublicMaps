@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Limbo II</name>
-<version>1.0.9</version>
+<version>1.0.10</version>
 <edition>standard</edition>
 <objective>Be the first team to 2500 points!</objective>
 <authors>
@@ -67,7 +67,7 @@
     <apply block="never" use="never"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
         <hill name="Point A">
             <capture>
                 <cuboid min="-2,18,9" max="3,22,14"/>
@@ -104,7 +104,7 @@
     </hills>
 </king>
 <score>
-    <limit>2500</limit>
+    <limit>750</limit>
 </score>
 <toolrepair>
     <tool>stone sword</tool>

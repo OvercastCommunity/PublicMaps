@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Workshop</name>
-<version>2.0.4</version>
-<objective>Control the hills to be first to 2500 points!</objective>
+<version>2.0.5</version>
+<objective>Control the hills to be first to 750 points!</objective>
 <edition>standard</edition>
 <authors>
     <author uuid="2df2bef6-6f50-4e4e-a891-048990bf1f5c"/> <!-- Blaszczak -->
@@ -64,7 +64,7 @@
     </spawner>
 </spawners>
 <king>
-    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
         <hill name="Point A">
             <capture>
                 <cuboid min="-3,13,-32" max="4,18,-25"/>
@@ -101,7 +101,7 @@
     </hills>
 </king>
 <score>
-    <limit>2500</limit>
+    <limit>750</limit>
 </score>
 <toolrepair>
     <tool>stone sword</tool>
