@@ -11,8 +11,8 @@
     <contributor uuid="c0f05391-054c-4cd4-9968-588fecbd4e16"/> <!-- Razrivon -->
 </contributors>
 <teams>
-    <team id="purple" color="dark purple" max="16">Purple</team>
-    <team id="yellow" color="yellow" max="16">Yellow</team>
+    <team id="purple" color="dark purple" max="18">Purple</team>
+    <team id="yellow" color="yellow" max="18">Yellow</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
