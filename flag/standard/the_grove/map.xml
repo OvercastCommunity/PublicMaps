@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>The Grove</name>
-<version>1.3.4</version>
+<version>1.3.5</version>
 <objective>Control the flag for 150 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>
@@ -82,18 +82,18 @@
     </apply>
 </regions>
 <flags>
-    <post id="center" return-time="0s" respawn-time="7s">
-        <cylinder base="0.5,19,49.5" radius="7" height="7"/>
-    </post>
     <flag id="flag"
           name="Flag"
           color="white"
           shared="true"
-          post="center"
           points-rate="1"
           pickup-kit="flag-kit"
           drop-kit="reset-health"
-          flag-proximity-metric="none"/>
+          flag-proximity-metric="none">
+        <post return-time="0s" respawn-time="7s">
+            <cylinder base="0.5,19,49.5" radius="7" height="7"/>
+        </post>
+    </flag>
 </flags>
 <score>
     <limit>150</limit>

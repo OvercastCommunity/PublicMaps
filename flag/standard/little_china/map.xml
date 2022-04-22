@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Little China</name>
-<version>1.4.2</version>
+<version>1.4.3</version>
 <objective>Control the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <edition>standard</edition>
@@ -39,7 +39,6 @@
     <kit id="reset-health" force="true">
         <effect duration="0" amplifier="0">slowness</effect>
         <effect duration="0" amplifier="0">health boost</effect>
-        <effect duration="1" amplifier="10">regeneration</effect>
     </kit>
 </kits>
 <spawns>
@@ -77,14 +76,15 @@
           name="Flag"
           color="white"
           shared="true"
-          post="post-a"
           points-rate="1"
           pickup-kit="flag-kit"
           drop-kit="reset-health"
           flag-proximity-metric="none"
           show-respawn-on-pickup="true">
-        <post id="post-a" name="Post A" return-time="0s" respawn-time="20s">-100.5,19,-41.5</post>
-        <post id="post-b" name="Post B" return-time="0s" respawn-time="20s">-137.5,21,-41.5</post>
+        <post return-time="0s" respawn-time="20s">
+            <post name="Post A" yaw="-90">-100.5,19,-41.5</post>
+            <post name="Post B" yaw="90">-137.5,21,-41.5</post>
+        </post>
     </flag>
 </flags>
 <score>
@@ -99,6 +99,7 @@
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
     <item>iron boots</item>
+    <item>banner</item>
 </itemremove>
 <itemkeep>
     <item>golden apple</item>

@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Royal</name>
-<version>1.0.6</version>
-<objective>Hold the flag for 250 seconds to win!</objective>
+<version>1.0.7</version>
+<objective>Hold the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
@@ -30,16 +30,16 @@
         <leggings unbreakable="true" material="chainmail leggings">
             <enchantment level="3">projectile_protection</enchantment>
         </leggings>
-        <boots unbreakable="true" material="iron boots">
-            <enchantment level="2">feather_falling</enchantment>
-        </boots>
+        <boots unbreakable="true" material="iron boots"/>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="flag-kit" force="true">
+        <effect>slowness</effect>
         <effect amplifier="-3">health boost</effect>
         <effect duration="3" amplifier="2">absorption</effect>
     </kit>
     <kit id="reset-health" force="true">
+        <effect duration="0" amplifier="0">slowness</effect>
         <effect duration="1" amplifier="0">health boost</effect>
         <effect duration="1" amplifier="10">regeneration</effect>
     </kit>
@@ -163,14 +163,22 @@
     <apply block="never"/>
 </regions>
 <flags>
-    <post id="top-post" return-time="0s" respawn-time="10s">
-        <block>0.5,32,129.5</block>
-    </post>
-    <post id="bottom-post" return-time="0s" respawn-time="10s">
-        <block>0.5,17,129.5</block>
-    </post>
-    <flag id="flag1" name="Top Flag"  shared="true" post="top-post" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health"/>
-    <flag id="flag2" name="Bottom Flag"  shared="true" post="bottom-post" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health"/>
+    <flag id="flag1"
+          name="Top Flag"
+          shared="true"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health">
+        <post return-time="0s" respawn-time="10s">0.5,32,129.5</post>
+    </flag>
+    <flag id="flag2"
+          name="Bottom Flag"
+          shared="true"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health">
+        <post return-time="0s" respawn-time="10s">0.5,17,129.5</post>
+    </flag>
 </flags>
 <score>
     <limit>200</limit>
@@ -184,6 +192,7 @@
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
     <item>iron boots</item>
+    <item>banner</item>
 </itemremove>
 <itemkeep>
     <item>golden apple</item>
@@ -201,4 +210,7 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
 </map>

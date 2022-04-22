@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>6 Sided</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <edition>standard</edition>
 <phase>development</phase>
 <gamemode>kotf</gamemode>
@@ -25,6 +25,8 @@
             <enchantment level="2">projectile_protection</enchantment>
         </leggings>
         <boots unbreakable="true" material="iron boots"/>
+        <effect duration="1" amplifier="0">health boost</effect>
+        <effect duration="2" amplifier="10">regeneration</effect>
         <effect duration="7" amplifier="2">speed</effect>
         <game-mode>adventure</game-mode>
     </kit>
@@ -36,7 +38,6 @@
     <kit id="reset-health" force="true">
         <effect duration="0" amplifier="0">slowness</effect>
         <effect duration="0" amplifier="0">health boost</effect>
-        <effect duration="1" amplifier="10">regeneration</effect>
     </kit>
 </kits>
 <spawns>
@@ -107,14 +108,15 @@
           name="Flag"
           color="white"
           shared="true"
-          post="centre-post"
           points-rate="1"
           pickup-kit="flag-kit"
           drop-kit="reset-health"
-          flag-proximity-metric="closest player"
+          flag-proximity-metric="none"
           show-respawn-on-pickup="true">
-        <post id="centre-post" return-time="0s" respawn-time="1s" name="Centre Post">1231.5,25,-883.5</post>
-        <post id="south-post" return-time="0s" respawn-time="1s" name="South Post">1231.5,27,-828.5</post>
+        <post return-time="0s" respawn-time="20s">
+            <post name="Centre Post">1231.5,25,-883.5</post>
+            <post name="South Post">1231.5,27,-828.5</post>
+        </post>
     </flag>
 </flags>
 <score>
@@ -125,21 +127,21 @@
     <tool>bow</tool>
 </toolrepair>
 <itemremove>
-    <item>golden carrot</item>
     <item>leather helmet</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
     <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
 </itemremove>
 <itemkeep>
     <item>arrow</item>
     <item>golden apple</item>
 </itemkeep>
 <kill-reward>
-    <item amount="10" material="arrow"/>
     <item material="golden apple"/>
+    <item amount="10" material="arrow"/>
 </kill-reward>
-<respawn spectate="true">
+<respawn auto="true" spectate="true">
     <message>
         {"translate":"death.respawn.confirmed.waiting.flagDropped"}
     </message>

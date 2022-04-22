@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Affinity</name>
-<version>1.0.14</version>
+<version>1.1</version>
 <objective>Control the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <edition>standard</edition>
@@ -14,8 +14,8 @@
     <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="xml"/> <!--  Ruediger_LP  -->
 </contributors>
 <teams>
-    <team id="blue-team" color="blue" max="20">Blue</team>
-    <team id="red-team" color="dark red" max="20">Red</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -32,7 +32,8 @@
         <boots unbreakable="true" material="iron boots">
             <enchantment>feather_falling</enchantment>
         </boots>
-        <health>20</health>
+        <effect duration="1" amplifier="0">health boost</effect>
+        <effect duration="2" amplifier="10">regeneration</effect>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="flag-kit" force="true">
@@ -43,7 +44,6 @@
     <kit id="reset-health" force="true">
         <effect duration="0" amplifier="0">slowness</effect>
         <effect duration="0" amplifier="0">health boost</effect>
-        <effect duration="1" amplifier="10">regeneration</effect>
     </kit>
 </kits>
 <spawns>
@@ -80,27 +80,28 @@
     <cuboid id="red-jumppad" min="231,21,189" max="233,22,192"/>
     <apply region="blue-jumppad" velocity="130,3.5,0"/>
     <apply region="red-jumppad" velocity="-130,3.5,0"/>
-    <apply block="never"/>
+    <apply block="never" use="never"/>
 </regions>
 <flags>
     <flag id="flag"
           name="Flag"
           color="purple"
           shared="true"
-          post="centre-post"
           points-rate="1"
           pickup-kit="flag-kit"
           drop-kit="reset-health"
           flag-proximity-metric="none"
           show-respawn-on-pickup="true">
-        <post id="centre-post" name="Centre Post" return-time="0s" respawn-time="20s">
-            <block>189,13,190</block>
-        </post>
-        <post id="north-post" name="North Post" return-time="0s" respawn-time="20s">
-            <block>189,22,180</block>
-        </post>
-        <post id="south-post" name="South Post" return-time="0s" respawn-time="20s">
-            <block>189,22,200</block>
+        <post return-time="0s" respawn-time="20s">
+            <post name="Centre Post">
+                <block>189,13,190</block>
+            </post>
+            <post name="North Post" yaw="0">
+                <block>189,22,180</block>
+            </post>
+            <post name="West Post" yaw="180">
+                <block>189,22,200</block>
+            </post>
         </post>
     </flag>
 </flags>
@@ -121,6 +122,7 @@
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
     <item>iron boots</item>
+    <item>banner</item>
 </itemremove>
 <itemkeep>
     <item>stone sword</item>

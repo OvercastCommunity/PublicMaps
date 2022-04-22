@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Harb KotF</name>
-<version>2.2.4</version>
+<version>2.2.5</version>
 <objective>Control the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>
@@ -23,34 +23,27 @@
         <item slot="3" amount="32" material="ladder"/>
         <item slot="4" amount="2" material="tnt"/>
         <item slot="8" amount="20" material="arrow"/>
+        <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate">
+            <enchantment level="3">blast_protection</enchantment>
+        </chestplate>
         <leggings locked="true" unbreakable="true" material="chainmail leggings">
-            <enchantment level="3">projectile_protection</enchantment>
+            <enchantment level="2">projectile_protection</enchantment>
         </leggings>
         <boots locked="true" unbreakable="true" material="iron boots">
             <enchantment level="2">feather_falling</enchantment>
         </boots>
-        <health>20</health>
-        <game-mode>adventure</game-mode>
-        <effect duration="5">heal</effect>
-        <effect duration="5">damage resistance</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet locked="true" unbreakable="true" color="0066cc" material="leather helmet"/>
-        <chestplate locked="true" unbreakable="true" color="0066cc" material="leather chestplate">
-            <enchantment level="3">blast_protection</enchantment>
-        </chestplate>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet locked="true" unbreakable="true" color="cd0000" material="leather helmet"/>
-        <chestplate locked="true" unbreakable="true" color="cd0000" material="leather chestplate">
-            <enchantment level="3">blast_protection</enchantment>
-        </chestplate>
+        <effect duration="1" amplifier="0">health boost</effect>
+        <effect duration="2" amplifier="10">regeneration</effect>
+        <effect duration="5" amplifier="255">resistance</effect>
     </kit>
     <kit id="flag-kit" force="true">
+        <effect>slowness</effect>
         <effect amplifier="-3">health boost</effect>
         <effect duration="3" amplifier="2">absorption</effect>
     </kit>
     <kit id="reset-health" force="true">
+        <effect duration="0" amplifier="0">slowness</effect>
         <effect duration="1" amplifier="0">health boost</effect>
         <effect duration="2" amplifier="10">regeneration</effect>
     </kit>
@@ -62,13 +55,13 @@
         </region>
     </default>
     <spawns safe="true" sequential="true" filter="has-flag">
-        <spawn team="blue" kit="blue-kit">
+        <spawn team="blue" kit="spawn-kit">
             <regions yaw="0">
                 <cuboid min="-15,32,-57" max="16,42,-32"/>
                 <point>0.5,33,-47.5</point>
             </regions>
         </spawn>
-        <spawn team="red" kit="red-kit">
+        <spawn team="red" kit="spawn-kit">
             <regions yaw="180">
                 <cuboid min="-15,32,33" max="16,42,58"/>
                 <point>0.5,33,48.5</point>
@@ -132,42 +125,29 @@
           name="Flag"
           color="white"
           shared="true"
-          post="centre-post"
           points-rate="1"
           pickup-kit="flag-kit"
           drop-kit="reset-health"
           flag-proximity-metric="none"
           show-respawn-on-pickup="true">
-        <post id="centre-post" return-time="0s" respawn-time="20s" name="Centre Post">0.5,33,0.5</post>
-        <post id="west-tower" return-time="0s" respawn-time="20s" name="West Tower">-29.5,40,0.5</post>
-        <post id="west-post" return-time="0s" respawn-time="20s" name="West Portal">-47.5,32,0.5</post>
-        <post id="east-tower" return-time="0s" respawn-time="20s" name="East Tower">30.5,40,0.5</post>
-        <post id="east-post" return-time="0s" respawn-time="20s" name="East Portal">48.5,32,0.5</post>
+        <post return-time="0s" respawn-time="20s">
+            <post name="Centre Post">0.5,33,0.5</post>
+            <post name="West Tower">-29.5,40,0.5</post>
+            <post name="West Portal">-47.5,32,0.5</post>
+            <post name="East Tower">30.5,40,0.5</post>
+            <post name="East Portal">48.5,32,0.5</post>
+        </post>
     </flag>
 </flags>
 <score>
     <limit>200</limit>
 </score>
-<item-mods>
-    <rule>
-        <match>
-            <material>ladder</material>
-            <material>tnt</material>
-        </match>
-        <modify show-can-place-on="false">
-            <can-place-on>
-                <all-blocks/>
-            </can-place-on>
-        </modify>
-    </rule>
-</item-mods>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
     <tool>shears</tool>
 </toolrepair>
 <itemremove>
-    <item>ladder</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
@@ -177,10 +157,21 @@
     <item>glowstone dust</item>
     <item>string</item>
 </itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <material>ladder</material>
+        </filter>
+        <drops>
+            <item chance="0" material="ladder"/>
+        </drops>
+    </rule>
+</block-drops>
 <itemkeep>
     <item>golden apple</item>
     <item>tnt</item>
     <item>arrow</item>
+    <item>ladder</item>
 </itemkeep>
 <kill-reward>
     <item material="golden apple"/>
