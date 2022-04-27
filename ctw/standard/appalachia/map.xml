@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Appalachia</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Capture the enemy's two wools!</objective>
 <authors>
     <author uuid="b8add1ba-8e13-4673-bc73-4e3ed524d40e"/> <!-- Blazy -->
@@ -90,6 +90,10 @@
         <cuboid id="mid-spawn-drop" min="419.4,10.5,201.4" max="419.6,10.5,201.6"/>
         <cuboid id="mid-spawn-activation" min="425,6,206" max="414,15,197"/>
     </union>
+    <complement id="void">
+        <everywhere/>
+        <rectangle min="356,156" max="483,247"/>
+    </complement>
     <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter the opponent's spawn!"/>
     <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter the opponent's spawn!"/>
     <apply enter="only-blue" region="red-defends" message="You may not enter your team's own wool rooms!"/>
@@ -98,7 +102,7 @@
     <apply block="blue-in-wr" use="only-blue" region="red-defends"/>
     <apply block="red-in-wr" use="only-red" region="blue-defends"/>
     <apply block="never" region="spawner" message="You may not destroy the spawner!"/>
-    <apply block-place="no-void" message="You may not edit the void!"/>
+    <apply block-place="no-void" region="void" message="You may not edit the void!"/>
 </regions>
 <renewables>
     <renewable renew-filter="only-iron" region="spawns"/>
