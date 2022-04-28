@@ -1,0 +1,117 @@
+<map proto="1.4.2">
+<name>Bulletwood</name>
+<version>1.4.4</version>
+<objective>Reach 750 points before the opposing team!</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue" color="blue" max="16">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="3" amplifier="255">resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <cuboid min="-5.5,52,45.5" max="-1.5,52,43.5"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="180">
+            <point>-20.5,11.25,24.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="0">
+            <point>13.5,11.25,-23.5</point>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <union id="spawner-stuff">
+        <cuboid id="gapple-spawn-area" min="-3.4,7.5,0.4" max="-3.6,7.5,0.6"/>
+        <cuboid id="gapple-spawn-radius" min="2,5,-7" max="-9,11,8"/>
+    </union>
+    <union id="cap-region-mid">
+        <cuboid min="-7,12,-3" max="0,15,4"/>
+    </union>
+    <union id="cap-region-blue">
+        <cuboid min="-33,8,-15" max="-26,11,-8"/>
+    </union>
+    <union id="cap-region-red">
+        <cuboid min="19,8,9" max="26,11,16"/>
+    </union>
+    <union id="waterfalls">
+        <cuboid min="-29,15,24" max="-32,16,25"/>
+        <cuboid min="22,15,-23" max="25,16,-24"/>
+    </union>
+    <apply enter="never" region="waterfalls" message="You may not climb the waterfalls!"/>
+    <apply block="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Red's Hill" capture="cap-region-red" progress="cap-region-red">
+            <captured>
+                <cuboid min="19,8,9" max="26,11,16"/>
+            </captured>
+        </hill>
+        <hill name="Mid Hill" capture="cap-region-mid" progress="cap-region-mid">
+            <captured>
+                <cuboid min="-7,12,-3" max="0,15,4"/>
+            </captured>
+        </hill>
+        <hill name="Blue's Hill" capture="cap-region-blue" progress="cap-region-blue">
+            <captured>
+                <cuboid min="-33,8,-15" max="-26,11,-8"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+</score>
+<spawners>
+    <spawner id="gapple-spawner" spawn-region="gapple-spawn-area" player-region="gapple-spawn-radius" max-entities="9999" delay="6s">
+        <item amount="1" material="golden apple"/>
+    </spawner>
+</spawners>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn delay="3s" auto="true"/>
+</map>
