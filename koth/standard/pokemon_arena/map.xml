@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Pokemon Arena</name>
 <version>1.0.6</version>
-<objective>Be the first team to reach 2500 points!</objective>
+<objective>Be the first team to reach 750 points!</objective>
 <edition>standard</edition>
 <authors>
     <author uuid="74948888-fdb8-4446-9340-f7688c2435cc"/> <!-- Zero_Frosty -->
