@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Pokemon Arena</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Be the first team to reach 2500 points!</objective>
 <edition>standard</edition>
 <authors>
@@ -26,24 +26,23 @@
             <enchantment level="2">projectile_protection</enchantment>
         </leggings>
         <boots unbreakable="true" material="iron boots"/>
-        <effect duration="4" amplifier="10">resistance</effect>
-        <effect duration="4" amplifier="10">regeneration</effect>
+        <effect duration="4s" amplifier="255">resistance</effect>
     </kit>
 </kits>
 <spawns>
     <default>
         <region yaw="90">
-            <point>-142.5,153,-163.5</point>
+            <block>-143,92,-164</block>
         </region>
     </default>
     <spawn team="blue-team" kit="spawn-kit">
         <region yaw="-90">
-            <point>-283.5,79,-163.5</point>
+            <block>-284,18,-164</block>
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
         <region yaw="90">
-            <point>-197.5,79,-163.5</point>
+            <block>-198,18,-163</block>
         </region>
     </spawn>
 </spawns>
@@ -56,16 +55,16 @@
 </filters>
 <regions>
     <union id="north">
-        <cuboid min="-243,88,-195" max="-238,92,-188"/>
-        <cuboid min="-244,88,-194" max="-237,92,-189"/>
+        <cuboid min="-243,27,-195" max="-238,29,-188"/>
+        <cuboid min="-244,27,-194" max="-237,29,-189"/>
     </union>
     <union id="mid">
-        <cuboid min="-244,83,-161" max="-237,87,-166"/>
-        <cuboid min="-243,83,-160" max="-238,87,-167"/>
+        <cuboid min="-244,22,-166" max="-237,28,-161"/>
+        <cuboid min="-243,22,-167" max="-238,28,-160"/>
     </union>
     <union id="south">
-        <cuboid min="-238,88,-132" max="-243,92,-139"/>
-        <cuboid min="-237,88,-133" max="-244,92,-138"/>
+        <cuboid min="-243,27,-139" max="-238,29,-132"/>
+        <cuboid min="-244,27,-138" max="-237,29,-133"/>
     </union>
     <apply block="never" use="no-use"/>
 </regions>
