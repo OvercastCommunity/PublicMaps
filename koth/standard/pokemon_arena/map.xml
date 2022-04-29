@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Pokemon Arena</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Be the first team to reach 750 points!</objective>
 <edition>standard</edition>
 <authors>
@@ -32,17 +32,17 @@
 <spawns>
     <default>
         <region yaw="90">
-            <block>-143,92,-164</block>
+            <point>-142.5,92,-163.5</point>
         </region>
     </default>
     <spawn team="blue-team" kit="spawn-kit">
         <region yaw="-90">
-            <block>-284,18,-164</block>
+            <point>-283.5,18,-163.5</point>
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
         <region yaw="90">
-            <block>-198,18,-163</block>
+            <point>-197.5,18,-163.5</point>
         </region>
     </spawn>
 </spawns>
