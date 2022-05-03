@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Mushdoom</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Destroy the opposing team's monument and leak their core!</objective>
 <edition>standard</edition>
 <gamemode>dtc</gamemode>
@@ -24,17 +24,15 @@
         </item>
         <item slot="28" material="arrow"/>
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
-        <item slot="3" unbreakable="true" material="diamond axe">
-            <enchantment>efficiency</enchantment>
-        </item>
+        <item slot="3" unbreakable="true" material="diamond axe"/>
         <item slot="30" unbreakable="true" material="diamond spade"/>
         <item slot="4" amount="64" damage="1" material="wood"/>
         <item slot="31" amount="64" damage="1" material="wood"/>
-        <item slot="32" amount="32" material="ladder"/>
-        <item slot="6" material="water bucket"/>
+        <item slot="6" amount="32" material="ladder"/>
+        <item slot="7" material="water bucket"/>
         <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" material="chainmail chestplate">
+        <chestplate unbreakable="true" material="leather chestplate">
             <enchantment level="4">blast_protection</enchantment>
         </chestplate>
         <leggings unbreakable="true" team-color="true" material="leather leggings"/>
@@ -133,7 +131,7 @@
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
-    <item>chainmail chestplate</item>
+    <item>leather chestplate</item>
     <item>leather leggings</item>
     <item>leather boots</item>
     <item>emerald block</item>
@@ -165,14 +163,14 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple" />
-        <item amount="32" damage="1" material="wood" />
+        <item material="golden apple"/>
+        <item amount="32" damage="1" material="wood"/>
     </kill-reward>
     <kill-reward filter="only-blue">
         <item amount="16" damage="11" material="stained glass"/>
     </kill-reward>
     <kill-reward filter="only-red">
-        <item amount="16" damage="14" material="stained glass" />
+        <item amount="16" damage="14" material="stained glass"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>36</maxbuildheight>
