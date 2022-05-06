@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Mushdoom</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Destroy the opposing team's monument and leak their core!</objective>
 <edition>standard</edition>
 <gamemode>dtc</gamemode>
@@ -54,12 +54,12 @@
     </default>
     <spawn team="blue" kit="blue-kit">
         <region yaw="0">
-            <point>36.5,8,159.5</point>
+            <point>36.5,8,158.5</point>
         </region>
     </spawn>
     <spawn team="red" kit="red-kit">
         <region yaw="180">
-            <point>36.5,8,285.5</point>
+            <point>36.5,8,286.5</point>
         </region>
     </spawn>
 </spawns>
@@ -87,11 +87,11 @@
 <regions>
     <complement id="void">
         <everywhere/>
-        <rectangle min="-16,151" max="89,294"/>
+        <rectangle min="-16,150" max="89,295"/>
     </complement>
     <union id="spawns">
-        <cuboid id="blue-spawn" min="28,0,154" max="45,14,171"/>
-        <cuboid id="red-spawn" min="28,0,274" max="45,14,291"/>
+        <cuboid id="blue-spawn" min="28,0,153" max="45,14,170"/>
+        <cuboid id="red-spawn" min="28,0,275" max="45,14,292"/>
     </union>
     <above id="above-height-limit" y="35"/>
     <apply block="never" region="spawns" message="You may not break or place blocks in the spawns!"/>
@@ -99,27 +99,27 @@
     <apply block="deny-void" region="void" message="You may not build in the void!"/>
     <apply block-place="no-stone"/>
 </regions>
-<destroyables completion="100%" name="Monument" materials="emerald block" show-progress="true">
+<destroyables completion="100%" name="Monument" materials="ender stone" show-progress="true" proximity-metric="none" repairable="false">
     <destroyable owner="blue">
         <region>
-            <cylinder base="59.5,17,187.5" radius="1.5" height="5"/>
+            <cylinder base="59.5,17,186.5" radius="1.5" height="5"/>
         </region>
     </destroyable>
     <destroyable owner="red">
         <region>
-            <cylinder base="59.5,17,257.5" radius="1.5" height="5"/>
+            <cylinder base="59.5,17,258.5" radius="1.5" height="5"/>
         </region>
     </destroyable>
 </destroyables>
-<cores material="obsidian" leak="3" name="Core" modes="gold-core ice-core">
+<cores material="obsidian" leak="2" name="Core" modes="gold-core ice-core" proximity-metric="none" repairable="false">
     <core team="blue">
         <region>
-            <cylinder base="13.5,18,187.5" radius="2.5" height="5"/>
+            <cylinder base="13.5,17,186.5" radius="2.5" height="5"/>
         </region>
     </core>
     <core team="red">
         <region>
-            <cylinder base="13.5,18,257.5" radius="2.5" height="5"/>
+            <cylinder base="13.5,17,258.5" radius="2.5" height="5"/>
         </region>
     </core>
 </cores>
@@ -140,7 +140,7 @@
     <item>leather chestplate</item>
     <item>leather leggings</item>
     <item>leather boots</item>
-    <item>emerald block</item>
+    <item>ender stone</item>
     <item>obsidian</item>
     <item>gold block</item>
     <item>packed ice</item>
