@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Japan</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Bring the enemy's wool back to your own side.</objective>
 <authors>
     <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- ViceWatercolour -->
@@ -12,7 +12,7 @@
 <kits>
     <kit id="spawn-kit">
         <clear/>
-        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow">
             <enchantment>infinity</enchantment>
         </item>
@@ -25,8 +25,8 @@
         <item slot="5" amount="48" material="glass"/>
         <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" material="chainmail chestplate"/>
-        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" material="iron boots"/>
         <effect duration="5s" amplifier="255">damage resistance</effect>
     </kit>
@@ -81,6 +81,7 @@
         <everywhere/>
         <rectangle id="mid" min="31,-21" max="6,-4"/>
     </complement>
+    <apply use="deny-beacon"/>
     <apply enter="only-orange" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="only-green" region="green-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="only-green" use="only-green" region="red-for-green" message="You may not enter your team's own wool room!"/>
@@ -89,7 +90,6 @@
     <apply block="orange-in-wr" region="cyan-for-orange" message="You may not modify chests in the wool room, or modify your team's own wool room."/>
     <apply block="never" region="spawns" message="You may not modify the spawns!"/>
     <apply block="deny-void" region="void" message="You may not place or break blocks here!"/>
-    <apply use="deny-beacon"/>
 </regions>
 <wools>
     <wool team="green" color="red" location="-81,12,31">
@@ -104,7 +104,7 @@
     </wool>
 </wools>
 <toolrepair>
-    <tool>iron sword</tool>
+    <tool>stone sword</tool>
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
     <tool>iron axe</tool>
@@ -114,10 +114,12 @@
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
-    <item>chainmail chestplate</item>
-    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
     <item>iron boots</item>
     <item>glowstone dust</item>
+    <item>beacon</item>
+    <item>gold block</item>
 </itemremove>
 <block-drops>
     <rule>
