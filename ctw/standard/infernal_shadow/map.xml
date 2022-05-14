@@ -95,8 +95,8 @@
     <rectangle name="red-wool-room" min="76,-6" max="92,7"/>
     <cuboid name="green-spawn" min="37,0,-6" max="54,12,7"/>
     <cuboid name="red-spawn" min="-48,0,7" max="-65,12,-6"/>
-	<block id="green-team-wool">85,13,0</block>
-    <block id="red-team-wool">-97,13,0</block>
+	<block id="green-team-wool">85,12,0</block>
+    <block id="red-team-wool">-97,12,0</block>
 	<block id="green-team-golden-apple">85,16,0</block>
     <block id="red-team-golden-apple">-97,16,0</block>
     <apply enter="only-green" block="only-green" message="`cYou may not access/modify the wool room you're defending!">
@@ -143,13 +143,17 @@
 </regions>
 <spawners>
 	<spawner spawn-region="green-team-wool" player-region="green-wool-room" delay="3s">
-        <item material="wool" amount="3" damage="13"/>
+        	<item material="wool" amount="3" damage="13"/>
+	</spawner>	
 	<spawner spawn-region="red-team-wool" player-region="red-wool-room" delay="3s">
-        <item material="wool" amount="3" damage="14"/>
+        	<item material="wool" amount="3" damage="14"/>
+	</spawner>	
 	<spawner spawn-region="green-team-golden-apple" player-region="green-wool-room" delay="3s">
-        <item amount="1" material="golden apple"/>
+        	<item amount="1" material="golden apple"/>
+	</spawner>	
 	<spawner spawn-region="red-team-golden-apple" player-region="red-wool-room" delay="3s">
-        <item amount="1" material="golden apple"/>
+        	<item amount="1" material="golden apple"/>
+	</spawner>	
 </spawners>
 <toolrepair>
     <tool>stone sword</tool>
