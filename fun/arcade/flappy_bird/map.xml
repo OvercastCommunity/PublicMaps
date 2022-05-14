@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0" game="Flappy Bird">
 <name>Flappy Bird</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <gamemode>Arcade</gamemode>
 <objective>Jump and do not hit the pipes!</objective>
 <authors>
@@ -9,13 +9,10 @@
     <author uuid="2a2c4c30-ecf6-4e4a-b5bc-be8cf033563e"/> <!-- Felipu_feliu -->
 </authors>
 <players min="2" max="60" show-name-tags="false" colors="true"/>
-<blitz>
-    <lives>1</lives>
-</blitz>
 <time>68s</time>
 <broadcasts>
     <tip after="1s">Double tapping will make you jump</tip>
-    <tip after="2s">The jump will follow your head movement,just look wherever you want to go</tip>
+    <tip after="2s">The jump will follow your head movement, just look wherever you want to go</tip>
     <tip after="3s">Dont ever stop jumping!</tip>
     <alert after="4s">3..</alert>
     <alert after="5s">2..</alert>
@@ -404,7 +401,7 @@
     <limit>20</limit>
     <kills>0</kills>
     <deaths>0</deaths>
-    <box points="1">
+    <box points="1" silent="true">
         <region>
             <region id="Pipe-1"/>
             <region id="Pipe-2"/>
