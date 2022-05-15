@@ -1,12 +1,12 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Rift</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Destroy the enemy's three Inhibitor Crystals and one large Nexus Crystal to win!</objective>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!--  Lyzak  -->
 </authors>
 <contributors>
-    <contributor uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87" contribution="Building Assistance"/> <!-- Torn_Ares -->
+    <contributor uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87" contribution="Building assistance"/> <!-- Torn_Ares -->
 </contributors>
 <teams>
    <team id="cyan" color="dark aqua" max="75">Cyan</team>
@@ -14,192 +14,135 @@
 </teams>
 <kits>
     <kit id="heal">
-        <effect duration="10" amplifier="4">damage resistance</effect>
-        <effect duration="5" amplifier="1">heal</effect>
+        <effect duration="10s" amplifier="4">damage resistance</effect>
+        <effect duration="5s">heal</effect>
     </kit>
     <kit id="spawn-kit" parents="heal">
+        <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" amount="64" material="bread"/>
         <item slot="8" material="emerald"/>
-        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
-        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
     </kit>
 </kits>
 <filters>
     <allow id="allow-world">
         <cause>world</cause>
     </allow>
-    <all id="blocks-only">
-        <any>
-            <material>stained glass</material>
-            <material>packed ice</material>
-            <material>redstone ore</material>
-            <material>glowing redstone ore</material>
-            <material>tnt</material>
-        </any>
-    </all>
-    <all id="no-cyan">
-        <filter id="blocks-only"/>
-        <not>
-            <team>cyan</team>
-        </not>
-    </all>
-    <all id="no-purple">
-        <filter id="blocks-only"/>
-        <not>
-            <team>purple</team>
-        </not>
-    </all>
-    <team id="only-cyan">cyan</team>
-    <team id="only-purple">purple</team>
+    <any id="blocks-only">
+        <material>stained glass</material>
+        <material>packed ice</material>
+        <material>redstone ore</material>
+        <material>glowing redstone ore</material>
+        <material>tnt</material>
+    </any>
+    <deny id="deny-cyan">
+        <team id="only-cyan">cyan</team>
+    </deny>
+    <deny id="deny-purple">
+        <team id="only-purple">purple</team>
+    </deny>
 </filters>
 <regions>
-    <!-- Region Definitions -->
-    <cuboid id="default-spawn" min="-144,49,-1" max="-141,50,2"/>
-    <cylinder id="cyan-spawn" base="96,12.5,96" radius="4" height="0"/>
-    <circle id="cyan-base" center="96,96" radius="17"/>
-    <complement id="cyan-platform">
-        <circle center="96,96" radius="73"/>
-        <region id="cyan-base"/>
-    </complement>
-    <cuboid id="cyan-teleport-1" min="60,20,78" max="61,22,79"/>
-    <cuboid id="cyan-teleport-2" min="78,20,60" max="79,22,61"/>
-    <cuboid id="cyan-teleport-3" min="32,20,96" max="33,22,97"/>
-    <cuboid id="cyan-teleport-4" min="46,20,46" max="47,22,47"/>
-    <cuboid id="cyan-teleport-5" min="96,20,32" max="97,22,33"/>
-    <cuboid id="cyan-teleport-6" min="-17,17,82" max="-16,19,83"/>
-    <cuboid id="cyan-teleport-7" min="32,17,12" max="33,19,13"/>
-    <cuboid id="cyan-teleport-8" min="91,17,-32" max="92,19,-31"/>
-    <cuboid id="cyan-tower-1" min="56,9,74" max="65,25,83"/>
-    <cuboid id="cyan-tower-2" min="74,9,56" max="83,25,65"/>
-    <cuboid id="cyan-tower-3" min="28,9,92" max="37,25,101"/>
-    <cuboid id="cyan-tower-4" min="42,9,42" max="51,25,51"/>
-    <cuboid id="cyan-tower-5" min="92,9,28" max="101,25,37"/>
-    <cuboid id="cyan-tower-6" min="-21,6,78" max="-12,22,87"/>
-    <cuboid id="cyan-tower-7" min="28,6,8" max="37,22,17"/>
-    <cuboid id="cyan-tower-8" min="87,6,-36" max="96,22,-27"/>
-    <cuboid id="cyan-nexus" min="71,11,71" max="80,18,80"/>
-    <cuboid id="cyan-l-inhibitor" min="44,10,94" max="49,15,99"/>
-    <cuboid id="cyan-m-inhibitor" min="55,10,55" max="60,15,60"/>
-    <cuboid id="cyan-r-inhibitor" min="94,10,44" max="99,15,49"/>
-    <cuboid id="cyan-pit-escape" min="40,3,-32" max="41,4,-31"/>
-    <union id="cyan-portals">
-        <region id="cyan-teleport-1"/>
-        <region id="cyan-teleport-2"/>
-        <region id="cyan-teleport-3"/>
-        <region id="cyan-teleport-4"/>
-        <region id="cyan-teleport-5"/>
-        <region id="cyan-teleport-6"/>
-        <region id="cyan-teleport-7"/>
-        <region id="cyan-teleport-8"/>
+    <union id="spawn-points">
+        <cylinder id="default-spawn" base="-142.5,49,0.5" radius="1.5" height="0"/>
+        <cylinder id="cyan-spawn" base="96.5,12.5,96.5" radius="3" height="0"/>
+        <cylinder id="purple-spawn" base="-95.5,12,-95.5" radius="3" height="0"/>
     </union>
-    <cylinder id="purple-spawn" base="-96,12,-96" radius="4" height="0"/>
-    <circle id="purple-base" center="-96,-96" radius="17"/>
-    <complement id="purple-platform">
-        <circle center="-96,-96" radius="73"/>
-        <region id="purple-base"/>
-    </complement>
-    <cuboid id="purple-teleport-1" min="-60,20,-78" max="-59,22,-77"/>
-    <cuboid id="purple-teleport-2" min="-78,20,-60" max="-77,22,-59"/>
-    <cuboid id="purple-teleport-3" min="-32,20,-96" max="-31,22,-95"/>
-    <cuboid id="purple-teleport-4" min="-46,20,-46" max="-45,22,-45"/>
-    <cuboid id="purple-teleport-5" min="-96,20,-32" max="-95,22,-31"/>
-    <cuboid id="purple-teleport-6" min="17,17,-82" max="18,19,-81"/>
-    <cuboid id="purple-teleport-7" min="-32,17,-12" max="-31,19,-11"/>
-    <cuboid id="purple-teleport-8" min="-91,17,32" max="-90,19,33"/>
-    <cuboid id="purple-tower-1" min="-64,9,-82" max="-55,25,-73"/>
-    <cuboid id="purple-tower-2" min="-82,9,-64" max="-73,25,-55"/>
-    <cuboid id="purple-tower-3" min="-36,9,-100" max="-27,25,-91"/>
-    <cuboid id="purple-tower-4" min="-50,9,-50" max="-41,25,-41"/>
-    <cuboid id="purple-tower-5" min="-100,9,-36" max="-91,25,-27"/>
-    <cuboid id="purple-tower-6" min="13,6,-86" max="22,22,-77"/>
-    <cuboid id="purple-tower-7" min="-36,6,-16" max="-27,22,-7"/>
-    <cuboid id="purple-tower-8" min="-95,6,28" max="-86,22,37"/>
-    <cuboid id="purple-nexus" min="-79,11,-79" max="-70,18,-70"/>
-    <cuboid id="purple-l-inhibitor" min="-48,10,-98" max="-43,15,-93"/>
-    <cuboid id="purple-m-inhibitor" min="-59,10,-59" max="-54,15,-54"/>
-    <cuboid id="purple-r-inhibitor" min="-98,10,-48" max="-93,15,-43"/>
-    <cuboid id="purple-pit-escape" min="-40,3,32" max="-39,4,33"/>
-    <union id="purple-portals">
-        <region id="purple-teleport-1"/>
-        <region id="purple-teleport-2"/>
-        <region id="purple-teleport-3"/>
-        <region id="purple-teleport-4"/>
-        <region id="purple-teleport-5"/>
-        <region id="purple-teleport-6"/>
-        <region id="purple-teleport-7"/>
-        <region id="purple-teleport-8"/>
+    <union id="destroyables">
+        <union id="cyan-destroyables">
+            <cuboid id="cyan-nexus" min="71,11,71" max="80,18,80"/>
+            <cuboid id="cyan-l-inhibitor" min="44,10,94" max="49,15,99"/>
+            <cuboid id="cyan-m-inhibitor" min="55,10,55" max="60,15,60"/>
+            <cuboid id="cyan-r-inhibitor" min="94,10,44" max="99,15,49"/>
+        </union>
+        <union id="purple-destroyables">
+            <cuboid id="purple-nexus" min="-79,11,-79" max="-70,18,-70"/>
+            <cuboid id="purple-l-inhibitor" min="-48,10,-98" max="-43,15,-93"/>
+            <cuboid id="purple-m-inhibitor" min="-59,10,-59" max="-54,15,-54"/>
+            <cuboid id="purple-r-inhibitor" min="-98,10,-48" max="-93,15,-43"/>
+        </union>
     </union>
-    <!-- No-Tree Regions/Filters -->
+    <union id="portals">
+        <union id="cyan-portals">
+            <cuboid id="cyan-teleport-1" min="60,20,78" max="61,22,79"/>
+            <cuboid id="cyan-teleport-2" min="78,20,60" max="79,22,61"/>
+            <cuboid id="cyan-teleport-3" min="32,20,96" max="33,22,97"/>
+            <cuboid id="cyan-teleport-4" min="46,20,46" max="47,22,47"/>
+            <cuboid id="cyan-teleport-5" min="96,20,32" max="97,22,33"/>
+            <cuboid id="cyan-teleport-6" min="-17,17,82" max="-16,19,83"/>
+            <cuboid id="cyan-teleport-7" min="32,17,12" max="33,19,13"/>
+            <cuboid id="cyan-teleport-8" min="91,17,-32" max="92,19,-31"/>
+            <cuboid id="cyan-pit-escape" min="40,3,-32" max="41,4,-31"/>
+        </union>
+        <union id="purple-portals">
+            <cuboid id="purple-teleport-1" min="-60,20,-78" max="-59,22,-77"/>
+            <cuboid id="purple-teleport-2" min="-78,20,-60" max="-77,22,-59"/>
+            <cuboid id="purple-teleport-3" min="-32,20,-96" max="-31,22,-95"/>
+            <cuboid id="purple-teleport-4" min="-46,20,-46" max="-45,22,-45"/>
+            <cuboid id="purple-teleport-5" min="-96,20,-32" max="-95,22,-31"/>
+            <cuboid id="purple-teleport-6" min="17,17,-82" max="18,19,-81"/>
+            <cuboid id="purple-teleport-7" min="-32,17,-12" max="-31,19,-11"/>
+            <cuboid id="purple-teleport-8" min="-91,17,32" max="-90,19,33"/>
+            <cuboid id="purple-pit-escape" min="-40,3,32" max="-39,4,33"/>
+        </union>
+    </union>
     <complement id="no-trees">
         <above id="above-10" y="10"/>
-        <circle id="no-tree-cyan-base" center="112,112" radius="102"/>
-        <region id="cyan-tower-1"/>
-        <region id="cyan-tower-2"/>
-        <region id="cyan-tower-3"/>
-        <region id="cyan-tower-4"/>
-        <region id="cyan-tower-5"/>
+        <circle id="no-tree-cyan-base" center="111.5,111.5" radius="103"/>
+        <circle id="no-tree-purple-base" center="-110.5,-110.5" radius="103"/>
+        <union id="towers">
+            <cuboid id="cyan-tower-1" min="56,9,74" max="65,25,83"/>
+            <cuboid id="cyan-tower-2" min="74,9,56" max="83,25,65"/>
+            <cuboid id="cyan-tower-3" min="28,9,92" max="37,25,101"/>
+            <cuboid id="cyan-tower-4" min="42,9,42" max="51,25,51"/>
+            <cuboid id="cyan-tower-5" min="92,9,28" max="101,25,37"/>
+            <cuboid id="cyan-tower-6" min="-21,6,78" max="-12,22,87"/>
+            <cuboid id="cyan-tower-7" min="28,6,8" max="37,22,17"/>
+            <cuboid id="cyan-tower-8" min="87,6,-36" max="96,22,-27"/>
+            <cuboid id="purple-tower-1" min="-64,9,-82" max="-55,25,-73"/>
+            <cuboid id="purple-tower-2" min="-82,9,-64" max="-73,25,-55"/>
+            <cuboid id="purple-tower-3" min="-36,9,-100" max="-27,25,-91"/>
+            <cuboid id="purple-tower-4" min="-50,9,-50" max="-41,25,-41"/>
+            <cuboid id="purple-tower-5" min="-100,9,-36" max="-91,25,-27"/>
+            <cuboid id="purple-tower-6" min="13,6,-86" max="22,22,-77"/>
+            <cuboid id="purple-tower-7" min="-36,6,-16" max="-27,22,-7"/>
+            <cuboid id="purple-tower-8" min="-95,6,28" max="-86,22,37"/>
+        </union>
+    </complement>
+    <union id="no-block-cyan">
+        <complement id="cyan-platform">
+            <circle center="96.5,96.5" radius="74"/>
+            <circle id="cyan-base" center="96.5,96.5" radius="18"/>
+        </complement>
         <region id="cyan-tower-6"/>
         <region id="cyan-tower-7"/>
         <region id="cyan-tower-8"/>
-        <circle id="no-tree-purple-base" center="-111,-111" radius="102"/>
-        <region id="purple-tower-1"/>
-        <region id="purple-tower-2"/>
-        <region id="purple-tower-3"/>
-        <region id="purple-tower-4"/>
-        <region id="purple-tower-5"/>
+    </union>
+    <union id="no-block-purple">
+        <complement id="purple-platform">
+            <circle center="-95.5,-95.5" radius="74"/>
+            <circle id="purple-base" center="-95.5,-95.5" radius="18"/>
+        </complement>
         <region id="purple-tower-6"/>
         <region id="purple-tower-7"/>
         <region id="purple-tower-8"/>
-    </complement>
-    <apply enter="never" message="The tree tops are off limits!" region="no-trees"/>
-    <!-- Filter Applications -->
-    <apply enter="only-cyan" message="You may not enter the enemy team's base!" region="cyan-base"/>
-    <apply enter="only-purple" message="You may not enter the enemy team's base!" region="purple-base"/>
+    </union>
+    <union id="bases">
+        <region id="cyan-base"/>
+        <region id="purple-base"/>
+    </union>
+    <apply enter="never" region="no-trees" message="The tree tops are off limits!"/>
+    <apply enter="only-cyan" region="cyan-base" message="You may not enter the enemy team's base!"/>
+    <apply enter="only-purple" region="purple-base" message="You may not enter the enemy team's base!"/>
     <apply kit="heal" enter="only-cyan" region="cyan-portals"/>
     <apply kit="heal" enter="only-purple" region="purple-portals"/>
-    <apply block="allow-world">
-        <region>
-            <region id="cyan-tower-1"/>
-            <region id="cyan-tower-2"/>
-            <region id="cyan-tower-3"/>
-            <region id="cyan-tower-4"/>
-            <region id="cyan-tower-5"/>
-            <region id="cyan-tower-6"/>
-            <region id="cyan-tower-7"/>
-            <region id="cyan-tower-8"/>
-            <region id="purple-tower-1"/>
-            <region id="purple-tower-2"/>
-            <region id="purple-tower-3"/>
-            <region id="purple-tower-4"/>
-            <region id="purple-tower-5"/>
-            <region id="purple-tower-6"/>
-            <region id="purple-tower-7"/>
-            <region id="purple-tower-8"/>
-        </region>
-    </apply>
-    <apply block="never">
-        <region>
-            <region id="cyan-base"/>
-            <region id="purple-base"/>
-        </region>
-    </apply>
-    <apply block="no-cyan">
-        <region>
-            <region id="cyan-platform"/>
-            <region id="cyan-tower-6"/>
-            <region id="cyan-tower-7"/>
-            <region id="cyan-tower-8"/>
-        </region>
-    </apply>
-    <apply block="no-purple">
-        <region>
-            <region id="purple-platform"/>
-            <region id="purple-tower-6"/>
-            <region id="purple-tower-7"/>
-            <region id="purple-tower-8"/>
-        </region>
-    </apply>
+    <apply block="never" region="bases"/>
+    <apply block="allow-world" region="towers"/>
+    <apply block="deny-cyan" region="no-block-cyan"/>
+    <apply block="deny-purple" region="no-block-purple"/>
     <apply block="blocks-only"/>
 </regions>
 <spawns>
@@ -225,8 +168,10 @@
 </destroyables>
 <itemremove>
     <item>stone sword</item>
-    <item>leather chestplate</item>
     <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
     <item>bow</item>
     <item>arrow</item>
     <item>bow</item>
@@ -246,8 +191,12 @@
     <item>glass bottle</item>
     <item>prismarine shard</item>
 </itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
 <kill-reward>
-    <item amount="2">emerald</item>
+    <item material="golden apple"/>
+    <item amount="2" material="emerald"/>
 </kill-reward>
 <mobs>
     <filter>
@@ -271,4 +220,7 @@
     <instantignite>on</instantignite>
     <yield>0</yield>
 </tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
