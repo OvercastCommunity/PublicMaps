@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Royal</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Hold the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>
@@ -28,7 +28,7 @@
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="3">projectile_protection</enchantment>
+            <enchantment level="2">projectile_protection</enchantment>
         </leggings>
         <boots unbreakable="true" material="iron boots"/>
         <game-mode>adventure</game-mode>
@@ -36,13 +36,21 @@
     <kit id="flag-kit" force="true">
         <effect>slowness</effect>
         <effect amplifier="-3">health boost</effect>
-        <effect duration="3" amplifier="2">absorption</effect>
+        <effect duration="3s" amplifier="2">absorption</effect>
     </kit>
     <kit id="reset-health" force="true">
-        <effect duration="0" amplifier="0">slowness</effect>
-        <effect duration="1" amplifier="0">health boost</effect>
-        <effect duration="1" amplifier="10">regeneration</effect>
+        <effect duration="0s" amplifier="0">slowness</effect>
+        <effect duration="1s" amplifier="0">health boost</effect>
+        <effect duration="1s" amplifier="10">regeneration</effect>
     </kit>
+    <kit id="jump">
+        <effect amplifier="255">jump</effect>
+    </kit>
+    <take kit="jump">
+        <filter>
+            <grounded/>
+        </filter>
+    </take>
 </kits>
 <spawns>
     <default>
@@ -88,79 +96,82 @@
     </any>
 </filters>
 <regions>
-    <cuboid id="test" min="-19,13,147" max="-17,15,149"/>
     <!-- Corners -->
     <!--  Green Yellow Pad  -->
-    <apply velocity="-0.5,1.7,0.5" region="test"/>
+    <apply kit="jump" velocity="-0.5,1.7,0.5">
+        <region>
+            <cuboid min="-19,13,147" max="-17,15,149"/>
+        </region>
+    </apply>
     <!--  Yellow Blue Pad  -->
-    <apply velocity="0.5,1.7,0.5">
+    <apply kit="jump" velocity="0.5,1.7,0.5">
         <region>
             <cuboid min="18,13,147" max="20,15,149"/>
         </region>
     </apply>
     <!--  Blue Red Pad  -->
-    <apply velocity="0.5,1.7,-0.5">
+    <apply kit="jump" velocity="0.5,1.7,-0.5">
         <region>
             <cuboid min="18,13,110" max="20,15,112"/>
         </region>
     </apply>
     <!--  Red Green Pad  -->
-    <apply velocity="-0.5,1.7,-0.5">
+    <apply kit="jump" velocity="-0.5,1.7,-0.5">
         <region>
             <cuboid min="-19,13,110" max="-17,15,112"/>
         </region>
     </apply>
     <!-- To Mid -->
     <!-- Red -->
-    <apply velocity="0,1.2,1.1">
+    <apply kit="jump" velocity="0,1.2,1.1">
         <region>
             <block>0.5,27,119.5</block>
         </region>
     </apply>
     <!--   Blue   -->
-    <apply velocity="-1.1,1.2,0">
+    <apply kit="jump" velocity="-1.1,1.2,0">
         <region>
             <block>10.5,27,129.5</block>
         </region>
     </apply>
     <!--  Green   -->
-    <apply velocity="1.1,1.2,0">
+    <apply kit="jump" velocity="1.1,1.2,0">
         <region>
             <block>-9.5,27,129.5</block>
         </region>
     </apply>
     <!--  Yellow   -->
-    <apply velocity="0,1.2,-1.1">
+    <apply kit="jump" velocity="0,1.2,-1.1">
         <region>
             <block>0.5,27,139.5</block>
         </region>
     </apply>
    <!-- From Mid -->
     <!-- Red -->
-    <apply velocity="0,0.7,-1.5">
+    <apply kit="jump" velocity="0,0.7,-1.5">
         <region>
             <block>0.5,31,125.5</block>
         </region>
     </apply>
     <!--   Blue   -->
-    <apply velocity="1.5,0.7,0">
+    <apply kit="jump" velocity="1.5,0.7,0">
         <region>
             <block>4.5,31,129.5</block>
         </region>
     </apply>
     <!--  Green   -->
-    <apply velocity="-1.5,0.7,0">
+    <apply kit="jump" velocity="-1.5,0.7,0">
         <region>
             <block>-3.5,31,129.5</block>
         </region>
     </apply>
     <!--  Yellow   -->
-    <apply velocity="0,0.7,1.5">
+    <apply kit="jump" velocity="0,0.7,1.5">
         <region>
             <block>0.5,31,133.5</block>
         </region>
     </apply>
-    <apply block="never"/>
+    <apply block="never" use="never"/>
 </regions>
 <flags>
     <flag id="flag1"
@@ -210,7 +221,4 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<disabledamage>
-    <damage>fall</damage>
-</disabledamage>
 </map>
