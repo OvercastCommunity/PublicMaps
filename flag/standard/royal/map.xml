@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Royal</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Hold the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>
@@ -30,7 +30,9 @@
         <leggings unbreakable="true" material="chainmail leggings">
             <enchantment level="2">projectile_protection</enchantment>
         </leggings>
-        <boots unbreakable="true" material="iron boots"/>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="flag-kit" force="true">
@@ -82,15 +84,13 @@
 <filters>
     <any id="has-flag">
         <carrying-flag>flag1</carrying-flag>
-        <not>
-            <same-team>
-                <carrying-flag>flag1</carrying-flag>
-            </same-team>
-        </not>
         <carrying-flag>flag2</carrying-flag>
         <not>
             <same-team>
-                <carrying-flag>flag2</carrying-flag>
+                <any>
+                    <carrying-flag>flag1</carrying-flag>
+                    <carrying-flag>flag2</carrying-flag>
+                </any>
             </same-team>
         </not>
     </any>
