@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Stranger Things</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Capture both of the enemy team's wools!</objective>
 <edition>standard</edition> 
 <created>2021-07-02</created>
@@ -11,8 +11,8 @@
     <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac"/> <!-- mameBT -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="16">Blue</team>
-    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue" color="blue" max="18">Blue</team>
+    <team id="red" color="dark red" max="18">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">
@@ -21,8 +21,10 @@
     <kit id="spawn-kit" parents="default-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="28" amount="40" material="arrow"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
         <item slot="2" unbreakable="true" material="iron pickaxe">
             <enchantment>efficiency</enchantment>
         </item>
