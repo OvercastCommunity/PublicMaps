@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Desert Country</name>
-<version>1.0.11</version>
+<version>1.0.12</version>
 <objective>Capture the wools located on the opposite side.</objective>
 <gamemode>ctw</gamemode>
 <!-- Map authors & contributors. -->
@@ -228,7 +228,7 @@
     <kill-reward>
         <item material="golden apple"/>
         <item amount="16" damage="3" material="wood"/>
-        <item amount="8" damage="3" material="red sandstone"/>
+        <item amount="8" material="red sandstone"/>
         <item amount="16" material="arrow"/>
     </kill-reward>
 </kill-rewards>
