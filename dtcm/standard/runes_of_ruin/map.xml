@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Runes of Ruin</name>
-<version>1.2.11</version>
+<version>1.2.12</version>
 <objective>Leak lava from the enemy's obsidian core</objective>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
@@ -91,7 +91,7 @@
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
     <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
-<cores material="obsidian" leak="4" mode="gold-core ice-core">
+<cores material="obsidian" leak="4" modes="gold-core ice-core">
     <core team="blue">
         <region>
             <cuboid min="426,19,634" max="422,23,630"/>
