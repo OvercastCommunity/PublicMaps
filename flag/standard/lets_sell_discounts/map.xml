@@ -1,0 +1,236 @@
+<map proto="1.4.2">
+<name>Let's Sell Discounts</name>
+<version>1.1.2</version>
+<objective>Capture the enemy team's flag</objective>
+<time result="score" overtime="1m" max-overtime="2m">12m</time>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <author uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Winnerizor -->
+    <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</authors>
+<contributors>
+    <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b"/> <!-- jexel -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="12">red</team>
+    <team id="blue-team" color="blue" max="12">blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="diamond pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" material="golden apple"/>
+        <item slot="28" amount="12" material="arrow"/>
+         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="iron leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
+        <effect duration="4s">instant_health</effect>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <item slot="4" amount="32" damage="11" material="stained clay"/>
+        <item slot="5" amount="8" damage="11" material="stained glass"/>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <item slot="4" amount="32" damage="14" material="stained clay"/>
+        <item slot="5" amount="8" damage="14" material="stained glass"/>
+    </kit>
+    <kit id="flag-pickup">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-reset">
+        <effect duration="0" amplifier="0">slowness</effect>
+    </kit>
+    <kit id="flag-room-regen">
+        <effect amplifier="1">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red-kit">
+        <region yaw="-135">
+            <cuboid min="16,13,154" max="19,14,151"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit">
+        <region yaw="45">
+            <cuboid min="112,13,58" max="109,14,61"/>
+        </region>
+    </spawn>
+    <default>
+        <region yaw="90">
+            <point>140.5,68,95.5</point>
+        </region>
+    </default>
+</spawns>
+<broadcasts>
+    <alert after="1s">The flag will alternate between post locations when respawning. Pay attention to chat when returning the flag!</alert>
+    <alert after="2s">The flag rooms are NOT protected. Either team can enter them.</alert>
+</broadcasts>
+<filters>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+    <time id="flag-respawns">0</time>
+    <any id="only-blocks">
+        <material>stained clay:2</material>
+        <material>stained clay:11</material>
+        <material>stained clay:14</material>
+        <material>stained glass</material>
+        <material>leaves_2</material>
+        <material>long grass</material>
+        <material>red rose</material>
+    </any>
+    <not id="not-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <cylinder id="left-spawner-player" base="81,10,123" radius="5" height="3"/>
+    <point id="left-spawner-spawn">81.5,11,123.5</point>
+    <cylinder id="right-spawner-player" base="46,10,88" radius="5" height="3"/>
+    <point id="right-spawner-spawn">46.5,11,88.5</point>
+    <cylinder id="blue-arrow-player" base="74,17,95" radius="5" height="3"/>
+    <point id="blue-arrow-spawn">74.5,17.5,95.5</point>
+    <cylinder id="red-arrow-player" base="53,17,116" radius="5" height="3"/>
+    <point id="red-arrow-spawn">53.5,17.5,116.5</point>
+    <union id="flag-regions">
+        <cuboid min="51,17,153" max="56,24,158"/> <!-- red right -->
+        <cuboid min="12,17,119" max="17,24,114"/> <!-- red left -->
+        <cuboid min="77,17,54" max="72,24,59"/> <!-- blue right -->
+        <cuboid min="111,17,98" max="116,24,93"/> <!-- blue left -->
+    </union>
+    <union id="flag-nets">
+        <union id="red-net">
+            <cylinder base="35.5,4,135.5" radius="2.5" height="4"/>
+            <cylinder base="34.5,4,134.5" radius="2.5" height="4"/>
+        </union>
+        <union id="blue-net">
+            <cylinder base="92.5,4,76.5" radius="2.5" height="4"/>
+            <cylinder base="93.5,4,77.5" radius="2.5" height="4"/>
+        </union>
+    </union>
+    <union id="spawns">
+        <rectangle min="13,157" max="30,140"/>
+        <rectangle min="115,55" max="98,72"/>
+    </union>
+    <union id="spawn-drops">
+        <rectangle min="34,136" max="26,144"/>
+        <rectangle min="94,76" max="102,68"/>
+    </union>
+    <negative id="void-region">
+        <complement id="map-region">
+            <union>
+                <rectangle min="22,64" max="106,148"/> <!-- middle -->
+                <rectangle min="67,46" max="95,65"/> <!-- blue right -->
+                <rectangle min="124,103" max="105,75"/> <!-- blue left -->
+                <rectangle min="62,166" max="33,147"/> <!-- red right -->
+                <rectangle min="4,109" max="23,137"/> <!-- red left -->
+            </union>
+            <rectangle min="70,100" max="58,112"/> <!-- center -->
+        </complement>
+    </negative>
+    <rectangle id="blue-spawn" min="106,64" max="115,55"/>
+    <rectangle id="red-spawn" min="22,148" max="13,157"/>
+    <apply block-place="not-void" region="spawn-drops" message="You may not modify the spawn drop water!"/>
+    <apply block="never" lend-kit="flag-room-regen" region="flag-regions" message="You may not modify the flag area!"/>
+    <apply block="never" region="flag-nets" message="You may not modify the flag capture area!"/>
+    <apply block-break="never" block-place="not-void" region="spawns" message="You may not modify the spawn region!"/>
+    <apply block="only-blocks" region="map-region" message="You may only interact with stained clay and stained glass."/>
+    <apply block="never" region="void-region" message="You may not build in the void!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false" carry-message="Return the flag to your spawn!">
+    <flag id="red-flag" name="Red Flag" owner="red-team" color="red" show-respawn-on-pickup="true" post="red-right-post" carry-kit="flag-pickup">
+        <post recover-time="20s" respawn-time="15s" pickup-filter="only-blue" sequential="true">
+            <post id="red-right-post" yaw="180" name="Purple Post">53.5,17,155.5</post>
+            <post id="red-left-post" yaw="-90" name="Yellow Post">14.5,17,116.5</post>
+        </post>
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" owner="blue-team" color="blue" show-respawn-on-pickup="true" post="blue-right-post" carry-kit="flag-pickup">
+        <post recover-time="20s" respawn-time="15s" pickup-filter="only-red" sequential="true">
+            <post id="blue-right-post" yaw="0" name="Lime Post">74.5,17,56.5</post>
+            <post id="blue-left-post" yaw="90" name="Orange Post">113.5,17,95.5</post>
+        </post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<score>
+    <mercy>4</mercy>
+</score>
+<spawners>
+    <spawner spawn-region="left-spawner-spawn" player-region="left-spawner-player" delay="10s" max-entities="1">
+        <item amount="8" damage="2" material="stained clay"/>
+    </spawner>
+    <spawner spawn-region="right-spawner-spawn" player-region="right-spawner-player" delay="10s" max-entities="1">
+        <item amount="8" damage="2" material="stained clay"/>
+    </spawner>
+    <spawner spawn-region="blue-arrow-spawn" player-region="blue-arrow-player" delay="8s" max-entities="1">
+        <item amount="4" material="arrow"/>
+    </spawner>
+    <spawner spawn-region="red-arrow-spawn" player-region="red-arrow-player" delay="8s" max-entities="1">
+        <item amount="4" material="arrow"/>
+    </spawner>
+</spawners>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
+    <item>sapling</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>redstone</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="5" material="arrow"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <team>red-team</team>
+            </all>
+        </filter>
+        <item amount="8" damage="14" material="stained clay"/>
+        <item amount="4" damage="14" material="stained glass"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <team>blue-team</team>
+            </all>
+        </filter>
+        <item amount="8" damage="11" material="stained clay"/>
+        <item amount="4" damage="11" material="stained glass"/>
+    </kill-reward>
+</kill-rewards>
+<respawn delay="3.14s"/>
+<maxbuildheight>22</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
