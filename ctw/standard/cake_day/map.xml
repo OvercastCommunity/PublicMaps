@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Cake Day</name>
-<version>1.5.3</version>
+<version>1.5.4</version>
 <objective>Capture both enemy wools!</objective>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
@@ -28,12 +28,10 @@
         <item slot="4" material="wood" damage="1" amount="64"/>
         <item slot="31" material="wood" damage="1" amount="64"/>
         <item slot="5" material="sandstone" amount="64"/>
-        <item slot="7" material="golden apple"/>
-        <item slot="8" material="golden carrot" amount="64"/>
+        <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate">
-            <enchantment>projectile_protection</enchantment>
-        </chestplate>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
     </kit>
 </kits>
@@ -55,44 +53,26 @@
     </spawn>
 </spawns>
 <filters>
-    <not id="no-void">
+    <deny id="no-void">
         <void/>
-    </not>
+    </deny>
     <deny id="no-break-spawner">
         <material>mob spawner</material>
     </deny>
-    <not id="purple-in-wr">
+    <deny id="purple-in-wr">
         <any>
             <material>beacon</material>
             <material>chest</material>
             <team id="only-yellow">yellow</team>
         </any>
-    </not>
-    <not id="yellow-in-wr">
+    </deny>
+    <deny id="yellow-in-wr">
         <any>
             <material>beacon</material>
             <material>chest</material>
             <team id="only-purple">purple</team>
         </any>
-    </not>
-    <not id="only-purple-usage">
-        <all>
-            <any>
-                <material>chest</material>
-                <material>workbench</material>
-            </any>
-            <filter id="only-yellow"/>
-        </all>
-    </not>
-    <not id="only-yellow-usage">
-        <all>
-            <any>
-                <material>chest</material>
-                <material>workbench</material>
-            </any>
-            <filter id="only-purple"/>
-        </all>
-    </not>
+    </deny>
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
@@ -139,8 +119,8 @@
     <apply enter="only-yellow" region="yellow-wool-rooms" message="You may not enter your own wool rooms!"/>
     <apply block="never" region="spawns" message="You may not modify the spawn areas!"/>
     <apply block="no-break-spawner" region="middle-area" message="You may not break the golden apple spawner!"/>
-    <apply block="purple-in-wr" use="only-purple-usage" region="purple-wool-rooms"/>
-    <apply block="yellow-in-wr" use="only-yellow-usage" region="yellow-wool-rooms"/>
+    <apply block="purple-in-wr" use="only-purple" region="purple-wool-rooms"/>
+    <apply block="yellow-in-wr" use="only-yellow" region="yellow-wool-rooms"/>
     <apply block-place="no-void" region="void-prevention" message="You may not modify the void area!"/>
     <apply block-place="never" region="no-below-bridge" message="You may not modify the void area!"/>
 </regions>
@@ -162,18 +142,13 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
+            <any>
+                <material>wood</material>
+                <material>sandstone</material>
+            </any>
         </filter>
         <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>sandstone</material>
-        </filter>
-        <drops>
-            <item chance="0" material="sandstone"/>
+            <item chance="0" material="glass"/>
         </drops>
     </rule>
 </block-drops>
@@ -208,9 +183,9 @@
     <tool>shears</tool>
 </toolrepair>
 <itemremove>
-    <item>golden carrot</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
+    <item>leather leggings</item>
     <item>leather boots</item>
     <item>string</item>
     <item>red mushroom</item>
@@ -223,12 +198,15 @@
     <item>golden apple</item>
 </itemkeep>
 <kill-reward>
-    <item amount="16" damage="1" material="wood"/>
-    <item amount="12" material="sandstone"/>
     <item material="golden apple"/>
+    <item amount="32" damage="1" material="wood"/>
+    <item amount="16" material="sandstone"/>
 </kill-reward>
 <maxbuildheight>36</maxbuildheight>
 <crafting>
     <disable override-all="true">anvil</disable>
 </crafting>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
