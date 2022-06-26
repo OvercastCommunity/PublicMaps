@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Snowy Wars: Christmas</name>
-<version>1.5.3</version>
+<version>1.5.5</version>
 <objective>Break the enemy's monument!</objective>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
@@ -21,7 +21,7 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="30" unbreakable="true" material="stone spade"/>
         <item slot="4" amount="64" damage="2" material="wood"/>
         <item slot="5" amount="32" material="glass"/>
         <item slot="6" material="gold ingot"/>
@@ -98,7 +98,11 @@
     <apply block="no-melting"/>
     <apply block="never" region="spawns" message="You may not break or place blocks in the spawn regions!"/>
     <apply block="never" region="void" message="You may not build outside of the playing field!"/>
-    <apply block-place="never" region="height-limit" message="match.maxBuildHeight"/>
+    <apply block-place="never" region="height-limit">
+        <message>
+            {"translate":"match.maxBuildHeight"}
+        </message>
+    </apply>
 </regions>
 <destroyables name="Monument" material="obsidian" mode-changes="true">
     <destroyable owner="blue" region="blue-monument"/>
@@ -114,7 +118,7 @@
     <tool>diamond pickaxe</tool>
     <tool>iron axe</tool>
     <tool>arrow</tool>
-    <tool>iron spade</tool>
+    <tool>stone spade</tool>
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
