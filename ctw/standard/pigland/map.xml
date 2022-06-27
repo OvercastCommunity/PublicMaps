@@ -1,0 +1,441 @@
+<?xml version="1.0"?> <!-- created during december 7th/8th 2019 -->
+<map proto="1.4.0">
+<name>Pigland</name>
+<version>1.1.0</version>
+<objective>Capture both wools!</objective>
+<gamemode>ctw</gamemode>
+<created>2019-12-07</created>
+<authors>
+    <author uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30"/> <!--  Ruediger_LP  -->
+</authors>
+<teams>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="red" max="16">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true" enchantment="arrow infinite"/>
+        <item slot="2" material="iron pickaxe" unbreakable="true"/>
+        <item slot="3" material="diamond axe" unbreakable="true"/>
+        <item slot="4" material="wood" amount="48" damage="2"/>
+        <item slot="5" material="brick" amount="32"/>
+        <item slot="6" material="vine" amount="24"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <item slot="29" material="shears" unbreakable="true"/>
+        <item slot="30" material="iron spade" unbreakable="true"/>
+        <chestplate material="chainmail chestplate" unbreakable="true"/>
+        <boots material="iron boots" unbreakable="true"/>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resistance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <leggings material="leather leggings" color="FF4F3F" unbreakable="true"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <leggings material="leather leggings" color="9279FF" unbreakable="true"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="blue-kit" region="blue-team-spawn-point" yaw="-75" pitch="35"/>
+    <spawn team="red-team" kit="red-kit" region="red-team-spawn-point" yaw="-105" pitch="35"/>
+    <default region="obs-spawn-point" angle="30.0,22.0,-1.0"/>
+</spawns>
+<wools>
+    <wool team="blue-team" color="lime" monument="blue-team-lime-wool" location="66.5,9.2,71.5"/>
+    <wool team="blue-team" color="magenta" monument="blue-team-magenta-wool" location="97.5,6.2,8.5"/>
+    <wool team="red-team" color="yellow" monument="red-team-yellow-wool" location="66.5,9.2,-71.5"/>
+    <wool team="red-team" color="orange" monument="red-team-orange-wool" location="97.5,6.2,-8.5"/>
+</wools>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <not id="not-void">
+        <void/>
+    </not>
+    <all id="reds-woolrooms-filter">
+        <team>blue-team</team>
+        <filter id="woolrooms-filter"/>
+    </all>
+    <all id="blues-woolrooms-filter">
+        <team>red-team</team>
+        <filter id="woolrooms-filter"/>
+    </all>
+    <all id="woolrooms-filter">
+        <any>
+            <material>stained glass pane:8</material>
+            <material>leaves</material>
+            <material>iron block</material>
+            <material>wool</material>
+            <material>wood:2</material>
+            <material>brick</material>
+            <material>vine</material>
+            <all>
+                <cause>player</cause>
+                <any>
+                    <material>stationary water</material>
+                    <material>water</material>
+                </any>
+            </all>
+        </any>
+        <not>
+            <region id="wool-spawner-protection"/>
+        </not>
+    </all>
+    <all id="only-iron-cause-world">
+        <material id="only-iron">iron block</material>
+        <cause>world</cause>
+    </all>
+    <material id="only-air">air</material>
+    <deny id="deny-block-physics-woolrooms">
+        <any>
+            <material>redstone wire</material>
+            <material>portal</material>
+            <material>wall sign</material>
+        </any>
+    </deny>
+    <deny id="deny-flower-pot">
+        <material>flower pot</material>
+    </deny>
+    <deny id="deny-water-flow">
+        <all>
+            <cause>world</cause>
+            <any>
+                <material>stationary water</material>
+                <material>water</material>
+            </any>
+        </all>
+    </deny>
+</filters>
+<regions>
+    <cylinder id="blue-team-spawn-point" base="15.5,43,-35.5" radius="2" height="0"/>
+    <cylinder id="red-team-spawn-point" base="15.5,43,35.5" radius="2" height="0"/>
+    <cylinder id="obs-spawn-point" base="28,21.2,0" radius="1" height="0"/>
+    <block id="blue-team-lime-wool">29,11,-27</block>
+    <block id="blue-team-magenta-wool">29,11,-38</block>
+    <block id="red-team-yellow-wool">29,11,26</block>
+    <block id="red-team-orange-wool">29,11,37</block>
+    <point id="lime-wool-spawn">66.5,9.2,71.5</point>
+    <point id="magenta-wool-spawn">97.5,6.2,8.5</point>
+    <point id="yellow-wool-spawn">66.5,9.2,-71.5</point>
+    <point id="orange-wool-spawn">97.5,6.2,-8.5</point>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <union id="blue-spawn">
+                <rectangle min="8,-21" max="32,-43"/>
+                <rectangle min="6,-19" max="11,-24"/>
+                <rectangle min="6,-40" max="11,-45"/>
+                <rectangle min="28,-19" max="33,-24"/>
+                <rectangle min="28,-40" max="33,-45"/>
+                <cuboid min="11,14,-20" max="28,oo,-23"/>
+                <cuboid min="7,18,-24" max="11,oo,-40"/>
+                <cuboid min="11,20,-41" max="28,oo,-44"/>
+                <cuboid min="29,24,-24" max="32,oo,-40"/>
+                <cuboid min="5,25,-18" max="34,oo,-25"/>
+                <cuboid min="29,21,-18" max="32,24,-46"/>
+                <cuboid min="5,17,-41" max="34,20,-44"/>
+                <cuboid min="7,15,-18" max="10,18,-46"/>
+                <cuboid min="5,11,-20" max="34,14,-23"/>
+            </union>
+            <union id="red-spawn">
+                <rectangle min="8,21" max="32,43"/>
+                <rectangle min="6,19" max="11,24"/>
+                <rectangle min="6,40" max="11,45"/>
+                <rectangle min="28,19" max="33,24"/>
+                <rectangle min="28,40" max="33,45"/>
+                <cuboid min="11,14,20" max="28,oo,23"/>
+                <cuboid min="7,18,24" max="11,oo,40"/>
+                <cuboid min="11,20,41" max="28,oo,44"/>
+                <cuboid min="29,24,24" max="32,oo,40"/>
+                <cuboid min="5,25,18" max="34,oo,25"/>
+                <cuboid min="29,21,18" max="32,24,46"/>
+                <cuboid min="5,17,41" max="34,20,44"/>
+                <cuboid min="7,15,18" max="10,18,46"/>
+                <cuboid min="5,11,20" max="34,14,23"/>
+            </union>
+        </union>
+    </negative>
+    <union id="woolrooms">
+        <union id="blues-woolrooms"> <!-- blue defends / red attacks -->
+            <union id="yellow-woolroom">
+                <rectangle min="57,-64" max="76,-79"/>
+                <rectangle min="73,-63" max="78,-68"/>
+                <rectangle min="73,-76" max="78,-81"/>
+                <rectangle min="64,-63" max="69,-68"/>
+                <rectangle min="55,-63" max="60,-68"/>
+                <rectangle min="55,-76" max="60,-81"/>
+                <cuboid min="54,18,-62" max="70,oo,-69"/>
+                <cuboid min="54,18,-69" max="61,oo,-82"/>
+                <cuboid min="74,18,-68" max="77,oo,-76"/>
+                <cuboid min="60,17,-77" max="73,oo,-80"/>
+                <cuboid min="56,10,-62" max="59,13,-82"/>
+                <cuboid min="54,14,-77" max="79,17,-80"/>
+                <cuboid min="54,7,-77" max="79,10,-80"/>
+                <cuboid min="54,14,-64" max="79,17,-67"/>
+                <cuboid min="74,18,-62" max="78,21,-82"/>
+            </union>
+            <union id="orange-woolroom">
+                <rectangle min="88,-4" max="107,-16"/>
+                <rectangle min="86,-12" max="91,-17"/>
+                <rectangle min="95,-12" max="100,-17"/>
+                <rectangle min="104,-12" max="109,-17"/>
+                <rectangle min="86,-2" max="91,-7"/>
+                <rectangle min="104,-2" max="109,-7"/>
+                <cuboid min="85,16,-1" max="110,oo,-8"/>
+                <cuboid min="105,11,-7" max="108,oo,-12"/>
+                <cuboid min="91,15,-13" max="104,oo,-16"/>
+                <cuboid min="87,11,-7" max="90,oo,-12"/>
+                <cuboid min="85,12,-13" max="110,15,-16"/>
+                <cuboid min="105,8,-1" max="108,11,-18"/>
+                <cuboid min="87,8,-1" max="90,11,-18"/>
+                <cuboid min="85,4,-3" max="110,7,-6"/>
+            </union>
+        </union>
+        <union id="reds-woolrooms"> <!-- red defends / blue attacks -->
+            <union id="lime-woolroom">
+                <rectangle min="57,64" max="76,79"/>
+                <rectangle min="73,63" max="78,68"/>
+                <rectangle min="73,76" max="78,81"/>
+                <rectangle min="64,63" max="69,68"/>
+                <rectangle min="55,63" max="60,68"/>
+                <rectangle min="55,76" max="60,81"/>
+                <cuboid min="54,18,62" max="70,oo,69"/>
+                <cuboid min="54,18,69" max="61,oo,82"/>
+                <cuboid min="74,18,68" max="77,oo,76"/>
+                <cuboid min="60,17,77" max="73,oo,80"/>
+                <cuboid min="56,10,62" max="59,13,82"/>
+                <cuboid min="54,14,77" max="79,17,80"/>
+                <cuboid min="54,7,77" max="79,10,80"/>
+                <cuboid min="54,14,64" max="79,17,67"/>
+                <cuboid min="74,18,62" max="78,21,82"/>
+            </union>
+            <union id="magenta-woolroom">
+                <rectangle min="88,4" max="107,16"/>
+                <rectangle min="86,12" max="91,17"/>
+                <rectangle min="95,12" max="100,17"/>
+                <rectangle min="104,12" max="109,17"/>
+                <rectangle min="86,2" max="91,7"/>
+                <rectangle min="104,2" max="109,7"/>
+                <cuboid min="85,16,1" max="110,oo,8"/>
+                <cuboid min="105,11,7" max="108,oo,12"/>
+                <cuboid min="91,15,13" max="104,oo,16"/>
+                <cuboid min="87,11,7" max="90,oo,12"/>
+                <cuboid min="85,12,13" max="110,15,16"/>
+                <cuboid min="105,8,1" max="108,11,18"/>
+                <cuboid min="87,8,1" max="90,11,18"/>
+                <cuboid min="85,4,3" max="110,7,6"/>
+            </union>
+        </union>
+    </union>
+    <negative id="not-build-area">
+        <union id="build-area">
+            <rectangle min="40,16" max="56,-16"/>
+            <rectangle min="64,16" max="80,-16"/>
+        </union>
+    </negative>
+    <union id="iron-regen">
+        <cuboid min="7,32,20" max="32,35,-23"/> <!-- blue spawn -->
+        <cuboid min="7,32,20" max="32,35,23"/> <!-- red spawn -->
+        <cuboid min="64,25,64" max="56,28,-80"/> <!-- yellow woolroom -->
+        <cuboid min="64,25,64" max="56,28,80"/> <!-- lime woolroom -->
+    </union>
+    <cuboid id="blue-spawn-portal-region" min="18,11,-24" max="21,14,-23"/>
+    <point id="blue-spawn-portal-destination">19.5,32,-21.5</point>
+    <cuboid id="red-spawn-portal-region" min="18,11,24" max="21,14,23"/>
+    <point id="red-spawn-portal-destination">19.5,32,21.5</point>
+    <cuboid id="yellow-woolroom-portal-region" min="65,10,-68" max="68,13,-67"/>
+    <point id="yellow-woolroom-portal-destination">66.5,25,-65.5</point>
+    <cuboid id="lime-woolroom-portal-region" min="65,10,68" max="68,13,67"/>
+    <point id="lime-woolroom-portal-destination">66.5,25,65.5</point>
+    <union id="wool-spawner-protection">
+        <cuboid id="lime-wool-spawn-region" min="65,8,70" max="68,12,73"/> <!-- lime -->
+        <cuboid id="magenta-wool-spawn-region" min="96,5,7" max="99,9,10"/> <!-- magenta -->
+        <cuboid id="yellow-wool-spawn-region" min="65,8,-70" max="68,12,-73"/> <!-- yellow -->
+        <cuboid id="orange-wool-spawn-region" min="96,5,-7" max="99,9,-10"/> <!-- orange -->
+    </union>
+    <above id="max-build-height-region" y="20"/>
+    <!-- applicators -->
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="blues-woolrooms" message="You may not enter your own wool room!"/>
+    <apply enter="only-blue" region="reds-woolrooms" message="You may not enter your own wool room!"/>
+    <apply block="deny-water-flow" region="everywhere"/>
+    <apply block-place="only-iron-cause-world" block-break="only-iron" region="max-build-height-region" message="You have reached the maximum build height!"/>
+    <apply block-place="only-iron-cause-world" block-break="only-iron" region="spawns" message="You may not edit spawn!"/>
+    <apply block="blues-woolrooms-filter" region="blues-woolrooms" message="You may not edit the wool room!"/>
+    <apply block="reds-woolrooms-filter" region="reds-woolrooms" message="You may not edit the wool room!"/>
+    <apply block="not-void" region="not-build-area" message="You may not edit the void!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+    <apply block-physics="deny-block-physics-woolrooms" region="woolrooms"/>
+    <apply use="deny-flower-pot"/>
+</regions>
+<spawners>
+    <spawner spawn-region="lime-wool-spawn" player-region="lime-wool-spawn-region" delay="1s">
+        <item material="wool" amount="1" damage="5"/>
+    </spawner>
+    <spawner spawn-region="magenta-wool-spawn" player-region="magenta-wool-spawn-region" delay="1s">
+        <item material="wool" amount="1" damage="2"/>
+    </spawner>
+    <spawner spawn-region="yellow-wool-spawn" player-region="yellow-wool-spawn-region" delay="1s">
+        <item material="wool" amount="1" damage="4"/>
+    </spawner>
+    <spawner spawn-region="orange-wool-spawn" player-region="orange-wool-spawn-region" delay="1s">
+        <item material="wool" amount="1" damage="1"/>
+    </spawner>
+</spawners>
+<portals>
+    <portal region="blue-spawn-portal-region" destination="blue-spawn-portal-destination" yaw="0"/>
+    <portal region="red-spawn-portal-region" destination="red-spawn-portal-destination" yaw="180"/>
+    <portal region="yellow-woolroom-portal-region" destination="yellow-woolroom-portal-destination" yaw="0"/>
+    <portal region="lime-woolroom-portal-region" destination="lime-woolroom-portal-destination" yaw="189"/>
+</portals>
+<itemremove>
+    <item>dirt</item>
+    <item>stone</item>
+    <item>seeds</item>
+    <item>long grass</item>
+    <item>red rose</item>
+    <item>stained clay</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+</itemremove>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>diamond axe</item>
+    <item>wood</item>
+    <item>brick</item>
+    <item>vine</item>
+    <item>arrow</item>
+    <item>shears</item>
+    <item>iron spade</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>iron boots</item>
+</itemkeep>
+<toolrepair>
+	<tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>diamond axe</tool>
+    <tool>shears</tool>
+    <tool>iron spade</tool>
+    <tool>iron boots</tool>
+</toolrepair>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+            <material>iron sword</material>
+            <material>iron pickaxe</material>
+            <material>iron axe</material>
+            <material>iron spade</material>
+            <material>shears</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<crafting>
+    <disable>redstone</disable>
+    <shaped override="false">
+        <result material="water bucket"/>
+        <shape>
+            <row>...</row>
+            <row>G.G</row>
+            <row>.G.</row>
+        </shape>
+        <ingredient symbol="G">iron ingot</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="water bucket"/>
+        <shape>
+            <row>G.G</row>
+            <row>.G.</row>
+            <row>...</row>
+        </shape>
+        <ingredient symbol="G">iron ingot</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron sword" name="`2Jungle Sword" lore="`7[Server]: Forged by the author.|`b(obs) `9`k∞`r`bRuediger_LP`f: Sup!" unbreakable="true" show-unbreakable="false" show-attributes="false" show-other="false"/>
+        <shape>
+            <row>V</row>
+            <row>V</row>
+            <row>S</row>
+        </shape>
+        <ingredient symbol="V">vine</ingredient>
+        <ingredient symbol="S">stick</ingredient>
+    </shaped>
+    <!-- bulk crafting -->
+    <shaped override="false">
+        <result material="iron helmet" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron chestplate" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>III</row>
+            <row>III</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron leggings" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron boots" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="water bucket" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>.I.</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+</crafting>
+<renewables>
+    <renewable rate="0.5" sound="false" region="iron-regen" renew-filter="only-iron" replace-filter="only-air" avoid-players="3"/>
+</renewables>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<damage>
+    <deny>
+        <all>
+            <cause>fall</cause>
+            <region id="spawns"/>
+        </all>
+    </deny>
+</damage>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item material="wood" amount="16" damage="2"/>
+        <item material="brick" amount="8"/>
+    </kill-reward>
+</kill-rewards>
+</map>
