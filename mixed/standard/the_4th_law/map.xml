@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>The 4th Law</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Capture both enemy wools and leak both enemy cores.</objective>
 <gamemode>ctw</gamemode>
 <gamemode>dtc</gamemode>
@@ -27,10 +27,10 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="4" unbreakable="true" material="iron spade"/>
-        <item slot="5" amount="64" material="wood"/>
-        <item slot="32" amount="64" material="wood"/>
-        <item slot="6" amount="64" material="glass"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="31" amount="64" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
         <item slot="8" material="golden apple"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
@@ -197,26 +197,13 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>log</material>
-        </filter>
-        <drops>
-            <item chance="0" material="log"/>
         </drops>
     </rule>
 </block-drops>
