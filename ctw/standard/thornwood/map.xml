@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Thornwood</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Capture the enemy's two wools!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
@@ -23,15 +23,15 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="4" unbreakable="true" material="iron spade"/>
-        <item slot="5" amount="64" damage="1" material="wood"/>
-        <item slot="32" amount="64" damage="1" material="wood"/>
-        <item slot="6" amount="64" material="glass"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" damage="1" material="wood"/>
+        <item slot="31" amount="64" damage="1" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
         <item slot="8" material="golden apple"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
-        <effect duration="6" amplifier="255">resistance</effect>
+        <effect duration="6s" amplifier="255">resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -90,8 +90,8 @@
         </union>
     </union>
     <union id="iron-regen">
-        <cuboid min="-512,9,109" max="-501,16,116"/> <!-- Red's Iron -->
-        <cuboid min="-512,9,-67" max="-501,16,-60"/> <!-- Blue's Iron -->
+        <cuboid min="-512,9,-67" max="-501,16,-60"/> <!-- Blue's iron -->
+        <cuboid min="-512,9,109" max="-501,16,116"/> <!-- Red's iron -->
     </union>
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn area!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn area!"/>
@@ -147,15 +147,10 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
