@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>The Last Sunset II</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Capture each enemy flag two times!</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
@@ -47,12 +47,12 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="4" unbreakable="true" material="iron spade"/>
-        <item slot="5" amount="64" material="wood"/>
-        <item slot="6" amount="32" material="glass"/>
-        <item slot="7" amount="32" material="vine"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="5" amount="32" material="glass"/>
+        <item slot="6" amount="32" material="vine"/>
+        <item slot="7" material="water bucket"/>
         <item slot="8" material="golden apple"/>
-        <item slot="35" material="water bucket"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="iron leggings"/>
@@ -106,13 +106,13 @@
     <union id="all-flag-posts-y">
         <circle center="-802.5,-341.5" radius="1.5"/>
         <circle center="-802.5,-445.5" radius="1.5"/>
-        <circle center="-938.5,-445.6" radius="1.5"/>
+        <circle center="-938.5,-445.5" radius="1.5"/>
         <circle center="-938.5,-341.5" radius="1.5"/>
     </union>
     <union id="all-flag-posts-no-water">
         <circle center="-802.5,-341.5" radius="3.5"/>
         <circle center="-802.5,-445.5" radius="3.5"/>
-        <circle center="-938.5,-445.6" radius="3.5"/>
+        <circle center="-938.5,-445.5" radius="3.5"/>
         <circle center="-938.5,-341.5" radius="3.5"/>
     </union>
     <negative id="void-area">
@@ -202,26 +202,14 @@
     </rule>
     <rule>
         <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+                <material>vine</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>vine</material>
-        </filter>
-        <drops>
-            <item chance="0" material="vine"/>
         </drops>
     </rule>
 </blockdrops>
