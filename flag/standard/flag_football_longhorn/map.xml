@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Flag Football: Longhorn</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Capture the flag as many times as possible in eight minutes!</objective>
 <gamemode>ffb</gamemode>
 <authors>
@@ -130,8 +130,8 @@
     <portal observers="never" filter="blue-team-carrying-flag" region="blue-net" destination="blue-spawn-point" yaw="@90" pitch="@-20"/>
 </portals>
 <toolrepair>
-    <item>stone sword</item>
-    <item>bow</item>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
