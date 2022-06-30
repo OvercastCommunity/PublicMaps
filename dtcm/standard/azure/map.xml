@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Azure</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Destroy both enemy team monuments to win!</objective>
 <gamemode>dtm</gamemode>
 <authors>
