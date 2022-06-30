@@ -15,7 +15,7 @@
     <kit id="spawn-kit">
         <item slot="0" material="stone sword" unbreakable="true"/>
         <item slot="1" material="bow" unbreakable="true">
-            <enchantment>arrow infinte</enchantment>
+            <enchantment>arrow infinite</enchantment>
         </item>
         <item slot="2" material="wood pickaxe" unbreakable="true"/>
         <item slot="3" material="stone axe" unbreakable="true"/>
