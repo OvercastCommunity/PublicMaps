@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Antiquis</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Destroy the enemy's obsidian monument!</objective>
 <gamemode>dtm</gamemode>
 <authors>
@@ -17,19 +17,18 @@
         <item slot="1" material="bow" unbreakable="true">
             <enchantment>arrow infinite</enchantment>
         </item>
-        <item slot="2" material="wood pickaxe" unbreakable="true"/>
-        <item slot="3" material="stone axe" unbreakable="true"/>
-        <item slot="4" material="wood" amount="32"/>
-        <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
+        <item slot="2" material="wood pickaxe" unbreakable="true"/>
+        <item slot="3" material="iron axe" unbreakable="true"/>
+        <item slot="30" material="iron spade" unbreakable="true"/>
+        <item slot="4" material="wood" amount="64"/>
+        <item slot="8" material="golden apple"/>
         <helmet material="leather helmet" team-color="true" unbreakable="true"/>
-        <chestplate material="leather chestplate" team-color="true" unbreakable="true">
-            <enchantment level="2">protection projectile</enchantment>
-        </chestplate>
-        <leggings material="leather leggings" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true"/>
-        <effect duration="6" amplifier="4">damage resistance</effect>
-        <effect duration="6" amplifier="4">heal</effect>
+        <effect duration="6s" amplifier="255">damage resistance</effect>
+        <effect duration="6s" amplifier="255">heal</effect>
     </kit>
 </kits>
 <spawns>
@@ -151,11 +150,11 @@
 </crafting>
 <toolrepair>
     <tool>stone sword</tool>
-    <tool>stone axe</tool>
     <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
 </toolrepair>
 <itemremove>
-    <item>wood</item>
     <item>log</item>
     <item>cobblestone</item>
     <item>gravel</item>
@@ -167,15 +166,16 @@
     <item>seeds</item>
     <item>sapling</item>
     <item>stained clay</item>
-    <item>cooked beef</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
-    <item>leather leggings</item>
+    <item>chainmail leggings</item>
     <item>leather boots</item>
     <item>obsidian</item>
     <item>beacon</item>
     <item>coal block</item>
     <item>packed ice</item>
+    <!-- item keep for traded items necessitates itemremove for golden apple and kit blocks -->\
+    <item>wood</item>
     <item>golden apple</item>
 </itemremove>
 <itemkeep>
@@ -197,9 +197,9 @@
 <maxbuildheight>35</maxbuildheight>
 <kill-rewards>
     <kill-reward>
-        <item material="nether star" name="`4Infused Shard"/>
         <item material="golden apple"/>
-        <item material="wood" amount="8"/>
+        <item material="wood" amount="16"/>
+        <item material="nether star" name="`4Infused Shard"/>
     </kill-reward>
 </kill-rewards>
 </map>
