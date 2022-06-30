@@ -199,7 +199,7 @@
     <kill-reward>
         <item material="nether star" name="`4Infused Shard"/>
         <item material="golden apple"/>
-        <item material="wood"/ amount="8">
+        <item material="wood" amount="8"/>
     </kill-reward>
 </kill-rewards>
 </map>
