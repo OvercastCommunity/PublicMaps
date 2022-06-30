@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Limbo</name>
-<version>2.0.0</version> <!-- rebased on TE -->
+<version>2.0.1</version> <!-- rebased on TE -->
 <objective>Be the first team to 750 points!</objective>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
@@ -20,7 +20,7 @@
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="7" material="golden apple"/>
+        <item slot="2" material="golden apple"/>
         <item slot="8" amount="12" material="arrow"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
