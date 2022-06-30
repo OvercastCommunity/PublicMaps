@@ -9,8 +9,8 @@
     <author uuid="297428a6-b482-4558-99f5-b413067ed48d"/> <!-- CrazyClownz -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="16">Blue</team>
-    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -37,12 +37,12 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="-180">
             <cuboid min="-1277.5,11,-873.5" max="-1281.5,11,-874.5"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="0">
             <cuboid min="-1277.5,11,-1130.5" max="-1281.5,11,-1131.5"/>
         </region>
@@ -54,14 +54,14 @@
     </default>
 </spawns>
 <wools craftable="false">
-    <wool team="blue" color="cyan" monument="cyan-wool-monument" location="-1274,12,-876"/>
-    <wool team="blue" color="light_blue" monument="lightblue-wool-monument" location="-1286,12,-876"/>
-    <wool team="red" color="magenta" monument="magenta-wool-monument" location="-1286,12,-1130"/>
-    <wool team="red" color="pink" monument="pink-wool-monument" location="-1274,12,-1130"/>
+    <wool team="blue-team" color="cyan" monument="cyan-wool-monument" location="-1274,12,-876"/>
+    <wool team="blue-team" color="light_blue" monument="lightblue-wool-monument" location="-1286,12,-876"/>
+    <wool team="red-team" color="magenta" monument="magenta-wool-monument" location="-1286,12,-1130"/>
+    <wool team="red-team" color="pink" monument="pink-wool-monument" location="-1274,12,-1130"/>
 </wools>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
     <not id="not-void">
         <void/>
     </not>
