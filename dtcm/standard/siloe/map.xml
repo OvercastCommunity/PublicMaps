@@ -74,7 +74,7 @@
     <apply block="deny-void" region="void" message="You may not build in the void!"/>
 </regions>
 <renewables>
-    <renewable>
+    <renewable rate="0.5" avoid-players="5">
         <renew-filter>
             <material>iron block</material>
         </renew-filter>
