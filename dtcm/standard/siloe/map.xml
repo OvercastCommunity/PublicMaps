@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Siloë</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Leak both enemy cores.</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -16,22 +16,20 @@
 <kits>
     <kit id="spawn-kit">
         <clear/>
-        <item slot="0" unbreakable="true" material="iron sword"/>
-        <item slot="1" unbreakable="true" material="bow">
+        <item slot="0" material="iron sword"/>
+        <item slot="1" material="bow">
             <enchantment>infinity</enchantment>
         </item>
         <item slot="28" material="arrow"/>
-        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
-        <item slot="3" unbreakable="true" material="iron axe">
-            <enchantment>efficiency</enchantment>
-        </item>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" material="diamond axe"/>
         <item slot="4" damage="2" amount="64" material="wood"/>
         <item slot="31" damage="2" amount="64" material="wood"/>
         <item slot="5" amount="64" material="glass"/>
         <item slot="8" material="golden apple"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings material="chainmail leggings"/>
+        <boots team-color="true" material="leather boots"/>
         <effect duration="5s" amplifier="255">heal</effect>
     </kit>
 </kits>
@@ -116,7 +114,7 @@
     <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
-    <tool>iron axe</tool>
+    <tool>diamond axe</tool>
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
@@ -145,7 +143,7 @@
     <item>bow</item>
     <item>arrow</item>
     <item>diamond pickaxe</item>
-    <item>iron axe</item>
+    <item>diamond axe</item>
     <item>wood</item>
     <item>glass</item>
     <item>golden apple</item>
@@ -159,4 +157,62 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron sword</material>
+            <material>bow</material>
+            <material>diamond pickaxe</material>
+            <material>diamond axe</material>
+            <material>leather chestplate</material>
+            <material>chainmail leggings</material>
+            <material>leather boots</material>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+            <material>iron pickaxe</material>
+            <material>iron axe</material>
+            <material>iron spade</material>
+            <material>shears</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<crafting>
+    <shaped override="false">
+        <result material="iron helmet" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron chestplate" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>III</row>
+            <row>III</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron leggings" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="bucket" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>.I.</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+</crafting>
 </map>
