@@ -53,10 +53,10 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="red-team" kit="spawnkit" region="red-spawn-point-1" yaw="45"/>
-    <spawn team="red-team" kit="spawnkit" region="red-spawn-point-2" yaw="135"/>
-    <spawn team="orange-team" kit="orange" region="orange-spawn-point-1" yaw="-45"/>
-    <spawns team="orange-team" kit="orange" region="orange-spawn-point-2" yaw="-135"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point-1" yaw="45"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point-2" yaw="135"/>
+    <spawn team="orange-team" kit="spawn-kit" region="orange-spawn-point-1" yaw="-45"/>
+    <spawns team="orange-team" kit="spawn-kit" region="orange-spawn-point-2" yaw="-135"/>
     <default region="obs-spawn-point" yaw="0"/>
 </spawns>
 <destroyables mode-changes="true" completion="100%">
