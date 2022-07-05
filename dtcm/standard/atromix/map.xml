@@ -37,7 +37,7 @@
         <item slot="7" material="iron ingot" amount="2"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
-        <item slot="4" material="shears" name="`4Red Topaz Machete" unbreakable="true">
+        <item slot="29" material="shears" name="`4Red Topaz Machete" unbreakable="true">
             <enchantment>damage all</enchantment>
             <enchantment level="2">dig speed</enchantment>
         </item>
