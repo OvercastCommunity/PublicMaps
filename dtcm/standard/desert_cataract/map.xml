@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Desert Cataract</name>
 <version>1.1.14</version>
@@ -138,4 +139,3 @@
     <item material="sandstone" amount="16"/>
 </kill-reward>
 </map>
-
