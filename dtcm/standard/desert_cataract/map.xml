@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Cataract</name>
-<version>1.1.13</version>
+<version>1.1.14</version>
 <objective>Destroy enemy team's obsidian monument!</objective>
 <gamemode>dtm</gamemode>
 <authors>
@@ -88,6 +88,7 @@
     <item>iron axe</item>
     <item>arrow</item>
     <item>bucket</item>
+    <item>water bucket</item>
     <item>wood</item>
     <item>sandstone</item>
     <item>golden apple</item>
@@ -98,7 +99,6 @@
     <tool>diamond pickaxe</tool>
     <tool>iron axe</tool>
     <tool>arrow</tool>
-    <tool>bucket</tool>
 </toolrepair>
 <itemremove>
     <item>golden carrot</item>
