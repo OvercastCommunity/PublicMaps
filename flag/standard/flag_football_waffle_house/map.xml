@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Flag Football: Waffle House</name>
-<version>1.0.18</version>
+<version>1.0.19</version>
 <gamemode>ffb</gamemode>
 <objective>Capture the flag as many times as possible in eight minutes!</objective>
 <time result="score" overtime="45s" max-overtime="3m15s">8m</time>
@@ -108,8 +108,8 @@
     <proximity-alarm message="You are running to the wrong goal!" flare-radius="0" region="green-side" detect="purple-team-carrying-flag" notify="purple-team-carrying-flag"/>
 </proximity-alarms>
 <toolrepair>
-    <item>stone sword</item>
-    <item>bow</item>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
