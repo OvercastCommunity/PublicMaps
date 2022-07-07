@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Dwyer Hill</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Get the most kills after 5 minutes!</objective>
 <gamemode>rage</gamemode>
 <authors>
@@ -44,7 +44,10 @@
     <default kit="nv-kit" region="obs-spawn-point" yaw="0"/>
 </spawns>
 <autorespawn/>
-<score/>
+<score>
+    <kills>1</kills>
+    <deaths>0</deaths>
+</score>
 <rage/>
 <time>5m</time>
 <filters>
