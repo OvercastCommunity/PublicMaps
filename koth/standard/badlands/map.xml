@@ -1,17 +1,17 @@
 <map proto="1.4.2">
 <name>Badlands</name>
-<version>2.2.12</version>
+<version>2.3</version>
 <objective>Be the first team to gain 2500 points.</objective>
 <edition>standard</edition>
 <authors>
-    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!--  Nixani  -->
-    <author uuid="f1352a57-4fe3-4f0c-b867-56b771fc1a0f"/> <!--  teagod  -->
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
+    <author uuid="f1352a57-4fe3-4f0c-b867-56b771fc1a0f" contribution="Gameplay updates"/> <!-- teagod -->
 </authors>
 <contributors>
-    <contributor uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!--  Claf  -->
-    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!--  Strangey  -->
-    <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b"/> <!--  Jexel  -->
-    <contributor uuid="a6955518-97b8-4c1d-8e76-e641b8f8822c"/> <!--  Qwuiblington  -->
+    <contributor uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b"/> <!-- Jexel -->
+    <contributor uuid="a6955518-97b8-4c1d-8e76-e641b8f8822c"/> <!-- Qwuiblington -->
 </contributors>
 <teams>
     <team id="blue-team" color="blue" max="20">Blue</team>
@@ -32,65 +32,38 @@
         <boots unbreakable="true" material="iron boots">
             <enchantment>feather_falling</enchantment>
         </boots>
-        <effect duration="4" amplifier="255">resistance</effect>
+        <effect duration="4s" amplifier="255">resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
     <default>
         <region yaw="135">
-            <cylinder base="-159.5,28,103.5" radius="1" height="1"/>
+            <point>-159.5,28,103.5</point>
         </region>
     </default>
     <spawn team="blue-team" kit="spawn-kit">
         <region yaw="180">
-            <cylinder base="-230.5,24,92.5" radius="1" height="1"/>
+            <point>-230.5,24,92.5</point>
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
         <region yaw="90">
-            <cylinder base="-170.5,24,32.5" radius="1" height="1"/>
+            <point>-170.5,24,32.5</point>
         </region>
     </spawn>
 </spawns>
 <regions>
-    <apply block="never"/>
+    <cuboid id="top" min="-220,30,43" size="7,5,7"/>
+    <cuboid id="cliff" min="-198,24,65" size="7,5,7"/>
+    <cuboid id="cave" min="-222,19,41" size="7,5,7"/>
+    <apply block="never" use="never"/>
 </regions>
 <king>
     <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
-        <hill name="Top">
-            <capture>
-                <cuboid min="-220,31,43" max="-213,37,50"/>
-            </capture>
-            <progress>
-                <cuboid min="-220,31,43" max="-213,37,50"/>
-            </progress>
-            <captured>
-                <cuboid min="-220,31,43" max="-213,37,50"/>
-            </captured>
-        </hill>
-        <hill name="Cliff">
-            <capture>
-                <cuboid min="-198,24,65" max="-191,30,72"/>
-            </capture>
-            <progress>
-                <cuboid min="-198,24,65" max="-191,30,72"/>
-            </progress>
-            <captured>
-                <cuboid min="-198,24,65" max="-191,30,72"/>
-            </captured>
-        </hill>
-        <hill name="Cave">
-            <capture>
-                <cuboid min="-222,19,41" max="-215,25,48"/>
-            </capture>
-            <progress>
-                <cuboid min="-222,19,41" max="-215,25,48"/>
-            </progress>
-            <captured>
-                <cuboid min="-222,19,41" max="-215,25,48"/>
-            </captured>
-        </hill>
+        <hill name="Top" capture="top" progress="top"/>
+        <hill name="Cliff" capture="cliff" progress="cliff"/>
+        <hill name="Cave" capture="cave" progress="cave"/>
     </hills>
 </king>
 <score>
@@ -107,6 +80,8 @@
     <item>iron boots</item>
 </itemremove>
 <itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>

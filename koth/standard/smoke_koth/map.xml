@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Smoke KotH</name>
-<version>1.2.12</version>
-<objective>Be the first team to reach 2500 points!</objective>
+<version>1.2.17</version>
+<objective>Be the first team to reach 750 points!</objective>
 <edition>standard</edition>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
@@ -29,66 +29,38 @@
         <boots unbreakable="true" material="iron boots">
             <enchantment>fire_protection</enchantment>
         </boots>
-        <effect duration="4" amplifier="10">resistance</effect>
-        <effect duration="4" amplifier="10">regeneration</effect>
+        <effect duration="4s" amplifier="255">resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
     <default>
         <region yaw="135">
-            <cylinder base="101,38,-272" radius="0.5" height="0"/>
+            <point>101,38,-272</point>
         </region>
     </default>
     <spawn team="red" kit="spawn-kit">
         <region yaw="-90">
-            <cylinder base="49.5,22,-265.5" radius="1" height="1"/>
+            <point>49.5,22,-265.5</point>
         </region>
     </spawn>
     <spawn team="yellow" kit="spawn-kit">
         <region yaw="0">
-            <cylinder base="107.5,22,-323.5" radius="1" height="1"/>
+            <point>107.5,22,-323.5</point>
         </region>
     </spawn>
 </spawns>
 <regions>
-    <apply block="never"/>
+    <cuboid id="top" min="60,20,-313" size="7,4,7"/>
+    <cuboid id="bottom" min="77,13,-296" size="7,4,7"/>
+    <cuboid id="cave" min="61,8,-312" size="7,4,7"/>
+    <apply block="never" use="never"/>
 </regions>
 <king>
     <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
-        <hill name="Top">
-            <capture>
-                <cuboid min="60,20,-313" max="67,26,-306"/>
-            </capture>
-            <progress>
-                <cuboid min="60,20,-313" max="67,26,-306"/>
-            </progress>
-            <captured>
-                <cuboid min="60,20,-313" max="67,26,-306"/>
-            </captured>
-        </hill>
-        <hill name="Bottom">
-            <capture>
-                <cuboid min="77,13,-296" max="84,19,-289"/>
-            </capture>
-            <progress>
-                <cuboid min="77,13,-296" max="84,19,-289"/>
-            </progress>
-            <captured>
-                <cuboid min="77,13,-296" max="84,19,-289"/>
-            </captured>
-        </hill>
-        <hill name="Cave">
-            <capture>
-                <cuboid min="61,8,-312" max="68,14,-305"/>
-            </capture>
-            <progress>
-                <cuboid min="61,8,-312" max="68,14,-305"/>
-            </progress>
-            <captured>
-                <cuboid min="61,8,-312" max="68,14,-305"/>
-            </captured>
-        </hill>
+        <hill name="Top" capture="top" progress="top"/>
+        <hill name="Bottom" capture="bottom" progress="bottom"/>
+        <hill name="Cave" capture="cave" progress="cave"/>
     </hills>
 </king>
 <score>
@@ -105,6 +77,8 @@
     <item>iron boots</item>
 </itemremove>
 <itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
@@ -112,8 +86,8 @@
     <item material="golden apple"/>
     <item amount="8" material="arrow"/>
 </kill-reward>
+<respawn delay="3s" auto="true"/>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<respawn delay="3s" auto="true"/>
 </map>
