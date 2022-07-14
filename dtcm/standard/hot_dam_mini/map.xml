@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Hot Dam Mini</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Leak lava from the enemy's obsidian core onto the dam!</objective>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
@@ -29,7 +28,7 @@
         <helmet material="leather helmet" team-color="true" unbreakable="true"/>
         <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
         <leggings material="leather leggings" team-color="true" unbreakable="true"/>
-        <boots material="leather helmet" team-color="true" unbreakable="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true"/>
         <effect duration="6" amplifier="1">heal</effect>
         <effect duration="6" amplifier="2">damage resistance</effect>
     </kit>
