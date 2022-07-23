@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Tuscany</name>
-<version>2.2.5</version>
+<version>2.2.6</version>
 <objective>Capture the enemy's two wools!</objective>
 <edition>standard</edition>
 <authors>
@@ -17,6 +17,7 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
+        <clear/>
         <item slot="0" material="iron sword"/>
         <item slot="1" material="bow">
             <enchantment>infinity</enchantment>
@@ -217,6 +218,14 @@
             <material>diamond boots</material>
         </match>
         <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>iron boots</material>
+        </match>
+        <modify>
+            <enchantment>depth_strider</enchantment>
+        </modify>
     </rule>
 </item-mods>
 <crafting>
