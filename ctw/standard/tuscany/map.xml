@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Tuscany</name>
-<version>2.3</version>
+<version>2.3.1</version>
 <objective>Capture the enemy's two wools!</objective>
 <edition>standard</edition>
 <authors>
@@ -24,7 +24,7 @@
         </item>
         <item slot="28" material="arrow"/>
         <item slot="2" material="diamond pickaxe"/>
-        <item slot="3" material="iron axe"/>
+        <item slot="3" material="diamond axe"/>
         <item slot="29" material="shears"/>
         <item slot="30" material="stone spade">
             <enchantment>efficiency</enchantment>
@@ -159,7 +159,7 @@
     <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
-    <tool>iron axe</tool>
+    <tool>diamond axe</tool>
     <tool>stone spade</tool>
     <tool>shears</tool>
     <tool>arrow</tool>
@@ -197,7 +197,7 @@
     <item>iron sword</item>
     <item>bow</item>
     <item>diamond pickaxe</item>
-    <item>iron axe</item>
+    <item>diamond axe</item>
     <item>stone spade</item>
     <item>shears</item>
     <item>wood</item>
@@ -221,7 +221,7 @@
             <material>iron sword</material>
             <material>bow</material>
             <material>diamond pickaxe</material>
-            <material>iron axe</material>
+            <material>diamond axe</material>
             <material>shears</material>
             <material>stone spade</material>
             <material>leather chestplate</material>
