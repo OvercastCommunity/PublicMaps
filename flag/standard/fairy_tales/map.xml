@@ -1,0 +1,172 @@
+<map proto="1.4.0">
+<name>Fairy Tales</name>
+<version>1.0.6</version>
+<objective>Take the enemy's flag located on the enemy's side and place it at the top of your tree.</objective>
+<authors>
+    <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/>
+    <!-- D347HxD -->
+    <author uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/>
+    <!-- pbat AKA PandaBatallion -->
+    <author uuid="ccb7a66f-ed6c-4f8d-953e-78205c33abba"/>
+    <!-- GabeisAwesome199 -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Special Thanks"/>
+    <!-- Plastix -->
+    <contributor uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="XML"/>
+    <!-- CoWinkKeyDinkInc -->
+</contributors>
+<rules>
+    <rule>Do not put lava in front of the entrance.</rule>
+</rules>
+<broadcasts>
+    <tip after="10s" every="2m">The flag is located behind the tree, at ground level.</tip>
+    <alert after="3m" every="2m">The flag must be returned to the top of the tree to score!</alert>
+</broadcasts>
+<teams>
+    <team id="pink-team" color="light purple" max="25">Pink</team>
+    <team id="purple-team" color="dark purple" max="25">Purple</team>
+</teams>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="30">iron spade</item>
+        <item slot="4" amount="64">log</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="8" amount="64">cooked beef</item>
+        <item slot="9" amount="64">arrow</item>
+        <effect duration="60">saturation</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="pink-team" kit="spawn">
+        <regions yaw="180">
+            <cuboid min="-41,122,221" max="-39,122,223"/>
+        </regions>
+    </spawn>
+    <spawn team="purple-team" kit="spawn">
+        <regions yaw="0">
+            <cuboid min="-39,122,-220" max="-41,122,-222"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="-2,52,3" max="3,52,-2"/>
+        </regions>
+    </default>
+</spawns>
+<keep-potion-bottles/>
+<score>
+    <limit>3</limit>
+</score>
+<flags>
+    <flag id="blue-flag" name="Blue Flag" owner="purple-team">
+        <post pickup-filter="only-pink" recover-time="60" respawn-time="1" yaw="0">-37.5,89,-176.5</post>
+    </flag>
+    <flag id="red-flag" name="Red Flag" owner="pink-team">
+        <post pickup-filter="only-purple" recover-time="60" respawn-time="1" yaw="180">-37.5,89,177.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="blue-flag" rescue="red-flag"/>
+        <net region="red-net" flag="red-flag" rescue="blue-flag"/>
+    </flags>
+</flags>
+<regions>
+    <!-- purple team's net -->
+    <cuboid id="red-net" min="-34,119,-172" max="-37,122,-169"/>
+    <!-- pink team's net -->
+    <cuboid id="blue-net" min="-34,119,170" max="-37,122,173"/>
+    <union id="red-flag-room">
+        <cuboid min="-43,87,183" max="-32,90,173"/>
+        <union id="red-flag-entrance">
+            <cuboid min="-42,87,177" max="-41,90,179"/>
+            <cuboid min="-33,87,177" max="-34,90,179"/>
+            <cuboid min="-39,87,175" max="-36,90,174"/>
+        </union>
+    </union>
+    <union id="blue-flag-room">
+        <cuboid min="-32,87,-181" max="-43,90,-172"/>
+        <union id="blue-flag-entrance">
+            <cuboid min="-33,87,-178" max="-34,90,-176"/>
+            <cuboid min="-42,87,-178" max="-41,90,-176"/>
+            <cuboid min="-39,87,-172" max="-36,90,-173"/>
+        </union>
+    </union>
+    <union id="chests">
+        <cuboid min="-59,88,-153" max="-20,89,-156"/>
+        <cuboid min="-20,88,154" max="-59,89,157"/>
+    </union>
+    <union id="spawn-tunnels">
+        <cuboid min="-37,120,-176" max="-43,125,-224"/>
+        <cuboid min="-43,120,177" max="-37,125,225"/>
+    </union>
+    <union id="flag-monument">
+        <cuboid min="-38,118,-169" max="-34,122,-172"/>
+        <cuboid min="-34,118,170" max="-37,122,173"/>
+    </union>
+    <union id="ladders">
+        <cuboid min="-40,121,-169" max="-38,88,-166"/>
+        <cuboid min="-38,121,170" max="-40,88,167"/>
+    </union>
+    <cuboid id="height-min-front" min="-oo,-oo,-oo" max="oo,51,oo"/>
+    <union id="height-min-back">
+        <cuboid min="-oo,-oo,-92" max="oo,64,-181"/>
+        <cuboid min="-oo,-oo,93" max="oo,64,182"/>
+    </union>
+    <apply block="deny-chest-break" region="chests"/>
+    <apply enter="only-pink" block="never" region="blue-flag-room"/>
+    <apply enter="only-purple" block="never" region="red-flag-room"/>
+    <apply enter="never" block="never" region="spawn-tunnels"/>
+    <apply block="never" region="flag-monument"/>
+    <apply block="never" region="ladders"/>
+    <apply block="never" region="height-min-front"/>
+    <apply block="never" region="height-min-back"/>
+</regions>
+<filters>
+    <deny id="deny-chest-break">
+        <material>chest</material>
+    </deny>
+    <all id="only-pink">
+        <team>pink-team</team>
+    </all>
+    <all id="only-purple">
+        <team>purple-team</team>
+    </all>
+</filters>
+<world>
+    <timeset>15115</timeset>
+    <timelock>on</timelock>
+</world>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>iron spade</item>
+    <item>log</item>
+    <item>glass</item>
+    <item>cooked beef</item>
+    <item>arrow</item>
+</itemremove>
+<!-- MLG chest is just one ender pearl. lame. -->
+<!-- Original forum post -->
+<!-- This map is Capture the Flag, just like when it was first released. I have 
+an idea how to make this work and with the additions added to PGM sicne it was 
+first released I think it'd be simple to add, and it'll work this time around. 
+If you notice there are iron bars infront of the wool room. I think it should go 
+like this: The enemy gets to wool room (it's unlocked, no iron bars) and breaks 
+the wool. It's now in their inventory. They must leave, as soon as they leave 
+the wool room it locks behind them and no one can break the iron bars. The wool 
+respawns at this moment. Now, if the person holding the wool (it broadcasts who 
+has it out loud to every team) drops it, dies with it, or places it somewhere 
+that isn't their team's monument it'll disappear, open the iron bars, and 
+broadcast the wool has been dropped & respawned. Now... if they get the wool 
+back to their monument and place it it broadcasts that the team who placed it 
+has scored a point, and it'll respawn the wool in 1 minute. Once the minute is 
+up, it'll release the iron bars so the team can enter the room again. The first 
+team to 3 captures is the victor.
+-PonySwagOut -->
+</map>
