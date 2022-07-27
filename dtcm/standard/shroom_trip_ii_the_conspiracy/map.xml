@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Shroom Trip II: The Conspiracy</name>
+<version>1.1</version>
+<objective>Leak the enemy core, the Doom Shroom!</objective>
+<authors>
+    <author uuid="b5f4323f-aec6-4066-9d9c-9970626b39ba"/> <!-- R3creat3 (R3C) AKA SkytopiaBot -->
+    <author uuid="9e55ba07-9c56-42aa-8c66-c98da0d8e619"/> <!-- zezo268 -->
+    <author uuid="76cf5483-a7ea-4b5d-8830-385f768c4807"/> <!-- xannallax33 AKA Xannuh -->
+</authors>
+<contributors>
+    <contributor uuid="222e0912-1227-45a7-b564-277b0c79cad0" contribution="Beautifier"/> <!-- JellyWolfSS AKA CGauz -->
+    <contributor uuid="2f7a9da0-fa11-41aa-89dc-f5a63a4d1dd3" contribution="'Wonderful' distraction"/> <!-- GPWonderful AKA GiPs --> 
+    <contributor uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="New XML"/> <!-- CoWinkKeyDinkInc -->
+    <contributor uuid="8b210772-8b0c-44b4-a4e2-2b543707ffc6" contribution="Original Author of Shroom Trip"/> <!-- Omnigarde -->
+</contributors>
+<created>2012-11-22</created>
+<teams>
+    <team id="blue" color="blue" max="50">Blue</team>
+    <team id="red" color="dark red" max="50">Red</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" material="diamond sword"/>
+        <item slot="1">bow</item>
+        <item slot="2" material="stone pickaxe">
+            <enchantment level="3">dig speed</enchantment>
+            <enchantment level="2">durability</enchantment>
+        </item>
+        <item slot="3" amount="64">huge mushroom 1</item>
+        <item slot="4" amount="64">huge mushroom 1</item>
+        <item slot="5" amount="64">smooth brick</item>
+        <item slot="6" amount="64">arrow</item>
+        <item slot="7" amount="64">arrow</item>
+        <item slot="8" amount="16">mushroom soup</item>
+        <potion duration="30" amplifier="4">regeneration</potion>
+        <potion duration="60" amplifier="2">speed</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn" yaw="223">
+        <region>
+            <cylinder base="927,2,-74" radius="3" height="1"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn" yaw="48">
+        <region>
+            <cylinder base="449,2,20" radius="3" height="1"/>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <cylinder base="690,47,-123" radius="7" height="1"/>
+        </region>
+    </default>
+</spawns>
+<playable>
+    <rectangle min="427,71" max="-962,-124"/>
+</playable>
+<regions>
+    <union id="spawns">
+        <union id="blue-spawn">
+            <cuboid id="blue-bottom-spawn" min="937,0,-83" max="862,44,-32"/>
+        </union>
+        <union id="red-spawn">
+            <cuboid id="red-bottom-spawn" min="440,0,31" max="514,44,-20"/>
+        </union>
+    </union>
+    <apply block="never" region="spawns" message="You can't place blocks in spawn!"/>
+    <apply block="no-break" region="everywhere"/>
+</regions>
+<filters>
+    <not id="no-break">
+        <any>
+            <material>chest</material>
+            <material>mob spawner</material>
+            <material>mycel</material>
+        </any>
+    </not>
+</filters>
+<cores material="obsidian" leak="3">
+    <core team="blue" name="Doom Shroom">
+        <region>
+            <cuboid min="850,68,-53" max="859,57,-62"/>
+        </region>
+    </core>
+    <core team="red" name="Doom Shroom">
+        <region>
+            <cuboid min="527,57,-3" max="517,68,8"/>
+        </region>
+    </core>
+</cores>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<gamerules>
+    <doFireTick>false</doFireTick>
+    <mobGriefing>true</mobGriefing>
+    <doMobLoot>true</doMobLoot>
+</gamerules>
+<maxbuildheight>400</maxbuildheight>
+</map>
