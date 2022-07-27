@@ -1,11 +1,12 @@
 <map proto="1.4.0">
 <name>Spaceship Battles II</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Leak lava from the enemy's obsidian core and destroy the enemy's Comm Tower made of coal ore.</objective>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
     <author uuid="c97373ef-4582-4350-8993-8a78f2775c29"/> <!-- Eclipsen -->
 </authors>
+<created>2012-07-04</created>
 <teams>
     <team id="blue" color="blue" max="50">Blue</team>
     <team id="red" color="dark red" max="50">Red</team>

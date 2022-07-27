@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Wildwood Crevice</name>
-<version>1.3.7</version>
+<version>1.3.8</version>
 <objective>Be the team with the least amount of deaths after 10 minutes.</objective>
 <authors>
     <author uuid="1c2664be-01ce-4be4-ac1c-a4dcc64b80c7"/> <!-- xxjkr7xx -->
@@ -10,6 +10,8 @@
     <contributor uuid="7afeaf14-7c25-48c0-ba0a-a417b25befaf" contribution="Minor aesthetics and map design"/> <!-- goman989 -->
     <contributor uuid="9d911306-eeb4-439d-badc-fa5386aa12fe" contribution="First person to notice the Kirby face"/> <!-- XYOENDS -->
 </contributors>
+<!-- Prereleased October 18, 2012 -->
+<created>2012-10-20</created>
 <teams>
     <team color="blue" max="40">Blue</team>
     <team color="dark red" max="40">Red</team>

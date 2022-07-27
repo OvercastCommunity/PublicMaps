@@ -7,6 +7,7 @@
     <author uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="map design"/> <!-- Anxuiz -->
     <author uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="map design and code"/> <!-- MonsieurApple -->
 </authors>
+<created>2012-08-12</created>
 <teams>
     <team color="blue" max="50">Blue</team>
     <team color="dark red" max="50">Red</team>

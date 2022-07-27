@@ -1,12 +1,13 @@
 <map proto="1.4.0">
 <name>Parallax</name>
 <gamemode>rfw</gamemode>
-<version>0.1.4</version>
+<version>0.1.5</version>
 <phase>development</phase>
 <objective>Secure the three wools and place them at your team's victory monument!</objective>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
 </authors>
+<created>2012-10-31</created>
 <teams>
     <team id="blue" color="blue" max="50">Blue</team>
     <team id="red" color="dark red" max="50">Red</team>

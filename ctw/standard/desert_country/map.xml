@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Desert Country</name>
-<version>1.0.12</version>
+<version>1.0.13</version>
 <objective>Capture the wools located on the opposite side.</objective>
 <gamemode>ctw</gamemode>
 <!-- Map authors & contributors. -->
@@ -14,6 +14,7 @@
 <contributors>
     <contributor uuid="5951eb64-d04b-4917-967e-57551860ed34" contribution="Spawn"/> <!-- xXBatManXx -->
 </contributors>
+<created>2016-02-10</created>
 <teams>
     <team id="green-team" color="green" max="20" max-overfill="25">Green</team>
     <team id="blue-team" color="blue" max="20" max-overfill="25">Blue</team>

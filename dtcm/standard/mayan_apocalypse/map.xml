@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Mayan Apocalypse</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Destroy the enemy's core!</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design"/> <!-- Mikeg542 -->
@@ -13,6 +13,7 @@
     <team id="orange" color="gold" max="32">Orange</team>
     <team id="purple" color="dark purple" max="32">Purple</team>
 </teams>
+<created>2012-12-13</created>
 <kits>
     <kit id="spawn">
         <clear/>

@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Cake Wars 2</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective> Destroy the enemy team's core before they destroy your team's.</objective>
 <authors>
     <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/>
     <!-- GammaRay89 -->
 </authors>
+<created>2012-06-16</created>
 <filters>
     <filter name="only-Fishnets" parents="deny-players deny-world">
         <allow>

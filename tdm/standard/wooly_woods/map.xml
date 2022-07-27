@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Wooly Woods</name>
-<version>1.1.7</version>
+<version>1.1.8</version>
 <objective>Be the team with the most kills after 10 minutes!</objective>
 <time result="score">10m</time>
 <authors>
@@ -13,6 +13,7 @@
     <contributor uuid="514a20b0-6d70-4bc0-ad2f-5d33c1e5e95d" contribution="Contributed ideas"/> <!-- ZoveReign -->
     <contributor uuid="6968cbde-c2b7-479c-a8da-f33f109f013b" contribution="XML fixes and changes"/> <!-- Brottweiler -->
 </contributors>
+<created>2012-12-14</created>
 <teams>
     <team id="blue" color="blue" max="32">Blue</team>
     <team id="red" color="dark red" max="32">Red</team>
