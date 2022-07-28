@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Mush</name>
-<version>1.0.8</version>
-<objective>Capture the hills to be the first to reach 2500 points!</objective>
+<version>1.0.9</version>
+<objective>Capture the hills to be the first to reach 750 points!</objective>
 <edition>standard</edition>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
@@ -33,6 +33,14 @@
         </boots>
         <game-mode>adventure</game-mode>
     </kit>
+    <kit id="jump">
+        <effect amplifier="255">jump</effect>
+    </kit>
+    <take kit="jump">
+        <filter>
+            <grounded/>
+        </filter>
+    </take>
 </kits>
 <spawns>
     <default>
@@ -52,16 +60,26 @@
     </spawn>
 </spawns>
 <regions>
-    <cuboid id="a-left-to-mid" min="-443,12,-324" max="-440,13,-327"/>
-    <cuboid id="a-right-to-mid" min="-404,12,-285" max="-401,13,-288"/>
-    <cuboid id="mid-to-a-right" min="-389,14,-306" max="-392,15,-303"/>
-    <cuboid id="mid-to-b-left" min="-385,14,-310" max="-382,15,-313"/>
-    <cuboid id="b-left-to-mid" min="-364,12,-325" max="-367,13,-322"/>
-    <cuboid id="b-right-to-mid" min="-403,12,-364" max="-406,13,-361"/>
-    <cuboid id="mid-to-b-right" min="-418,14,-343" max="-415,15,-346"/>
-    <cuboid id="mid-to-a-left" min="-422,14,-339" max="-425,15,-336"/>
-    <cuboid id="a-bottom" min="-438,2,-290" max="-435,3,-293"/>
-    <cuboid id="b-bottom" min="-369,2,-359" max="-372,3,-356"/>
+    <union id="hill-regions">
+        <cuboid id="point-a" min="-432,10,-304" max="-424,14,-296"/>
+        <cuboid id="point-a-signal" min="-450,16,-320" max="-408,29,-278"/>
+        <cuboid id="middle" min="-408,10,-329" max="-399,14,-320"/>
+        <cuboid id="middle-signal" min="-407,24,-328" max="-400,29,-321"/>
+        <cuboid id="point-b" min="-383,10,-353" max="-375,14,-345"/>
+        <cuboid id="point-b-signal" min="-399,16,-371" max="-357,29,-329"/>
+    </union>
+    <union id="launchpads">
+        <cuboid id="a-left-to-mid" min="-443,12,-324" max="-440,13,-327"/>
+        <cuboid id="a-right-to-mid" min="-404,12,-285" max="-401,13,-288"/>
+        <cuboid id="mid-to-a-right" min="-389,14,-306" max="-392,15,-303"/>
+        <cuboid id="mid-to-b-left" min="-385,14,-310" max="-382,15,-313"/>
+        <cuboid id="b-left-to-mid" min="-364,12,-325" max="-367,13,-322"/>
+        <cuboid id="b-right-to-mid" min="-403,12,-364" max="-406,13,-361"/>
+        <cuboid id="mid-to-b-right" min="-418,14,-343" max="-415,15,-346"/>
+        <cuboid id="mid-to-a-left" min="-422,14,-339" max="-425,15,-336"/>
+        <cuboid id="a-bottom" min="-438,2,-290" max="-435,3,-293"/>
+        <cuboid id="b-bottom" min="-369,2,-359" max="-372,3,-356"/>
+    </union>
     <apply region="a-right-to-mid" velocity="2.4,0.9,-2.4"/>
     <apply region="a-left-to-mid" velocity="2.4,0.9,-2.4"/>
     <apply region="mid-to-a-right" velocity="-3.2,0.8,3.2"/>
@@ -72,47 +90,18 @@
     <apply region="mid-to-a-left" velocity="-3.2,0.8,3.2"/>
     <apply region="a-bottom" velocity="-0.2,1.7,0.2"/>
     <apply region="b-bottom" velocity="0.2,1.7,-0.2"/>
-    <apply block="never"/>
+    <apply kit="jump" region="launchpads"/>
+    <apply block="never" use="never"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="3" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
-        <hill name="Point A">
-            <capture>
-                <cuboid min="-432,11,-296" max="-424,15,-304"/>
-            </capture>
-            <progress>
-                <cuboid min="-432,10,-296" max="-424,15,-304"/>
-            </progress>
-            <captured>
-                <cuboid min="-408,16,-278" max="-450,29,-320"/>
-            </captured>
-        </hill>
-        <hill name="Middle">
-            <capture>
-                <cuboid min="-399,11,-329" max="-408,15,-320"/>
-            </capture>
-            <progress>
-                <cuboid min="-399,10,-329" max="-408,15,-320"/>
-            </progress>
-            <captured>
-                <cuboid min="-400,24,-328" max="-407,29,-321"/>
-            </captured>
-        </hill>
-        <hill name="Point B">
-            <capture>
-                <cuboid min="-375,11,-353" max="-383,15,-345"/>
-            </capture>
-            <progress>
-                <cuboid min="-375,10,-353" max="-383,15,-345"/>
-            </progress>
-            <captured>
-                <cuboid min="-399,16,-371" max="-357,29,-329"/>
-            </captured>
-        </hill>
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Hill A" capture="point-a" progress="point-a" captured="point-a-signal"/>
+        <hill name="Middle" capture="middle" progress="middle" captured="middle-signal"/>
+        <hill name="Hill B" capture="point-b" progress="point-b" captured="point-b-signal"/>
     </hills>
 </king>
 <score>
-    <limit>2500</limit>
+    <limit>750</limit>
 </score>
 <toolrepair>
     <tool>stone sword</tool>
@@ -125,6 +114,8 @@
     <item>iron boots</item>
 </itemremove>
 <itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
@@ -132,8 +123,8 @@
     <item material="golden apple"/>
     <item amount="8" material="arrow"/>
 </kill-reward>
+<respawn delay="3s" auto="true"/>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<respawn auto="true"/>
 </map>
