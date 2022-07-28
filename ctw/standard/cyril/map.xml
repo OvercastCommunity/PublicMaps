@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Cyril</name>
-<version>1.3.3</version>
+<version>1.3.4</version>
 <objective>Capture the enemy team's wool!</objective>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
@@ -90,8 +90,8 @@
         <rectangle min="13,24" max="26,36"/>
     </intersect>
     <union id="wool-roof">
-        <cuboid id="blue-roof" min="12,17.5,38" max="27,oo,24"/>
-        <cuboid id="red-roof" min="-26,17.5,-37" max="-11,oo,-23"/>
+        <cuboid id="blue-roof" min="12,17.5,38" max="27,oo,26"/>
+        <cuboid id="red-roof" min="-26,17.5,-37" max="-11,oo,-25"/>
     </union>
     <complement id="void-area">
         <everywhere/>
