@@ -61,12 +61,12 @@
 </spawns>
 <regions>
     <union id="hill-regions">
-        <cuboid id="point-a" min="-432,10,-304" max="-424,14,-296"/>
-        <cuboid id="point-a-signal" min="-450,16,-320" max="-408,29,-278"/>
+        <cuboid id="hill-a" min="-432,10,-304" max="-424,14,-296"/>
+        <cuboid id="hill-a-signal" min="-450,16,-320" max="-408,29,-278"/>
         <cuboid id="middle" min="-408,10,-329" max="-399,14,-320"/>
         <cuboid id="middle-signal" min="-407,24,-328" max="-400,29,-321"/>
-        <cuboid id="point-b" min="-383,10,-353" max="-375,14,-345"/>
-        <cuboid id="point-b-signal" min="-399,16,-371" max="-357,29,-329"/>
+        <cuboid id="hill-b" min="-383,10,-353" max="-375,14,-345"/>
+        <cuboid id="hill-b-signal" min="-399,16,-371" max="-357,29,-329"/>
     </union>
     <union id="launchpads">
         <cuboid id="a-left-to-mid" min="-443,12,-324" max="-440,13,-327"/>
@@ -95,9 +95,9 @@
 </regions>
 <king>
     <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
-        <hill name="Hill A" capture="point-a" progress="point-a" captured="point-a-signal"/>
+        <hill name="Hill A" capture="hill-a" progress="hill-a" captured="hill-a-signal"/>
         <hill name="Middle" capture="middle" progress="middle" captured="middle-signal"/>
-        <hill name="Hill B" capture="point-b" progress="point-b" captured="point-b-signal"/>
+        <hill name="Hill B" capture="hill-b" progress="hill-b" captured="hill-b-signal"/>
     </hills>
 </king>
 <score>
