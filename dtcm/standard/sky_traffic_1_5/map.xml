@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Sky Traffic 1.5</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <objective>Attackers must leak the enemy's core. Defenders must stop them from doing so for 10 minutes!</objective>
 <gamemode>ad</gamemode>
 <gamemode>dtc</gamemode>
@@ -39,7 +39,7 @@
     <apply block="never" region="void-area" message="You may not build outside the map"/>
     <apply block="anti-chest-grief" region="everywhere" message="Chests cannot be destroyed!"/>
     <apply block="never" region="spawn-tunnels" message="You may not build in or on the spawn tunnels!"/>
-    <apply enter="never" region="spawn-tunnels" message="You may reenter the spawns!"/>
+    <apply enter="never" region="spawn-tunnels" message="You may not reenter the spawns!"/>
 </regions>
 <kits>
     <kit id="spawn-kit">
