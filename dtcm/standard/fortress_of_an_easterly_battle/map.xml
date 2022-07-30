@@ -2,6 +2,7 @@
 <map proto="1.4.0">
 <name>Fortress of an Easterly Battle</name>
 <version>1.0.2</version>
+<phase>development</phase>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <rules>
     <rule>You cannot place dispensers on the map!</rule>
