@@ -1,6 +1,7 @@
 <map proto="1.4.0">
 <name>AlepBOO!</name>
 <version>1.1.6</version>
+<phase>development</phase>
 <objective>Capture the Enemy team's flag 4 times to win!</objective>
 <authors>
 	<author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/>

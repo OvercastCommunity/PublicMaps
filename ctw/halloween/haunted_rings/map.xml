@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Haunted Rings</name>
 <version>1.7.4</version>
+<phase>development</phase>
 <objective>Capture both wools from the enemy's wool rooms and return them to your victory monument</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->

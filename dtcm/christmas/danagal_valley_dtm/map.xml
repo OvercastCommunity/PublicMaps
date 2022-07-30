@@ -1,6 +1,7 @@
 <map proto="1.4.0">
 <name>Danagal Valley DTM</name>
 <version>1.0.1</version>
+<phase>development</phase>
 <gamemode>dtm</gamemode>
 <objective>Destroy both of the opposing monuments to win!</objective>
 <authors>

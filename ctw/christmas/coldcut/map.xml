@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Coldcut</name>
 <version>2.1.12</version>
+<phase>development</phase>
 <objective>Capture and place both of the enemy's wools!</objective>
 <gamemode>ctw</gamemode>
 <authors>

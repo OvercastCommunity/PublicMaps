@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Downtown: Christmas Eve</name>
 <version>1.2.3</version>
+<phase>development</phase>
 <objective>Be the first team to 2500 points!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->

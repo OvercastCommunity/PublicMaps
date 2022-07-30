@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>PerSpookySto</name>
 <version>1.1</version>
+<phase>development</phase>
 <objective>Capture both wools to win!</objective>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="RIP Map Maker."/> <!-- Timothee38 -->

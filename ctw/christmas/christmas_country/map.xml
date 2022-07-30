@@ -1,6 +1,7 @@
 <map proto="1.4.0">
 <name>Christmas Country</name>
 <version>1.0.4</version>
+<phase>development</phase>
 <objective>Capture the wools located on the opposite side.</objective>
 <gamemode>ctw</gamemode>
 <!--  Map authors & contributors.  -->

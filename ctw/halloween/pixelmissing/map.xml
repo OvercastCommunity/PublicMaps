@@ -2,6 +2,7 @@
 <include src="tutorial.xml"/>
 <name>PixelMissing</name>
 <version>1.1.1</version>
+<phase>development</phase>
 <objective>
     Take the enemy's wool located at two sides of the enemy's base and place it in your victory monument.
 </objective>

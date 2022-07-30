@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Circus DTC: Halloween</name>
 <version>1.3</version>
+<phase>development</phase>
 <objective>Leak the opposing circus's cannonball (core) mid-flight while defending your own!</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->

@@ -2,6 +2,7 @@
 <map proto="1.3.0">
 <name>Halloween Train</name>
 <version>1.0.3</version>
+<phase>development</phase>
 <objective>Break both of the enemy team's obsidian monuments.</objective>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->

@@ -2,6 +2,7 @@
 <map proto="1.3.6">
 <name>SpOOky Diamonds</name>
 <version>2.0.9</version>
+<phase>development</phase>
 <objective>Capture the enemy's flag 3 times!</objective>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" />

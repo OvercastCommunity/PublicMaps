@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Haunted Cargo</name>
 <version>1.2.9</version>
+<phase>development</phase>
 <objective>Capture the enemy's wools!</objective>
 <authors>
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
