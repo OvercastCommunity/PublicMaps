@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Mush</name>
-<version>1.0.9</version>
+<version>1.0.10</version>
 <objective>Capture the hills to be the first to reach 750 points!</objective>
 <edition>standard</edition>
 <authors>
@@ -33,15 +33,23 @@
         </boots>
         <game-mode>adventure</game-mode>
     </kit>
-    <kit id="jump">
-        <effect amplifier="255">jump</effect>
+    <kit id="jump-pad-fall-damage">
+        <effect>water_breathing</effect>
     </kit>
-    <take kit="jump">
+    <take kit="jump-pad-fall-damage">
         <filter>
             <grounded/>
         </filter>
     </take>
 </kits>
+<damage>
+    <deny id="nofall">
+        <all>
+            <cause>fall</cause>
+            <effect>water_breathing</effect>
+        </all>
+    </deny>
+</damage>
 <spawns>
     <default>
         <region yaw="-45">
@@ -90,7 +98,7 @@
     <apply region="mid-to-a-left" velocity="-3.2,0.8,3.2"/>
     <apply region="a-bottom" velocity="-0.2,1.7,0.2"/>
     <apply region="b-bottom" velocity="0.2,1.7,-0.2"/>
-    <apply kit="jump" region="launchpads"/>
+    <apply kit="jump-pad-fall-damage" region="launchpads"/>
     <apply block="never" use="never"/>
 </regions>
 <king>
