@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.3">
 <name>Greecia</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Destroy the other team's core before they destroy yours!</objective>
 <authors>
     <author uuid="b8539c6d-533b-4be2-8f0d-3f70431eee87"/> <!-- CatchingMC -->
@@ -12,6 +12,7 @@
 </teams>
 <kits>
     <kit name="teams">
+        <clear/>
         <item slot="0">iron sword</item>
         <item slot="1">bow</item>
         <item slot="28" amount="16">arrow</item>
@@ -116,11 +117,19 @@
     <item>carpet</item>
     <item>potion</item>
     <item>diamond</item>
+    <item>seeds</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
 </itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
 <killreward>
     <filter>
         <kill-streak max="4"/>
     </filter>
+    <item>golden apple</item>
     <item amount="8">arrow</item>
     <item damage="16453">potion</item>
 </killreward>
@@ -128,6 +137,7 @@
     <filter>
         <kill-streak min="5"/>
     </filter>
+    <item>golden apple</item>
     <item amount="16">arrow</item>
     <item damage="16421">potion</item>
 </killreward>
@@ -136,4 +146,3 @@
 </gamerules>
 <maxbuildheight>40</maxbuildheight>
 </map>
-
