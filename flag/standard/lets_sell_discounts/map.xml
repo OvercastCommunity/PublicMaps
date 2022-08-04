@@ -1,8 +1,9 @@
 <map proto="1.4.2">
 <name>Let's Sell Discounts</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Capture the enemy team's flag</objective>
 <time result="score" overtime="1m" max-overtime="2m">12m</time>
+<edition>standard</edition>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
     <author uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Winnerizor -->
@@ -12,8 +13,8 @@
     <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b"/> <!-- jexel -->
 </contributors>
 <teams>
-    <team id="red-team" color="dark red" max="12">red</team>
-    <team id="blue-team" color="blue" max="12">blue</team>
+    <team id="red-team" color="dark red" max="12">Red</team>
+    <team id="blue-team" color="blue" max="12">Blue</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -110,10 +111,12 @@
         <union id="red-net">
             <cylinder base="35.5,4,135.5" radius="2.5" height="4"/>
             <cylinder base="34.5,4,134.5" radius="2.5" height="4"/>
+            <cylinder base="17.5,13,152.5" radius="2" height="4"/>
         </union>
         <union id="blue-net">
             <cylinder base="92.5,4,76.5" radius="2.5" height="4"/>
             <cylinder base="93.5,4,77.5" radius="2.5" height="4"/>
+            <cylinder base="110.5,13,59.5" radius="2" height="4"/>
         </union>
     </union>
     <union id="spawns">
