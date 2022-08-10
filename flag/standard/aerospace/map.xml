@@ -1,0 +1,115 @@
+<map proto="1.4.2">
+<name>Aerospace</name>
+<version>1.0.8</version>
+<objective>Capture the enemy's flag 3 times!</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+    <author uuid="62865c87-5244-4406-bd9e-a0ff2ca1d0e0"/> <!-- InfinityGamers -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="10">Blue</team>
+    <team id="red" color="dark red" max="10">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="12" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0s">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="0">
+            <block>0,26,-27</block>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="0">
+            <block>-31,10,-16</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="180">
+            <block>31,10,16</block>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <cylinder id="blue-net" base="-38.5,15,-9.5" radius="2" height="2.5"/>
+    <cylinder id="red-net" base="39.5,15,10.5" radius="2" height="2.5"/>
+    <apply block="never" use="never"/>
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag color="blue"
+          id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="10s">-38.5,15,-9.5</post>
+        <net region="red-net" points="1"/>
+    </flag>
+    <flag color="red"
+          id="red-flag"
+          name="Red Flag"
+          owner="red"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="10s">39.5,15,10.5</post>
+        <net region="blue-net" points="1"/>
+    </flag>
+</flags>
+<score>
+    <limit>3</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="6" material="arrow"/>
+</kill-reward>
+<respawn delay="3.5s" auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<world>
+    <timeset>18000</timeset>
+</world>
+</map>
