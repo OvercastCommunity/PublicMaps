@@ -3,6 +3,7 @@
 <name>Vinebay</name>
 <version>1.0.1</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
+<created>2015-04-13</created>
 <gamemode>rage</gamemode>
 <authors>
     <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb" />
