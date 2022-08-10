@@ -2,6 +2,7 @@
 <name>Mushdoom</name>
 <version>1.1.5</version>
 <objective>Destroy the opposing team's monument and leak their core!</objective>
+<created>2019-02-12</created>
 <edition>standard</edition>
 <gamemode>dtc</gamemode>
 <gamemode>dtm</gamemode>

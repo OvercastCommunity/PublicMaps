@@ -3,6 +3,7 @@
 <version>1.4.5</version>
 <objective>Control the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
+<created>2018-06-2018</created>
 <edition>standard</edition>
 <authors>
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b"/> <!-- _3Each -->

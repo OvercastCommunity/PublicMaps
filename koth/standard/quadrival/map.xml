@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Quadrival</name>
 <version>1.1.6</version>
+<created>2018-06-25</created>
 <objective>Capture hills to earn points. Be the first team to 2500 points to win!</objective>
 <authors>
     <author uuid="a43135a4-d7b9-49ab-ac8d-a16bb2513c8d" contribution="Design and XML"/> <!-- Ny_ -->
