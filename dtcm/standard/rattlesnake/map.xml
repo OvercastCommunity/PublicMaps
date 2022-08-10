@@ -1,9 +1,9 @@
 <map proto="1.4.2">
 <name>Rattlesnake</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Destroy the enemy team's emerald monuments!</objective>
 <authors>
-    <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- ViceTechnicolour -->
+    <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- Vicei -->
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b"/> <!-- _3Each -->
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
@@ -89,8 +89,8 @@
     </union>
     <!-- applicators -->
     <apply use="no-beacon"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not edit the enemy's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not edit the enemy's spawn!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
     <apply block-break="only-gold" block-place="only-gold-regen" region="spawns" message="You may not edit spawn!"/>
     <apply block-break="no-spawner" message="You may not destroy spawners!"/>
     <apply block="no-void" message="You may not edit the void!"/>
@@ -148,7 +148,7 @@
 <kill-rewards>
     <kill-reward>
         <item material="golden apple"/>
-        <item amount="16" material="wood"/>
+        <item amount="16" damage="2" material="wood"/>
     </kill-reward>
     <kill-reward filter="only-blue">
         <item amount="12" damage="11" material="stained glass"/>
