@@ -180,14 +180,14 @@
     <material id="allow-wool">wool</material>
 </filters>
 <regions>
-    <point id="pink-spawner">3.5,25,-79.5</point>
-    <point id="yellow-spawner">95.5,25,120.5</point>
-    <point id="purple-spawner">95.5,25,-79.5</point>
-    <point id="lime-spawner">3.5,25,120.5</point>
-    <cylinder id="pink-spawning" base="3,25,-79" radius="3" height="6"/>
-    <cylinder id="yellow-spawning" base="95,25,120" radius="3" height="6"/>
-    <cylinder id="purple-spawning" base="95,25,-79" radius="3" height="6"/>
-    <cylinder id="lime-spawning" base="3,25,120" radius="3" height="6"/>
+    <point id="pink-spawner">3.5,14,-79.5</point>
+    <point id="yellow-spawner">95.5,14,120.5</point>
+    <point id="purple-spawner">95.5,14,-79.5</point>
+    <point id="lime-spawner">3.5,14,120.5</point>
+    <cylinder id="pink-spawning" base="3,13,-79" radius="3" height="6"/>
+    <cylinder id="yellow-spawning" base="95,13,120" radius="3" height="6"/>
+    <cylinder id="purple-spawning" base="95,13,-79" radius="3" height="6"/>
+    <cylinder id="lime-spawning" base="3,13,120" radius="3" height="6"/>
     <union id="red-spawn">
         <rectangle min="44,82" max="55,96"/>
         <rectangle min="58,97" max="40,128"/>
