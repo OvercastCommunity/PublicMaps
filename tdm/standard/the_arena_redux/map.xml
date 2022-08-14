@@ -1,6 +1,7 @@
 <map proto="1.4.0">
 <name>The Arena Redux</name>
 <version>1.0.4</version>
+<phase>development</phase>
 <objective>Be the team with the least amount of deaths after 12 minutes.</objective>
 <authors>
     <author uuid="43b59b5d-f75c-4a5c-9146-f9d5e6cbdac4"/> <!-- Gone52 -->
