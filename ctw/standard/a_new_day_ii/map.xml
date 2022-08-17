@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>A New Day II</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Capture the enemy's wools!</objective>
 <created>2017-11-14</created>
 <authors>
@@ -18,7 +18,7 @@
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="1" unbreakable="true" material="bow" enchantment="arrow infinite"/>
         <item slot="28" material="arrow"/>
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
         <item slot="3" material="iron axe"/>
