@@ -1,15 +1,17 @@
 <map proto="1.4.2">
 <name>Aerospace</name>
-<version>1.0.8</version>
+<version>1.1</version>
 <objective>Capture the enemy's flag 3 times!</objective>
 <edition>standard</edition>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
-    <author uuid="62865c87-5244-4406-bd9e-a0ff2ca1d0e0"/> <!-- InfinityGamers -->
 </authors>
+<contributors>
+    <contributor uuid="62865c87-5244-4406-bd9e-a0ff2ca1d0e0" contribution="Aesthetics"/> <!-- InfinityGamers -->
+</contributors>
 <teams>
-    <team id="blue" color="blue" max="10">Blue</team>
-    <team id="red" color="dark red" max="10">Red</team>
+    <team id="blue" color="blue" max="8">Blue</team>
+    <team id="red" color="dark red" max="8">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">
@@ -84,6 +86,35 @@
 <score>
     <limit>3</limit>
 </score>
+<spawners>
+    <spawner id="arrow-blue" delay="1s">
+        <spawn-region>
+            <point>-7.5,15.2,0.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="-7.5,14,0.5" height="4" radius="2"/>
+        </player-region>
+        <item material="arrow"/>
+    </spawner>
+    <spawner id="arrow-red" delay="1s">
+        <spawn-region>
+            <point>8.5,15.2,0.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="8.5,14,0.5" height="4" radius="2"/>
+        </player-region>
+        <item material="arrow"/>
+    </spawner>
+    <spawner id="golden-apple" delay="5s">
+        <spawn-region>
+            <point>0.5,7.2,0.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="0.5,6,0.5" height="4" radius="2"/>
+        </player-region>
+        <item material="golden apple"/>
+    </spawner>
+</spawners>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
