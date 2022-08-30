@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Chestnut</name> <!-- August 2020 -->
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Capture the enemy's wool and bring it back to your base!</objective>
 <time results="objective">20m</time>
 <authors>
@@ -125,6 +125,7 @@
     </wool>
 </wools>
 <toolrepair>
+    <tool>stone sword</tool>
     <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>iron pickaxe</tool>
