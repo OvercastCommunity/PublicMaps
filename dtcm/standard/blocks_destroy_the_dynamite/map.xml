@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Blocks: Destroy the Dynamite</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Destroy both of the enemy tnt blocks to win!</objective>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
@@ -209,7 +209,7 @@
     <portal x="@152" y="@19" z="@14" yaw="@180" pitch="@0" filter="only-red" region="red-cannoneer"/>
     <portal x="@206" y="@39" z="@14" yaw="@180" pitch="@0" filter="only-red" region="red-engineer"/>
 </portals>
-<destroyables show-progress="true" completion="75%" repairable="true" materials="ender stone">
+<destroyables show-progress="true" completion="80%" repairable="true" materials="ender stone">
     <destroyable name="West Blue TNT" owner="blue">
         <region>
             <cuboid min="127,32,-103" max="113,18,-89"/>
