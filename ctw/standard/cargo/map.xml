@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Cargo</name>
-<version>1.2.11</version>
+<version>1.2.12</version>
 <objective>Capture the enemy's wools!</objective>
 <created>2013-12-27</created>
 <authors>
@@ -163,11 +163,10 @@
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
-    <item>iron boots</item>
-    <item>wood step</item>
-    <item>sign</item>
+    <item>iron boots</item>,
     <item>redstone torch on</item>
     <item>redstone</item>
+    <item>string</item>
 </itemremove>
 <block-drops>
     <rule>
@@ -176,6 +175,7 @@
                 <material>wood</material>
                 <material>leaves</material>
                 <material>ladder</material>
+                <material>wood step</material>
             </any>
         </filter>
         <drops>
