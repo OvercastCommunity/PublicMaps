@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Race for Victory 4</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Take the enemy's wools located to either side of the enemy's base and place them in your victory monument.</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
@@ -12,7 +12,6 @@
 </contributors>
 <rules>
     <rule>Players may break stained glass panes in their enemies' wool rooms.</rule>
-    <rule>Players may not use lava or obsidian to block a team's portals.</rule>
 </rules>
 <created>2012-08-12</created>
 <gamemode>ctw</gamemode>
@@ -63,6 +62,12 @@
     <deny id="no-beacons">
         <material>beacon</material>
     </deny>
+    <deny id="no-lava">
+        <any>
+            <material>lava</material>
+            <material>stationary lava</material>
+        </any>
+    </deny>
     <all id="blue-in-wr">
         <team id="only-blue">blue</team>
         <filter id="wr-filter"/>
@@ -94,8 +99,9 @@
         <region id="portal-protections"/>
         <region id="redstone-strips"/>
     </negative>
-    <apply use="no-void" block-place="no-void" region="void-area" message="You may not build in the void."/>
+    <apply block-place="no-void" region="void-area" message="You may not build in the void."/>
     <apply use="no-beacons" block="no-beacons" message="You may not use or break the beacons."/>
+    <apply block="no-lava" message="You may not interact with this block here."/>
     <!-- portal protections -->
     <union id="portal-protections">
         <circle center="12,-75.5" radius="3"/>
@@ -115,13 +121,13 @@
         <rectangle min="19,-13" max="18,13"/>
     </union>
     <apply block="never" region="redstone-strips" message="You may not build in the void."/>
-    <!-- victory monument protections -->    
+    <!-- victory monument protections -->
     <union id="victory-monument-protections"> 
         <cuboid min="-1,14,106" max="1,11,104"/>
         <cuboid min="-1,14,-104" max="1,11,-106"/>
     </union>
     <apply enter="never" region="victory-monument-protections" message="You may not obstruct the Victory Monument."/>
-    <!-- the wools blue has to get -->    
+    <!-- the wools blue has to get -->
     <complement id="lime-wool">
         <cuboid min="42,14,-74" max="54,oo,-62"/>
         <cuboid min="53,14,-74" max="54,oo,-73"/>
@@ -265,6 +271,15 @@
             <item chance="0" material="ladder"/>
         </drops>
     </rule>
+    <rule>
+        <filter>
+            <material>gravel</material>
+        </filter>
+        <drops>
+            <item chance="0" material="flint"/>
+            <item chance="100" material="gravel"/>
+        </drops>
+    </rule>
 </block-drops>
 <itemkeep>
     <item>golden apple</item>
@@ -303,4 +318,8 @@
 <renewables>
     <renewable region="spawn-protections" renew-filter="only-iron" interval="4" grow="false" particles="true" sound="true"/>
 </renewables>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">poison</damage>
+    <damage ally="true" self="false" enemy="false" other="false">magic</damage>
+</disabledamage>
 </map>
