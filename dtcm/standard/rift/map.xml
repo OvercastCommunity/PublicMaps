@@ -1,9 +1,9 @@
 <map proto="1.4.2">
 <name>Rift</name>
-<version>1.2.4</version>
+<version>1.2.5</version>
 <objective>Destroy the enemy's three Inhibitor Crystals and one large Nexus Crystal to win!</objective>
 <authors>
-    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!--  Lyzak  -->
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
 </authors>
 <contributors>
     <contributor uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87" contribution="Building assistance"/> <!-- Torn_Ares -->
@@ -219,6 +219,7 @@
 <tnt>
     <instantignite>on</instantignite>
     <yield>0</yield>
+    <power>2.0</power>
 </tnt>
 <hunger>
     <depletion>off</depletion>
