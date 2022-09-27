@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Blocks CTW</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Capture the enemy wools to win!</objective>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- PepsiDog -->
@@ -37,9 +37,9 @@
 </kits>
 <spawns>
     <default>
-        <regions>
-            <point yaw="-90">-40,36,168</point>
-        </regions>
+        <region yaw="-90">
+            <cylinder base="-40,36,168" radius="1" height="0"/>
+        </region>
     </default>
     <spawn team="lime" kit="green-kit">
         <regions>
@@ -55,12 +55,9 @@
     </spawn>
 </spawns>
 <filters>
-    <any id="void">
-        <not>
-            <void/>
-        </not>
-        <region id="build-void"/>
-    </any>
+    <deny id="deny-void">
+        <void/>
+    </deny>
     <team id="only-green">lime</team>
     <team id="only-purple">purple</team>
 </filters>
@@ -89,33 +86,22 @@
             <circle id="yellow-wool" center="-33,74" radius="15"/>
         </union>
     </union>
-    <union id="build-void">
+    <complement id="build-void">
+        <everywhere/>
         <rectangle id="yellow-wool-void" min="60,64" max="70,84"/>
         <rectangle id="orange-wool-void" min="100,65" max="110,85"/>
-        <rectangle id="center-void" min="54,149" max="116,187"/>
+        <rectangle id="centre-void" min="54,149" max="116,187"/>
         <rectangle id="purple-wool-void" min="60,252" max="70,272"/>
         <rectangle id="green-wool-void" min="100,252" max="110,272"/>
-    </union>
-    <apply block="never">
-        <region>
-            <region id="wool-rooms"/>
-            <region id="spawns"/>
-            <region id="monuments"/>
-        </region>
-    </apply>
-    <apply block="void"/>
-    <apply enter="only-green">
-        <region>
-            <region id="green-wool-rooms"/>
-            <region id="green-spawns"/>
-        </region>
-    </apply>
-    <apply enter="only-purple">
-        <region>
-            <region id="purple-wool-rooms"/>
-            <region id="purple-spawns"/>
-        </region>
-    </apply>
+    </complement>
+    <apply enter="only-green" region="green-spawns" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-purple" region="purple-spawns" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-green" region="green-wool-rooms" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-purple" region="purple-wool-rooms" message="You may not enter your team's own wool rooms!"/>
+    <apply block="never" region="spawns" message="You may not destroy the spawns!"/>
+    <apply block="never" region="monuments" message="You may not interfere with the wool monuments!"/>
+    <apply block="never" region="wool-rooms" message="You may not break or place blocks in the wool rooms!"/>
+    <apply block="deny-void" region="build-void" message="You may not build in the void areas!"/>
 </regions>
 <wools craftable="false">
     <wool team="lime" color="blue" location="-33,26,262">
@@ -154,6 +140,7 @@
     <item>seeds</item>
     <item>string</item>
     <item>mutton</item>
+    <item>obsidian</item>
 </itemremove>
 <block-drops>
     <rule>
