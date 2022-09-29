@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Race for Victory 4</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Take the enemy's wools located to either side of the enemy's base and place them in your victory monument.</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
@@ -22,17 +22,17 @@
 <spawns>
     <spawn team="blue" kit="spawn-kit" yaw="180">
         <regions>
-            <cuboid id="blue-spawn" min="2,11,92" max="-2,11,97"/>
+            <cuboid id="blue-spawn" min="2,11.5,103" max="-2,11.5,108"/>
         </regions>
     </spawn>
     <spawn team="red" kit="spawn-kit" yaw="0">
         <regions>
-            <cuboid id="red-spawn" min="-2,11,-92" max="2,11,-97"/>
+            <cuboid id="red-spawn" min="-2,11.5,-92" max="2,11.5,-97"/>
         </regions>
     </spawn>
     <default yaw="-90">
         <regions>
-            <cuboid id="obs-spawn" min="-49,58,-1" max="-52,59,2"/>
+            <cuboid id="obs-spawn" min="-49.5,58.5,4.5" max="-51.5,58.5,6.5"/>
         </regions>
     </default>
 </spawns>
@@ -92,7 +92,7 @@
 <regions>
     <!-- void protection -->
     <negative id="void-area">
-        <rectangle id="middle" min="-18,-22" max="18,22"/>
+        <rectangle id="middle" min="-18,-22" max="18,33"/>
         <region id="red-wool-rooms"/>
         <region id="blue-wool-rooms"/>
         <region id="spawn-protections"/>
@@ -104,27 +104,27 @@
     <apply block="no-lava" message="You may not interact with this block here."/>
     <!-- portal protections -->
     <union id="portal-protections">
-        <circle center="12,-75.5" radius="3"/>
-        <circle center="-12,-75.5" radius="3"/>
-        <circle center="12,75.5" radius="3"/>
-        <circle center="-12,75.5" radius="3"/>
+        <rectangle min="-15,84" max="-9,88"/> <!-- Blue (West) -->
+        <rectangle min="9,84" max="15,88"/> <!-- Blue (East) -->
+        <rectangle min="-9,-73" max="-15,-77"/> <!-- Red (West) -->
+        <rectangle min="15,-73" max="9,-77"/> <!-- Red (East) -->
     </union>
     <apply block="never" region="portal-protections" message="You may not build here."/>
     <union id="spawn-protections">
-        <rectangle min="-33,82" max="32,109"/>
-        <rectangle min="-33,-82" max="32,-109"/>
+        <rectangle min="-34,92" max="34,122"/> <!-- Blue -->
+        <rectangle min="34,-81" max="-34,-111"/> <!-- Red -->
     </union>
     <apply block-place="deny-players" block-break="only-iron" region="spawn-protections" message="You may only break iron blocks in your supply room."/>
     <!-- redstone strip protections -->
     <union id="redstone-strips">
-        <rectangle min="-19,13" max="-18,-13"/>
-        <rectangle min="19,-13" max="18,13"/>
+        <rectangle min="20,-13" max="19,24"/> <!-- East -->
+        <rectangle min="-19,-13" max="-20,24"/> <!-- West -->
     </union>
     <apply block="never" region="redstone-strips" message="You may not build in the void."/>
     <!-- victory monument protections -->
     <union id="victory-monument-protections"> 
-        <cuboid min="-1,14,106" max="1,11,104"/>
-        <cuboid min="-1,14,-104" max="1,11,-106"/>
+        <cuboid min="-1,14,115" max="1,11,117"/>
+        <cuboid min="-1,14,-106" max="1,11,-104"/>
     </union>
     <apply enter="never" region="victory-monument-protections" message="You may not obstruct the Victory Monument."/>
     <!-- the wools blue has to get -->
@@ -151,25 +151,25 @@
     </complement>
     <!-- the wools red has to get -->
     <complement id="purple-wool">
-        <cuboid min="42,14,74" max="54,oo,62"/>
+        <cuboid min="42,14,85" max="54,oo,73"/>
+        <cuboid min="53,14,85" max="54,oo,84"/>
         <cuboid min="53,14,74" max="54,oo,73"/>
-        <cuboid min="53,14,63" max="54,oo,62"/>
-        <cuboid min="42,14,63" max="43,oo,62"/>
         <cuboid min="42,14,74" max="43,oo,73"/>
+        <cuboid min="42,14,85" max="43,oo,84"/>
     </complement>
     <complement id="orange-wool">
-        <cuboid min="-42,14,74" max="-54,oo,62"/>
-        <cuboid min="-54,14,74" max="-53,oo,73"/>
-        <cuboid min="-53,14,63" max="-54,oo,62"/>
-        <cuboid min="-42,14,63" max="-43,oo,62"/>
+        <cuboid min="-42,14,85" max="-54,oo,73"/>
+        <cuboid min="-54,14,85" max="-53,oo,84"/>
+        <cuboid min="-53,14,74" max="-54,oo,73"/>
         <cuboid min="-42,14,74" max="-43,oo,73"/>
+        <cuboid min="-42,14,85" max="-43,oo,84"/>
     </complement>
     <complement id="cyan-wool">
-        <cuboid min="-6,15,41" max="6,oo,29"/>
+        <cuboid min="-6,15,52" max="6,oo,40"/>
+        <cuboid min="-6,15,52" max="-5,oo,51"/>
         <cuboid min="-6,15,41" max="-5,oo,40"/>
-        <cuboid min="-6,15,30" max="-5,oo,29"/>
-        <cuboid min="6,15,30" max="5,oo,29"/>
         <cuboid min="6,15,41" max="5,oo,40"/>
+        <cuboid min="6,15,52" max="5,oo,51"/>
     </complement>
     <!-- the wools red has to get -->
     <union id="red-wool-rooms">
@@ -204,23 +204,23 @@
     <!-- portals in blue base -->
     <portal x="1" y="-4" z="-14">
         <region>
-            <cuboid min="9,11,87" max="12,14,88"/>
+            <cuboid min="9,11,97" max="12,14,99"/>
         </region>
     </portal>
     <portal x="-1" y="-4" z="-14">
         <region>
-            <cuboid min="-9,11,87" max="-12,14,88"/>
+            <cuboid min="-9,11,97" max="-12,14,99"/>
         </region>
     </portal>
     <!-- portal back to blue base -->
     <portal filter="only-blue" x="1" y="4" z="14">
         <region>
-            <cuboid min="-11,7,75" max="-13,11,76"/>
+            <cuboid min="-11,7,86" max="-13,11,87"/>
         </region>
     </portal>
     <portal filter="only-blue" x="-1" y="4" z="14">
         <region>
-            <cuboid min="11,7,75" max="13,11,76"/>
+            <cuboid min="11,7,86" max="13,11,87"/>
         </region>
     </portal>
     <!-- portal back to red base -->
@@ -295,23 +295,23 @@
 <maxbuildheight>27</maxbuildheight>
 <wools team="blue">
     <wool color="yellow" location="-0.5,20.5,-34.5">
-        <monument><block>0,13,105</block></monument>
+        <monument><block>0,13,116</block></monument>
     </wool>
     <wool color="pink" location="-47.5,15.5,-67.5">
-        <monument><block>-1,12,105</block></monument>
+        <monument><block>-1,12,116</block></monument>
     </wool>
     <wool color="lime" location="47.5,15.5,-67.5">
-        <monument><block>0,11,105</block></monument>
+        <monument><block>0,11,116</block></monument>
     </wool>
 </wools>
 <wools team="red">
-    <wool color="cyan" location="-0.5,20.5,34.5">
+    <wool color="cyan" location="-0.5,20.5,45.5">
         <monument><block>-1,13,-106</block></monument>
     </wool>
-    <wool color="purple" location="47.5,15.5,67.5">
+    <wool color="purple" location="47.5,15.5,78.5">
         <monument><block>0,12,-106</block></monument>
     </wool>
-    <wool color="orange" location="-47.5,15.5,67.5">
+    <wool color="orange" location="-47.5,15.5,78.5">
         <monument><block>-1,11,-106</block></monument>
     </wool>
 </wools>
