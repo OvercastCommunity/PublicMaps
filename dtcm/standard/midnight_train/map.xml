@@ -4,6 +4,7 @@
 <name>Midnight Train</name>
 <version>1.2.9</version>
 <objective>Break both of the enemy team's obsidian monuments.</objective>
+<phase>development</phase>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
     <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->

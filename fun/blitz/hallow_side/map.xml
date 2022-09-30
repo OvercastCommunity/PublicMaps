@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <name>Hallow Side</name>
 <version>1.0.1</version>
-<phase>development</phase>
+<phase>production</phase>
 <objective>Defeat all of the opposing teams within 8 minutes!</objective>
 <gamemode>rage</gamemode>
 <authors>

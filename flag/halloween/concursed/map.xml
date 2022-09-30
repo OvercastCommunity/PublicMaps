@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Concursed</name>
 <version>1.2.12</version>
-<phase>development</phase>
+<phase>production</phase>
 <objective>Control the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>

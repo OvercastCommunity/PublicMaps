@@ -1,7 +1,7 @@
 <map proto="1.4.0">
 <name>Spaceship Battles: Halloween</name>
 <version>1.2.9</version>
-<phase>development</phase>
+<phase>production</phase>
 <objective>Leak lava from the enemy's obsidian core.</objective>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->

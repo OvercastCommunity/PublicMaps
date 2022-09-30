@@ -2,6 +2,7 @@
 <name>Snowy Wars</name>
 <version>1.5.5</version>
 <objective>Break the enemy's monument!</objective>
+<phase>development</phase>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
 </authors>

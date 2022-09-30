@@ -3,6 +3,7 @@
 <name>Soviet Mills</name>
 <version>1.2.14</version>
 <objective>Destroy 75% of the team's spherical monument.</objective>
+<phase>development</phase>
 <authors>
     <author uuid="c97373ef-4582-4350-8993-8a78f2775c29"/> <!-- Eclipsen -->
     <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->

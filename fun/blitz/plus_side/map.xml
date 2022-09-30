@@ -5,6 +5,7 @@
 <version>1.4.6</version>
 <objective>Defeat all of the opposing teams within 8 minutes!</objective>
 <gamemode>br</gamemode>
+<phase>development</phase>
 <authors>
     <author uuid="8053ed38-89d9-4096-b265-a0fcce3a1c33" contribution="Main Design, Building"/> <!-- JETUB1 -->
     <author uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="XML Writing, Suggestions"/> <!-- BlockDrop74 -->

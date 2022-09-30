@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>DynaboOo</name>
 <version>1.5.3</version>
-<phase>development</phase>
+<phase>production</phase>
 <objective>Grab the wool from the enemy's wool room and place it on your victory monument.</objective>
 <authors>
     <author uuid="6968cbde-c2b7-479c-a8da-f33f109f013b" contribution="Map design and XML"/> <!-- Brottweiler -->

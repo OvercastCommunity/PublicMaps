@@ -1,7 +1,7 @@
 <map proto="1.3.0">
 <name>SolitudeMC: Halloween</name>
 <version>1.4.4</version>
-<phase>development</phase>
+<phase>production</phase>
 <objective>Leak the lava from your enemy's core!</objective>
 <authors>
     <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Main Author - Project starter, Building" />

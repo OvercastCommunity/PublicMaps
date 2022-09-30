@@ -2,6 +2,7 @@
 <name>Desert Country</name>
 <version>1.0.13</version>
 <objective>Capture the wools located on the opposite side.</objective>
+<phase>development</phase>
 <gamemode>ctw</gamemode>
 <!-- Map authors & contributors. -->
 <authors>

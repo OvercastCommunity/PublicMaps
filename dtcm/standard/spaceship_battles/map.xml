@@ -3,6 +3,7 @@
 <version>1.2.12</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
 <created>2012-02-26</created>
+<phase>development</phase>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
 </authors>
