@@ -74,7 +74,7 @@
     <item>seeds</item>
 </itemremove>
 <!--
-<!-- include src="tutorial.xml"/ -->
+<include src="tutorial.xml"/>
 <tutorial>
     <stage title="Destroy the Core">
         <message>
