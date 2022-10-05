@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>We Sell Mushrooms CTF</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Capture both enemy flags two times!</objective>
 <edition>standard</edition>
 <authors>
@@ -98,8 +98,8 @@
         </union>
     </union>
     <union id="flag-nets">
-        <circle id="blue-net" center="-343,110" radius="7"/>
-        <circle id="red-net" center="-154,-79" radius="7"/>
+        <cylinder id="blue-net" base="-343,2,110" radius="7" height="5"/>
+        <cylinder id="red-net" base="-154,2,-79" radius="7" height="5"/>
     </union>
     <complement id="void">
         <everywhere/>
