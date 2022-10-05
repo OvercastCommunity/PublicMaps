@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <map proto="1.4.0" game="King of the Hill">
 <name>Wuhu Island</name>
-<version>1.0.0</version>
-<objective>Reach 4000 points before the opposing teams!</objective>
+<version>1.0.1</version>
+<objective>Reach 3000 points before the opposing teams!</objective>
 <gamemode>koth</gamemode>
 <!-- Authors and Contributors -->
 <authors>
@@ -16,10 +16,10 @@
 </contributors>
 <!-- Teams -->
 <teams>
-    <team id="yellow" color="yellow" min="3" max="100">Yellow</team>
-    <team id="green" color="green" min="3" max="100">Green</team>
-    <team id="blue" color="blue" min="3" max="100">Blue</team>
-    <team id="red" color="red" min="3" max="100">Red</team>
+    <team id="yellow" color="yellow" max="25">Yellow</team>
+    <team id="green" color="green" max="25">Green</team>
+    <team id="blue" color="blue" max="25">Blue</team>
+    <team id="red" color="red" max="25">Red</team>
 </teams>
 <!-- Kits -->
 <kits>
@@ -241,7 +241,7 @@
 </kill-rewards>
 <!-- Misc -->
 <score>
-    <limit>4000</limit>
+    <limit>3000</limit>
 </score>
 <timelock>off</timelock>
 </map>
