@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Xion CTF</name>
-<version>1.0.2</version>
+<version>1.0.4</version>
 <objective>Capture the opposing team's flag and return it to your base!</objective>
 <score>
     <limit>2</limit>
@@ -111,6 +111,7 @@
         <rectangle min="38,-82" max="35,-87"/>
         <rectangle min="35,-90" max="30,-87"/>
         <rectangle min="30,-87" max="35,-82"/>
+        <cylinder id="blue-spawn-protection" base="32.5,9,-84.5" radius="5" height="13"/>
     </union>
     <union id="blue-leaves">
         <cuboid min="33,6,-89" max="32,8,-88"/>
@@ -122,6 +123,7 @@
         <rectangle min="50,-71" max="65,-67" />
         <rectangle min="65,-67" max="46,-52" />
     </union>
+    <cylinder id="blue-capture-net" base="32.5,6,-84.5" height="6" radius="5"/>
     <!-- Red Side: Regions -->
     <union id="red-spawn">
         <rectangle min="-96,-221" max="-104,-216"/>
@@ -129,6 +131,7 @@
         <rectangle min="-104,-216" max="-107,-221"/>
         <rectangle min="-104,-221" max="-99,-224"/>
         <rectangle min="-99,-216" max="-104,-221"/>
+        <cylinder id="red-spawn-protection" base="-101.5,9,-218.5" radius="5" height="13"/>
     </union>
     <union id="red-leaves">
         <cuboid min="-101,6,-214" max="-102,8,-215"/>
@@ -140,35 +143,29 @@
         <rectangle min="-119,-232" max="-134,-236"/>
         <rectangle min="-134,-236" max="-115,-251"/>
     </union>
+    <cylinder id="red-capture-net" base="-101.5,6,-218.5" height="6" radius="5"/>
     <!-- Blue Side: Applied filters to regions -->
     <apply region="blue-spawn" enter="only-blue"/>
     <apply region="blue-leaves" kit="leaves"/>
-    <apply block="never" message="`f`lYou may not place or break blocks in `9`lBlue Spawn!">
-        <cylinder base="32.5,9,-84.5" radius="5" height="13"/>
-    </apply>
+    <apply block="never" region="blue-spawn-protection" message="`f`lYou may not place or break blocks in `9`lBlue Spawn!"/>
     <!-- Red Side: Applied filters to regions -->
     <apply region="red-spawn" enter="only-red"/>
     <apply region="red-leaves" kit="leaves"/>
-    <apply block="never" message="`f`lYou may not place or break blocks in `4`lRed Spawn!">
-        <cylinder base="-101.5,9,-218.5" radius="5" height="13"/>
-    </apply>
+    <apply block="never" region="red-spawn-protection" message="`f`lYou may not place or break blocks in `4`lRed Spawn!"/>
     <!-- Global -->
+    <cuboid id="obs-usage-region" min="-34,18,-151" max="-34,25,-151"/>
     <apply block="deny-void" message="`f`lYou may not place blocks in the void!"/>
     <apply use="usage"/>
-    <apply use="obs-usage">
-        <region>
-            <cuboid min="-34,18,-151" max="-34,25,-151"/>
-        </region>
-    </apply>
+    <apply use="obs-usage" region="obs-usage-region"/>
 </regions>
 <flags>
     <flag id="blue-flag" name="Blue Flag" owner="blue" color="blue" pickup-filter="only-red" carry-message="Return the flag to spawn!" pickup-kit="carry-kit">
         <post yaw="135" recover-time="oo" respawn-time="5s">62.5,11,-54.5</post>
-        <net points="1" region="red-spawn"/>
+        <net points="1" region="red-capture-net"/>
     </flag>
     <flag id="red-flag" name="Red Flag" owner="red" color="red" pickup-filter="only-blue" carry-message="Return the flag to spawn!" pickup-kit="carry-kit">
         <post yaw="-45" recover-time="oo" respawn-time="5s">-131.5,11,-248.5</post>
-        <net points="1" region="blue-spawn"/>
+        <net points="1" region="blue-capture-net"/>
     </flag>
 </flags>
 <renewables>
