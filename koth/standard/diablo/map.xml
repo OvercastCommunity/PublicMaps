@@ -115,7 +115,7 @@
     <item amount="1">golden apple</item>
 </killreward>
 <timelock>on</timelock>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Control Points">
         <message>

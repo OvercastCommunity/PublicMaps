@@ -6,7 +6,7 @@
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <cores material="obsidian" leak="8">
     <core team="red">
         <cuboid min="2066,16,-1551" max="2063,14,-1548"/>

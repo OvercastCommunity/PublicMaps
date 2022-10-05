@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.3.6">
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <name>Yggdrasil</name> 
 <version>1.0.2</version> 
 <objective>Get the most kills for your team within the allowed time.</objective>

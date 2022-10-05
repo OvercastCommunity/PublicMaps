@@ -122,7 +122,7 @@
     <depletion>on</depletion>
 </hunger>
 <tutorial>
-    <include src="tutorial.xml"/>
+    <!-- include src="tutorial.xml"/ -->
     <stage title="One in a Chamber">
         <message>
             <line>This is a "`6One in a Chamber" `ror "`6Rage" `rmap.</line>

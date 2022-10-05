@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.3.6">
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <name>The Fenland CTF</name>
 <version>1.0.1</version>
 <objective>Capture the enemy flag and bring it back to your side</objective>

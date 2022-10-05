@@ -266,7 +266,7 @@
         <destroyable owner="red" region="red-surface"/>
     </destroyables>
 </destroyables>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="The surface is toxic!">
         <message>

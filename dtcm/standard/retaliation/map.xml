@@ -137,7 +137,7 @@
 <world>
     <timeset>18000</timeset>
 </world>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Destroy the Core">
         <message>

@@ -21,7 +21,7 @@
     <lives>1</lives>
 </blitz>
 <rage />
-<include src="blitz-global.xml" />
+<!-- include src="blitz-global.xml"/ -->
 <respawn auto="true"/>
 <teams>
     <team color="blue" max="16" max-overfill="18">Blue</team>

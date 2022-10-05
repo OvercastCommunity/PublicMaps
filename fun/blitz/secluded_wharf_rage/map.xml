@@ -17,7 +17,7 @@
     <lives>1</lives>
     <broadcastLives>false</broadcastLives>
 </blitz>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 <respawn auto="true"/>
 <rage/>
 <kits>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.3.2">
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <name>Sunburn</name>
 <version>1.0.7</version>
 <objective>Control the Central Hill to win!</objective>

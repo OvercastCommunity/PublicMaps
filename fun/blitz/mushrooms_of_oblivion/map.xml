@@ -61,6 +61,6 @@
         <rectangle min="-oo,-oo" max="oo,oo"/>
     </apply>
 </regions>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 <respawn auto="true"/>
 </map>

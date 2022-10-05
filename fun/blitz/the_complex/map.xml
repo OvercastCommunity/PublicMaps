@@ -150,5 +150,5 @@
     <item>chest</item>
     <item>glowstone dust</item>
 </itemremove>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 </map>

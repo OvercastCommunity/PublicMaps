@@ -202,7 +202,7 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Rage TDM">
         <message>

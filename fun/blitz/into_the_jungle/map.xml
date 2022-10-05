@@ -86,5 +86,5 @@
     <depletion>off</depletion>
 </hunger>
 <respawn auto="true"/>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 </map>

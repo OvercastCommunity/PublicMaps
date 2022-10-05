@@ -214,7 +214,7 @@
     <depletion>off</depletion>
 </hunger>
 </map>
-<!-- <include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/>
 <tutorial>
     <stage title="Capture the Wool">
         <message>

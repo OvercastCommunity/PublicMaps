@@ -81,5 +81,5 @@
     <time>5m</time>
     <lives>1</lives>
 </blitz>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 </map>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.3.3">
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <name>Drow's Crevice: Blitz</name>
 <version>1.0.1</version>
 <objective>Eliminate the enemy team in 8 minutes or less. You have one life!</objective>

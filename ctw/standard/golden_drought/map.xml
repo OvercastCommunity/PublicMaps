@@ -228,7 +228,7 @@
         <ingredient symbol="A">apple</ingredient>
     </shaped>
 </crafting>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Capture the Wool">
         <message>

@@ -95,7 +95,7 @@
 </itemremove>
 <timelock>on</timelock>
 <multitrade/>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="King of the Hill">
         <message>

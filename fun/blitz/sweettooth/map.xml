@@ -1,5 +1,5 @@
 <map proto="1.3.6">
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 <name>Sweet Tooth</name>
 <version>1.0.7</version>
 <objective>Elimate the enemy team before time runs out!</objective>

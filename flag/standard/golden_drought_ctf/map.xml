@@ -224,7 +224,7 @@
     <item material="golden apple"/>
 </kill-reward>
 <maxbuildheight>45</maxbuildheight>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Capture the Wool">
         <message>

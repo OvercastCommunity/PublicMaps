@@ -168,7 +168,7 @@
     <damage ally="true" self="false" enemy="false" other="true">block explosion</damage>
 </disabledamage>
 </map>
-<!-- <include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/>
 <tutorial>
     <stage title="King of the Hill">
         <message>

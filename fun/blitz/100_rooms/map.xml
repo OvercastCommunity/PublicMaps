@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <name>100 Rooms</name>
 <version>1.0.7</version>
 <objective>Typical Blitz game w/ one life.</objective>

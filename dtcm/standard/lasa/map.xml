@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.3.6">
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <name>Lasa</name> 
 <version>1.3</version> 
 <objective>Attackers have 15 minutes to destroy the Monument. The Red defenders must hold them back.</objective>

@@ -150,7 +150,7 @@
     <item amount="16" material="glass"/>
     <item amount="16" material="arrow"/>
 </kill-reward>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Destroy the Core">
         <message>

@@ -70,6 +70,6 @@
     <item>gold boots</item>
     <item>glass bottle</item>
 </itemremove>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 <respawn auto="true"/>
 </map>

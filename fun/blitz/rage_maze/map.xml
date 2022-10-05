@@ -110,6 +110,6 @@
     <item amount="1" name="`6Maze Cookie">cookie</item>
 </killreward>
 <multitrade/>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 <respawn auto="true"/>
 </map>

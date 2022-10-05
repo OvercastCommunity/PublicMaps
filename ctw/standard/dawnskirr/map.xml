@@ -6,7 +6,7 @@
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <teams>
     <team color="dark red" max="12" max-overfill="16">Red</team>
     <team color="blue" max="12" max-overfill="16">Blue</team>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <name>Glacial Conquest</name>
 <version>1.0.7</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>

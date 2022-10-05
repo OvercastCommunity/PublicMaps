@@ -25,7 +25,7 @@
     <lives>1</lives>
     <broadcastLives>true</broadcastLives>
 </blitz>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 <rage/>
 <spawns>
     <spawn team="blue" kit="kitBlue">

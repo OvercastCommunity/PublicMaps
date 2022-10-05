@@ -348,7 +348,7 @@
 </tnt>
 </map>
 <!--
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Rift II: DTM with a twist">
         <message>

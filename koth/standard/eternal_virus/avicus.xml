@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map name="Eternal Virus" version="1.0.0" description="You have one chance to capture the hill. Make it worth it!">
-  <include src="defaults.xml"/>
+  <!-- include src="defaults.xml"/ -->
 
   <authors>
     <author uuid="d9b4ffbc11d0453aa93f82dc59fca4b6"/>  <!-- Wulfcaspice -->

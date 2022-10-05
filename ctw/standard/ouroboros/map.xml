@@ -335,7 +335,7 @@
         <item amount="4" damage="4" material="stained clay"/>
     </kill-reward>
 </kill-rewards>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Capture the Wool">
         <message>

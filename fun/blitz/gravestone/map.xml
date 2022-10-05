@@ -71,5 +71,5 @@
     <item>leather boots</item>
 </itemremove>
 <respawn auto="true"/>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 </map>

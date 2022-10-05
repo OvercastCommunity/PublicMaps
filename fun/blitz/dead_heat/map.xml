@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <name>Dead Heat</name>
 <version>2.6.2</version>
 <objective>Capture the black wool or eliminate the other team.</objective>
@@ -93,7 +93,7 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<include src="blitz-global.xml"/>
+<!-- include src="blitz-global.xml"/ -->
 <tutorial>
     <stage title="Blitz">
         <message>

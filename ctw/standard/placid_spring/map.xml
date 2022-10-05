@@ -246,7 +246,7 @@
     <item amount="16" material="arrow"/>
 </kill-reward>
 <maxbuildheight>20</maxbuildheight>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Capture the Wool">
         <message>

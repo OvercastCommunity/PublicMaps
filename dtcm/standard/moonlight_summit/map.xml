@@ -456,7 +456,7 @@
         </detect>
     </proximity-alarm>
 </proximity-alarms>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Destroy the Monument">
         <message>

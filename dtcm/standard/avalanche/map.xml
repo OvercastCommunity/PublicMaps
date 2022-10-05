@@ -8,7 +8,7 @@
     <author uuid="904bf23f-67c5-484a-ae60-61f4ec150b48"/> <!-- oib5 -->
     <author uuid="90ad8634-0e78-466a-afa9-60ddb7cd0da9"/> <!-- OliverDollar -->
 </authors>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <teams>
     <team id="red" color="dark red" max="32">Red</team>
     <team id="blue" color="blue" max="32">Blue</team>

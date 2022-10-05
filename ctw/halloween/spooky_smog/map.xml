@@ -190,7 +190,7 @@
     <tool>iron pickaxe</tool>
     <tool>iron axe</tool>
 </toolrepair>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <maxbuildheight>145</maxbuildheight>
 <tutorial>
     <stage title="CTW">

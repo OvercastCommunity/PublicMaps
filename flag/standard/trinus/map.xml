@@ -410,7 +410,7 @@
     <tip after="48s" every="2m" filter="only-blue">`bRemember, you `ccannot respawn `bwhile your team is carrying the `4Red Flag`b!</tip>
     <tip after="30s" every="2m" filter="only-blue">`bYou can only pick up the `4Red Flag `bwhile the `9Blue Flag `bis at its post!</tip>
 </broadcasts>
-<include src="tutorial.xml"/>
+<!-- include src="tutorial.xml"/ -->
 <tutorial>
     <stage title="Welcome to Trinus">
         <message>
