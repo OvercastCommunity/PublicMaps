@@ -3,6 +3,7 @@
 <version>1.2.2</version>
 <phase>development</phase>
 <objective>Capture the wool from the enemies wool rooms marked with a colored beacon, and return them to your victory monument!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->

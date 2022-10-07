@@ -4,6 +4,7 @@
 <name>Havoc</name>
 <version>1.0.1</version>
 <objective>Capture both wools from the enemy's wool rooms and return them to your victory monument.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
     <author uuid="fcbc5806-e7fd-45f1-845a-22f1df93c9bf"/> <!-- Minii_ -->

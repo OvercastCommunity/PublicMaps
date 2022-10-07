@@ -2,6 +2,7 @@
 <name>Gridlock 2</name>
 <version>1.1.1</version>
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="62b6d081-8df8-4c09-aa15-71141ca7df76"/> <!-- Arzanex -->
     <author uuid="04105de3-ecd4-4879-af0c-929715728070"/> <!-- MapleMint -->

@@ -3,6 +3,7 @@
 <version>2.0.13</version>
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <phase>development</phase>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="e41edd14-9b0e-4501-a0c5-7fda64d2b2f3"/> <!-- JonnyBallgame -->
     <author uuid="3b95de2f-2bb6-4a16-b0ba-c723794af4d6"/> <!-- Chaselic204 -->

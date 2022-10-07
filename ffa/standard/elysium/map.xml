@@ -4,10 +4,10 @@
 <version>1.4</version>
 <objective>Survive and get the most points.</objective>
 <phase>development</phase>
+<gamemode>ffa</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
-
 <kits>
     <kit id="obs">
         <potion duration="oo">night vision</potion>
@@ -32,14 +32,12 @@
         <potion duration="8" ambient="false" amplifier="3">fire resistance</potion>
     </kit>
 </kits>
-
 <score>
    <kills>1</kills>
    <deaths>1</deaths>
 </score>
 <time>40m</time>
 <players min="2" max="32" max-overfill="38" show-name-tags="false" colors="true"/>
-
 <spawns>
     <spawn kit="spawn" spread="true">
         <regions>
@@ -52,12 +50,10 @@
         </regions>
     </default>
 </spawns>
-
 <killreward>
     <item amount="4">arrow</item>
     <item>golden apple</item>
 </killreward>
-
 <regions>    
     <negative id="reversed-map">
         <cylinder base="0.5,0,0.5" radius="200" height="200"/>
@@ -75,10 +71,8 @@
     <apply region="reversed-map" block="never" place="never" message="You may not build outside of the map"/>
     <apply region="villages" block="never" place="never" message="You may not interact with this zone"/>
 </regions>
-
 <multitrade/>
 <maxbuildheight>130</maxbuildheight>
-
 <toolrepair>
     <tool>bow</tool>
     <tool>stone sword</tool>

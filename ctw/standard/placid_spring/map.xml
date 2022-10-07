@@ -2,6 +2,7 @@
 <name>Placid Spring</name>
 <version>1.2.4</version>
 <objective>Grab your enemy's wools and place them on your side.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="4a57e6bc-6100-47a8-a02f-fef8c23952b4" contribution="Map idea and building"/> <!-- 9grenier -->
     <author uuid="61442dd6-9be9-4804-918f-74e097ac4ca5" contribution="XML, map corrections and map feedback"/> <!-- Darkcranidos -->

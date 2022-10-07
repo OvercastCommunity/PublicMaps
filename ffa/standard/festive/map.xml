@@ -4,9 +4,9 @@
 <slug>festive</slug>
 <version>1.0</version>
 <objective>Kill as many players as you can in 5 minutes!</objective>
+<gamemode>ffa</gamemode>
 <authors>
-    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" />
-    <!--  Timotheeee  -->
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" /> <!--  Timotheeee  -->
 </authors>
 <score>
     <kills>1</kills>

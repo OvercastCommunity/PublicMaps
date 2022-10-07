@@ -3,6 +3,7 @@
 <name>Geometric</name>
 <version>1.9.2</version>
 <objective>Kill as many players as you can with your gun!</objective>
+<gamemode>ffa</gamemode>
 <authors>
     <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/> <!-- Strmr -->
 </authors>

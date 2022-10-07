@@ -2,11 +2,12 @@
 <map proto="1.4.0">
 <name>Immitis</name>
 <version>0.2</version>
+<objective>Kill everyone, and try not to die. Arrows kill instantly!</objective>
+<gamemode>ffa</gamemode>
 <score>
     <kills>1</kills>
 </score>
 <time>8m</time>
-<objective>Kill everyone, and try not to die. Arrows kill instantly!</objective>
 <players min="2" max="30" max-overfill="32" show-name-tags="false"/>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTerwiesch -->
@@ -50,7 +51,6 @@
         <chestplate>leather chestplate</chestplate>
         <leggings>leather leggings</leggings>
         <boots>leather boots</boots>
-
         <item slot="0" unbreakable="true">diamond sword</item>
         <item slot="1" unbreakable="true" enchantment="arrow damage:100" lore="`aOne-shot kill!">bow</item>
         <item slot="2" amount="1">arrow</item>

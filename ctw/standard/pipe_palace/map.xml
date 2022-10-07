@@ -2,6 +2,7 @@
 <name>Pipe Palace</name>
 <version>1.1.2</version>
 <objective>Capture the enemy team's wools!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="904bf23f-67c5-484a-ae60-61f4ec150b48"/> <!-- oib5 -->
     <author uuid="252154bb-2312-4bee-b306-5fb45fb20bb2"/> <!-- Vytr -->

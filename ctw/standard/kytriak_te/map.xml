@@ -4,6 +4,7 @@
 <name>Kytriak TE</name>
 <version>1.3.3</version> 
 <objective>Capture the different colored wools from the enemy's base and return it to your team's monument.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="1c2664be-01ce-4be4-ac1c-a4dcc64b80c7" contribution="Aesthetics and General Map Design"/> <!-- xxjkr7xx -->
     <author uuid="aabf45c7-c2e4-4060-a76b-35cea8a0e639" contribution="General Map Design"/> <!-- X3_4 -->

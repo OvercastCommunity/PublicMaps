@@ -2,6 +2,7 @@
 <name>Ozone FFA</name>
 <version>1.0.1</version>
 <objective>Kill the most players in 10 minutes!</objective>
+<gamemode>ffa</gamemode>
 <time>10m</time>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Overall map design and XML"/> <!-- Plastix -->
@@ -13,7 +14,6 @@
     <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Feedback and aesthetics"/> <!-- Khazhyk -->
     <contributor uuid="3ce426cd-2ded-4f83-a9bb-46a57d68d9a5" contribution="Various aesthethics"/> <!-- McYukon -->
 </contributors>
-<gamemode>ffa</gamemode>
 <players min="2" max="80" colors="true"/>
 <score>
     <kills>1</kills>

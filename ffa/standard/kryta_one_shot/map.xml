@@ -1,20 +1,17 @@
 <map proto="1.4.0">
 <name>Kryta: One Shot</name>
 <version>1.4.3</version>
+<objective>Kill and survive. There are no teams, so watch your back!</objective>
 <phase>development</phase>
 <gamemode>ffa</gamemode>
 <authors>
-    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" />
-    <!--  Qixit  -->
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!--  Qixit  -->
 </authors>
-<objective>Kill and survive. There are no teams, so watch your back!</objective>
 <score>
     <kills>1</kills>
 </score>
 <time>10m</time>
-
 <players min="2" max="64"/>
-
 <spawns>
     <spawn kit="spawn" spread="true" safe="true">
         <regions>
@@ -204,7 +201,6 @@
     </default>
 </spawns>
 <respawn auto="false" delay="1s" spectate="true" blackout="false" />
-
 <item-mods>
     <rule>
         <match>
@@ -216,7 +212,6 @@
         </modify>
     </rule>
 </item-mods>
-
 <kits>
     <kit id="spawn">
         <helmet unbreakable="true" color="FFFFFF">leather helmet</helmet>
@@ -236,17 +231,14 @@
         <double-jump recharge-before-landing="true" power="5" recharge-time="6s"/>
     </kit>
 </kits>
-
 <hunger>
     <depletion>off</depletion>
 </hunger>
-
 <disabledamage>
     <damage self="true" ally="true" enemy="false" other="false">block explosion</damage>
     <damage>fall</damage>
     <damage>suffocation</damage>
 </disabledamage>
-
 <killreward>
     <item amount="1">arrow</item>
     <kit id="killreward-base-kit" />
@@ -289,7 +281,6 @@
     </filter>
     <item>tnt</item>
 </killreward>
-
 <tnt>
     <instantignite>on</instantignite>
     <fuse>1s</fuse>
@@ -300,7 +291,6 @@
     <tool>diamond sword</tool>
     <tool>bow</tool>
 </toolrepair>
-
 <itemremove>
     <!-- environmental items -->
     <item>chest</item>
@@ -378,7 +368,6 @@
     <item>web</item>
     <item>firework</item>
 </itemremove>
-
 <filters>
     <any id="breakable-blocks">
         <material>long grass</material>
@@ -410,7 +399,6 @@
         <material>web</material>
     </any>
 </filters>
-
 <regions>
     <apply use="never">
         <everywhere />
@@ -432,7 +420,6 @@
             <region id="jumpad-9"/>
         </region>
     </apply>
-
     <!-- top closest to kryta sign -2, 48, 302  -->
     <apply velocity="3.2, 2, 3.2">
         <region>
@@ -476,7 +463,6 @@
         </region>
     </apply>
 </regions>
-
 <portals smooth="true" sound="true">
     <portal x="@37.5" y="@49" z="@279.5" yaw="@-90">
         <region>
@@ -519,7 +505,6 @@
         </region>
     </portal>
 </portals>
-
 <renewables>
     <renewable interval="600s" grow="true" particles="false" sound="false" avoid-players="20">
         <region>
@@ -551,5 +536,4 @@
         </renew-filter>
     </renewable>
 </renewables>
-
 </map>

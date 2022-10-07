@@ -3,6 +3,7 @@
 <version>2.3.1</version>
 <objective>Capture the enemy's two wools!</objective>
 <edition>standard</edition>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="a970545c-45e4-4745-a952-d4b8343f149d"/> <!-- Magnace -->
 </authors>

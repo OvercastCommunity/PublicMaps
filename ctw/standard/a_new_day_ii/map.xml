@@ -2,6 +2,7 @@
 <name>A New Day II</name>
 <version>1.0.8</version>
 <objective>Capture the enemy's wools!</objective>
+<gamemode>ctw</gamemode>
 <created>2017-11-14</created>
 <authors>
     <author uuid="b5071a63-bba3-491a-909f-02db314f4319"/> <!-- dcstarwars -->

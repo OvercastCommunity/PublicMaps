@@ -2,14 +2,14 @@
 <name>Kryta: Rage</name>
 <version>1.0.2</version>
 <objective>Kill and survive. There are no teams, so watch your back!</objective>
+<gamemode>ffa</gamemode>
+<gamemode>rage</gamemode>
 <players min="2" max="64"/>
 <time>8m</time>
 <score>
     <kills>1</kills>
 </score>
 <rage/>
-<gamemode>ffa</gamemode>
-<gamemode>rage</gamemode>
 <authors>
     <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!-- Qixit -->
 </authors>

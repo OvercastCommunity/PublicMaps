@@ -2,6 +2,8 @@
 <name>Race for Victory 4</name>
 <version>1.0.3</version>
 <objective>Take the enemy's wools located to either side of the enemy's base and place them in your victory monument.</objective>
+<created>2012-08-12</created>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
     <author uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="Map design"/> <!-- Anxuiz -->
@@ -13,8 +15,6 @@
 <rules>
     <rule>Players may break stained glass panes in their enemies' wool rooms.</rule>
 </rules>
-<created>2012-08-12</created>
-<gamemode>ctw</gamemode>
 <teams>
     <team id="blue" color="blue" max="24">Blue</team>
     <team id="red" color="dark red" max="24">Red</team>

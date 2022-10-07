@@ -3,6 +3,7 @@
 <name>The Ugly Barnacle</name>
 <version>1.2.2</version>
 <objective>Capture the enemy team's two wools.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>

@@ -2,6 +2,7 @@
 <name>Pumpkin Spice Latte: Venti</name>
 <version>1.2.8</version>
 <objective>Be the player with the most kills after 5 minutes!</objective>
+<gamemode>ffa</gamemode>
 <authors>
     <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/>
 </authors>

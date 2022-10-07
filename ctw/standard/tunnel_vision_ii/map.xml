@@ -2,6 +2,7 @@
 <name>Tunnel Vision II</name>
 <version>1.0.3</version>
 <objective>Capture the enemy's wools!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="e931b4b3-479f-4761-8808-4c4b2ed69b0f" contribution="Layout, terrain"/> <!-- Mattato -->
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Aesthetics, XML"/> <!-- Xerocoles -->

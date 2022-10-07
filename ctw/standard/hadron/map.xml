@@ -3,6 +3,7 @@
 <name>Hadron</name>
 <version>1.0.7</version>
 <objective>Take both of the enemy team's wools back to your base before the other team can do the same!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contibution="Overall map design and aesthetics"/> <!-- Stealth5061 -->
 </authors>

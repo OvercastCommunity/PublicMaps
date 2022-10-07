@@ -5,6 +5,7 @@
 <version>1.2.0</version>
 <objective>Collect wool dyes from the shrines, and the string from killing players. Craft the colored wool and place it on your monument.</objective>
 <phase>development</phase>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="2fa85349-2276-4850-b7b5-d18c4f4c8376"/> <!-- Solo_Runner -->
 </authors>

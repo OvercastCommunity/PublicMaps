@@ -3,6 +3,7 @@
 <version>2.1.2</version>
 <phase>development</phase>
 <objective>Capture both of the enemy's wools!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" />
     <!-- Matic0B -->

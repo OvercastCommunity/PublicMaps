@@ -1,15 +1,13 @@
 <map proto="1.4.0">
 <name>Pompeii RAGE</name>
 <version>1.2.4</version>
-<authors>
-    <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" />
-    <!--  KRo_oOH  -->
-    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" />
-    <!--  GoldenOre  -->
-</authors>
 <objective>Be the player with the most kills after 7 minutes. There are no teams, so watch your back!</objective>
 <gamemode>ffa</gamemode>
 <gamemode>rage</gamemode>
+<authors>
+    <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" /> <!-- KRo_oOH -->
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
+</authors>
 <score>
     <kills>1</kills>
 </score>

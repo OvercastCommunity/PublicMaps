@@ -4,6 +4,7 @@
 <name>Exitium</name>
 <version>1.0.3</version>
 <objective>Capture and place the enemy's wools on your victory monument!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
 </authors>

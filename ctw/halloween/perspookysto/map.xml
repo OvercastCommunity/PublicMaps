@@ -3,6 +3,7 @@
 <version>1.1</version>
 <phase>production</phase>
 <objective>Capture both wools to win!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="RIP Map Maker."/> <!-- Timothee38 -->
     <author uuid="03ba5ebd-5ded-4de6-93b0-c86d0b9002b7" contribution="RIP Map Maker."/> <!-- auxdempster -->

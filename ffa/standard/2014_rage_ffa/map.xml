@@ -4,6 +4,7 @@
 <version>1.2.11</version>
 <objective>Get the most kills after 5 minutes!</objective>
 <phase>development</phase>
+<gamemode>ffa</gamemode>
 <authors>
     <author uuid="19388047-f04b-43ac-9546-22aa69aea75c" contribution="Lobby Builder"/> <!-- Bleanny/bleangamer -->
     <author uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="Map concept and XML"/> <!-- Crazy_ -->

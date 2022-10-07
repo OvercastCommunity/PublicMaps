@@ -4,6 +4,7 @@
 <version>1.0.0</version>
 <objective>Kill as many players as you can in 5 minutes</objective>
 <created>2016-03-29</created>
+<gamemode>ffa</gamemode>
 <authors>
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
 </authors>

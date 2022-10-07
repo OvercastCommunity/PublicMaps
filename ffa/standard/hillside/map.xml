@@ -3,6 +3,7 @@
 <name>Hillside</name>
 <version>1.1.4</version>
 <objective>The player with the most kills after 7 minutes wins.</objective>
+<gamemode>ffa</gamemode>
 <!-- Major map authors. -->
 <authors>
     <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- samthecat43 -->
@@ -13,7 +14,6 @@
     <rule>You may team with other players.</rule>
     <rule>Hunger is disabled.</rule>
 </rules>
-<gamemode>ffa</gamemode>
 <time>7m</time>
 <players min="2" max="90" max-overfill="100" show-name-tags="false"/>
 <score>

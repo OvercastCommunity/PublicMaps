@@ -3,6 +3,7 @@
 <name>Banana Split</name>
 <version>2.2.1</version>
 <objective>Capture the other team's wools!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

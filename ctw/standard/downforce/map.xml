@@ -2,6 +2,7 @@
 <name>Downforce</name>
 <version>1.0.4</version>
 <objective>Capture the enemy team's wool!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="61982fa8-f0f9-46d7-977a-47325c9bbd5c"/> <!-- Cirenah -->
 </authors>

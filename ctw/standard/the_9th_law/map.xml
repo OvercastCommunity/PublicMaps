@@ -2,6 +2,7 @@
 <name>The 9th Law</name>
 <version>1.1.10</version>
 <objective>Capture both of the enemy team's wools!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

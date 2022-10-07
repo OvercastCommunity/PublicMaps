@@ -3,11 +3,10 @@
 <slug>alien</slug>
 <version>1.0.6</version>
 <objective>Get the most kills within 5 minutes!</objective>
-<authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
-    <!-- AtlasGames -->
-</authors>
 <gamemode>ffa</gamemode>
+<authors>
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
+</authors>
 <score>
     <kills>1</kills>
 </score>

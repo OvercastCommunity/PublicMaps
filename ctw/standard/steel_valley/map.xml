@@ -3,6 +3,7 @@
 <version>1.2.2</version>
 <objective>Capture the enemy's two wools!</objective>
 <edition>standard</edition>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>

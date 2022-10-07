@@ -3,19 +3,20 @@
 <name>Golden Drought II</name>
 <version>1.3.7</version>
 <objective>Capture the wool and return it to your victory monument.</objective>
+<gamemode>ctw</gamemode>
 <authors>
-    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
 <contributors>
-    <contributor uuid="e1e9e6af-f826-44ce-b1e2-5efb4e5c5d9e" contribution="Chief Build Slave"/> <!-- zemphon -->
-    <contributor uuid="8955e177-fe4f-420f-a7bf-f8098b3f1e9c" contribution="Build Slave"/> <!-- Haxasaurous -->
-    <contributor uuid="dbe909c6-2b15-4528-b12a-c77ed4031496" contribution="Build Slave"/> <!-- teheggy -->
-    <contributor uuid="f64546c7-917b-4caf-a0c9-caa120156a84" contribution="Feedback"/> <!-- BrunoTheMiner -->
+    <contributor uuid="e1e9e6af-f826-44ce-b1e2-5efb4e5c5d9e" contribution="Chief Build Slave"/> <!-- zemphon -->
+    <contributor uuid="8955e177-fe4f-420f-a7bf-f8098b3f1e9c" contribution="Build Slave"/> <!-- Haxasaurous -->
+    <contributor uuid="dbe909c6-2b15-4528-b12a-c77ed4031496" contribution="Build Slave"/> <!-- teheggy -->
+    <contributor uuid="f64546c7-917b-4caf-a0c9-caa120156a84" contribution="Feedback"/> <!-- BrunoTheMiner -->
 </contributors>
 <maxbuildheight>44</maxbuildheight>
 <teams>
-    <team color="dark red" max="50">Red</team>
-    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="50">Blue</team>
 </teams>
 <kits>
     <kit name="spawn">
@@ -61,7 +62,7 @@
     <spawn team="red" kit="spawn" yaw="-45">
         <cylinder base="-75.5,25,-75.5" radius="0" height="0"/>
     </spawn>
-    <default yaw="45">
+    <default yaw="45">
         <cylinder base="0.5,52,0.5" radius="3" height="0"/>
     </default>
 </spawns>
@@ -73,27 +74,27 @@
     <filter name="only-blue">
         <team>blue</team>
     </filter>
-    <filter name="only-gold">
-        <block>gold block</block>
-    </filter>
+    <filter name="only-gold">
+        <block>gold block</block>
+    </filter>
     <filter name="deny-void">
         <deny>
             <void/>
         </deny>
     </filter>
     <!-- Complex filters -->
-    <filter name="only-blue-only-gold">
+    <filter name="only-blue-only-gold">
         <all>
             <team>blue</team>
             <filter name="only-gold"/>
         </all>
-    </filter>
-    <filter name="only-red-only-gold">
+    </filter>
+    <filter name="only-red-only-gold">
         <all>
             <team>red</team>
             <filter name="only-gold"/>
         </all>
-    </filter>
+    </filter>
 </filters>
 <regions>
     <!-- Center area -->
@@ -105,13 +106,13 @@
         </union>
     </complement>
     <!-- Blue Side -->
-    <union name="red-wool-rooms">
-        <rectangle name="lime-room" min="166,88" max="181,103"/>
-        <rectangle name="green-room" min="88,166" max="103,181"/>
-    </union>
-    <apply enter="only-red" block="only-red" message="You may not enter or modify your own wool room!">
-        <region name="red-wool-rooms"/>
-    </apply>
+    <union name="red-wool-rooms">
+        <rectangle name="lime-room" min="166,88" max="181,103"/>
+        <rectangle name="green-room" min="88,166" max="103,181"/>
+    </union>
+    <apply enter="only-red" block="only-red" message="You may not enter or modify your own wool room!">
+        <region name="red-wool-rooms"/>
+    </apply>
     <union name="red-wool-paths">
         <rectangle name="lime-path" min="154,88" max="166,103"/>
         <rectangle name="green-path" min="88,154" max="103,166"/>
@@ -120,7 +121,7 @@
         <union name="blue-base-main">
             <circle center="84.5,84.5" radius="24"/>
             <rectangle min="55,55" max="79,79"/>
-        </union>
+        </union>
         <union> <!-- The holes -->
             <rectangle min="69,55" max="74,61"/> <!-- Right side -->
             <rectangle min="55,69" max="61,74"/> <!-- Left side -->
@@ -128,12 +129,12 @@
             <rectangle min="61,55" max="64,61"/> <!-- Center side right sliver -->
         </union>
     </complement>
-    <apply block-break="only-blue-only-gold" block-place="deny-all" message="You can only break gold blocks in your own base">
-        <region name="blue-base"/>
-    </apply>
-    <apply enter="only-blue" message="You may not enter the enemy base!">
-        <region name="blue-base"/>
-    </apply>
+    <apply block-break="only-blue-only-gold" block-place="deny-all" message="You can only break gold blocks in your own base">
+        <region name="blue-base"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base!">
+        <region name="blue-base"/>
+    </apply>
     <complement name="blue-base-voidmatcher">
         <rectangle name="blue-base-wrapper" min="36,36" max="154,154"/>
         <union>
@@ -141,14 +142,14 @@
             <region name="battlefield"/>
         </union>
     </complement>
-    <!-- Red Side -->
-    <union name="blue-wool-rooms">
-        <rectangle name="purple-room" min="-180,-102" max="-165,-87"/>
-        <rectangle name="pink-room" min="-102,-180" max="-87,-165"/>
-    </union>
-    <apply enter="only-blue" block="only-blue" message="You may not enter or modify your own wool room!">
-        <region name="blue-wool-rooms"/>
-    </apply>
+    <!-- Red Side -->
+    <union name="blue-wool-rooms">
+        <rectangle name="purple-room" min="-180,-102" max="-165,-87"/>
+        <rectangle name="pink-room" min="-102,-180" max="-87,-165"/>
+    </union>
+    <apply enter="only-blue" block="only-blue" message="You may not enter or modify your own wool room!">
+        <region name="blue-wool-rooms"/>
+    </apply>
     <union name="blue-wool-paths">
         <rectangle name="purple-path" min="-165,-102" max="-153,-87"/>
         <rectangle name="pink-path" min="-102,-165" max="-87,-153"/>
@@ -157,7 +158,7 @@
         <union name="red-base-main">
             <circle center="-83.5,-83.5" radius="24"/>
             <rectangle min="-78,-78" max="-54,-54"/>
-        </union>
+        </union>
         <union> <!-- The holes -->
             <rectangle min="-73,-60" max="-68,-54"/> <!-- Right side -->
             <rectangle min="-60,-73" max="-54,-68"/> <!-- Left side -->
@@ -165,12 +166,12 @@
             <rectangle min="-63,-60" max="-60,-54"/> <!-- Center side right sliver -->
         </union>
     </complement>
-    <apply block-break="only-red-only-gold" block-place="deny-all" message="You can only break gold blocks in your own base">
-        <region name="red-base"/>
-    </apply>
-    <apply enter="only-red" message="You may not enter the enemy base!">
-        <region name="red-base"/>
-    </apply>
+    <apply block-break="only-red-only-gold" block-place="deny-all" message="You can only break gold blocks in your own base">
+        <region name="red-base"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy base!">
+        <region name="red-base"/>
+    </apply>
     <complement name="red-base-voidmatcher">
         <rectangle name="red-base-wrapper" min="-153,-153" max="-35,-35"/>
         <union>
@@ -210,7 +211,7 @@
             <union>
                 <cylinder base="-83.5,17,-83.5" radius="24" height="4"/>
                 <cuboid min="-78,12,-78" max="-54,21,-54"/>
-            </union>
+            </union>
         </region>
         <renew>gold block</renew>
     </renewable>
@@ -219,25 +220,25 @@
             <union>
                 <cylinder base="84.5,17,84.5" radius="24" height="4"/>
                 <cuboid min="55,12,55" max="79,21,79"/>
-            </union>
+            </union>
         </region>
         <renew>gold block</renew>
     </renewable>
 </renewables>
 <!-- In order so left to attackers matches left on scoreboard -->
 <wools>
-    <wool team="red" color="lime">
-        <block location="-62,23,-63"/>
-    </wool>
-    <wool team="red" color="green">
-        <block location="-63,23,-62"/>
-    </wool>
-    <wool team="blue" color="purple">
-        <block location="62,23,63"/>
-    </wool>
-    <wool team="blue" color="pink">
-        <block location="63,23,62"/>
-    </wool>
+    <wool team="red" color="lime">
+        <block location="-62,23,-63"/>
+    </wool>
+    <wool team="red" color="green">
+        <block location="-63,23,-62"/>
+    </wool>
+    <wool team="blue" color="purple">
+        <block location="62,23,63"/>
+    </wool>
+    <wool team="blue" color="pink">
+        <block location="63,23,62"/>
+    </wool>
 </wools>
 <item-mods>
     <rule>

@@ -3,6 +3,7 @@
 <name>The Lobby: Halloween</name>
 <version>1.0.0</version>
 <phase>production</phase>
+<gamemode>ffa</gamemode>
 <objective>Get the most kills after 5 minutes!</objective>
 <authors>
     <author contribution="Lobby Builder">bleangamer</author>

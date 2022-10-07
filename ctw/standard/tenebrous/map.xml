@@ -3,6 +3,7 @@
 <name>Tenebrous</name>
 <version>1.0.4</version>
 <objective>Capture the wool from the enemies wool rooms and return them to your victory monument</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="c95e0a45-8208-430a-a1a2-1e27333445a4"/> <!-- skippy369 -->
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->

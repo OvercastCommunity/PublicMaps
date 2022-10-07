@@ -3,6 +3,7 @@
 <name>Rotten Slopes</name>
 <version>1.0.0</version>
 <objective>Bring the other team's wool back to spawn.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="33b99f02-2a1a-42db-9505-6161a3b2cb7e"/> <!-- halfmaster1 -->
     <author uuid="73268281-3d86-47b0-b3f1-c4e5806c9919"/> <!-- Extreeme -->

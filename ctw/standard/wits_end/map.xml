@@ -2,6 +2,7 @@
 <name>Wit's End</name>
 <version>1.2.9</version>
 <objective>Capture the enemy team's wools and return them to your victory monument.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>

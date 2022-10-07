@@ -5,12 +5,14 @@
 <version>1.1.1</version>
 <objective>Get the most amount of kills in 5 minutes!</objective>
 <created>2016-03-13</created>
+<gamemode>ffa</gamemode>
+<gamemode>rage</gamemode>
 <authors>
-    <author uuid="cbd5c47c-1137-4f02-93dd-626a46bdd779"/> <!--  Kaskito  -->
+    <author uuid="cbd5c47c-1137-4f02-93dd-626a46bdd779"/> <!-- Kaskito -->
 </authors>
 <contributors>
-    <contributor uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!--  JTr  -->
-    <contributor uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="XML Help"/> <!--  chle_  -->
+    <contributor uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTr -->
+    <contributor uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="XML Help"/> <!-- chle_ -->
 </contributors>
 <rules>
     <rule>Try your best!</rule>

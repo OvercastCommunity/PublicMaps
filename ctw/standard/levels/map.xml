@@ -4,6 +4,7 @@
 <name>Levels</name>
 <version>1.0.3</version>
 <objective>Capture the enemy wools and place it at your victory monument!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- roro28gutier -->
     <author uuid="ed1fe2bd-0431-4a56-8c5c-d4657389dd1f"/> <!-- artur1197 -->

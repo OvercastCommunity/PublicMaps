@@ -3,6 +3,7 @@
 <name>No Man's Land</name>
 <version>1.0.2</version>
 <objective>Capture the enemy team's wools and return them safely to your victory monument.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
 </authors>

@@ -3,6 +3,7 @@
 <version>1.6</version>
 <phase>production</phase>
 <objective>Capture the wool from the enemy's wool rooms and return them to your spawn!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Map design"/> <!-- Mikeg542 -->
     <author uuid="fcbc5806-e7fd-45f1-845a-22f1df93c9bf" contribution="Wool rooms and feedback"/> <!-- Minii_ -->

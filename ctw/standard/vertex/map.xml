@@ -2,6 +2,7 @@
 <name>Vertex</name>
 <version>1.2.2</version>
 <objective>Capture the wool and return it to your victory monument</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>

@@ -2,12 +2,12 @@
 <name>The High Road</name>
 <version>1.0.4</version>
 <objective>Get the most kills in 8 minutes!</objective>
+<gamemode>ffa</gamemode>
+<gamemode>rage</gamemode>
 <time>8m</time>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /><!-- AtlasGames -->
 </authors>
-<gamemode>ffa</gamemode>
-<gamemode>rage</gamemode>
 <rage/>
 <players min="2" max="24" max-overfill="32"/>
 <kits>

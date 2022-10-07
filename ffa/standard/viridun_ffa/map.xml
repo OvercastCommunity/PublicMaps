@@ -3,6 +3,7 @@
 <name>Viridun FFA</name>
 <version>1.0.0</version>
 <objective>Kill the most players in 10 minutes!</objective>
+<gamemode>ffa</gamemode>
 <authors>
     <author uuid="27cf0cdd-c294-4163-a536-18e11360cc7b" contribution="Map design and layout"/> <!-- OurLoneHero -->
 </authors>

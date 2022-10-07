@@ -2,6 +2,7 @@
 <name>Race for Victory 3</name>
 <version>1.2.18</version>
 <objective>Capture all 3 enemy wools.</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="Map design and master gardener"/> <!-- MonsieurApple -->
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design and code memorization"/> <!-- Plastix -->

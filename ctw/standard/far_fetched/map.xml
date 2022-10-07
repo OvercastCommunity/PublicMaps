@@ -3,6 +3,7 @@
 <version>1.2.7</version>
 <objective>Capture the enemy's three wools!</objective>
 <created>2019-05-06</created>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>

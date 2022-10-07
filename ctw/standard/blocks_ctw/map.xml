@@ -2,6 +2,7 @@
 <name>Blocks CTW</name>
 <version>1.1.5</version>
 <objective>Capture the enemy wools to win!</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- PepsiDog -->
 </authors>

@@ -4,6 +4,7 @@
 <name>Lindorm</name>
 <version>1.4</version>
 <objective>Capture or Defend the Wool</objective>
+<gamemode>ctw</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

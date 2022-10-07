@@ -2,6 +2,8 @@
 <name>Trigo</name>
 <version>1.0.3</version>
 <objective>Have the most kills after 10 minutes to win.</objective>
+<gamemode>ffa</gamemode>
+<gamemode>rage</gamemode>
 <authors>
     <author uuid="ff0b4c92-edc5-4474-a145-04a433c9e485" contribution="Map Design, Aesthetics"/> <!-- MySquishyTurtle -->
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Terraforming"/> <!-- PepsiDog -->
@@ -13,8 +15,6 @@
 <rules>
     <rule>Fall damage is disabled on this map.</rule>
 </rules>
-<gamemode>rage</gamemode>
-<gamemode>ffa</gamemode>
 <rage/>
 <disabledamage>
     <damage>fall</damage>

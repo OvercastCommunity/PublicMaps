@@ -2,6 +2,7 @@
 <name>The Pipes</name>
 <version>3.0.7</version>
 <objective>Get the most kills in 10 minutes!</objective>
+<gamemode>ffa</gamemode>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11" /> <!-- JTr -->
 </authors>
@@ -14,7 +15,6 @@
 <broadcasts>
     <alert after="2s">Fall damage is disabled on this map! You can also double jump!</alert>
 </broadcasts>
-<gamemode>ffa</gamemode>
 <time>10m</time>
 <score>
     <kills>1</kills>

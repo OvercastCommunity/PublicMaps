@@ -2,6 +2,7 @@
 <name>Chestnut</name> <!-- August 2020 -->
 <version>1.0.3</version>
 <objective>Capture the enemy's wool and bring it back to your base!</objective>
+<gamemode>ctw</gamemode>
 <time results="objective">20m</time>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->

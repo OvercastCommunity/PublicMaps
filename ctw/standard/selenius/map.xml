@@ -3,6 +3,7 @@
 <name>Selenius</name>
 <version>1.0.3</version>
 <objective>Capture the other team's wool and place it in your victory monument.</objective>
+<gamemode>ctw</gamemode>
 <!-- include src="disable-boat-crafting.xml"/ -->
 <authors>
     <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
