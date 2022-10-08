@@ -1,26 +1,20 @@
-<map proto="1.4.0">
+<map proto="1.4.0" game="Rush">
 <name>Crossfire</name>
 <version>1.5.8</version>
 <slug>crossfire</slug>
 <objective>Runners must get to the other side of the map without getting killed by the Defenders.</objective>
+<gamemode>arcade</gamemode>
 <gamemode>ad</gamemode>
 <gamemode>blitz</gamemode>
-<game>Rush</game>
 <authors>
-    <!--  SheriffSoco  -->
-    <author uuid="6e347123-c684-4d7e-996c-44d4924ff172"/>
+    <author uuid="6e347123-c684-4d7e-996c-44d4924ff172"/> <!--  SheriffSoco  -->
 </authors>
 <contributors>
-    <!--BlockDrop74 -->
-    <contributor uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="Feedback"/>
-    <!-- dinner1111 -->
-    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="Feedback"/>
-    <!-- Avaleer -->
-    <contributor uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141" contribution="Minor Terraforming"/>
-    <!-- Yoyo__ / yoyo_power -->
-    <contributor uuid="07fa10c6-f564-4630-861e-fe134ae27527" contribution="Help with Observer Spawn"/>
-    <!-- Anthonny -->
-    <contributor uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="XML Help"/>
+    <contributor uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="Feedback"/> <!--BlockDrop74 -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="Feedback"/> <!-- dinner1111 -->
+    <contributor uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141" contribution="Minor Terraforming"/> <!-- Avaleer -->
+    <contributor uuid="07fa10c6-f564-4630-861e-fe134ae27527" contribution="Help with Observer Spawn"/> <!-- Yoyo__ / yoyo_power -->
+    <contributor uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="XML Help"/> <!-- Anthonny -->
 </contributors>
 <rules>
     <rule>Fall Damage is disabled.</rule>

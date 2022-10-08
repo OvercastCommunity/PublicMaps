@@ -4,7 +4,7 @@
 <phase>development</phase>
 <version>1.2.2</version>
 <objective>Get to the bottom 3 times to win!</objective>
-<gamemode>Arcade</gamemode>
+<gamemode>arcade</gamemode>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Original map theme"/> <!-- Plastix -->
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="Water Drop adaptation"/> <!-- mitchiii_ -->

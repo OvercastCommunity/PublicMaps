@@ -5,8 +5,7 @@
 <objective>Eliminate the other team!</objective>
 <gamemode>br</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/>
-    <!--   AtlasGames   -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>
 <teams>
     <team id="red" color="red" max="10" max-overfill="12">Red</team>

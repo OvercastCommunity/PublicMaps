@@ -3,6 +3,7 @@
 <version>1.0.1</version>
 <objective>Escape the Minotaur!</objective>
 <gamemode>arcade</gamemode>
+<gamemode>blitz</gamemode>
 <authors>
     <author uuid="06e0e173-4a93-4654-9769-fa7c216e353f"/> <!-- Howsie -->
     <author uuid="81401938-25d1-437e-bb70-d2828a7a6aac"/> <!-- Shirokamii -->

@@ -3,7 +3,7 @@
 <name>Ieats Hall</name>
 <version>1.0.1</version>
 <objective>Kill the other team before 5 minutes are up</objective>
-<gamemode>rage</gamemode>
+<gamemode>br</gamemode>
 <authors>
     <author uuid="36dc036a-dfbc-4627-b66a-501223f08075" contribution="Nearly everything"/> <!-- ieatboulders2 -->
 </authors>

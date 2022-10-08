@@ -4,7 +4,7 @@
 <phase>development</phase>
 <version>1.3.0</version>
 <objective>Get the most points in 3 minutes!</objective>
-<gamemode>Arcade</gamemode>
+<gamemode>arcade</gamemode>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150" contribution="Original map theme"/>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="Water Drop adaptation"/> <!-- mitchiii_ -->

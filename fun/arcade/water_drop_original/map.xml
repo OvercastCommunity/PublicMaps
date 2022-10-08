@@ -4,6 +4,7 @@
 <version>1.2.3</version>
 <objective>Water drop your way to the finish line!</objective>
 <gamemode>arcade</gamemode>
+<gamemode>scorebox</gamemode>
 <authors>
     <author uuid="f5d5c301-9ad3-4cb4-9cfd-a6b78e67734a"/> <!-- Flashee -->
 </authors>

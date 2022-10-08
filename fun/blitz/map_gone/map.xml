@@ -2,9 +2,9 @@
 <name>MAP GONE</name>
 <version>1.0.2</version>
 <objective>Malaysia Airlines Flight 370 type beat</objective>
+<gamemode>blitz</gamemode>
 <authors>
-    <author uuid="9b4fbb38-ed55-44ad-b510-9f0197433f93" contribution="destroyed the entire map (based)"/>
-    <!-- Indicado -->
+    <author uuid="9b4fbb38-ed55-44ad-b510-9f0197433f93" contribution="destroyed the entire map (based)"/> <!-- Indicado -->
 </authors>
 <phase>development</phase>
 <contributors>

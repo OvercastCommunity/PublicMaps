@@ -2,7 +2,8 @@
 <name>Red Agony</name>
 <version>1.0.3</version>
 <objective>Be the first to the end!</objective>
-<gamemode>Arcade</gamemode>
+<gamemode>arcade</gamemode>
+<gamemode>scorebox</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

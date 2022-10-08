@@ -4,8 +4,7 @@
 <objective>Elimate the enemy team before time runs out!</objective>
 <gamemode>br</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/>
-    <!--  AtlasGames  -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>
 <teams>
    <team color="red" max="25" max-overfill="30">Red</team>

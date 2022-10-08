@@ -3,7 +3,7 @@
 <name>The Dome</name>
 <version>1.0.2</version>
 <objective>Eliminate the other team before the time is up!</objective>
-<gamemode>rage</gamemode>
+<gamemode>br</gamemode>
 <authors>
     <author uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c"/> <!-- ItzaMeLuigi_ -->
     <author uuid="a348a860-8c8b-475f-b793-d556d45252a7"/> <!-- i2 -->

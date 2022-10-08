@@ -4,12 +4,10 @@
 <objective>Eliminate your opponents!</objective>
 <gamemode>br</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/>
-    <!-- AtlasGames -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>
 <contributors>
-    <contributor contribution="XML" uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/>
-    <!-- Anthonny -->
+    <contributor contribution="XML" uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!-- Anthonny -->
 </contributors>
 <blitz>
     <time>5m</time>

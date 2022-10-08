@@ -6,8 +6,7 @@
 <gamemode>arcade</gamemode>
 <created>2016-05-03</created>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
-    <!-- AtlasGames !-->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames !-->
 </authors>
 <teams>
     <team color="blue" id="blue" max="30">Blue</team>
@@ -51,7 +50,6 @@
     <cuboid id="blue-spawn" min="-9,1,-10" max="-8,2,11" />
     <cuboid id="red-spawn" min="9,1,-10" max="10,2,11" />
     <cuboid id="creeper-area" min="-6,1,-11" max="7,2,12" />
-
     <apply block="never" region="everywhere" />
 </regions>
 <mobs>

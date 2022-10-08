@@ -11,14 +11,8 @@
     <alert after="30s">There was a crashing sound coming from the enchantment room! Be careful!</alert>
 </broadcasts>
 <teams> 
-    <team id="blue"
-          color="blue"
-          show-name-tags="false"
-          max="10" max-overfill="12">Blue</team>
-    <team id="red"
-          color="dark red"
-          show-name-tags="false"
-          max="10" max-overfill="12">Red</team>
+    <team id="blue" color="blue" show-name-tags="false" max="10" max-overfill="12">Blue</team>
+    <team id="red" color="dark red" show-name-tags="false" max="10" max-overfill="12">Red</team>
 </teams>
 <time>5m</time>
 <blitz>

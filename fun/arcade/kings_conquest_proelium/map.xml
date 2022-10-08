@@ -2,6 +2,9 @@
 <name>King's Conquest: Proelium</name>
 <phase>development</phase>
 <version>1.0.0</version>
+<gamemode>arcade</gamemode>
+<gamemode>blitz</gamemode>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
 </authors>

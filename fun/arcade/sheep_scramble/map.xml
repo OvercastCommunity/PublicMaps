@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Sheep Scramble</name>
-<version>1.0.4</version>
-<gamemode>Arcade</gamemode>
 <objective>Score the most wool to win!</objective>
+<version>1.0.4</version>
+<gamemode>arcade</gamemode>
+<gamemode>scorebox</gamemode>
 <authors>
 	<author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/>
 </authors>

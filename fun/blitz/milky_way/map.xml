@@ -3,7 +3,7 @@
 <name>Milky Way</name>
 <version>1.0.1</version>
 <objective>Kill the other team's players!</objective>
-<gamemode>rage</gamemode>
+<gamemode>br</gamemode>
 <authors>
     <author uuid="eff8ed8e-4eae-4fe3-9bed-0485bc45d64e"/>
 </authors>

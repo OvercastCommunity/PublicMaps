@@ -1,12 +1,12 @@
 <map proto="1.4.0">
 <name>Ghost Spleef</name>
 <version>1.1.0</version>
-<authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
-    <!-- AtlasGames -->
-</authors>
 <objective>Be the last player standing!</objective>
 <gamemode>arcade</gamemode>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
+</authors>
 <broadcasts>
     <alert after="10s" filter="ghost-only" every="30s">You can fly as a ghost!</alert>
 </broadcasts>

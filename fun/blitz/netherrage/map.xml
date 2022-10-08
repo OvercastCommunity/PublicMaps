@@ -2,9 +2,9 @@
 <name>Netherrage</name>
 <version>1.0.2</version>
 <objective>Be the last team standing!</objective>
+<gamemode>br</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Infection idea + XML Help" />
-    <!-- AtlasGames -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Infection idea + XML Help" /> <!-- AtlasGames -->
 </authors>
 <rage/>
 <time>4m</time>

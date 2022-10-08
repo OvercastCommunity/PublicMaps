@@ -3,6 +3,7 @@
 <name>Ping Bomb II</name>
 <version>1.2.5</version>
 <objective>Blow up the enemy side before they blow up yours!</objective>
+<gamemode>arcade</gamemode>
 <gamemode>blitz</gamemode>
 <authors>
     <author uuid="f5d5c301-9ad3-4cb4-9cfd-a6b78e67734a" contribution="Design"/> <!-- Flashee -->

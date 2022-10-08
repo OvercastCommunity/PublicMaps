@@ -4,12 +4,9 @@
 <objective>Eliminate all opposing teammates to win the match.</objective>
 <gamemode>br</gamemode>
 <authors>
-    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/>
-    <!--  Stealth5061  -->
-    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/>
-    <!--  Tywnis  -->
-    <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/>
-    <!--  IM_A_H0B0  -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!--  Stealth5061  -->
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!--  Tywnis  -->
+    <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!--  IM_A_H0B0  -->
 </authors>
 <teams>
     <team color="dark red" max="16" max-overfill="18">Red</team>

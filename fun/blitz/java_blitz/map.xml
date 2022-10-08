@@ -4,10 +4,8 @@
 <objective>Eliminate the enemy team!</objective>
 <gamemode>br</gamemode>
 <authors>
-    <author uuid="2e05eb91-e64b-46f8-8a49-368d205d26fd"/>
-    <!--   Arkylic  -->
-    <author uuid="6bc5c322-91b5-4bab-acf2-d36ca53f1efc"/>
-    <!--   FluffinAllNight  -->
+    <author uuid="2e05eb91-e64b-46f8-8a49-368d205d26fd"/> <!-- Arkylic -->
+    <author uuid="6bc5c322-91b5-4bab-acf2-d36ca53f1efc"/> <!-- FluffinAllNight -->
 </authors>
 <teams>
    <team color="red" max="20" max-overfill="25">Red</team>

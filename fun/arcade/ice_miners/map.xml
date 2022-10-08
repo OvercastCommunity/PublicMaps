@@ -1,11 +1,11 @@
 <map proto="1.4.0" game="Ice Miners">
 <name>Ice Miners</name>
+<version>1.2.0</version>
 <objective>Collect all the gold you can as you make your way down the tunnel!</objective>
 <gamemode>arcade</gamemode>
-<version>1.2.0</version>
+<gamemode>scorebox</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
-    <!-- AtlasGames !-->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames !-->
 </authors>
 <broadcasts>
     <tip after="1m" every="30s">The scorebox is at the bottom of the map!</tip>
@@ -98,7 +98,6 @@
 </damage>
 <regions>
     <cuboid min="-10,0,-10" max="10,2,10" id="scorebox" />
-
     <apply block-place="replace-ice" region="everywhere" />
     <apply block="player-mine" region="everywhere" />
 </regions>

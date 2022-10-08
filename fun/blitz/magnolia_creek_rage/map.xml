@@ -5,8 +5,7 @@
 <objective>Elimate the enemy team before time runs out!</objective>
 <gamemode>br</gamemode>
 <authors>
-    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/>
-    <!--  LArrowHead  -->
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!--  LArrowHead  -->
 </authors>
 <teams>
    <team id="Inhabitants" color="yellow" max="20" max-overfill="25">Inhabitants</team>

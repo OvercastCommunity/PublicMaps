@@ -3,10 +3,9 @@
 <name>Lush</name>
 <version>1.1</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
-<gamemode>rage</gamemode>
+<gamemode>br</gamemode>
 <authors>
-    <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb" />
-    <!--  Rasta_Jol  -->
+    <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb" /> <!--  Rasta_Jol  -->
 </authors>
 <teams>
     <team id="blue-team" color="blue" max="14" max-overfill="16">Blue</team>

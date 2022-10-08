@@ -5,12 +5,10 @@
 <objective>Eliminate the other team before 5 minutes are up</objective>
 <gamemode>br</gamemode>
 <authors>
-    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/>
-    <!-- Yoyo_ -->
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
 </authors>
 <contributors>
-    <contributor uuid="fc98a4c4-1c1a-4d1d-acd3-a759ed436f26" contribution="Helping with interiors"/>
-    <!-- hygey -->
+    <contributor uuid="fc98a4c4-1c1a-4d1d-acd3-a759ed436f26" contribution="Helping with interiors"/> <!-- hygey -->
 </contributors>
 <blitz>
     <time>5m</time>

@@ -2,6 +2,9 @@
 <name>King's Conquest: Rooted Frontier</name>
 <phase>development</phase>
 <version>1.0.0</version>
+<gamemode>arcade</gamemode>
+<gamemode>blitz</gamemode>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!--  mitchiii_  -->
 </authors>

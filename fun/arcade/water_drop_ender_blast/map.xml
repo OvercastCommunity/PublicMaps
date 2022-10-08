@@ -3,7 +3,8 @@
 <name>Water Drop: Ender Blast</name>
 <version>2.0.1</version>
 <objective>Get to the bottom 2 times!</objective>
-<gamemode>Arcade</gamemode>
+<gamemode>arcade</gamemode>
+<gamemode>scorebox</gamemode>
 <authors>
     <author uuid="ca2306d1-1198-4d46-8c44-a82f5b3c8a4e" contribution="Original map theme" /> <!-- BeanButt -->
     <author uuid="36e46b32-80ef-4fa5-b1e2-6c777736d888" contribution="Original map theme" /> <!-- Elijah -->

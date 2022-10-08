@@ -8,8 +8,7 @@
     <author uuid="95763a18-eb88-44e7-8a10-780acffceae8"/> <!-- Creephunter -->
 </authors>
 <contributors>
-    <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" contribution="XML and some gameplay help"/>
-    <!--  Kroest  -->
+    <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" contribution="XML and some gameplay help"/> <!--  Kroest  -->
 </contributors>
 <teams>
     <team color="green" max="20" max-overfill="30">Green</team>

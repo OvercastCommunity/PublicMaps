@@ -3,14 +3,15 @@
 <name>Together</name>
 <version>1.1.0</version>
 <objective>Kill the other team's members!</objective>
+<gamemode>br</gamemode>
 <authors>
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="Map building"/> <!-- _3Each -->
 </authors>
 <contributors>
-    <contributor uuid="aa7f91cc-18b7-4aa6-9d87-8f4ec316dd7a" contribution="House Help"/> <!--  Cottex  -->
-    <contributor uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Aesthetics"/> <!--  Obelistics   -->
-    <contributor uuid="a6e1a19b-e1db-47fd-a178-5c4f6ef325e2" contribution="World Edit Help"/> <!--  Impostura   -->
-    <contributor uuid="a37e4da3-1c6c-4dc9-b085-63783406a963" contribution="Feedback"/> <!--  xCand   -->
+    <contributor uuid="aa7f91cc-18b7-4aa6-9d87-8f4ec316dd7a" contribution="House Help"/> <!-- Cottex -->
+    <contributor uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Aesthetics"/> <!-- Obelistics -->
+    <contributor uuid="a6e1a19b-e1db-47fd-a178-5c4f6ef325e2" contribution="World Edit Help"/> <!-- Impostura -->
+    <contributor uuid="a37e4da3-1c6c-4dc9-b085-63783406a963" contribution="Feedback"/> <!-- xCand -->
 </contributors>
 <blitz>
     <lives>1</lives>

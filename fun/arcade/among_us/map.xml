@@ -4,9 +4,9 @@
 <phase>development</phase>
 <version>1.0.1</version>
 <objective>Find the impostors, complete all the tasks, or kill all the crew members.</objective>
+<gamemode>arcade</gamemode>
 <authors>
-    <author uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b"/>
-    <!-- CoWinkKeyDinkInc -->
+    <author uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b"/> <!-- CoWinkKeyDinkInc -->
 </authors>
 <teams>
     <!-- everyone is the same color -->

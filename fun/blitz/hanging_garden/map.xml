@@ -3,6 +3,7 @@
 <name>Hanging Garden</name>
 <version>1.0.3</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>br</gamemode>
 <authors>
     <author uuid="43b59b5d-f75c-4a5c-9146-f9d5e6cbdac4"/> <!-- Gone52 -->
 </authors>

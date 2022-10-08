@@ -3,19 +3,15 @@
 <name>Secluded Palace</name>
 <version>1.2.1</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>br</gamemode>
 <authors>
-    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" />
-    <!--  yoyo_power  -->
-    <author uuid="337ae91f-960b-4562-906d-f52f9e56d392" />
-    <!--  aalhond  -->
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" /> <!--  yoyo_power  -->
+    <author uuid="337ae91f-960b-4562-906d-f52f9e56d392" /> <!--  aalhond  -->
 </authors>
 <contributors>
-    <contributor uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Initial XML" />
-    <!--  matic0basle  -->
-    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Fixing initial XML and testing the map" />
-    <!--  _IQ  -->
+    <contributor uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Initial XML" /> <!--  matic0basle  -->
+    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Fixing initial XML and testing the map" /> <!--  _IQ  -->
 </contributors>
-<gamemode>br</gamemode>
 <blitz>
     <time>5m</time>
     <lives>1</lives>

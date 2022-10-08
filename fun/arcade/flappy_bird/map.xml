@@ -2,7 +2,7 @@
 <map proto="1.4.0" game="Flappy Bird">
 <name>Flappy Bird</name>
 <version>1.0.1</version>
-<gamemode>Arcade</gamemode>
+<gamemode>arcade</gamemode>
 <objective>Jump and do not hit the pipes!</objective>
 <authors>
     <author uuid="205d1aad-c619-499b-9885-b91c372b1c13"/> <!-- Equus -->

@@ -3,7 +3,7 @@
 <name>Frost Bound: Rage</name>
 <version>2.0.2</version>
 <objective>Eliminate the other team within 8 minutes.</objective>
-<gamemode>rage</gamemode>
+<gamemode>br</gamemode>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>

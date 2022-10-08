@@ -3,17 +3,15 @@
 <version>1.1.4</version>
 <slug>sugar_cane_valley</slug>
 <objective>Make it to the end and destroy the Defender's monument!</objective>
+<gamemode>arcade</gamemode>
 <gamemode>ad</gamemode>
 <gamemode>blitz</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
-    <!-- AtlasGames -->
-    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" />
-    <!-- Yoyo_-->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" /> <!-- Yoyo_-->
 </authors>
 <contributors>
-    <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/>
-    <!-- SamSafari -->
+    <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- SamSafari -->
 </contributors>
 <teams>
     <team id="runners" color="light purple" max="25" max-overfill="40" plural="true">Runners</team>
@@ -111,7 +109,6 @@
 </filters>
 <regions>
     <cuboid id="monument" min="-411,84,30" max="-409,86,36"/>
-
     <cuboid id="pad-1A" min="-120,84,45" max="-118,85,47" />
     <cuboid id="pad-2A" min="-135,80,43" max="-133,81,45" />
     <cuboid id="pad-3A" min="-134,79,35" max="-132,80,37" />
@@ -121,7 +118,6 @@
     <cuboid id="pad-3B" min="-134,79,30" max="-132,80,32" />
     <cuboid id="pad-4B" min="-140,73,21" max="-138,74,23" />
     <cuboid id="pad-Mid" min="-144,72,32" max="-141,73,35" />
-
     <apply region="pad-2A" velocity="-4,2,-0.5" />
     <apply region="pad-3A" velocity="-4,2,-0.5" />
     <apply region="pad-4A" velocity="-3,2,-0.5" />
@@ -129,7 +125,6 @@
     <apply region="pad-3B" velocity="-4,2,0.5" />
     <apply region="pad-4B" velocity="-3,2,0.5" />
     <apply region="pad-Mid" velocity="-2,2,0" />
-
     <apply region="everywhere" block="mon"/>
 </regions>
 </map>

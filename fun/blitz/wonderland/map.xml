@@ -2,10 +2,9 @@
 <name>Wonderland</name> 
 <version>1.0.1</version> 
 <objective>Elimate Enemies Teams Before Time Runs Out!</objective>
-<gamemode>rage</gamemode>
+<gamemode>br</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/>
-    <!--  AtlasGames  -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>
 <respawn auto="true"/>
 <teams>
