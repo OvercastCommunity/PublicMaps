@@ -3,9 +3,9 @@
 <name>Yellowstone</name>
 <version>1.1.1</version>
 <objective>Destroy all three of the enemy's monuments to win!</objective>
+<gamemode>dtm</gamemode>
 <authors>
-    <author uuid="39332cfb-c179-4458-b068-3262573304d9"/>
-    <!-- Evocal -->
+    <author uuid="39332cfb-c179-4458-b068-3262573304d9"/> <!-- Evocal -->
 </authors>
 <teams>
     <team id="moon" color="dark aqua" max="25">Moon</team>
@@ -14,17 +14,17 @@
 <spawns>
     <spawn team="moon" kit="mkit">
         <regions yaw="0">
-            <point>0, 8, -260</point>
+            <point>0,8,-260</point>
         </regions>
     </spawn>
     <spawn team="sun" kit="skit">
         <regions yaw="180">
-            <point>0, 8, 7</point>
+            <point>0,8,7</point>
         </regions>
     </spawn>
     <default>
         <regions yaw="90">
-            <point>97, 60, -126</point>
+            <point>97,60,-126</point>
         </regions>
     </default>
 </spawns>

@@ -3,12 +3,13 @@
 <!-- Also known as Amazon Kingdom 2.0 -->
 <version>1.0.1</version>
 <objective>Destroy the enemy teams cores!</objective>
+<gamemode>dtc</gamemode>
 <authors>
-    <author uuid="7e7da86e-57a8-4b90-b297-4ef05e71dbdb"/> <!--  Whitever  -->
+    <author uuid="7e7da86e-57a8-4b90-b297-4ef05e71dbdb"/> <!-- Whitever -->
 </authors>
 <contributors>
-    <contributor uuid="161aca4d-e536-41fb-ad51-9ac9a97cf04a"/> <!--  FLIMBI  -->
-    <contributor uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="Observer spawn, bug fixes, feedback and most of XML"/> <!--  chle_  -->
+    <contributor uuid="161aca4d-e536-41fb-ad51-9ac9a97cf04a"/> <!-- FLIMBI -->
+    <contributor uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="Observer spawn, bug fixes, feedback and most of XML"/> <!-- chle_ -->
 </contributors>
 <teams>
     <team id="red" color="dark red" max="32">Red</team>

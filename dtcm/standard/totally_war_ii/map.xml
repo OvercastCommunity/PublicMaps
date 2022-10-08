@@ -4,6 +4,7 @@
 <name>Totally War II</name>
 <version>1.1.1</version>
 <objective>Destroy and leak both of the enemy team's obsidian core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
 </authors>

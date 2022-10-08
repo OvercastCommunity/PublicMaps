@@ -5,15 +5,14 @@
 <version>1.3</version> 
 <objective>Attackers have 15 minutes to destroy the Monument. The Red defenders must hold them back.</objective>
 <gamemode>ad</gamemode>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
-
 <teams>
     <team id="red" color="blue" max="10" max-overfill="12" plural="true">Attackers</team>
     <team id="blue" color="dark red" max="10" max-overfill="12" plural="true">Defenders</team>
 </teams>
-
 <spawns>
     <spawn team="red" kit="blue">
         <regions>
@@ -32,7 +31,6 @@
         </regions>
     </default>
 </spawns>
-
 <kits>
     <kit name="obs">
         <potion duration="oo">night vision</potion>
@@ -94,14 +92,11 @@
         </not>
     </filter>
 </filters>
-
 <regions>
     <cylinder name="attacker-spawn" base="0.5,0,0.5" radius="16" height="12"/>
     <cuboid name="tower-base" min="oo,0,oo" max="-oo,12,-oo"/>
-
     <cylinder name="attacker spawn one" base="0.5,30,31.5" radius="6" height="7"/>
     <cylinder name="attacker spawn two" base="0.5,30,-30.5" radius="6" height="7"/>
-
     <apply region="attacker-spawn" block="deny-all"/>
     <apply place="deny-all" message="You cannot place blocks nearby your spawn">
         <union name="red-spawns">
@@ -109,7 +104,6 @@
             <region name="attacker spawn two"/>
         </union>
     </apply>
-
     <apply block="deny-all">
         <region name="attacker-spawn"/>
     </apply>
@@ -132,8 +126,6 @@
         </detect>
     </proximity-alarm>
 </proximity-alarms>
-
-
 <destroyables name="Monument" materials="obsidian;stained glass:1" mode-changes="true" show-progress="true" completion="100%">
     <destroyable owner="blue">
        <region><sphere origin="0.5,53,0.5" radius="6"/></region>
@@ -142,9 +134,7 @@
 <modes>
     <mode after="14m" material="emerald block" name="`aEmerald Mode"/>
 </modes>
-
 <time result="blue">15m</time>
-
 <timelock>on</timelock>
 <maxbuildheight>74</maxbuildheight>
 
@@ -152,7 +142,6 @@
     <item amount="2">arrow</item>
     <item>golden apple</item>
 </killreward>
-
 <tutorial>
     <stage title="Attack and Defend the Monument">
         <message>
@@ -188,10 +177,8 @@
         </teleport>
     </stage>
 </tutorial>
-
 <broadcasts>
     <tip after="5s" every="2m">`6The `bAttackers `6must destroy the `cMonument `6above.</tip>
     <tip after="7s" every="2m">`6The Monument turns to `aEmerald `6after 14 minutes.</tip>
 </broadcasts>
-
 </map>

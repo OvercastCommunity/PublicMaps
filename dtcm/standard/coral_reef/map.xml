@@ -2,6 +2,7 @@
 <name>Coral Reef</name>
 <version>1.3.3</version>
 <objective>Destroy the enemy's monument.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
 </authors>

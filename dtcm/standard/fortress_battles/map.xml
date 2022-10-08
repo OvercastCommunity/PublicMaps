@@ -4,6 +4,7 @@
 <version>3.2.8</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <created>2012-01-15</created>
+<gamemode>dtc</gamemode>
 <rules>
     <rule>You cannot place dispensers on the map!</rule>
     <rule>Players have resistance and reduced knockback in spawn!</rule>

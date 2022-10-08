@@ -2,6 +2,7 @@
 <name>Rift</name>
 <version>1.2.4</version>
 <objective>Destroy the enemy's three Inhibitor Crystals and one large Nexus Crystal to win!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!--  Lyzak  -->
 </authors>

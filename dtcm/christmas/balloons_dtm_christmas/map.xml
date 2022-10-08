@@ -4,6 +4,7 @@
 <version>1.0.0</version>
 <phase>development</phase>
 <objective>Destroy the enemy team's monument!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
 </authors>

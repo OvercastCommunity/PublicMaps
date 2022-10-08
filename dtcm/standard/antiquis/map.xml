@@ -190,7 +190,7 @@
     <item>beacon</item>
     <item>coal block</item>
     <item>packed ice</item>
-    <!-- item keep for traded items necessitates itemremove for golden apple and kit blocks -->\
+    <!-- item keep for traded items necessitates itemremove for golden apple and kit blocks -->
     <item>wood</item>
     <item>golden apple</item>
 </itemremove>

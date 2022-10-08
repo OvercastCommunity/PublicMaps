@@ -3,6 +3,7 @@
 <name>Glacial Impact 2</name>
 <version>1.1.5</version>
 <objective>Destroy the enemy team's monuments while defending your own.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- bleangamer -->
 </authors>

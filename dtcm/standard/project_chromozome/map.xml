@@ -3,6 +3,7 @@
 <name>Project Chromozome</name>
 <version>1.1.2</version>
 <objective>Airship Battle redefined.. Destroy 75% of the enemy's battle ship!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="30e27366-0b14-4076-8f55-0819ece49ce3" contribution="Original Map (Airship Battle)"/> <!-- dewtroid -->
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Revival with (Airship Battle) framework"/> <!-- ElectroidFilms -->

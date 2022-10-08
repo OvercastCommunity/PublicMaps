@@ -3,6 +3,7 @@
 <name>Nightsail</name>
 <version>2.3.1</version>
 <objective>Leak lava from the enemy's obsidian core</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

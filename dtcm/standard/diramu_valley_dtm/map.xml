@@ -3,6 +3,7 @@
 <version>1.0.4</version>
 <gamemode>dtm</gamemode>
 <objective>Destroy both of the opposing monuments to win!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>

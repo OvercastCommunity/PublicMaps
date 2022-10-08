@@ -2,6 +2,7 @@
 <name>Molendinis</name>
 <version>1.2.5</version>
 <objective>Destroy the enemy's monument while protecting your own</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->
     <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTerwiesch -->

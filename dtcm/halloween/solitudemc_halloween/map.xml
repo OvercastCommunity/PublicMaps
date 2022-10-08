@@ -3,19 +3,15 @@
 <version>1.4.4</version>
 <phase>production</phase>
 <objective>Leak the lava from your enemy's core!</objective>
+<gamemode>dtc</gamemode>
 <authors>
-    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Main Author - Project starter, Building" />
-    <!-- Matic0B -->
-    <author uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Building" />
-    <!-- iLifting -->
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Main Author - Project starter, Building" /> <!-- Matic0B -->
+    <author uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Building" /> <!-- iLifting -->
 </authors>
 <contributors>
-    <contributor uuid="15101f54-cdbc-4cb2-8ed7-51e876824b71" contribution="Building Assist" />
-    <!-- duckagent007 -->
-    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Building Assist" />
-    <!-- _IQ -->
-    <contributor uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="XML Assist, Feedback" />
-    <!-- Mikeg542 -->
+    <contributor uuid="15101f54-cdbc-4cb2-8ed7-51e876824b71" contribution="Building Assist" /> <!-- duckagent007 -->
+    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Building Assist" /> <!-- _IQ -->
+    <contributor uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="XML Assist, Feedback" /> <!-- Mikeg542 -->
 </contributors>
 <teams>
     <team color="dark aqua" max="14">Cyan</team>

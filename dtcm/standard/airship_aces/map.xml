@@ -4,6 +4,7 @@
 <name>Airship Aces</name>
 <version>1.2.7</version>
 <objective>Leak lava into the void below to win!</objective>
+<gamemode>dtc</gamemode>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
 </rules>

@@ -2,6 +2,7 @@
 <name>Arctic Ruins</name>
 <version>1.1.4</version>
 <objective>Destroy the opposing team's monument!</objective>
+<gamemode>dtm</gamemode>
 <time result="objectives">20m</time>
 <authors>
     <author uuid="0a359aef-794b-4d88-97ca-5672d9421532"/> <!-- xTrina -->

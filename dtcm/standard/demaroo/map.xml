@@ -2,6 +2,7 @@
 <name>Demaroo</name>
 <version>1.1.6</version>
 <objective>Leak lava from the enemy's obsidian core!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
 </authors>

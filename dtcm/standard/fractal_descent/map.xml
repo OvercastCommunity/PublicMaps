@@ -3,11 +3,11 @@
 <name>Fractal Descent</name>
 <version>1.2.5</version>
 <objective>Leak lava from the enemy's obsidian core and destroy their two endstone monuments.</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
-	<author uuid="dbe909c6-2b15-4528-b12a-c77ed4031496" contribution="Design and building"/>
-	<!-- teheggy -->
-	<author uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Design, building, and XML"/>
-	<!-- Reshif -->
+	<author uuid="dbe909c6-2b15-4528-b12a-c77ed4031496" contribution="Design and building"/> <!-- teheggy -->
+	<author uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Design, building, and XML"/> <!-- Reshif -->
 </authors>
 <rules>
 	<rule>Players have resistance and reduced knockback in spawn!</rule>

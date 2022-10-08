@@ -3,6 +3,7 @@
 <name>Halfway Home</name>
 <version>0.3</version>
 <objective>Detonate all 3 blast zones under your enemy's pillboxes to win</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
 </authors>
@@ -160,11 +161,11 @@
 </control-points>
 <destroyables sparks="true" materials="tnt:1">
     <destroyable name="Red Blast Zone 1" id="red-blast-1" region="blue-blast-zone-1" owner="red"/>
-    <destroyable name="Red Blast Zone 2" id="red-blast-2" region="blue-blast-zone-2" owner="red"/> xxx
+    <destroyable name="Red Blast Zone 2" id="red-blast-2" region="blue-blast-zone-2" owner="red"/>
     <destroyable name="Red Blast Zone 3" id="red-blast-3" region="blue-blast-zone-3" owner="red"/>
  
-    <destroyable name="Blue Blast Zone 1" id="blue-blast-1" region="red-blast-zone-1" owner="blue"/> v
-    <destroyable name="Blue Blast Zone 2" id="blue-blast-2" region="red-blast-zone-2" owner="blue"/> v
+    <destroyable name="Blue Blast Zone 1" id="blue-blast-1" region="red-blast-zone-1" owner="blue"/>
+    <destroyable name="Blue Blast Zone 2" id="blue-blast-2" region="red-blast-zone-2" owner="blue"/>
     <destroyable name="Blue Blast Zone 3" id="blue-blast-3" region="red-blast-zone-3" owner="blue"/>
 </destroyables>
 <portals>

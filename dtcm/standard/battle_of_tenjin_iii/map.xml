@@ -4,6 +4,8 @@
 <name>Battle of Tenjin III</name>
 <version>1.1.2</version>
 <objective>Destroy the enemy team's two monuments and leak their core to win!</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba"/> <!-- SajinZero -->
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->

@@ -3,6 +3,7 @@
 <name>Hyral Skylands</name>
 <version>1.0.3</version>
 <objective>Break the obsidian from both of the enemy team's monuments.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
 </authors>

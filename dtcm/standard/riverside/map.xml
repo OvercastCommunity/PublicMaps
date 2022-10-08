@@ -2,6 +2,7 @@
 <name>Riverside</name>
 <version>1.0.7</version>
 <objective>Destroy enemy team's obsidian monument!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTerwiesch -->
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->

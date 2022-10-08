@@ -3,6 +3,7 @@
 <name>Solitude</name>
 <version>1.0.1</version>
 <objective>Leak lava from the enemy's two cores.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="82d03646-d1a1-4383-a533-9509b130f751"/> <!-- iLifting -->
     <author uuid="15101f54-cdbc-4cb2-8ed7-51e876824b71"/> <!-- duckagent007 -->

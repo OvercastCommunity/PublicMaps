@@ -2,6 +2,8 @@
 <name>Retaliation 2</name>
 <version>1.5.1</version>
 <objective>Destroy each of the enemy's monuments and leak their core to win!</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draeyx fka Draco_Rogue -->
 </authors>

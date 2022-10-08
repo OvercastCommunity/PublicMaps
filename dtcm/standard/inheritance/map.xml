@@ -2,6 +2,7 @@
 <name>Inheritance</name>
 <version>1.6.2</version>
 <objective>Leak lava from both of the enemy's obsidian cores!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

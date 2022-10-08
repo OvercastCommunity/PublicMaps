@@ -2,6 +2,7 @@
 <name>Temple Run</name>
 <version>1.3</version>
 <objective>Destroy the enemy core while protecting your own core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="8f450ecb-184a-4fdd-9f17-bf1da547ab64"/> <!-- Chicago_T3d -->
     <author uuid="3881e2f3-b393-4435-80a1-ff4c87fb4236"/> <!-- MrArchy -->

@@ -3,6 +3,7 @@
 <name>The Fenland</name>
 <version>1.2.10</version>
 <objective>Break the obsidian from the enemy team's monument.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="e5953ddf-c1fc-4405-9ac9-6939631cd185"/> <!-- McSpider -->
 </authors>

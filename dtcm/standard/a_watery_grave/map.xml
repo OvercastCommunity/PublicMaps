@@ -4,6 +4,7 @@
 <name>A Watery Grave</name>
 <version>1.2.2</version>
 <objective>Break the enchanting table inside of the enemy team's obsidian core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="9a96b43e-e5d7-47e4-9679-ccbfe3fffc10"/> <!-- Skirmisher47 -->
 </authors>

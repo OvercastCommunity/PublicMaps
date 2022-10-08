@@ -1,7 +1,8 @@
-<map proto="1.4.0">
+<map proto="1.4.0" game="Destroy the Everything">
 <name>Library DTE</name>
 <version>1.0.7</version>
 <objective>Destroy 70% of the enemy's side!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
 </authors>

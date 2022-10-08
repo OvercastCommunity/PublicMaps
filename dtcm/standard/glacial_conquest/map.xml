@@ -4,6 +4,7 @@
 <name>Glacial Conquest</name>
 <version>1.0.7</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->

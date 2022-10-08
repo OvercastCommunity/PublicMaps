@@ -2,15 +2,13 @@
 <name>Tree of Life: Mini</name>
 <version>1.0.3</version>
 <objective>Leak the enemy team's core to win the match!</objective>
+<gamemode>dtc</gamemode>
 <authors>
-    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/>
-    <!--  Stealth5061  -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!--  Stealth5061  -->
 </authors>
 <contributors>
-    <contributor uuid="00c06fa6-1c53-4634-931a-929efd8a52df" contribution="Original Map-to-Mini Map Concept"/>
-    <!--  Nadastorm  -->
-    <contributor uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83" contribution="Pointing out that the lake is on the wrong side"/>
-    <!--  lonelyhornet  -->
+    <contributor uuid="00c06fa6-1c53-4634-931a-929efd8a52df" contribution="Original Map-to-Mini Map Concept"/> <!--  Nadastorm  -->
+    <contributor uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83" contribution="Pointing out that the lake is on the wrong side"/> <!--  lonelyhornet  -->
 </contributors>
 <teams>
     <team color="dark red" max="18" max-overfill="20">Red</team>

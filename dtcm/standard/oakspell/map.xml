@@ -3,6 +3,7 @@
 <name>Oakspell</name> 
 <version>2.0.2</version> 
 <objective>Leak lava from the enemy's obsidian core!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer --> 
 </authors>
@@ -70,7 +71,6 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemremove>
-
 <spawns>
     <spawn team="red" kit="red" yaw="0">
         <point>129,2,-15</point>

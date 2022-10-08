@@ -3,6 +3,7 @@
 <name>Boom: Best of 3</name>
 <version>1.0.1</version>
 <objective>Destroy enemy gold orbs with TNT, win the best of 3 matches.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="25961a08-c90c-4abd-b136-dad90e89c2eb"/> <!-- Anxuiz -->
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->

@@ -3,6 +3,7 @@
 <name>Hyperspace</name>
 <version>1.4.4</version>
 <objective>Destroy the other team's monument</objective>
+<gamemode>dtm</gamemode>
 <rules>
     <rule>Chests can not be placed or destroyed!</rule>
 </rules>

@@ -1,115 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map proto="1.4.2">
-	<name>Formorgar 1</name>
-	<version>1.1.0</version>
-	<objective>Destroy the enemy's monument(s) to win!</objective>
-	<authors>
-		<author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/>
-		<!-- Evocal -->
-	</authors>
-	<teams>
-		<team id="purple" color="dark purple" max="25">Purple Team</team>
-		<team id="yellow" color="yellow" max="25">Yellow Team</team>
-	</teams>
-	<spawns>
-      <spawn team="purple" kit="pkit">
+<name>Formorgar 1</name>
+<version>1.1.0</version>
+<objective>Destroy the enemy's monument(s) to win!</objective>
+<gamemode>dtm</gamemode>
+<authors>
+    <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- Evocal -->
+</authors>
+<teams>
+    <team id="purple" color="dark purple" max="25">Purple Team</team>
+    <team id="yellow" color="yellow" max="25">Yellow Team</team>
+</teams>
+<spawns>
+    <spawn team="purple" kit="pkit">
         <regions yaw="180">
             <point>-0, 66, 5</point>
         </regions>
-      </spawn>
-      <spawn team="yellow" kit="ykit">
+    </spawn>
+    <spawn team="yellow" kit="ykit">
         <regions yaw="0">
             <point>-0, 66, -130</point>
         </regions>
-      </spawn>
-      <default>
+    </spawn>
+    <default>
         <regions yaw="-90">
             <point>-39, 86, -62</point>
         </regions>
-      </default>
-    </spawns>
-	<kits>
-		<kit id="both">
-			<item slot="0">iron sword</item>
-			<item slot="1" enchantment="arrow infinite">bow</item>
-			<item slot="28">arrow</item>
-			<item slot="2">diamond pickaxe</item>
-			<item slot="3" amount="32">log</item>
-			<item slot="4" amount="32">glass</item>
-			<item slot="5" amount="3">golden apple</item>
-			<item slot="6" amount="32">cooked beef</item>
-			<item slot="7" amount="4">exp bottle</item>
-			<item slot="9">arrow</item>
-			<item slot="10" amount="1">lapis block</item>
-		</kit>
-		<kit id="pkit" parents="both">
-			<helmet color="AA00AA" damage="-3000">leather helmet</helmet>
-			<chestplate color="AA00AA" damage="-3000">leather chestplate</chestplate>
-			<leggings damage="-3000" material="iron leggings"/>
-			<boots color="AA00AA" damage="-3000">leather boots</boots>
-		</kit>
-		<kit id="ykit" parents="both">
-			<helmet color="FFFF55" damage="-3000">leather helmet</helmet>
-			<chestplate color="FFFF55" damage="-3000">leather chestplate</chestplate>
-			<leggings damage="-3000" material="iron leggings"/>
-			<boots color="FFFF55" damage="-3000">leather boots</boots>
-		</kit>
-	</kits>
-	<kill-rewards>
-		<kill-reward>
-			<item amount="1" material="golden apple"/>
-			<item amount="4" material="exp bottle"/>
-		</kill-reward>
-	</kill-rewards>
-    <destroyables owner="yellow" completion="100%">
-        <destroyable name="Left" region="yellow-left" materials="obsidian"/>
-        <destroyable name="Right" region="yellow-right" materials="obsidian"/>
-    </destroyables>
-    <destroyables owner="purple" completion="100%">
-		<destroyable name="Left" region="purple-left" materials="obsidian"/>
-        <destroyable name="Right" region="purple-right" materials="obsidian"/>
-    </destroyables>
-	<filters>
-		<team id="only-yellow">yellow</team>
-		<team id="only-purple">purple</team>
-	</filters>
-	<regions>
-		<sphere id="yellow-spawn" origin="-0, 65, -130" radius="8"/>
-		<sphere id="purple-spawn" origin="-0, 65, 5" radius="8"/>
-		<cuboid id="nobuild-one" max="-1, 69, -97" min="-1, 68, -97"/>
-		<cuboid id="nobuild-two" max="-1, 69, -29" min="-1, 68, -29"/>
-		
-		<union id="monuments">
-			<block id="yellow-left">-20, 67, -131</block>
-            <block id="yellow-right">18, 67, -131</block>
-            <block id="purple-left">18, 67, 5</block>
-            <block id="purple-right">-20, 67, 5</block>
-        </union>
-
-        <apply block="never" enter="only-yellow" region="yellow-spawn" message="You can not modify blocks or enter here!"/>
-        <apply block="never" enter="only-purple" region="purple-spawn" message="You can not modify blocks or enter here!"/>
-		<apply block="never" region="nobuild-one" message="You can not modify blocks or enter here!"/>
-		<apply block="never" region="nobuild-two" message="You can not modify blocks or enter here!"/>
-
-        <apply enter="only-yellow" region="yellow-spawn"/>
-        <apply enter="only-purple" region="purple-spawn"/>
-	</regions>
-	<itemremove>
-		<item>leather helmet</item>
-		<item>leather chestplate</item>
-		<item>iron leggings</item>
-		<item>leather boots</item>
-		<item>cooked beef</item>
-		<item>arrow</item>
-		<item>log</item>
-		<item>wood</item>
-		<item>obsidian</item>
-		<item>exp bottle</item>
-		<item>glass</item>
-	</itemremove>
-	<toolrepair>
-		<tool>bow</tool>
-		<tool>iron sword</tool>
-		<tool>diamond pickaxe</tool>
-	</toolrepair>
+    </default>
+</spawns>
+<kits>
+    <kit id="both">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" amount="32">log</item>
+        <item slot="4" amount="32">glass</item>
+        <item slot="5" amount="3">golden apple</item>
+        <item slot="6" amount="32">cooked beef</item>
+        <item slot="7" amount="4">exp bottle</item>
+        <item slot="9">arrow</item>
+        <item slot="10" amount="1">lapis block</item>
+    </kit>
+    <kit id="pkit" parents="both">
+        <helmet color="AA00AA" damage="-3000">leather helmet</helmet>
+        <chestplate color="AA00AA" damage="-3000">leather chestplate</chestplate>
+        <leggings damage="-3000" material="iron leggings"/>
+        <boots color="AA00AA" damage="-3000">leather boots</boots>
+    </kit>
+    <kit id="ykit" parents="both">
+        <helmet color="FFFF55" damage="-3000">leather helmet</helmet>
+        <chestplate color="FFFF55" damage="-3000">leather chestplate</chestplate>
+        <leggings damage="-3000" material="iron leggings"/>
+        <boots color="FFFF55" damage="-3000">leather boots</boots>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward>
+        <item amount="1" material="golden apple"/>
+        <item amount="4" material="exp bottle"/>
+    </kill-reward>
+</kill-rewards>
+<destroyables owner="yellow" completion="100%">
+    <destroyable name="Left" region="yellow-left" materials="obsidian"/>
+    <destroyable name="Right" region="yellow-right" materials="obsidian"/>
+</destroyables>
+<destroyables owner="purple" completion="100%">
+    <destroyable name="Left" region="purple-left" materials="obsidian"/>
+    <destroyable name="Right" region="purple-right" materials="obsidian"/>
+</destroyables>
+<filters>
+    <team id="only-yellow">yellow</team>
+    <team id="only-purple">purple</team>
+</filters>
+<regions>
+    <sphere id="yellow-spawn" origin="-0, 65, -130" radius="8"/>
+    <sphere id="purple-spawn" origin="-0, 65, 5" radius="8"/>
+    <cuboid id="nobuild-one" max="-1, 69, -97" min="-1, 68, -97"/>
+    <cuboid id="nobuild-two" max="-1, 69, -29" min="-1, 68, -29"/>	
+    <union id="monuments">
+        <block id="yellow-left">-20, 67, -131</block>
+        <block id="yellow-right">18, 67, -131</block>
+        <block id="purple-left">18, 67, 5</block>
+        <block id="purple-right">-20, 67, 5</block>
+    </union>
+    <apply block="never" enter="only-yellow" region="yellow-spawn" message="You can not modify blocks or enter here!"/>
+    <apply block="never" enter="only-purple" region="purple-spawn" message="You can not modify blocks or enter here!"/>
+    <apply block="never" region="nobuild-one" message="You can not modify blocks or enter here!"/>
+    <apply block="never" region="nobuild-two" message="You can not modify blocks or enter here!"/>
+    <apply enter="only-yellow" region="yellow-spawn"/>
+    <apply enter="only-purple" region="purple-spawn"/>
+</regions>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+    <item>arrow</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>obsidian</item>
+    <item>exp bottle</item>
+    <item>glass</item>
+</itemremove>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
 </map>

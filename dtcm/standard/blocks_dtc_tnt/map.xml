@@ -2,6 +2,7 @@
 <name>Blocks DTC TNT</name> <!-- Blocks DTC TE Redux for mixed -->
 <version>2.0.2</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
 </authors>

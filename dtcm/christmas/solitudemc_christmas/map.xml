@@ -3,6 +3,7 @@
 <version>1.4.4</version>
 <phase>development</phase>
 <objective>Leak the lava from your enemy's core!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Main Author - Project starter, Building"/> <!-- Matic0B -->
     <author uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Building"/> <!-- iLifting -->

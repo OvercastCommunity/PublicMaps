@@ -3,6 +3,7 @@
 <name>Metro</name>
 <version>1.8.5</version>
 <objective>Destroy the enemy monuments</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- yoyo_power -->
 </authors>
@@ -113,7 +114,6 @@
     <doDaylightCycle>false</doDaylightCycle>
 </gamerules>
 <maxbuildheight>98</maxbuildheight>
-
 <hunger>
     <depletion>on</depletion>
 </hunger>

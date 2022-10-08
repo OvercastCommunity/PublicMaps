@@ -3,6 +3,8 @@
 <name>Relic</name>
 <version>1.1.1</version>
 <objective>Destroy the enemy team's core and two endstone monuments to win!</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
 </authors>

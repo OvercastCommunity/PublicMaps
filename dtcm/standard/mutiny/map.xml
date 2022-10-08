@@ -3,6 +3,7 @@
 <name>Mutiny</name>
 <version>1.0.0</version>
 <objective>Destroy the enemy team's monument!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
     <author uuid="4a57e6bc-6100-47a8-a02f-fef8c23952b4"/> <!-- Sucitare -->

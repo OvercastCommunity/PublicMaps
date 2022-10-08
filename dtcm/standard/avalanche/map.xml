@@ -3,6 +3,7 @@
 <name>Avalanche</name>
 <version>1.2.9</version>
 <objective>Leak lava from the enemy's mountaintop core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="74664520-5d92-4661-b207-b0434b342e8b"/> <!-- way2hot4rs -->
     <author uuid="904bf23f-67c5-484a-ae60-61f4ec150b48"/> <!-- oib5 -->

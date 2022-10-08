@@ -4,6 +4,7 @@
 <phase>development</phase>
 <version>1.0</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author>Torn_Ares</author>
     <author>Thungon</author>

@@ -4,11 +4,10 @@
 <version>1.0.1</version>
 <phase>development</phase>
 <objective>Destroy the enemy's core above their large tree.</objective>
+<gamemode>dtc</gamemode>
 <authors>
-    <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design"/>
-    <!-- Mikeg542 -->
-    <author uuid="4402100d-8f9e-4d23-9a51-5e17dde415d5" contribution="Many details, aesthetics, feedback etc"/>
-    <!-- minsii AKA miniman9499 -->
+    <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design"/> <!-- Mikeg542 -->
+    <author uuid="4402100d-8f9e-4d23-9a51-5e17dde415d5" contribution="Many details, aesthetics, feedback etc"/> <!-- minsii AKA miniman9499 -->
 </authors>
 <teams>
     <team color="gold" max="16">Orange</team>

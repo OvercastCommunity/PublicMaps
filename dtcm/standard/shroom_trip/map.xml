@@ -3,6 +3,7 @@
 <name>Shroom Trip</name>
 <version>1.7.8</version>
 <objective>Leak lava from the enemy's obsidian shroom into the void.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="8b210772-8b0c-44b4-a4e2-2b543707ffc6"/> <!-- Omnigarde -->
 </authors>

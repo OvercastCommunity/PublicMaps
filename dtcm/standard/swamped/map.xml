@@ -4,6 +4,7 @@
 <name>Swamped</name>
 <version>1.1.4</version>
 <objective>Destroy the enemy's core in front of their spawn.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design"/> <!-- Mikeg542 -->
     <author uuid="fcbc5806-e7fd-45f1-845a-22f1df93c9bf" contribution="Many details, aesthetics, feedback etc"/> <!-- Minii_ -->

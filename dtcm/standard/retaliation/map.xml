@@ -2,6 +2,7 @@
 <name>Retaliation</name>
 <version>1.1.2</version>
 <objective>Leak the enemy team's core to win!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draeyx fka Draco_Rogue -->
 </authors>

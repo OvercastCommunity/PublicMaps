@@ -2,6 +2,7 @@
 <name>Runes of Ruin</name>
 <version>1.2.12</version>
 <objective>Leak lava from the enemy's obsidian core</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
 </authors>

@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Shroom Trip II: The Conspiracy</name>
+<created>2012-11-22</created>
 <version>1.1</version>
 <objective>Leak the enemy core, the Doom Shroom!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="b5f4323f-aec6-4066-9d9c-9970626b39ba"/> <!-- R3creat3 (R3C) AKA SkytopiaBot -->
     <author uuid="9e55ba07-9c56-42aa-8c66-c98da0d8e619"/> <!-- zezo268 -->
@@ -14,7 +16,6 @@
     <contributor uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="New XML"/> <!-- CoWinkKeyDinkInc -->
     <contributor uuid="8b210772-8b0c-44b4-a4e2-2b543707ffc6" contribution="Original Author of Shroom Trip"/> <!-- Omnigarde -->
 </contributors>
-<created>2012-11-22</created>
 <teams>
     <team id="blue" color="blue" max="50">Blue</team>
     <team id="red" color="dark red" max="50">Red</team>

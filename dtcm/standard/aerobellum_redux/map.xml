@@ -2,6 +2,7 @@
 <name>Aerobellum Redux</name>
 <version>1.0</version>
 <objective>Leak lava from the enemy team's engine to win the match!</objective>
+<gamemode>dtc</gamemode>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
 </rules>
@@ -9,7 +10,7 @@
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
 </authors>
 <contributors>
-    <contributor uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609" contribution="Redux"/> <!--  Technodono  -->
+    <contributor uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609" contribution="Redux"/> <!-- Technodono -->
 </contributors>
 <teams>
     <team id="red" color="dark red" max="24">Red</team>
@@ -52,7 +53,7 @@
     </deny>
 </filters>
 <tnt>
-    <yeild>0</yeild>
+    <yield>0</yield>
 </tnt>
 <regions>
     <!-- Recent changes to implement spawn and chest protection -->

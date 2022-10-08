@@ -2,6 +2,8 @@
 <name>Masarin II</name>
 <version>2.1.4</version>
 <objective>Leak lava from the enemy's obsidian core and destroy their obsidian monument for victory.</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
 	<author uuid="ee864d09-99c7-4c3d-9e3e-852e51339107"/> <!--  MobbareKurtZ  -->
 </authors>

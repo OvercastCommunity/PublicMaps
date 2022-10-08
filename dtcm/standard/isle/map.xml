@@ -2,13 +2,12 @@
 <name>Isle</name>
 <version>1.3.3</version>
 <objective>Leak the enemy team's core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
-    <author uuid="e931b4b3-479f-4761-8808-4c4b2ed69b0f"/>
-    <!--  Theta_  -->
+    <author uuid="e931b4b3-479f-4761-8808-4c4b2ed69b0f"/> <!-- Theta_ -->
 </authors>
 <contributors>
-    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="XML"/>
-    <!--  Timothee38  -->
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="XML"/> <!-- Timothee38 -->
 </contributors>
 <kits>
     <kit name="spawn" force="true">

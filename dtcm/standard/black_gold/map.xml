@@ -3,6 +3,7 @@
 <name>Black Gold</name>
 <version>1.0.3</version>
 <objective>Leak lava from the enemy core into the void</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="ed1fe2bd-0431-4a56-8c5c-d4657389dd1f"/> <!-- artur1197 -->
     <author uuid="06c2f980-d6b1-4908-b578-a9cf42a1418a"/> <!-- hanchulonXD1 -->

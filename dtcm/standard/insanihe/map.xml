@@ -3,6 +3,7 @@
 <name>Insanihe</name>
 <version>1.0.1</version>
 <objective>Destroy both monuments, before the enemy destroys yours</objective>
+<gamemode>dtm</gamemode>
 <authors>
 	<author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Making of map and XML"/> <!-- Obelistics -->
 </authors>

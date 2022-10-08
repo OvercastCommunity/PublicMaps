@@ -3,6 +3,8 @@
 <name>Roar</name>
 <version>1.0.2</version>
 <objective>Destroy both core and monument.</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->
 </authors>

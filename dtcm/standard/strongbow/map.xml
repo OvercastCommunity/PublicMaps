@@ -2,6 +2,7 @@
 <name>Strongbow</name>
 <version>0.6.4</version>
 <objective>Break the obsidian from the enemy team's monument.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="bada87c3-3383-42cb-973d-99032a0724b9"/> <!-- Holdfast33 -->
 </authors>

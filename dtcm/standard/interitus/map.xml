@@ -3,6 +3,8 @@
 <name>Interitus</name>
 <version>2.3.7</version>
 <objective>Leak lava from the enemy's obsidian core and break their two endstone monuments.</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
     <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0"/> <!-- SH4D0W_HAWK -->

@@ -3,6 +3,8 @@
 <name>Crippled Divide</name>
 <version>1.0.3</version>
 <objective>Destroy the enemy's obsidian monuments and leak their core!</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb"/> <!-- Rasta_Jol -->
     <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LarrowHead -->

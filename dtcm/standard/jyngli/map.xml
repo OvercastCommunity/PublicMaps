@@ -3,6 +3,8 @@
 <name>Jyngli</name>
 <version>2.2.1</version>
 <objective>Destroy the opposing team's monuments and core!</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="c63bd04f-ad1e-455c-b194-7b1085c31aa3"/> <!-- Dickson_ -->
     <author uuid="10c1b730-49b9-4f75-9212-91facc371477"/> <!-- Qixit -->
@@ -11,8 +13,6 @@
     <team id="cyan" color="dark aqua" max="30" max-overfill="35">Cyan</team>
     <team id="orange" color="gold" max="30" max-overfill="35">Orange</team>
 </teams>
-<gamemode>dtm</gamemode>
-<gamemode>dtc</gamemode>
 <kits>    
     <kit id="spawn" force="true">
         <potion duration="10" amplifier="10">heal</potion>

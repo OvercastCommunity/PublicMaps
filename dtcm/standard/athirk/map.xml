@@ -1,11 +1,12 @@
 <map proto="1.4.0">
 <name>Athirk</name>
 <version>1.2</version>
+<objective>Leak the enemy team's cores and destroy their monuments to win!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
 </authors>
-<objective>Leak the enemy team's cores and destroy their monuments to win!</objective>
 <teams>
     <team id="blue" color="blue" max="32">Blue</team>
     <team id="red" color="dark red" max="32">Red</team>

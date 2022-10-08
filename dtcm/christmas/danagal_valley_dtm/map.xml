@@ -1,9 +1,9 @@
 <map proto="1.4.0">
 <name>Danagal Valley DTM</name>
 <version>1.0.1</version>
+<objective>Destroy both of the opposing monuments to win!</objective>
 <phase>development</phase>
 <gamemode>dtm</gamemode>
-<objective>Destroy both of the opposing monuments to win!</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>

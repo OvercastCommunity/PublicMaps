@@ -3,6 +3,7 @@
 <name>Sky Traffic</name>
 <version>1.7.6</version>
 <objective>Leak lava from the enemy's obsidian core below their ship.</objective>
+<gamemode>dtc</gamemode>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
     <rule>Chests can not be placed or destroyed!</rule>

@@ -3,6 +3,7 @@
 <name>Greecia</name>
 <version>1.2.2</version>
 <objective>Destroy the other team's core before they destroy yours!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="b8539c6d-533b-4be2-8f0d-3f70431eee87"/> <!-- CatchingMC -->
 </authors>

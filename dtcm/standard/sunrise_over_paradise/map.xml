@@ -5,6 +5,7 @@
 <phase>development</phase>
 <genre>Objectives</genre>
 <objective>Break the obsidian from both of the enemy team's monuments.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map Design"/> <!-- Plastix -->
 </authors>

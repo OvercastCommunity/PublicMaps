@@ -4,6 +4,7 @@
 <version>1.2.10</version>
 <phase>production</phase>
 <objective>Leak lava from each of the enemy's obsidian core 6 blocks downwards</objective>
+<gamemode>dtc</gamemode>
 <rules>
     <rule>Players have resistance and reduced knockback, haste and resistance in spawn!</rule>
 </rules>

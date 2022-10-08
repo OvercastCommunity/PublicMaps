@@ -1,7 +1,8 @@
-<map proto="1.4.0">
+<map proto="1.4.0" game="Destroy the Everything">
 <name>DK Crossovers DTE</name>
 <version>1.4.1</version>
 <objective>Destroy 70% of the enemies side!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--  DoomRobotBoy  -->
 </authors>

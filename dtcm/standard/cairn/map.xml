@@ -2,6 +2,7 @@
 <name>Cairn</name>
 <version>2.0.1</version>
 <objective>Leak the enemy's core!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

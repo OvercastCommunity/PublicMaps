@@ -1,9 +1,9 @@
 <map proto="1.4.2">
 <name>Winsray Fields</name>
 <version>1.0.4</version>
+<objective>Destroy the opposing team's monument and core!</objective>
 <gamemode>dtc</gamemode>
 <gamemode>dtm</gamemode>
-<objective>Destroy the opposing team's monument and core!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>

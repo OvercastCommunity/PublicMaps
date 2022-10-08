@@ -3,6 +3,7 @@
 <name>Blocks DTC TE</name>
 <version>1.0.4</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
 </authors>

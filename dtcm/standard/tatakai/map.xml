@@ -2,13 +2,12 @@
 <name>Tatakai</name>
 <version>1.0.0</version>
 <objective>Leak the enemy team's core to win</objective>
+<gamemode>dtc</gamemode>
 <authors>
-    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/>
-    <!-- Avaleer -->
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
 </authors>
 <contributors>
-    <contributor contribution="XML" uuid="f70b7a8f-93b2-480f-9d54-88e21485a042"/>
-    <!-- Diamyx  -->
+    <contributor contribution="XML" uuid="f70b7a8f-93b2-480f-9d54-88e21485a042"/> <!-- Diamyx  -->
 </contributors>
 <teams>
     <team color="dark red" max="12" max-overfill="14">Red</team>

@@ -3,6 +3,7 @@
 <name>Battle of Tenjin II</name>
 <version>1.0.9</version>
 <objective>Break and leak lava from both of the opposing team's cores.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba"/> <!-- SajinZero -->
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->

@@ -4,6 +4,7 @@
 <version>1.0.3</version>
 <phase>production</phase>
 <objective>Break both of the enemy team's obsidian monuments.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
     <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->

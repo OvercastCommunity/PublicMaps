@@ -3,6 +3,7 @@
 <name>Bessemer's Process</name>
 <version>1.0.5</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Overall design, major building, coding"/> <!-- Zelocksurian -->
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Details, consistency, minor design"/> <!-- Stealth5061 -->

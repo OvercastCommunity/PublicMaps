@@ -4,6 +4,7 @@
 <name>Fort Wars</name>
 <version>1.4.5</version>
 <objective>Destroy the enemy's flag!</objective>
+<gamemode>dtm</gamemode>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
     <rule>Chests can not be placed or destroyed!</rule>

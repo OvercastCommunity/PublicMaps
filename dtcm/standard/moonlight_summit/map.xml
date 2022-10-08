@@ -2,6 +2,7 @@
 <name>Moonlight Summit</name>
 <version>1.5.7</version>
 <objective>Destroy 90% of all three of the enemy's monuments!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- Chicky -->
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draeyx -->

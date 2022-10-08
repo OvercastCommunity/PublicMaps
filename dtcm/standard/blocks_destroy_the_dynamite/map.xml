@@ -2,6 +2,7 @@
 <name>Blocks: Destroy the Dynamite</name>
 <version>1.0.9</version>
 <objective>Destroy both of the enemy tnt blocks to win!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
     <author uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f"/> <!-- Veiyl -->

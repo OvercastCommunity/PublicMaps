@@ -3,6 +3,7 @@
 <name>Polylith</name>
 <version>1.0</version>
 <objective>Destroy the enemy's Core!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
@@ -27,7 +28,6 @@
         </regions>
     </default>
 </spawns>
-
 <kits>
     <kit name="spawn">
         <item slot="0">stone sword</item>
@@ -83,7 +83,6 @@
     <potion duration="3" amplifier="1">night vision</potion>
     <item>golden apple</item>
 </killreward>
-
 <filters>
     <filter name="only-red">
         <team>red</team>
@@ -151,7 +150,6 @@
         <cylinder base="47.5,1,391.5" radius="6" height="1"/>
         <cylinder base="179.5,1,391.5" radius="6" height="1"/>
     </apply>
-
 <king>
     <hills capture-players="lead" incremental="true" permanent="true" show-progress="true" neutral-state="false" required="false">
         <hill id="BelowBlue" name="Blue Hill" capture-time="12s">
@@ -164,7 +162,6 @@
         </hill>
     </hills>
 </king>-->
-
 <cores material="obsidian" leak="5">
     <core team="red">
         <region><cuboid min="182,19,388" max="176,10,394"/></region>
@@ -173,14 +170,11 @@
         <region><cuboid min="50,19,388" max="44,10,394"/></region>
     </core>
 </cores>
-
 <maxbuildheight>29</maxbuildheight>
-
 <hunger>
     <depletion>on</depletion>
 </hunger>
 <timelock>on</timelock>
-
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>

@@ -3,6 +3,7 @@
 <name>Airship Ascendance</name>
 <version>0.6.1</version>
 <objective>Leak lava from the enemy's obsidian Engine Core</objective>
+<gamemode>dtc</gamemode>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
     <rule>Chests can not be placed or destroyed!</rule>
@@ -64,20 +65,17 @@
         <cuboid min="3,39,-36" max="12,oo,-29"/>
         <cuboid min="12,39,-36" max="19,oo,-1"/>
     </union>
-
     <apply enter="deny-all" message="You may not enter the spawn tunnel">
         <union>
             <region name="red-tunnel"/>
             <region name="blue-tunnel"/>
         </union>
     </apply>
-
     <apply block="deny-all" message="You may not build outside the playing field">
         <negative>
             <rectangle min="-58,-1" max="35,98"/>
         </negative>
     </apply>
-
     <apply block="deny-cyan-clay" message="This material is stronger than it looks">
         <negative></negative>
     </apply>
@@ -87,7 +85,6 @@
         <potion amplifier="10" duration="oo">damage resistance</potion>
         <knockback-reduction>1</knockback-reduction>
     </kit>
-
     <kit name="common">
         <item slot="0">iron axe</item>
         <item slot="1">bow</item>

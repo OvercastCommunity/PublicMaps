@@ -3,11 +3,10 @@
 <name>Tempest</name>
 <version>2.0.1</version>
 <objective>Destroy the enemy's two capacitors and their cendrum to win!</objective>
+<gamemode>dtm</gamemode>
 <authors>
-    <author uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83"/>
-    <!--  lonelyhornet  -->
-    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Building, Aesthetics and WorldEdit magic"/>
-    <!--  xXFracXx  -->
+    <author uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83"/> <!--  lonelyhornet  -->
+    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Building, Aesthetics and WorldEdit magic"/> <!--  xXFracXx  -->
 </authors>
 <contributors>
     <contributor contribution="Feedback, aestehtics, building and XML fixing">ItsMiiOlly</contributor>
@@ -53,7 +52,6 @@
     <yield>0</yield>
 </tnt>
 <timelock>on</timelock>
-
 <filters>
     <filter name="cyan-only">
         <team>cyan</team>

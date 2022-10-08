@@ -3,6 +3,7 @@
 <name>Precipice</name>
 <version>1.0.3</version>
 <objective>Leak lava from the enemy team's core!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="b0b3c5d5-e9bd-4984-bc07-1bd552d4b042"/> <!-- Beebou -->
 </authors>

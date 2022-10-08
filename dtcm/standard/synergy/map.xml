@@ -3,6 +3,8 @@
 <name>Synergy</name>
 <version>1.1.6</version>
 <objective>Leak lava from the core and destroy both team's monuments.</objective>
+<gamemode>dtm</gamemode>
+<gamemode>dtc</gamemode>
 <authors>
 	<author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
 </authors>

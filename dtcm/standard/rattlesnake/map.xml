@@ -2,6 +2,7 @@
 <name>Rattlesnake</name>
 <version>1.1.2</version>
 <objective>Destroy the enemy team's emerald monuments!</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- Vicei -->
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b"/> <!-- _3Each -->

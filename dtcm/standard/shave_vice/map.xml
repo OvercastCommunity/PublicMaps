@@ -3,6 +3,7 @@
 <version>1.0.1</version>
 <objective>Vice has been away for so long his beard is out of control!</objective>
 <phase>development</phase>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="715769c5-8c4c-4489-bdf8-f9cee2b2ae8a"/> <!-- amactus -->
     <author uuid="a9f11454-beac-4cc3-a138-1780802c8794"/> <!-- Crazy_ -->

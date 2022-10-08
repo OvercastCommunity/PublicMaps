@@ -4,6 +4,7 @@
 <name>Escensio</name>
 <version>1.0.8</version>
 <objective>Destroy the three enemy flags to win the match.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
     <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->

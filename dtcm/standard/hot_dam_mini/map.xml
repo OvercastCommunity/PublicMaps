@@ -2,6 +2,7 @@
 <name>Hot Dam Mini</name>
 <version>1.1.7</version>
 <objective>Leak lava from the enemy's obsidian core onto the dam!</objective>
+<gamemode>dtc</gamemode>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
 </authors>
