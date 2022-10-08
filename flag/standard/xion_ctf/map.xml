@@ -2,6 +2,7 @@
 <name>Xion CTF</name>
 <version>1.0.4</version>
 <objective>Capture the opposing team's flag and return it to your base!</objective>
+<gamemode>ctf</gamemode>
 <score>
     <limit>2</limit>
 </score>

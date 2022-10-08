@@ -3,6 +3,7 @@
 <name>Warlock CTF</name>
 <version>1.4.3</version>
 <objective>Capture the enemy's flag 3 times to win!</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="e5953ddf-c1fc-4405-9ac9-6939631cd185"/> <!-- McSpider -->
 </authors>

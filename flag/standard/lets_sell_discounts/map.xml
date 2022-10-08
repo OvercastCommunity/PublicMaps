@@ -2,6 +2,7 @@
 <name>Let's Sell Discounts</name>
 <version>1.1.3</version>
 <objective>Capture the enemy team's flag</objective>
+<gamemode>ctf</gamemode>
 <time result="score" overtime="1m" max-overtime="2m">12m</time>
 <edition>standard</edition>
 <authors>

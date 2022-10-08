@@ -3,6 +3,7 @@
 <version>0.9.2</version>
 <time overtime="2m" max-overtime="6m" result="score">12m</time>
 <objective>Capture the enemy's flag as many times as possible in 12 minutes!</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

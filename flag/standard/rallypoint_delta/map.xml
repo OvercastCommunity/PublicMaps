@@ -2,6 +2,7 @@
 <name>Rallypoint Delta</name>
 <version>1.0.0</version>
 <objective>Bring flags back to your base to earn the most points!</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/>
 </authors>

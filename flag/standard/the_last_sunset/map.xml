@@ -2,19 +2,14 @@
 <name>The Last Sunset</name>
 <version>1.4.3</version>
 <objective>Capture both enemy flags two times!</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomyBoy -->
 </authors>
 <broadcasts>
-    <tip after="4s" every="3m" count="oo">
-        `3`oYou have to capture the `6flags`3`o behind `6spawn`3.
-    </tip>
-    <tip after="6s" every="3m" count="oo">
-        `3`oTo make the `6flags`3`o respawn you have to capture both enemy flags first.
-    </tip>
-    <tip after="10s" every="3m" count="oo">
-        `3`oThere is a `6lilypad spawner`3`o in the center that can assist you in offense.
-    </tip>
+    <tip after="4s" every="3m" count="oo">`3`oYou have to capture the `6flags`3`o behind `6spawn`3.</tip>
+    <tip after="6s" every="3m" count="oo">`3`oTo make the `6flags`3`o respawn you have to capture both enemy flags first.</tip>
+    <tip after="10s" every="3m" count="oo">`3`oThere is a `6lilypad spawner`3`o in the center that can assist you in offense.</tip>
 </broadcasts>
 <teams>
     <team id="blue" color="blue" max="24">Blue</team>

@@ -2,6 +2,7 @@
 <name>Voltage</name>
 <version>1.0.6</version>
 <objective>Capture the opposing team's flag 4 times!</objective>
+<gamemode>ctf</gamemode>
 <time result="score" overtime="1m" max-overtime="1m">10m</time>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->

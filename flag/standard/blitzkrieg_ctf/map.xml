@@ -2,6 +2,7 @@
 <name>Blitzkrieg CTF</name>
 <version>1.1.4</version>
 <objective>Capture the enemy's flag as many times as possible in 12 minutes!</objective>
+<gamemode>ctf</gamemode>
 <time result="score" overtime="2m" max-overtime="6m">12m</time>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->

@@ -1,22 +1,15 @@
 <map proto="1.4.0">
 <name>Stonehaven</name>
 <version>1.0.1</version>
-<objective>
-Grab the enemy flag and bring it back to your flag stand!
-</objective>
+<objective>Grab the enemy flag and bring it back to your flag stand!</objective>
+<gamemode>ctf</gamemode>
 <authors>
-    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/>
-    <!--  StealthMedia  -->
-    <author uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb"/>
-    <!--  Zelocksurian  -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!--  StealthMedia  -->
+    <author uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb"/> <!--  Zelocksurian  -->
 </authors>
 <broadcasts>
-    <tip after="5s" every="2m">
-    `7Type `b`l/classes `7to view a list of available classes for this map.
-    </tip>
-    <tip after="6s" every="2m">
-    `7To select one, enter `b`l/class [classname]`7. Your class will change upon respawn.
-    </tip>
+    <tip after="5s" every="2m">`7Type `b`l/classes `7to view a list of available classes for this map.</tip>
+    <tip after="6s" every="2m">`7To select one, enter `b`l/class [classname]`7. Your class will change upon respawn.</tip>
 </broadcasts>
 <teams>
     <team id="red" color="dark red" max="10" max-overfill="12">Red</team>
@@ -124,7 +117,6 @@ Grab the enemy flag and bring it back to your flag stand!
     <cuboid id="blue-net" min="25,28,-46" max="28,35,-43"/>
     <cuboid id="jump-red" min="10,10,16" max="11,11,18"/>
     <cuboid id="jump-blue" min="39,10,-16" max="40,11,-14"/>
-    
     <apply block="never" use="only-chests"/>
     <apply velocity="0,1.75,0">
         <region>

@@ -2,6 +2,7 @@
 <name>Gleon KotF</name>
 <version>1.4.6</version>
 <objective>Hold the flag for 200 seconds to win!</objective>
+<gamemode>kotf</gamemode>
 <authors>
     <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!-- Qixit -->
 </authors>
@@ -9,7 +10,6 @@
     <team id="blue" color="blue" max="32">Blue</team>
     <team id="red" color="dark red" max="32">Red</team>
 </teams>
-<gamemode>kotf</gamemode>
 <kits>
     <kit id="spawn-kit" force="true">
         <clear/>

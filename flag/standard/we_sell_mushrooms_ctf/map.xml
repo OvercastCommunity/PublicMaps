@@ -3,6 +3,7 @@
 <version>1.1.1</version>
 <objective>Capture both enemy flags two times!</objective>
 <edition>standard</edition>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="Original author, CTF edits"/> <!-- Strangey -->

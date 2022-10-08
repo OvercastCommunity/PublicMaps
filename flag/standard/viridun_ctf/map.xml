@@ -3,6 +3,7 @@
 <name>Viridun CTF</name>
 <version>2.0.1</version>
 <objective>Capture the enemy flag located at the corresponding colored beacon and return it to your flag.</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="27cf0cdd-c294-4163-a536-18e11360cc7b" contribution="Map design and layout"/> <!-- OurLoneHero -->
 </authors>

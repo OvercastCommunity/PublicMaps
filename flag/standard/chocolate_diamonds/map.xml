@@ -3,9 +3,9 @@
 <version>2.0.9</version>
 <objective>Capture the enemy's flag 3 times!</objective>
 <phase>development</phase>
+<gamemode>ctf</gamemode>
 <authors>
-    <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" />
-    <!--     Khanye     -->
+    <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" /> <!-- Khanye -->
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Map and XML changes" />
 </authors>
 <teams>

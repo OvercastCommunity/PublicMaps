@@ -4,6 +4,7 @@
 <name>The Fenland CTF</name>
 <version>1.0.1</version>
 <objective>Capture the enemy flag and bring it back to your side</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="e5953ddf-c1fc-4405-9ac9-6939631cd185"/> <!-- McSpider -->
 </authors>

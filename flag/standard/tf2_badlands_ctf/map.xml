@@ -3,6 +3,7 @@
 <name>TF2: Badlands CTF</name>
 <version>2.0.2</version>
 <objective>Capture the flag from the enemy base 5 times!</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
 </authors>

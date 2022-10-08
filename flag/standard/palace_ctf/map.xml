@@ -2,6 +2,7 @@
 <name>Palace CTF</name>
 <version>1.2.1</version>
 <objective>Have the most flag captures in 12 minutes!</objective>
+<gamemode>ctf</gamemode>
 <time result="score" overtime="1m" max-overtime="2m">12m</time>
 <broadcasts>
     <alert after="1s" every="6m" count="2">A mercy limit of 3 flag captures is active!</alert>

@@ -4,12 +4,10 @@
 <objective>Grab the flag and capture the center point!</objective>
 <gamemode>koth</gamemode>
 <authors>
-    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/>
-    <!-- mitchiii_ -->
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>
 <contributors>
-    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Gameplay and design feedback"/>
-    <!--  DoomRobotBoy  -->
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Gameplay and design feedback"/> <!--  DoomRobotBoy  -->
 </contributors>
 <filters>
     <team id="only-red">red</team>

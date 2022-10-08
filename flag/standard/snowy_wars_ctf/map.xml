@@ -3,6 +3,7 @@
 <name>Snowy Wars CTF</name>
 <version>2.1.1</version>
 <objective>Capture the flag from the enemy to win!</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- roro28gutier -->
 </authors>

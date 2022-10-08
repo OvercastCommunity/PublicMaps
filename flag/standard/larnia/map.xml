@@ -4,10 +4,8 @@
 <objective>Capture or defend the green flag!</objective>
 <gamemode>ad</gamemode>
 <authors>
-    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/>
-<!--     LArrowHead   -->
-    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/>
-<!--      NixaniaXi   -->
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
 </authors>
 <control-points incremental="true" show-progress="true" required="false" capture-time="894s">
     <control-point name="Defend Time" permanent="true" capture-filter="only-green" player-filter="only-green">
@@ -154,18 +152,10 @@
     </portal>
 </portals>
 <broadcasts>
-    <tip after="5s" every="95s">
-`2The Green Beacon`3`o is where `2The Green Flag`3`o is located.
-    </tip>
-    <tip after="12s" every="95s">
-`4The Red Beacon`3`o is the net for `4The Attackers`3`o to `6capture that flag.
-    </tip>
-    <tip after="19s" every="95s">
-`3`oTo win `2The Defenders`3`o have to prevent 3 flag captures`3`o for 15 minutes.
-    </tip>
-    <tip after="26s" every="95s">
-`2Defend Time`3`o is a countdown until `2 The Defenders win`3`o, nothing else.
-    </tip>
+    <tip after="5s" every="95s">`2The Green Beacon`3`o is where `2The Green Flag`3`o is located.</tip>
+    <tip after="12s" every="95s">`4The Red Beacon`3`o is the net for `4The Attackers`3`o to `6capture that flag.</tip>
+    <tip after="19s" every="95s">`3`oTo win `2The Defenders`3`o have to prevent 3 flag captures`3`o for 15 minutes.</tip>
+    <tip after="26s" every="95s">`2Defend Time`3`o is a countdown until `2 The Defenders win`3`o, nothing else.</tip>
     <alert after="10m">`4The Attackers Spawn`3`o has moved up!</alert>
 </broadcasts>
 </map>

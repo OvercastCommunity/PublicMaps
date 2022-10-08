@@ -2,6 +2,7 @@
 <name>Grassy Mound CTF</name>
 <version>1.0.1</version>
 <objective>Capture the other team's flag 3 times to win!</objective>
+<gamemode>ctf</gamemode>
 <time result="score" overtime="1m" max-overtime="2m">15m</time>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->

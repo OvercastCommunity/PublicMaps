@@ -2,6 +2,7 @@
 <name>Nartica</name>
 <version>1.4.4</version>
 <objective>Capture both of the enemy's flags.</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
     <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042"/> <!-- Diamyx -->

@@ -2,6 +2,7 @@
 <name>Long Shot</name>
 <version>1.5.5</version>
 <objective>Take the enemy flag at the end of your lane back to your beacon!</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- StealthMedia -->
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->

@@ -2,6 +2,7 @@
 <name>Alas</name>
 <version>1.1.0</version>
 <objective>Get the most points by capturing enemy flags and killing opponents!</objective>
+<gamemode>ctf</gamemode>
 <time>20m</time>
 <score>
 	<limit>150</limit>

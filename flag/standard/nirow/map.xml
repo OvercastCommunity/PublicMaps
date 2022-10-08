@@ -2,11 +2,10 @@
 <name>Nirow</name>
 <version>1.0.0</version>
 <objective>Capture the enemies' flag 3 times!</objective>
+<gamemode>ctf</gamemode>
 <authors>
-    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/>
-<!--LArrowHead   -->
-    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/>
-<!--NixaniaXi   -->
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
 </authors>
 <flags>
     <flag id="redFlag" name="Red Flag" color="red" owner="red" post="redFlagPost" carry-kit="slowness"/>

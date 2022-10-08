@@ -2,6 +2,7 @@
 <name>SuperCUBE</name>
 <version>0.9</version>
 <objective>Capture the enemy's flag as many times as possible in 12 minutes to win!</objective>
+<gamemode>ctf</gamemode>
 <time result="score" overtime="1m" max-overtime="2m">12m</time>
 <authors>
     <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ollyj -->
