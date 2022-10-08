@@ -2,6 +2,8 @@
 <name>BlockRAGE</name>
 <version>1.5.5</version>
 <objective>Get the most kills in 8 minutes!</objective>
+<gamemode>tdm</gamemode>
+<gamemode>rage</gamemode>
 <time result="score">8m</time>
 <rage/>
 <authors>

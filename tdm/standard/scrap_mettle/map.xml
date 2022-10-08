@@ -5,6 +5,8 @@
 <version>1.4.7</version>
 <phase>development</phase>
 <objective>Score points by killing the other team and entering your team's goal on the other side.</objective>
+<gamemode>tdm</gamemode>
+<gamemode>scorebox</gamemode>
 <authors>
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
 </authors>

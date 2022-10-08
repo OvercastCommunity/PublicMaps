@@ -3,6 +3,7 @@
 <name>Pandemonium</name>
 <version>1.0.7</version>
 <objective>Get the most kills in 10 minutes!</objective>
+<gamemode>tdm</gamemode>
 <rules>
     <rule>Fall damage is disabled!</rule>
 </rules>

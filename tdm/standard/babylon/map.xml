@@ -2,6 +2,7 @@
 <name>Babylon</name>
 <version>1.2.5</version>
 <objective>Get the most kills in 10 minutes!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="75d87bcf-3921-4871-9330-e83736580a95"/> <!-- Rixiot -->
     <author uuid="5cbdeae7-824e-494e-8667-91165718c30b"/> <!-- xSugoix -->

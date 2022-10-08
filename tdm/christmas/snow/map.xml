@@ -4,6 +4,7 @@
 <version>1.0.2</version>
 <phase>development</phase>
 <objective>Get the most kills after 5 minutes!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb"/> <!-- xXFracXx -->
     <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ItsMiiOlly -->

@@ -3,6 +3,7 @@
 <name>Funerea</name>
 <version>1.0.1</version>
 <objective>Kill the enemy players as much as you can before time runs out.</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="36dc036a-dfbc-4627-b66a-501223f08075" contribution="Main Author"/> <!-- ieatboulders2 -->
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="XML and Help"/> <!-- nixter1029 -->

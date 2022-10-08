@@ -4,6 +4,7 @@
 <name>Drow's Crevice II</name>
 <version>1.0</version>
 <objective>The team with the most amount of kills after 10 minutes wins!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
     <author uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27"/> <!-- HardstyleRaver2 -->

@@ -3,6 +3,7 @@
 <name>Rage Quit TDM</name>
 <version>1.0.1</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>tdm</gamemode>
 <gamemode>rage</gamemode>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->

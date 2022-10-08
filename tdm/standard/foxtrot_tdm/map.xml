@@ -3,6 +3,7 @@
 <name>Foxtrot: TDM</name>
 <version>1.0.0</version>
 <objective>Be the Team with the most points after 5 min</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="82d03646-d1a1-4383-a533-9509b130f751"/> <!-- iLifting -->
 </authors>

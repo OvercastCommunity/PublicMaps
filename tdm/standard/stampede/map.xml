@@ -4,6 +4,7 @@
 <name>Stampede</name>
 <version>1.1.1</version>
 <objective>Be the team with the most amount of kills after 10 minutes.</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="ad3111ab-627d-4860-86d9-93a34542db09"/> <!-- Cascoid -->
     <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->

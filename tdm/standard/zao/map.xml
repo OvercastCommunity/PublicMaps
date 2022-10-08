@@ -3,9 +3,9 @@
 <name>Zao</name>
 <version>1.2.0</version>
 <objective>Earn points by killing players before the timer runs out!</objective>
+<gamemode>tdm</gamemode>
 <authors>
-    <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/>
-    <!-- Evocal -->
+    <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- Evocal -->
 </authors>
 <teams>
       <team color="yellow" max="24">Yellow</team>

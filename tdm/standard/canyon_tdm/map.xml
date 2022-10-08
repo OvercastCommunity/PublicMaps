@@ -2,6 +2,7 @@
 <name>Canyon: TDM</name>
 <version>1.0.1</version>
 <objective>Get the most kills after 7 minutes!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="be49b1a8-600e-4751-9725-a8aead777363"/> <!-- IzJust4Fun -->
     <author uuid="c660918b-4000-44d4-b735-d3fa6f166110"/> <!-- RED_DEAD -->

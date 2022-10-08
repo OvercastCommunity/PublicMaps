@@ -3,6 +3,7 @@
 <name>Chemical Reaction</name>
 <version>1.0.1</version>
 <objective>Kill the enemy players as much as you can before time runs out.</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150" contribution="Map design"/> <!-- Pandaboy999 -->
 </authors>

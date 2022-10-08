@@ -4,6 +4,7 @@
 <name>Yggdrasil</name> 
 <version>1.0.2</version> 
 <objective>Get the most kills for your team within the allowed time.</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

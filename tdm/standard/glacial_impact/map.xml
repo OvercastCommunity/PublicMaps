@@ -2,6 +2,8 @@
 <name>Glacial Impact</name>
 <version>1.7.7</version>
 <objective>Be the team with the least amount of deaths after 10 minutes.</objective>
+<gamemode>tdm</gamemode>
+<gamemode>scorebox</gamemode>
 <authors>
     <author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- bleangamer -->
     <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->

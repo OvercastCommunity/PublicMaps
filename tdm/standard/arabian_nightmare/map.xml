@@ -2,6 +2,7 @@
 <name>Arabian Nightmare</name>
 <version>2.1.1</version>
 <objective>Be the team with the most kills after 8 minutes.</objective>
+<gamemode>tdm</gamemode>
 <time result="score">8m</time>
 <authors>
     <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9"/> <!-- Obelistics -->

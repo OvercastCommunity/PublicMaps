@@ -3,6 +3,7 @@
 <name>Quatuor</name>
 <version>1.0.0</version>
 <objective>Be the team with the most kills by in 5 minutes!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="23518e31-4110-41ce-9732-333888ae822d"/> <!-- crikimaruc -->
 </authors>

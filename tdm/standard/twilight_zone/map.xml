@@ -3,6 +3,7 @@
 <name>Twilight Zone</name>
 <version>1.5.1</version>
 <objective>Kill the enemy players as much as you can before time runs out.</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="b8e37008-a61d-4452-9375-fb9872f5bfea" contribution="Map planner, terraforming, and ideas"/> <!-- daeshik -->
 </authors>

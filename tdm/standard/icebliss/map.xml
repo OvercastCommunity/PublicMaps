@@ -3,6 +3,7 @@
 <name>Icebliss</name>
 <version>2.1.5</version>
 <objective>Be the team with the least deaths after 10 minutes.</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
     <author uuid="f18ad097-bc85-449e-9071-d5945973ebd3"/> <!-- nard164 -->

@@ -3,6 +3,7 @@
 <name>Pharaoh's Catacombs</name>
 <version>1.4.7</version>
 <objective>Get the most amount of kills for your team while buying new gear!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>

@@ -3,6 +3,7 @@
 <name>Modern Cityscape</name>
 <version>1.2.12</version>
 <objective>Be the team with the highest score after 10 minutes!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
 </authors>

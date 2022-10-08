@@ -3,6 +3,8 @@
 <name>Wrath Altar</name>
 <version>2.4</version>
 <objective>Be the team with the highest score after 9 minutes!</objective>
+<gamemode>tdm</gamemode>
+<gamemode>rage</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

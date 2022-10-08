@@ -3,6 +3,8 @@
 <name>Wooly Woods RAGE</name>
 <version>1.2.2</version>
 <objective>Be the team with the most kills after 8 minutes!</objective>
+<gamemode>tdm</gamemode>
+<gamemode>rage</gamemode>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
 </rules>

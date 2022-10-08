@@ -4,6 +4,7 @@
 <version>1.1.2</version>
 <phase>production</phase>
 <objective>Be the team with the least amount of deaths after 10 minutes.</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->
     <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0" contribution="Original Author"/> <!-- SH4D0W_HAWK -->

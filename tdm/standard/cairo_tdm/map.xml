@@ -3,6 +3,7 @@
 <name>Cairo TDM</name>
 <version>1.0.3</version>
 <objective>Be the team with the least amount of deaths after 10 minutes.</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
 </authors>

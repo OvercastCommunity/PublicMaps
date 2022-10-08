@@ -3,6 +3,7 @@
 <name>Ozone EndeRAGE</name>
 <version>1.0.2</version>
 <objective>Be the team with the least amount of deaths after 7 minutes. One hit kills!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Overall Map Design and XML code"/> <!-- Plastix -->
     <author uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="Map Design"/> <!-- MonsieurApple -->

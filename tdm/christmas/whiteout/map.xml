@@ -4,6 +4,7 @@
 <version>1.0.2</version>
 <phase>development</phase>
 <objective>Have the most kills after 10 minutes to win.</objective>
+<gamemode>tdm</gamemode>
 <authors>
    <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->
    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->

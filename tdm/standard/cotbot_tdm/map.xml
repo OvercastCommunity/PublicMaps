@@ -3,6 +3,7 @@
 <name>CotBot TDM</name>
 <version>1.0</version>
 <objective>Be the team with the most kills before 7 minutes is up</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="878de754-59dd-4828-9328-2bb1b848dc43" contribution="Basic map layout and XML author"/> <!-- MrM00se -->
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="'Gayed' up the map (Aesthetics)"/> <!-- Stealth5061 -->

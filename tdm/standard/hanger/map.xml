@@ -4,6 +4,7 @@
 <name>Hanger</name>
 <version>1.0.2</version>
 <objective>Be the first team to reach 100 points!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Main design, building and XML"/><!-- ItsMiiOlly -->
     <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Aesthetics and WorldEdit magic"/><!-- xXFracXx AKA Frac -->

@@ -2,6 +2,8 @@
 <name>Ruins of the User</name>
 <version>1.0.1</version>
 <objective>Be the team with the most points after 7 minutes!</objective>
+<gamemode>tdm</gamemode>
+<gamemode>scorebox</gamemode>
 <authors>
     <author uuid="fbc05e3b-2acf-427e-b598-79a0742d1a72"/> <!-- Jiloker -->
     <author uuid="a2010860-4735-4de0-b9f3-1130961ea955"/> <!-- Flaan -->

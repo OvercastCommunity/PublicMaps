@@ -3,6 +3,7 @@
 <name>Strike</name>
 <version>1.0.1</version>
 <objective>Get the most kills after 6 minutes!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ItsMiiOlly -->
 </authors>

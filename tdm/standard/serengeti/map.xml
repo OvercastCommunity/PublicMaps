@@ -3,6 +3,7 @@
 <name>Serengeti</name>
 <version>1.0.4</version>
 <objective>Kill as many enemies as you can in 10 minutes!</objective>
+<gamemode>tdm</gamemode>
 <authors>
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
 </authors>
