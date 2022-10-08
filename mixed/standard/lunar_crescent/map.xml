@@ -2,6 +2,8 @@
 <name>Lunar Crescent</name>
 <version>1.0.2</version>
 <objective>Destroy the enemy monuments and capture their wool!</objective>
+<gamemode>ctw</gamemode>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- samthecat43 -->
 </authors>
@@ -192,7 +194,6 @@
     <cuboid id="orange-right-spawn-bottom" min="-49,21,-35" max="-47,23,-34"/>
     <cuboid id="orange-right-far-top" min="-29,29,-44" max="-27,31,-42"/>
     <cuboid id="orange-right-far-bottom" min="-29,21,-44" max="-27,23,-42"/>
-
     <!-- Applying Filters -->
     <apply block="only-magenta-wool-break" region="orange-wool-room"/>
     <apply block="only-orange-wool-break" region="magenta-wool-room"/>
@@ -218,8 +219,6 @@
     </apply>
     <apply block="only-some" region="playable"/>
     <apply block="never"/>
-
-
     <apply velocity="0,1.12,0">
         <region>
             <cuboid min="-8,31,-130" max="-6,32,-128"/>
