@@ -2,6 +2,7 @@
 <name>Autunno</name>
 <version>1.2</version>
 <objective>Capture all the hills to be the first to 1250 points!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- Moo8x8 -->
 </authors>

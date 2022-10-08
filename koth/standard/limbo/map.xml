@@ -2,6 +2,7 @@
 <name>Limbo</name>
 <version>2.0.1</version> <!-- rebased on TE -->
 <objective>Be the first team to 750 points!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
 </authors>

@@ -3,6 +3,7 @@
 <name>The Old Texas</name>
 <version>1.2</version> 
 <objective>Capture the hills to score points!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Main author, main aesthetics and XML."/> <!-- Timothee38 -->
     <author uuid="08724344-a5af-4283-99fa-5a7bfb39b137" contribution="General gameplay ideas and observers spawn."/> <!-- OllieGamerZ -->

@@ -2,6 +2,7 @@
 <name>The Hill Redux</name>
 <version>1.0.2</version>
 <objective>Capture and hold the hills!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="374988d6-4569-444e-885a-409c2f55e310" contribution="Map Creator"/> <!-- Articray -->
     <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1" contribution="XML and Planning"/> <!-- TheZaner -->

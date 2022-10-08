@@ -4,6 +4,7 @@
 <phase>development</phase>
 <version>1.0.1</version>
 <objective>Capture and hold both of the hills to be the first team to reach 750 points!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
 </authors>

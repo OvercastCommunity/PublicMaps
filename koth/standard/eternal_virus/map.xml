@@ -5,6 +5,7 @@
 <gamemode>koth</gamemode>
 <phase>development</phase>
 <objective>You have one chance to capture the hill. Make it worth it!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- ViceTechnicolour -->
     <author uuid="1865ac01-271f-4f69-b979-b43a78c39989"/> <!-- Zintenka -->

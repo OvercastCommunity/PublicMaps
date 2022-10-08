@@ -3,6 +3,7 @@
 <version>1.4.2</version>
 <objective>Reach 750 points before the opposing team!</objective>
 <edition>standard</edition>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
     <author uuid="b8add1ba-8e13-4673-bc73-4e3ed524d40e"/> <!-- Blazy -->

@@ -3,6 +3,7 @@
 <name>Brisk</name>
 <version>1.2.5</version>
 <objective>Get the most points by holding the hill!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- minimitch0199 -->
 </authors>

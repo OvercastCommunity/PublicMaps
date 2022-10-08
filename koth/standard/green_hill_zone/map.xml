@@ -4,6 +4,7 @@
 <name>Green Hill Zone</name>
 <version>1.0.8</version>
 <objective>Capture and hold all three points to win.</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
 </authors>

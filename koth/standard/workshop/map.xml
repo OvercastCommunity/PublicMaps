@@ -3,6 +3,7 @@
 <version>2.0.5</version>
 <objective>Control the hills to be first to 750 points!</objective>
 <edition>standard</edition>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="2df2bef6-6f50-4e4e-a891-048990bf1f5c"/> <!-- Blaszczak -->
     <author uuid="74948888-fdb8-4446-9340-f7688c2435cc"/> <!-- Zero_Frosty -->

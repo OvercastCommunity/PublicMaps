@@ -3,6 +3,7 @@
 <name>Diablo</name>
 <version>1.0.3</version>
 <objective>Capture and hold the control points in order to win.</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83"/> <!-- lonelyhornet -->
 </authors>

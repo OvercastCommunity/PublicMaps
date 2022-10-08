@@ -3,6 +3,7 @@
 <version>1.0.10</version>
 <objective>Capture the hills to be the first to reach 750 points!</objective>
 <edition>standard</edition>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->

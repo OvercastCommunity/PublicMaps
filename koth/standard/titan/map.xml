@@ -3,6 +3,7 @@
 <name>Titan</name>
 <version>1.1.5</version>
 <objective>Control all 5 hills!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Design, gear system, XML, terraforming, and building"/> <!-- Reshif -->
     <author uuid="dbe909c6-2b15-4528-b12a-c77ed4031496" contribution="Design and building"/> <!-- teheggy -->

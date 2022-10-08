@@ -3,6 +3,7 @@
 <version>2.3</version>
 <objective>Be the first team to gain 2500 points.</objective>
 <edition>standard</edition>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
     <author uuid="f1352a57-4fe3-4f0c-b867-56b771fc1a0f" contribution="Gameplay updates"/> <!-- teagod -->

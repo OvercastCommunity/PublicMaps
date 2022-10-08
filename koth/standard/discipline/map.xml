@@ -2,6 +2,7 @@
 <name>Discipline</name>
 <version>1.0.7</version>
 <objective>Be the first team to get to 2500 points by capturing the points!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

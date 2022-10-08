@@ -1,12 +1,10 @@
 <map proto="1.4.0">
 <name>Artext</name>
 <version>1.0.5</version>
-<objective>
-    Hold the hills for points, kills count as well!
-</objective>
+<objective>Hold the hills for points, kills count as well!</objective>
 <authors>
-    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!--     LArrowHead   -->
-    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--     DoomRobotBoy    -->
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
 </authors>
 <teams>
     <team id="red" color="Dark Red" max="14" max-overfill="16">Red</team>
@@ -156,20 +154,10 @@ All Armor is locked and unbreakable,tools are also unbreakable
     <item amount="1">golden apple</item>
 </killreward>
 <broadcasts>
-    <tip after="3s" every="5m">
-        `3`oThere are `6twelve spawners`3`o around the map for use. Which include `6arrows, health potions, and golden apples.
-    </tip>
-    <tip after="7s" every="5m">
-        `3`oEvery control point is indicated with a beacon.
-    </tip>
-    <tip after="9s" every="5m">
-        `3`oThe Middle `6capture point `3`ogives your team `62 points per second.
-    </tip>
-    <tip after="12s" every="5m">
-        `3`oNext to each spawn there are the `6Tower control points`3, which reward the team holding them each `61.4 point per second.
-    </tip>
-    <tip after="14s" every="5m">
-        `3`oEach kill gives your team `63 points`3`o, which add up to your total score.
-    </tip>
+    <tip after="3s" every="5m">`3`oThere are `6twelve spawners`3`o around the map for use. Which include `6arrows, health potions, and golden apples.</tip>
+    <tip after="7s" every="5m">`3`oEvery control point is indicated with a beacon.</tip>
+    <tip after="9s" every="5m">`3`oThe Middle `6capture point `3`ogives your team `62 points per second.</tip>
+    <tip after="12s" every="5m">`3`oNext to each spawn there are the `6Tower control points`3, which reward the team holding them each `61.4 point per second.</tip>
+    <tip after="14s" every="5m">`3`oEach kill gives your team `63 points`3`o, which add up to your total score.</tip>
 </broadcasts>
 </map>

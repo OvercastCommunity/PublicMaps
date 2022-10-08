@@ -2,6 +2,7 @@
 <name>Cabin Fever</name>
 <version>1.5.6</version>
 <objective>Control the points to be the first team to 2500 points!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="e82504ac-8c95-4895-9dca-222f924d697c"/> <!-- TiggyLi -->
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->

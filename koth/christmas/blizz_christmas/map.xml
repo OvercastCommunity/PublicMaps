@@ -4,6 +4,7 @@
 <version>1.3.5</version>
 <phase>development</phase>
 <objective>You must be the first team to get to 750 points before time runs out!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="5c0d744e-2561-4e24-966c-2f5ca4a8f8eb"/> <!-- SamSafari -->
     <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042"/> <!-- Diamyx -->

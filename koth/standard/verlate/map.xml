@@ -2,6 +2,7 @@
 <name>Verlate</name>
 <version>1.1.4</version>
 <objective>Capture and hold the two hills for as long as possible.</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Map building and XML"/> <!-- Obelistics -->
     <author uuid="5c6751aa-96b0-478b-b46d-c55a7d8b6ed1" contribution="Map building"/> <!-- Ceroh -->

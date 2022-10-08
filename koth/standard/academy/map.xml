@@ -3,6 +3,7 @@
 <name>Academy</name>
 <version>1.0.3</version>
 <objective>Capture the bridge to accumulate points!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->
     <author uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/> <!-- PandaBattalion -->

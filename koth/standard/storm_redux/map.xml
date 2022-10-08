@@ -2,6 +2,7 @@
 <name>Storm Redux</name>
 <version>1.0.5</version>
 <objective>Control the hills to be the first to 2500 points!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->

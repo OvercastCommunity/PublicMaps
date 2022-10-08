@@ -3,9 +3,9 @@
 <phase>development</phase>
 <version>1.0.12</version>
 <objective>Collect the most points in 10 minutes!</objective>
+<gamemode>koth</gamemode>
 <authors>
-    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" />
-    <!-- mitchiii_ -->
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
 </authors>
 <rules>
     <rule>Fall damage is disabled!</rule>

@@ -2,6 +2,7 @@
 <name>North Winds</name>
 <version>1.0.2</version>
 <objective>Reach 750 points before the opposing team!</objective>
+<gamemode>koth</gamemode>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>

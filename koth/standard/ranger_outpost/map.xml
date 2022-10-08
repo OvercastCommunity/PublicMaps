@@ -3,6 +3,7 @@
 <name>Ranger Outpost</name>
 <version>1.0.1</version>
 <objective>Be the first team to reach 750 points!</objective>
+<gamemode>koth</gamemode>
 <authors>
    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
 </authors>
