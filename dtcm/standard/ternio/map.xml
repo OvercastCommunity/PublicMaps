@@ -6,7 +6,7 @@
 <objective>Destroy the enemy team's monuments!</objective>
 <gamemode>dtm</gamemode>
 <authors>
-    <author>ParaPenguin</author>
+    <author uuid="44df6b20-168f-4389-b7ac-434518207c2f"/> <!-- ParaPenguin -->
 </authors>
 <teams>
     <team color="dark purple" max="16">Purple</team>
