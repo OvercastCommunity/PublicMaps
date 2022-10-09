@@ -6,7 +6,7 @@
 <gamemode>dtm</gamemode>
 <authors>
     <author>Haribo98</author> <!-- Haribo98 -->
-    <author>Pavlo</author> <!-- Pavlo -->
+    <author uuid="378952b5-808f-4a33-911e-39c7ba153b38"/> <!-- Pavlo -->
 </authors>
 <teams>
    <team color="dark red" max="32">Red</team>
