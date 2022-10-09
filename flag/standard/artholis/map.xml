@@ -5,12 +5,12 @@
 <objective>Capture the opposing team's flags!</objective>
 <gamemode>ctf</gamemode>
 <authors>
-	<author contribution="Original map" uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+    <author contribution="Original map" uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
     <author contribution="XML coding and packaging, CTF gamemode transition, various map changes" uuid="10c1b730-49b9-4f75-9212-91facc371477"/> <!-- Qixit -->
 </authors>
 <teams>
-	<team id="blue-team" color="blue" max="32" max-overfill="35">Blue</team>
-	<team id="red-team" color="red" max="32" max-ovefill="35">Red</team>
+    <team id="blue-team" color="blue" max="32" max-overfill="35">Blue</team>
+    <team id="red-team" color="red" max="32" max-ovefill="35">Red</team>
 </teams>
 <spawns>
     <spawn team="red-team" kit="red-kit">
@@ -30,31 +30,31 @@
     </default>
 </spawns>
 <kits>
-	<kit id="spawn" force="true">
-		<item slot="0" unbreakable="true">stone sword</item>
-		<item slot="1" unbreakable="true">bow</item>
-		<item slot="2" unbreakable="true" enchantment="dig speed:2">iron pickaxe</item>
-		<item slot="3" amount="8">sandstone</item>
-		<item slot="4" amount="4" damage="2">log</item>
-		<item slot="7" amount="2">golden apple</item>
-		<item slot="8" amount="64">cooked chicken</item>
-		<item slot="28" amount="32">arrow</item>
-		<potion duration="7" amplifier="8">heal</potion>
+    <kit id="spawn" force="true">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:2">iron pickaxe</item>
+        <item slot="3" amount="8">sandstone</item>
+        <item slot="4" amount="4" damage="2">log</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="8" amount="64">cooked chicken</item>
+        <item slot="28" amount="32">arrow</item>
+        <potion duration="7" amplifier="8">heal</potion>
         <potion duration="10" amplifier="2">speed</potion>
         <potion duration="0.5" amplifier="1">night vision</potion>
-		<chestplate unbreakable="true" enchantment="depth strider:1">gold chestplate</chestplate>
-	</kit>
-	<kit id="red-kit" parents="spawn">
-		<helmet unbreakable="true" color="993333">leather helmet</helmet>
-		<leggings unbreakable="true" color="993333">leather leggings</leggings>
-		<boots unbreakable="true" color="993333">leather boots</boots>
-	</kit>
-	<kit id="blue-kit" parents="spawn">
-		<helmet unbreakable="true" color="334CB2">leather helmet</helmet>
-		<leggings unbreakable="true" color="334CB2">leather leggings</leggings>
-		<boots unbreakable="true" color="334CB2">leather boots</boots>
-	</kit>
-	<kit id="flag" force="true">
+        <chestplate unbreakable="true" enchantment="depth strider:1">gold chestplate</chestplate>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings unbreakable="true" color="993333">leather leggings</leggings>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit id="flag" force="true">
         <potion duration="oo" amplifier="-3">health boost</potion>
         <potion duration="oo" amplifier="1">slow</potion>
         <potion duration="3" amplifier="10">regeneration</potion>
@@ -69,10 +69,10 @@
 </kits>
 <respawn delay="0.1s" blackout="false" spectate="false"/>
 <killreward>
-	<item amount="16">arrow</item>
-	<item amount="3" damage="2">log</item>
-	<item amount="2">golden apple</item>
-	<potion duration="3" amplifier="1">speed</potion>
+    <item amount="16">arrow</item>
+    <item amount="3" damage="2">log</item>
+    <item amount="2">golden apple</item>
+    <potion duration="3" amplifier="1">speed</potion>
     <potion duration="0.5" amplifier="1">night vision</potion>
 </killreward>
 <kill-reward>
@@ -90,18 +90,18 @@
     <damage ally="false" self="false" enemy="true" other="true">block explosion</damage>
 </disabledamage>
 <itemremove>
-	<item>cooked chicken</item>
+    <item>cooked chicken</item>
     <item>diamond chestplate</item>
-	<item>arrow</item>
-	<item>wood button</item>
-	<item>cauldron item</item>
-	<item>note block</item>
-	<item>seeds</item>
-	<item>flower pot</item>
-	<item>gold chestplate</item>
-	<item>leather helmet</item>
-	<item>leather leggings</item>
-	<item>leather boots</item>
+    <item>arrow</item>
+    <item>wood button</item>
+    <item>cauldron item</item>
+    <item>note block</item>
+    <item>seeds</item>
+    <item>flower pot</item>
+    <item>gold chestplate</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
     <item>stone sword</item>
     <item>bow</item>
     <item>dirt</item>
@@ -124,9 +124,9 @@
 </itemremove>
 <maxbuildheight>22</maxbuildheight>
 <filters>
-	<team id="only-red">red-team</team>
+    <team id="only-red">red-team</team>
     <team id="only-blue">blue-team</team>
-	<not id="deny-void">
+    <not id="deny-void">
         <void />
     </not>
     <deny id="water-placement">
@@ -226,7 +226,7 @@
 </crafting>
 <renewables>
     <renewable interval="400" grow="false" particles="true" sound="true" avoid-entities="true">
-		<region>
+        <region>
             <rectangle id="iron-deposit-1" min="-247,210" max="-242,205"/>
             <rectangle id="iron-deposit-2" min="-248,111" max="-241,104"/>
         </region>
