@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.3">
 <name>Aerobellum</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <phase>development</phase>
 <objective>Leak lava from the enemy team's engine to win the match!</objective>
 <rules>
@@ -31,7 +31,7 @@
 </spawns>
 <filters>
     <!-- Recent changes to implement spawn and chest protection -->
-    <filter name="deny-chest-break">s
+    <filter name="deny-chest-break">
         <deny>
             <block>chest</block>
         </deny>
@@ -55,7 +55,7 @@
     </filter>
 </filters>
 <tnt>
-    <yeild>0</yeild>
+    <yield>0</yield>
 </tnt>
 <regions>
     <!-- Recent changes to implement spawn and chest protection -->
