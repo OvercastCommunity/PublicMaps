@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <name>Rage Quit TDM</name>
 <version>1.0.1</version>
-<objective>Eliminate the other team before 5 minutes is up</objective>
+<objective>Eliminate the other team before 5 minutes is up.</objective>
 <gamemode>tdm</gamemode>
 <gamemode>rage</gamemode>
 <authors>
