@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<map proto="1.4.2" game="Infection">
+<map proto="1.4.2">
 <!-- Created by Cazadorian -->
-<!-- Include version 1.0.1 --> 
+<!-- Include version 1.0.2 --> 
 <objective>Survive against the Zombies for 8 minutes!</objective>
 <time result="human-team">8m</time>
 <gamemode>arcade</gamemode>
+<game>Infection</game>
 <blitz filter="never" join-filter="always">
     <broadcastLives>false</broadcastLives>
 </blitz>
