@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<map proto="1.4.2">
+<map>
 <!-- Created by Cazadorian -->
-<!-- Include version 1.0.2 --> 
+<!-- Include version 1.0.3 --> 
 <objective>Survive against the Zombies for 8 minutes!</objective>
 <time result="human-team">8m</time>
 <gamemode>arcade</gamemode>
@@ -57,9 +57,6 @@
 <regions>
     <apply block="deny-participating"/>
 </regions>
-<destroyables name="cage" required="false" show="false" materials="stained_glass" modes="zombie-release">
-    <destroyable owner="zombie-team" region="zombie-cage"/>
-</destroyables>
 <itemremove>
     <item>arrow</item>
     <item>leather helmet</item>
