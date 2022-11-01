@@ -3,7 +3,6 @@
 <name>Fallencrests</name>
 <version>1.2.9</version>
 <objective>Leak lava from each of the enemy's obsidian core 6 blocks downwards</objective>
-<phase>development</phase>
 <rules>
     <rule>Players have resistance and reduced knockback, haste and resistance in spawn!</rule>
 </rules>

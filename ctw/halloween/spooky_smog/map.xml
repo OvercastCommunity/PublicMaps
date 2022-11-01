@@ -2,7 +2,7 @@
 <map proto="1.3.3">
 <name>Spooky Smog</name>
 <version>1.0.1</version>
-<phase>production</phase>
+<phase>development</phase>
 <objective>Captured the enemy's two wools and place them on your victory monument</objective>
 <authors>
     <author uuid="e931b4b3-479f-4761-8808-4c4b2ed69b0f"/> <!-- Theta_ -->

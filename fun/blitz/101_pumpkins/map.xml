@@ -4,7 +4,7 @@
 <!-- include src="blitz-global.xml"/ -->
 <name>101 Pumpkins</name>
 <version>1.3.1</version>
-<phase>production</phase>
+<phase>development</phase>
 <objective>Kill all your opponents! Each person has 2 lives</objective>
 <authors>
     <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Map Idea and Design"/> <!-- xXFracXx -->

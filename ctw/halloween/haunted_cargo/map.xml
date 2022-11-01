@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Haunted Cargo</name>
 <version>1.2.12</version>
-<phase>production</phase>
+<phase>development</phase>
 <objective>Capture the enemy's wools!</objective>
 <created>2019-10-10</created> <!-- Halloween edit -->
 <authors>

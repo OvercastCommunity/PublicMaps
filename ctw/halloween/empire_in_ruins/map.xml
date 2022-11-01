@@ -3,7 +3,7 @@
 <!-- include src="tutorial.xml"/ -->
 <name>Empire in Ruins</name>
 <version>2.3.6</version>
-<phase>production</phase>
+<phase>development</phase>
 <objective>Capture both wool and return them safely to your victory monument.</objective>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->

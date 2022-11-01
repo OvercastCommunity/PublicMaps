@@ -3,7 +3,7 @@
 <!-- include src="tutorial.xml"/ -->
 <name>BalloonsDTM: Halloween</name>
 <version>2.2.5</version>
-<phase>production</phase>
+<phase>development</phase>
 <objective>Destroy the enemy team's monument!</objective>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150" contribution="Map Design"/> <!-- Pandaboy999 -->

@@ -2,7 +2,6 @@
 <name>Chocolate Diamonds</name>
 <version>2.0.9</version>
 <objective>Capture the enemy's flag 3 times!</objective>
-<phase>development</phase>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" />
     <!--     Khanye     -->

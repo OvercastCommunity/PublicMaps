@@ -2,7 +2,6 @@
 <name>Odin</name>
 <version>1.0.1</version>
 <objective>Capture the enemy flag 5 times!</objective>
-<phase>development</phase>
 <time result="score" overtime="30s" max-overtime="1m30s">10m</time>
 <authors>
     <author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->

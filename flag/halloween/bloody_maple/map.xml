@@ -3,7 +3,7 @@
 <version>1.2.2</version>
 <objective>Be the first team to capture the enemy flag 3 times!</objective>
 <time result="score" overtime="30s" max-overtime="1m30s">8m</time>
-<phase>production</phase>
+<phase>development</phase>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>

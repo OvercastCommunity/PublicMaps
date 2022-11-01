@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Abudracula</name>
 <version>1.5</version>
-<phase>production</phase>
+<phase>development</phase>
 <objective>Capture the two hills to score points to win.</objective>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Main author, idea, gameplay, aesthetics and XML."/> <!-- Timothee38 -->

@@ -4,7 +4,6 @@
 <name>Empire</name>
 <version>2.3.7</version>
 <objective>Capture both wool and return them safely to your victory monument.</objective>
-<phase>development</phase>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
 </authors>

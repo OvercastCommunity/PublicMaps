@@ -2,7 +2,6 @@
 <name>PixelMix</name>
 <version>2.2.5</version>
 <objective>Take the enemy's wool located at two sides of the enemy's base and place it in your victory monument.</objective>
-<phase>development</phase>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Idea, map design and XML"/> <!-- DoomRobotBoy -->
 </authors>

@@ -2,7 +2,6 @@
 <name>The Last Sunset II</name>
 <version>1.1.5</version>
 <objective>Capture each enemy flag two times!</objective>
-<phase>development</phase>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Building"/> <!-- GoldenOre -->

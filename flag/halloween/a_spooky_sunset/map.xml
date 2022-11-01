@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>A SpOOky Sunset</name>
 <version>1.1.5</version>
-<phase>production</phase>
+<phase>development</phase>
 <objective>Capture each enemy flag two times!</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
