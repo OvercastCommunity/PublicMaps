@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Artholis</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Capture the opposing team's flags!</objective>
 <authors>
 	<author contribution="Original map" uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
@@ -200,22 +200,22 @@
     <structures offset="0,-6,0">
         <dynamic structure="red-left-flag-structure">
             <filter>
-                <objective>left-red-flag</objective>
+                <completed>left-red-flag</completed>
             </filter>
         </dynamic>
         <dynamic structure="red-right-flag-structure">
             <filter>
-                <objective>right-red-flag</objective>
+                <completed>right-red-flag</completed>
             </filter>
         </dynamic>
         <dynamic structure="blue-left-flag-structure">
             <filter>
-                <objective>left-blue-flag</objective>
+                <completed>left-blue-flag</completed>
             </filter>
         </dynamic>
         <dynamic structure="blue-right-flag-structure">
             <filter>
-                <objective>right-blue-flag</objective>
+                <completed>right-blue-flag</completed>
             </filter>
         </dynamic>
     </structures>
