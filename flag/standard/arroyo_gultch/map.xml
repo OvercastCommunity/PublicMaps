@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Arroyo Gultch</name>
-<version>1.0.0</version>
+<version>1.0.1</version>
 <objective>Hold the flag to gain points, first team to 250 points wins!</objective>
 <authors>
     <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067" contribution="Main build design and gameplay aesthetics"/> <!-- samtheman43 -->
@@ -27,8 +27,8 @@
     <flag id="flag" name="Flag" shared="true" post="flag-post" points-rate="1" pickup-kit="pickup" drop-kit="drop"/>
 </flags>
 <teams>
-   <team id="purple-team" color="light_purple" max="10" max-overfill="10">Purple Team</team>
-   <team id="blue-team" color="blue" max="10" max-overfill="10">Blue Team</team>
+   <team id="purple-team" color="light_purple" max="10" max-overfill="10">Purple</team>
+   <team id="blue-team" color="blue" max="10" max-overfill="10">Blue</team>
 </teams>
 <kits>
     <kit id="spawn" force="true" parents="purple,blue">

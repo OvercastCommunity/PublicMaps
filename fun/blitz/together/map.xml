@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Together</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Kill the other team's members!</objective>
 <authors>
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="Map building"/> <!-- _3Each -->
@@ -22,8 +22,8 @@
     <depletion>off</depletion>
 </hunger>
 <teams>
-   <team id="red" color="dark red" max="12" max-overfill="15">Red Team</team>
-   <team id="blue" color="blue" max="12" max-overfill="15">Blue Team</team>
+   <team id="red" color="dark red" max="12" max-overfill="15">Red</team>
+   <team id="blue" color="blue" max="12" max-overfill="15">Blue</team>
 </teams>
 <kits>
     <kit id="spawn">
