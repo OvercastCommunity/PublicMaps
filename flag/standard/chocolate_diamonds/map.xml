@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Chocolate Diamonds</name>
-<version>2.1</version>
+<version>2.1.1</version>
 <objective>Capture the enemy's flag 3 times!</objective>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- kroest -->
@@ -72,8 +72,12 @@
         </union>
     </union>
     <union id="nets">
-        <rectangle id="green-net" min="-2,-57" max="2,-60"/>
-        <rectangle id="red-net" min="2,60" max="-2,63"/>
+        <cuboid id="green-net" min="-2,29,-57" max="2,33,-60"/>
+        <cuboid id="red-net" min="2,29,60" max="-2,33,63"/>
+    </union>
+    <union id="flag-platforms">
+        <rectangle id="green-platform" min="-2,-57" max="2,-60"/>
+        <rectangle id="red-platform" min="2,60" max="-2,63"/>
     </union>
     <complement id="void">
         <everywhere/>
@@ -81,7 +85,7 @@
     </complement>
     <apply enter="only-green" region="green-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply block="never" region="nets" message="You may not modify the flag posts!"/>
+    <apply block="never" region="flag-platforms" message="You may not modify the flag platforms!"/>
     <apply block="never" region="spawns" message="You may not modify the spawn areas!"/>
     <apply block="deny-void" region="void" message="You may not build in the void!"/>
 </regions>
