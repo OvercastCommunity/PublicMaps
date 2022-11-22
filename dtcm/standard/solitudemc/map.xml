@@ -1,6 +1,6 @@
 <map proto="1.3.0">
 <name>SolitudeMC</name>
-<version>1.4.4</version>
+<version>1.4.5</version>
 <objective>Leak the lava from your enemy's core!</objective>
 <authors>
     <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Main Author - Project starter, Building"/> <!-- Matic0B -->
@@ -74,7 +74,7 @@
     </apply>
     <apply block="no-void" message="You may not build in the void!">
         <negative>
-            <rectangle name="whole-map" min="-29,66" max="30,-66" />
+            <rectangle name="whole-map" min="-29,66" max="31,-66" />
         </negative>
     </apply>
     <apply block="deny-some" use="deny-some" message="Beacons and Dispensers are disabled on this map!">
