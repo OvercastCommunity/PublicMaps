@@ -1,0 +1,212 @@
+<map proto="1.4.0">
+<name>Mele Kalikimaka</name>
+<version>1.0.1</version>
+<objective>Capture the enemy wool!</objective>
+<gamemode>ctw</gamemode>
+<authors>
+	<author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
+</authors>
+<contributors>
+	<contributor uuid="0b4f8c7a-b80c-4fb1-86c8-999ef5b799be"/> <!-- Leo -->	
+</contributors>
+<teams>
+	<team id="red" color="dark red" max="10">Red</team>
+	<team id="blue" color="blue" max="10">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="75">
+			<point>-68.5,7,-225.5</point>
+        </regions>
+		<regions yaw="-75">
+			<point>-153.5,7,-225.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="105">
+			<point>-68.5,7,-93.5</point>
+        </regions>
+		<regions yaw="-105">
+			<point>-153.5,7,-93.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <cylinder base="-111,30,-159.5" radius="1" height="0" />
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="iron pickaxe" unbreakable="true"/>
+        <item slot="3" material="stone axe" enchantment="dig speed:2" unbreakable="true"/>
+        <item slot="4" material="wood" damage="1" amount="32"/>
+        <item slot="7" material="golden apple" amount="2"/>
+        <item slot="28" material="arrow" amount="24"/>
+        <item slot="31" material="stone spade" unbreakable="true"/>
+        <effect duration="4s" amplifier="100">resistance</effect>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+	<chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+	<boots color="cd0000" unbreakable="true">leather boots</boots>
+	<item slot="5" amount="16" damage="14">stained clay</item>	
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+	<chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+	<boots color="0066cc" unbreakable="true">leather boots</boots>	
+	<item slot="5" amount="16" damage="11">stained clay</item>		
+    </kit>
+</kits>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <not id="no-void">
+        <void/>
+    </not>
+    <all id="cobwebs-red">
+	<team>red</team>
+        <material>web</material>
+    </all>
+    <all id="cobwebs-blue">
+	<team>blue</team>
+	<material>web</material>
+    </all>
+    <material id="only-gold">gold block</material>
+</filters>
+<regions>
+	<rectangle id="red-wool-room" min="-106,-103" max="-116,-113"/>
+	<rectangle id="blue-wool-room" min="-116,-206" max="-106,-216"/>	
+	<union id="red-spawn">
+		<rectangle id="red-spawn-west" min="-149,-100" max="-159,-88"/>
+		<rectangle id="red-spawn-east" min="-73,-100" max="-63,-88"/>	
+	</union>
+	<union id="blue-spawn">
+		<rectangle id="blue-spawn-west" min="-149,-219" max="-159,-231"/>
+		<rectangle id="blue-spawn-east" min="-73,-219" max="-63,-231"/>	
+	</union>
+	<union id="gold-areas">
+		<rectangle id="red-gold" min="-115,-89" max="-107,-97"/>
+		<rectangle id="blue-gold" min="-115,-222" max="-107,-230"/>	
+	</union>
+	<union id="bridgeable-areas">
+		<cuboid min="-132,0,-176" max="-121,20,-143"/>
+		<cuboid min="-101,0,-143" max="-90,20,-176"/>
+		<cuboid min="-100,0,-165" max="-122,20,-154"/>		
+	</union>
+	
+	<apply block="cobwebs-blue" message="You may not break blocks in the wool room." region="red-wool-room"/>
+	<apply block="cobwebs-red" message="You may not break blocks in the wool room." region="blue-wool-room"/>
+	<apply enter="only-blue" use="only-blue" message="You may not enter this wool room." region="red-wool-room"/>
+	<apply enter="only-red" use="only-red" message="You may not enter this wool room." region="blue-wool-room"/>
+	<apply enter="only-red" message="You may not enter the enemy spawn." region="red-spawn"/>
+	<apply enter="only-blue" message="You may not enter the enemy spawn." region="blue-spawn"/>
+	<apply block="never" message="You may not edit spawn." region="red-spawn"/>
+	<apply block="never" message="You may not edit spawn." region="blue-spawn"/>
+	<apply block="only-gold" message="You may not edit blocks here." region="gold-areas"/>	
+	<apply enter="only-red" message="You may not enter the enemy monument area." region="red-gold"/>
+	<apply enter="only-blue" message="You may not enter the enemy monument area." region="blue-gold"/>
+	<apply block="always" region="bridgeable-areas"/>	
+	<apply block="no-void" message="You may not build in the void." region="everywhere"/>
+</regions>
+<wools craftable="false">
+    <wool team="red" color="blue" location="92,16,40">
+		<monument><block>-111,14,-94</block></monument>	
+	</wool>
+	<wool team="blue" color="red" location="-74,16,40">
+		<monument><block>-112,14,-226</block></monument>	
+	</wool>
+</wools>
+<killreward>
+    <item material="golden apple"/>
+	<item material="arrow" amount="24"/>
+    <item material="wood" damage="1" amount="16"/>
+</killreward>
+<maxbuildheight>20</maxbuildheight>
+<itemremove>
+	<item>wood</item>
+	<item>apple</item>
+	<item>stained clay</item>
+	<item>quartz block</item>
+	<item>flint</item>
+	<item>gravel</item>
+	<item>cooked beef</item>
+	<item>torch</item>
+	<item>seeds</item>
+	<item>sapling</item>
+	<item>snow ball</item>
+	<item>string</item>
+	<item>dirt</item>
+	<item>leather helmet</item>
+	<item>leather chestplate</item>
+	<item>leather leggings</item>
+	<item>leather boots</item>	
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>stone axe</tool>
+	<tool>gold helmet</tool>
+	<tool>gold chestplate</tool>
+	<tool>gold leggings</tool>
+	<tool>gold boots</tool>
+</toolrepair>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<block-drops>
+    <rule>
+        <region>
+            <everywhere/>
+        </region>
+        <filter>
+            <any>
+                <material>gold block</material>
+            </any>
+        </filter>
+        <drops>
+            <item enchantment="protection projectile:1">gold helmet</item>
+			<item>gold chestplate</item>
+			<item>gold leggings</item>
+			<item enchantment="protection fall:1">gold boots</item>
+        </drops>
+    </rule>
+    <rule>
+        <region>
+            <everywhere/>
+        </region>
+        <filter>
+            <any>
+                <material>iron block</material>
+            </any>
+        </filter>
+        <drops>
+			<item>iron chestplate</item>
+			<item unbreakable="true">iron sword</item>
+        </drops>
+    </rule>	
+</block-drops>
+<renewables>
+    <renewable rate="1.5" grow="false" particles="true" sound="true" avoid-entites="true" region="everywhere">
+        <renew-filter>
+			<material>gold block</material>
+        </renew-filter>
+    </renewable>
+</renewables>
+<renewables>
+    <renewable rate="0.1" grow="false" particles="true" sound="true" avoid-entites="true" region="everywhere">
+        <renew-filter>
+			<material>iron block</material>
+        </renew-filter>
+    </renewable>
+</renewables>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
