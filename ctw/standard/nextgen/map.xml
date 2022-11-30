@@ -1,234 +1,229 @@
-<?xml version="1.0"?>
-<map proto="1.3.5">
+<map proto="1.4.0">
 <name>NextGen</name>
-<version>0.7</version>
+<version>3.4.8</version>  <!-- Based upon the TE edition -->
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="reinventing the map"/> <!-- ElectroidFilms -->
 </authors>
 <contributors>
+    <contributor uuid="cbdc7b1d-7a07-465b-bebb-4f20bfb8ebd8" contribution="re-reinventing the map"/> <!-- Cratain -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="bias"/>
     <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="old map design"/> <!-- Plastix -->
     <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="old map design"/> <!-- IM_A_H0B0 -->
     <contributor uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="old map design and gameplay management"/> <!-- MonsieurApple -->
     <contributor uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="old map design and item management"/> <!-- Anxuiz -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="30">Blue</team>
-    <team id="red" color="dark red" max="30">Red</team>
+    <team id="blue" color="blue" max="24">Blue</team>
+    <team id="red" color="dark red" max="24">Red</team>
 </teams>
 <kits>
-    <kit name="spawn-kit">
-        <item slot="0" unbreakable="true">iron sword</item>
-        <item slot="1" unbreakable="true">bow</item>
-        <item slot="2" unbreakable="true" enchantment="dig speed:1">iron pickaxe</item>
-        <item slot="3" unbreakable="true" enchantment="dig speed:1">iron spade</item>
-        <item slot="4" amount="64" damage="1">log</item>
-        <item slot="5" amount="64">glass</item>
-        <item slot="8" amount="64">cooked fish</item>
-        <item slot="28" amount="64">arrow</item>
-        <item slot="29" amount="64">arrow</item>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron_sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" amount="64" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="64" damage="2" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="6" amount="64" material="ladder"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="31" amount="64" damage="2" material="wood"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="5" amplifier="255">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
-    <spawn team="red" kit="spawn-kit" yaw="180">
-        <point>-158.5,4,69.5</point>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit" yaw="0">
-        <point>-158.5,4,-42.5</point>
-    </spawn>
-    <default yaw="-90">
-        <cylinder base="-158.5,51,13.5" radius="3" height="0"/>
+    <default>
+        <region yaw="-90">
+            <cylinder base="-158.5,51,13.5" radius="3" height="0"/>
+        </region>
     </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="0">
+            <point>-158.5,4,-42.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="180">
+            <point>-158.5,4,69.5</point>
+        </region>
+    </spawn>
 </spawns>
 <filters>
-    <!-- Team Filters -->
-    <filter name="only-blue">
-        <team>blue</team>
-    </filter>
-    <filter name="only-red">
-        <team>red</team>
-    </filter>
-    <!-- Block Filters -->
-    <filter name="deny-void">
-        <deny>
-            <void/>
-        </deny>
-    </filter>
-    <filter name="only-iron">
-        <block>iron block</block>
-    </filter>
-    <!-- Usage Filters -->
-    <filter name="not-chest">
-        <not>
-            <block>chest</block>
-        </not>
-    </filter>
-    <filter name="only-red-usage">
-        <not>
-            <all>
-                <block>chest</block>
-                <team>blue</team>
-            </all>
-        </not>
-    </filter>
-    <filter name="only-blue-usage">
-        <not>
-            <all>
-                <block>chest</block>
-                <team>red</team>
-            </all>
-        </not>
-    </filter>
+    <not id="deny-void">
+        <void/>
+    </not>
+    <deny id="deny-glass">
+        <material>glass</material>
+    </deny>
+    <not id="blue-in-wr">
+        <any>
+            <material>chest</material>
+            <team id="only-red">red</team>
+        </any>
+    </not>
+    <not id="red-in-wr">
+        <any>
+            <material>chest</material>
+            <team id="only-blue">blue</team>
+        </any>
+    </not>
+    <not id="only-blue-usage">
+        <all>
+            <any>
+                <material>chest</material>
+                <material>workbench</material>
+            </any>
+            <filter id="only-red"/>
+        </all>
+    </not>
+    <not id="only-red-usage">
+        <all>
+            <any>
+                <material>chest</material>
+                <material>workbench</material>
+            </any>
+            <filter id="only-blue"/>
+        </all>
+    </not>
 </filters>
 <regions>
-    <!-- Region Definitions -->
-    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
-    <union name="islands">
-        <cuboid name="east-island" min="-131,0,-13" max="-122,33,63"/>
-        <cuboid name="west-island" min="-195,0,40" max="-186,33,-36"/>
+    <union id="spawns">
+        <cuboid id="red-spawn" min="-144,0,56" max="-173,9,80"/>
+        <mirror id="blue-spawn" region="red-spawn" origin="-158.5,0,13.5" normal="0,0,-1"/>
     </union>
-    <union name="void-exemptions">
-        <rectangle name="island-to-island" min="-195,40" max="-122,-13"/>
-        <rectangle name="side-to-side" min="-175,-28" max="-142,55"/>
-        <region name="islands"/>
+    <union id="side-lanes">
+        <rectangle min="-115,70" max="-130,-43"/>
+        <rectangle min="-187,70" max="-202,-43"/>
     </union>
-    <union name="spawns">
-        <cuboid name="red-spawn" min="-144,0,56" max="-173,9,80"/>
-        <mirror name="blue-spawn" region="red-spawn" origin="-158.5,0,13.5" normal="0,0,-1"/>
-    </union>
-    <union name="wool-rooms">
-        <union name="blue-rooms">
-            <rectangle name="yellow-room" min="-133,84" max="-118,96"/>
-            <translate name="purple-room" region="yellow-room" offset="-66,0,0"/>
+    <union id="wool-rooms">
+        <union id="blue-rooms">
+            <union id="purple-room">
+                <rectangle min="-188,96" max="-202,86"/>
+                <rectangle min="-189,85" max="-202,86"/>
+                <rectangle min="-190,84" max="-202,86"/>
+                <rectangle min="-191,83" max="-202,86"/>
+                <rectangle min="-192,82" max="-202,86"/>
+            </union>
+            <union id="yellow-room">
+                <rectangle min="-129,96" max="-115,86"/>
+                <rectangle min="-128,85" max="-115,86"/>
+                <rectangle min="-127,84" max="-115,86"/>
+                <rectangle min="-126,83" max="-115,86"/>
+                <rectangle min="-125,82" max="-115,86"/>
+            </union>
         </union>
-        <mirror name="red-rooms" region="blue-rooms" origin="-158.5,0,13.5" normal="0,0,1"/>
+        <union id="red-rooms">
+            <union id="lime-room">
+                <rectangle min="-129,-69" max="-115,-59"/>
+                <rectangle min="-128,-58" max="-115,-59"/>
+                <rectangle min="-127,-57" max="-115,-59"/>
+                <rectangle min="-126,-56" max="-115,-59"/>
+                <rectangle min="-125,-55" max="-115,-59"/>
+            </union>
+            <union id="orange-room">
+                <rectangle min="-188,-69" max="-202,-59"/>
+                <rectangle min="-189,-58" max="-202,-59"/>
+                <rectangle min="-190,-57" max="-202,-59"/>
+                <rectangle min="-191,-56" max="-202,-59"/>
+                <rectangle min="-192,-55" max="-202,-59"/>
+            </union>
+        </union>
     </union>
-    <union name="wool-placements">
-        <block location="-159.5,5.5,78.5" name="orange-wool"/>
-        <block location="-157.5,5.5,78.5" name="lime-wool"/>
-        <block location="-159.5,5.5,-51.5" name="purple-wool"/>
-        <block location="-157.5,5.5,-51.5" name="yellow-wool"/>
+    <complement id="void-region">
+        <everywhere/>
+        <rectangle min="-115,70" max="-130,-43"/>
+        <rectangle min="-187,70" max="-202,-43"/>
+        <rectangle min="-187,31" max="-163,-4"/>
+        <rectangle min="-130,-4" max="-154,31"/>
+        <rectangle min="-163,7" max="-154,20"/>
+        <rectangle min="-163,-28" max="-154,-21"/>
+        <rectangle min="-163,48" max="-154,55"/>
+    </complement>
+    <union id="wool-placements">
+        <block location="-159.5,5.5,-51.5" id="purple-wool"/>
+        <block location="-157.5,5.5,-51.5" id="yellow-wool"/>
+        <block location="-157.5,5.5,78.5" id="lime-wool"/>
+        <block location="-159.5,5.5,78.5" id="orange-wool"/>
     </union>
-    <union name="drop-zones">
-        <rectangle name="blue-zone" min="-130,66" max="-123,73"/>
-        <rectangle name="red-zone" min="-187,-39" max="-194,-46"/>
-    </union>
-    <!-- Block Rules -->
-    <apply block="deny-all" message="You may not edit the spawn area!">
-        <region name="spawns"/>
-    </apply>
-    <apply block-place="deny-void" message="You many not build outside the map!">
-        <negative>
-            <region name="void-exemptions"/>
-        </negative>
-    </apply>
-    <apply block="only-red" message="You may not edit the enemy wool room!">
-        <region name="red-rooms"/>
-    </apply>
-    <apply block="only-blue" message="You may not edit the enemy wool room!">
-        <region name="blue-rooms"/>
-    </apply>
     <!-- Entry Rules -->
-    <apply enter="only-red" message="You may not enter the enemy wool room!">
-        <region name="red-rooms"/>
-    </apply>
-    <apply enter="only-blue" message="You may not enter the enemy wool room!">
-        <region name="blue-rooms"/>
-    </apply>
-    <!-- Usage Rules -->
-    <apply use="only-blue-usage" message="You may not interact with the enemy wool room!">
-        <region name="blue-rooms"/>
-    </apply>
-    <apply use="only-red-usage" message="You may not interact with the enemy wool room!">
-        <region name="red-rooms"/>
-    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy wool room!" region="blue-rooms"/>
+    <apply enter="only-red" message="You may not enter the enemy wool room!" region="red-rooms"/>
+    <!-- Block Rules -->
+    <apply block="never" message="You may not edit the spawn area!" region="spawns"/>
+    <apply block-place="deny-glass" message="You may not place glass in the side lanes!" region="side-lanes"/>
+    <apply block="blue-in-wr" use="only-blue-usage" region="blue-rooms"/>
+    <apply block="red-in-wr" use="only-red-usage" region="red-rooms"/>
+    <apply block-place="deny-void" message="You may not build outside of the map!" region="void-region"/>
 </regions>
-<renewables rate="1" grow="true">
-    <renewable>
-        <region>
-            <region name="east-island"/>
-        </region>
-        <renew-filter>
-            <filter name="only-iron"/>
-        </renew-filter>
-    </renewable>
-    <renewable>
-        <region>
-            <region name="west-island"/>
-        </region>
-        <renew-filter>
-            <filter name="only-iron"/>
-        </renew-filter>
-    </renewable>
-</renewables>
-<wools craftable="false">
-    <wool team="blue" color="purple" location="-193.5,14.5,90.5">
-        <region name="purple-wool"/>
-    </wool>
-    <wool team="blue" color="yellow" location="-123.5,14.5,90.5">
-        <region name="yellow-wool"/>
-    </wool>
-    <wool team="red" color="lime" location="-123.5,14.5,-63.5">
-        <region name="lime-wool"/>
-    </wool>
-    <wool team="red" color="orange" location="-193.5,14.5,-63.5">
-        <region name="orange-wool"/>
-    </wool>
+<wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
+    <wool team="blue" color="purple" location="-196.5,14.5,90.5" monument="purple-wool"/>
+    <wool team="blue" color="yellow" location="-120.5,14.5,90.5" monument="yellow-wool"/>
+    <wool team="red" color="lime" location="-120.5,14.5,-63.5" monument="lime-wool"/>
+    <wool team="red" color="orange" location="-196.5,14.5,-63.5" monument="orange-wool"/>
 </wools>
-<broadcasts>
-    <tip after="1s">Every 10 minutes a diamond supply drop is spawn at the small side islands!</tip>
-    <tip after="3s">Breaking a diamond block drops.. super speed, jump, and haste potion; efficiency one golden axe; and one piece of instant ignite tnt. All are kept on death.</tip>
-    <alert after="10m" every="10m">`aA `bdiamond `asupply drop has been spotted!</alert>
-</broadcasts>
-<blockdrops>
-    <rule>
+<block-drops>
+    <rule wrong-tool="true">
         <filter>
-            <block>diamond block</block>
+            <material>gravel</material>
         </filter>
         <drops>
-            <item enchantment="dig speed:1">gold axe</item>
-            <item>tnt</item>
-            <item damage="8226" potions="speed:1600:0:false;jump:1600:1:false;fast digging:1600:2:false">potion</item>
+            <item material="flint"/>
         </drops>
     </rule>
-</blockdrops>
-<killreward>
-    <item amount="16">arrow</item>
-	<item>golden apple</item>
-</killreward>
+</block-drops>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
 <itemremove>
-    <item>string</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>golden carrot</item>
     <item>glowstone dust</item>
+    <item>clay ball</item>
+    <item>sand</item>
+    <item>gravel</item>
+    <item>stone plate</item>
+    <item>log 2</item>
+    <item>string</item>
     <item>apple</item>
     <item>sapling</item>
     <item>sugar cane</item>
-    <item>clay ball</item>
-    <item>stone plate</item>
-    <item>sand</item>
-    <item>iron sword</item>
-    <item>bow</item>
-    <item>iron pickaxe</item>
-    <item>iron spade</item>
-    <item>log</item>
-    <item>wood</item>
-    <item>glass</item>
     <item>glass bottle</item>
-    <item>cooked fish</item>
-    <item>arrow</item>
-    <item>golden apple</item>
+    <item>redstone</item>
+    <item>stick</item>
 </itemremove>
-<tnt>
-    <instantignite>on</instantignite>
-    <licensing>off</licensing>
-    <friendly-defuse>off</friendly-defuse>
-    <fuse>1s</fuse>
-    <power>5</power>
-</tnt>
-<disabledamage>
-    <damage self="true" ally="true">block explosion</damage>
-</disabledamage>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+</kill-reward>
 <maxbuildheight>28</maxbuildheight>
+<crafting>
+    <disable>iron trapdoor</disable>
+    <disable>minecart</disable>
+    <disable>boat</disable>
+</crafting>
 <gamerules>
     <doDaylightCycle>true</doDaylightCycle>
 </gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
