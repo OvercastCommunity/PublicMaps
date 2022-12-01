@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map proto="1.3.6">
 <name>Halfway Home</name>
-<version>0.3</version>
+<version>0.3.1</version>
 <objective>Detonate all 3 blast zones under your enemy's pillboxes to win</objective>
 <authors>
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
 </authors>
 <teams>
-    <team id="red" color="dark red" max="50">Red</team>
-    <team id="blue" color="blue" max="50">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue" color="blue" max="40">Blue</team>
 </teams>
 <spawns>
     <spawn team="red" kit="red">

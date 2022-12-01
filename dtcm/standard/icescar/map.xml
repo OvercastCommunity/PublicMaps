@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <!-- include src="tutorial.xml"/ -->
 <name>Icescar</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>
     Destroy the enemy team's Upper, Lower and Central Monument while upgrading your gear.
 </objective>
@@ -11,8 +11,8 @@
     <author uuid="8e5b106b-f0af-4be1-b199-7b9205ec8af6"/> <!-- dragonsrule9 -->
 </authors>
 <teams>
-    <team color="green" max="75" max-overfill="75">Green</team>
-    <team color="dark purple" max="75" max-overfill="75">Purple</team>
+    <team color="green" max="50">Green</team>
+    <team color="dark purple" max="50">Purple</team>
 </teams>
 <kits>
     <kit name="heal">

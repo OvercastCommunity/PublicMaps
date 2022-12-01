@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Glacial Impact 2</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Destroy the enemy team's monuments while defending your own.</objective>
 <authors>
     <author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- bleangamer -->

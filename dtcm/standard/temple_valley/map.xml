@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Temple Valley</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Leak the enemies core above their main Temple.</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.6">
 <name>Metro</name>
-<version>1.8.5</version>
+<version>1.8.6</version>
 <objective>Destroy the enemy monuments</objective>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- yoyo_power -->

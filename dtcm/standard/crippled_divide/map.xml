@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.6">
 <name>Crippled Divide</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Destroy the enemy's obsidian monuments and leak their core!</objective>
 <authors>
     <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb"/> <!-- Rasta_Jol -->

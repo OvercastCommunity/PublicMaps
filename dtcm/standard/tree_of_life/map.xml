@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Tree of Life</name>
-<version>3.0.6</version>
+<version>3.0.7</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.1">
 <name>Synergy</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Leak lava from the core and destroy both team's monuments.</objective>
 <authors>
 	<author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->

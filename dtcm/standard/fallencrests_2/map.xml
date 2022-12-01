@@ -1,6 +1,6 @@
 <map proto="1.3.2">
 <name>Fallencrests 2</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Leak the other team's obsidian core to win!</objective>
 <teams>
     <team color="yellow" max="35">Yellow</team>

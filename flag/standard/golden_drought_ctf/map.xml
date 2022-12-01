@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Golden Drought CTF</name>
-<version>1.4.3</version>
+<version>1.4.4</version>
 <objective>Capture the flags from the enemy flag rooms and place them on your flag monument while defending your own flags.</objective>
 <phase>development</phase>
 <authors>

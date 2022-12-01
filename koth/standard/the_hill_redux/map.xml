@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>The Hill Redux</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Capture and hold the hills!</objective>
 <authors>
     <author uuid="374988d6-4569-444e-885a-409c2f55e310" contribution="Map Creator"/> <!-- Articray -->

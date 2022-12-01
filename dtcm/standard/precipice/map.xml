@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Precipice</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Leak lava from the enemy team's core!</objective>
 <authors>
     <author uuid="b0b3c5d5-e9bd-4984-bc07-1bd552d4b042"/> <!-- Beebou -->
