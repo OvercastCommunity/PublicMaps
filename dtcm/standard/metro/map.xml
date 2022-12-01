@@ -7,8 +7,8 @@
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- yoyo_power -->
 </authors>
 <teams>
-    <team id="red" color="dark red" max="50">Red</team>
-    <team id="blue" color="blue" max="50">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue" color="blue" max="40">Blue</team>
 </teams>
 <broadcasts>
     <tip after="2s" every="5m">The air on the surface is toxic, make sure you have a gas mask if you're going there</tip>

@@ -10,8 +10,8 @@
     <contibutor contribution="Minor aesthetics help">SH4D0W_HAWK</contibutor>
 </contributors>
 <teams>
-    <team color="dark red" max="40">Red</team>
-    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="35">Red</team>
+    <team color="blue" max="35">Blue</team>
 </teams>
 <spawns>
     <spawns kit="spawn">

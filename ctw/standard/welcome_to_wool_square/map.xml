@@ -16,8 +16,8 @@
 </contributors>
 <created>2012-10-20</created>
 <teams>
-    <team color="dark red" max="50">Red</team>
-    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
 </teams>
 <filters>
     <filter name="only-red">

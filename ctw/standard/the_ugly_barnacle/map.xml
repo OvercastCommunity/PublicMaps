@@ -7,8 +7,8 @@
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
 <teams>
-    <team id="red-team" color="dark red" max="40">Red</team>
-    <team id="blue-team" color="blue" max="40">Blue</team>
+    <team id="red-team" color="dark red" max="35">Red</team>
+    <team id="blue-team" color="blue" max="35">Blue</team>
 </teams>
 <kits>
     <kit id="spawn-kit">

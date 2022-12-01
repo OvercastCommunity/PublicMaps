@@ -14,8 +14,8 @@
     <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
 </contributors>
 <teams>
-    <team color="dark purple" max="40">Purple</team>
-    <team color="dark red" max="40">Red</team>
+    <team color="dark purple" max="35">Purple</team>
+    <team color="dark red" max="35">Red</team>
 </teams>
 <modes>
     <mode after="15m" material="gold block" name="GOLD CORE MODE"/>

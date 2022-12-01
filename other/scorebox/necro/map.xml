@@ -15,8 +15,8 @@
     <contributor uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="XML Fixing"/> <!-- MonsieurApple -->
 </contributors>
 <teams>
-    <team id="orange" color="gold" max="50" max-overfill="60">Orange</team>
-    <team id="purple" color="dark purple" max="50" max-overfill="60">Purple</team>
+    <team id="orange" color="gold" max="40">Orange</team>
+    <team id="purple" color="dark purple" max="40">Purple</team>
 </teams>
 <kits>
     <kit id="heal">

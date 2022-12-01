@@ -10,8 +10,8 @@
     <time>10m</time>
 </score>
 <teams>
-    <team color="dark red" max="50" max-overfill="70">Red</team>
-    <team color="dark green" max="50" max-overfill="70">Green</team>
+    <team color="dark red" max="35">Red</team>
+    <team color="dark green" max="35">Green</team>
 </teams>
 <kits>
     <kit name="spawn">

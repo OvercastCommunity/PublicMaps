@@ -11,8 +11,8 @@
     <contributor contribution="Morale Support">Freelion Alliance</contributor>
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="64">Blue</team>
-    <team id="red" color="dark red" max="64">Red</team>
+    <team id="blue" color="blue" max="35">Blue</team>
+    <team id="red" color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">

@@ -18,8 +18,8 @@
 	<contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Forgot to update XML repeatedly"/> <!-- Stealth5061 -->
 </contributors>
 <teams>
-	<team color="dark purple" max="45">Purple</team>
-	<team color="dark aqua" max="45">Cyan</team>
+	<team color="dark purple" max="35">Purple</team>
+	<team color="dark aqua" max="35">Cyan</team>
 </teams>
 <kits>
 	<kit name="spawn">

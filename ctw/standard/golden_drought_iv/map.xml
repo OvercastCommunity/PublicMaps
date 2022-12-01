@@ -7,8 +7,8 @@
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
 <teams>
-    <team color="blue" max="40">Blue</team>
-    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="35">Blue</team>
+    <team color="dark red" max="35">Red</team>
 </teams>
 <spawns>
     <spawns kit="spawn">

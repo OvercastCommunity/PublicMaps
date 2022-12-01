@@ -10,8 +10,8 @@
     <author uuid="9310b44c-55b2-4a51-8be6-151b379d3d4d"/> <!-- legobmw99 -->
 </authors>
 <teams>
-    <team color="dark aqua" max="50">Cyan</team>
-    <team color="dark purple" max="50">Purple</team>
+    <team color="dark aqua" max="40">Cyan</team>
+    <team color="dark purple" max="40">Purple</team>
 </teams>
 <filters>
     <filter name="only-purple">

@@ -12,8 +12,8 @@
     <contributor uuid="8e0b87e1-2369-4c3e-9819-c9e93cd4f8eb" contribution="build slave"/> <!-- TheDrewGuy -->
 </contributors>
 <teams>
-    <team color="dark purple" max="40">Purple</team>
-    <team color="gold" max="40">Orange</team>
+    <team color="dark purple" max="35">Purple</team>
+    <team color="gold" max="35">Orange</team>
 </teams>
 <kits>
     <kit name="spawn">

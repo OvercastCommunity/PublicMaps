@@ -10,8 +10,8 @@
     <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map Feedback and Tweaks"/> <!-- Plastix -->
 </contributors>
 <teams>
-    <team color="blue" max="50">Blue</team>
-    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
 </teams>
 <spawns>
     <spawns kit="spawn">

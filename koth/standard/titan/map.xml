@@ -16,8 +16,8 @@
     <rule>Fall damage is disabled!</rule>
 </rules>
 <teams>
-    <team color="dark red" max="45">Red</team>
-    <team color="blue" max="45">Blue</team>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
 </teams>
 <kits>
     <kit name="spawn">

@@ -12,8 +12,8 @@
 </contributors>
 <created>2012-09-16</created>
 <teams>
-    <team color="dark red" max="50">Red</team>
-    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
 </teams>
 <kits>
     <kit name="spawn">

@@ -8,8 +8,8 @@
     <author uuid="468c7d75-62e0-4d11-8fc1-4888965be11c"/> <!-- matt772 -->
 </authors>
 <teams>
-    <team color="blue" max="64">Blue</team>
-    <team color="dark red" max="64">Red</team>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
 </teams>
 <kits>
     <kit name="spawn">

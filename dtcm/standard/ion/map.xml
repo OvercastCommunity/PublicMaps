@@ -9,8 +9,8 @@
     <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="40">Blue</team>
-    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue" color="blue" max="35">Blue</team>
+    <team id="red" color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">

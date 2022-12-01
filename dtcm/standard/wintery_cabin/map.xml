@@ -8,8 +8,8 @@
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
 </authors>
 <teams>
-   <team id="red" color="dark red" max="42" max-overfill="50">Red</team>
-   <team id="blue" color="blue" max="42" max-overfill="50">Blue</team>
+   <team id="red" color="dark red" max="35" max-overfill="50">Red</team>
+   <team id="blue" color="blue" max="35" max-overfill="50">Blue</team>
 </teams>
 <kits>
     <kit name="spawn">

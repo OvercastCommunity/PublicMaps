@@ -12,8 +12,8 @@
     <contributor uuid="6edaab6e-fb08-46c4-b0b8-9853b79eda28" contribution="Detailing here and there"/> <!-- MoNoO -->
 </contributors>
 <teams>
-    <team color="blue" max="40">Blue</team>
-    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="35">Blue</team>
+    <team color="dark red" max="35">Red</team>
 </teams>
 <cores material="obsidian" leak="2">
     <core team="blue">

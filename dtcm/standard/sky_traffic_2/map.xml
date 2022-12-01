@@ -11,8 +11,8 @@
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
 <teams>
-    <team color="dark red" max="50">Red</team>
-    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
 </teams>
 <maxbuildheight>215</maxbuildheight>
 <kits>

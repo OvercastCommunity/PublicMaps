@@ -11,8 +11,8 @@
     <contributor uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="XML"/> <!-- Anxuiz -->
 </contributors>
 <teams>
-    <team color="blue" max="50">Blue</team>
-    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
 </teams>
 <spawns>
     <spawn team="blue" yaw="0" kit="blue">

@@ -13,8 +13,8 @@
     <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff"/> <!-- khazhyk -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="40">Blue</team>
-    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue" color="blue" max="35">Blue</team>
+    <team id="red" color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">

@@ -10,8 +10,8 @@
     <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->
 </authors>
 <teams>
-    <team color="blue" max="40">Blue</team>
-    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="35">Blue</team>
+    <team color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit name="spawn">

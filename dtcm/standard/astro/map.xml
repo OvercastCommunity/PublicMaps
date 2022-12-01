@@ -9,8 +9,8 @@
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
 </authors>
 <teams>
-    <team color="dark purple" max="40">Purple</team>
-    <team color="gold" max="40">Orange</team>
+    <team color="dark purple" max="35">Purple</team>
+    <team color="gold" max="35">Orange</team>
 </teams>
 <kits>
     <kit name="all">

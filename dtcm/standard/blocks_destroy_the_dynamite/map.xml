@@ -15,8 +15,8 @@
     <rule>Fall damage is disabled on this map!</rule>
 </rules>
 <teams>
-    <team id="blue" color="blue" max="40">Blue</team>
-    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue" color="blue" max="35">Blue</team>
+    <team id="red" color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit id="teams">

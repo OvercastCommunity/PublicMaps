@@ -43,8 +43,8 @@
     <region name="playable"/>
 </playable>
 <teams>
-    <team color="blue" max="75">Fishnets</team>
-    <team color="red" max="75">ButterHeads</team>
+    <team color="blue" max="50">Fishnets</team>
+    <team color="red" max="50">ButterHeads</team>
 </teams>
 <spawns>
     <spawn team="ButterHeads" yaw="-90">

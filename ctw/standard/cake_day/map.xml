@@ -9,8 +9,8 @@
     <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- samthecat43 -->
 </authors>
 <teams>
-    <team id="purple-team" color="dark purple" max="40">Purple</team>
-    <team id="yellow-team" color="yellow" max="40">Yellow</team>
+    <team id="purple-team" color="dark purple" max="35">Purple</team>
+    <team id="yellow-team" color="yellow" max="35">Yellow</team>
 </teams>
 <kits>
     <kit id="spawn-kit">

@@ -18,8 +18,8 @@
 </rules>
 <teams>
     <!-- Hipster Team Colors -->
-    <team color="dark aqua" max="50">Cyan</team>
-    <team color="dark purple" max="50">Purple</team>
+    <team color="dark aqua" max="40">Cyan</team>
+    <team color="dark purple" max="40">Purple</team>
 </teams>
 <kits>
     <kit name="spawn">

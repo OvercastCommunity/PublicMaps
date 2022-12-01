@@ -14,8 +14,8 @@
     <rule>Combining classes is illegal!</rule>
 </rules>
 <teams>
-    <team id="red" color="dark red" max="40" max-overfill="50">Red</team>
-    <team id="blue" color="blue" max="40" max-overfill="50">Blue</team>
+    <team id="red" color="dark red" max="35">Red</team>
+    <team id="blue" color="blue" max="35">Blue</team>
 </teams>
 <classes family="woodlands" sticky="false">
     <class name="Guard" default="true" description="Strong, slow, and great for defending!" icon="iron chestplate"/>

@@ -10,8 +10,8 @@
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
 </authors>
 <teams>
-    <team color="dark red" max="40">Red</team>
-    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="35">Red</team>
+    <team color="blue" max="35">Blue</team>
 </teams>
 <maxbuildheight>112</maxbuildheight>
 <timelock>on</timelock>

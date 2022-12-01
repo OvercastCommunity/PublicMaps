@@ -10,8 +10,8 @@
     <author uuid="5df77c0e-1bc5-4fff-b41b-6763f29d4125"/> <!-- G_Marturet -->
 </authors>
 <teams>
-    <team color="dark purple" max="40">Purple</team>
-    <team color="dark aqua" max="40">Cyan</team>
+    <team color="dark purple" max="35">Purple</team>
+    <team color="dark aqua" max="35">Cyan</team>
 </teams>
 <kits>
     <kit name="spawn">

@@ -12,8 +12,8 @@
     <contributor uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Did stuff"/> <!-- Zelocksurian -->
 </contributors>
 <teams>
-    <team color="blue" max="45">Blue</team>
-    <team color="dark red" max="45">Red</team>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
 </teams>
 <spawns>
     <spawn team="blue" kit="blue" yaw="90"><cuboid min="-67,26,3" max="-62,26,-2"/></spawn>

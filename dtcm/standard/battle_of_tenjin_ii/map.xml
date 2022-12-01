@@ -16,8 +16,8 @@
     <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Shire baggins"/> <!-- IM_A_H0B0 -->
 </contributors>
 <teams>
-    <team color="blue" max="45">Blue</team>
-    <team color="dark red" max="45">Red</team>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
 </teams>
 <spawns>
     <spawn team="blue" kit="blue" yaw="180"><cuboid min="-2,25,-58" max="3,25,-55"/></spawn>

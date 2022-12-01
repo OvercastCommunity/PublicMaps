@@ -11,8 +11,8 @@
     <tip after="3s">You can build with the blocks that drop!</tip>
 </broadcasts>
 <teams>
-   <team id="pink" color="light purple" max="50">Pink</team>
-   <team id="yellow" color="yellow" max="50">Yellow</team>
+   <team id="pink" color="light purple" max="12">Pink</team>
+   <team id="yellow" color="yellow" max="12">Yellow</team>
 </teams>
 <kits>
     <kit id="kit">

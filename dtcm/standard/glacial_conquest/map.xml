@@ -13,8 +13,8 @@
     <contributor uuid="c2a4c847-653e-482a-b62e-d7f8b64330cb" contribution="XML"/> <!-- NathanTheBook -->
 </contributors>
 <teams>
-    <team color="dark aqua" max="75">Cyan</team>
-    <team color="dark purple" max="75">Purple</team>
+    <team color="dark aqua" max="35">Cyan</team>
+    <team color="dark purple" max="35">Purple</team>
 </teams>
 <spawns>
     <spawn team="cyan" kit="cyan" yaw="8"><cuboid min="4,55,-56" max="10,56,-50"/></spawn>

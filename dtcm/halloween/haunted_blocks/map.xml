@@ -9,8 +9,8 @@
     <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->
 </authors>
 <teams>
-    <team color="blue" max="50">Blue</team>
-    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="35">Blue</team>
+    <team color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit name="spawn">

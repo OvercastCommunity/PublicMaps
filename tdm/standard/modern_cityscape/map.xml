@@ -10,8 +10,8 @@
     <contributor uuid="1379cb6e-f291-4498-9807-e636f9674ac0" contibution="Suggestions and aesthetics help"/> <!-- SH4D0W_HAWK -->
 </contributors>
 <teams>
-    <team color="green" max="50">Lime</team>
-    <team color="dark aqua" max="50">Cyan</team>
+    <team color="green" max="40">Lime</team>
+    <team color="dark aqua" max="40">Cyan</team>
 </teams>
 <kits>
     <kit name="spawn">

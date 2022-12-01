@@ -6,8 +6,8 @@
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="45">Blue</team>
-    <team id="red" color="dark red" max="45">Red</team>
+    <team id="blue" color="blue" max="40">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">

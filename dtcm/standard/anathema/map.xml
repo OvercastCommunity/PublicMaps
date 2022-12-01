@@ -8,8 +8,8 @@
     <author uuid="5cbdeae7-824e-494e-8667-91165718c30b"/> <!-- xSugoix -->
 </authors>
 <teams>
-    <team color="blue" max="50">Blue</team>
-    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
 </teams>
 <timelock>off</timelock>
 <filters>

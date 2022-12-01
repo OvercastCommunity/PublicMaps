@@ -14,8 +14,8 @@
     <contributor uuid="d59e69c1-4ae5-4325-9f72-6a5979d9b7f2" contribution="feedback"/> <!-- MaximusEvo -->
 </contributors>
 <teams>
-    <team color="dark purple" max="40">Purple</team>
-    <team color="gold" max="40">Orange</team>
+    <team color="dark purple" max="35">Purple</team>
+    <team color="gold" max="35">Orange</team>
 </teams>
 <kits>
     <kit name="spawn">

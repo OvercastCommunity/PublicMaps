@@ -10,8 +10,8 @@
     <contributor contribution="Feedback">Project Ares Community</contributor>
 </contributors>
 <teams>
-    <team color="dark green" max="75">Green</team>
-    <team color="dark red" max="75">Red</team>
+    <team color="dark green" max="50">Green</team>
+    <team color="dark red" max="50">Red</team>
 </teams>
 <filters>
     <filter name="deny-some" parents="deny-world">

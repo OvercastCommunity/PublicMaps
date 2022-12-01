@@ -19,8 +19,8 @@
     <contributor contribution="Help and Support">The Orange Sunglasses Build Team</contributor>
 </contributors>
 <teams>
-    <team color="dark aqua" max="75">Cyan</team>
-    <team color="green" max="75">Green</team>
+    <team color="dark aqua" max="50">Cyan</team>
+    <team color="green" max="50">Green</team>
 </teams>
 <kits>
     <kit name="heal">

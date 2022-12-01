@@ -3,8 +3,8 @@
 <version>1.2.5</version>
 <objective>Leak the other team's obsidian core to win!</objective>
 <teams>
-    <team color="yellow" max="40">Yellow</team>
-    <team color="dark red" max="40">Red</team>
+    <team color="yellow" max="35">Yellow</team>
+    <team color="dark red" max="35">Red</team>
 </teams>
 <authors>
     <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->

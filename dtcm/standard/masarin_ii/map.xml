@@ -16,8 +16,8 @@
 	<contributor contribution="XML help" uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!--  Anthonny  -->
 </contributors>
 <teams>
-	<team color="blue" max="45">Blue</team>
-	<team color="dark red" max="45">Red</team>
+	<team color="blue" max="40">Blue</team>
+	<team color="dark red" max="40">Red</team>
 </teams>
 <spawns>
 	<spawn team="red" kit="red">

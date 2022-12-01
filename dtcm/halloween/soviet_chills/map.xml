@@ -15,8 +15,8 @@
     <contributor uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0" contribution="Humourous Gravestones"/> <!-- koipen -->
 </contributors>
 <teams>
-    <team color="dark red" max="50">Red</team>
-    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
 </teams>
 <kits>
     <kit name="spawn">

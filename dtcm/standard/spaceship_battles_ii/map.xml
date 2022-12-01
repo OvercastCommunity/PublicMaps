@@ -8,8 +8,8 @@
 </authors>
 <created>2012-07-04</created>
 <teams>
-    <team id="blue" color="blue" max="50">Blue</team>
-    <team id="red" color="dark red" max="50">Red</team>
+    <team id="blue" color="blue" max="40">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">

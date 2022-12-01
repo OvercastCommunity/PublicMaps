@@ -11,8 +11,8 @@
     <contributor uuid="e30862a8-a6cd-473d-9dd5-6adf5f45ffa7" contribution="Minor map help"/> <!-- adamryan13 -->
 </contributors>
 <teams>
-    <team id="red-team" color="dark red" max="40">Red</team>
-    <team id="blue-team" color="blue" max="40">Blue</team>
+    <team id="red-team" color="dark red" max="35">Red</team>
+    <team id="blue-team" color="blue" max="35">Blue</team>
 </teams>
 <kits>
     <kit id="spawn">

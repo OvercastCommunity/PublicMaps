@@ -11,8 +11,8 @@
     <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Building Help"/> <!-- rockymine -->
 </contributors>
 <teams>
-   <team id="blue-team" color="blue" max="40" max-overfill="45">Blue</team>
-   <team id="red-team" color="dark red" max="40" max-overfill="45">Red</team>
+   <team id="blue-team" color="blue" max="35" max-overfill="45">Blue</team>
+   <team id="red-team" color="dark red" max="35" max-overfill="45">Red</team>
 </teams>
 <kits>
     <kit name="spawn" force="true">
