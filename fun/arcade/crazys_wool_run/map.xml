@@ -1,0 +1,100 @@
+<map proto="1.4.0" game="Wool Run">
+<name>Crazy's Wool Run</name>
+<phase>development</phase>
+<version>1.0.2</version>
+<objective>Be the last man standing</objective>
+<gamemode>arcade</gamemode>
+<created>2019-08-09</created>
+<authors>
+    <author uuid="a9f11454-beac-4cc3-a138-1780802c8794"/> <!-- Crazy_ -->
+</authors>
+<rules>
+    <rule>PvP is disabled</rule>
+    <rule>So is fall damage</rule>
+    <rule>Map functions similar to Hypixel's TNT Run</rule>
+</rules>
+<players id="ffa" min="2" max="50" colors="true"/>
+<kits>
+    <kit id="spawn">
+        <game-mode>adventure</game-mode>
+        <item slot="0" amount="5" material="snow ball" grenade="true" grenade-power="1"/>
+    </kit>
+    <kit id="dieplease" force="true">
+        <effect amplifier="100" duration="5">harm</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn kit="spawn" safe="true">
+        <regions>
+            <cylinder base="180.5,65,-82.5" radius="15" height="1"/>
+        </regions>
+    </spawn>
+    <default pitch="90">
+        <regions>
+            <point>180.5,110,-82.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="deny-blocks">
+        <any>
+            <all>
+                <cause>world</cause>
+                <material>wool:0</material>
+            </all>
+        </any>
+    </not>
+</filters>
+<regions>
+    <apply block="deny-blocks"/>
+    <apply kit="dieplease">
+        <region>
+            <below y="0"/>
+        </region>
+    </apply>
+</regions>
+<block-drops>
+    <rule trample="true" region="everywhere">
+        <filter>
+            <any>
+                <material>wool</material>
+            </any>
+        </filter>
+        <replacement>wool:0</replacement>
+    </rule>
+</block-drops>
+<falling-blocks>
+    <rule>
+        <filter>
+            <material>wool:0</material>
+        </filter>
+        <sticky>
+            <never/>
+        </sticky>
+    </rule>
+</falling-blocks>
+<damage>
+    <allow>
+        <cause>void</cause>
+    </allow>
+    <allow>
+        <cause>potion</cause>
+    </allow>
+    <not>
+        <cause>player</cause>
+    </not>
+</damage>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<itemremove>
+    <item>wool</item>
+    <item>snow ball</item>
+</itemremove>
+</map>
