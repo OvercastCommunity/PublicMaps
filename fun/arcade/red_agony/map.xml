@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Red Agony</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Be the first to the end!</objective>
 <gamemode>Arcade</gamemode>
 <authors>
@@ -14,7 +14,7 @@
     </spawn>
     <default>
         <regions yaw="90"><point>8,7,0</point></regions>
-    </default>    
+    </default>
 </spawns>
 <kits>
     <kit id="spawn">
@@ -47,7 +47,7 @@
 <world-borders center="-605,0" warning-distance="5">
     <world-border size="1250"/>
     <world-border size="20" after="5s" duration="2m"/>
-</wold-borders>
+</world-borders>
 -->
 <hunger>
     <depletion>off</depletion>
@@ -59,6 +59,6 @@
 <broadcasts>
     <alert after="0s">`6`lBe the first to the end!</alert>
     <alert after="1s">`6`lRUN!!!</alert>
-    <alert after="5s">`6`lThe World Border has started to move!</alert>
+    <!-- <alert after="5s">`6`lThe World Border has started to move!</alert> -->
 </broadcasts>
 </map>
