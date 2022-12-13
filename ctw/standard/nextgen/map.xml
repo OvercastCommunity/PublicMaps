@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>NextGen</name>
-<version>3.4.8</version>  <!-- Based upon the TE edition -->
+<version>3.4.9</version>  <!-- Based upon the TE edition -->
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="reinventing the map"/> <!-- ElectroidFilms -->
@@ -207,6 +207,10 @@
     <item>glass bottle</item>
     <item>redstone</item>
     <item>stick</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
 </itemremove>
 <itemkeep>
     <item>golden apple</item>
