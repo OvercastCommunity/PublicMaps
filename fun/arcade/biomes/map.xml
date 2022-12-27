@@ -1,30 +1,29 @@
 <map proto="1.4.0" game="Rush">
 <name>Biomes</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <slug>biomes</slug>
-<objective>
-    Runners must get from one side of the map to the other without getting killed by the Defenders.
-</objective>
+<objective>Runners must get from one side of the map to the other without getting killed by the Defenders.</objective>
 <gamemode>blitz</gamemode>
 <gamemode>ad</gamemode>
+<created>2016-09-25</created>
 <authors>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
 </authors>
 <filters>
-	<any id="monument">
-		<material>sponge</material>
-	</any>
+    <any id="monument">
+        <material>sponge</material>
+    </any>
 </filters>
 <regions>
-	<apply region="everywhere" block="monument"/>
+    <apply region="everywhere" block="monument"/>
 </regions>
 <destroyables name="Monument" materials="sponge" completion="100%">
-	<destroyable owner="defenders">
-		<region>
-			<block>446,24,1239</block>
-		</region>
-	</destroyable>
+    <destroyable owner="defenders">
+        <region>
+            <block>446,24,1239</block>
+        </region>
+    </destroyable>
 </destroyables>
 <blitz>
     <lives>1</lives>
@@ -72,18 +71,18 @@
 <spawns>
     <spawn team="runners" kit="runner-kit">
         <regions yaw="0">
-            <block>443.5,47,268.5</block>
+            <point>443.5,47,268.5</point>
         </regions>
     </spawn>
     <spawn team="defenders" kit="defender-kit">
         <regions yaw="0">
-            <block>488.5,60,323.5</block>
-            <block>402.5,60,323.5</block>
+            <point>488.5,60,323.5</point>
+            <point>402.5,60,323.5</point>
         </regions>
     </spawn>
     <default>
         <regions yaw="0">
-            <block>443.5,47,268.5</block>
+            <point>443.5,47,268.5</point>
         </regions>
     </default>
 </spawns>
@@ -98,76 +97,76 @@
     <damage>fall</damage>
 </disabledamage>
 <portals>
-	<portal x="@487" y="@60" yaw="@0">
-		<region>
-			<cuboid min="400,61,560" max="401,58,321"/>
-		</region>
-	</portal>
-	<portal x="@487" y="@50" yaw="@0">
-		<region>
-			<cuboid min="400,51,627" max="401,48,578"/>
-		</region>
-	</portal>
-	<portal x="@487" y="@50" yaw="@0">
-		<region>
-			<cuboid min="400,51,1134" max="401,48,1085"/>
-		</region>
-	</portal>
-	<portal x="@487" y="@40" yaw="@0">
-		<region>
-			<cuboid min="400,41,693" max="401,38,644"/>
-		</region>
-	</portal>
-	<portal x="@487" y="@40" yaw="@0">
-		<region>
-			<cuboid min="400,41,1067" max="401,38,848"/>
-		</region>
-	</portal>
-	<portal x="@487" y="@40" yaw="@0">
-		<region>
-			<cuboid min="400,41,1221" max="401,38,1152"/>
+    <portal x="@487" y="@60" yaw="@0">
+        <region>
+            <cuboid min="400,61,560" max="401,58,321"/>
         </region>
-	</portal>
-	<portal x="@487" y="@10" yaw="@0">>
-		<region>
-			<cuboid min="400,11,790" max="401,8,752"/>
-		</region>
-	</portal>
-	<!-- Other Side -->
-	<portal x="@403" y="@60" yaw="@0">
-		<region>
-			<cuboid min="491,61,560" max="490,58,321"/>
-		</region>
-	</portal>
-	<portal x="@403" y="@50" yaw="@0">
-		<region>
-			<cuboid min="491,51,627" max="490,48,578"/>
-		</region>
-	</portal>
-	<portal x="@403" y="@50" yaw="@0">
-		<region>
-			<cuboid min="491,51,1134" max="490,48,1085"/>
-		</region>
-	</portal>
-	<portal x="@403" y="@40" yaw="@0">
-		<region>
-			<cuboid min="491,41,693" max="490,38,644"/>
-		</region>
-	</portal>
-	<portal x="@403" y="@40" yaw="@0">
-		<region>
-			<cuboid min="491,41,1067" max="490,38,848"/>
-		</region>
-	</portal>
-	<portal x="@403" y="@40" yaw="@0">
-		<region>
-			<cuboid min="491,41,1221" max="490,38,1152"/>
-		</region>
-	</portal>
-	<portal x="@403" y="@10" yaw="@0">>
-		<region>
-			<cuboid min="491,11,790" max="490,8,752"/>
-		</region>
-	</portal>
+    </portal>
+    <portal x="@487" y="@50" yaw="@0">
+        <region>
+            <cuboid min="400,51,627" max="401,48,578"/>
+        </region>
+    </portal>
+    <portal x="@487" y="@50" yaw="@0">
+        <region>
+            <cuboid min="400,51,1134" max="401,48,1085"/>
+        </region>
+    </portal>
+    <portal x="@487" y="@40" yaw="@0">
+        <region>
+            <cuboid min="400,41,693" max="401,38,644"/>
+        </region>
+    </portal>
+    <portal x="@487" y="@40" yaw="@0">
+        <region>
+            <cuboid min="400,41,1067" max="401,38,848"/>
+        </region>
+    </portal>
+    <portal x="@487" y="@40" yaw="@0">
+        <region>
+            <cuboid min="400,41,1221" max="401,38,1152"/>
+        </region>
+    </portal>
+    <portal x="@487" y="@10" yaw="@0">>
+        <region>
+            <cuboid min="400,11,790" max="401,8,752"/>
+        </region>
+    </portal>
+    <!-- Other Side -->
+    <portal x="@403" y="@60" yaw="@0">
+        <region>
+            <cuboid min="491,61,560" max="490,58,321"/>
+        </region>
+    </portal>
+    <portal x="@403" y="@50" yaw="@0">
+        <region>
+            <cuboid min="491,51,627" max="490,48,578"/>
+        </region>
+    </portal>
+    <portal x="@403" y="@50" yaw="@0">
+        <region>
+            <cuboid min="491,51,1134" max="490,48,1085"/>
+        </region>
+    </portal>
+    <portal x="@403" y="@40" yaw="@0">
+        <region>
+            <cuboid min="491,41,693" max="490,38,644"/>
+        </region>
+    </portal>
+    <portal x="@403" y="@40" yaw="@0">
+        <region>
+            <cuboid min="491,41,1067" max="490,38,848"/>
+        </region>
+    </portal>
+    <portal x="@403" y="@40" yaw="@0">
+        <region>
+            <cuboid min="491,41,1221" max="490,38,1152"/>
+        </region>
+    </portal>
+    <portal x="@403" y="@10" yaw="@0">>
+        <region>
+            <cuboid min="491,11,790" max="490,8,752"/>
+        </region>
+    </portal>
 </portals>
 </map>
