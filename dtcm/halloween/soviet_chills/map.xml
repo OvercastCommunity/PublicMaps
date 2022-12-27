@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Soviet Chills</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <phase>development</phase>
 <objective>Destroy 75% of the team's spherical monument.</objective>
 <authors>
@@ -25,7 +25,7 @@
         <item slot="28" amount="1">arrow</item>
         <item slot="2" enchantment="durability:3;dig speed:1">iron pickaxe</item>
         <item slot="3">iron axe</item>
-        <item slot="4" amount="32">bread</item>
+        <item slot="4" amount="64">bread</item>
         <item slot="5" amount="64" damage="1">leaves</item>
         <item slot="6" amount="64" damage="1">log</item>
         <potion duration="10" amplifier="2">heal</potion>
@@ -95,6 +95,10 @@
     <item>log</item>
     <item>leaves</item>
     <item>wood</item>
+    <item>golden apple</item>
 </itemremove>
 <maxbuildheight>69</maxbuildheight>
+<killreward>
+    <item>golden apple</item>
+</killreward>
 </map>
