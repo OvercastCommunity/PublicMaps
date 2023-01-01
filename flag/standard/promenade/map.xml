@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Promenade</name>
+<version>1.1.1</version>
+<objective>Hold the flag for 120 seconds to win!</objective>
+<authors>
+	<author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
+</authors>
+<respawn spectate="true" delay="3.5s" auto="true">
+    <message>
+        {translate:"death.respawn.confirmed.waiting.flagDropped"}
+    </message>
+</respawn>
+<gamemode>ctf</gamemode>
+<teams>
+    <team id="blue" color="blue" max="5">Blue</team>
+    <team id="red" color="dark red" max="5">Red</team>
+</teams>
+<spawns>
+    <default yaw="180" kit="obs">
+        <regions>
+            <cylinder base="-255.5,16.5,365.5" radius="1" height="0"/>
+        </regions>
+    </default>
+    <spawn team="blue" kit="blue-spawn" yaw="-90">
+        <regions>
+            <point>-243.5,5,369.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-spawn" yaw="90">
+        <regions>
+            <point>-267.5,5,369.5</point>
+        </regions>
+    </spawn>
+    <filter>
+        <not>
+            <same-team>
+                <carrying-flag>flag</carrying-flag>
+            </same-team>
+        </not>
+    </filter>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="12">arrow</item>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+		<potion duration="4" amplifier="4">heal</potion>
+		<potion duration="4" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit id="red-spawn" parents="spawn">
+        <helmet color="AF002A" unbreakable="true">leather helmet</helmet>
+        <leggings color="AF002A" unbreakable="true">leather leggings</leggings>
+        <boots color="AF002A" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit id="blue-spawn" parents="spawn">
+        <helmet color="6E6EF9" unbreakable="true">leather helmet</helmet>
+        <leggings color="6E6EF9" unbreakable="true">leather leggings</leggings>
+        <boots color="6E6EF9" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit id="obs">
+        <effect duration="oo" amplifier="1">night vision</effect>
+    </kit>
+    <kit id="flag-kit" force="true">
+        <potion duration="oo" amplifier="-3">health boost</potion>
+		<potion duration="oo" amplifier="1">slowness</potion>
+        <potion duration="3" amplifier="2">absorption</potion>
+    </kit>
+    <kit id="reset-health" force="true">
+        <potion duration="1" amplifier="0">health boost</potion>
+        <potion duration="1" amplifier="10">regeneration</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>stone sword</item>
+    <item>banner</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemremove>
+<score>
+    <limit>120</limit>
+    <deaths>0</deaths>
+    <kills>0</kills>
+</score>
+<flags>
+    <flag id="flag" name="Flag" post="post" points-rate="1" shared="true" pickup-kit="flag-kit" drop-kit="reset-health">
+        <post id="post" return-time="0s" respawn-time="8s">
+            <block>-255.5,12,383.5</block>
+        </post>
+    </flag>
+</flags>
+<regions>
+    <apply block="never">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<killreward>
+    <item>golden apple</item>
+    <item amount="6">arrow</item>
+</killreward>
+</map>
