@@ -5,6 +5,7 @@
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
 </authors>
+<created>2012-09-13</created>
 <teams>
     <team id="blue" color="blue" max="16">Blue</team>
     <team id="red" color="dark red" max="16">Red</team>
