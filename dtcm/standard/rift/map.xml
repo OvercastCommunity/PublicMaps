@@ -8,6 +8,7 @@
 <contributors>
     <contributor uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87" contribution="Building assistance"/> <!-- Torn_Ares -->
 </contributors>
+<created>2013-03-31</created>
 <teams>
    <team id="cyan" color="dark aqua" max="45">Cyan</team>
    <team id="purple" color="dark purple" max="45">Purple</team>
