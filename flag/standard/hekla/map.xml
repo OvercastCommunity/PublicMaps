@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Hekla</name>
-<version>1.0.0</version>
+<version>1.0.1</version>
 <objective>Hold the flag for 120 seconds to win!</objective>
 <authors>
 	<author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
@@ -9,7 +9,7 @@
 </authors>
 <respawn spectate="true" delay="3.5s" auto="true">
     <message>
-        {translate:"death.respawn.confirmed.waiting.flagDropped"}
+        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
     </message>
 </respawn>
 <gamemode>ctf</gamemode>
