@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <map proto="1.3.3">
 <name>Nail</name>
-<version>1.5</version>
-<objective>The invaders must destroy tbe defender's two sponges before 20 minutes is over!</objective>
+<version>1.5.1</version>
+<objective>The Invaders must destroy the defender's two sponges before 20 minutes is over!</objective>
 <gamemode>ad</gamemode>
+<created>2012-04-27</created>
 <authors>
     <author uuid="75d87bcf-3921-4871-9330-e83736580a95"/> <!-- Rixiot -->
 </authors>
