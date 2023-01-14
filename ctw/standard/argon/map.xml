@@ -1,9 +1,8 @@
-<?xml version="1.0"?>
 <map proto="1.3.2">
 <!-- include src="tutorial.xml"/ -->
 <name>Argon</name>
-<version>1.2.7</version>
-<objective>Capture the wool from the enemies wool rooms and return them to your spawn</objective>
+<version>1.2.8</version>
+<objective>Capture the wools from the enemy wool rooms and return them to your spawn</objective>
 <authors>
     <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
@@ -43,6 +42,11 @@
     <filter name="no-void">
         <deny>
             <void/>
+        </deny>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
         </deny>
     </filter>
 </filters>
@@ -92,6 +96,14 @@
     <apply enter="deny-all">
         <cuboid min="-33,19,27" max="-34,oo,40"/>
         <cuboid min="-394,19,27" max="-393,oo,40"/>
+    </apply>
+    <apply use="deny-beacon" message="You may not interact with this block">
+        <everywhere/>
+    </apply>
+    <apply block="deny-all">
+        <!-- Iron at spawn beacons -->
+        <circle center="-19.5,33.5" radius="3"/> <!-- Purple -->
+        <circle center="-407.5,33.5" radius="3"/> <!-- Cyan -->
     </apply>
 </regions>
 <kits>
@@ -160,7 +172,7 @@
         <block>-28.5,14,24.5</block>
     </wool>
 </wools>
-<tutorial>
+<!-- <tutorial>
     <stage title="Capture the Wool">
         <message>
             <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
@@ -199,7 +211,7 @@
             <point yaw="90">-425,16,33</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 <killreward>
     <item>golden apple</item>
 </killreward>
