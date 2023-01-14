@@ -2,12 +2,12 @@
 <map proto="1.3.2">
 <name>Bedrock Fortress Battles</name>
 <phase>development</phase>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <authors>
-    <author>Torn_Ares</author>
-    <author>Thungon</author>
-    <author>GammaRay_89</author>
+    <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
+    <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
 </authors>
 <rules>
     <rule>Do not glitch or bybass over/through the bedrock wall!</rule>
