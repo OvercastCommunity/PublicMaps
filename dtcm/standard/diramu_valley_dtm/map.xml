@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Diramu Valley DTM</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <gamemode>dtm</gamemode>
 <objective>Destroy both of the opposing monuments to win!</objective>
 <authors>
@@ -73,7 +73,7 @@
         <apply enter="only-red" message="You may not enter the enemy spawn" region="red-spawn"/>
         <apply enter="only-blue" message="You may not enter the enemy spawn" region="blue-spawn"/>
 </regions>
-<destroyables completion="100%" mode-changes="true"  materials="obsidian">
+<destroyables completion="100%" mode-changes="true"  materials="obsidian" repairable="false>
     <destroyable owner="red" name="Monument">
         <region>
             <cuboid min="-92.5,22,230.5" max="-90.5,25,232.5"/>
