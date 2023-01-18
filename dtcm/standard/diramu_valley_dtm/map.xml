@@ -73,7 +73,7 @@
         <apply enter="only-red" message="You may not enter the enemy spawn" region="red-spawn"/>
         <apply enter="only-blue" message="You may not enter the enemy spawn" region="blue-spawn"/>
 </regions>
-<destroyables completion="100%" mode-changes="true"  materials="obsidian" repairable="false>
+<destroyables completion="100%" mode-changes="true"  materials="obsidian" repairable="false">
     <destroyable owner="red" name="Monument">
         <region>
             <cuboid min="-92.5,22,230.5" max="-90.5,25,232.5"/>
