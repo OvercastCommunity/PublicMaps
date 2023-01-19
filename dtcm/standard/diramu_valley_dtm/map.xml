@@ -111,9 +111,11 @@
     <item>red rose</item>
     <item>arrow</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards> 
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>
