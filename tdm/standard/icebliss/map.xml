@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Icebliss</name>
 <version>2.1.5</version>
 <objective>Be the team with the least deaths after 10 minutes.</objective>
+<created>2013-03-24</created>
 <authors>
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
     <author uuid="f18ad097-bc85-449e-9071-d5945973ebd3"/> <!-- nard164 -->
@@ -13,35 +13,35 @@
 </contributors>
 <kits>
     <kit name="spawn">
-		<clear/>
+        <clear/>
         <item slot="0" unbreakable="true">stone sword</item>
         <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
         <item slot="2" unbreakable="true" enchantment="dig speed:3">stone pickaxe</item>
-		<item slot="3" unbreakable="true" enchantment="dig speed:3">shears</item>
-		<item slot="4">golden apple</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:3">shears</item>
+        <item slot="4">golden apple</item>
         <item slot="5" amount="16">stone</item>
         <item slot="28">arrow</item>
-		<leggings unbreakable="true" enchantment="protection projectile:3">chainmail leggings</leggings>
-		<boots unbreakable="true">iron boots</boots>
+        <leggings unbreakable="true" enchantment="protection projectile:3">chainmail leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
         <potion duration="5" amplifier="10">heal</potion>
         <potion duration="5" amplifier="10">damage resistance</potion>
         <potion duration="600" amplifier="1">speed</potion>
     </kit>
     <kit name="red" parents="spawn">
-		<helmet unbreakable="true" color="cd0000">leather helmet</helmet>
-		<chestplate unbreakable="true" color="cd0000">leather chestplate</chestplate>
+        <helmet unbreakable="true" color="cd0000">leather helmet</helmet>
+        <chestplate unbreakable="true" color="cd0000">leather chestplate</chestplate>
     </kit>
     <kit name="purple" parents="spawn">
-		<helmet unbreakable="true" color="800080">leather helmet</helmet>
-		<chestplate unbreakable="true" color="800080">leather chestplate</chestplate>
+        <helmet unbreakable="true" color="800080">leather helmet</helmet>
+        <chestplate unbreakable="true" color="800080">leather chestplate</chestplate>
     </kit>
     <kit name="blue" parents="spawn">
-		<helmet unbreakable="true" color="cd0000">leather helmet</helmet>
-		<chestplate unbreakable="true" color="cd0000">leather chestplate</chestplate>
+        <helmet unbreakable="true" color="cd0000">leather helmet</helmet>
+        <chestplate unbreakable="true" color="cd0000">leather chestplate</chestplate>
     </kit>
     <kit name="yellow" parents="spawn">
-		<helmet unbreakable="true" color="FFFF00">leather helmet</helmet>
-		<chestplate unbreakable="true" color="FFFF00">leather chestplate</chestplate>
+        <helmet unbreakable="true" color="FFFF00">leather helmet</helmet>
+        <chestplate unbreakable="true" color="FFFF00">leather chestplate</chestplate>
     </kit>
 </kits>
 <teams>
@@ -71,7 +71,7 @@
 </filters>
 <regions>
     <apply block="deny-some" message="You are not allowed to destroy the map!">
-        <rectangle min="-832,935" max="-1078,691" />
+        <rectangle min="-832,935" max="-1078,691"/>
     </apply>
     <rectangle name="Main-Area" min="-832,935" max="-1078,691"/>
     <apply block="deny-all">
@@ -106,8 +106,8 @@
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
-	<tool>stone pickaxe</tool>
-	<tool>shears</tool>
+    <tool>stone pickaxe</tool>
+    <tool>shears</tool>
 </toolrepair>
 <killreward>
     <item>golden apple</item>
@@ -119,10 +119,10 @@
     <item>iron boots</item>
 </itemremove>
 <itemkeep>
-	<item>golden apple</item>
-	<item>arrow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
 </itemkeep>
 <hunger>
-	<depletion>off</depletion>
+    <depletion>off</depletion>
 </hunger>
 </map>
