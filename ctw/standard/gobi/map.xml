@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Gobi</name>
-<version>1.4</version>
+<version>1.4.1</version>
 <objective>Capture the enemy team's wools.</objective>
 <edition>standard</edition>
 <authors>
@@ -38,12 +38,12 @@
     </default>
     <spawn team="blue-team" kit="spawn-kit">
         <region yaw="90">
-            <block>288,9,-104</block>
+            <point>288.5,9,-103.5</point>
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
         <region yaw="-90">
-            <block>82,9,-104</block>
+            <point>82.5,9,-103.5</point>
         </region>
     </spawn>
 </spawns>
