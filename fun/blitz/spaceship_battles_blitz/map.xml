@@ -2,8 +2,8 @@
 <map proto="1.4.0">
 <name>Spaceship Battles: Blitz</name>
 <phase>development</phase>
-<version>1.0.9</version>
-<objective>Leak lava from the enemy's obsidian core and destory the monuments.</objective>
+<version>1.0.10</version>
+<objective>Leak lava from the enemy's obsidian core and destroy the monuments.</objective>
 <gamemode>blitz</gamemode>
 <gamemode>mixed</gamemode>
 <authors>
@@ -19,11 +19,8 @@
     <team id="blue" color="blue" max="24">Blue</team>
 </teams>
 <respawn auto="true"/>
-<blitz>
+<blitz filter="after-5m" join-filter="before-5m">
     <lives>3</lives>
-    <filter>
-        <time>5m</time>
-    </filter>
 </blitz>
 <kits>
     <kit id="give-resistance" force="true">
@@ -31,9 +28,12 @@
     </kit>
 </kits>
 <filters>
-      <deny id="deny-dispenser">
-          <material>dispenser</material>
-      </deny>
+    <deny id="deny-dispenser">
+        <material>dispenser</material>
+    </deny>
+    <not id="before-5m">
+        <time id="after-5m">5m</time>
+    </not>
 </filters>
 <regions>
     <apply block="never" message="You may not place or break blocks in the water drops.">
