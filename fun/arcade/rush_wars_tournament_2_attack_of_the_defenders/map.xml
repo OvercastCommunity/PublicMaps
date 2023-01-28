@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Rush Wars Tournament 2: Attack of the Defenders</name>
-<version>1.1.7</version>
+<version>1.1.8</version>
 <slug>rush_wars_tournament_2_attack_of_the_defenders</slug>
 <objective>Runners must break the monument at the end of the map without getting killed by the defenders!</objective>
 <created>2016-06-01</created>
@@ -78,17 +78,17 @@
 <spawns>
     <spawn team="runners" kit="runners-kit">
         <regions yaw="180">
-            <block>-75,253,5</block>
+            <point>-75,253,5</point>
         </regions>
     </spawn>
     <spawn team="defenders" kit="defenders-kit">
         <regions yaw="180">
-            <block>-75,175,55</block>
+            <point>-75,175,55</point>
         </regions>
     </spawn>
     <default>
         <regions yaw="180">
-            <cylinder base="-75,181,56" radius="2" height="0" />
+            <cylinder base="-74.5,179,56.5" radius="2" height="0" />
         </regions>
     </default>
 </spawns>
