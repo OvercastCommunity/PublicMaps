@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>NextGen</name>
-<version>3.4.9</version>  <!-- Based upon the TE edition -->
+<version>3.4.10</version>  <!-- Based upon the TE edition -->
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="reinventing the map"/> <!-- ElectroidFilms -->
@@ -24,7 +24,7 @@
         <item slot="1" unbreakable="true" material="bow">
             <enchantment>infinity</enchantment>
         </item>
-        <item slot="28" amount="64" material="arrow"/>
+        <item slot="28" material="arrow"/>
         <item slot="2" unbreakable="true" material="iron pickaxe">
             <enchantment>efficiency</enchantment>
         </item>
