@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.1">
 <name>Ultra Twizz</name>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Capture the wool and return it to your victory monument.</objective>
 <created>2016-03-29</created>
 <authors>
@@ -91,12 +91,6 @@
             <team>pink</team>
         </not>
     </filter>
-    <filter name="only-trees">
-        <any>
-            <block>leaves</block>
-            <block>log</block>
-        </any>
-    </filter>
 </filters>
 <regions>
     <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
@@ -139,9 +133,6 @@
     </apply>
     <apply block="only-yellow-usage">
         <region name="yellow-wools"/>
-    </apply>
-    <apply block-break="only-trees">
-        <everywhere/>
     </apply>
     <apply block-place="deny-void" message="You cannot build outside the map area!">
         <negative>
