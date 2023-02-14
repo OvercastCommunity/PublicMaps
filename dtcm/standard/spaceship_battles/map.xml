@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Spaceship Battles</name>
-<version>1.2.13</version>
-<objective>Leak lava from the enemy's obsidian core.</objective>
+<version>1.2.14</version>
+<objective>Leak lava from the enemy's obsidian core and destroy both of their antennas.</objective>
 <created>2012-02-26</created>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
