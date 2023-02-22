@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Sunrise Over Paradise Redux</name>
-<version>1.3.2</version>
+<version>1.3.3</version>
 <objective>Destroy both of the enemy team's monuments!</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
@@ -29,6 +29,8 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
+        <item slot="4" amount="64" team-color="true" material="stained clay"/>
+        <item slot="5" amount="16" team-color="true" lore="Immune to TNT" material="stained glass"/>
         <item slot="30" unbreakable="true" material="iron spade"/>
         <item slot="6" amount="32" material="ladder"/>
         <item slot="8" material="golden apple"/>
@@ -38,14 +40,6 @@
             <enchantment level="6">blast_protection</enchantment>
         </leggings>
         <boots unbreakable="true" material="iron boots"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <item slot="4" amount="64" damage="11" material="stained clay"/>
-        <item slot="5" amount="16" damage="11" lore="Immune to TNT" material="stained glass"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <item slot="4" amount="64" damage="14" material="stained clay"/>
-        <item slot="5" amount="16" damage="14" lore="Immune to TNT" material="stained glass"/>
     </kit>
     <take kit="spawn-resistance">
         <filter>
@@ -59,12 +53,12 @@
             <cylinder base="-45,36,0" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue" kit="spawn-kit">
         <region yaw="0">
             <cylinder base="0,4,-80" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <region yaw="180">
             <cylinder base="0,4,80" radius="1" height="0"/>
         </region>
@@ -177,6 +171,8 @@
     <kill-reward>
         <item material="golden apple"/>
         <item amount="8" material="ladder"/>
+        <item amount="16" team-color="true" material="stained clay"/>
+        <item amount="4" team-color="true" lore="Immune to TNT" material="stained glass"/>
     </kill-reward>
     <kill-reward>
         <filter>
@@ -185,14 +181,6 @@
         <item amount="1" name="Power TNT" lore="TNT slightly more powerful..." material="tnt">
             <enchantment level="2">power</enchantment>
         </item>
-    </kill-reward>
-    <kill-reward filter="only-blue">
-        <item amount="16" damage="11" material="stained clay"/>
-        <item amount="4" damage="11" material="stained clay"/>
-    </kill-reward>
-    <kill-reward filter="only-red">
-        <item amount="16" damage="14" material="stained clay"/>
-        <item amount="4" damage="14" material="stained glass"/>
     </kill-reward>
 </kill-rewards>
 <tnt>
