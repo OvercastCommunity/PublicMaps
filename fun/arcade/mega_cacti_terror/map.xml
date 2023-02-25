@@ -1,30 +1,13 @@
 <map proto="1.4.0">
 <name>Mega Cacti Terror</name>
-<version>1.2.1</version>
+<version>1.1.2</version>
 <objective>Be the last man standing!</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/>
 </authors>
 <players min="2" max="64">Players</players>
 <blitz/>
-<time>2m45s</time>
-<spawns>
-    <spawn kit="spawn-kit" filter="using-arena-layout-0">
-        <region angle="-497.5,14,325.5">
-            <cuboid min="-534,13,289" size="73,0,73"/>
-        </region>
-    </spawn>
-    <spawn kit="spawn-kit" filter="using-arena-layout-1">
-        <region angle="-497.5,14,325.5">
-          <cylinder base="-497.5,13,325.5" radius="34" height="0"/>
-        </region>
-    </spawn>
-    <default kit="obs-kit">
-        <region angle="-497.5,14,325.5">
-            <cylinder base="-497.5,15,325.5" radius="12" height="0"/>
-        </region>
-    </default>
-</spawns>
+<time>4m</time>
 <kits>
     <kit id="spawn-kit" force="true">
         <health>1</health>
@@ -34,10 +17,7 @@
         <effect duration="oo" amplifier="1">slow digging</effect>
         <effect duration="oo" amplifier="20">weakness</effect>
         <effect duration="3" amplifier="20">damage resistance</effect>
-    </kit>
-    <kit id="obs-kit" force="true">
-        <fly flying="true"/>
-    </kit>
+    </kit> 
 </kits>
 <gamerules>
     <naturalRegeneration>false</naturalRegeneration>
@@ -45,8 +25,31 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<spawns>
+    <spawn kit="spawn-kit">
+        <region angle="-497.5,14,325.5">
+            <cuboid min="-534,13,289" size="73,0,73"/>
+        </region>
+    </spawn>
+    <default>
+        <region angle="-497.5,14,325.5">
+            <cuboid min="-534,13,289" size="73,0,73"/>
+        </region>
+    </default>
+</spawns>
 <filters>
     <any id="allowed-interactions">
+        <all>
+            <not>
+                <any>
+                    <cause>player</cause>
+                    <cause>explosion</cause>
+                </any>
+            </not>
+            <any>
+                <material>gravel</material>
+            </any>
+        </all>
         <all>
             <cause>explosion</cause>
             <material>cactus</material>
@@ -59,753 +62,140 @@
             </any>
         </all>
     </any>
-    <time id="t-00">0s</time>
-    <time id="t-01">5s</time>
-    <time id="t-02">10s</time>
-    <time id="t-03">15s</time>
-    <time id="t-04">20s</time>
-    <time id="t-05">25s</time>
-    <time id="t-06">30s</time>
-    <time id="t-07">35s</time>
-    <time id="t-08">40s</time>
-    <time id="t-09">45s</time>
-    <time id="t-10">50s</time>
-    <time id="t-11">55s</time>
-    <time id="t-12">60s</time>
-    <time id="t-13">64s</time>
-    <time id="t-14">68s</time>
-    <time id="t-15">72s</time>
-    <time id="t-16">76s</time>
-    <time id="t-17">80s</time>
-    <time id="t-18">83s</time>
-    <time id="t-19">86s</time>
-    <time id="t-20">89s</time>
-    <time id="t-21">91s</time>
-    <time id="t-22">94s</time>
-    <time id="t-23">97s</time>
-    <time id="t-24">100s</time>
-    <time id="t-25">102s</time>
-    <time id="t-26">104s</time>
-    <time id="t-27">106s</time>
-    <time id="t-28">108s</time>
-    <time id="t-29">110s</time>
-    <time id="t-30">112s</time>
-    <time id="t-31">114s</time>
-    <time id="t-32">116s</time>
-    <time id="t-33">117s</time>
-    <time id="t-34">118s</time>
-    <time id="t-35">119s</time>
-    <time id="t-36">120s</time>
-
-    <any id="using-arena-layout-0">
-        <variable var="arena_layout">[-oo,1)</variable>
-        <not>
-            <any>
-                <filter id="using-arena-layout-1"/>
-            </any>
-        </not>
-    </any>
-    <variable id="using-arena-layout-1" var="arena_layout">[1,oo]</variable>
-
-    <all id="a0-t-00">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-00"/>
-    </all>
-    <all id="a0-t-01">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-01"/>
-    </all>
-    <all id="a0-t-02">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-02"/>
-    </all>
-    <all id="a0-t-03">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-03"/>
-    </all>
-    <all id="a0-t-04">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-04"/>
-    </all>
-    <all id="a0-t-05">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-05"/>
-    </all>
-    <all id="a0-t-06">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-06"/>
-    </all>
-    <all id="a0-t-07">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-07"/>
-    </all>
-    <all id="a0-t-08">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-08"/>
-    </all>
-    <all id="a0-t-09">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-09"/>
-    </all>
-    <all id="a0-t-10">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-10"/>
-    </all>
-    <all id="a0-t-11">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-11"/>
-    </all>
-    <all id="a0-t-12">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-12"/>
-    </all>
-    <all id="a0-t-13">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-13"/>
-    </all>
-    <all id="a0-t-14">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-14"/>
-    </all>
-    <all id="a0-t-15">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-15"/>
-    </all>
-    <all id="a0-t-16">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-16"/>
-    </all>
-    <all id="a0-t-17">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-17"/>
-    </all>
-    <all id="a0-t-18">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-18"/>
-    </all>
-    <all id="a0-t-19">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-19"/>
-    </all>
-    <all id="a0-t-20">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-20"/>
-    </all>
-    <all id="a0-t-21">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-21"/>
-    </all>
-    <all id="a0-t-22">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-22"/>
-    </all>
-    <all id="a0-t-23">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-23"/>
-    </all>
-    <all id="a0-t-24">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-24"/>
-    </all>
-    <all id="a0-t-25">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-25"/>
-    </all>
-    <all id="a0-t-26">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-26"/>
-    </all>
-    <all id="a0-t-27">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-27"/>
-    </all>
-    <all id="a0-t-28">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-28"/>
-    </all>
-    <all id="a0-t-29">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-29"/>
-    </all>
-    <all id="a0-t-30">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-30"/>
-    </all>
-    <all id="a0-t-31">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-31"/>
-    </all>
-    <all id="a0-t-32">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-32"/>
-    </all>
-    <all id="a0-t-33">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-33"/>
-    </all>
-    <all id="a0-t-34">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-34"/>
-    </all>
-    <all id="a0-t-35">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-35"/>
-    </all>
-    <all id="a0-t-36">
-        <filter id="using-arena-layout-0"/>
-        <filter id="t-36"/>
-    </all>
-
-    <all id="a1-t-00">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-00"/>
-    </all>
-    <all id="a1-t-01">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-01"/>
-    </all>
-    <all id="a1-t-02">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-02"/>
-    </all>
-    <all id="a1-t-03">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-03"/>
-    </all>
-    <all id="a1-t-04">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-04"/>
-    </all>
-    <all id="a1-t-05">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-05"/>
-    </all>
-    <all id="a1-t-06">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-06"/>
-    </all>
-    <all id="a1-t-07">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-07"/>
-    </all>
-    <all id="a1-t-08">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-08"/>
-    </all>
-    <all id="a1-t-09">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-09"/>
-    </all>
-    <all id="a1-t-10">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-10"/>
-    </all>
-    <all id="a1-t-11">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-11"/>
-    </all>
-    <all id="a1-t-12">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-12"/>
-    </all>
-    <all id="a1-t-13">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-13"/>
-    </all>
-    <all id="a1-t-14">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-14"/>
-    </all>
-    <all id="a1-t-15">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-15"/>
-    </all>
-    <all id="a1-t-16">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-16"/>
-    </all>
-    <all id="a1-t-17">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-17"/>
-    </all>
-    <all id="a1-t-18">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-18"/>
-    </all>
-    <all id="a1-t-19">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-19"/>
-    </all>
-    <all id="a1-t-20">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-20"/>
-    </all>
-    <all id="a1-t-21">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-21"/>
-    </all>
-    <all id="a1-t-22">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-22"/>
-    </all>
-    <all id="a1-t-23">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-23"/>
-    </all>
-    <all id="a1-t-24">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-24"/>
-    </all>
-    <all id="a1-t-25">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-25"/>
-    </all>
-    <all id="a1-t-26">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-26"/>
-    </all>
-    <all id="a1-t-27">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-27"/>
-    </all>
-    <all id="a1-t-28">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-28"/>
-    </all>
-    <all id="a1-t-29">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-29"/>
-    </all>
-    <all id="a1-t-30">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-30"/>
-    </all>
-    <all id="a1-t-31">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-31"/>
-    </all>
-    <all id="a1-t-32">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-32"/>
-    </all>
-    <all id="a1-t-33">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-33"/>
-    </all>
-    <all id="a1-t-34">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-34"/>
-    </all>
-    <all id="a1-t-35">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-35"/>
-    </all>
-    <all id="a1-t-36">
-        <filter id="using-arena-layout-1"/>
-        <filter id="t-36"/>
-    </all>
+    <not id="no-cactus">
+        <material>cactus</material>
+    </not>
+    <not id="trigger-arena">
+        <time>3s</time>
+    </not>
 </filters>
 <regions>
-    <cuboid id="a0-rb-36" min="-500,11,323" size="5,2,5"/>
-    <complement id="a0-rb-35"><cuboid id="a0-b-35" min="-501,11,322" size="7,2,7"/><region id="a0-rb-36"/></complement>
-    <complement id="a0-rb-34"><cuboid id="a0-b-34" min="-502,11,321" size="9,2,9"/><region id="a0-b-35"/></complement>
-    <complement id="a0-rb-33"><cuboid id="a0-b-33" min="-503,11,320" size="11,2,11"/><region id="a0-b-34"/></complement>
-    <complement id="a0-rb-32"><cuboid id="a0-b-32" min="-504,11,319" size="13,2,13"/><region id="a0-b-33"/></complement>
-    <complement id="a0-rb-31"><cuboid id="a0-b-31" min="-505,11,318" size="15,2,15"/><region id="a0-b-32"/></complement>
-    <complement id="a0-rb-30"><cuboid id="a0-b-30" min="-506,11,317" size="17,2,17"/><region id="a0-b-31"/></complement>
-    <complement id="a0-rb-29"><cuboid id="a0-b-29" min="-507,11,316" size="19,2,19"/><region id="a0-b-30"/></complement>
-    <complement id="a0-rb-28"><cuboid id="a0-b-28" min="-508,11,315" size="21,2,21"/><region id="a0-b-29"/></complement>
-    <complement id="a0-rb-27"><cuboid id="a0-b-27" min="-509,11,314" size="23,2,23"/><region id="a0-b-28"/></complement>
-    <complement id="a0-rb-26"><cuboid id="a0-b-26" min="-510,11,313" size="25,2,25"/><region id="a0-b-27"/></complement>
-    <complement id="a0-rb-25"><cuboid id="a0-b-25" min="-511,11,312" size="27,2,27"/><region id="a0-b-26"/></complement>
-    <complement id="a0-rb-24"><cuboid id="a0-b-24" min="-512,11,311" size="29,2,29"/><region id="a0-b-25"/></complement>
-    <complement id="a0-rb-23"><cuboid id="a0-b-23" min="-513,11,310" size="31,2,31"/><region id="a0-b-24"/></complement>
-    <complement id="a0-rb-22"><cuboid id="a0-b-22" min="-514,11,309" size="33,2,33"/><region id="a0-b-23"/></complement>
-    <complement id="a0-rb-21"><cuboid id="a0-b-21" min="-515,11,308" size="35,2,35"/><region id="a0-b-22"/></complement>
-    <complement id="a0-rb-20"><cuboid id="a0-b-20" min="-516,11,307" size="37,2,37"/><region id="a0-b-21"/></complement>
-    <complement id="a0-rb-19"><cuboid id="a0-b-19" min="-517,11,306" size="39,2,39"/><region id="a0-b-20"/></complement>
-    <complement id="a0-rb-18"><cuboid id="a0-b-18" min="-518,11,305" size="41,2,41"/><region id="a0-b-19"/></complement>
-    <complement id="a0-rb-17"><cuboid id="a0-b-17" min="-519,11,304" size="43,2,43"/><region id="a0-b-18"/></complement>
-    <complement id="a0-rb-16"><cuboid id="a0-b-16" min="-520,11,303" size="45,2,45"/><region id="a0-b-17"/></complement>
-    <complement id="a0-rb-15"><cuboid id="a0-b-15" min="-521,11,302" size="47,2,47"/><region id="a0-b-16"/></complement>
-    <complement id="a0-rb-14"><cuboid id="a0-b-14" min="-522,11,301" size="49,2,49"/><region id="a0-b-15"/></complement>
-    <complement id="a0-rb-13"><cuboid id="a0-b-13" min="-523,11,300" size="51,2,51"/><region id="a0-b-14"/></complement>
-    <complement id="a0-rb-12"><cuboid id="a0-b-12" min="-524,11,299" size="53,2,53"/><region id="a0-b-13"/></complement>
-    <complement id="a0-rb-11"><cuboid id="a0-b-11" min="-525,11,298" size="55,2,55"/><region id="a0-b-12"/></complement>
-    <complement id="a0-rb-10"><cuboid id="a0-b-10" min="-526,11,297" size="57,2,57"/><region id="a0-b-11"/></complement>
-    <complement id="a0-rb-09"><cuboid id="a0-b-09" min="-527,11,296" size="59,2,59"/><region id="a0-b-10"/></complement>
-    <complement id="a0-rb-08"><cuboid id="a0-b-08" min="-528,11,295" size="61,2,61"/><region id="a0-b-09"/></complement>
-    <complement id="a0-rb-07"><cuboid id="a0-b-07" min="-529,11,294" size="63,2,63"/><region id="a0-b-08"/></complement>
-    <complement id="a0-rb-06"><cuboid id="a0-b-06" min="-530,11,293" size="65,2,65"/><region id="a0-b-07"/></complement>
-    <complement id="a0-rb-05"><cuboid id="a0-b-05" min="-531,11,292" size="67,2,67"/><region id="a0-b-06"/></complement>
-    <complement id="a0-rb-04"><cuboid id="a0-b-04" min="-532,11,291" size="69,2,69"/><region id="a0-b-05"/></complement>
-    <complement id="a0-rb-03"><cuboid id="a0-b-03" min="-533,11,290" size="71,2,71"/><region id="a0-b-04"/></complement>
-    <complement id="a0-rb-02"><cuboid id="a0-b-02" min="-534,11,289" size="73,2,73"/><region id="a0-b-03"/></complement>
-    <complement id="a0-rb-01"><cuboid id="a0-b-01" min="-535,11,288" size="75,2,75"/><region id="a0-b-02"/></complement>
-
-    <cylinder id="a1-rb-36" base="-497.5,11,325.5" radius="3" height="2"/>
-    <complement id="a1-rb-35"><cylinder id="a1-b-35" base="-497.5,11,325.5" radius="4" height="2"/><region id="a1-rb-36"/></complement>
-    <complement id="a1-rb-34"><cylinder id="a1-b-34" base="-497.5,11,325.5" radius="5" height="2"/><region id="a1-b-35"/></complement>
-    <complement id="a1-rb-33"><cylinder id="a1-b-33" base="-497.5,11,325.5" radius="6" height="2"/><region id="a1-b-34"/></complement>
-    <complement id="a1-rb-32"><cylinder id="a1-b-32" base="-497.5,11,325.5" radius="7" height="2"/><region id="a1-b-33"/></complement>
-    <complement id="a1-rb-31"><cylinder id="a1-b-31" base="-497.5,11,325.5" radius="8" height="2"/><region id="a1-b-32"/></complement>
-    <complement id="a1-rb-30"><cylinder id="a1-b-30" base="-497.5,11,325.5" radius="9" height="2"/><region id="a1-b-31"/></complement>
-    <complement id="a1-rb-29"><cylinder id="a1-b-29" base="-497.5,11,325.5" radius="10" height="2"/><region id="a1-b-30"/></complement>
-    <complement id="a1-rb-28"><cylinder id="a1-b-28" base="-497.5,11,325.5" radius="11" height="2"/><region id="a1-b-29"/></complement>
-    <complement id="a1-rb-27"><cylinder id="a1-b-27" base="-497.5,11,325.5" radius="12" height="2"/><region id="a1-b-28"/></complement>
-    <complement id="a1-rb-26"><cylinder id="a1-b-26" base="-497.5,11,325.5" radius="13" height="2"/><region id="a1-b-27"/></complement>
-    <complement id="a1-rb-25"><cylinder id="a1-b-25" base="-497.5,11,325.5" radius="14" height="2"/><region id="a1-b-26"/></complement>
-    <complement id="a1-rb-24"><cylinder id="a1-b-24" base="-497.5,11,325.5" radius="15" height="2"/><region id="a1-b-25"/></complement>
-    <complement id="a1-rb-23"><cylinder id="a1-b-23" base="-497.5,11,325.5" radius="16" height="2"/><region id="a1-b-24"/></complement>
-    <complement id="a1-rb-22"><cylinder id="a1-b-22" base="-497.5,11,325.5" radius="17" height="2"/><region id="a1-b-23"/></complement>
-    <complement id="a1-rb-21"><cylinder id="a1-b-21" base="-497.5,11,325.5" radius="18" height="2"/><region id="a1-b-22"/></complement>
-    <complement id="a1-rb-20"><cylinder id="a1-b-20" base="-497.5,11,325.5" radius="19" height="2"/><region id="a1-b-21"/></complement>
-    <complement id="a1-rb-19"><cylinder id="a1-b-19" base="-497.5,11,325.5" radius="20" height="2"/><region id="a1-b-20"/></complement>
-    <complement id="a1-rb-18"><cylinder id="a1-b-18" base="-497.5,11,325.5" radius="21" height="2"/><region id="a1-b-19"/></complement>
-    <complement id="a1-rb-17"><cylinder id="a1-b-17" base="-497.5,11,325.5" radius="22" height="2"/><region id="a1-b-18"/></complement>
-    <complement id="a1-rb-16"><cylinder id="a1-b-16" base="-497.5,11,325.5" radius="23" height="2"/><region id="a1-b-17"/></complement>
-    <complement id="a1-rb-15"><cylinder id="a1-b-15" base="-497.5,11,325.5" radius="24" height="2"/><region id="a1-b-16"/></complement>
-    <complement id="a1-rb-14"><cylinder id="a1-b-14" base="-497.5,11,325.5" radius="25" height="2"/><region id="a1-b-15"/></complement>
-    <complement id="a1-rb-13"><cylinder id="a1-b-13" base="-497.5,11,325.5" radius="26" height="2"/><region id="a1-b-14"/></complement>
-    <complement id="a1-rb-12"><cylinder id="a1-b-12" base="-497.5,11,325.5" radius="27" height="2"/><region id="a1-b-13"/></complement>
-    <complement id="a1-rb-11"><cylinder id="a1-b-11" base="-497.5,11,325.5" radius="28" height="2"/><region id="a1-b-12"/></complement>
-    <complement id="a1-rb-10"><cylinder id="a1-b-10" base="-497.5,11,325.5" radius="29" height="2"/><region id="a1-b-11"/></complement>
-    <complement id="a1-rb-09"><cylinder id="a1-b-09" base="-497.5,11,325.5" radius="30" height="2"/><region id="a1-b-10"/></complement>
-    <complement id="a1-rb-08"><cylinder id="a1-b-08" base="-497.5,11,325.5" radius="31" height="2"/><region id="a1-b-09"/></complement>
-    <complement id="a1-rb-07"><cylinder id="a1-b-07" base="-497.5,11,325.5" radius="32" height="2"/><region id="a1-b-08"/></complement>
-    <complement id="a1-rb-06"><cylinder id="a1-b-06" base="-497.5,11,325.5" radius="33" height="2"/><region id="a1-b-07"/></complement>
-    <complement id="a1-rb-05"><cylinder id="a1-b-05" base="-497.5,11,325.5" radius="34" height="2"/><region id="a1-b-06"/></complement>
-    <complement id="a1-rb-04"><cylinder id="a1-b-04" base="-497.5,11,325.5" radius="35" height="2"/><region id="a1-b-05"/></complement>
-    <complement id="a1-rb-03"><cylinder id="a1-b-03" base="-497.5,11,325.5" radius="36" height="2"/><region id="a1-b-04"/></complement>
-    <complement id="a1-rb-02"><cylinder id="a1-b-02" base="-497.5,11,325.5" radius="37" height="2"/><region id="a1-b-03"/></complement>
-    <complement id="a1-rb-01"><cylinder id="a1-b-01" base="-497.5,11,325.5" radius="38" height="2"/><region id="a1-b-02"/></complement>
-
+    <cuboid id="r-1" min="-500,11,323" size="5,2,5"/>
+    <complement id="r-2"><cuboid id="s-2" min="-501,11,322" size="7,2,7"/><region id="r-1"/></complement>
+    <complement id="r-3"><cuboid id="s-3" min="-502,11,321" size="9,2,9"/><region id="s-2"/></complement>
+    <complement id="r-4"><cuboid id="s-4" min="-503,11,320" size="11,2,11"/><region id="s-3"/></complement>
+    <complement id="r-5"><cuboid id="s-5" min="-504,11,319" size="13,2,13"/><region id="s-4"/></complement>
+    <complement id="r-6"><cuboid id="s-6" min="-505,11,318" size="15,2,15"/><region id="s-5"/></complement>
+    <complement id="r-7"><cuboid id="s-7" min="-506,11,317" size="17,2,17"/><region id="s-6"/></complement>
+    <complement id="r-8"><cuboid id="s-8" min="-507,11,316" size="19,2,19"/><region id="s-7"/></complement>
+    <complement id="r-9"><cuboid id="s-9" min="-508,11,315" size="21,2,21"/><region id="s-8"/></complement>
+    <complement id="r-10"><cuboid id="s-10" min="-509,11,314" size="23,2,23"/><region id="s-9"/></complement>
+    <complement id="r-11"><cuboid id="s-11" min="-510,11,313" size="25,2,25"/><region id="s-10"/></complement>
+    <complement id="r-12"><cuboid id="s-12" min="-511,11,312" size="27,2,27"/><region id="s-11"/></complement>
+    <complement id="r-13"><cuboid id="s-13" min="-512,11,311" size="29,2,29"/><region id="s-12"/></complement>
+    <complement id="r-14"><cuboid id="s-14" min="-513,11,310" size="31,2,31"/><region id="s-13"/></complement>
+    <complement id="r-15"><cuboid id="s-15" min="-514,11,309" size="33,2,33"/><region id="s-14"/></complement>
+    <complement id="r-16"><cuboid id="s-16" min="-515,11,308" size="35,2,35"/><region id="s-15"/></complement>
+    <complement id="r-17"><cuboid id="s-17" min="-516,11,307" size="37,2,37"/><region id="s-16"/></complement>
+    <complement id="r-18"><cuboid id="s-18" min="-517,11,306" size="39,2,39"/><region id="s-17"/></complement>
+    <complement id="r-19"><cuboid id="s-19" min="-518,11,305" size="41,2,41"/><region id="s-18"/></complement>
+    <complement id="r-20"><cuboid id="s-20" min="-519,11,304" size="43,2,43"/><region id="s-19"/></complement>
+    <complement id="r-21"><cuboid id="s-21" min="-520,11,303" size="45,2,45"/><region id="s-20"/></complement>
+    <complement id="r-22"><cuboid id="s-22" min="-521,11,302" size="47,2,47"/><region id="s-21"/></complement>
+    <complement id="r-23"><cuboid id="s-23" min="-522,11,301" size="49,2,49"/><region id="s-22"/></complement>
+    <complement id="r-24"><cuboid id="s-24" min="-523,11,300" size="51,2,51"/><region id="s-23"/></complement>
+    <complement id="r-25"><cuboid id="s-25" min="-524,11,299" size="53,2,53"/><region id="s-24"/></complement>
+    <complement id="r-26"><cuboid id="s-26" min="-525,11,298" size="55,2,55"/><region id="s-25"/></complement>
+    <complement id="r-27"><cuboid id="s-27" min="-526,11,297" size="57,2,57"/><region id="s-26"/></complement>
+    <complement id="r-28"><cuboid id="s-28" min="-527,11,296" size="59,2,59"/><region id="s-27"/></complement>
+    <complement id="r-29"><cuboid id="s-29" min="-528,11,295" size="61,2,61"/><region id="s-28"/></complement>
+    <complement id="r-30"><cuboid id="s-30" min="-529,11,294" size="63,2,63"/><region id="s-29"/></complement>
+    <complement id="r-31"><cuboid id="s-31" min="-530,11,293" size="65,2,65"/><region id="s-30"/></complement>
+    <complement id="r-32"><cuboid id="s-32" min="-531,11,292" size="67,2,67"/><region id="s-31"/></complement>
+    <complement id="r-33"><cuboid id="s-33" min="-532,11,291" size="69,2,69"/><region id="s-32"/></complement>
+    <complement id="r-34"><cuboid id="s-34" min="-533,11,290" size="71,2,71"/><region id="s-33"/></complement>
+    <complement id="r-35"><cuboid id="s-35" min="-534,11,289" size="73,2,73"/><region id="s-34"/></complement>
+    <point id="trigger-n">-497.5,12,287.5</point>
+    <point id="trigger-s">-497.5,12,363.5</point>
+    <point id="trigger-e">-459.5,12,325.5</point>
+    <point id="trigger-w">-535.5,12,325.5</point>
     <point id="center">-497.5,13,325.5</point>
     <above id="playable-region" y="10"/>
     <below id="lava-region" y="10"/>
     <apply region="playable-region" block="allowed-interactions"/>
     <apply region="lava-region" block="never"/>
 </regions>
-<variables>
-    <variable id="arena_layout" default="1" scope="match"/>
-</variables>
-<structures>
-    <structure id="arena-struct-0"> <!-- square -->
-        <region>
-            <cuboid min="-535,15,288" size="75,2,75"/>
-        </region>
-    </structure>
-    <structure id="arena-struct-1"> <!-- circle -->
-        <region>
-            <cuboid min="-535,19,288" size="75,2,75"/>
-        </region>
-    </structure>
-
-    <dynamic structure="arena-struct-0" filter="using-arena-layout-0" offset="0,-4,0"/>
-    <dynamic structure="arena-struct-1" filter="using-arena-layout-1" offset="0,-8,0"/>
-</structures>
-<actions>
-    <set id="set-arena-layout" var="arena_layout" value="floor(random() * 2)" scope="match"/>
-    <trigger filter="always" action="set-arena-layout" scope="match"/>
-
-    <!-- arena layout 0 (square) -->
-    <fill id="a0-fg-01" region="a0-rb-01" material="sand:1"/>
-    <fill id="a0-fg-02" region="a0-rb-02" material="sand:1"/>
-    <fill id="a0-fg-03" region="a0-rb-03" material="sand:1"/>
-    <fill id="a0-fg-04" region="a0-rb-04" material="sand:1"/>
-    <fill id="a0-fg-05" region="a0-rb-05" material="sand:1"/>
-    <fill id="a0-fg-06" region="a0-rb-06" material="sand:1"/>
-    <fill id="a0-fg-07" region="a0-rb-07" material="sand:1"/>
-    <fill id="a0-fg-08" region="a0-rb-08" material="sand:1"/>
-    <fill id="a0-fg-09" region="a0-rb-09" material="sand:1"/>
-    <fill id="a0-fg-10" region="a0-rb-10" material="sand:1"/>
-    <fill id="a0-fg-11" region="a0-rb-11" material="sand:1"/>
-    <fill id="a0-fg-12" region="a0-rb-12" material="sand:1"/>
-    <fill id="a0-fg-13" region="a0-rb-13" material="sand:1"/>
-    <fill id="a0-fg-14" region="a0-rb-14" material="sand:1"/>
-    <fill id="a0-fg-15" region="a0-rb-15" material="sand:1"/>
-    <fill id="a0-fg-16" region="a0-rb-16" material="sand:1"/>
-    <fill id="a0-fg-17" region="a0-rb-17" material="sand:1"/>
-    <fill id="a0-fg-18" region="a0-rb-18" material="sand:1"/>
-    <fill id="a0-fg-19" region="a0-rb-19" material="sand:1"/>
-    <fill id="a0-fg-20" region="a0-rb-20" material="sand:1"/>
-    <fill id="a0-fg-21" region="a0-rb-21" material="sand:1"/>
-    <fill id="a0-fg-22" region="a0-rb-22" material="sand:1"/>
-    <fill id="a0-fg-23" region="a0-rb-23" material="sand:1"/>
-    <fill id="a0-fg-24" region="a0-rb-24" material="sand:1"/>
-    <fill id="a0-fg-25" region="a0-rb-25" material="sand:1"/>
-    <fill id="a0-fg-26" region="a0-rb-26" material="sand:1"/>
-    <fill id="a0-fg-27" region="a0-rb-27" material="sand:1"/>
-    <fill id="a0-fg-28" region="a0-rb-28" material="sand:1"/>
-    <fill id="a0-fg-29" region="a0-rb-29" material="sand:1"/>
-    <fill id="a0-fg-30" region="a0-rb-30" material="sand:1"/>
-    <fill id="a0-fg-31" region="a0-rb-31" material="sand:1"/>
-    <fill id="a0-fg-32" region="a0-rb-32" material="sand:1"/>
-    <fill id="a0-fg-33" region="a0-rb-33" material="sand:1"/>
-    <fill id="a0-fg-34" region="a0-rb-34" material="sand:1"/>
-    <fill id="a0-fg-35" region="a0-rb-35" material="sand:1"/>
-    <fill id="a0-fg-36" region="a0-rb-36" material="sand:1"/>
-    <trigger filter="a0-t-00" action="a0-fg-01" scope="match"/>
-    <trigger filter="a0-t-01" action="a0-fg-02" scope="match"/>
-    <trigger filter="a0-t-02" action="a0-fg-03" scope="match"/>
-    <trigger filter="a0-t-03" action="a0-fg-04" scope="match"/>
-    <trigger filter="a0-t-04" action="a0-fg-05" scope="match"/>
-    <trigger filter="a0-t-05" action="a0-fg-06" scope="match"/>
-    <trigger filter="a0-t-06" action="a0-fg-07" scope="match"/>
-    <trigger filter="a0-t-07" action="a0-fg-08" scope="match"/>
-    <trigger filter="a0-t-08" action="a0-fg-09" scope="match"/>
-    <trigger filter="a0-t-09" action="a0-fg-10" scope="match"/>
-    <trigger filter="a0-t-10" action="a0-fg-11" scope="match"/>
-    <trigger filter="a0-t-11" action="a0-fg-12" scope="match"/>
-    <trigger filter="a0-t-12" action="a0-fg-13" scope="match"/>
-    <trigger filter="a0-t-13" action="a0-fg-14" scope="match"/>
-    <trigger filter="a0-t-14" action="a0-fg-15" scope="match"/>
-    <trigger filter="a0-t-15" action="a0-fg-16" scope="match"/>
-    <trigger filter="a0-t-16" action="a0-fg-17" scope="match"/>
-    <trigger filter="a0-t-17" action="a0-fg-18" scope="match"/>
-    <trigger filter="a0-t-18" action="a0-fg-19" scope="match"/>
-    <trigger filter="a0-t-19" action="a0-fg-20" scope="match"/>
-    <trigger filter="a0-t-20" action="a0-fg-21" scope="match"/>
-    <trigger filter="a0-t-21" action="a0-fg-22" scope="match"/>
-    <trigger filter="a0-t-22" action="a0-fg-23" scope="match"/>
-    <trigger filter="a0-t-23" action="a0-fg-24" scope="match"/>
-    <trigger filter="a0-t-24" action="a0-fg-25" scope="match"/>
-    <trigger filter="a0-t-25" action="a0-fg-26" scope="match"/>
-    <trigger filter="a0-t-26" action="a0-fg-27" scope="match"/>
-    <trigger filter="a0-t-27" action="a0-fg-28" scope="match"/>
-    <trigger filter="a0-t-28" action="a0-fg-29" scope="match"/>
-    <trigger filter="a0-t-29" action="a0-fg-30" scope="match"/>
-    <trigger filter="a0-t-30" action="a0-fg-31" scope="match"/>
-    <trigger filter="a0-t-31" action="a0-fg-32" scope="match"/>
-    <trigger filter="a0-t-32" action="a0-fg-33" scope="match"/>
-    <trigger filter="a0-t-33" action="a0-fg-34" scope="match"/>
-    <trigger filter="a0-t-34" action="a0-fg-35" scope="match"/>
-    <!-- <trigger filter="a0-t-35" action="a0-fg-36" scope="match"/> -->
-    <fill id="a0-fb-01" region="a0-rb-01" material="air"/>
-    <fill id="a0-fb-02" region="a0-rb-02" material="air"/>
-    <fill id="a0-fb-03" region="a0-rb-03" material="air"/>
-    <fill id="a0-fb-04" region="a0-rb-04" material="air"/>
-    <fill id="a0-fb-05" region="a0-rb-05" material="air"/>
-    <fill id="a0-fb-06" region="a0-rb-06" material="air"/>
-    <fill id="a0-fb-07" region="a0-rb-07" material="air"/>
-    <fill id="a0-fb-08" region="a0-rb-08" material="air"/>
-    <fill id="a0-fb-09" region="a0-rb-09" material="air"/>
-    <fill id="a0-fb-10" region="a0-rb-10" material="air"/>
-    <fill id="a0-fb-11" region="a0-rb-11" material="air"/>
-    <fill id="a0-fb-12" region="a0-rb-12" material="air"/>
-    <fill id="a0-fb-13" region="a0-rb-13" material="air"/>
-    <fill id="a0-fb-14" region="a0-rb-14" material="air"/>
-    <fill id="a0-fb-15" region="a0-rb-15" material="air"/>
-    <fill id="a0-fb-16" region="a0-rb-16" material="air"/>
-    <fill id="a0-fb-17" region="a0-rb-17" material="air"/>
-    <fill id="a0-fb-18" region="a0-rb-18" material="air"/>
-    <fill id="a0-fb-19" region="a0-rb-19" material="air"/>
-    <fill id="a0-fb-20" region="a0-rb-20" material="air"/>
-    <fill id="a0-fb-21" region="a0-rb-21" material="air"/>
-    <fill id="a0-fb-22" region="a0-rb-22" material="air"/>
-    <fill id="a0-fb-23" region="a0-rb-23" material="air"/>
-    <fill id="a0-fb-24" region="a0-rb-24" material="air"/>
-    <fill id="a0-fb-25" region="a0-rb-25" material="air"/>
-    <fill id="a0-fb-26" region="a0-rb-26" material="air"/>
-    <fill id="a0-fb-27" region="a0-rb-27" material="air"/>
-    <fill id="a0-fb-28" region="a0-rb-28" material="air"/>
-    <fill id="a0-fb-29" region="a0-rb-29" material="air"/>
-    <fill id="a0-fb-30" region="a0-rb-30" material="air"/>
-    <fill id="a0-fb-31" region="a0-rb-31" material="air"/>
-    <fill id="a0-fb-32" region="a0-rb-32" material="air"/>
-    <fill id="a0-fb-33" region="a0-rb-33" material="air"/>
-    <fill id="a0-fb-34" region="a0-rb-34" material="air"/>
-    <fill id="a0-fb-35" region="a0-rb-35" material="air"/>
-    <trigger filter="a0-t-01" action="a0-fb-01" scope="match"/>
-    <trigger filter="a0-t-02" action="a0-fb-02" scope="match"/>
-    <trigger filter="a0-t-03" action="a0-fb-03" scope="match"/>
-    <trigger filter="a0-t-04" action="a0-fb-04" scope="match"/>
-    <trigger filter="a0-t-05" action="a0-fb-05" scope="match"/>
-    <trigger filter="a0-t-06" action="a0-fb-06" scope="match"/>
-    <trigger filter="a0-t-07" action="a0-fb-07" scope="match"/>
-    <trigger filter="a0-t-08" action="a0-fb-08" scope="match"/>
-    <trigger filter="a0-t-09" action="a0-fb-09" scope="match"/>
-    <trigger filter="a0-t-10" action="a0-fb-10" scope="match"/>
-    <trigger filter="a0-t-11" action="a0-fb-11" scope="match"/>
-    <trigger filter="a0-t-12" action="a0-fb-12" scope="match"/>
-    <trigger filter="a0-t-13" action="a0-fb-13" scope="match"/>
-    <trigger filter="a0-t-14" action="a0-fb-14" scope="match"/>
-    <trigger filter="a0-t-15" action="a0-fb-15" scope="match"/>
-    <trigger filter="a0-t-16" action="a0-fb-16" scope="match"/>
-    <trigger filter="a0-t-17" action="a0-fb-17" scope="match"/>
-    <trigger filter="a0-t-18" action="a0-fb-18" scope="match"/>
-    <trigger filter="a0-t-19" action="a0-fb-19" scope="match"/>
-    <trigger filter="a0-t-20" action="a0-fb-20" scope="match"/>
-    <trigger filter="a0-t-21" action="a0-fb-21" scope="match"/>
-    <trigger filter="a0-t-22" action="a0-fb-22" scope="match"/>
-    <trigger filter="a0-t-23" action="a0-fb-23" scope="match"/>
-    <trigger filter="a0-t-24" action="a0-fb-24" scope="match"/>
-    <trigger filter="a0-t-25" action="a0-fb-25" scope="match"/>
-    <trigger filter="a0-t-26" action="a0-fb-26" scope="match"/>
-    <trigger filter="a0-t-27" action="a0-fb-27" scope="match"/>
-    <trigger filter="a0-t-28" action="a0-fb-28" scope="match"/>
-    <trigger filter="a0-t-29" action="a0-fb-29" scope="match"/>
-    <trigger filter="a0-t-30" action="a0-fb-30" scope="match"/>
-    <trigger filter="a0-t-31" action="a0-fb-31" scope="match"/>
-    <trigger filter="a0-t-32" action="a0-fb-32" scope="match"/>
-    <trigger filter="a0-t-33" action="a0-fb-33" scope="match"/>
-    <trigger filter="a0-t-34" action="a0-fb-34" scope="match"/>
-    <trigger filter="a0-t-35" action="a0-fb-35" scope="match"/>
-
-    <!-- arena layout 1 (circle) -->
-    <fill id="a1-fg-01" region="a1-rb-01" material="sand:1"/>
-    <fill id="a1-fg-02" region="a1-rb-02" material="sand:1"/>
-    <fill id="a1-fg-03" region="a1-rb-03" material="sand:1"/>
-    <fill id="a1-fg-04" region="a1-rb-04" material="sand:1"/>
-    <fill id="a1-fg-05" region="a1-rb-05" material="sand:1"/>
-    <fill id="a1-fg-06" region="a1-rb-06" material="sand:1"/>
-    <fill id="a1-fg-07" region="a1-rb-07" material="sand:1"/>
-    <fill id="a1-fg-08" region="a1-rb-08" material="sand:1"/>
-    <fill id="a1-fg-09" region="a1-rb-09" material="sand:1"/>
-    <fill id="a1-fg-10" region="a1-rb-10" material="sand:1"/>
-    <fill id="a1-fg-11" region="a1-rb-11" material="sand:1"/>
-    <fill id="a1-fg-12" region="a1-rb-12" material="sand:1"/>
-    <fill id="a1-fg-13" region="a1-rb-13" material="sand:1"/>
-    <fill id="a1-fg-14" region="a1-rb-14" material="sand:1"/>
-    <fill id="a1-fg-15" region="a1-rb-15" material="sand:1"/>
-    <fill id="a1-fg-16" region="a1-rb-16" material="sand:1"/>
-    <fill id="a1-fg-17" region="a1-rb-17" material="sand:1"/>
-    <fill id="a1-fg-18" region="a1-rb-18" material="sand:1"/>
-    <fill id="a1-fg-19" region="a1-rb-19" material="sand:1"/>
-    <fill id="a1-fg-20" region="a1-rb-20" material="sand:1"/>
-    <fill id="a1-fg-21" region="a1-rb-21" material="sand:1"/>
-    <fill id="a1-fg-22" region="a1-rb-22" material="sand:1"/>
-    <fill id="a1-fg-23" region="a1-rb-23" material="sand:1"/>
-    <fill id="a1-fg-24" region="a1-rb-24" material="sand:1"/>
-    <fill id="a1-fg-25" region="a1-rb-25" material="sand:1"/>
-    <fill id="a1-fg-26" region="a1-rb-26" material="sand:1"/>
-    <fill id="a1-fg-27" region="a1-rb-27" material="sand:1"/>
-    <fill id="a1-fg-28" region="a1-rb-28" material="sand:1"/>
-    <fill id="a1-fg-29" region="a1-rb-29" material="sand:1"/>
-    <fill id="a1-fg-30" region="a1-rb-30" material="sand:1"/>
-    <fill id="a1-fg-31" region="a1-rb-31" material="sand:1"/>
-    <fill id="a1-fg-32" region="a1-rb-32" material="sand:1"/>
-    <fill id="a1-fg-33" region="a1-rb-33" material="sand:1"/>
-    <fill id="a1-fg-34" region="a1-rb-34" material="sand:1"/>
-    <fill id="a1-fg-35" region="a1-rb-35" material="sand:1"/>
-    <fill id="a1-fg-36" region="a1-rb-36" material="sand:1"/>
-    <trigger filter="a1-t-00" action="a1-fg-01" scope="match"/>
-    <trigger filter="a1-t-01" action="a1-fg-02" scope="match"/>
-    <trigger filter="a1-t-02" action="a1-fg-03" scope="match"/>
-    <trigger filter="a1-t-03" action="a1-fg-04" scope="match"/>
-    <trigger filter="a1-t-04" action="a1-fg-05" scope="match"/>
-    <trigger filter="a1-t-05" action="a1-fg-06" scope="match"/>
-    <trigger filter="a1-t-06" action="a1-fg-07" scope="match"/>
-    <trigger filter="a1-t-07" action="a1-fg-08" scope="match"/>
-    <trigger filter="a1-t-08" action="a1-fg-09" scope="match"/>
-    <trigger filter="a1-t-09" action="a1-fg-10" scope="match"/>
-    <trigger filter="a1-t-10" action="a1-fg-11" scope="match"/>
-    <trigger filter="a1-t-11" action="a1-fg-12" scope="match"/>
-    <trigger filter="a1-t-12" action="a1-fg-13" scope="match"/>
-    <trigger filter="a1-t-13" action="a1-fg-14" scope="match"/>
-    <trigger filter="a1-t-14" action="a1-fg-15" scope="match"/>
-    <trigger filter="a1-t-15" action="a1-fg-16" scope="match"/>
-    <trigger filter="a1-t-16" action="a1-fg-17" scope="match"/>
-    <trigger filter="a1-t-17" action="a1-fg-18" scope="match"/>
-    <trigger filter="a1-t-18" action="a1-fg-19" scope="match"/>
-    <trigger filter="a1-t-19" action="a1-fg-20" scope="match"/>
-    <trigger filter="a1-t-20" action="a1-fg-21" scope="match"/>
-    <trigger filter="a1-t-21" action="a1-fg-22" scope="match"/>
-    <trigger filter="a1-t-22" action="a1-fg-23" scope="match"/>
-    <trigger filter="a1-t-23" action="a1-fg-24" scope="match"/>
-    <trigger filter="a1-t-24" action="a1-fg-25" scope="match"/>
-    <trigger filter="a1-t-25" action="a1-fg-26" scope="match"/>
-    <trigger filter="a1-t-26" action="a1-fg-27" scope="match"/>
-    <trigger filter="a1-t-27" action="a1-fg-28" scope="match"/>
-    <trigger filter="a1-t-28" action="a1-fg-29" scope="match"/>
-    <trigger filter="a1-t-29" action="a1-fg-30" scope="match"/>
-    <trigger filter="a1-t-30" action="a1-fg-31" scope="match"/>
-    <trigger filter="a1-t-31" action="a1-fg-32" scope="match"/>
-    <trigger filter="a1-t-32" action="a1-fg-33" scope="match"/>
-    <trigger filter="a1-t-33" action="a1-fg-34" scope="match"/>
-    <trigger filter="a1-t-34" action="a1-fg-35" scope="match"/>
-    <!-- <trigger filter="a1-t-35" action="a1-fg-36" scope="match"/> -->
-    <fill id="a1-fb-01" region="a1-rb-01" material="air"/>
-    <fill id="a1-fb-02" region="a1-rb-02" material="air"/>
-    <fill id="a1-fb-03" region="a1-rb-03" material="air"/>
-    <fill id="a1-fb-04" region="a1-rb-04" material="air"/>
-    <fill id="a1-fb-05" region="a1-rb-05" material="air"/>
-    <fill id="a1-fb-06" region="a1-rb-06" material="air"/>
-    <fill id="a1-fb-07" region="a1-rb-07" material="air"/>
-    <fill id="a1-fb-08" region="a1-rb-08" material="air"/>
-    <fill id="a1-fb-09" region="a1-rb-09" material="air"/>
-    <fill id="a1-fb-10" region="a1-rb-10" material="air"/>
-    <fill id="a1-fb-11" region="a1-rb-11" material="air"/>
-    <fill id="a1-fb-12" region="a1-rb-12" material="air"/>
-    <fill id="a1-fb-13" region="a1-rb-13" material="air"/>
-    <fill id="a1-fb-14" region="a1-rb-14" material="air"/>
-    <fill id="a1-fb-15" region="a1-rb-15" material="air"/>
-    <fill id="a1-fb-16" region="a1-rb-16" material="air"/>
-    <fill id="a1-fb-17" region="a1-rb-17" material="air"/>
-    <fill id="a1-fb-18" region="a1-rb-18" material="air"/>
-    <fill id="a1-fb-19" region="a1-rb-19" material="air"/>
-    <fill id="a1-fb-20" region="a1-rb-20" material="air"/>
-    <fill id="a1-fb-21" region="a1-rb-21" material="air"/>
-    <fill id="a1-fb-22" region="a1-rb-22" material="air"/>
-    <fill id="a1-fb-23" region="a1-rb-23" material="air"/>
-    <fill id="a1-fb-24" region="a1-rb-24" material="air"/>
-    <fill id="a1-fb-25" region="a1-rb-25" material="air"/>
-    <fill id="a1-fb-26" region="a1-rb-26" material="air"/>
-    <fill id="a1-fb-27" region="a1-rb-27" material="air"/>
-    <fill id="a1-fb-28" region="a1-rb-28" material="air"/>
-    <fill id="a1-fb-29" region="a1-rb-29" material="air"/>
-    <fill id="a1-fb-30" region="a1-rb-30" material="air"/>
-    <fill id="a1-fb-31" region="a1-rb-31" material="air"/>
-    <fill id="a1-fb-32" region="a1-rb-32" material="air"/>
-    <fill id="a1-fb-33" region="a1-rb-33" material="air"/>
-    <fill id="a1-fb-34" region="a1-rb-34" material="air"/>
-    <fill id="a1-fb-35" region="a1-rb-35" material="air"/>
-    <trigger filter="a1-t-01" action="a1-fb-01" scope="match"/>
-    <trigger filter="a1-t-02" action="a1-fb-02" scope="match"/>
-    <trigger filter="a1-t-03" action="a1-fb-03" scope="match"/>
-    <trigger filter="a1-t-04" action="a1-fb-04" scope="match"/>
-    <trigger filter="a1-t-05" action="a1-fb-05" scope="match"/>
-    <trigger filter="a1-t-06" action="a1-fb-06" scope="match"/>
-    <trigger filter="a1-t-07" action="a1-fb-07" scope="match"/>
-    <trigger filter="a1-t-08" action="a1-fb-08" scope="match"/>
-    <trigger filter="a1-t-09" action="a1-fb-09" scope="match"/>
-    <trigger filter="a1-t-10" action="a1-fb-10" scope="match"/>
-    <trigger filter="a1-t-11" action="a1-fb-11" scope="match"/>
-    <trigger filter="a1-t-12" action="a1-fb-12" scope="match"/>
-    <trigger filter="a1-t-13" action="a1-fb-13" scope="match"/>
-    <trigger filter="a1-t-14" action="a1-fb-14" scope="match"/>
-    <trigger filter="a1-t-15" action="a1-fb-15" scope="match"/>
-    <trigger filter="a1-t-16" action="a1-fb-16" scope="match"/>
-    <trigger filter="a1-t-17" action="a1-fb-17" scope="match"/>
-    <trigger filter="a1-t-18" action="a1-fb-18" scope="match"/>
-    <trigger filter="a1-t-19" action="a1-fb-19" scope="match"/>
-    <trigger filter="a1-t-20" action="a1-fb-20" scope="match"/>
-    <trigger filter="a1-t-21" action="a1-fb-21" scope="match"/>
-    <trigger filter="a1-t-22" action="a1-fb-22" scope="match"/>
-    <trigger filter="a1-t-23" action="a1-fb-23" scope="match"/>
-    <trigger filter="a1-t-24" action="a1-fb-24" scope="match"/>
-    <trigger filter="a1-t-25" action="a1-fb-25" scope="match"/>
-    <trigger filter="a1-t-26" action="a1-fb-26" scope="match"/>
-    <trigger filter="a1-t-27" action="a1-fb-27" scope="match"/>
-    <trigger filter="a1-t-28" action="a1-fb-28" scope="match"/>
-    <trigger filter="a1-t-29" action="a1-fb-29" scope="match"/>
-    <trigger filter="a1-t-30" action="a1-fb-30" scope="match"/>
-    <trigger filter="a1-t-31" action="a1-fb-31" scope="match"/>
-    <trigger filter="a1-t-32" action="a1-fb-32" scope="match"/>
-    <trigger filter="a1-t-33" action="a1-fb-33" scope="match"/>
-    <trigger filter="a1-t-34" action="a1-fb-34" scope="match"/>
-    <trigger filter="a1-t-35" action="a1-fb-35" scope="match"/>
-</actions>
+<falling-blocks>
+    <rule delay="1">
+        <filter>
+            <any>
+                <material>stone:6</material>
+                <material>cactus</material>
+            </any>
+        </filter>
+    </rule>
+    <rule delay="80">
+        <filter>
+            <all>
+                <any>
+                    <material>bedrock</material>
+                    <material>sand</material>
+                </any>
+                <any>
+                    <all><region id="r-35"/></all>
+                    <all><region id="r-34"/><time>4s</time></all>
+                    <all><region id="r-33"/><time>8s</time></all>
+                    <all><region id="r-32"/><time>12s</time></all>
+                    <all><region id="r-31"/><time>16s</time></all>
+                    <all><region id="r-30"/><time>20s</time></all>
+                    <all><region id="r-29"/><time>24s</time></all>
+                    <all><region id="r-28"/><time>28s</time></all>
+                    <all><region id="r-27"/><time>32s</time></all>
+                    <all><region id="r-26"/><time>36s</time></all>
+                    <all><region id="r-25"/><time>40s</time></all>
+                    <all><region id="r-24"/><time>44s</time></all>
+                    <all><region id="r-23"/><time>48s</time></all>
+                    <all><region id="r-22"/><time>52s</time></all>
+                    <all><region id="r-21"/><time>56s</time></all>
+                    <all><region id="r-20"/><time>60s</time></all>
+                    <all><region id="r-19"/><time>64s</time></all>
+                    <all><region id="r-18"/><time>68s</time></all>
+                    <all><region id="r-17"/><time>72s</time></all>
+                    <all><region id="r-16"/><time>76s</time></all>
+                    <all><region id="r-15"/><time>80s</time></all>
+                    <all><region id="r-14"/><time>84s</time></all>
+                </any>
+            </all>
+        </filter>
+    </rule>
+    <rule delay="40">
+        <filter>
+            <all>
+                <any>
+                    <material>bedrock</material>
+                    <material>sand</material>
+                </any>
+                <any>
+                    <all><region id="r-13"/><time>86s</time></all>
+                    <all><region id="r-12"/><time>88s</time></all>
+                    <all><region id="r-11"/><time>90s</time></all>
+                    <all><region id="r-10"/><time>92s</time></all>
+                    <all><region id="r-9"/><time>94s</time></all>
+                    <all><region id="r-8"/><time>96s</time></all>
+                    <all><region id="r-7"/><time>98s</time></all>
+                    <all><region id="r-6"/><time>100s</time></all>
+                    <all><region id="r-5"/><time>102s</time></all>
+                    <all><region id="r-4"/><time>104s</time></all>
+                    <all><region id="r-3"/><time>106s</time></all>
+                    <all><region id="r-2"/><time>108s</time></all>
+                    <all><region id="r-1"/><time>110s</time></all>
+                </any>
+            </all>
+        </filter>
+    </rule>
+</falling-blocks>
 <spawners>
-    <spawner spawn-region="center" player-region="playable-region" delay="3s">
-        <item material="snow ball"/>
-    </spawner>
+    <spawner spawn-region="trigger-n" player-region="playable-region" delay="1s" filter="trigger-arena"><item material="egg"/></spawner>
+    <spawner spawn-region="trigger-s" player-region="playable-region" delay="1s" filter="trigger-arena"><item material="egg"/></spawner>
+    <spawner spawn-region="trigger-e" player-region="playable-region" delay="1s" filter="trigger-arena"><item material="egg"/></spawner>
+    <spawner spawn-region="trigger-w" player-region="playable-region" delay="1s" filter="trigger-arena"><item material="egg"/></spawner>
+    <spawner spawn-region="center"    player-region="playable-region" delay="15s"><item material="snow ball"/></spawner>
 </spawners>
 <kill-rewards>
-    <reward>
+    <kill-reward>
         <item material="cactus" amount="4"/>
         <item material="tnt"/>
-    </reward>
+    </kill-reward>
 </kill-rewards>
 <tnt>
     <fuse>2s</fuse>
