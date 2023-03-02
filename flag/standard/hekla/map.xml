@@ -12,7 +12,7 @@
         {"translate":"death.respawn.confirmed.waiting.flagDropped"}
     </message>
 </respawn>
-<gamemode>ctf</gamemode>
+<gamemode>kotf</gamemode>
 <teams>
     <team id="blue" color="blue" max="6">Blue</team>
     <team id="red" color="dark red" max="6">Red</team>
