@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map proto="1.4.0">
-<name>CannonQuad+</name>
+<name>CannonQuad</name>
 <phase>development</phase>
-<version>1.3.4</version>
-<objective>Destroy your opponents within 10 minutes.</objective>
+<version>1.3.5</version>
+<objective>Destroy your opponents within 10 minutes and 30 seconds.</objective>
 <authors>
     <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->
 </authors>
 <contributors>
     <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Kits and Ideas (From Cannon Duel)"/> <!-- last_username -->
     <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Kits and Ideas (From Cannon Duel)"/> <!-- ElectroidFilms -->
+    <contributor uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="Gameplay enhancements (From the previously known map CannonQuad+)"/> <!-- Crazy_ -->
 </contributors>
 <rules>
     <rule>Do not attempt to hide.</rule>
@@ -41,7 +42,7 @@
         </regions>
     </default>
 </spawns>
-<time>10m</time>
+<time>10m30s</time>
 <blitz>
     <lives>1</lives>
 </blitz>
