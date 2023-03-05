@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fairy Tales 2: A Tale or Two</name>
-<version>3.10.2</version>
+<version>3.10.3</version>
 <objective>Take the enemy's wool located in bedrock castles on the enemy's side and place it in your victory monument.</objective>
 <authors>
     <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/> <!-- D347HxD -->
@@ -128,7 +128,7 @@
         </union>
         <union id="storage-rooms">
             <cuboid id="blue-storage-room" min="-67,6,-102" max="-35,13,-87"/>
-            <cuboid id="blue-storage-room-stairs" min="-49,6,-87" max="-54,14,-73"/>
+            <cuboid id="blue-storage-room-stairs" min="-49,6,-87" max="-53,14,-73"/>
             <cuboid id="red-storage-room" min="-67,6,77" max="-35,13,92"/>
             <cuboid id="red-storage-room-stairs" min="-49,14,63" max="-53,6,77"/>
         </union>
