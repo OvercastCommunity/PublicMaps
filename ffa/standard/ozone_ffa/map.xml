@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Ozone FFA</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Kill the most players in 10 minutes!</objective>
 <time>10m</time>
 <authors>
@@ -99,5 +99,8 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
+<gamerules>
+    <doMobSpawning>false</doMobSpawning>
+</gamerules>
 <respawn auto="true" spectate="true"/>
 </map>
