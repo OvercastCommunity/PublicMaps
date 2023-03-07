@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Two Tear</name>
 <version>1.2.4</version>
-<phase>production</phase>
+<phase>development</phase>
 <objective>Capture both of the enemy's wools!</objective>
 <authors>
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
