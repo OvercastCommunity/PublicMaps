@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Sheep Scramble</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <gamemode>Arcade</gamemode>
 <objective>Score the most wool to win!</objective>
 <authors>
 	<author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/>
 </authors>
-<players min="4" max="8" colors="true"/>
+<players min="2" max="16" colors="true"/>
 <respawn delay="7s" auto="true"/>
 <spawns>
 	<spawn kit="spawn-kit">
