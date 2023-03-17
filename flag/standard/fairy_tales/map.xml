@@ -1,6 +1,7 @@
 <map proto="1.4.0">
 <name>Fairy Tales</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
+<phase>development</phase>
 <objective>Take the enemy's flag located on the enemy's side and place it at the top of your tree.</objective>
 <authors>
     <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/>
@@ -60,7 +61,7 @@
 </spawns>
 <keep-potion-bottles/>
 <score>
-    <limit>3</limit>
+    <limit>1</limit>
 </score>
 <flags>
     <flag id="blue-flag" name="Blue Flag" owner="purple-team">
