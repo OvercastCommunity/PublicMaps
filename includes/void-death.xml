@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <kits>
     <kit id="void-death" force="true">
         <health>1</health>
     </kit>
 </kits>
 <portals>
-    <portal y="-64" sound="false">
-        <region><below y="-5"/></region>
+    <portal y="-110" sound="false">
+        <region><below y="0"/></region>
     </portal>
 </portals>
 <regions>
     <apply kit="void-death">
-        <region><below y="-5"/></region>
+        <region><below y="0"/></region>
     </apply>
 </regions>
 </map>
