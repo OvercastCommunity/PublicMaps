@@ -7,12 +7,12 @@
 </kits>
 <portals>
     <portal y="-110" sound="false">
-        <region><below y="0"/></region>
+        <region><below y="-5"/></region>
     </portal>
 </portals>
 <regions>
     <apply kit="void-death">
-        <region><below y="0"/></region>
+        <region><below y="-5"/></region>
     </apply>
 </regions>
 </map>
