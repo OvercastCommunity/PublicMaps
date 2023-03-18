@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <map>
 <!-- Created by Cazadorian -->
-<!-- Include version 1.0.5 --> 
+<!-- Include version 1.0.6 --> 
 <objective>Survive against the Zombies for 8 minutes!</objective>
-<time result="human-team">8m</time>
 <gamemode>arcade</gamemode>
 <game>Infection</game>
 <blitz filter="never" join-filter="always">
