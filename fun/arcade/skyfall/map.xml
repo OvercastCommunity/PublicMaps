@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Skyfall</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Free for All | Blitz</objective>
 <authors>
-    <author>Reshif</author>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
 <players max="75" colors="true"/>
 <autorespawn/>
