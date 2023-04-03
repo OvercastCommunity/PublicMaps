@@ -2,10 +2,17 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
+<!-- Version 2023.04.02-1 -->
 <game>Bridge</game>
 <respawn auto="true" delay="2s"/>
 <modifybowprojectile pickup-filter="never"/>
-<time result="score">15m</time>
+<time result="score" show="false">15m</time>
+<broadcasts>
+    <alert after="10m">`7If neither team reaches 5 points, the match will end in `c`l5 minutes`7!</alert>
+    <alert after="13m">`7If neither team reaches 5 points, the match will end in `c`l2 minutes`7!</alert>
+    <alert after="14m">`7If neither team reaches 5 points, the match will end in `c`l1 minute`7!</alert>
+    <alert after="14m30s">`7If neither team reaches 5 points, the match will end in `c`l30 seconds`7!</alert>
+</broadcasts>
 <kits>
     <kit id="spawn-kit">
         <clear/>
@@ -85,6 +92,7 @@
         <variable var="can_score">1</variable>
         <match-running/>
         <alive/>
+        <participating/>
     </all>
     <all id="team-two-scored">
         <team>team-two</team>
@@ -92,6 +100,7 @@
         <variable var="can_score">1</variable>
         <match-running/>
         <alive/>
+        <participating/>
     </all>
     <variable id="round-0" var="round_status">0</variable>
     <variable id="round-1" var="round_status">1</variable>
@@ -102,7 +111,10 @@
         <alive/>
     </all>
     <variable id="can-score" var="can_score">1</variable>
-    <variable id="cant-score" var="can_score">0</variable>
+    <all id="cant-score">
+        <variable var="can_score">0</variable>
+        <participating/>
+    </all>
     <after id="after-round-1" duration="0.1" filter="round-1"/>
     <after id="during-buytime" duration="0.1" filter="on-buytime"/>
     <variable id="round-2" var="round_status">2</variable>
