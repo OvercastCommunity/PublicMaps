@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.04.02-1 -->
+<!-- Version 2023.04.03-1 -->
 <game>Bridge</game>
 <respawn auto="true" delay="2s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -23,14 +23,27 @@
         <item slot="4" material="stained clay" team-color="true" amount="64"/>
         <item slot="5" material="golden apple" amount="8" consumable="bridge-apple"/>
         <item slot="8" material="arrow"/>
-        <effect duration="2s" amplifier="255">damage resistance</effect>
+        <effect duration="oo">invisibility</effect>
+        <effect duration="oo" amplifier="255">regeneration</effect>
+        <effect duration="oo" amplifier="255">resistance</effect>
+        <effect duration="oo" amplifier="255">slow_digging</effect>
+        <effect duration="oo" amplifier="255">slowness</effect>
+        <effect duration="oo" amplifier="-4">jump</effect>
     </kit>
     <kit id="armor-kit" force="true">
         <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
         <leggings material="leather leggings" team-color="true" unbreakable="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true"/>
     </kit>
-    <kit id="slowness-kit" force="true">
+    <kit id="remove-effects-kit" force="true">
+        <effect duration="0">invisibility</effect>
+        <effect duration="0">regeneration</effect>
+        <effect duration="0">resistance</effect>
+        <effect duration="0">slow_digging</effect>
+        <effect duration="0">slowness</effect>
+        <effect duration="0">jump</effect>
+    </kit>
+    <kit id="pre-round-kit" force="true">
         <effect duration="oo" amplifier="255">regeneration</effect>
         <effect duration="oo" amplifier="255">resistance</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
@@ -48,17 +61,12 @@
         <health>20</health>
         <effect duration="2m">absorption</effect>
     </kit>
-    <kit id="teleport-kit" force="true">
-        <item slot="9" material="ink sack" damage="5" locked="true"/>
-    </kit>
     <give kit="spawn-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
-    <lend kit="slowness-kit" filter="on-buytime"/>
+    <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="arrow-kit" filter="arrow-regen"/>
     <give kit="armor-kit" filter="not-on-buytime"/>
-    <give kit="teleport-kit" filter="cant-score"/>
-    <give kit="teleport-kit" filter="team-one-scored"/>
-    <give kit="teleport-kit" filter="team-two-scored"/>
+    <give kit="remove-effects-kit" filter="not-on-buytime"/>
 </kits>
 <filters>
     <deny id="deny-void">
@@ -105,7 +113,7 @@
     <variable id="round-0" var="round_status">0</variable>
     <variable id="round-1" var="round_status">1</variable>
     <all id="should-teleport">
-        <carrying><item material="ink sack" damage="5" slot="9" locked="true"/></carrying>
+        <variable var="can_score">0</variable>
         <participating/>
         <match-running/>
         <alive/>
@@ -114,6 +122,9 @@
     <all id="cant-score">
         <variable var="can_score">0</variable>
         <participating/>
+        <not>
+            <filter id="round-2"/>
+        </not>
     </all>
     <after id="after-round-1" duration="0.1" filter="round-1"/>
     <after id="during-buytime" duration="0.1" filter="on-buytime"/>
