@@ -2,9 +2,9 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.04.03-1 -->
+<!-- Version 2023.04.04-1 -->
 <game>Bridge</game>
-<respawn auto="true" delay="2s"/>
+<respawn auto="true" delay="1s"/>
 <modifybowprojectile pickup-filter="never"/>
 <time result="score" show="false">15m</time>
 <broadcasts>
@@ -119,24 +119,17 @@
         <alive/>
     </all>
     <variable id="can-score" var="can_score">1</variable>
-    <all id="cant-score">
-        <variable var="can_score">0</variable>
-        <participating/>
-        <not>
-            <filter id="round-2"/>
-        </not>
-    </all>
     <after id="after-round-1" duration="0.1" filter="round-1"/>
     <after id="during-buytime" duration="0.1" filter="on-buytime"/>
     <variable id="round-2" var="round_status">2</variable>
     <entity id="all-arrows">Arrow</entity>
+    <all id="on-buytime">
+        <variable var="buytime">1</variable>
+        <alive/>
+        <participating/>
+    </all>
     <all id="not-on-buytime">
-        <not>
-            <all id="on-buytime">
-                <variable var="buytime">1</variable>
-                <participating/>
-            </all>
-        </not>
+        <variable var="buytime">0</variable>
         <alive/>
         <participating/>
     </all>
@@ -162,7 +155,7 @@
     <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
 </consumables>
 <variables>
-    <variable id="can_score" scope="match" default="0"/>
+    <variable id="can_score" scope="match" default="1"/>
     <variable id="round_status" scope="match" default="2"/>
     <variable id="buytime" scope="match" default="0"/>
 </variables>
@@ -207,10 +200,6 @@
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
     <trigger filter="after-round-1" action="reset-counter" scope="match"/>
     <trigger filter="more-than-1-arrow" action="remove-arrow" scope="player"/>
-    <action id="allow-scoring" scope="match">
-        <set var="can_score" value="1"/>
-    </action>
-    <trigger filter="match-start" action="allow-scoring" scope="match"/>
 </actions>
 <regions>
     <apply block-place="never" region="not-buildable" message="You may not place blocks here!"/>
