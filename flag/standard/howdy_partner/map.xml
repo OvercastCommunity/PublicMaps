@@ -1,0 +1,157 @@
+<map proto="1.4.2">
+<name>Howdy Partner</name>
+<version>1.1.1</version>
+<objective>Capture both of the enemy's flags.</objective>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <author uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Gayquil -->
+</authors>
+<contributors>
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko-->
+    <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655"/> <!-- wylt -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="12">Blue</team>
+    <team id="red-team" color="dark red" max="12">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="7s" amplifier="255">resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect amplifier="-2">health boost</effect>
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-dropped" force="true">
+        <effect duration="0s" amplifier="0">health boost</effect>
+        <effect duration="0s" amplifier="0">slowness</effect>
+    </kit>
+    <kit id="flag-captured" force="true">
+        <effect duration="2s" amplifier="10">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <regions yaw="-90">
+            <cylinder base="-389.5,41,-470.5" radius="1" height="2"/>
+        </regions>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="90">
+            <point>-306.5,10,-470.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-472.5,10,-470.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <all id="blue-captures-flag">
+        <team id="only-blue">blue-team</team>
+        <any>
+            <carrying-flag>magenta-flag</carrying-flag>
+            <carrying-flag>purple-flag</carrying-flag>
+        </any>
+    </all>
+    <all id="red-captures-flag">
+        <team id="only-red">red-team</team>
+        <any>
+            <carrying-flag>green-flag</carrying-flag>
+            <carrying-flag>yellow-flag</carrying-flag>
+        </any>
+    </all>
+</filters>
+<regions>
+    <cylinder id="blue-flag-reward" base="-345.5,5,-470.5" radius="3" height="2"/>
+    <cylinder id="blue-net" base="-345.5,5,-470.5" radius="2.5" height="2"/>
+    <cylinder id="red-flag-reward" base="-433.5,5,-470.5" radius="3" height="2"/>
+    <cylinder id="red-net" base="-433.5,5,-470.5" radius="2.5" height="2"/>
+    <apply kit="flag-captured" filter="blue-captures-flag" region="blue-flag-reward"/>
+    <apply kit="flag-captured" filter="red-captures-flag" region="red-flag-reward"/>
+    <apply block="never"/>
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" permanent="true">
+    <!-- Blue's objective flags -->
+    <flag id="magenta-flag"
+          name="Magenta Flag"
+          color="magenta"
+          owner="red-team"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-dropped">
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="5s" yaw="180">-427.5,6,-430.5</post>
+    </flag>
+    <flag id="purple-flag"
+          name="Purple Flag"
+          color="purple"
+          owner="red-team"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-dropped">
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="5s" yaw="0">-427.5,6,-510.5</post>
+    </flag>
+    <!-- Red's objective flags -->
+    <flag id="green-flag"
+          name="Green Flag"
+          color="lime"
+          owner="blue-team"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-dropped">
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="5s" yaw="0">-351.5,6,-510.5</post>
+    </flag>
+    <flag id="yellow-flag"
+          name="Yellow Flag"
+          color="yellow"
+          owner="blue-team"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-dropped">
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="5s" yaw="180">-351.5,6,-430.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="magenta-flag purple-flag" respawn-together="true"/>
+        <net region="red-net" flag="green-flag yellow-flag" respawn-together="true"/>
+    </flags>
+</flags>
+<score>
+    <limit>4</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<respawn delay="3s" auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

@@ -1,0 +1,122 @@
+<map proto="1.4.2">
+<name>Verdant Corridors</name>
+<version>1.4.3</version>
+<objective>Capture the enemy flag as many times as possible in 12 minutes.</objective>
+<edition>standard</edition>
+<time result="score" overtime="2m" max-overtime="1m">12m</time>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>
+</authors>
+<teams>
+    <team id="blue" color="blue" max="18">Blue</team>
+    <team id="red" color="dark red" max="18">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="iron leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="6s" amplifier="255">damage resistance</effect>
+    </kit>
+    <kit id="pickup-flag" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="drop-flag" force="true">
+        <effect amplifier="0" duration="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="-90">t
+            <cylinder base="0,4,0" radius="1" height="0"/>
+        </region>
+        <region yaw="90">
+            <cylinder base="0,4,0" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="90">
+            <cylinder base="69,6,0" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="-90">
+            <cylinder base="-69,6,0" radius="1" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <time id="flag-respawns">0</time>
+</filters>
+<regions>
+    <apply block="never"/>
+    <cylinder id="blue-net" base="52.5,11,7.5" radius="2" height="2" />
+    <cylinder id="red-net" base="-52.5,11,-7.5" radius="2" height="2" />
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          color="blue"
+          pickup-kit="pickup-flag"
+          drop-kit="drop-flag">
+        <post pickup-filter="only-red" recover-time="40s" respawn-time="10s">52,11,7</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red"
+          color="red"
+          pickup-kit="pickup-flag"
+          drop-kit="drop-flag">
+        <post pickup-filter="only-blue" recover-time="40s" respawn-time="10s">-53,11,-8</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>iron sword</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>iron ingot</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="10" material="arrow"/>
+</kill-reward>
+<respawn delay="3s"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

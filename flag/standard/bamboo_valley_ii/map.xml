@@ -1,0 +1,182 @@
+<map proto="1.4.2">
+<name>Bamboo Valley II</name>
+<version>2.0.2</version>
+<objective>Destroy the other team's obsidian monument!</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</authors>
+<contributors>
+    <contributor uuid="2fb11a11-1a1d-4b31-a7ba-2707a9ca9906" contribution="Helped"/> <!-- elego123 -->
+    <contributor uuid="e5eea785-51c1-40fe-a2d0-f83d4c035cd9" contribution="Original XML"/> <!-- pikpikmerchant -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="40">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" damage="3" material="wood"/>
+        <item slot="31" amount="64" damage="3" material="wood"/>
+        <item slot="5" amount="64" damage="3" material="leaves"/>
+        <item slot="6" amount="32" material="vine"/>
+        <item slot="7" material="bucket"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
+        <effect duration="7s" amplifier="4">heal</effect>
+        <effect duration="7s" amplifier="4">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <cylinder base="12.5,75,-0.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-90">
+            <block>-153,44,0.5</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="90">
+            <block>178,44,0.5</block>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <material id="only-iron">iron block</material>
+    <not id="no-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <union id="bases">
+        <rectangle id="blue-base" min="-125,-49" max="-156,50"/>
+        <rectangle id="red-base" min="150,50" max="181,-49"/>
+    </union>
+    <complement id="void">
+        <everywhere/>
+        <rectangle min="181,-49" max="-156,50"/>
+    </complement>
+    <union id="nets">
+        <cylinder id="blue-capture" base="-71.5,42,0.5" radius="1.5" height="10"/>
+        <cylinder id="red-capture" base="96.5,42,0.5" radius="1.5" height="10"/>
+    </union>
+    <apply enter="only-blue" region="blue-base" message="You may not enter the enemy team's base!"/>
+    <apply enter="only-red" region="red-base" message="You may not enter the enemy team's base!"/>
+    <apply block-break="only-iron" block-place="never" region="bases" message="You may only break iron blocks in the bases!"/>
+    <apply block="never" region="nets" message="You may not place blocks around the flag!"/>
+    <apply block="no-void" region="void" message="You may not build outside of the map!"/>
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="red"
+          color="blue">
+        <post pickup-filter="only-blue" recover-time="45s">96.5,42,0.5</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="blue"
+          color="red">
+        <post pickup-filter="only-red" recover-time="45s">-71.5,42,0.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-capture" flag="blue-flag"/>
+        <net region="red-capture" flag="red-flag"/>
+    </flags>
+</flags>
+<score>
+    <limit>3</limit>
+</score>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item damage="3">sapling</item>
+    <item>sugar cane</item>
+    <item>cocoa</item>
+    <item>clay ball</item>
+    <item>seeds</item>
+    <item>cobble wall</item>
+    <item damage="1">cobble wall</item>
+    <item>anvil</item>
+    <item>torch</item>
+    <item>sand</item>
+    <item>smooth brick</item>
+    <item damage="1">smooth brick</item>
+    <item damage="2">smooth brick</item>
+    <item>smooth stairs</item>
+    <item>wood stairs</item>
+    <item damage="11">stained clay</item>
+    <item damage="14">stained clay</item>
+</itemremove>
+<blockdrops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>leaves</material>
+                <material>vine</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</blockdrops>
+<itemkeep>
+    <item>wood</item>
+    <item>leaves</item>
+    <item>vine</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="32" damage="3" material="wood"/>
+    <item amount="16" damage="3" material="leaves"/>
+</kill-reward>
+<maxbuildheight>49</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron boots</material>
+        </match>
+        <modify>
+            <enchantment>feather_falling</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+</map>

@@ -1,0 +1,115 @@
+<map proto="1.4.2">
+<name>Saitama</name>
+<version>1.0.1</version>
+<objective>Reach 750 points before the opposing team!</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <author uuid="c1d94f18-6ea3-495a-8d1b-7d9eaf393f64"/> <!-- sqyid -->
+    <author uuid="74948888-fdb8-4446-9340-f7688c2435cc"/> <!-- Zero_Frosty -->
+</authors>
+<contributors>
+    <contributor uuid="d5a64b26-15ea-46c4-8319-f9c83e82a1fa"/> <!-- Eliminate -->
+    <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac" contribution="XML"/> <!-- mameBT -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="12">Blue</team>
+    <team id="red-team" color="dark red" max="12">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="10" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="4s" amplifier="255">resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <cylinder base="29,17,0.5" height="0" radius="1"/>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="0">
+            <point>-11.5,5,-47.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="180">
+            <point>-11.5,5,48.5</point>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <union id="blue-capture">
+        <cuboid min="-19,8,-18" size="7,4,5"/>
+        <cuboid min="-18,8,-19" size="5,4,7"/>
+    </union>
+    <cuboid id="blue-signal" min="-38,18,-28" max="-4,24,-25"/>
+    <union id="mid-capture">
+        <cuboid min="14,8,-2" size="7,4,5"/>
+        <cuboid min="15,8,-3" size="5,4,7"/>
+    </union>
+    <cuboid id="mid-signal" min="25,18,-18" max="58,39,19"/>
+    <union id="red-capture">
+        <cuboid min="-19,8,14" size="7,4,5"/>
+        <cuboid min="-18,8,13" size="5,4,7"/>
+    </union>
+    <cuboid id="red-signal" min="-38,18,26" max="-4,24,29"/>
+    <apply block="never" use="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" recovery="1" decay="0" permanent="false">
+        <hill name="Blue's Hill" capture="blue-capture" progress="blue-capture" captured="blue-signal"/>
+        <hill name="Middle" capture="mid-capture" progress="mid-capture" captured="mid-signal"/>
+        <hill name="Red's Hill" capture="red-capture" progress="red-capture" captured="red-signal"/>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+</score>
+<spawners>
+    <spawner delay="8s" max-entities="1">
+        <spawn-region>
+            <point>-36.5,9.2,0.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="-36.5,8,0.5" height="4" radius="2.5"/>
+        </player-region>
+        <item material="golden apple"/>
+    </spawner>
+</spawners>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="5" material="arrow"/>
+</kill-reward>
+<respawn auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

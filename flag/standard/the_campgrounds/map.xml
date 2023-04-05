@@ -1,0 +1,114 @@
+<map proto="1.4.0">
+<name>The Campgrounds</name>
+<version>1.0.2</version>
+<objective>Capture the enemy flag.</objective>
+<gamemode>ctf</gamemode>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/>  <!--  Claf  -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>  <!--  Strangey  -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue" color="blue" max="16">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" name="`aDagger" unbreakable="true" material="stone sword">
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="1" name="`bInstagib" unbreakable="true" material="bow">
+            <enchantment>power</enchantment>
+        </item>
+        <item slot="8" amount="3" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" locked="true" material="leather helmet"/>
+        <chestplate unbreakable="true" color="191919" locked="true" material="leather chestplate"/>
+        <leggings unbreakable="true" color="191919" locked="true" material="leather leggings"/>
+        <boots unbreakable="true" color="191919" locked="true" material="leather boots"/>
+        <effect duration="3" amplifier="5">damage resistance</effect>
+        <effect duration="3">absorption</effect>
+        <effect amplifier="2">speed</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="red-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="blue-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+</kits>
+<spawns>
+    <default><regions yaw="90"><cuboid min="-51,24,274" max="-52,24,273"/></regions></default>
+    <spawn team="red" kit="spawn-kit"><regions yaw="90"><cylinder base="-68,1,240" radius="2" height="0"/></regions></spawn>
+    <spawn team="blue" kit="spawn-kit"><regions yaw="-90"><cylinder base="-80,1,308" radius="2" height="0"/></regions></spawn>
+</spawns>
+<filters>
+    <team id="red-only">red</team>
+    <team id="blue-only">blue</team>
+    <time id="flag-respawns">0</time>
+</filters>
+<regions>
+    <cylinder id="blue-net" base="-118,5,337" radius="2" height="2" />
+    <cylinder id="red-net" base="-30,5,211" radius="2" height="2" />
+    <apply velocity="0.0,1.8,0.0">
+        <region>
+            <cuboid min="-61,1,278" max="-64,2,274"/>
+            <cuboid min="-87,1,270" max="-84,2,274"/>
+            <cuboid min="-55,1,242" max="-59,2,238"/>
+            <cuboid min="-92,1,306" max="-89,2,310"/>
+        </region>
+    </apply>
+    <apply velocity="0.0,1.3,0.0">
+        <region>
+            <cuboid min="-48,7,314" max="-52,8,310"/>
+            <cuboid min="-99,7,234" max="-96,8,238"/>
+        </region>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<flags flag-proximity-metric="closest player">
+    <flag id="red-flag" name="Blue Flag" owner="red">
+        <post pickup-filter="blue-only" recover-time="30s" respawn-time="15s">-29.5,6,210.5</post>
+    </flag>
+    <flag id="blue-flag" name="Red Flag" owner="blue">
+        <post pickup-filter="red-only" recover-time="30s" respawn-time="15s">-118.5,6,337.5</post>
+    </flag>
+    <flags points="1">
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<time result="score" overtime="1m" max-overtime="2m">10m</time>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+</itemkeep>
+<killreward>
+    <item amount="3">arrow</item>
+</killreward>
+<rage/>
+<timelock>on</timelock>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn delay="4s" auto="true"/>
+</map>

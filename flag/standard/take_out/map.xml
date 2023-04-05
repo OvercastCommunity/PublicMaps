@@ -1,0 +1,140 @@
+<map proto="1.4.2">
+<name>Take Out</name>
+<version>1.1.4</version>
+<objective>Capture the enemy flag as many times as possible before time runs out!</objective>
+<time result="score" overtime="30s" max-overtime="2m30s">12m</time>
+<edition>standard</edition>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="10">Blue</team>
+    <team id="red" color="dark red" max="10">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="12" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="3s" amplifier="255">resistance</effect>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0s">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <cuboid min="3.5,17.5,-1.5" max="-4.5,17.5,-1.5"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="180">
+            <point>-8.5,7,80.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="0">
+            <point>7.5,7,-83.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <cylinder id="blue-net" base="5.5,18,55.5" height="3" radius="0.5"/>
+    <cylinder id="red-net" base="-6.5,18,-58.5" height="3" radius="0.5"/>
+    <apply block="never" use="never"/>
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag color="blue"
+          id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="10s">5.5,18,55.5</post>
+        <net region="red-net" points="1"/>
+    </flag>
+    <flag color="red"
+          id="red-flag"
+          name="Red Flag"
+          owner="red"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="10s">-6.5,18,-58.5</post>
+        <net region="blue-net" points="1"/>
+    </flag>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<spawners>
+    <spawner id="arrow-blue" delay="3s">
+        <spawn-region>
+            <point>-5.5,12.2,25.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="-5.5,11,25.5" height="4" radius="2.5"/>
+        </player-region>
+        <item material="arrow"/>
+    </spawner>
+    <spawner id="arrow-red" delay="3s">
+        <spawn-region>
+            <point>4.5,12.2,-28.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="4.5,11,-28.5" height="4" radius="2.5"/>
+        </player-region>
+        <item material="arrow"/>
+    </spawner>
+    <spawner id="golden-apple" delay="11s">
+        <spawn-region>
+            <point>-0.5,8.2,-1.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="-0.5,7,-1.5" height="4" radius="2"/>
+        </player-region>
+        <item material="golden apple"/>
+    </spawner>
+</spawners>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="6" material="arrow"/>
+</kill-reward>
+<respawn auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

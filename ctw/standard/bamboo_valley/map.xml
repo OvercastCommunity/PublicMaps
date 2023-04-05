@@ -1,0 +1,206 @@
+<map proto="1.4.2">
+<name>Bamboo Valley</name>
+<version>1.2.6</version>
+<objective>Capture the opposing team's wool and place it at your victory monument.</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="35">Blue</team>
+    <team id="red" color="dark red" max="35">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment level="2">efficiency</enchantment>
+        </item>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" damage="3" material="wood"/>
+        <item slot="31" amount="64" damage="3" material="wood"/>
+        <item slot="5" amount="64" damage="3" material="leaves"/>
+        <item slot="6" amount="32" material="vine"/>
+        <item slot="8" material="golden apple"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
+        <effect duration="7s" amplifier="255">heal</effect>
+        <effect duration="7s" amplifier="255">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <cylinder base="-9.5,71,33.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="135">
+            <cuboid min="166,60.5,47" max="164,60.5,45"/>
+        </region>
+        <region yaw="45">
+            <cuboid min="166,60.5,20" max="164,60.5,22"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="-135">
+            <cuboid min="-185,60.5,47" max="-183,60.5,45"/>
+        </region>
+        <region yaw="-45">
+            <cuboid min="-185,60.5,20" max="-183,60.5,22"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <deny id="blue-in-wr">
+        <any>
+            <team id="only-red">red</team>
+            <material>chest</material>
+            <material>mob spawner</material>
+        </any>
+    </deny>
+    <deny id="red-in-wr">
+        <any>
+            <team id="only-blue">blue</team>
+            <material>chest</material>
+            <material>mob spawner</material>
+        </any>
+    </deny>
+    <deny id="deny-dispenser">
+        <material>dispenser</material>
+    </deny>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <material id="only-iron">iron block</material>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="171,15" max="115,52"/>
+        <rectangle id="red-spawn" min="-190,52" max="-134,15"/>
+    </union>
+    <union id="wool-rooms">
+        <union id="blue-wool-rooms"> <!-- Red must get, blue defends -->
+            <circle center="104.5,-32.5" radius="9.5"/>
+            <circle center="104.5,99.5" radius="9.5"/>
+        </union>
+        <union id="red-wool-rooms"> <!-- Blue must get, red defends -->
+            <circle center="-123.5,99.5" radius="9.5"/>
+            <circle center="-123.5,-32.5" radius="9.5"/>
+        </union>
+    </union>
+    <complement id="void">
+        <everywhere/>
+        <rectangle min="11,16" max="-30,51"/>
+    </complement>
+    <apply use="deny-dispenser" region="spawns"/>
+    <apply enter="only-blue" region="red-wool-rooms" message="You may not enter your own wool rooms!"/>
+    <apply enter="only-red" region="blue-wool-rooms" message="You may not enter your own wool rooms!"/>
+    <apply block="blue-in-wr" use="only-blue" region="red-wool-rooms"/>
+    <apply block="red-in-wr" use="only-red" region="blue-wool-rooms"/>
+    <apply block-place="never" block-break="only-iron" region="spawns" message="You may only break iron in this area!"/>
+    <apply block="deny-void" region="void" message="You may not build in the void!"/>
+</regions>
+<wools>
+    <wool team="blue" color="lime" location="-124,52,100">
+        <monument>
+            <block>120,42,33</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="yellow" location="-124,52,-34">
+        <monument>
+            <block>124,42,33</block>
+        </monument>
+    </wool>
+    <wool team="red" color="orange" location="104,52,-34">
+        <monument>
+            <block>-144,42,33</block>
+        </monument>
+    </wool>
+    <wool team="red" color="purple" location="104,52,100">
+        <monument>
+            <block>-140,42,33</block>
+        </monument>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>sugar cane</item>
+    <item>clay ball</item>
+    <item>torch</item>
+    <item>string</item>
+    <item>cocoa</item>
+    <item>jungle wood stairs</item>
+    <item>smooth stairs</item>
+    <item>hay block</item>
+    <item>sapling</item>
+    <item>wood door</item>
+    <item>redstone</item>
+    <item>redstone torch on</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>leaves</material>
+                <material>vine</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</block-drops>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron boots</material>
+        </match>
+        <modify>
+            <enchantment level="2">feather_falling</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>iron spade</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>leaves</item>
+    <item>vine</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="24" damage="3" material="wood"/>
+    <item amount="12" damage="3" material="leaves"/>
+</kill-reward>
+<maxbuildheight>54</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

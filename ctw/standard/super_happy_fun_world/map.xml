@@ -1,0 +1,272 @@
+<map proto="1.4.2">
+<name>Super Happy Fun World</name>
+<version>2.0.2</version>
+<objective>Capture both of the enemy team's wools!</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<contributors>
+    <contributor uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d" contribution="v1.0 author"/> <!-- Claf -->
+    <contributor uuid="2958ea4c-3501-404e-88cc-12e8632f68cc" contribution="v1.0 author"/> <!-- Nixani -->
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+    <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac" contribution="v2.0 XML"/> <!-- mameBT -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="24">Blue</team>
+    <team id="red" color="dark red" max="24">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-speed">
+        <effect amplifier="2">speed</effect>
+    </kit>
+    <kit id="spawn-kit" parent="spawn-speed">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" damage="1" material="wood"/>
+        <item slot="31" amount="64" damage="1" material="wood"/>
+        <item slot="5" amount="24" material="glass"/>
+        <item slot="8" material="golden apple"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <enchantment>fire_protection</enchantment>
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
+        <effect duration="7s" amplifier="255">heal</effect>
+        <effect duration="7s" amplifier="255">damage resistance</effect>
+    </kit>
+    <take kit="spawn-speed">
+        <filter>
+            <not>
+                <region id="spawn-et-al"/>
+            </not>
+        </filter>
+    </take>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <cylinder base="24.5,57,-20.5" radius="0.5" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="180">
+            <cylinder base="72.5,13,80.5" radius="0.5" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="0">
+            <cylinder base="72.5,13,-119.5" radius="0.5" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <deny id="blue-in-wr">
+        <any>
+            <team id="only-red">red</team>
+            <material>chest</material>
+            <!-- spawner platforms -->
+            <cuboid min="-36,17,-68" size="3,2,3"/>
+            <cuboid min="179,17,-68" size="3,2,3"/>
+        </any>
+    </deny>
+    <deny id="red-in-wr">
+        <any>
+            <team id="only-blue">blue</team>
+            <material>chest</material>
+            <!-- spawner platforms -->
+            <cuboid min="-36,17,26" size="3,2,3"/>
+            <cuboid min="179,17,26" size="3,2,3"/>
+        </any>
+    </deny>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <all id="only-iron-renew">
+        <material id="only-iron">iron block</material>
+        <cause>world</cause>
+    </all>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+</filters>
+<regions>
+    <union id="spawn-et-al">
+        <cuboid id="blue-spawn-et-al" min="25,0,56" max="120,oo,88"/>
+        <cuboid id="red-spawn-et-al" min="25,0,-127" max="120,oo,-95"/>
+    </union>
+    <union id="wools">
+        <union id="blue-wools"> <!-- Blue defends -->
+            <cuboid id="pink-wool" min="-41,0,20" max="-26,oo,35"/>
+            <cuboid id="purple-wool" min="171,0,20" max="186,oo,35"/>
+        </union>
+        <union id="red-wools"> <!-- Red defends -->
+            <cuboid id="orange-wool" min="171,0,-74" max="186,oo,-59"/>
+            <cuboid id="yellow-wool" min="-41,0,-74" max="-26,oo,-59"/>
+        </union>
+    </union>
+    <apply use="deny-beacon"/>  
+    <apply enter="only-blue" region="blue-spawn-et-al" message="You may not enter the enemy ream's spawn region!"/>
+    <apply enter="only-red" region="red-spawn-et-al" message="You may not enter the enemy ream's spawn region!"/>
+    <apply enter="only-blue" region="red-wools" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-red" region="blue-wools" message="You may not enter your team's own wool rooms!"/>
+    <apply block="blue-in-wr" use="only-blue" region="red-wools"/>
+    <apply block="red-in-wr" use="only-red" region="blue-wools"/>
+    <apply block-place="only-iron-renew" block-break="only-iron" region="spawn-et-al" message="You may only break iron blocks in the spawn regions!"/>
+    <apply block-place="deny-void" message="You may not build in the void!"/>
+</regions>
+<renewables>
+    <renewable region="spawn-et-al" renew-filter="only-iron"/>
+</renewables>
+<wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
+    <wool team="blue" color="orange" location="180.5,18.2,-66.5">
+        <monument>
+            <block>73,14,84</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="yellow" location="-35.5,18.2,-66.5">
+        <monument>
+            <block>71,14,84</block>
+        </monument>
+    </wool>
+    <wool team="red" color="pink" location="-35.5,18.2,27.5">
+        <monument>
+            <block>71,14,-124</block>
+        </monument>
+    </wool>
+    <wool team="red" color="purple" location="180.5,18.2,27.5">
+        <monument>
+            <block>73,14,-124</block>
+        </monument>
+    </wool>
+</wools>
+<spawners>
+    <spawner delay="5s" player-region="orange-wool" filter="only-blue">
+        <spawn-region>
+            <point>180.5,18.2,-66.5</point>
+        </spawn-region>
+        <item amount="3" damage="1" material="wool"/>
+    </spawner>
+    <spawner delay="5s" player-region="yellow-wool" filter="only-blue">
+        <spawn-region>
+            <point>-35.5,18.2,-66.5</point>
+        </spawn-region>
+        <item amount="3" damage="4" material="wool"/>
+    </spawner>
+    <spawner delay="5s" player-region="pink-wool" filter="only-red">
+        <spawn-region>
+            <point>-35.5,18.2,27.5</point>
+        </spawn-region>
+        <item amount="3" damage="6" material="wool"/>
+    </spawner>
+    <spawner delay="5s" player-region="purple-wool" filter="only-red">
+        <spawn-region>
+            <point>180.5,18.2,27.5</point>
+        </spawn-region>
+        <item amount="3" damage="10" material="wool"/>
+    </spawner>
+</spawners>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>string</item>
+    <item>redstone</item>
+    <item>redstone torch on</item>
+    <item>seeds</item>
+    <item>dead bush</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>carpet</item>
+    <item>sapling</item>
+    <item>apple</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>iron spade</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="24" damage="1" material="wood"/>
+        <item amount="6" material="glass"/>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>32</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<damage>
+    <deny>
+        <all>
+            <cause>fall</cause>
+            <region id="wools"/>
+        </all>
+    </deny>
+</damage>
+<crafting>
+    <disable>bucket</disable>
+</crafting>
+<gamerules>
+    <doFireTick>true</doFireTick>
+</gamerules>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>diamond chestplate</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>iron boots</material>
+        </match>
+        <modify unbreakable="true">
+            <enchantment>fire_protection</enchantment>
+            <enchantment level="2">feather_falling</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+</map>

@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<time result="objectives">1h</time>
+<name>Intercept</name>
+<version>0.1.3</version>
+<objective>Destroy the enemy's emerald monument before the timer runs out</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="50">Red</team>
+    <team id="blue" color="blue" max="50">Blue</team>
+</teams>
+<spawns safe="true" bedspawn="on">
+    <spawn team="red" kit="player">
+        <regions yaw="90">
+            <region id="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="player">
+        <regions yaw="90">
+            <region id="blue-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="obs">
+        <regions yaw="90">
+            <region id="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<destroyables id="Orb" materials="emerald block">
+    <destroyable id="red-orb-mon" region="red-orb" owner="red" name="Red Orb"/>
+    <destroyable id="blue-orb-mon" region="blue-orb" owner="blue" name="Blue Orb"/>
+</destroyables>
+<kits>
+    <kit id="obs" force="true" potion-particles="false" empty="true">
+        <potion duration="oo">night vision</potion>
+        <item slot="0">compass</item>
+        <book slot="1">
+            <title>`b`lMap Information`r</title>
+            <author>`6ElectroidFilms</author>
+            <pages>
+                <page>
+                    `9`l    Special Map
+                    `9`l    Information
+
+                    `91. `1Spawners are not breakable.
+                    `92. `1Lava can not be picked up or turned into obsidian.
+                    `93. `1No TNT can be placed at the spawns.
+                    `94. `1Every 10 minutes there is a golden dropzone at the desert.
+                </page>
+                <page>
+                    `95. `1Obsidian and emerald blocks are on item remove.
+                    `96. `1The monument is invulnerable from TNT.
+                    `97. `1Max build height is at 90.
+                    `98. `1Natural mob spawning is on.
+                    `99. `1Bed spawns are enabled.
+                    `910. `1Breaking any ore drops 3 items of its kind.
+                </page>
+            </pages>
+        </book>
+    </kit>
+    <kit id="player" potion-particles="false">
+        <item slot="0" material="wood sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="2" material="wood pickaxe"/>
+        <item slot="3" material="wood axe"/>
+        <item slot="4" material="wood spade"/>
+        <item slot="7" amount="8" material="apple"/>
+        <item slot="8" amount="8" material="arrow"/>
+        <chestplate material="leather chestplate"/>
+        <effect duration="5">heal</effect>
+        <effect duration="5">damage resistance</effect>
+    </kit>
+</kits>
+<filters>
+    <not id="manual-break-orb">
+        <all>
+            <cause>explosion</cause>
+            <material>emerald block</material>
+        </all>
+    </not>
+    <not id="non-players">
+        <any>
+            <team>red</team>
+            <team>blue</team>
+        </any>
+    </not>
+    <deny id="no-explosives">
+        <all>
+            <cause>explosion</cause>
+            <material>tnt</material>
+        </all>
+    </deny>
+    <deny id="no-spawner">
+        <material>mob spawner</material>
+    </deny>
+    <deny id="no-lava">
+        <any>
+            <material>lava</material>
+            <material>stationary lava</material>
+        </any>
+    </deny>
+    <deny id="no-beacon">
+        <material>beacon</material>
+    </deny>
+</filters>
+<regions>
+    <!-- Definitions -->
+    <rectangle id="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid id="drop-zone" min="-365,81,1" max="-364,oo,0"/>
+    <negative id="outside-lanes">
+        <union id="lanes">
+            <rectangle id="red-lane" min="21,42" max="-375,9"/>
+            <rectangle id="mid-lane" min="-375,42" max="-342,-41"/>
+            <translate id="blue-lane" region="red-lane" offset="0,0,-50"/>
+        </union>
+    </negative>
+    <union id="bases">
+        <rectangle id="red-base" min="21,9" max="-38,42"/>
+        <translate id="blue-base" region="red-base" offset="0,0,-50"/>
+    </union>
+    <union id="spawns">
+        <cylinder id="red-spawn" base="6.5,43,27.5" radius="3" height="2"/>
+        <cylinder id="blue-spawn" base="6.5,43,-26.5" radius="3" height="2"/>
+        <cylinder id="obs-spawn" base="-308.5,111,0.5" radius="2" height="1"/>
+    </union>
+    <union id="orbs">
+        <cuboid id="red-orb" min="-198,53,24" max="-195,57,27"/>
+        <translate id="blue-orb" region="red-orb" offset="0,0,-50"/>
+    </union>
+    <!-- Applications -->
+    <apply enter="never" region="lanes" message="You may not re-enter the lane"/>
+    <apply block="never" region="outside-lanes" message="You may not edit outside of the lanes"/>
+    <apply block-break="manual-break-orb" region="orbs" message="You must break this manually"/>
+    <apply block-place="non-players" region="drop-zone" message="Only the drop zone spawner may place blocks here"/>
+    <apply block="no-explosives" region="bases" message="Explosives are not allowed in the spawn areas"/>
+    <apply block-break="no-spawner" region="all" message="You may not break mob spawners"/>
+    <apply block-break="no-lava" use="no-lava" region="all" message="You may not edit the lava"/>
+    <apply use="no-beacon" region="all" message="You may not open beacons"/>
+</regions>
+<blockdrops>
+    <rule>
+        <filter>
+            <all>
+                <any>
+                    <team>red</team>
+                    <team>blue</team>
+                </any>
+                <material>iron ore</material>
+            </all>
+        </filter>
+        <drops>
+            <item amount="3">iron ingot</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <all>
+                <any>
+                    <team>red</team>
+                    <team>blue</team>
+                </any>
+                <material>diamond ore</material>
+            </all>
+        </filter>
+        <drops>
+            <item amount="3">diamond</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <all>
+                <cause>explosion</cause>
+                <any>
+                    <material>iron ore</material>
+                    <material>diamond ore</material>
+                </any>
+            </all>
+        </filter>
+        <drops/>
+    </rule>
+    <rule>
+        <filter>
+            <material>gold block</material>
+        </filter>
+        <drops>
+            <item amount="9">diamond</item>
+            <item amount="9">exp bottle</item>
+            <item amount="32">tnt</item> 
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+</blockdrops>
+<mobs>
+    <filter>
+        <all>
+            <region id="lanes"/>
+            <not>
+                <any>
+                    <mob>enderman</mob>
+                    <mob>witch</mob>
+                </any>
+            </not>
+        </all>
+    </filter>
+</mobs>
+<gamerules>
+    <doDaylightCycle>true</doDaylightCycle>
+</gamerules>
+<itemremove>
+    <item>obsidian</item>
+    <item>emerald block</item>
+    <item>leather chestplate</item>
+</itemremove>
+<toolrepair>
+    <tool>wood sword</tool>
+    <tool>bow</tool>
+    <tool>wood pickaxe</tool>
+    <tool>wood axe</tool>
+    <tool>wood spade</tool>
+</toolrepair>
+<maxbuildheight>90</maxbuildheight>
+</map>
