@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.04.04-1 -->
+<!-- Version 2023.04.06-1 -->
 <game>Bridge</game>
 <respawn auto="true" delay="1s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -213,6 +213,9 @@
     <box points="1" region="team-two-portal" filter="team-one-about-to-score"/>
     <limit>5</limit>
 </score>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
 <itemkeep>
     <item>iron sword</item>
     <item>bow</item>
