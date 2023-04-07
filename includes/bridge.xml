@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.04.06-1 -->
+<!-- Version 2023.04.07-1 -->
 <game>Bridge</game>
 <respawn auto="true" delay="1s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -27,8 +27,6 @@
         <effect duration="oo" amplifier="255">regeneration</effect>
         <effect duration="oo" amplifier="255">resistance</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
-        <effect duration="oo" amplifier="255">slowness</effect>
-        <effect duration="oo" amplifier="-4">jump</effect>
     </kit>
     <kit id="armor-kit" force="true">
         <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
@@ -40,15 +38,11 @@
         <effect duration="0">regeneration</effect>
         <effect duration="0">resistance</effect>
         <effect duration="0">slow_digging</effect>
-        <effect duration="0">slowness</effect>
-        <effect duration="0">jump</effect>
     </kit>
     <kit id="pre-round-kit" force="true">
         <effect duration="oo" amplifier="255">regeneration</effect>
         <effect duration="oo" amplifier="255">resistance</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
-        <effect duration="oo" amplifier="255">slowness</effect>
-        <effect duration="oo" amplifier="-4">jump</effect>
         <effect duration="oo">invisibility</effect>
     </kit>
     <kit id="arrow-kit" force="true">
@@ -207,6 +201,7 @@
     <apply block-break="deny-other-blocks" message="You may not break that block!"/>
     <translate id="team-one-big-scorebox" offset="0,0.5,0"><region id="team-one-portal"/></translate>
     <translate id="team-two-big-scorebox" offset="0,0.5,0"><region id="team-two-portal"/></translate>
+    <apply leave="not-on-buytime" region="cages" message="The next round will begin shortly!"/>
 </regions>
 <score>
     <box points="1" region="team-one-portal" filter="team-two-about-to-score"/>
