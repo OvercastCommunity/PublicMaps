@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <!-- Created by Cazadorian, built upon work by _Pear and ElectroidFilms -->
-<!-- Include version number : v1.0.0 --> 
+<!-- Include version number : v1.0.1 --> 
 <objective>Destroy the enemy teams' bed and eliminate them before they get to yours.</objective>
 <gamemode>dtm</gamemode>
 <gamemode>blitz</gamemode>
@@ -464,7 +464,6 @@
     <!-- Time Filters -->
     <time id="30m-passed">30m</time>
     <time id="40m-passed">40m</time>
-    <time id="50m-passed">50m</time>
     <not id="diamond-1">
         <time>6m</time>
     </not>
@@ -577,6 +576,7 @@
                     <material>red rose</material>
                     <material>double plant</material>
                     <material>long grass</material>
+                    <material>dead bush</material>
                     <material>bed block</material>
                 </any>
             </not>
@@ -1493,6 +1493,8 @@
     <item>seeds</item>
     <item>red rose</item>
     <item>yellow flower</item>
+    <item>long grass</item>
+    <item>dead bush</item>
     <item>double plant</item>
     <!-- Armor -->
     <item>leather helmet</item>
