@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <!-- Created by Cazadorian, built upon work by _Pear and ElectroidFilms -->
-<!-- Include version number : v1.0.1 --> 
+<!-- Include version number : v1.0.2 --> 
 <objective>Destroy the enemy teams' bed and eliminate them before they get to yours.</objective>
 <gamemode>dtm</gamemode>
 <gamemode>blitz</gamemode>
@@ -1459,6 +1459,8 @@
 <itemremove>
     <!-- Blocks -->
     <item>obsidian</item>
+    <item>beacon</item>
+    <item>item frame</item>
     <!-- Weapons -->
     <item>wood sword</item>
     <item>stone sword</item>
