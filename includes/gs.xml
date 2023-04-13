@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <!-- Modified by zzuf - Original gs.xml file from the Overcast Network -->
-<!-- Version 2023.04.07-1 -->
+<!-- Version 2023.04.13-1 -->
 <gamemode>blitz</gamemode>
 <game>Ghost Squadron</game>
 <kits>
@@ -40,8 +40,8 @@
                     <material>web</material>
                 </can-destroy>
             </item>
-            <effect ambient="true" duration="oo" amplifier="1">slow</effect>
-            <effect ambient="true" duration="oo" amplifier="-2">health boost</effect>
+            <effect ambient="true" duration="oo" amplifier="2">slow</effect>
+            <effect ambient="true" duration="oo" amplifier="-3">health boost</effect>
         </kit>
     </class>
     <class name="Alchemist" description="Throw various helpful/harmful potions!" longdescription="A variety of potions that include Poison, Instant Damage II, Instant Health II, and Revealing!" icon="potion">
