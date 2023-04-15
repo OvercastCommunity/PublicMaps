@@ -3,8 +3,8 @@
 <kits>
     <kit id="void-death" force="true">
         <health>1</health>
-        <effect duration="0s" amplifier="0s">regeneration</effect>
-        <effect duration="0s" amplifier="0s">absorption</effect>
+        <effect duration="0s" amplifier="0">regeneration</effect>
+        <effect duration="0s" amplifier="0">absorption</effect>
     </kit>
 </kits>
 <portals>
