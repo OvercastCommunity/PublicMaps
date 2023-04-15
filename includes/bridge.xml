@@ -2,9 +2,9 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.04.07-1 -->
+<!-- Version 2023.04.15-1 -->
 <game>Bridge</game>
-<respawn auto="true" delay="1s"/>
+<respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <time result="score" show="false">15m</time>
 <broadcasts>
