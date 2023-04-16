@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.04.15-1 -->
+<!-- Version 2023.04.16-1 -->
 <game>Bridge</game>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -24,8 +24,6 @@
         <item slot="5" material="golden apple" amount="8" consumable="bridge-apple"/>
         <item slot="8" material="arrow"/>
         <effect duration="oo">invisibility</effect>
-        <effect duration="oo" amplifier="255">regeneration</effect>
-        <effect duration="oo" amplifier="255">resistance</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
     </kit>
     <kit id="armor-kit" force="true">
@@ -35,15 +33,12 @@
     </kit>
     <kit id="remove-effects-kit" force="true">
         <effect duration="0">invisibility</effect>
-        <effect duration="0">regeneration</effect>
-        <effect duration="0">resistance</effect>
         <effect duration="0">slow_digging</effect>
+        <health>20</health> <!-- In case the void-death kit gets applied just before teleporting to spawns -->
     </kit>
     <kit id="pre-round-kit" force="true">
-        <effect duration="oo" amplifier="255">regeneration</effect>
-        <effect duration="oo" amplifier="255">resistance</effect>
-        <effect duration="oo" amplifier="255">slow_digging</effect>
         <effect duration="oo">invisibility</effect>
+        <effect duration="oo" amplifier="255">slow_digging</effect>
     </kit>
     <kit id="arrow-kit" force="true">
         <item material="arrow"/>
@@ -54,6 +49,11 @@
     <kit id="bridge-apple-kit" force="true">
         <health>20</health>
         <effect duration="2m">absorption</effect>
+    </kit>
+    <kit id="void-death" force="true">
+        <health>1</health>
+        <effect duration="0s" amplifier="0">regeneration</effect>
+        <effect duration="0s" amplifier="0">absorption</effect>
     </kit>
     <give kit="spawn-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
@@ -202,7 +202,12 @@
     <translate id="team-one-big-scorebox" offset="0,0.5,0"><region id="team-one-portal"/></translate>
     <translate id="team-two-big-scorebox" offset="0,0.5,0"><region id="team-two-portal"/></translate>
     <apply leave="not-on-buytime" region="cages" message="The next round will begin shortly!"/>
+    <below id="void" y="-5"/>
+    <apply kit="void-death" region="void"/>
 </regions>
+<portals>
+    <portal y="@-110" sound="false" region="void"/>
+</portals>
 <score>
     <box points="1" region="team-one-portal" filter="team-two-about-to-score"/>
     <box points="1" region="team-two-portal" filter="team-one-about-to-score"/>
