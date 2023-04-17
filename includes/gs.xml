@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <!-- Modified by zzuf - Original gs.xml file from the Overcast Network -->
-<!-- Version 2023.04.13-1 -->
+<!-- Version 2023.04.16-1 -->
 <gamemode>blitz</gamemode>
 <game>Ghost Squadron</game>
 <kits>
@@ -306,17 +306,30 @@
             <material>mob spawner</material>
         </any>
     </not>
-    <any id="placeable">
-        <material>tnt</material>
-        <material>web</material>
+    <deny id="deny-participating">
+        <participating/>
+    </deny>
+    <any id="allow-placeable">
+        <allow>
+            <any>
+                <material>tnt</material>
+                <material>web</material>
+            </any>
+        </allow>
+        <filter id="deny-participating"/>
     </any>
-    <all id="only-bruiser-web">
-        <class>Bruiser</class>
-        <material>web</material>
-    </all>
+    <any id="allow-breakable">
+        <allow>
+            <all>
+                <class>Bruiser</class>
+                <material>web</material>
+            </all>
+        </allow>
+        <filter id="deny-participating"/>
+    </any>
 </filters>
 <regions>
-    <apply block-break="only-bruiser-web" block-place="placeable" use="blacklist"/>
+    <apply block-break="allow-breakable" block-place="allow-placeable" use="blacklist"/>
 </regions>
 <broadcasts>
     <alert after="1m30s">`7All players will be visible in `c`l1 minute`7!</alert>
