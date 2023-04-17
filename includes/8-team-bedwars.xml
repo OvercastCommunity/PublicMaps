@@ -1,6 +1,6 @@
 <map proto="1.4.2"> 
 <!-- Created by Cazadorian, built upon work by _Pear and ElectroidFilms --> 
-<!-- Include version number : v1.0.3 --> 
+<!-- Include version number : v1.1.0 --> 
 <objective>Destroy the enemy teams' bed and eliminate them before they get to yours.</objective>
 <gamemode>dtm</gamemode>
 <gamemode>blitz</gamemode>
@@ -24,7 +24,7 @@
     <!-- Team Upgrades -->
     <give filter="apply-haste-1">
         <kit>
-            <effect amplifier="1">fast digging</effect>
+            <effect>fast digging</effect>
         </kit>
     </give>
     <give filter="apply-haste-2">
@@ -34,12 +34,12 @@
     </give>
     <lend filter="apply-regen">
         <kit>
-            <effect amplifier="1">regeneration</effect>
+            <effect>regeneration</effect>
         </kit>
     </lend>
     <lend filter="apply-fatigue">
         <kit>
-            <effect amplifier="1">slow digging</effect>
+            <effect duration="10s">slow digging</effect>
         </kit>
     </lend>
     <take filter="apply-alarm">
@@ -49,8 +49,8 @@
     </take>
     <give filter="apply-freeze">
         <kit>
-            <effect amplifier="1" duration="3s">slowness</effect>
-            <effect amplifier="1" duration="3s">blindness</effect>
+            <effect duration="5s">slowness</effect>
+            <effect duration="5s">blindness</effect>
         </kit>
     </give>
     <!-- Sword Upgrades -->
@@ -448,8 +448,25 @@
         <subtitle>`fYou `fcan `fno `flonger `frespawn.</subtitle>
     </message>
     <trigger filter="bed-destroy-message" trigger="destroy-title" scope="player"/>
+    <!-- Magic Milk actions -->
+    <action id="immune-to-trap" scope="player">
+        <set var="trap_immunity_variable" value="2"/>
+        <message text="`bYou are immune to traps for `c30 seconds`b!"/>
+        <!-- This will be triggered by "trap-immunity-consumable" -->
+    </action>
+    <action id="not-immune-to-trap" scope="player">
+        <set var="trap_immunity_variable" value="1"/>
+        <message text="`bYou are now vulnerable to traps as your immunity worn off!"/>
+    </action>
+    <trigger action="not-immune-to-trap" filter="after-trap-immunity" scope="player"/>
+    <action id="outside-of-base" scope="player">
+        <!-- Reset trap immunity variable if player are outside of their base -->
+        <set var="trap_immunity_variable" value="0"/>
+    </action>
+    <trigger action="outside-of-base" filter="outside-any-base" scope="player"/>
 </actions>
 <variables>
+    <variable id="trap_immunity_variable" scope="player"/>
     <variable id="haste_variable" scope="team"/>
     <variable id="regen_variable" scope="team"/>
     <variable id="sharpness_variable" scope="team"/>
@@ -482,6 +499,25 @@
         </any>
     </not>
     <time id="emerald-3">24m</time>
+    <!-- Magic Milk immunity -->
+    <after id="after-trap-immunity" duration="30s">
+        <variable var="trap_immunity_variable">2</variable>
+    </after>
+    <all id="outside-any-base">
+        <variable var="trap_immunity_variable">1</variable>
+        <not>
+            <any>
+                <region id="team-one-base-region"/>
+                <region id="team-two-base-region"/>
+                <region id="team-three-base-region"/>
+                <region id="team-four-base-region"/>
+                <region id="team-five-base-region"/>
+                <region id="team-six-base-region"/>
+                <region id="team-seven-base-region"/>
+                <region id="team-eight-base-region"/>
+            </any>
+        </not>
+    </all>
     <!-- Team Filters -->
     <team id="only-team-one">team-one</team>
     <team id="only-team-two">team-two</team>
@@ -723,48 +759,80 @@
         <not>
             <team>team-one</team>
         </not>
+        <not>
+            <completed>team-one-bed-broken</completed>
+        </not>
+        <variable var="trap_immunity_variable">0</variable>
         <region id="team-one-base-region"/>
     </all>
     <all id="team-two-trap">
         <not>
             <team>team-two</team>
         </not>
+        <not>
+            <completed>team-two-bed-broken</completed>
+        </not>
+        <variable var="trap_immunity_variable">0</variable>
         <region id="team-two-base-region"/>
     </all>
     <all id="team-three-trap">
         <not>
             <team>team-three</team>
         </not>
+        <not>
+            <completed>team-three-bed-broken</completed>
+        </not>
+        <variable var="trap_immunity_variable">0</variable>
         <region id="team-three-base-region"/>
     </all>
     <all id="team-four-trap">
         <not>
             <team>team-four</team>
         </not>
+        <not>
+            <completed>team-four-bed-broken</completed>
+        </not>
+        <variable var="trap_immunity_variable">0</variable>
         <region id="team-four-base-region"/>
     </all>
     <all id="team-five-trap">
         <not>
             <team>team-five</team>
         </not>
+        <not>
+            <completed>team-five-bed-broken</completed>
+        </not>
+        <variable var="trap_immunity_variable">0</variable>
         <region id="team-five-base-region"/>
     </all>
     <all id="team-six-trap">
         <not>
             <team>team-six</team>
         </not>
+        <not>
+            <completed>team-six-bed-broken</completed>
+        </not>
+        <variable var="trap_immunity_variable">0</variable>
         <region id="team-six-base-region"/>
     </all>
     <all id="team-seven-trap">
         <not>
             <team>team-seven</team>
         </not>
+        <not>
+            <completed>team-seven-bed-broken</completed>
+        </not>
+        <variable var="trap_immunity_variable">0</variable>
         <region id="team-seven-base-region"/>
     </all>
     <all id="team-eight-trap">
         <not>
             <team>team-eight</team>
         </not>
+        <not>
+            <completed>team-eight-bed-broken</completed>
+        </not>
+        <variable var="trap_immunity_variable">0</variable>
         <region id="team-eight-base-region"/>
     </all>
     <all id="apply-freeze">
@@ -1695,6 +1763,7 @@
             <item material="tnt" lore="`7Instantly ignites once placed." amount="1" price="4" currency="gold ingot"/>
             <item material="ender pearl" lore="`7The quickest way to invade enemy bases." amount="1" price="3" currency="emerald" color="dark green"/>
             <item material="water bucket" lore="`7Great for slowing down approaching|`7enemies. Can also protect|`7against TNT." amount="1" price="3" currency="gold ingot"/>
+            <item material="milk bucket" name="`r`aMagic Milk" lore="`7Avoid triggering traps for 30|`7seconds after consuming." amount="1" price="4" consumable="trap-immunity-consumable" currency="gold ingot"/>
             <item material="sponge" amount="4" price="3" currency="gold ingot"/>
         </category>
     </shop>
@@ -1715,10 +1784,10 @@
             <item material="gold block" name="`b`lResource Generator Upgrade IV" lore="`7This upgrade increases your resource|`7generator's speed to 300%." price="8" currency="diamond" action="generator-dummy-4" filter="generator-3" color="aqua"/>
             <item material="beacon" name="`c`lRegenerative Pool" lore="`7Creates a Regeneration field|`7around your base." price="1" currency="diamond" action="regen-dummy" filter="regen-0" color="aqua"/>
         </category>
-        <category id="upgrades" name="`aTraps" material="redstone torch on">
-            <item material="web" name="`3`lFreeze Trap" lore="`7Enemies who enter your base will receive|`7three seconds of Slowness and Blindness." price="2" currency="diamond" action="freeze-dummy" filter="freeze-0" color="aqua"/>
-            <item material="poisonous potato" name="`7`lMining Fatigue Trap" lore="`7Enemies who enter your base will|`7receive Mining Fatigue I." price="2" currency="diamond" action="fatigue-dummy" filter="fatigue-0" color="aqua"/>
-            <item material="tripwire hook" name="`d`lAlarm Trap" lore="`7Enemies who enter your base will|`7set off a Proximity Alarm." price="2" currency="diamond" action="alarm-dummy" filter="alarm-0" color="aqua"/>
+        <category id="upgrades" name="`aTraps" material="tripwire hook">
+            <item material="ice" name="`3`lFreeze Trap" lore="7Enemies who enter your base will receive|`75 seconds of Slowness and Blindness." price="2" currency="diamond" action="freeze-dummy" filter="freeze-0" color="aqua"/>
+            <item material="redstone torch on" name="`d`lAlarm Trap" lore="`7Enemies who enter your base will|`7set off a Proximity Alarm and|`7be revealed if invisible." price="1" currency="diamond" action="alarm-dummy" filter="alarm-0" color="aqua"/>
+            <item material="poisonous potato" name="`7`lMining Fatigue Trap" lore="`7Enemies who enter your base will|`7receive Mining Fatigue." price="4" currency="diamond" action="fatigue-dummy" filter="fatigue-0" color="aqua"/>
         </category>
     </shop>
 </shops>
@@ -1816,6 +1885,10 @@
         <item material="diamond"/>
     </kill-reward>
 </kill-rewards>
+<!-- Consumables -->
+<consumables>
+    <consumable id="trap-immunity-consumable" action="immune-to-trap" on="eat" override="true"/>
+</consumables>
 <!-- Projectiles -->
 <projectiles>
     <projectile id="throwable-fireball" name="Fireball Blast" projectile="Fireball" click="right" damage="8" cooldown="2s"/>
