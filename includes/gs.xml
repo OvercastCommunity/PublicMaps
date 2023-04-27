@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <!-- Modified by zzuf - Original gs.xml file from the Overcast Network -->
-<!-- Version 2023.04.16-1 -->
+<!-- Version 2023.04.27-1 -->
 <gamemode>blitz</gamemode>
 <game>Ghost Squadron</game>
 <kits>
@@ -85,12 +85,12 @@
     </class>
     <class name="Demo" description="Place landmines or fire grenades!" longdescription="BOOM! Combine grenades and landmines together to destroy your enemies!" icon="tnt">
         <kit parents="potions">
-            <item slot="0" amount="3" name="`4Landmine" lore="`7Use grenades to ignite!" material="tnt" show-can-place-on="false">
+            <item slot="0" amount="3" name="`4Landmine" lore="`7Automatically ignites once placed!" material="tnt" show-can-place-on="false">
                 <can-place-on>
                     <all-blocks/>
                 </can-place-on>
             </item>
-            <item slot="1" amount="12" name="`4Grenade" grenade="true" grenade-power="1.2" material="snow ball"/>
+            <item slot="1" amount="8" name="`4Grenade" grenade="true" grenade-power="1.2" material="snow ball"/>
         </kit>
     </class>
     <class name="Spider" description="Some webs to trap players!" longdescription="Place some webs around the map to trap players!" icon="web">
@@ -338,7 +338,6 @@
     <alert after="2m20s">`7All players will be visible in `c`l10 seconds`7!</alert>
     <alert after="2m30s">`c`lAll players are now visible!</alert>
 </broadcasts>
-<timelock>on</timelock>
 <gamerules>
     <doFireTick>false</doFireTick>
     <doTileDrops>false</doTileDrops>
@@ -361,6 +360,11 @@
 <toolrepair>
     <tool>arrow</tool>
 </toolrepair>
+<tnt>
+    <instantignite>on</instantignite>
+    <blockdamage>off</blockdamage>
+    <fuse>3s</fuse>
+</tnt>
 <itemremove>
     <item>stick</item>
     <item>tnt</item>
