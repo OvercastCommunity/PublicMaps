@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <!-- include src="tutorial.xml"/ -->
 <name>Mini Drought</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Take the wool from the enemy wool rooms and place it on your victory monument while defending your own wool.</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
@@ -140,7 +140,7 @@
     <apply enter="red" message="You may not enter the enemy team's base">
         <region name="red-base"/>
     </apply>
-    <apply block="deny-void" message="You cannot build outside the map area!">
+    <apply block="deny-void" message="You may not break or place blocks here!">
         <negative>
             <region name="center"/>
         </negative>
