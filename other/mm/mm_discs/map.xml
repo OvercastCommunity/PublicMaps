@@ -1,0 +1,21 @@
+<map proto="1.4.2">
+<name>MM: Discs</name>
+<version>1.0.1</version>
+<include id="mmclasses"/>
+<players max="12" colors="true"/>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<spawns>
+    <spawn angle="94.5,48,-65.5" safe="true" spread="true">
+        <region>
+            <cuboid min="63,40,-97" max="126,50,-34"/>
+        </region>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <cylinder base="90.5,63.2,-65.5" radius="1.5" height="1"/>
+        </region>
+    </default>
+</spawns>
+</map>

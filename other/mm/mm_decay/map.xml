@@ -1,0 +1,21 @@
+<map proto="1.4.2">
+<name>MM: Decay</name>
+<version>1.0.1</version>
+<include id="mmclasses"/>
+<players max="12" colors="true"/>
+<authors>
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!--Jtr-->
+</authors>
+<spawns>
+    <spawn angle="2.5,10,4.5" spread="true" safe="true">
+        <region>
+            <cuboid min="23,3,25" max="26,7,-24"/>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <cuboid min="3,18,3" max="1,20,1"/>
+        </region>
+    </default>
+</spawns>
+</map>

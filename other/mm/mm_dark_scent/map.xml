@@ -1,0 +1,21 @@
+<map proto="1.4.2">
+<name>MM: Dark Scent</name>
+<version>1.0.1</version>
+<include id="mmclasses"/>
+<players max="20" colors="true"/>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<spawns>
+    <spawn angle="-237.5,5,41.5" safe="true" spread="true">
+        <region>
+            <cuboid min="-284,3,-9" max="-203,9,73"/>
+        </region>
+    </spawn>
+    <default yaw="0">
+        <region>
+            <cylinder base="-259.5,5.2,4.5" radius="1.5" height="1"/>
+        </region>
+    </default>
+</spawns>
+</map>

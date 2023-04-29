@@ -1,0 +1,21 @@
+<map proto="1.4.2">
+<name>MM: Crossroad</name>
+<version>1.0.1</version>
+<include id="mmclasses"/>
+<players max="12" colors="true"/>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<spawns>
+    <spawn angle="70.5,46,100.5" safe="true" spread="true">
+        <region>
+            <cuboid min="45,39,75" max="96,47,125"/>
+        </region>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <cylinder base="70.5,63.2,100.5" radius="1.5" height="1"/>
+        </region>
+    </default>
+</spawns>
+</map>

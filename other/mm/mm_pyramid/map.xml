@@ -1,0 +1,21 @@
+<map proto="1.4.2">
+<name>MM: Pyramid</name>
+<version>1.0.1</version>
+<include id="mmclasses"/>
+<players max="12" colors="true"/>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<spawns>
+    <spawn yaw="-90" safe="true" spread="true">
+        <region>
+            <cuboid min="-64,35,48" max="-21,51,91"/>
+        </region>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <cylinder base="-54.5,63.2,69.5" radius="1.5" height="1"/>
+        </region>
+    </default>
+</spawns>
+</map>
