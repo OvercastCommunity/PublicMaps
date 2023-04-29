@@ -1,0 +1,125 @@
+<map proto="1.4.2">
+<objective>Use your grenades and TNT to blow up as many people as you can!</objective>
+<game>Blasternauts</game>
+<!-- Blasternauts gamemode include file -->
+<!-- Modified by zzuf - Original blasternauts.xml file from the Overcast Network -->
+<!-- Version 2023.04.29-1 -->
+<autorespawn/>
+<rules>
+    <rule>Fall damage is disabled</rule>
+    <rule>Double jump is enabled</rule>
+</rules>
+<time>5m</time>
+<score>
+    <kills>1</kills>
+</score>
+<kits>
+    <kit id="blasternaut-kit">
+        <item slot="0" enchantment="knockback:1" name="`6Melee Stick" material="blaze rod"/>
+        <item slot="1" unbreakable="true" name="`3TNT Launcher `6| `9Draw back to use." material="bow"/>
+        <item slot="2" amount="4" name="`4Landmine `6| `bFuse: 2s `6| `bPower: 3" material="tnt" show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="3" amount="32" name="`cGrenade" grenade="true" grenade-power="1.2" material="snow ball"/>
+        <item slot="8" damage="8229" material="potion"/>
+        <item slot="28" amount="8" material="arrow"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <boots enchantment="protection explosions:1" material="iron boots"/>
+        <effect duration="8" amplifier="25">heal</effect>
+        <effect duration="8" amplifier="25">damage resistance</effect>
+        <effect duration="oo" amplifier="2">speed</effect>
+        <effect duration="oo" amplifier="1">jump</effect>
+        <effect duration="oo" amplifier="1">increase damage</effect>
+        <double-jump/>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="remove-effects-kit" force="true">
+        <effect duration="0">heal</effect>
+        <effect duration="0">damage resistance</effect>
+    </kit>
+</kits>
+<filters>
+    <any id="allowed-blocks">
+        <allow>
+            <material>tnt</material>
+        </allow>
+        <deny>
+            <participating/>
+        </deny>
+    </any>
+    <deny id="deny-use">
+        <material>beacon</material>
+    </deny>
+    <match-started id="match-started"/>
+    <all id="entities-at-spawns">
+        <region id="spawn-areas"/>
+        <not>
+            <entity id="player">player</entity>
+        </not>
+    </all>
+    <pulse id="delete-time" period="1s" duration="0.1" filter="match-started"/>
+</filters>
+<regions>
+    <negative id="not-spawn-areas">
+        <region id="spawn-areas"/>
+    </negative>
+    <apply block="allowed-blocks" region="not-spawn-areas"/>
+    <apply kit="remove-effects-kit" region="not-spawn-areas"/>
+    <apply use="deny-use" message="You may not interact with this block!"/>
+    <apply block="never" region="spawn-areas" message="You may not edit the spawns!"/>
+</regions>
+<actions>
+    <action id="delete-entities-at-spawns" scope="match">
+        <kill-entities filter="entities-at-spawns"/>
+    </action>
+    <trigger action="delete-entities-at-spawns" filter="delete-time" scope="match"/>
+</actions>
+<modifybowprojectile>
+    <projectile>TNTPrimed</projectile>
+    <velocityMod>1.0</velocityMod>
+</modifybowprojectile>
+<projectiles>
+    <projectile id="fireball-grenade" name="Grenade MK II" projectile="Fireball" click="right" damage="10" throwable="true" cooldown="1s"/>
+</projectiles>
+<tnt>
+    <instantignite>on</instantignite>
+    <blockdamage>off</blockdamage>
+    <fuse>2s</fuse>
+    <power>3</power>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+    <damage>fall</damage>
+</disabledamage>
+<toolrepair>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>iron boots</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>leather chestplate</item>
+    <item>blaze rod</item>
+    <item>snow ball</item>
+    <item>blaze rod</item>
+    <item>arrow</item>
+    <item>tnt</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="2" material="arrow"/>
+        <item amount="2" name="`4Landmine `6| `bFuse: 2s `6| `bPower: 3" material="tnt" show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item amount="6" name="`cGrenade" grenade="true" grenade-power="1.2" material="snow ball"/>
+        <item damage="8229" material="potion"/>
+    </kill-reward>
+</kill-rewards>
+</map>
