@@ -1,0 +1,61 @@
+<map proto="1.4.2">
+<include id="blasternauts"/>
+<name>BN: Spacecraft</name>
+<version>1.0.2</version>
+<authors>
+    <author uuid="bada87c3-3383-42cb-973d-99032a0724b9"/> <!-- Holdfast33 -->
+    <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
+</authors>
+<contributors>
+    <contributor contribution="Spawners and Feedback" uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ItsMiiOlly -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="6" max-overfill="8">Blue</team>
+    <team id="red" color="dark red" max="6" max-overfill="8">Red</team>
+</teams>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <entity id="old-fireball">dropped_item</entity>
+</filters>
+<regions>
+    <union id="spawn-areas">
+        <cuboid id="blue-base" min="-276,11,950" max="-284,15,955"/>
+        <cuboid id="red-base" min="-276,11,886" max="-284,15,892"/>
+    </union>
+    <apply enter="only-blue" message="You cannot enter the enemy spawn!" region="blue-base"/>
+    <apply enter="only-red" message="You cannot enter the enemy spawn!" region="red-base"/>
+    <cuboid id="middle-spawner" min="-288,14,920" size="3,1,3"/>
+    <cuboid id="real-spawners" min="-288,13,920" size="3,1,3"/>
+</regions>
+<spawns>
+    <spawn team="blue" kit="blasternaut-kit" yaw="-175">
+        <region>
+            <cuboid min="-278,11,952" max="-281,11,954"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="blasternaut-kit" yaw="5">
+        <region>
+            <cuboid min="-278,11,888" max="-281,11,890"/>
+        </region>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <cylinder base="-335,35,921" radius="3" height="0"/>
+        </region>
+    </default>
+</spawns>
+<actions> <!-- leaves the original spawners visible before the match starts - the items they spawn don't work as custom projectiles -->
+    <action id="replace-spawners" scope="match">
+        <fill region="real-spawners" material="159:3"/>
+        <kill-entities filter="old-fireball"/>
+    </action>
+    <trigger action="replace-spawners" filter="match-started" scope="match"/>
+</actions>
+<spawners>
+    <spawner spawn-region="middle-spawner" player-region="everywhere" max-entities="6" delay="4s">
+        <item amount="1" name="`cGrenade MK II `6| `9Right click to use." material="fireball" projectile="fireball-grenade"/>
+    </spawner>
+</spawners>
+<timelock>on</timelock>
+</map>
