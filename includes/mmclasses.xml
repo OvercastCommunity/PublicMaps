@@ -1,0 +1,159 @@
+<map proto="1.4.2">
+<objective>Be the last monster standing to win!</objective>
+<game>Monster Mash</game>
+<!-- Monster Mash gamemode include file -->
+<!-- Modified by zzuf - Original mmclasses.xml file from the Overcast Network -->
+<!-- Version 2023.04.29-1 -->
+<blitz>
+    <lives>1</lives>
+</blitz>
+<time>5m</time>
+<classes family="Monsters" sticky="false">
+    <class name="Banshee" description="Stealthy and deadly." icon="string" default="false">
+        <kit>
+            <item slot="0" unbreakable="true" enchantment="knockback:1" material="iron sword"/>
+            <item slot="2" amount="16" material="snow ball"/>
+            <effect duration="oo" amplifier="3">speed</effect>
+            <effect duration="oo" amplifier="-2">health boost</effect>
+            <effect duration="2" amplifier="3">heal</effect>
+            <chestplate unbreakable="true" color="FFFFFF" material="leather chestplate"/>
+            <boots unbreakable="true" color="FFFFFF" material="leather boots"/>
+            <leggings unbreakable="true" color="000000" material="leather leggings"/>
+            <game-mode>adventure</game-mode>
+        </kit>
+    </class>
+    <class name="Flesh Golem" description="Its wounds simply melt away." icon="pork" default="false">
+        <kit>
+            <item slot="0" unbreakable="true" enchantment="damage_all:2;knockback:1" material="iron spade"/>
+            <item slot="1" damage="16421" material="potion"/>
+            <effect duration="oo" amplifier="2">regeneration</effect>
+            <effect duration="oo" amplifier="-2">health boost</effect>
+            <effect duration="2" amplifier="3">heal</effect>
+            <chestplate unbreakable="true" color="E799A3" material="leather chestplate"/>
+            <boots unbreakable="true" color="E799A3" material="leather boots"/>
+            <leggings unbreakable="true" color="000000" material="leather leggings"/>
+            <game-mode>adventure</game-mode>
+        </kit>
+    </class>
+    <class name="Brood Mother" description="Swarm your foes." icon="spider eye" default="false">
+        <kit>
+            <item slot="0" unbreakable="true" material="iron sword"/>
+            <item slot="1" amount="2" damage="59" material="monster egg"/>
+            <effect duration="oo" amplifier="1">speed</effect>
+            <effect duration="oo" amplifier="-1">health boost</effect>
+            <effect duration="2" amplifier="3">heal</effect>
+            <chestplate unbreakable="true" color="660000" material="leather chestplate"/>
+            <boots unbreakable="true" color="660000" material="leather boots"/>
+            <leggings unbreakable="true" color="000000" material="leather leggings"/>
+            <game-mode>adventure</game-mode>
+        </kit>
+    </class>
+    <class name="Dark Archer" description="Snipe from afar." icon="bow" default="false">
+        <kit>
+            <item slot="0" unbreakable="true" material="wood sword"/>
+            <item slot="1" unbreakable="true" enchantment="arrow_knockback:1" material="bow"/>
+            <item slot="28" amount="16" material="arrow"/>
+            <effect duration="oo" amplifier="1">night vision</effect>
+            <effect duration="2" amplifier="3">heal</effect>
+            <chestplate unbreakable="true" color="000000" material="leather chestplate"/>
+            <boots unbreakable="true" color="000000" material="leather boots"/>
+            <leggings unbreakable="true" color="000000" material="leather leggings"/>
+            <game-mode>adventure</game-mode>
+        </kit>
+    </class>
+    <class name="Living Goo" default="true" description="I'm rubber you're glue." icon="slime_ball">
+        <kit>
+            <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:4.5" material="stone sword"/>
+            <item slot="1" enchantment="knockback:2" material="slime ball"/>
+            <effect duration="oo" amplifier="1">jump</effect>
+            <effect duration="oo" amplifier="1">health boost</effect>
+            <effect duration="2" amplifier="3">heal</effect>
+            <chestplate unbreakable="true" color="66FF00" material="leather chestplate"/>
+            <boots unbreakable="true" color="66FF00" material="leather boots"/>
+            <leggings unbreakable="true" color="000000" material="leather leggings"/>
+            <game-mode>adventure</game-mode>
+        </kit>
+    </class>
+    <class name="Wisp" description="Feel the heat." icon="blaze powder" default="false">
+        <kit>
+            <item slot="0" enchantment="fire_aspect:2;durability:1" material="gold axe"/> <!-- intentionally breakable -->
+            <item slot="1" amount="2" material="tnt" show-can-place-on="false">
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
+            <effect duration="oo" amplifier="1">fire resistance</effect>
+            <effect duration="oo" amplifier="2">health boost</effect>
+            <effect duration="2" amplifier="3">heal</effect>
+            <chestplate unbreakable="true" color="FF9900" material="leather chestplate"/>
+            <boots unbreakable="true" color="FF9900" material="leather boots"/>
+            <leggings unbreakable="true" color="000000" material="leather leggings"/>
+            <game-mode>adventure</game-mode>
+        </kit>
+    </class>
+    <class name="Elemental" description="A living tank." icon="iron ingot" default="false">
+        <kit>
+            <item slot="0" unbreakable="true" material="iron axe"/>
+            <item slot="1" unbreakable="true" material="fishing rod"/>
+            <effect duration="oo" amplifier="2">slow</effect>
+            <effect duration="oo" amplifier="3">health boost</effect>
+            <effect duration="2" amplifier="3">heal</effect>
+            <chestplate unbreakable="true" color="E7DDCB" material="leather chestplate"/>
+            <boots unbreakable="true" color="E7DDCB" material="leather boots"/>
+            <leggings unbreakable="true" color="000000" material="leather leggings"/>
+            <game-mode>adventure</game-mode>
+        </kit>
+    </class>
+</classes>
+<filters>
+    <any id="allowed-blocks">
+        <allow>
+            <material>tnt</material>
+        </allow>
+        <deny>
+            <participating/>
+        </deny>
+    </any>
+</filters>
+<regions>
+    <apply block="allowed-blocks"/>
+</regions>
+<mobs>
+    <filter>
+        <any>
+            <spawn>spawner</spawn>
+            <spawn>spawner egg</spawn>
+        </any>
+    </filter>
+</mobs>
+<itemremove>
+    <item>arrow</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>potion</item>
+    <item>stone sword</item>
+    <item>wood sword</item>
+    <item>iron sword</item>
+    <item>iron axe</item>
+    <item>gold axe</item>
+    <item>iron spade</item>
+    <item>snow ball</item>
+    <item>monster egg</item>
+    <item>bow</item>
+    <item>slime ball</item>
+    <item>tnt</item>
+    <item>spider eye</item>
+    <item>fishing rod</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+    <blockdamage>off</blockdamage>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>
