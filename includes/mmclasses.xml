@@ -3,7 +3,7 @@
 <game>Monster Mash</game>
 <!-- Monster Mash gamemode include file -->
 <!-- Modified by zzuf - Original mmclasses.xml file from the Overcast Network -->
-<!-- Version 2023.04.29-1 -->
+<!-- Version 2023.05.02-1 -->
 <blitz>
     <lives>1</lives>
 </blitz>
@@ -12,7 +12,7 @@
     <class name="Banshee" description="Stealthy and deadly." icon="string" default="false">
         <kit>
             <item slot="0" unbreakable="true" enchantment="knockback:1" material="iron sword"/>
-            <item slot="2" amount="16" material="snow ball"/>
+            <item slot="1" amount="16" material="snow ball"/>
             <effect duration="oo" amplifier="3">speed</effect>
             <effect duration="oo" amplifier="-2">health boost</effect>
             <effect duration="2" amplifier="3">heal</effect>
@@ -38,7 +38,11 @@
     <class name="Brood Mother" description="Swarm your foes." icon="spider eye" default="false">
         <kit>
             <item slot="0" unbreakable="true" material="iron sword"/>
-            <item slot="1" amount="2" damage="59" material="monster egg"/>
+            <item slot="1" amount="2" damage="59" material="monster egg" show-can-place-on="false">
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
             <effect duration="oo" amplifier="1">speed</effect>
             <effect duration="oo" amplifier="-1">health boost</effect>
             <effect duration="2" amplifier="3">heal</effect>
