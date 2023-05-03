@@ -3,7 +3,7 @@
 <game>Blasternauts</game>
 <!-- Blasternauts gamemode include file -->
 <!-- Modified by zzuf - Original blasternauts.xml file from the Overcast Network -->
-<!-- Version 2023.04.29-1 -->
+<!-- Version 2023.05.03-1 -->
 <autorespawn/>
 <rules>
     <rule>Fall damage is disabled</rule>
@@ -88,6 +88,7 @@
     <blockdamage>off</blockdamage>
     <fuse>2s</fuse>
     <power>3</power>
+    <friendly-defuse>false</friendly-defuse>
 </tnt>
 <hunger>
     <depletion>off</depletion>

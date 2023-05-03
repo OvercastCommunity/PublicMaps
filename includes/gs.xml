@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <!-- Modified by zzuf - Original gs.xml file from the Overcast Network -->
-<!-- Version 2023.04.27-1 -->
+<!-- Version 2023.05.03-1 -->
 <gamemode>blitz</gamemode>
 <game>Ghost Squadron</game>
 <kits>
@@ -364,6 +364,7 @@
     <instantignite>on</instantignite>
     <blockdamage>off</blockdamage>
     <fuse>3s</fuse>
+    <friendly-defuse>false</friendly-defuse>
 </tnt>
 <itemremove>
     <item>stick</item>
