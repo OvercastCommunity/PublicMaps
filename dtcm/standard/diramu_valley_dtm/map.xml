@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Diramu Valley DTM</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <gamemode>dtm</gamemode>
 <objective>Destroy both of the opposing monuments to win!</objective>
 <authors>
@@ -110,6 +110,7 @@
     <item>leather boots</item>
     <item>red rose</item>
     <item>arrow</item>
+    <item>beacon</item>
 </itemremove>
 <kill-rewards> 
     <kill-reward>
