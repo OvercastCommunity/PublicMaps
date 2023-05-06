@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Rift</name>
-<version>1.2.6</version>
+<version>1.2.7</version>
 <objective>Destroy the enemy's three Inhibitor Crystals and one large Nexus Crystal to win!</objective>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!--  Lyzak  -->
@@ -21,7 +21,7 @@
     <kit id="spawn-kit" parents="heal">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="8" material="emerald"/>
+        <item slot="8" material="paper" name="`fCollect `aemeralds `fto buy items!" prevent-sharing="true"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" team-color="true" material="leather leggings"/>
