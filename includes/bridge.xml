@@ -2,17 +2,33 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.04.16-1 -->
-<game>Bridge</game>
+<!-- Version 2023.05.14-1 -->
+<gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <time result="score" show="false">15m</time>
+<constants> <!-- Default values - Can be overriden by an individual map's code -->
+    <constant id="score-limit">5</constant>
+    <constant id="mercy-limit">-1</constant>
+    <constant id="map-origin">0.5,0,0.5</constant>
+    <!-- Teams -->
+    <constant id="team-one-spawn">0.5,0,0.5</constant>
+    <constant id="team-one-yaw">-90</constant>
+    <constant id="team-one-pitch">0</constant>
+    <constant id="team-two-spawn">0.5,0,0.5</constant>
+    <constant id="team-two-yaw">90</constant>
+    <constant id="team-two-pitch">0</constant>
+</constants>
 <broadcasts>
-    <alert after="10m">`7If neither team reaches 5 points, the match will end in `c`l5 minutes`7!</alert>
-    <alert after="13m">`7If neither team reaches 5 points, the match will end in `c`l2 minutes`7!</alert>
-    <alert after="14m">`7If neither team reaches 5 points, the match will end in `c`l1 minute`7!</alert>
-    <alert after="14m30s">`7If neither team reaches 5 points, the match will end in `c`l30 seconds`7!</alert>
+    <alert after="10m">`7If neither team has won by then, the match will end in `c`l5 minutes`7!</alert>
+    <alert after="13m">`7If neither team has won by then, the match will end in `c`l2 minutes`7!</alert>
+    <alert after="14m">`7If neither team has won by then, the match will end in `c`l1 minute`7!</alert>
+    <alert after="14m30s">`7If neither team has won by then, the match will end in `c`l30 seconds`7!</alert>
 </broadcasts>
+<spawns>
+    <spawn team="team-one" kit="spawn-kit" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn-point"/>
+    <spawn team="team-two" kit="spawn-kit" yaw="${team-two-yaw}" pitch="${team-two-pitch}" region="team-two-spawn-point"/>
+</spawns>
 <kits>
     <kit id="spawn-kit">
         <clear/>
@@ -25,6 +41,8 @@
         <item slot="8" material="arrow"/>
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
+        <effect duration="2s" amplifier="255">resistance</effect>
+        <health>20</health>
     </kit>
     <kit id="armor-kit" force="true">
         <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
@@ -34,7 +52,6 @@
     <kit id="remove-effects-kit" force="true">
         <effect duration="0">invisibility</effect>
         <effect duration="0">slow_digging</effect>
-        <health>20</health> <!-- In case the void-death kit gets applied just before teleporting to spawns -->
     </kit>
     <kit id="pre-round-kit" force="true">
         <effect duration="oo">invisibility</effect>
@@ -63,9 +80,17 @@
     <give kit="remove-effects-kit" filter="not-on-buytime"/>
 </kits>
 <filters>
-    <deny id="deny-void">
-        <void/>
+    <deny id="deny-participating">
+        <participating/>
     </deny>
+    <any id="some-blocks">
+        <allow>
+            <filter id="block-list"/>
+        </allow>
+        <deny>
+            <participating/>
+        </deny>
+    </any>
     <all id="only-team-one">
         <team>team-one</team>
         <participating/>
@@ -114,7 +139,12 @@
     </all>
     <variable id="can-score" var="can_score">1</variable>
     <after id="after-round-1" duration="0.1" filter="round-1"/>
-    <after id="during-buytime" duration="0.1" filter="on-buytime"/>
+    <all id="during-buytime">
+        <after duration="0.1" filter="on-buytime"/>
+        <not>
+            <region id="void"/>
+        </not>
+    </all>
     <variable id="round-2" var="round_status">2</variable>
     <entity id="all-arrows">Arrow</entity>
     <all id="on-buytime">
@@ -141,9 +171,6 @@
     </all>
     <after id="arrow-regen" duration="3.5s" message="`7&#62;&#62; `fNew arrow in {0} `7&#60;&#60;" filter="no-arrows"/>
     <match-started id="match-start"/>
-    <deny id="deny-other-blocks">
-        <filter id="other-blocks"/>
-    </deny>
 </filters>
 <consumables>
     <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
@@ -196,22 +223,32 @@
     <trigger filter="more-than-1-arrow" action="remove-arrow" scope="player"/>
 </actions>
 <regions>
-    <apply block-place="never" region="not-buildable" message="You may not place blocks here!"/>
-    <apply block-break="never" region="not-buildable" message="You may not break that block!"/>
-    <apply block-break="deny-other-blocks" message="You may not break that block!"/>
+    <apply block="deny-participating" region="not-buildable" message="You may not modify blocks here!"/>
+    <apply block="some-blocks" message="You may not break that block!"/>
     <translate id="team-one-big-scorebox" offset="0,0.5,0"><region id="team-one-portal"/></translate>
     <translate id="team-two-big-scorebox" offset="0,0.5,0"><region id="team-two-portal"/></translate>
     <apply leave="not-on-buytime" region="cages" message="The next round will begin shortly!"/>
     <below id="void" y="-5"/>
     <apply kit="void-death" region="void"/>
+    <!-- Spawn points -->
+    <point id="team-one-spawn-point">${team-one-spawn}</point>
+    <point id="team-two-spawn-point">${team-two-spawn}</point>
 </regions>
-<portals>
+<portals sound="true" observers="never">
+    <!-- Falling on own team's portal -->
+    <portal destination="team-one-spawn-point" filter="only-team-one" region="team-one-portal" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}"/>
+    <portal destination="team-two-spawn-point" filter="only-team-two" region="team-two-portal" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
+    <!-- Scoring -->
+    <portal destination="team-one-spawn-point" forward="should-teleport" filter="only-team-one" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}"/>
+    <portal destination="team-two-spawn-point" forward="should-teleport" filter="only-team-two" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
+    <!-- Void -->
     <portal y="@-110" sound="false" region="void"/>
 </portals>
 <score>
     <box points="1" region="team-one-portal" filter="team-two-about-to-score"/>
     <box points="1" region="team-two-portal" filter="team-one-about-to-score"/>
-    <limit>5</limit>
+    <limit>${score-limit}</limit>
+    <mercy>${mercy-limit}</mercy>
 </score>
 <gamerules>
     <naturalRegeneration>false</naturalRegeneration>
