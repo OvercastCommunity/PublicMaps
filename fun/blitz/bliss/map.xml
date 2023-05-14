@@ -1,42 +1,76 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>Bliss</name>
-<version>1.0.6</version>
-<objective>Kill an enemy 3 times to eliminate them; eliminate all enemies to win the match.</objective>
-<gamemode>blitz</gamemode>
+<variant id="rage">Rage</variant>
+<version>1.0.7</version>
+<unless variant="rage">
+    <objective>Kill an enemy 3 times to eliminate them; eliminate all enemies to win the match.</objective>
+    <gamemode>blitz</gamemode>
+    <time>10m</time>
+    <blitz>
+        <lives>3</lives>
+    </blitz>
+</unless>
+<if variant="rage">
+    <objective>Kill all members of the opposing team before 5 minutes passes!</objective>
+    <gamemode>br</gamemode>
+    <blitz>
+        <lives>1</lives>
+    </blitz>
+    <rage/>
+    <time>5m</time>
+</if>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Map layout, aesthetics, and XML"/> <!-- Stealth5061 -->
     <author uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Assorted help, aesthetics"/> <!-- Zelocksurian -->
 </authors>
 <teams>
-    <team color="dark red" max="20">Red</team>
-    <team color="blue" max="20">Blue</team>
+    <team id="red" color="dark red" max="20">Red</team>
+    <team id="blue" color="blue" max="20">Blue</team>
 </teams>
+<spawns>
+    <spawn team="red" kit="teams" yaw="45">
+        <region>
+            <cylinder base="39,8,-94" radius="2" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="blue" kit="teams" yaw="-135">
+        <region>
+            <cylinder base="-51,8,-4" radius="2" height="0"/>
+        </region>
+    </spawn>
+    <default yaw="0">
+        <region>
+            <cylinder base="-6,21,16" radius="1" height="0"/>
+        </region>
+    </default>
+</spawns>
 <kits>
-    <kit name="teams">
-        <item slot="0" unbreakable="true">wood sword</item>
-        <item slot="1">bow</item>
-        <item slot="2" amount="16">cooked fish</item>
-        <item slot="3" amount="32" damage="3">leaves</item>
-        <item slot="28" amount="64">arrow</item>
-        <potion duration="5" amplifier="2">heal</potion>
-    </kit>
-    <kit name="red" parents="teams">
-        <helmet color="C40000">leather helmet</helmet>
-        <chestplate color="C40000">leather chestplate</chestplate>
-        <leggings color="C40000">leather leggings</leggings>
-        <boots color="C40000">leather boots</boots>
-    </kit>
-    <kit name="blue" parents="teams">
-        <helmet color="000099">leather helmet</helmet>
-        <chestplate color="000099">leather chestplate</chestplate>
-        <leggings color="000099">leather leggings</leggings>
-        <boots color="000099">leather boots</boots>
+    <kit id="teams">
+        <unless variant="rage">
+            <item slot="0" unbreakable="true" material="wood sword"/>
+            <item slot="1" unbreakable="true" material="bow"/>
+            <item slot="2" amount="16" material="cooked fish"/>
+            <item slot="3" amount="32" damage="3" material="leaves"/>
+            <item slot="28" amount="64" material="arrow"/>
+        </unless>
+        <if variant="rage">
+            <item slot="0" unbreakable="true" enchantment="damage all:127" lore="`71-Hit Kill!" material="iron sword"/>
+            <item slot="1" unbreakable="true" enchantment="arrow damage:127" lore="`71-Shot Kill!" material="bow"/>
+            <item slot="3" amount="16" damage="3" material="leaves"/>
+            <item slot="4" amount="1" material="arrow"/>
+            <item slot="8" amount="16" material="cooked fish"/>
+        </if>
+        <effect duration="5" amplifier="2">heal</effect>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots team-color="true" unbreakable="true" material="leather boots"/>
     </kit>
 </kits>
 <maxbuildheight>16</maxbuildheight>
 <toolrepair>
     <tool>wood sword</tool>
+    <tool>iron sword</tool>
     <tool>bow</tool>
 </toolrepair>
 <itemremove>
@@ -50,45 +84,31 @@
     <item>leather boots</item>
     <item>ink sack</item>
 </itemremove>
-<killreward>
-    <item amount="2">exp bottle</item>
-    <item damage="4">ink sack</item>
-    <item amount="16">arrow</item>
-    <item>golden apple</item>
-</killreward>
+<kill-rewards>
+    <unless variant="rage">
+        <kill-reward>
+            <item amount="2" material="exp bottle"/>
+            <item damage="4" material="ink sack"/>
+            <item amount="16" material="arrow"/>
+            <item material="golden apple"/>
+        </kill-reward>
+    </unless>
+    <if variant="rage">
+        <item amount="1" material="arrow"/>
+    </if>
+</kill-rewards>
 <filters>
-    <filter name="allow-some" parents="deny-players">
-        <allow>
-            <block>leaves</block>
-            <block>water lily</block>
-        </allow>
-    </filter>
+    <any id="allow-some">
+        <material>leaves</material>
+        <material>water lily</material>
+    </any>
 </filters>
-<spawns>
-    <spawn team="red" kit="red" yaw="45">
-        <cylinder base="39,8,-94" radius="2" height="0"/>
-    </spawn>
-    <spawn team="blue" kit="blue" yaw="-135">
-        <cylinder base="-51,8,-4" radius="2" height="0"/>
-    </spawn>
-    <default yaw="0">
-        <cylinder base="-6,21,16" radius="1" height="0"/>
-    </default>
-</spawns>
 <regions>
-    <rectangle min="-56,-99" max="45,2" name="playable"/>
-    <apply block="allow-some">
-        <region name="playable"/>
-    </apply>
-    <apply block="deny-all">
-        <negative>
-            <region name="playable"/>
-        </negative>
-    </apply>
+    <negative id="void">
+        <rectangle min="-56,-99" max="45,2" id="playable"/>
+    </negative>
+    <apply block="allow-some" region="playable" message="You may only interact with lily pads and leaves!"/>
+    <apply block="never" region="void" message="You may not build in the void!"/>
 </regions>
-<blitz>
-    <time>10m</time>
-    <lives>3</lives>
-</blitz>
 <respawn auto="true"/>
 </map>
