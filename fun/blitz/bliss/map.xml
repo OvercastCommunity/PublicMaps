@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Bliss</name>
 <variant id="rage">Rage</variant>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <unless variant="rage">
     <objective>Kill an enemy 3 times to eliminate them; eliminate all enemies to win the match.</objective>
     <gamemode>blitz</gamemode>
@@ -99,8 +99,15 @@
 </kill-rewards>
 <filters>
     <any id="allow-some">
-        <material>leaves</material>
-        <material>water lily</material>
+        <allow>
+            <any>
+                <material>leaves</material>
+                <material>water lily</material>
+            </any>
+        </allow>
+        <deny>
+            <participating/>
+        </deny>
     </any>
 </filters>
 <regions>
