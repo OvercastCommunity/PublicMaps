@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.14-2 -->
+<!-- Version 2023.05.15-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -38,7 +38,7 @@
         <item slot="3" material="stained clay" team-color="true" amount="64"/>
         <item slot="4" material="stained clay" team-color="true" amount="64"/>
         <item slot="5" material="golden apple" amount="8" consumable="bridge-apple"/>
-        <item slot="8" material="arrow"/>
+        <item slot="8" material="arrow" locked="true"/>
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
         <effect duration="2s" amplifier="255">resistance</effect>
@@ -58,7 +58,7 @@
         <effect duration="oo" amplifier="255">slow_digging</effect>
     </kit>
     <kit id="arrow-kit">
-        <item material="arrow"/>
+        <item slot="8" material="arrow" locked="true"/>
     </kit>
     <kit id="absorption-reset-kit" force="true">
         <effect duration="0" amplifier="1">absorption</effect>
@@ -137,6 +137,7 @@
         <match-running/>
         <alive/>
     </all>
+    <variable id="cant-score" var="can_score">0</variable>
     <variable id="can-score" var="can_score">1</variable>
     <after id="after-round-1" duration="0.1" filter="round-1"/>
     <all id="during-buytime">
@@ -160,17 +161,16 @@
     <after id="cage-time" message="`0&#62;&#62; `fNext round begins in {0} `0&#60;&#60;" duration="5s" filter="round-0"/>
     <all id="no-arrows">
         <not>
-            <carrying><item material="arrow" ignore-metadata="true"/></carrying>
+            <carrying><item slot="8" material="arrow" locked="true"/></carrying>
         </not>
         <participating/>
         <alive/>
     </all>
     <all id="more-than-1-arrow">
-        <carrying><item material="arrow" amount="2" ignore-metadata="true"/></carrying>
+        <carrying><item slot="8" material="arrow" locked="true" amount="2"/></carrying>
         <participating/>
     </all>
     <after id="arrow-regen" duration="3.5s" message="`7&#62;&#62; `fNew arrow in {0} `7&#60;&#60;" filter="no-arrows"/>
-    <match-started id="match-start"/>
 </filters>
 <consumables>
     <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
