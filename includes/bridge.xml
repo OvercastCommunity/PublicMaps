@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.14-1 -->
+<!-- Version 2023.05.14-2 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -57,7 +57,7 @@
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
     </kit>
-    <kit id="arrow-kit" force="true">
+    <kit id="arrow-kit">
         <item material="arrow"/>
     </kit>
     <kit id="absorption-reset-kit" force="true">
@@ -191,7 +191,6 @@
             <set var="buytime" value="1"/>
             <fill region="cages" material="stained glass"/>
             <kill-entities filter="all-arrows"/>
-            <!-- Scoring message -->
             <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="1" fade-out="0.5"/>
         </switch-scope>
     </action>
@@ -242,7 +241,7 @@
     <portal destination="team-one-spawn-point" forward="should-teleport" filter="only-team-one" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}"/>
     <portal destination="team-two-spawn-point" forward="should-teleport" filter="only-team-two" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
     <!-- Void -->
-    <portal y="@-110" sound="false" region="void"/>
+    <portal y="@-110" sound="false" region="void" observers="always"/>
 </portals>
 <score>
     <box points="1" region="team-one-portal" filter="team-two-about-to-score"/>
