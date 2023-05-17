@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.15-1 -->
+<!-- Version 2023.05.17-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -38,7 +38,7 @@
         <item slot="3" material="stained clay" team-color="true" amount="64"/>
         <item slot="4" material="stained clay" team-color="true" amount="64"/>
         <item slot="5" material="golden apple" amount="8" consumable="bridge-apple"/>
-        <item slot="8" material="arrow" locked="true"/>
+        <item slot="28" material="arrow" locked="true"/>
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
         <effect duration="2s" amplifier="255">resistance</effect>
@@ -58,7 +58,10 @@
         <effect duration="oo" amplifier="255">slow_digging</effect>
     </kit>
     <kit id="arrow-kit">
-        <item slot="8" material="arrow" locked="true"/>
+        <item slot="28" material="arrow" locked="true"/>
+        <action>
+            <message text="`e⚠ `aYou got an arrow!" actionbar="`a`lARROW READY!"/>
+        </action>
     </kit>
     <kit id="absorption-reset-kit" force="true">
         <effect duration="0" amplifier="1">absorption</effect>
@@ -161,13 +164,17 @@
     <after id="cage-time" message="`0&#62;&#62; `fNext round begins in {0} `0&#60;&#60;" duration="5s" filter="round-0"/>
     <all id="no-arrows">
         <not>
-            <carrying><item slot="8" material="arrow" locked="true"/></carrying>
+            <carrying><item material="arrow" locked="true"/></carrying>
         </not>
         <participating/>
         <alive/>
     </all>
+    <all id="1-arrow">
+        <carrying><item material="arrow" locked="true"/></carrying>
+        <participating/>
+    </all>
     <all id="more-than-1-arrow">
-        <carrying><item slot="8" material="arrow" locked="true" amount="2"/></carrying>
+        <carrying><item material="arrow" locked="true" amount="2"/></carrying>
         <participating/>
     </all>
     <after id="arrow-regen" duration="3.5s" message="`7&#62;&#62; `fNew arrow in {0} `7&#60;&#60;" filter="no-arrows"/>
@@ -215,11 +222,19 @@
             <replace material="air"/>
         </replace-item>
     </action>
+    <action id="no-arrows-message" scope="player">
+        <message text="`e⚠ `cYou will receive an arrow in 3.5 seconds!" actionbar="`c`lNO ARROWS!"/>
+    </action>
+    <action id="1-arrow-message" scope="player">
+        <message actionbar="`a`lARROW READY!"/>
+    </action>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
     <trigger filter="after-round-1" action="reset-counter" scope="match"/>
     <trigger filter="more-than-1-arrow" action="remove-arrow" scope="player"/>
+    <trigger filter="no-arrows" action="no-arrows-message" scope="player"/>
+    <trigger filter="1-arrow" action="1-arrow-message" scope="player"/>
 </actions>
 <regions>
     <apply block="deny-participating" region="not-buildable" message="You may not modify blocks here!"/>
