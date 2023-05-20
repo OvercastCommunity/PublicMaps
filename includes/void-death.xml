@@ -1,5 +1,8 @@
 <map proto="1.4.2">
-<!-- version 1.0.1 -->
+<!-- version 1.0.2 -->
+<constants>
+    <constant id="void-plane">-5</constant> <!-- Default Y level to apply include effects -->
+</constants>
 <kits>
     <kit id="void-death" force="true">
         <health>1</health>
@@ -10,14 +13,14 @@
 <portals>
     <portal y="-110" sound="false">
         <region>
-            <below y="-5"/>
+            <below y="${void-plane}"/>
         </region>
     </portal>
 </portals>
 <regions>
     <apply kit="void-death">
         <region>
-            <below y="-5"/>
+            <below y="${void-plane}"/>
         </region>
     </apply>
 </regions>
