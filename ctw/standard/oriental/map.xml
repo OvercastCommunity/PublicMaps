@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Oriental</name>
-<version>2.3.1</version>
+<version>2.3.2</version>
 <objective>Capture both of the enemy team's wools.</objective>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
@@ -20,6 +20,7 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
+        <clear/>
         <item slot="0" material="iron sword" unbreakable="true"/>
         <item slot="1" material="bow" unbreakable="true" enchantment="infinity"/>
         <item slot="2" material="iron pickaxe" unbreakable="true" enchantment="efficiency"/>
