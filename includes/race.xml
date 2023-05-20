@@ -1,0 +1,127 @@
+<map proto="1.4.2">
+<phase>development</phase>
+<gamemode>arcade</gamemode>
+<game>Checkpoints</game>
+<!-- Race gamemode include file -->
+<!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
+<!-- Version 2023.05.20-1 -->
+<constants>
+    <constant id="laps">3</constant>
+    <constant id="food-level">20</constant> <!-- Food level after race starts-->
+    <constant id="jump-boost-duration">0</constant> <!-- Negative jump boost duration after race starts -->
+</constants>
+<players max="50" colors="true"/>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <foodlevel>6</foodlevel>
+        <helmet material="wool" team-color="true" locked="true"/>
+        <effect duration="oo" amplifier="100" ambient="true">heal</effect>
+        <effect duration="oo" amplifier="4" ambient="true">damage resistance</effect>
+        <effect duration="11" amplifier="10" ambient="true">slow</effect>
+        <effect duration="11" amplifier="-10" ambient="true">jump</effect>
+    </kit>
+    <kit id="remove-effects-kit" force="true">
+        <foodlevel>${food-level}</foodlevel>
+        <effect duration="0" amplifier="10" ambient="true">slow</effect>
+        <effect duration="${jump-boost-duration}" amplifier="-10" ambient="true">jump</effect>
+    </kit>
+    <give kit="remove-effects-kit" filter="race-start"/>
+</kits>
+<broadcasts>
+    <alert after="1s">`fThe countdown is starting!`r</alert>
+    <alert after="5s">`4`l3`r</alert>
+    <alert after="6s">`c`l2`r</alert>
+    <alert after="7s">`e`l1`r</alert>
+    <alert after="8s">`a`lGO`r</alert>
+</broadcasts>
+<classes family="Cars" sticky="true" restrict="false">
+    <class name="Touring Car" description="4/5 speed, knockback 1 and efficiency 2 shears" icon="iron boots" default="true">
+        <kit parents="spawn-kit">
+            <item slot="0" enchantment="knockback:1;dig_speed:2" material="shears"/>
+            <boots name="`fTouring Car" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.50" damage="-3000" material="iron boots" locked="true" show-enchantments="false" show-attributes="false"/>
+        </kit>
+    </class>
+    <class name="Formula One" description="5/5 speed, snowballs, no shears" icon="chainmail boots">
+        <kit parents="spawn-kit">
+            <item slot="0" amount="127" material="snow ball"/>
+            <boots name="`fFormula One" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.55" damage="-3000" material="chainmail boots" locked="true" show-enchantments="false" show-attributes="false"/>
+        </kit>
+    </class>
+    <class name="Buggy" description="2/5 speed, jump boost and regular shears" icon="leather boots">
+        <kit parents="spawn-kit">
+            <item slot="0" material="shears"/>
+            <effect duration="oo" amplifier="1" ambient="true">jump</effect>
+            <boots name="`fBuggy" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.40" damage="-3000" material="leather boots" locked="true" show-enchantments="false" show-attributes="false"/>
+        </kit>
+    </class>
+    <class name="Hot Rod" description="3/5 speed, fire aspect and extra webs, hyperspeed shears" icon="gold boots">
+        <kit parents="spawn-kit">
+            <item slot="0" enchantment="fire_aspect:1;dig_speed:10" material="shears"/>
+            <item slot="1" amount="32" material="web"/>
+            <boots name="`fHot Rod" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.45" damage="-3000" material="gold boots" locked="true" show-enchantments="false" show-attributes="false"/>
+        </kit>
+    </class>
+    <class name="Truck" description="1/5 speed, knockback 2 and extra TNT, no shears" icon="diamond boots">
+        <kit parents="spawn-kit">
+            <item slot="0" enchantment="knockback:2" material="stick"/>
+            <item slot="1" amount="32" material="tnt"/>
+            <boots name="`fTruck" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.35" damage="-3000" material="diamond boots" locked="true" show-enchantments="false" show-attributes="false"/>
+        </kit>
+    </class>
+</classes>
+<filters>
+    <any id="allowed-blocks">
+        <allow>
+            <any>
+                <material>web</material>
+                <material>tnt</material>
+            </any>
+        </allow>
+        <deny id="deny-players">
+            <participating/>
+        </deny>
+    </any>
+    <apply block="allowed-blocks"/>
+    <match-started id="match-start"/>
+    <after id="race-start" duration="8s" message="`f`lGet ready!" filter="match-start"/>
+</filters>
+<score>
+    <limit>${laps}</limit>
+    <kills>0</kills>
+    <box value="1" silent="true" region="finish-line"/>
+</score>
+<tnt>
+    <instantignite>on</instantignite>
+    <blockdamage>false</blockdamage>
+</tnt>
+<mobs>
+    <filter>
+        <spawn>spawner egg</spawn>
+    </filter>
+</mobs>
+<crafting>
+    <disable override-all="true">snow block</disable>
+</crafting>
+<toolrepair>
+    <tool>wood sword</tool>
+</toolrepair>
+<itemremove>
+    <item>string</item>
+    <item>iron boots</item>
+    <item>chainmail boots</item>
+    <item>leather boots</item>
+    <item>gold boots</item>
+    <item>diamond boots</item>
+    <item>shears</item>
+    <item>wool</item>
+    <item>slime ball</item>
+    <item>bone</item>
+    <item>raw beef</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>
