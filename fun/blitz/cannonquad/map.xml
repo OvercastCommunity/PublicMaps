@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>CannonQuad</name>
 <phase>development</phase>
-<version>1.3.5</version>
+<version>1.3.6</version>
 <objective>Destroy your opponents within 10 minutes and 30 seconds.</objective>
+<gamemode>blitz</gamemode>
 <authors>
     <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->
 </authors>
 <contributors>
     <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Kits and Ideas (From Cannon Duel)"/> <!-- last_username -->
     <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Kits and Ideas (From Cannon Duel)"/> <!-- ElectroidFilms -->
-    <contributor uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="Gameplay enhancements (From the previously known map CannonQuad+)"/> <!-- Crazy_ -->
+    <contributor uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="Gameplay enhancements (From the map previously known as CannonQuad+)"/> <!-- Crazy_ -->
 </contributors>
 <rules>
     <rule>Do not attempt to hide.</rule>
 </rules>
 <spawns>
-    <spawn team="red" kit="red-kit" yaw="90">
+    <spawn team="red" kit="spawn-kit" yaw="90">
         <regions>
             <cylinder base="24.5,61,-75.5" radius="3" height="0"/>
         </regions>
     </spawn>
-    <spawn team="blue" kit="blue-kit" yaw="180">
+    <spawn team="blue" kit="spawn-kit" yaw="180">
         <regions>
             <cylinder base="24.5,61,-1.5" radius="3" height="0"/>
         </regions>
     </spawn>
-    <spawn team="green" kit="green-kit" yaw="0">
+    <spawn team="green" kit="spawn-kit" yaw="0">
         <regions>
             <cylinder base="-49.5,61,-75.5" radius="3" height="0"/>
         </regions>
     </spawn>
-    <spawn team="yellow" kit="yellow-kit" yaw="-90">
+    <spawn team="yellow" kit="spawn-kit" yaw="-90">
         <regions>
             <cylinder base="-49.5,61,-1.5" radius="3" height="0"/>
         </regions>
@@ -53,81 +53,48 @@
     <team id="yellow" color="yellow" max="10">Yellow</team>
 </teams>
 <kits>
-    <kit id="spawn">
-        <item amount="1" attributes="generic.attackDamage:add:2" enchantment="knockback:1" name="`fBlunt Diamond Pickaxe" slot="0">diamond pickaxe</item>
-        <item amount="64" slot="1">snow ball</item>
-        <item amount="64" damage="3" name="Bridge Builder" slot="8">leaves</item>
-        <item slot="28" name="`a`oiCarus Blade">wood sword</item>
-        <item slot="10" amount="64">tnt</item>
-        <item slot="2" amount="64">vine</item>
-        <item slot="11" amount="64">tnt</item>
-        <item slot="4" amount="64">nether fence</item>
-        <item slot="9" amount="64">tnt</item>
-        <item slot="18" amount="64">tnt</item>
-        <item slot="19" amount="64">tnt</item>
-        <item slot="20" amount="64">tnt</item>
-        <item slot="31" amount="64">step</item>
-        <item slot="22" amount="16">ladder</item>
-        <item slot="5" amount="16">stone button</item>
-        <item slot="32" amount="8">stone plate</item>
-        <item slot="23" amount="16">lever</item>
-        <item slot="14" amount="16">trap door</item>
-        <item slot="6">water bucket</item>
-        <item slot="33">water bucket</item>
-        <item slot="24">water bucket</item>
-        <item slot="15" amount="16">piston base</item>
-        <item slot="7" amount="16">redstone block</item>
-        <item slot="34" amount="64">redstone</item>
-        <item slot="25" amount="16">redstone torch on</item>
-        <item slot="16" amount="16">diode</item>
-        <item slot="35" amount="8">sand</item>
-        <item slot="26" amount="3">dispenser</item>
-        <item slot="17" amount="8">redstone comparator</item>
-        <potion duration="25" amplifier="5">damage resistance</potion>
-        <potion duration="25" amplifier="5">heal</potion>
-    </kit>
-    <kit id="red-kit" parents="spawn">
-        <item slot="12" damage="14" amount="64">stained glass</item>
-        <item slot="21" damage="14" amount="64">stained clay</item>
-        <item slot="30" damage="14" amount="64">stained clay</item>
-        <item slot="3" damage="14" amount="64">stained clay</item>
-        <helmet locked="true" color="DD5566" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
-        <chestplate locked="true" color="DD5566" unbreakable="true">leather chestplate</chestplate>
-        <leggings locked="true" color="DD5566" unbreakable="true">leather leggings</leggings>
-        <boots locked="true" color="DD5566" unbreakable="true">leather boots</boots>
-    </kit>
-    <kit id="blue-kit" parents="spawn">
-        <item slot="12" damage="11" amount="64">stained glass</item>
-        <item slot="21" damage="11" amount="64">stained clay</item>
-        <item slot="30" damage="11" amount="64">stained clay</item>
-        <item slot="3" damage="11" amount="64">stained clay</item>
-        <helmet locked="true" color="334CB2" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
-        <chestplate locked="true" color="334CB2" unbreakable="true">leather chestplate</chestplate>
-        <leggings locked="true" color="334CB2" unbreakable="true">leather leggings</leggings>
-        <boots locked="true" color="334CB2" unbreakable="true">leather boots</boots>
-    </kit>
-    <kit id="green-kit" parents="spawn">
-        <item slot="12" damage="13" amount="64">stained glass</item>
-        <item slot="21" damage="13" amount="64">stained clay</item>
-        <item slot="30" damage="13" amount="64">stained clay</item>
-        <item slot="3" damage="13" amount="64">stained clay</item>
-        <helmet locked="true" color="667F33" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
-        <chestplate locked="true" color="667F33" unbreakable="true">leather chestplate</chestplate>
-        <leggings locked="true" color="667F33" unbreakable="true">leather leggings</leggings>
-        <boots locked="true" color="667F33" unbreakable="true">leather boots</boots>
-    </kit>
-    <kit id="yellow-kit" parents="spawn">
-        <item slot="12" damage="4" amount="64">stained glass</item>
-        <item slot="21" damage="4" amount="64">stained clay</item>
-        <item slot="30" damage="4" amount="64">stained clay</item>
-        <item slot="3" damage="4" amount="64">stained clay</item>
-        <helmet locked="true" color="E5E533" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
-        <chestplate locked="true" color="E5E533" unbreakable="true">leather chestplate</chestplate>
-        <leggings locked="true" color="E5E533" unbreakable="true">leather leggings</leggings>
-        <boots locked="true" color="E5E533" unbreakable="true">leather boots</boots>
+    <kit id="spawn-kit">
+        <item amount="1" attributes="generic.attackDamage:add:2" enchantment="knockback:1" name="`fBlunt Diamond Pickaxe" slot="0" material="diamond pickaxe" unbreakable="true"/>
+        <item amount="64" slot="1" material="snow ball"/>
+        <item amount="64" damage="3" name="Bridge Builder" slot="8" material="leaves"/>
+        <item slot="28" name="`a`oiCarus Blade" material="wood sword"/>
+        <item slot="10" amount="64" material="tnt"/>
+        <item slot="2" amount="64" material="vine"/>
+        <item slot="11" amount="64" material="tnt"/>
+        <item slot="4" amount="64" material="nether fence"/>
+        <item slot="9" amount="64" material="tnt"/>
+        <item slot="18" amount="64" material="tnt"/>
+        <item slot="19" amount="64" material="tnt"/>
+        <item slot="20" amount="64" material="tnt"/>
+        <item slot="31" amount="64" material="step"/>
+        <item slot="22" amount="16" material="ladder"/>
+        <item slot="5" amount="16" material="stone button"/>
+        <item slot="32" amount="8" material="stone plate"/>
+        <item slot="23" amount="16" material="lever"/>
+        <item slot="14" amount="16" material="trap door"/>
+        <item slot="6" material="water bucket"/>
+        <item slot="33" material="water bucket"/>
+        <item slot="24" material="water bucket"/>
+        <item slot="15" amount="16" material="piston base"/>
+        <item slot="7" amount="16" material="redstone block"/>
+        <item slot="34" amount="64" material="redstone"/>
+        <item slot="25" amount="16" material="redstone torch on"/>
+        <item slot="16" amount="16" material="diode"/>
+        <item slot="35" amount="8" material="sand"/>
+        <item slot="26" amount="3" material="dispenser"/>
+        <item slot="17" amount="8" material="redstone comparator"/>
+        <item slot="21" team-color="true" amount="64" material="stained clay"/>
+        <item slot="30" team-color="true" amount="64" material="stained clay"/>
+        <item slot="3" team-color="true" amount="64" material="stained clay"/>
+        <helmet locked="true" team-color="true" enchantment="water worker:3" unbreakable="true" material="leather helmet"/>
+        <chestplate locked="true" team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings locked="true" team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots locked="true" team-color="true" unbreakable="true" material="leather boots"/>
+        <effect duration="25" amplifier="5">damage resistance</effect>
+        <effect duration="25" amplifier="5">heal</effect>
     </kit>
     <kit id="death">
-        <potion duration="oo" amplifier="5">harm</potion>
+        <effect duration="oo" amplifier="5">harm</effect>
     </kit>
 </kits>
 <filters>
