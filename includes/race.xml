@@ -1,10 +1,9 @@
 <map proto="1.4.2">
-<phase>development</phase>
 <gamemode>arcade</gamemode>
-<game>Checkpoints</game>
+<game>Laps</game>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.05.20-1 -->
+<!-- Version 2023.05.20-2 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
@@ -26,6 +25,12 @@
         <effect duration="${jump-boost-duration}" amplifier="-10" ambient="true">jump</effect>
     </kit>
     <give kit="remove-effects-kit" filter="race-start"/>
+    <kit id="lap-completed-kit" force="true">
+        <action>
+            <message text="`e⚠ `aYou have completed a lap!"/>
+        </action>
+    </kit>
+    <give kit="lap-completed-kit" filter="finish-line-participating"/>
 </kits>
 <broadcasts>
     <alert after="1s">`fThe countdown is starting!`r</alert>
@@ -84,6 +89,11 @@
     <apply block="allowed-blocks"/>
     <match-started id="match-start"/>
     <after id="race-start" duration="8s" message="`f`lGet ready!" filter="match-start"/>
+    <all id="finish-line-participating">
+        <region id="finish-line"/>
+        <participating/>
+        <match-running/>
+    </all>
 </filters>
 <score>
     <limit>${laps}</limit>
