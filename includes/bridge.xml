@@ -11,6 +11,7 @@
     <constant id="score-limit">5</constant>
     <constant id="mercy-limit">-1</constant>
     <constant id="map-origin">0.5,0,0.5</constant>
+    <constant id="void-plane">-5</constant>
     <!-- Teams -->
     <constant id="team-one-spawn">0.5,0,0.5</constant>
     <constant id="team-one-yaw">-90</constant>
@@ -242,7 +243,7 @@
     <translate id="team-one-big-scorebox" offset="0,0.5,0"><region id="team-one-portal"/></translate>
     <translate id="team-two-big-scorebox" offset="0,0.5,0"><region id="team-two-portal"/></translate>
     <apply leave="not-on-buytime" region="cages" message="The next round will begin shortly!"/>
-    <below id="void" y="-5"/>
+    <below id="void" y="${void-plane}"/>
     <apply kit="void-death" region="void"/>
     <!-- Spawn points -->
     <point id="team-one-spawn-point">${team-one-spawn}</point>
