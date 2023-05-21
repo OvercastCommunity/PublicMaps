@@ -1,12 +1,8 @@
 <map proto="1.4.2">
 <name>Race: Circuit</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Score points by completing laps around the track.</objective>
 <include id="race"/>
-<constants>
-    <constant id="food-level">6</constant>
-    <constant id="jump-boost-duration">oo</constant>
-</constants>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>

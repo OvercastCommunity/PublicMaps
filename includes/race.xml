@@ -3,7 +3,7 @@
 <game>Laps</game>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.05.20-2 -->
+<!-- Version 2023.05.20-3 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
@@ -12,25 +12,35 @@
 <players max="50" colors="true"/>
 <kits>
     <kit id="spawn-kit" force="true">
-        <foodlevel>6</foodlevel>
+        <clear/>
+        <foodlevel>${food-level}</foodlevel>
+        <effect duration="${jump-boost-duration}" amplifier="-10" ambient="false">jump</effect>
         <helmet material="wool" team-color="true" locked="true"/>
-        <effect duration="oo" amplifier="100" ambient="true">heal</effect>
-        <effect duration="oo" amplifier="4" ambient="true">damage resistance</effect>
-        <effect duration="11" amplifier="10" ambient="true">slow</effect>
-        <effect duration="11" amplifier="-10" ambient="true">jump</effect>
+        <effect duration="oo" amplifier="100" ambient="false">heal</effect>
+        <effect duration="oo" amplifier="4" ambient="false">damage resistance</effect>
     </kit>
+    <kit id="countdown-kit" force="true">
+        <foodlevel>6</foodlevel>
+        <effect duration="oo" amplifier="10" ambient="false">slow</effect>
+        <effect duration="oo" amplifier="-10" ambient="false">jump</effect>
+    </kit>
+    <give kit="countdown-kit" filter="during-countdown"/>
     <kit id="remove-effects-kit" force="true">
         <foodlevel>${food-level}</foodlevel>
-        <effect duration="0" amplifier="10" ambient="true">slow</effect>
-        <effect duration="${jump-boost-duration}" amplifier="-10" ambient="true">jump</effect>
+        <effect duration="0" amplifier="10" ambient="false">slow</effect>
+        <effect duration="${jump-boost-duration}" amplifier="-10" ambient="false">jump</effect>
     </kit>
-    <give kit="remove-effects-kit" filter="race-start"/>
+    <give kit="remove-effects-kit" filter="race-started"/>
     <kit id="lap-completed-kit" force="true">
         <action>
             <message text="`e⚠ `aYou have completed a lap!"/>
         </action>
     </kit>
     <give kit="lap-completed-kit" filter="finish-line-participating"/>
+    <kit id="void-kit" force="true">
+        <clear effects="true"/>
+    </kit>
+    <give kit="void-kit" filter="below-y0"/> <!-- Fallback -->
 </kits>
 <broadcasts>
     <alert after="1s">`fThe countdown is starting!`r</alert>
@@ -52,10 +62,9 @@
             <boots name="`fFormula One" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.55" damage="-3000" material="chainmail boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
-    <class name="Buggy" description="2/5 speed, jump boost and regular shears" icon="leather boots">
-        <kit parents="spawn-kit">
-            <item slot="0" material="shears"/>
-            <effect duration="oo" amplifier="1" ambient="true">jump</effect>
+    <class name="Buggy" description="2/5 speed and efficiency 3 shears" icon="leather boots">
+        <kit parents="spawn-kit" force="true">
+            <item slot="0" enchantment="dig_speed:3" material="shears"/>
             <boots name="`fBuggy" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.40" damage="-3000" material="leather boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
@@ -76,15 +85,24 @@
 </classes>
 <filters>
     <any id="allowed-blocks">
-        <allow>
+        <all>
             <any>
-                <material>web</material>
-                <material>tnt</material>
+                <allow>
+                    <any>
+                        <material>web</material>
+                        <material>tnt</material>
+                    </any>
+                </allow>
+                <deny id="deny-players">
+                    <participating/>
+                </deny>
             </any>
-        </allow>
-        <deny id="deny-players">
-            <participating/>
-        </deny>
+            <all>
+                <not>
+                    <filter id="during-countdown"/>
+                </not>
+            </all>
+        </all>
     </any>
     <apply block="allowed-blocks"/>
     <match-started id="match-start"/>
@@ -94,7 +112,30 @@
         <participating/>
         <match-running/>
     </all>
+    <all id="during-countdown">
+        <variable var="race_started">0</variable>
+        <after duration="0.05" filter="match-start"/>
+        <participating/>
+        <match-running/>
+    </all>
+    <all id="race-started">
+        <variable var="race_started">1</variable>
+        <participating/>
+        <match-running/>
+    </all>
 </filters>
+<regions>
+    <below y="0" id="below-y0"/>
+</regions>
+<variables>
+    <variable id="race_started" scope="match" default="0"/>
+</variables>
+<actions>
+    <action id="start-race" scope="match">
+        <set var="race_started" value="1"/>
+    </action>
+    <trigger action="start-race" filter="race-start" scope="match"/>
+</actions>
 <score>
     <limit>${laps}</limit>
     <kills>0</kills>
@@ -109,12 +150,28 @@
         <spawn>spawner egg</spawn>
     </filter>
 </mobs>
+<damage>
+    <deny>
+        <all>
+            <cause>PROJECTILE</cause>
+            <filter id="during-countdown"/>
+        </all>
+    </deny>
+</damage>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
 <crafting>
     <disable override-all="true">snow block</disable>
 </crafting>
 <toolrepair>
     <tool>wood sword</tool>
 </toolrepair>
+<itemkeep>
+    <item>snow ball</item>
+    <item>tnt</item>
+    <item>web</item>
+</itemkeep>
 <itemremove>
     <item>string</item>
     <item>iron boots</item>
@@ -131,7 +188,4 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<disabledamage>
-    <damage>fall</damage>
-</disabledamage>
 </map>
