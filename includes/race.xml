@@ -3,7 +3,7 @@
 <game>Laps</game>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.05.20-3 -->
+<!-- Version 2023.05.21-1 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
@@ -40,7 +40,7 @@
     <kit id="void-kit" force="true">
         <clear effects="true"/>
     </kit>
-    <give kit="void-kit" filter="below-y0"/> <!-- Fallback -->
+    <give kit="void-kit" filter="below-y0-player"/> <!-- Fallback -->
 </kits>
 <broadcasts>
     <alert after="1s">`fThe countdown is starting!`r</alert>
@@ -122,6 +122,10 @@
         <variable var="race_started">1</variable>
         <participating/>
         <match-running/>
+    </all>
+    <all id="below-y0-player">
+        <region id="below-y0"/>
+        <participating/>
     </all>
 </filters>
 <regions>
