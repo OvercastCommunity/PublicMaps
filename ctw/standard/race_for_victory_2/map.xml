@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Race for Victory 2</name>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Take the enemy's wools located to either side of the enemy's base and place them in your victory monument.</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
@@ -63,6 +63,9 @@
     </spawn>
 </spawns>
 <filters>
+    <deny id="deny-players">
+        <participating/>
+    </deny>
     <not id="blue-in-wr">
         <any>
             <material>chest</material>
@@ -97,8 +100,14 @@
     </union>
     <negative id="void">
         <union id="map">
-            <rectangle min="-16,-119" max="17,-19"/>
-            <rectangle min="-16,34" max="17,134"/>
+            <complement> <!-- Blue lanes -->
+                <rectangle min="-16,-119" max="17,-19"/>
+                <rectangle min="-4,-119" max="5,-69"/>
+            </complement>
+            <complement> <!-- Red lanes -->
+                <rectangle min="-16,34" max="17,134"/>
+                <rectangle min="5,134" max="-4,84"/>
+            </complement>
             <rectangle min="-23,-19" max="24,34"/>
         </union>
     </negative>
@@ -115,7 +124,7 @@
     <apply block="blue-in-wr" use="only-blue" region="blue-wool-rooms"/>
     <apply block="red-in-wr" use="only-red" region="red-wool-rooms"/>
     <apply block="never" message="You may not break or place blocks in the storage room!" region="storage-rooms"/>
-    <apply block="never" message="You may not break or place blocks in the void!" region="void"/>
+    <apply block="deny-players" message="You may not break or place blocks in the void!" region="void"/>
     <apply kit="adventure" region="blockglitch-zone"/>
     <apply kit="survival" region="non-blockglitch-zone"/>
 </regions>
