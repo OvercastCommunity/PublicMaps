@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Monument Valley</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Destroy the enemy team's monument.</objective>
 <authors>
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
@@ -76,6 +76,7 @@
     <union id="spawn-build">
         <cuboid id="blue-spawn" min="0,42,-54" max="12,55,-35"/>
         <cuboid id="red-spawn" min="0,42,82" max="12,55,101"/>
+        <cuboid id="obs-spawn" min="110,80,30" max="123,87,17"/>
     </union>
     <negative id="void-area">
         <complement>
@@ -89,7 +90,7 @@
     <apply lend-kit="spawn-protection" filter="only-blue" region="blue-entry"/>
     <apply lend-kit="spawn-protection" filter="only-red" region="red-entry"/>
     <apply block="never" region="spawn-build" message="You may not modify the spawn areas!"/>
-    <apply block="never" region="void-area" message="You may not build outside of the map"/>
+    <apply block-place="never" region="void-area" message="You may not build outside of the map"/>
 </regions>
 <destroyables name="Monument" materials="obsidian" mode-changes="true">
     <destroyable owner="blue">
