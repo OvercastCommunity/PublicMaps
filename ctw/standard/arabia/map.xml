@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Arabia</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Capture the enemy team's wools!</objective>
 <created>2019-03-18</created>
 <authors>
@@ -37,17 +37,17 @@
 <spawns>
     <default>
         <region yaw="-90">
-            <cylinder base="210,30.1,-12" radius="1" height="0.1"/>
+            <cylinder base="210,30,-12" radius="1" height="0"/>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="0">
-            <cylinder base="163,11.1,-100" radius="0.5" height="0"/>
+            <cylinder base="163,11,-100" radius="0.5" height="0"/>
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
         <region yaw="180">
-            <cylinder base="167,11.1,85" radius="0.5" height="0"/>
+            <cylinder base="167,11,85" radius="0.5" height="0"/>
         </region>
     </spawn>
 </spawns>
