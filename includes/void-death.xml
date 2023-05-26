@@ -1,13 +1,12 @@
 <map proto="1.4.2">
-<!-- version 1.0.2 -->
+<!-- version 1.0.3 -->
 <constants>
     <constant id="void-plane">-5</constant> <!-- Default Y level to apply include effects -->
 </constants>
 <kits>
     <kit id="void-death" force="true">
         <health>1</health>
-        <effect duration="0s" amplifier="0">regeneration</effect>
-        <effect duration="0s" amplifier="0">absorption</effect>
+        <clear effects="true" items="false" armor="false"/>
     </kit>
 </kits>
 <portals>
