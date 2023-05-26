@@ -2,12 +2,13 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.20-1 -->
+<!-- Version 2023.05.25-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <time result="score" show="false">15m</time>
 <constants> <!-- Default values - Can be overriden by an individual map's code -->
+    <!-- Map -->
     <constant id="score-limit">5</constant>
     <constant id="mercy-limit">-1</constant>
     <constant id="map-origin">0.5,0,0.5</constant>
@@ -34,12 +35,12 @@
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" material="iron sword" unbreakable="true"/>
-        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
         <item slot="2" material="diamond pickaxe" enchantment="dig speed:2" unbreakable="true"/>
-        <item slot="3" material="stained clay" team-color="true" amount="64"/>
-        <item slot="4" material="stained clay" team-color="true" amount="64"/>
-        <item slot="5" material="golden apple" amount="8" consumable="bridge-apple"/>
-        <item slot="28" material="arrow" locked="true"/>
+        <item slot="3" material="stained clay" team-color="true" amount="64" prevent-sharing="true"/>
+        <item slot="4" material="stained clay" team-color="true" amount="64" prevent-sharing="true"/>
+        <item slot="5" material="golden apple" amount="8" consumable="bridge-apple" prevent-sharing="true" lore="`9ⓘ `7Instantly restores to `c20 HP`7!|`9ⓘ `7Grants `eAbsorption`7 for `f1 minute`7!"/>
+        <item slot="28" material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
         <effect duration="2s" amplifier="255">resistance</effect>
@@ -59,9 +60,9 @@
         <effect duration="oo" amplifier="255">slow_digging</effect>
     </kit>
     <kit id="arrow-kit">
-        <item slot="28" material="arrow" locked="true"/>
+        <item slot="28" material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
         <action>
-            <message text="`e⚠ `aYou got an arrow!" actionbar="`a`lARROW READY!"/>
+            <message text=" `e⚠ `aYou got an arrow!" actionbar="`a`lARROW READY!"/>
         </action>
     </kit>
     <kit id="absorption-reset-kit" force="true">
@@ -69,12 +70,11 @@
     </kit>
     <kit id="bridge-apple-kit" force="true">
         <health>20</health>
-        <effect duration="2m">absorption</effect>
+        <effect duration="1m">absorption</effect>
     </kit>
     <kit id="void-death" force="true">
+        <clear effects="true" items="false" armor="false"/>
         <health>1</health>
-        <effect duration="0s" amplifier="0">regeneration</effect>
-        <effect duration="0s" amplifier="0">absorption</effect>
     </kit>
     <give kit="spawn-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
@@ -151,7 +151,10 @@
         </not>
     </all>
     <variable id="round-2" var="round_status">2</variable>
-    <entity id="all-arrows">Arrow</entity>
+    <any id="remove-entities">
+        <entity>dropped item</entity>
+        <entity>arrow</entity>
+    </any>
     <all id="on-buytime">
         <variable var="buytime">1</variable>
         <alive/>
@@ -165,7 +168,7 @@
     <after id="cage-time" message="`0&#62;&#62; `fNext round begins in {0} `0&#60;&#60;" duration="5s" filter="round-0"/>
     <all id="no-arrows">
         <not>
-            <carrying><item material="arrow" locked="true"/></carrying>
+            <carrying><item material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/></carrying>
         </not>
         <participating/>
         <alive/>
@@ -175,7 +178,7 @@
         <participating/>
     </all>
     <all id="more-than-1-arrow">
-        <carrying><item material="arrow" locked="true" amount="2"/></carrying>
+        <carrying><item material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!" amount="2"/></carrying>
         <participating/>
     </all>
     <after id="arrow-regen" duration="3.5s" message="`7&#62;&#62; `fNew arrow in {0} `7&#60;&#60;" filter="no-arrows"/>
@@ -192,13 +195,13 @@
     <action id="increment-round" scope="player">
         <switch-scope outer="player" inner="match">
             <message text="`5# # # # # # # # # #"/>
-            <message text="`5# #    `6`lGOAL!    `5# #"/>
+            <message text="`5# #    `6`lGOAL    `5# #"/>
             <message text="`5# # # # # # # # # #"/>
             <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
             <set var="buytime" value="1"/>
             <fill region="cages" material="stained glass"/>
-            <kill-entities filter="all-arrows"/>
+            <kill-entities filter="remove-entities"/>
             <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="1" fade-out="0.5"/>
         </switch-scope>
     </action>
@@ -224,7 +227,7 @@
         </replace-item>
     </action>
     <action id="no-arrows-message" scope="player">
-        <message text="`e⚠ `cYou will receive an arrow in 3.5 seconds!" actionbar="`c`lNO ARROWS!"/>
+        <message text=" `e⚠ `cYou will receive an arrow in `e3.5`c seconds!" actionbar="`c`lNO ARROWS!"/>
     </action>
     <action id="1-arrow-message" scope="player">
         <message actionbar="`a`lARROW READY!"/>
