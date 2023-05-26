@@ -1,8 +1,9 @@
 <map proto="1.4.2">
 <name>Raid FFA</name>
-<created>2023-05-11</created>
-<version>1.0.0</version>
+<variant id="guns">Guns</variant>
+<version>1.0.1</version>
 <objective>Be the player with the most kills in 6 minutes!</objective>
+<created>2023-05-12<created>
 <authors>
     <author uuid="27ac2daf-3c38-4b8e-9448-46f221bb612a"/> <!-- N11cK -->
     <author uuid="39a9e1b5-1e1d-40c0-8c16-69a9568efa72"/> <!-- Teejers -->
@@ -10,11 +11,16 @@
     <author uuid="42195cb9-b21b-42f5-b938-5ef46f303fcd"/> <!-- _Bill -->
     <author uuid="b13b0b00-a8f9-422b-8963-b3d18bf80aa6"/> <!-- Bearinx -->
     <author uuid="d5a64b26-15ea-46c4-8319-f9c83e82a1fa" contribution="Re-remaster"/> <!-- Eliminate -->
-    <author uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="Re-remaster XML"/> <!-- zzuf -->
+    <author uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="Re-remaster XML and Guns variant"/> <!-- zzuf -->
 </authors>
 <players max="48" colors="true"/>
 <time result="score">6m</time>
-<rage/>
+<unless variant="guns">
+    <rage/>
+</unless>
+<if variant="guns">
+    <gamemode>ffa</gamemode>
+</if>
 <spawns>
     <default>
         <region yaw="180">
@@ -66,7 +72,7 @@
             <point yaw="0">-980.5,45,-1072.5</point>
             <point yaw="-45">-950.7,47,-1056.5</point>
             <point yaw="-45">-1027.5,47,-1073.5</point>
-            <point yaw="-90">-1047.5,48,1062.5</point>
+            <point yaw="-90">-1047.5,48,-1062.5</point>
             <point yaw="45">-1021.5,43,-1105.5</point>
             <point yaw="135">-1021.5,43,-1082.5</point>
             <point yaw="-135">-1046.5,44,-1078.5</point>
@@ -78,34 +84,103 @@
     <kit id="spawn-kit">
         <clear/>
         <game-mode>adventure</game-mode>
-        <item slot="0" unbreakable="true" material="iron sword" enchantment="damage all:10"/>
-        <item slot="1" unbreakable="true" material="bow" enchantment="power:10"/>
-        <item slot="28" material="arrow"/>
+        <unless variant="guns">
+            <item slot="0" unbreakable="true" material="iron sword" enchantment="damage all:10"/>
+            <item slot="1" unbreakable="true" material="bow" enchantment="power:10"/>
+            <item slot="28" material="arrow"/>
+        </unless>
+        <if variant="guns">
+            <item slot="0" unbreakable="true" material="gold barding" name="`fSkorpion EVO" lore="`7Fast rate of fire, low damage" projectile="evoskorpion"/>
+            <item slot="1" unbreakable="true" material="iron hoe" name="`fFive-seven" lore="`7Medium rate of fire, medium damage" projectile="fiveseven"/>
+            <item slot="2" unbreakable="true" material="iron barding" name="`fDSR 50" lore="`7Slow rate of fire, instakill" projectile="dsr50"/>
+            <item slot="8" material="golden apple"/>
+        </if>
         <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
         <effect duration="2" amplifier="255">heal</effect>
         <effect duration="2" amplifier="255">damage resistance</effect>
     </kit>
 </kits>
+<projectiles>
+    <projectile
+        id="grenade"
+        name="Grenade"
+        projectile="Fireball"
+        velocity="3.5"
+        damage="5"
+        throwable="true"
+        cooldown="3s"/>
+    <projectile
+        id="evoskorpion"
+        name="Skorpion EVO"
+        projectile="Egg"
+        velocity="3.5"
+        damage="3.5"
+        throwable="false"
+        cooldown="0s"/>
+    <projectile
+        id="fiveseven"
+        name="Five-seven"
+        projectile="Snowball"
+        velocity="3.5"
+        damage="4"
+        throwable="false"
+        cooldown="1s"/>
+    <projectile
+        id="dsr50"
+        name="DSR 50"
+        projectile="SmallFireball"
+        velocity="5.5"
+        damage="40"
+        throwable="false"
+        precise="true"
+        cooldown="10s"/>
+</projectiles>
 <regions>
     <above id="ceiling" y="54"/>
     <apply enter="never" region="ceiling"/>
-    <apply block="never" use="never"/>
+    <apply block="never"/>
 </regions>
 <score>
     <kills>1</kills>
 </score>
 <toolrepair>
     <tool>iron sword</tool>
+    <tool>iron barding</tool>
+    <tool>iron hoe</tool>
+    <tool>gold barding</tool>
+    <tool>snow ball</tool>
     <tool>bow</tool>
     <tool>arrow</tool>
 </toolrepair>
+<itemkeep>
+    <item>iron sword</item>
+    <item>iron barding</item>
+    <item>iron hoe</item>
+    <item>gold barding</item>
+    <item>snow ball</item>
+    <item>bow</item>
+    <item>arrow</item>
+</itemkeep>
 <itemremove>
     <item>leather helmet</item>
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item material="arrow"/>
+        <unless variant="guns">
+            <item material="arrow"/>
+        </unless>
+        <if variant="guns">
+            <item material="golden apple"/>
+        </if>
     </kill-reward>
+    <if variant="guns">
+        <kill-reward>
+            <filter>
+                <kill-streak count="2"/>
+            </filter>
+            <item material="fireball" amount="2" name="`fGrenade" projectile="grenade"/>
+        </kill-reward>
+    </if>
 </kill-rewards>
 <disabledamage>
     <damage>fall</damage>
