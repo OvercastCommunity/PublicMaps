@@ -1,9 +1,9 @@
 <map proto="1.4.2">
 <name>Raid FFA</name>
 <variant id="guns">Guns</variant>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Be the player with the most kills in 6 minutes!</objective>
-<created>2023-05-12<created>
+<created>2023-05-12</created>
 <authors>
     <author uuid="27ac2daf-3c38-4b8e-9448-46f221bb612a"/> <!-- N11cK -->
     <author uuid="39a9e1b5-1e1d-40c0-8c16-69a9568efa72"/> <!-- Teejers -->
