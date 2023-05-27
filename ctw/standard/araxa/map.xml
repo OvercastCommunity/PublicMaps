@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Araxa</name>
-<version>3.0</version>
+<version>3.0.1</version>
 <objective>Capture the enemy's two wools!</objective>
 <authors>
     <author uuid="e41edd14-9b0e-4501-a0c5-7fda64d2b2f3"/> <!-- JonnyBallgame -->
@@ -34,8 +34,8 @@
         <item slot="30" material="stone spade">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="4" amount="64" damage="2" material="wood"/>
-        <item slot="31" amount="64" damage="2" material="wood"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="31" amount="64" material="wood"/>
         <item slot="5" amount="64" team-color="true" material="stained glass"/>
         <item slot="6" material="bucket"/>
         <item slot="8" material="golden apple"/>
@@ -75,6 +75,9 @@
     <deny id="deny-chest">
         <material>chest</material>
     </deny>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
     <all id="only-iron-renew">
         <material id="only-iron">iron block</material>
         <cause>world</cause>
@@ -91,12 +94,12 @@
     </union>
     <union id="wool-rooms">
         <union id="orange-wool-rooms"> <!-- orange defends from purple -->
-            <rectangle id="red-room" min="478,366" max="496,385"/>
-            <rectangle id="yellow-room" min="478,542" max="496,561"/>
-        </union>
-        <union id="purple-wool-rooms"> <!-- purple defends from orange -->
             <rectangle id="blue-room" min="689,366" max="707,385"/>
             <rectangle id="cyan-room" min="689,542" max="707,561"/>
+        </union>
+        <union id="purple-wool-rooms"> <!-- purple defends from orange -->
+            <rectangle id="red-room" min="478,366" max="496,385"/>
+            <rectangle id="yellow-room" min="478,542" max="496,561"/>
         </union>
     </union>
     <complement id="void">
@@ -109,6 +112,7 @@
         <cuboid id="purple-side-red-wool" min="496,0,403" max="518,3,419"/>
         <cuboid id="purple-side-yellow-wool" min="496,0,508" max="518,3,524"/>
     </union>
+    <apply use="deny-beacon"/>
     <apply use="only-orange" region="purple-wool-rooms"/>
     <apply use="only-purple" region="orange-wool-rooms"/>
     <apply enter="only-orange" region="orange-spawn" message="You may not enter the enemy team's spawn!"/>
@@ -138,12 +142,12 @@
     </wool>
     <wool team="purple-team" color="blue" location="698,13,373">
         <monument>
-            <block>468,8,462</block>
+            <block>467,8,462</block>
         </monument>
     </wool>
     <wool team="purple-team" color="cyan" location="698,13,554">
         <monument>
-            <block>468,8,464</block>
+            <block>467,8,464</block>
         </monument>
     </wool>
 </wools>
@@ -179,6 +183,7 @@
     <item>double plant</item>
     <item>sugar cane</item>
     <item>rails</item>
+    <item>beacon</item>
 </itemremove>
 <block-drops>
     <rule>
@@ -209,7 +214,7 @@
 <kill-rewards>
     <kill-reward>
         <item material="golden apple"/>
-        <item amount="32" damage="2" material="wood"/>
+        <item amount="32" material="wood"/>
         <item amount="16" team-color="true" material="stained glass"/>
     </kill-reward>
 </kill-rewards>
