@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Raid FFA</name>
 <variant id="guns">Guns</variant>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Be the player with the most kills in 6 minutes!</objective>
 <created>2023-05-12</created>
 <authors>
@@ -92,7 +92,7 @@
         <if variant="guns">
             <item slot="0" unbreakable="true" material="gold barding" name="`fSkorpion EVO" lore="`7Fast rate of fire, low damage" projectile="evoskorpion"/>
             <item slot="1" unbreakable="true" material="iron hoe" name="`fFive-seven" lore="`7Medium rate of fire, medium damage" projectile="fiveseven"/>
-            <item slot="2" unbreakable="true" material="iron barding" name="`fDSR 50" lore="`7Slow rate of fire, instakill" projectile="dsr50"/>
+            <item slot="2" unbreakable="true" material="iron barding" name="`fDSR 50" lore="`7Slow rate of fire, `cinstakill" projectile="dsr50"/>
             <item slot="8" material="golden apple"/>
         </if>
         <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
@@ -153,13 +153,11 @@
     <tool>arrow</tool>
 </toolrepair>
 <itemkeep>
-    <item>iron sword</item>
     <item>iron barding</item>
     <item>iron hoe</item>
     <item>gold barding</item>
-    <item>snow ball</item>
-    <item>bow</item>
     <item>arrow</item>
+    <item>golden apple</item>
 </itemkeep>
 <itemremove>
     <item>leather helmet</item>
