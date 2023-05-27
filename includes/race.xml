@@ -3,7 +3,7 @@
 <game>Laps</game>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.05.21-1 -->
+<!-- Version 2023.05.26-1 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
@@ -43,11 +43,11 @@
     <give kit="void-kit" filter="below-y0-player"/> <!-- Fallback -->
 </kits>
 <broadcasts>
-    <alert after="1s">`fThe countdown is starting!`r</alert>
-    <alert after="5s">`4`l3`r</alert>
-    <alert after="6s">`c`l2`r</alert>
-    <alert after="7s">`e`l1`r</alert>
-    <alert after="8s">`a`lGO`r</alert>
+    <alert after="1s" filter="race-not-started">`fThe countdown is starting!`r</alert>
+    <alert after="5s" filter="race-not-started">`4`l3`r</alert>
+    <alert after="6s" filter="race-not-started">`c`l2`r</alert>
+    <alert after="7s" filter="race-not-started">`e`l1`r</alert>
+    <alert after="8s" filter="race-not-started">`a`lGO`r</alert>
 </broadcasts>
 <classes family="Cars" sticky="true" restrict="false">
     <class name="Touring Car" description="4/5 speed, knockback 1 and efficiency 2 shears" icon="iron boots" default="true">
@@ -106,14 +106,18 @@
     </any>
     <apply block="allowed-blocks"/>
     <match-started id="match-start"/>
-    <after id="race-start" duration="8s" message="`f`lGet ready!" filter="match-start"/>
+    <all id="match-start-countdown">
+        <filter id="match-start"/>
+        <filter id="race-not-started"/>
+    </all>
+    <after id="race-start" duration="8s" message="`f`lGet ready!" filter="match-start-countdown"/>
     <all id="finish-line-participating">
         <region id="finish-line"/>
         <participating/>
         <match-running/>
     </all>
     <all id="during-countdown">
-        <variable var="race_started">0</variable>
+        <variable id="race-not-started" var="race_started">0</variable>
         <after duration="0.05" filter="match-start"/>
         <participating/>
         <match-running/>
@@ -132,7 +136,7 @@
     <below y="0" id="below-y0"/>
 </regions>
 <variables>
-    <variable id="race_started" scope="match" default="0"/>
+    <variable id="race_started" scope="match" default="1"/> <!-- default="1" to disable countdown -->
 </variables>
 <actions>
     <action id="start-race" scope="match">
