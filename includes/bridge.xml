@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.26-1 -->
+<!-- Version 2023.05.27-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -65,12 +65,17 @@
             <message text=" `e⚠ `aYou got an arrow!" actionbar="`a`lARROW READY!"/>
         </action>
     </kit>
+    <kit id="absorption-kit" force="true">
+        <effect duration="1m">absorption</effect>
+    </kit>
     <kit id="absorption-reset-kit" force="true">
         <effect duration="0" amplifier="1">absorption</effect>
     </kit>
     <kit id="bridge-apple-kit" force="true">
         <health>20</health>
-        <effect duration="1m">absorption</effect>
+        <action scope="player" filter="no-absorption">
+            <kit id="absorption-kit"/>
+        </action>
     </kit>
     <kit id="void-death" force="true">
         <clear effects="true" items="false" armor="false"/>
@@ -182,6 +187,9 @@
         <participating/>
     </all>
     <after id="arrow-regen" duration="3.5s" message="`7&#62;&#62; `fNew arrow in {0} `7&#60;&#60;" filter="no-arrows"/>
+    <not id="no-absorption">
+        <effect>absorption</effect>
+    </not>
 </filters>
 <consumables>
     <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
