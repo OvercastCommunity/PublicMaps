@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.25-1 -->
+<!-- Version 2023.05.26-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -47,9 +47,9 @@
         <health>20</health>
     </kit>
     <kit id="armor-kit" force="true">
-        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
-        <leggings material="leather leggings" team-color="true" unbreakable="true"/>
-        <boots material="leather boots" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true" prevent-sharing="true"/>
+        <leggings material="leather leggings" team-color="true" unbreakable="true" prevent-sharing="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true" prevent-sharing="true"/>
     </kit>
     <kit id="remove-effects-kit" force="true">
         <effect duration="0">invisibility</effect>
@@ -194,9 +194,9 @@
 <actions>
     <action id="increment-round" scope="player">
         <switch-scope outer="player" inner="match">
-            <message text="`5# # # # # # # # # #"/>
-            <message text="`5# #    `6`lGOAL    `5# #"/>
-            <message text="`5# # # # # # # # # #"/>
+            <message text="`5# # # # # # # # # # # #"/>
+            <message text="`5# #    `6» `6`lGOAL! `6«`5    # #"/>
+            <message text="`5# # # # # # # # # # # #"/>
             <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
             <set var="buytime" value="1"/>
@@ -242,7 +242,7 @@
 </actions>
 <regions>
     <apply block="deny-participating" region="not-buildable" message="You may not modify blocks here!"/>
-    <apply block="some-blocks" message="You may not break that block!"/>
+    <apply block="some-blocks" message="You may not interact with that block!"/>
     <translate id="team-one-big-scorebox" offset="0,0.5,0"><region id="team-one-portal"/></translate>
     <translate id="team-two-big-scorebox" offset="0,0.5,0"><region id="team-two-portal"/></translate>
     <apply leave="not-on-buytime" region="cages" message="The next round will begin shortly!"/>
