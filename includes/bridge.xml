@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.27-2 -->
+<!-- Version 2023.05.27-3 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -181,7 +181,7 @@
         <alive/>
     </all>
     <all id="1-arrow">
-        <carrying><item material="arrow" locked="true"/></carrying>
+        <carrying><item material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/></carrying>
         <participating/>
     </all>
     <all id="more-than-1-arrow">
