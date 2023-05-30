@@ -1,0 +1,211 @@
+<map proto="1.4.2">
+<name>Kï</name>
+<version>3.0</version>
+<objective>Destroy 50% of the enemy's base! You only have 10 minutes!</objective>
+<phase>development</phase>
+<!-- <include id="tutorial"/> -->
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<game>Destroy the Base</game>
+<maxbuildheight>32</maxbuildheight>
+<time result="objectives">10m</time>
+<respawn auto="true"/>
+<teams>
+    <team id="red" color="red" max="32">Red</team>
+    <team id="blue" color="blue" max="32">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="spawn-kit" yaw="0">
+        <region>
+            <cuboid min="28,3,-78" max="-27,3,-75"/>
+        </region>
+    </spawn>
+    <spawn team="blue" kit="spawn-kit" yaw="180">
+        <region>
+            <cuboid min="-27,3,76" max="28,3,79"/>
+        </region>
+    </spawn>
+    <default kit="obs" yaw="90">
+        <region>
+            <point>-67.5,51,0.5</point>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="obs">
+        <effect duration="oo">night vision</effect>
+    </kit>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" amount="64" team-color="true" material="stained clay"/>
+        <item slot="30" amount="64" team-color="true" material="stained clay"/>
+        <item slot="21" amount="64" team-color="true" material="stained clay"/>
+        <item slot="4" amount="16" material="redstone block"/>
+        <item slot="31" amount="64" material="redstone"/>
+        <item slot="5" amount="64" material="tnt"/>
+        <item slot="32" amount="64" material="tnt"/>
+        <item slot="23" amount="64" material="tnt"/>
+        <item slot="6" material="water bucket"/>
+        <item slot="33" material="water bucket"/>
+        <item slot="24" material="water bucket"/>
+        <item slot="15" amount="8" material="trap door"/>
+        <item slot="26" amount="32" material="step"/>
+        <item slot="8" amount="64" material="redstone"/>
+        <item slot="34" amount="16" material="nether fence"/>
+        <item slot="35" amount="64" material="ladder"/>
+        <item slot="25" amount="4" material="diode"/>
+        <item slot="7" amount="16" material="stone button"/>
+        <item slot="16" amount="16" material="lever"/>
+        <item slot="17" amount="16" material="stone plate"/>
+        <item slot="28" material="arrow"/>
+        <item slot="9" amount="8" damage="9" name="`aRepair Block" lore="`7Place this over your base to repair it!" material="stained clay"/>
+        <helmet team-color="true" material="stained clay" locked="true"/>
+        <chestplate unbreakable="true" enchantment="protection explosions:4;water worker:3" material="chainmail chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="oo">fast digging</effect>
+        <effect duration="oo">water breathing</effect>
+        <effect duration="20">heal</effect>
+        <effect duration="oo">damage resistance</effect>
+    </kit>
+</kits>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <deny id="deny-fire">
+        <material>fire</material>
+    </deny>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+    <deny id="deny-some">
+        <any>
+            <material>155</material>
+            <material>95</material>
+            <material>160</material>
+            <material>44:7</material>
+            <material>159:12</material>
+            <material>159:15</material>
+            <material>156</material>
+            <material>20</material>
+            <material>beacon</material>
+            <material>22</material>
+            <material>87</material>
+        </any>
+    </deny>
+    <material id="only-repair-block">stained clay:9</material>
+</filters>
+<regions>
+    <above id="above-map" y="33"/>
+    <union id="spawns">
+        <cuboid id="blue-spawn" min="-27,3,70" max="28,3,84"/>
+        <cuboid id="red-spawn" min="28,3,-69" max="-27,3,-83"/>
+    </union>
+    <union id="bases">
+        <cuboid id="blue-base" min="-50,0,73" max="51,32,0"/>
+        <cuboid id="red-base" min="-50,0,-72" max="51,32,0"/>
+    </union>
+    <!-- Applied -->
+    <apply block="never" message="`eYou may not edit outside the main area!">
+        <region>
+            <negative>
+                <region id="bases"/>
+            </negative>
+        </region>
+    </apply>
+    <apply block-place="deny-void" message="`eYou may not bridge to the enemy side!" region="bases"/>
+    <apply block-place="deny-fire" message="`eYou may not burn down the bases!" region="bases"/>
+    <apply use="deny-beacon"/>
+    <apply block-break="deny-some"/>
+    <apply enter="only-blue" message="`eYou may not enter the enemy's spawn area!" region="blue-spawn"/>
+    <apply enter="only-red" message="`eYou may not enter the enemy's spawn area!" region="red-spawn"/>
+    <apply enter="never" message="`eYou may not go onto the roof" region="above-map"/>
+    <apply block-place="only-repair-block" region="bases" message="You may only place `aRepair Blocks`r here!"/>
+</regions>
+<destroyables show-progress="true" completion="50%" repairable="true">
+    <destroyable name="Blue Base" materials="stained clay:11;stained clay:9;stained clay:3" owner="blue">
+        <region>
+            <region id="blue-base"/>
+        </region>
+    </destroyable>
+    <destroyable name="Red Base" materials="stained clay:14;stained clay:9;stained clay:1" owner="red">
+        <region>
+            <region id="red-base"/>
+        </region>
+    </destroyable>
+</destroyables>
+<itemremove>
+	<item>leather leggings</item>
+	<item>leather boots</item>
+    <item>stone sword</item>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>flint and steel</item>
+    <item>arrow</item>
+    <item>step</item>
+    <item>chainmail chestplate</item>
+    <item>shears</item>
+    <item>rails</item>
+    <item>ladder</item>
+    <item>gold block</item>
+    <item>obsidian</item>
+    <item>stained clay</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>stone plate</item>
+    <item>diode</item>
+    <item>lever</item>
+    <item>iron door</item>
+    <item>fence</item>
+    <item>wood</item>
+    <item>tnt</item>
+    <item>stone button</item>
+    <item>redstone</item>
+    <item>ladder</item>
+    <item>log</item>
+    <item>wood step</item>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>trap door</item>
+    <item>fence gate</item>
+    <item>redstone block</item>
+    <item>nether fence</item>
+</itemremove>
+<killreward>
+    <item amount="16" material="tnt"/>
+    <item amount="16" damage="9" name="`aRepair Block" lore="`7Place this over your base to repair it!" material="stained clay"/>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<!-- <tutorial>
+    <stage title="Destroy the Base">
+        <message>
+            <line>This map is a `aDestroy the Bases `r(DTB) map.</line>
+            <line>The objective is to destroy `c70% `rof the enemy team's base!</line>
+            <line>You can get iron gears upon breaking the middle ressources.</line>
+        </message>
+        <teleport>
+            <point yaw="-90">-46,9,0</point>
+        </teleport>
+    </stage>
+    <stage title="Kill Rewards">
+        <message>
+            <line>When you kill an enemy, you will recieve:</line>
+            <line>16 `6Repair Blocks`r and 16 `cTNT`r.</line>
+        </message>
+    </stage>
+</tutorial> -->
+</map>
