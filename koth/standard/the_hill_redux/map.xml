@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>The Hill Redux</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Capture and hold the hills!</objective>
 <authors>
     <author uuid="374988d6-4569-444e-885a-409c2f55e310" contribution="Map Creator"/> <!-- Articray -->
@@ -13,8 +13,8 @@
     <contributor uuid="a59dce2e-79e2-4229-ab83-98c885fceb23" contribution="Feedback and planning"/> <!-- XxNarwhalexX -->
 </contributors>
 <teams>
-    <team id="orange" color="gold" max="35">Orange</team>
-    <team id="purple" color="dark purple" max="35">Purple</team>
+    <team id="orange" color="gold" max="28">Orange</team>
+    <team id="purple" color="dark purple" max="28">Purple</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
