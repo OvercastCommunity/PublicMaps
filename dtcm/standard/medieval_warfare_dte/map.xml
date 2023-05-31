@@ -2,7 +2,7 @@
 <map proto="1.3.3">
 <name>Medieval Warfare: DTE</name>
 <phase>development</phase>
-<version>1.7.4</version>
+<version>1.7.5</version>
 <objective>Demolish the enemy's castle</objective>
 <authors>
     <author uuid="c1ea235d-4224-46e4-ba4a-638838f6d039"/> <!-- Daffy_Duck01 -->
@@ -62,7 +62,7 @@
             <region name="spawn"/>
         </negative>
     </apply>
-    <apply block="deny-all" message="Don't build outside the map boundry!">
+    <apply block="deny-all" message="You may not build outside the map's boundaries!">
         <negative>
             <cuboid min="-155,-oo,3" max="155,127,172"/>
         </negative>
@@ -77,6 +77,12 @@
         <union>
             <region name="blue-wall"/>
             <region name="red-wall"/>
+        </union>
+    </apply>
+    <apply leave="after-190s" message="You may not go to the enemy's island yet!">
+        <union> <!-- anachronistic: added in proto 1.4.0 but work -->
+            <above x="1"/>
+            <below x="-1"/>
         </union>
     </apply>
 </regions>
@@ -105,6 +111,11 @@
         <deny>
             <block>glass</block>
         </deny>
+    </filter>
+    <filter name="after-190s" parents="deny-all">
+        <allow>
+            <time>190s</time>
+        </allow>
     </filter>
 </filters>
 <kits>
@@ -182,5 +193,6 @@
     <alert after="130s">The wall comes down in 1 minute</alert>
     <alert after="160s">The wall comes down in 30 seconds</alert>
     <alert after="180s">The wall comes down in 10 seconds</alert>
+    <alert after="190s">THE WALL IS GONE!! BOOM BOOM TIEM!!!111</alert> <!-- Monument mode message -->
 </broadcasts>
 </map>
