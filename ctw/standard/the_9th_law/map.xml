@@ -1,13 +1,13 @@
 <map proto="1.4.2">
 <name>The 9th Law</name>
-<version>1.1.10</version>
+<version>1.2.0</version>
 <objective>Capture both of the enemy team's wools!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue" color="blue" max="28">Blue</team>
+    <team id="red" color="dark red" max="28">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -17,11 +17,13 @@
             <enchantment>infinity</enchantment>
         </item>
         <item slot="28" material="arrow"/>
-        <item slot="2" unbreakabel="true" material="diamond pickaxe"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
         <item slot="3" unbreakable="true" material="diamond axe"/>
         <item slot="4" amount="64" damage="1" material="wood"/>
         <item slot="31" amount="32" damage="1" material="wood"/>
         <item slot="5" amount="48" material="glass"/>
+        <item slot="6" amount="24" material="ladder"/>
+        <item slot="7" material="bucket"/>
         <item slot="8" material="golden apple"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
@@ -37,12 +39,12 @@
     </default>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="-90">
-            <cylinder base="-109.5,17.5,0.5" radius="1" height="1"/>
+            <cylinder base="-106.5,5.0625,0.5" radius="1" height="1"/>
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
         <region yaw="90">
-            <cylinder base="110.5,17.5,0.5" radius="1" height="1"/>
+            <cylinder base="107.5,5.0625,0.5" radius="1" height="1"/>
         </region>
     </spawn>
 </spawns>
@@ -64,7 +66,6 @@
         <any>
             <material>iron block</material>
             <material>ladder</material>
-            <material>wood stairs</material>
             <material>stationary water</material>
         </any>
     </all>
@@ -76,17 +77,17 @@
     <union id="wool-rooms">
         <complement id="blue-access-top">
             <union>
-                <rectangle id="green-wool" min="171,-9" max="140,-34"/>
-                <rectangle id="lime-wool" min="171,10" max="140,35"/>
+                <rectangle id="green-wool" min="171,-9" max="142,-34"/>
+                <rectangle id="lime-wool" min="171,10" max="142,35"/>
             </union>
-            <below y="31"/>
+            <below y="29"/>
         </complement>
         <complement id="red-access-top">
             <union>
-                <rectangle id="blue-wool" min="-170,-9" max="-140,-34"/>
-                <rectangle id="cyan-wool" min="-170,10" max="-140,35"/>
+                <rectangle id="blue-wool" min="-170,-9" max="-141,-34"/>
+                <rectangle id="cyan-wool" min="-170,10" max="-141,35"/>
             </union>
-            <below y="31"/>
+            <below y="29"/>
         </complement>
     </union>
     <union id="bases">
@@ -103,13 +104,23 @@
     </union>
     <negative id="outside-map">
         <union>
-            <rectangle min="169,-34" max="117,-9"/>
-            <rectangle min="169,34" max="117,9"/>
-            <rectangle min="50,-44" max="-50,44"/>
-            <rectangle min="-169,34" max="-117,9"/>
-            <rectangle min="-169,-34" max="-117,-9"/>
+            <rectangle min="170,-34" max="119,-9"/>
+            <rectangle min="170,34" max="119,9"/>
+            <rectangle min="46,-44" max="-45,44"/>
+            <rectangle min="-169,34" max="-118,9"/>
+            <rectangle min="-169,-34" max="-118,-9"/>
         </union>
     </negative>
+    <cylinder id="green-wool-spawner-player-region" base="158.5,38,-21.5" radius="4" height="5"/>
+    <cylinder id="lime-wool-spawner-player-region" base="158.5,38,21.5" radius="4" height="5"/>
+    <cylinder id="cyan-wool-spawner-player-region" base="-157.5,38,21.5" radius="4" height="5"/>
+    <cylinder id="lightblue-wool-spawner-player-region" base="-157.5,38,-21.5" radius="4" height="5"/>
+    <cylinder id="gapple-spawner-player-region" base="0.5,4,0.5" radius="4" height="5"/>
+    <block id="green-wool-spawner">158,38,-22</block>
+    <block id="lime-wool-spawner">158,38,22</block>
+    <block id="cyan-wool-spawner">-158,38,22</block>
+    <block id="lightblue-wool-spawner">-158,38,-22</block>
+    <block id="gapple-block-spawner">0,4,0</block>
     <!-- Players make break iron, ladders, wooden stairs in spawn, and may pick up water -->
     <apply block-break="spawn-permit" block-place="deny-players" message="You may only break iron blocks in the base!" region="bases"/>
     <!-- Deny building in the area above y = 31 for wool rooms -->
@@ -124,6 +135,23 @@
     <!-- Deny use of dispensers, hoppers, beacons -->
     <apply use="deny-use"/>
 </regions>
+<spawners>
+    <spawner id="green-spawner" spawn-region="green-wool-spawner" player-region="green-wool-spawner-player-region" max-entities="10" delay="3s">
+        <item amount="1" material="wool" damage="13"/>
+    </spawner>
+    <spawner id="lime-spawner" spawn-region="lime-wool-spawner" player-region="lime-wool-spawner-player-region" max-entities="10" delay="3s">
+        <item amount="1" material="wool" damage="5"/>
+    </spawner>
+    <spawner id="cyan-spawner" spawn-region="cyan-wool-spawner" player-region="cyan-wool-spawner-player-region" max-entities="10" delay="3s">
+        <item amount="1" material="wool" damage="9"/>
+    </spawner>
+    <spawner id="lightblue-spawner" spawn-region="lightblue-wool-spawner" player-region="lightblue-wool-spawner-player-region" max-entities="10" delay="3s">
+        <item amount="1" material="wool" damage="3"/>
+    </spawner>
+    <spawner id="gapple-spawner" spawn-region="gapple-block-spawner" player-region="gapple-spawner-player-region" max-entities="2" delay="7s">
+        <item amount="1" material="golden apple"/>
+    </spawner>
+</spawners>
 <renewables>
     <renewable region="bases">
         <renew-filter>
@@ -133,26 +161,48 @@
             </any>
         </renew-filter>
     </renewable>
+    <renewable rate="1" grow="true" particles="true" sound="true" avoid-players="2"> <!-- Blue iron generator -->
+        <region>
+            <cuboid min="114,3,-4" max="92,10,5"/>
+        </region>
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
+    <renewable rate="1" grow="true" particles="true" sound="true" avoid-players="2"> <!-- Red iron generator -->
+        <region>
+            <cuboid min="-113,3,-4" max="-91,10,5"/>
+        </region>
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
 </renewables>
 <wools>
     <wool team="blue" color="green" location="158,38,-22">
         <monument>
-            <block>-74.5,15.5,8.5</block>
+            <block>-74.5,14.5,8.5</block>
         </monument>
     </wool>
     <wool team="blue" color="lime" location="158,38,22">
         <monument>
-            <block>-74.5,15.5,-7.5</block>
+            <block>-74.5,14.5,-7.5</block>
         </monument>
     </wool>
     <wool team="red" color="cyan" location="-158,38,22">
         <monument>
-            <block>75.5,15.5,8.5</block>
+            <block>75.5,14.5,8.5</block>
         </monument>
     </wool>
     <wool team="red" color="light blue" location="-158,38,-22">
         <monument>
-            <block>75.5,15.5,-7.5</block>
+            <block>75.5,14.5,-7.5</block>
         </monument>
     </wool>
 </wools>
@@ -169,6 +219,9 @@
     <item>leather boots</item>
     <item>beacon</item>
     <item>obsidian</item>
+    <item>ladder</item>
+    <item>bucket</item>
+    <item>water bucket</item>
 </itemremove>
 <block-drops>
     <rule>
@@ -193,7 +246,7 @@
     <item amount="24" damage="1" material="wood"/>
     <item amount="12" material="glass"/>
 </kill-reward>
-<maxbuildheight>32</maxbuildheight>
+<maxbuildheight>34</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
