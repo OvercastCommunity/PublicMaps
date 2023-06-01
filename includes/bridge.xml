@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.27-3 -->
+<!-- Version 2023.05.28-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -28,6 +28,7 @@
     <alert after="13m">`7If neither team has won by then, the match will end in `c`l2 minutes`7!</alert>
     <alert after="14m">`7If neither team has won by then, the match will end in `c`l1 minute`7!</alert>
     <alert after="14m30s">`7If neither team has won by then, the match will end in `c`l30 seconds`7!</alert>
+    <alert after="14m50s">`7If neither team has won by then, the match will end in `4`l10 seconds`7!</alert>
 </broadcasts>
 <spawns>
     <spawn team="team-one" kit="spawn-kit" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn-point"/>
@@ -42,13 +43,15 @@
         <item slot="3" material="stained clay" team-color="true" amount="64" prevent-sharing="true"/>
         <item slot="4" material="stained clay" team-color="true" amount="64" prevent-sharing="true"/>
         <item slot="5" material="golden apple" amount="8" consumable="bridge-apple" prevent-sharing="true" lore="`9ⓘ `7Instantly restores to `c20 HP`7!|`9ⓘ `7Grants `eAbsorption`7 for `f1 minute`7!"/>
-        <item slot="28" material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
         <effect duration="2s" amplifier="255">resistance</effect>
         <health>20</health>
+        <action>
+            <kit id="arrow-kit"/>
+        </action>
     </kit>
-    <kit id="armor-kit" force="true">
+    <kit id="armor-kit">
         <chestplate material="leather chestplate" team-color="true" unbreakable="true" prevent-sharing="true"/>
         <leggings material="leather leggings" team-color="true" unbreakable="true" prevent-sharing="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true" prevent-sharing="true"/>
@@ -62,9 +65,9 @@
         <effect duration="oo" amplifier="255">slow_digging</effect>
     </kit>
     <kit id="arrow-kit">
-        <item slot="28" material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
+        <item slot="8" material="arrow" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
         <action>
-            <message text=" `e⚠ `aYou got an arrow!" actionbar="`a`lARROW READY!"/>
+            <message actionbar="`a`lARROW READY!"/>
         </action>
     </kit>
     <kit id="absorption-kit" force="true">
@@ -86,7 +89,6 @@
     <give kit="spawn-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
-    <give kit="arrow-kit" filter="arrow-regen"/>
     <give kit="armor-kit" filter="not-on-buytime"/>
     <give kit="remove-effects-kit" filter="not-on-buytime"/>
 </kits>
@@ -172,20 +174,20 @@
         <alive/>
         <participating/>
     </all>
-    <after id="cage-time" message="`0&#62;&#62; `fNext round begins in {0} `0&#60;&#60;" duration="${pre-round-time}" filter="round-0"/>
+    <after id="cage-time" message="`a» `fNext round begins in {0} `a«" duration="${pre-round-time}" filter="round-0"/>
     <all id="no-arrows">
         <not>
-            <carrying><item material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/></carrying>
+            <carrying ignore-metadata="true"><item material="arrow"/></carrying>
         </not>
         <participating/>
         <alive/>
     </all>
     <all id="1-arrow">
-        <carrying><item material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/></carrying>
+        <carrying ignore-metadata="true"><item material="arrow"/></carrying>
         <participating/>
     </all>
     <all id="more-than-1-arrow">
-        <carrying><item material="arrow" locked="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!" amount="2"/></carrying>
+        <carrying ignore-metadata="true"><item material="arrow" amount="2"/></carrying>
         <participating/>
     </all>
     <after id="arrow-regen" duration="3.5s" filter="no-arrows"/>
@@ -195,7 +197,7 @@
     <time id="after-13m">13m</time>
     <time id="after-15m">15m</time>
     <after duration="2m" filter="after-13m">
-        <message>`c&#62;&#62; `fThe match will end in: {0} `c&#60;&#60;</message>
+        <message>`4» `fThe match will `cend`f in {0} `4«</message>
         <!-- <message>{"translate":"misc.timeRemaining"}</message> -->
     </after>
     <after duration="1s" filter="after-15m" message="`e`lOvertime"/> <!-- Only appears if the time limit has been cancelled -->
@@ -249,6 +251,11 @@
     <action id="1-arrow-message" scope="player">
         <message actionbar="`a`lARROW READY!"/>
     </action>
+    <action id="give-arrow" scope="player">
+        <kit id="arrow-kit"/>
+        <message text=" `e⚠ `aYou got an arrow!"/>
+    </action>
+    <trigger filter="arrow-regen" action="give-arrow" scope="player"/>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
