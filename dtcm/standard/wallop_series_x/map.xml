@@ -1,0 +1,242 @@
+<map proto="1.4.2">
+<name>Wallop Series X</name>
+<version>2.1.4</version>
+<objective>Destroy the monument and leak the core.</objective>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<contributors>
+    <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b"/> <!-- Jexel -->
+    <contributor uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nix -->
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+    <contributor uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Andr -->
+    <contributor uuid="a6955518-97b8-4c1d-8e76-e641b8f8822c"/> <!-- Qwuiblington -->
+</contributors>
+<broadcasts>
+    <tip after="4s" every="5m">Diamond blocks drop diamond chestplate with blast protection!</tip>
+</broadcasts>
+<teams>
+    <team id="blue-team" color="blue" max="24">Blue</team>
+    <team id="red-team" color="dark red" max="24">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="diamond axe"/>
+        <item slot="4" amount="64" damage="5" material="wood"/>
+        <item slot="31" amount="64" damage="5" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="32" amount="64" material="smooth brick"/>
+        <item slot="6" amount="32" material="ladder"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <enchantment level="2">blast_protection</enchantment>
+        </boots>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <cylinder base="100.5,52,-14.5" radius="2" height="1"/>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="0">
+            <cylinder base="-7.5,20,-100.5" radius="0.9" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="180">
+            <cylinder base="-7.5,20,71.5" radius="0.9" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+    <deny id="no-stone">
+        <material>stone</material>
+    </deny>
+    <material id="only-tnt">tnt</material>
+    <all id="only-creeper-spawn-egg">
+        <spawn>spawner egg</spawn>
+        <mob>creeper</mob>
+    </all>
+</filters>
+<regions>
+    <complement id="not-playable">
+        <everywhere/>
+        <rectangle min="56,68" max="-57,-97"/>
+    </complement>
+    <union id="spawns">
+        <cuboid id="blue-spawn" min="-10,20,-103" max="-5,24,-73"/>
+        <cuboid id="red-spawn" min="-10,20,44" max="-5,24,74"/>
+    </union>
+    <complement id="blue-spawn-entry">
+        <region id="blue-spawn"/>
+        <intersect>
+            <above z="-82"/>
+            <below z="53"/>
+        </intersect>
+    </complement>
+    <complement id="red-spawn-entry">
+        <region id="red-spawn"/>
+        <intersect>
+            <above z="-82"/>
+            <below z="53"/>
+        </intersect>
+    </complement>
+    <union id="objectives">
+        <union id="monuments">
+            <cylinder id="blue-monument" radius="2" base="-14.5,36,-64.5" height="10"/>
+            <cylinder id="red-monument" radius="2" base="-14.5,36,35.5" height="10"/>
+        </union>
+        <union id="cores">
+            <cylinder id="blue-core" radius="3" base="29.5,22,-75.5" height="5"/>
+            <cylinder id="red-core" radius="3" base="29.5,22,46.5" height="5"/>
+        </union>
+    </union>
+    <above id="tnt-height-limit" y="50"/>
+    <above id="above-height-limit" y="51"/>
+    <apply enter="only-blue" region="blue-spawn-entry" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-red" region="red-spawn-entry" message="You may not enter the enemy team's spawn!"/>
+    <apply block="never" region="not-playable" message="You may not build outside of the playable region!"/>
+    <apply block="never" region="spawns" message="You may not destroy the team spawns!"/>
+    <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
+    <apply block-place="never" region="above-height-limit">
+        <message>
+            {"translate":"match.maxBuildHeight"}
+        </message>
+    </apply>
+    <apply block-place="no-stone"/>
+</regions>
+<destroyables repairable="false" name="Monument" materials="emerald block" proximity-metric="none">
+    <destroyable owner="blue-team" region="blue-monument"/>
+    <destroyable owner="red-team" region="red-monument"/>
+</destroyables>
+<cores repairable="false" material="obsidian" leak="4" modes="gold-core ice-core" proximity-metric="none">
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
+</cores>
+<modes>
+    <mode id="gold-core" after="10m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode id="ice-core" after="25m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
+</modes>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>diamond axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <!-- absolutely necessary -->
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>emerald block</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <!-- I don't know the reasoning behind these for certain -->
+    <item>sign</item>
+    <item>seeds</item>
+    <item>note block</item>
+    <item>stone</item>
+    <item>jukebox</item>
+    <item>wool</item>
+    <item>carpet</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>grass</item>
+    <item>dirt</item>
+    <item>nether fence</item>
+    <item>glowstone dust</item>
+    <item>rails</item>
+    <item>long grass</item>
+    <item>sapling</item>
+    <item>red rose</item>
+    <item>melon</item>
+    <item>hay block</item>
+    <item>flower pot</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+                <material>smooth brick</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>diamond block</material>
+        </filter>
+        <drops>
+            <item unbreakable="true" material="diamond chestplate">
+                <enchantment>blast_protection</enchantment>
+            </item>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>smooth brick</item>
+    <item>ladder</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="5" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>iron boots</material>
+        </match>
+        <modify>
+            <enchantment level="2">blast_protection</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<tnt>
+    <dispenser-tnt-limit>0</dispenser-tnt-limit>
+    <dispenser-tnt-multiplier>0</dispenser-tnt-multiplier>
+</tnt>
+<mobs filter="only-creeper-spawn-egg"/>
+</map>
