@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Wallop 9000</name>
-<version>1.2.8</version>
+<version>1.2.9</version>
 <objective>Leak lava from the enemy team's core and destroy their end stone monument.</objective>
 <edition>standard</edition>
 <authors>
@@ -11,6 +11,9 @@
     <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
     <contributor uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
 </contributors>
+<broadcasts>
+    <tip after="4s" every="5m">Diamond blocks drop diamond chestplate with blast protection!</tip>
+</broadcasts>
 <teams>
     <team id="blue-team" color="blue" max="20">Blue</team>
     <team id="red-team" color="dark red" max="20">Red</team>
@@ -67,7 +70,7 @@
 <regions>
     <union id="no-build">
         <negative id="void-area">
-            <rectangle id="playable-area" min="-61,75" max="72,-42"/>
+            <rectangle min="-61,75" max="72,-42"/>
         </negative>
         <union id="spawns">
             <cuboid id="blue-spawn" min="-53,22,45" max="-99,26,50"/>
@@ -76,11 +79,11 @@
     </union>
     <union id="objectives">
         <union id="blue-objectives">
-            <cuboid id="blue-core" min="5,47,48" max="-1,52,54"/>
+            <cuboid id="blue-core" min="5,48,48" max="-1,53,54"/>
             <cuboid id="blue-egg" min="-13,30,46" max="-17,37,50"/>
         </union>
         <union id="red-objectives">
-            <cuboid id="red-core" min="-1,47,-16" max="5,52,-22"/>
+            <cuboid id="red-core" min="-1,48,-16" max="5,53,-22"/>
             <cuboid id="red-egg" min="-17,30,-14" max="-13,37,-18"/>
         </union>
     </union>
@@ -89,8 +92,12 @@
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply block="never" region="no-build" message="You may not build outside of the playable region!"/>
-    <apply block="never" region="above-height-limit" message="You may not break or place any blocks at this height!"/>
     <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
+    <apply block-place="never" region="above-height-limit">
+        <message>
+            {"translate":"match.maxBuildHeight"}
+        </message>
+    </apply>
     <apply block-place="no-stone"/>
 </regions>
 <destroyables materials="ender stone" name="E G G ?" proximity-metric="none">
