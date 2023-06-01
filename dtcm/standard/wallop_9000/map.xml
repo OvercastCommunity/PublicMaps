@@ -1,0 +1,200 @@
+<map proto="1.4.2">
+<name>Wallop 9000</name>
+<version>1.2.8</version>
+<objective>Leak lava from the enemy team's core and destroy their end stone monument.</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</authors>
+<contributors>
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <contributor uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="20">Blue</team>
+    <team id="red-team" color="dark red" max="20">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="diamond axe"/>
+        <item slot="4" amount="64" damage="1" material="wood"/>
+        <item slot="31" amount="64" damage="1" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="32" amount="64" material="smooth brick"/>
+        <item slot="6" amount="32" material="ladder"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <enchantment level="2">blast_protection</enchantment>
+        </boots>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <point>-96.5,67.5,16.5</point>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-96.5,23.5,47.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-96.5,23.5,-14.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <deny id="no-stone">
+        <material>stone</material>
+    </deny>
+    <material id="only-tnt">tnt</material>
+</filters>
+<regions>
+    <union id="no-build">
+        <negative id="void-area">
+            <rectangle id="playable-area" min="-61,75" max="72,-42"/>
+        </negative>
+        <union id="spawns">
+            <cuboid id="blue-spawn" min="-53,22,45" max="-99,26,50"/>
+            <cuboid id="red-spawn" min="-53,22,-17" max="-99,26,-12"/>
+        </union>
+    </union>
+    <union id="objectives">
+        <union id="blue-objectives">
+            <cuboid id="blue-core" min="5,47,48" max="-1,52,54"/>
+            <cuboid id="blue-egg" min="-13,30,46" max="-17,37,50"/>
+        </union>
+        <union id="red-objectives">
+            <cuboid id="red-core" min="-1,47,-16" max="5,52,-22"/>
+            <cuboid id="red-egg" min="-17,30,-14" max="-13,37,-18"/>
+        </union>
+    </union>
+    <above id="tnt-height-limit" y="58"/>
+    <above id="above-height-limit" y="59"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply block="never" region="no-build" message="You may not build outside of the playable region!"/>
+    <apply block="never" region="above-height-limit" message="You may not break or place any blocks at this height!"/>
+    <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
+    <apply block-place="no-stone"/>
+</regions>
+<destroyables materials="ender stone" name="E G G ?" proximity-metric="none">
+    <destroyable owner="blue-team" region="blue-egg"/>
+    <destroyable owner="red-team" region="red-egg"/>
+</destroyables>
+<cores material="obsidian" name="Core" leak="3" modes="gold-core ice-core" proximity-metric="none">
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
+</cores>
+<modes>
+    <mode id="gold-core" after="10m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode id="ice-core" after="25m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
+</modes>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>diamond axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>step</item>
+    <item>red rose</item>
+    <item>flower pot</item>
+    <item>stone</item>
+    <item>carpet</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>ender stone</item>
+    <item>glowstone dust</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+                <material>smooth brick</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>diamond block</material>
+        </filter>
+        <drops>
+            <item unbreakable="true" material="diamond chestplate">
+                <enchantment>blast_protection</enchantment>
+            </item>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>smooth brick</item>
+    <item>ladder</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="1" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>iron boots</material>
+        </match>
+        <modify>
+            <enchantment level="2">blast_protection</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<tnt>
+    <dispenser-tnt-limit>0</dispenser-tnt-limit>
+    <dispenser-tnt-multiplier>0</dispenser-tnt-multiplier>
+</tnt>
+</map>
