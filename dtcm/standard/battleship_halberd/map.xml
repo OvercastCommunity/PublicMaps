@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.5">
 <name>Battleship Halberd</name>
-<version>1.2.6</version>
+<version>1.3.0</version>
 <objective>Destroy the enemies monument and break the core!</objective>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
@@ -11,48 +11,50 @@
     <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="XML and Packaging"/> <!-- nixter1029 -->
 </contributors>
 <teams>
-    <team id="red" color="dark red" max="30">Red</team>
-    <team id="blue" color="blue" max="30">Blue</team>
+    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue" color="blue" max="24">Blue</team>
 </teams>
-<spawns>
-    <spawn team="red" kit="red" yaw="0">
-        <region name="red-spawn"/>
-    </spawn>
-    <spawn team="blue" kit="blue" yaw="180">
-        <region name="blue-spawn"/>
-    </spawn>
-    <default yaw="0">
-        <point>34.5,72,-33.5</point>
-    </default>
-</spawns>
 <kits>
     <kit name="spawn">
-        <item slot="0">diamond sword</item>
-        <item slot="1">bow</item>
-        <item slot="28" amount="64">arrow</item>
-        <item slot="2">diamond pickaxe</item>
-        <item slot="3">diamond axe</item>
-        <item slot="4" amount="64">log</item>
+        <clear/>
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">diamond axe</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="31" amount="64">wood</item>
         <item slot="5" amount="64">cobblestone</item>
-        <item slot="6">water bucket</item>
-        <item slot="7" amount="2">golden apple</item>
-        <item slot="8" amount="64">bread</item>
-        <chestplate enchantment="protection explosions:4">chainmail chestplate</chestplate>
+        <item slot="7">water bucket</item>
+        <item slot="8">golden apple</item>
 		<potion amplifier="100" duration="5">heal</potion>
 		<potion amplifier="100" duration="5">damage resistance</potion>
 		<potion amplifier="100" duration="5">regeneration</potion>
     </kit>
     <kit name="red" parents="spawn">
-        <helmet color="cd0000">leather helmet</helmet>
-        <leggings color="cd0000">leather leggings</leggings>
-        <boots color="cd0000">leather boots</boots>
+        <helmet unbreakable="true" color="cd0000">leather helmet</helmet>
+        <chestplate unbreakable="true" color="cd0000">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots unbreakable="true" color="cd0000" enchantment="protection explosions:2">leather boots</boots>
     </kit>
     <kit name="blue" parents="spawn">
-        <helmet color="0066cc">leather helmet</helmet>
-        <leggings color="0066cc">leather leggings</leggings>
-        <boots color="0066cc">leather boots</boots>
+        <helmet unbreakable="true" color="0066cc">leather helmet</helmet>
+        <chestplate unbreakable="true" color="0066cc">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots unbreakable="true" color="0066cc" enchantment="protection explosions:2">leather boots</boots>
     </kit>
 </kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="-1,24,15" max="2,24,12"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cuboid min="71,24,64" max="68,24,67"/>
+    </spawn>
+    <default yaw="0">
+        <point>34.5,72,-33.5</point>
+    </default>
+</spawns>
 <filters>
     <filter name="deny-dispenser">
         <deny>
@@ -62,8 +64,8 @@
 </filters>
 <regions>
     <apply block="deny-all" message="You may not place or break blocks on the spawn area">
-        <cuboid name="red-spawn" min="-2,24,16" max="3,27,11"/>
-        <cuboid name="blue-spawn" min="72,24,63" max="67,27,68"/>
+        <cuboid name="red-spawn" min="-3,24,17" max="4,27,10"/>
+        <cuboid name="blue-spawn" min="73,24,62" max="66,27,69"/>
     </apply>
     <apply block="deny-all" message="You may not build outside of the map!">
         <negative>
@@ -74,7 +76,7 @@
         <region name="map"/>
     </apply>
 </regions>
-<destroyables name="Double-Slab Monument" materials="double step:8" completion="100%" show-progress="true">
+<destroyables name="Endstone Monument" materials="ender stone" completion="100%" show-progress="true">
     <destroyable id="red-monument" owner="red">
         <cuboid min="4,37,30" max="-3,42,23"/>
     </destroyable>
@@ -84,49 +86,57 @@
 </destroyables>
 <cores material="obsidian" leak="2" mode-changes="true">
     <core id="red-core" team="red">
-        <cuboid min="-1,21,72" max="2,28,75"/>
+        <cuboid min="-2,23,71" max="3,28,76"/>
     </core>
     <core id="blue-core" team="blue">
-        <cuboid min="68,21,4" max="71,28,7"/>
+        <cuboid min="67,23,3" max="72,28,8"/>
     </core>
 </cores>
 <modes>
 	<mode after="10m" material="gold block"/>
+    <mode after="25m" material="packed ice"/>
 </modes>
-<killreward>
-    <item amount="16">arrow</item>
+<block-drops>
+    <rule>
+        <filter>
+            <material>diamond block</material>
+        </filter>
+        <drops>
+            <item unbreakable="true" material="diamond chestplate">
+                <enchantment>blast_protection</enchantment>
+            </item>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
     <item>golden apple</item>
+</itemkeep>
+<killreward>
+    <item>golden apple</item>
+    <item amount="32">wood</item>
+    <item amount="16">cobblestone</item>
 </killreward>
 <toolrepair>
-    <tool>diamond sword</tool>
+    <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
     <tool>diamond axe</tool>
+    <tool>arrow</tool>
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
-    <item>chainmail chestplate</item>
-    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
     <item>leather boots</item>
-    <item>step</item>
 	<item>gold block</item>
     <item>stained clay</item>
     <item>wool</item>
     <item>apple</item>
     <item>obsidian</item>
-    <item>arrow</item>
     <item>wood</item>
-    <item>log</item>
-    <item>bread</item>
-    <item>golden apple</item>
     <item>cobblestone</item>
-    <item>bucket</item>
     <item>water bucket</item>
 </itemremove>
-<gamerules>
-    <doDaylightCycle>false</doDaylightCycle>
-</gamerules>
-<maxbuildheight>60</maxbuildheight>
 <blockdrops>
     <rule>
         <filter>
@@ -138,4 +148,34 @@
         <wrongtool>true</wrongtool>
     </rule>
 </blockdrops>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>iron boots</material>
+        </match>
+        <modify>
+            <enchantment level="2">blast_protection</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<tnt>
+    <dispenser-tnt-limit>0</dispenser-tnt-limit>
+    <dispenser-tnt-multiplier>0</dispenser-tnt-multiplier>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<maxbuildheight>60</maxbuildheight>
 </map>
