@@ -1,0 +1,245 @@
+<map proto="1.4.2">
+<name>Mars Odyssey</name>
+<version>1.1</version>
+<objective>Leak the enemy team's obsidian core and break their monument.</objective>
+<edition>standard</edition>
+<authors>
+    <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+</authors>
+<contributors>
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042" contribution="XML"/> <!-- triplezko -->
+    <contributor uuid="d9043554-2d3d-439d-ac14-8bf70db77bfb" contribution="Helped"/> <!-- adahy -->
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Helped"/> <!-- Reshif -->
+    <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067" contribution="Helped"/> <!-- samthecat43 -->
+</contributors>
+<broadcasts>
+    <tip after="4s" every="5m">Diamond blocks drop diamond chestplate with blast protection!</tip>
+</broadcasts>
+<teams>
+    <team id="lime-team" color="green" max="24">Lime</team>
+    <team id="purple-team" color="dark purple" max="24">Purple</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="diamond axe"/>
+        <item slot="4" amount="64" name="`rSpace Wood Planks" damage="1" material="wood"/>
+        <item slot="31" amount="64" name="`rSpace Wood Planks" damage="1" material="wood"/>
+        <item slot="5" amount="64" name="`rSpace Glass" material="glass"/>
+        <item slot="32" amount="64" name="`rSpace Bricks" material="smooth brick"/>
+        <item slot="6" amount="32" material="ladder"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <enchantment level="2">blast_protection</enchantment>
+        </boots>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <point>-100.5,76,-233.5</point>
+        </region>
+    </default>
+    <spawn team="lime-team" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-107.5,83,-233.5</point>
+        </region>
+    </spawn>
+    <spawn team="purple-team" kit="spawn-kit">
+        <region yaw="90">
+            <point>-93.5,83,-233.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-lime">lime-team</team>
+    <team id="only-purple">purple-team</team>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+    <deny id="no-stone">
+        <material>stone</material>
+    </deny>
+    <material id="only-tnt">tnt</material>
+</filters>
+<regions>
+    <union id="no-build">
+        <negative id="void-area">
+            <rectangle min="-71,-309" max="31,-158"/>
+        </negative>
+        <union id="lime-spawn-prot">
+            <rectangle id="lime-spawn" min="-21,-120" max="-40,-158"/>
+            <cuboid min="-31,14,-158" max="-37,0,-164"/>
+            <cuboid min="-32,0,-164" max="-37,14,-165"/>
+            <cuboid min="-33,0,-165" max="-36,14,-166"/>
+            <cuboid min="-23,26,-158" max="-30,38,-161"/>
+            <cuboid min="-24,26,-161" max="-29,38,-162"/>
+            <cuboid min="-25,26,-162" max="-28,38,-163"/>
+        </union>
+        <union id="purple-spawn-prot">
+            <rectangle id="purple-spawn" min="-40,-347" max="-28,-309"/>
+            <cuboid min="-38,14,-309" max="-31,0,-303"/>
+            <cuboid min="-37,0,-303" max="-32,14,-302"/>
+            <cuboid min="-36,0,-302" max="-33,14,-301"/>
+            <cuboid min="-30,26,-309" max="-23,38,-306"/>
+            <cuboid min="-29,26,-306" max="-24,38,-305"/>
+            <cuboid min="-28,26,-305" max="-25,38,-304"/>
+        </union>
+        <cuboid id="portal-room" min="-84,70,-246" max="-113,105,-221"/>
+    </union>
+    <union id="objectives">
+        <union id="lime-objectives">
+            <cuboid id="lime-core" min="-29,25,-188" max="-36,18,-195"/>
+            <cuboid id="lime-monument" min="13,26,-196" max="9,22,-200"/>
+        </union>
+        <union id="purple-objectives">
+            <cuboid id="purple-core" min="-36,25,-279" max="-29,18,-272"/>
+            <cuboid id="purple-monument" min="13,26,-271" max="9,22,-267"/>
+        </union>
+    </union>
+    <above id="tnt-height-limit" y="45"/>
+    <above id="above-height-limit" y="46"/>
+    <apply enter="only-lime" region="lime-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-purple" region="purple-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply block="never" region="no-build" message="You may not build outside of the playable region!"/>
+    <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
+    <apply block-place="never" region="above-height-limit">
+        <message>
+            {"translate":"match.maxBuildHeight"}
+        </message>
+    </apply>
+    <apply block-place="no-stone"/>
+</regions>
+<destroyables name="Monument" materials="ender stone" proximity-metric="none">
+    <destroyable owner="lime-team" region="lime-monument"/>
+    <destroyable owner="purple-team" region="purple-monument"/>
+</destroyables>
+<cores material="obsidian" name="Core" leak="3" modes="gold-core ice-core" proximity-metric="none">
+    <core team="lime-team" region="lime-core"/>
+    <core team="purple-team" region="purple-core"/>
+</cores>
+<modes>
+    <mode id="gold-core" after="10m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode id="ice-core" after="25m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
+</modes>
+<portals>
+    <!-- Lime Team top-bottom -->
+    <portal yaw="@-180" x="@-26.5" y="@30" z="@-124.5">
+        <region>
+            <cuboid min="-102,83,-240" max="-101,86,-237"/>
+        </region>
+    </portal>
+    <portal yaw="@180" x="@-34.5" y="@6" z="@-127.5">
+        <region>
+            <cuboid min="-102,83,-230" max="-101,86,-227"/>
+        </region>
+    </portal>
+    <!-- Purple Team top-bottom -->
+    <portal yaw="@0" x="@-26.5" y="@30" z="@-342.5">
+        <region>
+            <cuboid min="-99,83,-227" max="-100,86,-230"/>
+        </region>
+    </portal>
+    <portal yaw="@0" x="@-34.5" y="@6" z="@-339.5">
+        <region>
+            <cuboid min="-99,83,-237" max="-100,86,-240"/>
+        </region>
+    </portal>
+</portals>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>diamond axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>ender stone</item>
+    <item>beacon</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+                <material>smooth brick</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>diamond block</material>
+        </filter>
+        <drops>
+            <item unbreakable="true" material="diamond chestplate">
+                <enchantment>blast_protection</enchantment>
+            </item>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>smooth brick</item>
+    <item>ladder</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" name="`rSpace Wood Planks" damage="1" material="wood"/>
+        <item amount="16" name="`rSpace Glass" material="glass"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>iron boots</material>
+        </match>
+        <modify>
+            <enchantment level="2">blast_protection</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<tnt>
+    <dispenser-tnt-limit>0</dispenser-tnt-limit>
+    <dispenser-tnt-multiplier>0</dispenser-tnt-multiplier>
+</tnt>
+</map>
