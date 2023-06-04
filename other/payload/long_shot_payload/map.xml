@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Long Shot: Payload</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <objective>Push your team's cart back to your base before the enemy!</objective>
+<phase>development</phase>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- StealthMedia -->
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
@@ -99,7 +100,7 @@
     <apply block="never" region="bases" message="You may not modify the bases!"/>
     <apply block="never" region="deny-lane" message="You may only cross the void on the wooden platforms!"/>
     <apply block="never" region="rail-radii" message="You may not interfere with the payload track!"/>
-    <apply block="only-originally-air" region="playable" message="You can only modify blocks placed by a player!"/>
+    <apply block="only-originally-air" region="playable" message="You may only modify blocks placed by a player!"/>
 </regions>
 <payloads radius="7" capture-time="5m" decay-rate="0.25" capture-rule="majority" points="1">
     <payload location="-141.5,30,-21.5" name="Blue Payload"/>
