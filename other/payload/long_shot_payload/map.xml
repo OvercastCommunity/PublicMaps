@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Long Shot: Payload</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Push your team's cart back to your base before the enemy!</objective>
 <phase>development</phase>
 <authors>
@@ -97,11 +97,11 @@
             <cuboid min="-37,38,-23" max="-34,42,-18"/>
             <cuboid min="-34,38,-23" max="-31,42,-20"/>
             <!-- Middle island -->
-            <cuboid min="28,38,-23" max="34,42,-20"/>
-            <cuboid min="31,38,-20" max="34,42,-15"/>
-            <cuboid min="34,38,-18" max="46,42,-15"/>
-            <cuboid min="43,38,-23" max="46,42,-18"/>
-            <cuboid min="46,38,-23" max="49,42,-20"/>
+            <cuboid min="28,48,-23" max="34,52,-20"/>
+            <cuboid min="31,48,-20" max="34,52,-15"/>
+            <cuboid min="34,48,-18" max="46,52,-15"/>
+            <cuboid min="43,48,-23" max="46,52,-18"/>
+            <cuboid min="46,48,-23" max="49,52,-20"/>
             <!-- Spawn island -->
             <cuboid min="89,58,-23" max="96,62,-20"/>
             <cuboid min="96,0,-25" max="103,78,-18"/>
@@ -120,9 +120,9 @@
     <apply block="never" region="rail-radii" message="You may not interfere with the areas around the payload tracks!"/>
     <apply block="deny-tracks" block-physics="deny-tracks"/>
 </regions>
-<payloads radius="6" capture-time="5m" decay-rate="0.25" capture-rule="exclusive" points="1">
-    <payload location="-141.5,30,-21.5" name="Blue Payload" capture-filter="only-blue"/>
-    <payload location="-141.5,30,22.5" name="Red Payload" capture-filter="only-red"/> 
+<payloads radius="6" capture-time="5m" decay-rate="0.25" contested-decay="0.75" capture-rule="exclusive" points="1">
+    <payload location="99.5,60,-21.5" name="Blue Payload" capture-filter="only-blue"/>
+    <payload location="99.5,60,22.5" name="Red Payload" capture-filter="only-red"/> 
 </payloads>
 <score>
     <limit>1</limit>
