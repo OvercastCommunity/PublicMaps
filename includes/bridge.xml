@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.05.28-1 -->
+<!-- Version 2023.06.10-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -40,8 +40,8 @@
         <item slot="0" material="iron sword" unbreakable="true"/>
         <item slot="1" material="bow" unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
         <item slot="2" material="diamond pickaxe" enchantment="dig speed:2" unbreakable="true"/>
-        <item slot="3" material="stained clay" team-color="true" amount="64" prevent-sharing="true"/>
-        <item slot="4" material="stained clay" team-color="true" amount="64" prevent-sharing="true"/>
+        <item slot="3" material="stained clay" team-color="true" amount="64"/>
+        <item slot="4" material="stained clay" team-color="true" amount="64"/>
         <item slot="5" material="golden apple" amount="8" consumable="bridge-apple" prevent-sharing="true" lore="`9ⓘ `7Instantly restores to `c20 HP`7!|`9ⓘ `7Grants `eAbsorption`7 for `f1 minute`7!"/>
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
@@ -195,12 +195,12 @@
         <effect>absorption</effect>
     </not>
     <time id="after-13m">13m</time>
-    <time id="after-15m">15m</time>
+    <time id="after-15m2s">15m2s</time>
     <after duration="2m" filter="after-13m">
         <message>`4» `fThe match will `cend`f in {0} `4«</message>
         <!-- <message>{"translate":"misc.timeRemaining"}</message> -->
     </after>
-    <after duration="1s" filter="after-15m" message="`e`lOvertime"/> <!-- Only appears if the time limit has been cancelled -->
+    <after duration="1s" filter="after-15m2s" message="`e`lOvertime"/> <!-- Only appears if the time limit has been cancelled via commands -->
 </filters>
 <consumables>
     <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
@@ -299,7 +299,6 @@
     <item>iron sword</item>
     <item>bow</item>
     <item>diamond pickaxe</item>
-    <item>stained clay</item>
     <item>golden apple</item>
 </itemkeep>
 <itemremove>
@@ -307,13 +306,14 @@
     <item>leather leggings</item>
     <item>leather boots</item>
     <item>arrow</item>
+    <item>stained clay</item>
 </itemremove>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
-    <tool>arrow</tool>
 </toolrepair>
+<friendlyfirerefund>off</friendlyfirerefund>
 <hunger>
     <depletion>off</depletion>
 </hunger>
