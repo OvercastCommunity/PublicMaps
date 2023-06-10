@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Long Shot: Payload</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Push your team's cart back to your base before the enemy!</objective>
 <phase>development</phase>
 <authors>
@@ -121,8 +121,8 @@
     <apply block="deny-tracks" block-physics="deny-tracks"/>
 </regions>
 <payloads radius="6" capture-time="5m" decay-rate="0.25" capture-rule="exclusive" points="1">
-    <payload location="-141.5,30,-21.5" name="Blue Payload"/>
-    <payload location="-141.5,30,22.5" name="Red Payload"/> 
+    <payload location="-141.5,30,-21.5" name="Blue Payload" capture-filter="only-blue"/>
+    <payload location="-141.5,30,22.5" name="Red Payload" capture-filter="only-red"/> 
 </payloads>
 <score>
     <limit>1</limit>
