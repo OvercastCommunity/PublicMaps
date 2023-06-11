@@ -1,8 +1,7 @@
 <map proto="1.4.2">
 <name>Kï</name>
-<version>3.0</version>
+<version>3.0.1</version>
 <objective>Destroy 50% of the enemy's base! You only have 10 minutes!</objective>
-<phase>development</phase>
 <!-- <include id="tutorial"/> -->
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -43,9 +42,9 @@
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
-        <item slot="3" amount="64" team-color="true" material="stained clay"/>
-        <item slot="30" amount="64" team-color="true" material="stained clay"/>
-        <item slot="21" amount="64" team-color="true" material="stained clay"/>
+        <item slot="3" amount="64" damage="10" material="stained clay"/>
+        <item slot="30" amount="64" damage="10" material="stained clay"/>
+        <item slot="21" amount="64" damage="10" material="stained clay"/>
         <item slot="4" amount="16" material="redstone block"/>
         <item slot="31" amount="64" material="redstone"/>
         <item slot="5" amount="64" material="tnt"/>
@@ -129,7 +128,6 @@
     <apply enter="only-blue" message="`eYou may not enter the enemy's spawn area!" region="blue-spawn"/>
     <apply enter="only-red" message="`eYou may not enter the enemy's spawn area!" region="red-spawn"/>
     <apply enter="never" message="`eYou may not go onto the roof" region="above-map"/>
-    <apply block-place="only-repair-block" region="bases" message="You may only place `aRepair Blocks`r here!"/>
 </regions>
 <destroyables show-progress="true" completion="50%" repairable="true">
     <destroyable name="Blue Base" materials="stained clay:11;stained clay:9;stained clay:3" owner="blue">
@@ -180,10 +178,12 @@
     <item>redstone block</item>
     <item>nether fence</item>
 </itemremove>
-<killreward>
-    <item amount="16" material="tnt"/>
-    <item amount="16" damage="9" name="`aRepair Block" lore="`7Place this over your base to repair it!" material="stained clay"/>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="tnt"/>
+        <item amount="16" damage="9" name="`aRepair Block" lore="`7Place this over your base to repair it!" material="stained clay"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
