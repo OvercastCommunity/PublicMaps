@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.4">
 <name>CannonCube</name>
-<version>1.5.1</version>
+<version>1.5.2</version>
 <objective>Attackers have 20 minutes to destroy the Endstone Pillar, while the Defenders must prevent them from doing so.</objective>
 <gamemode>ad</gamemode>
 <authors>
@@ -17,7 +17,7 @@
     <rule>Attacker pickaxes do double damage</rule>
     <rule>Smooth quartz blocks are fully blast resistant (and can be mined)</rule>
     <rule>Spawn platforms refill your health and give you full resistance</rule>
-    <rule>Defenders are allowed to blow up th</rule>
+    <rule>Defenders are allowed to blow up the bridges</rule>
 </rules>
 <teams>
     <team id="attackers" color="dark red" max="32" max-overfill="40" plural="true">Attackers</team>
