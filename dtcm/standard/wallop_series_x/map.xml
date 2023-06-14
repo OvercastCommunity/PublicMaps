@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Wallop Series X</name>
-<version>2.1.4</version>
+<version>2.1.5</version>
 <objective>Destroy the monument and leak the core.</objective>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
@@ -47,7 +47,7 @@
 <spawns>
     <default>
         <region yaw="90">
-            <cylinder base="100.5,52,-14.5" radius="2" height="1"/>
+            <cylinder base="100.5,52,-14.5" radius="2" height="0"/>
         </region>
     </default>
     <spawn team="blue-team" kit="spawn-kit">
@@ -79,8 +79,8 @@
         <rectangle min="56,68" max="-57,-97"/>
     </complement>
     <union id="spawns">
-        <cuboid id="blue-spawn" min="-10,20,-103" max="-5,24,-73"/>
-        <cuboid id="red-spawn" min="-10,20,44" max="-5,24,74"/>
+        <cuboid id="blue-spawn" min="-10,19,-103" max="-5,24,-73"/>
+        <cuboid id="red-spawn" min="-10,19,44" max="-5,24,74"/>
     </union>
     <complement id="blue-spawn-entry">
         <region id="blue-spawn"/>
@@ -111,7 +111,7 @@
     <apply enter="only-blue" region="blue-spawn-entry" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-red" region="red-spawn-entry" message="You may not enter the enemy team's spawn!"/>
     <apply block="never" region="not-playable" message="You may not build outside of the playable region!"/>
-    <apply block="never" region="spawns" message="You may not destroy the team spawns!"/>
+    <apply block="never" region="spawns" message="You may not edit the team spawns!"/>
     <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
     <apply block-place="never" region="above-height-limit">
         <message>
