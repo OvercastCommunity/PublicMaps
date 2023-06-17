@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Ring Run</name>
-<version>1.7.2</version>
+<version>1.7.3</version>
 <objective>Capture both enemy wools!</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
@@ -10,8 +10,8 @@
     <contributor uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c" contribution="Anti-rush technology"/> <!-- ItzaMeLuigi -->
 </contributors>
 <teams>
-    <team id="orange" color="gold" max="32">Orange</team>
-    <team id="purple" color="dark purple" max="32">Purple</team>
+    <team id="orange" color="gold" max="30">Orange</team>
+    <team id="purple" color="dark purple" max="30">Purple</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -175,7 +175,7 @@
     <item amount="32" damage="2" material="wood"/>
     <item amount="16" material="glass"/>
 </kill-reward>
-<maxbuildheight>35</maxbuildheight>
+<maxbuildheight>33</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
