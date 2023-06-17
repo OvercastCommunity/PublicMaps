@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Kï</name>
-<version>3.0.1</version>
-<objective>Destroy 50% of the enemy's base! You only have 10 minutes!</objective>
+<version>3.0.2</version>
+<objective>Destroy 60% of the enemy's base! You only have 10 minutes!</objective>
 <!-- <include id="tutorial"/> -->
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -14,8 +14,8 @@
 <time result="objectives">10m</time>
 <respawn auto="true"/>
 <teams>
-    <team id="red" color="red" max="32">Red</team>
-    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red" color="red" max="24">Red</team>
+    <team id="blue" color="blue" max="24">Blue</team>
 </teams>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="0">
@@ -45,29 +45,31 @@
         <item slot="3" amount="64" damage="10" material="stained clay"/>
         <item slot="30" amount="64" damage="10" material="stained clay"/>
         <item slot="21" amount="64" damage="10" material="stained clay"/>
-        <item slot="4" amount="16" material="redstone block"/>
-        <item slot="31" amount="64" material="redstone"/>
+        <item slot="12" amount="64" damage="10" material="stained clay"/>
+        <item slot="4" amount="64" material="redstone"/>
         <item slot="5" amount="64" material="tnt"/>
         <item slot="32" amount="64" material="tnt"/>
         <item slot="23" amount="64" material="tnt"/>
+        <item slot="14" amount="64" material="tnt"/>
         <item slot="6" material="water bucket"/>
         <item slot="33" material="water bucket"/>
         <item slot="24" material="water bucket"/>
-        <item slot="15" amount="8" material="trap door"/>
-        <item slot="26" amount="32" material="step"/>
-        <item slot="8" amount="64" material="redstone"/>
-        <item slot="34" amount="16" material="nether fence"/>
-        <item slot="35" amount="64" material="ladder"/>
-        <item slot="25" amount="4" material="diode"/>
-        <item slot="7" amount="16" material="stone button"/>
-        <item slot="16" amount="16" material="lever"/>
-        <item slot="17" amount="16" material="stone plate"/>
+        <item slot="15" material="water bucket"/>
+        <item slot="7" amount="32" material="stone button"/>
+        <item slot="8" amount="32" material="ladder"/>
+        <item slot="16" amount="32" material="lever"/>
+        <item slot="17" amount="32" material="trap door"/>
+        <item slot="25" amount="16" material="diode"/>
+        <item slot="26" amount="32" material="stone plate"/>
         <item slot="28" material="arrow"/>
-        <item slot="9" amount="8" damage="9" name="`aRepair Block" lore="`7Place this over your base to repair it!" material="stained clay"/>
+        <item slot="31" amount="64" material="redstone"/>
+        <item slot="34" amount="32" material="nether fence"/>
+        <item slot="35" amount="64" material="step"/>
+        <item slot="9" amount="16" damage="9" name="`aRepair Block" lore="`7Place this over your base to repair it!" material="stained clay"/>
         <helmet team-color="true" material="stained clay" locked="true"/>
         <chestplate unbreakable="true" enchantment="protection explosions:4;water worker:3" material="chainmail chestplate"/>
         <leggings unbreakable="true" team-color="true" material="leather leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <boots unbreakable="true" team-color="true" material="leather boots" enchantment="protection fall:2"/>
         <effect duration="oo">fast digging</effect>
         <effect duration="oo">water breathing</effect>
         <effect duration="20">heal</effect>
@@ -129,7 +131,7 @@
     <apply enter="only-red" message="`eYou may not enter the enemy's spawn area!" region="red-spawn"/>
     <apply enter="never" message="`eYou may not go onto the roof" region="above-map"/>
 </regions>
-<destroyables show-progress="true" completion="50%" repairable="true">
+<destroyables show-progress="true" completion="60%" repairable="true">
     <destroyable name="Blue Base" materials="stained clay:11;stained clay:9;stained clay:3" owner="blue">
         <region>
             <region id="blue-base"/>
@@ -187,9 +189,6 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<disabledamage>
-    <damage>fall</damage>
-</disabledamage>
 <!-- <tutorial>
     <stage title="Destroy the Base">
         <message>
