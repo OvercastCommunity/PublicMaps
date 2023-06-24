@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Boom: Best of 3</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Destroy enemy gold orbs with TNT, win the best of 3 matches.</objective>
 <authors>
     <author uuid="25961a08-c90c-4abd-b136-dad90e89c2eb"/> <!-- Anxuiz -->
@@ -190,6 +190,8 @@
         </all>
     </any>
     <!-- filter for activating and disabling the portals to move players to the next round -->
+    <!-- TODO: Rework this to be used with the after filter, which requires new logic to make
+    new players (with /join) spawn in the correct round -->
     <all id="round-1-end-red">
         <any id="round-1-end">
             <filter id="red-monuments-1"/>
@@ -397,14 +399,15 @@
 <!-- completes the game -->
 <control-points capture-rule="lead">
     <!-- 3-rounds-filter determines which players can control the point, anyone (losers) who don't match the filter can't affect it -->
-    <control-point capture-time="1s" required="true" player-filter="3-rounds-filter" visual-materials="never" owner-points="1">
+    <control-point capture-time="1s" required="true" player-filter="3-rounds-filter" visual-materials="never" owner-points="1"
+                   show-info="false" show-sidebar="false">
         <capture><cuboid min="-200,-200,-200" max="200,200,200"/></capture>
         <progress><cuboid min="-200,-200,-200" max="200,200,200"/></progress>
         <captured><cuboid min="-200,-200,-200" max="200,200,200"/></captured>
     </control-point>
 </control-points>
 <!-- score is prioritized higher than objective completion -->
-<!-- add a show attribute to score when added -->
+<!-- TODO: add a show attribute to score when added -->
 <score>
     <limit>1</limit>
 </score>
