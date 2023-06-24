@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Library DTE</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Destroy 70% of the enemy's side!</objective>
 <authors>
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
@@ -25,6 +25,10 @@
             <enchantment>power</enchantment>
         </item>
         <item slot="5" amount="16" material="stone button"/>
+        <item slot="6" amount="64" team-color="true" material="stained clay"/>
+        <item slot="33" amount="64" team-color="true" material="stained clay"/>
+        <item slot="24" amount="64" team-color="true" material="stained clay"/>
+        <item slot="15" amount="64" team-color="true" material="stained clay"/>
         <item slot="3" amount="64" material="redstone"/>
         <item slot="21" amount="32" material="trap door"/>
         <item slot="8" amount="64" material="tnt"/>
@@ -49,18 +53,6 @@
         <leggings team-color="true" unbreakable="true" material="leather leggings"/>
         <boots team-color="true" unbreakable="true" material="leather boots"/>
     </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <item slot="6" amount="64" damage="11" material="stained clay"/>
-        <item slot="33" amount="64" damage="11" material="stained clay"/>
-        <item slot="24" amount="64" damage="11" material="stained clay"/>
-        <item slot="15" amount="64" damage="11" material="stained clay"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <item slot="6" amount="64" damage="14" material="stained clay"/>
-        <item slot="33" amount="64" damage="14" material="stained clay"/>
-        <item slot="24" amount="64" damage="14" material="stained clay"/>
-        <item slot="15" amount="64" damage="14" material="stained clay"/>
-    </kit>
 </kits>
 <spawns>
     <default kit="default-kit" yaw="90">
@@ -68,12 +60,12 @@
             <cuboid min="41,87,32" max="40,87,29"/>
         </region>
     </default>
-    <spawn team="red" kit="red-kit" yaw="0">
+    <spawn team="red" kit="spawn-kit" yaw="0">
         <region>
             <cuboid min="5,91,31" max="4,91,32"/>
         </region>
     </spawn>
-    <spawn team="blue" kit="blue-kit" yaw="-180">
+    <spawn team="blue" kit="spawn-kit" yaw="-180">
         <region>
             <cuboid min="4,91,29" max="5,91,28"/>
         </region>
@@ -115,16 +107,39 @@
 <regions>
     <negative id="outside-map">
         <union id="map">
-            <cuboid id="blue-bookcase" min="-26,8,-9" max="36,89,6"/>
-            <cuboid id="red-bookcase" min="-26,8,56" max="36,89,71"/>
+            <complement id="blue-bookcase">
+                <cuboid min="-26,8,-9" max="36,89,6"/>
+                <region id="teleport-destinations"/>
+            </complement>
+            <complement id="red-bookcase">
+                <cuboid min="-26,8,56" max="36,89,71"/>
+                <region id="teleport-destinations"/>
+            </complement>
+            <region id="teleport-destinations"/>
         </union>
     </negative>
     <cuboid id="centre" min="-26,0,9" max="36,89,53"/>
     <apply enter="never" region="centre" message="You may not cross the centre of the map!"/>
     <apply block="never" region="outside-map" message="You may not build outside of the map!"/>
-    <apply block="deny-bookshelves-and-glass" message="You may not break this block!"/>
+    <apply block="deny-bookshelves-and-glass" message="You may not break this block!" region="map"/>
     <apply block="deny-blue-explosions" region="blue-bookcase"/>
     <apply block="deny-red-explosions" region="red-bookcase"/>
+    <!-- Teleport destinations -->
+    <union id="teleport-destinations">
+        <!-- blue -->
+        <cuboid min="12,12,-4" max="9,10,-6"/> <!-- floor 1 -->
+        <cuboid min="18,29,-3" max="14,27,-7"/> <!-- floor 2 -->
+        <cuboid min="9,44,-5" max="6,42,-7"/> <!-- floor 3 -->
+        <cuboid min="-18,61,-2" max="-21,59,-5"/> <!-- floor 4 -->
+        <cuboid min="31,77,-2" max="28,75,-5"/> <!-- floor 5 -->
+        <!-- red -->
+        <cuboid min="-2,12,65" max="1,10,67"/> <!-- floor 1 -->
+        <cuboid min="-8,29,65" max="-4,27,69"/> <!-- floor 2 -->
+        <cuboid min="1,44,66" max="4,42,68"/> <!-- floor 3 -->
+        <cuboid min="28,61,64" max="31,59,67"/> <!-- floor 4 -->
+        <cuboid min="-21,77,64" max="-18,75,67"/> <!-- floor 5 -->
+    </union>
+    <apply block="never" region="teleport-destinations" message="You may not place blocks here!"/>
 </regions>
 <destroyables name="Bookcase" completion="65%" repairable="false" show-progress="true">
     <destroyable owner="blue" materials="stone;quartz block;stained clay:11;stained clay:9;stained clay:3;stained clay:15;stained clay:5;stained clay:8;wool:15;wool:14;wool:3;wool:9;diamond block;hard clay;coal block;grass;44:7;44:1;126:1" region="blue-bookcase"/>
