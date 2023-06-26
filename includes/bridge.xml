@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.06.26-1 -->
+<!-- Version 2023.06.27-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -115,6 +115,12 @@
     <all id="team-one-about-to-score">
         <team>team-one</team>
         <region id="team-two-big-scorebox"/>
+        <players min="0" max="0">
+            <all>
+                <team>team-one</team>
+                <region id="team-two-portal"/>
+            </all>
+        </players>
         <variable var="can_score">1</variable>
         <match-running/>
         <alive/>
@@ -122,6 +128,12 @@
     <all id="team-two-about-to-score">
         <team>team-two</team>
         <region id="team-one-big-scorebox"/>
+        <players min="0" max="0">
+            <all>
+                <team>team-two</team>
+                <region id="team-one-portal"/>
+            </all>
+        </players>
         <variable var="can_score">1</variable>
         <match-running/>
         <alive/>
@@ -130,11 +142,11 @@
         <any>
             <all>
                 <team>team-two</team>
-                <region id="team-one-portal"/>
+                <after duration="0.05" filter="team-one-portal"/>
             </all>
             <all>
                 <team>team-one</team>
-                <region id="team-two-portal"/>
+                <after duration="0.05" filter="team-two-portal"/>
             </all>
         </any>
         <variable var="can_score">1</variable>
@@ -147,7 +159,7 @@
         <team>team-one</team>
         <region id="team-two-portal"/>
         <filter id="cant-score"/>
-        <after duration="0.05" filter="player-scored"/>
+        <filter id="player-scored"/>
         <match-running/>
         <alive/>
         <participating/>
@@ -156,7 +168,7 @@
         <team>team-two</team>
         <region id="team-one-portal"/>
         <filter id="cant-score"/>
-        <after duration="0.05" filter="player-scored"/>
+        <filter id="player-scored"/>
         <match-running/>
         <alive/>
         <participating/>
