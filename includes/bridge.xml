@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.06.27-1 -->
+<!-- Version 2023.06.27-2 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -115,12 +115,6 @@
     <all id="team-one-about-to-score">
         <team>team-one</team>
         <region id="team-two-big-scorebox"/>
-        <players min="0" max="0">
-            <all>
-                <team>team-one</team>
-                <region id="team-two-portal"/>
-            </all>
-        </players>
         <variable var="can_score">1</variable>
         <match-running/>
         <alive/>
@@ -128,38 +122,14 @@
     <all id="team-two-about-to-score">
         <team>team-two</team>
         <region id="team-one-big-scorebox"/>
-        <players min="0" max="0">
-            <all>
-                <team>team-two</team>
-                <region id="team-one-portal"/>
-            </all>
-        </players>
         <variable var="can_score">1</variable>
         <match-running/>
         <alive/>
     </all>
-    <all id="in-scorebox">
-        <any>
-            <all>
-                <team>team-two</team>
-                <after duration="0.05" filter="team-one-portal"/>
-            </all>
-            <all>
-                <team>team-one</team>
-                <after duration="0.05" filter="team-two-portal"/>
-            </all>
-        </any>
-        <variable var="can_score">1</variable>
-        <match-running/>
-        <alive/>
-        <participating/>
-    </all>
-    <variable id="player-scored" var="in_scorebox">1</variable>
     <all id="team-one-scored">
         <team>team-one</team>
         <region id="team-two-portal"/>
-        <filter id="cant-score"/>
-        <filter id="player-scored"/>
+        <variable var="can_score">1</variable>
         <match-running/>
         <alive/>
         <participating/>
@@ -167,14 +137,19 @@
     <all id="team-two-scored">
         <team>team-two</team>
         <region id="team-one-portal"/>
-        <filter id="cant-score"/>
-        <filter id="player-scored"/>
+        <variable var="can_score">1</variable>
         <match-running/>
         <alive/>
         <participating/>
     </all>
     <variable id="round-0" var="round_status">0</variable>
     <variable id="round-1" var="round_status">1</variable>
+    <all id="should-teleport">
+        <variable var="can_score">0</variable>
+        <participating/>
+        <match-running/>
+        <alive/>
+    </all>
     <variable id="cant-score" var="can_score">0</variable>
     <variable id="can-score" var="can_score">1</variable>
     <after id="after-round-1" duration="0.05" filter="round-1"/>
@@ -232,7 +207,6 @@
 </consumables>
 <variables>
     <variable id="can_score" scope="match" default="1"/>
-    <variable id="in_scorebox" scope="match" default="0"/>
     <variable id="round_status" scope="match" default="2"/>
     <variable id="buytime" scope="match" default="0"/>
 </variables>
@@ -242,18 +216,12 @@
             <message text="`5# # # # # # # # # # # #"/>
             <message text="`5# #    `6» `6`lGOAL! `6«`5    # #"/>
             <message text="`5# # # # # # # # # # # #"/>
-            <set var="in_scorebox" value="0"/>
+            <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
             <set var="buytime" value="1"/>
             <fill region="cages" material="stained glass"/>
             <kill-entities filter="remove-entities"/>
             <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="1" fade-out="0.5"/>
-        </switch-scope>
-    </action>
-    <action id="set-scorebox-variables" scope="player">
-        <switch-scope outer="player" inner="match">
-            <set var="can_score" value="0"/>
-            <set var="in_scorebox" value="1"/>
         </switch-scope>
     </action>
     <action id="remove-cages" scope="match">
@@ -290,7 +258,6 @@
     <trigger filter="arrow-regen" action="give-arrow" scope="player"/>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
-    <trigger filter="in-scorebox" action="set-scorebox-variables" scope="player"/>
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
     <trigger filter="after-round-1" action="reset-counter" scope="match"/>
     <trigger filter="more-than-1-arrow" action="remove-arrow" scope="player"/>
@@ -299,6 +266,7 @@
 </actions>
 <regions>
     <apply block-place="deny-participating" region="not-buildable">
+    <apply block="deny-participating" region="not-buildable" message="You may not modify blocks here!"/>
         <message>{"translate":"map.protectPortal"}</message>
     </apply>
     <apply block-break="deny-participating" region="not-buildable" message="You may not break that block!"/>
@@ -317,8 +285,8 @@
     <portal destination="team-one-spawn-point" filter="only-team-one" region="team-one-portal" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}"/>
     <portal destination="team-two-spawn-point" filter="only-team-two" region="team-two-portal" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
     <!-- Scoring -->
-    <portal destination="team-one-spawn-point" forward="round-1" filter="only-team-one" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}"/>
-    <portal destination="team-two-spawn-point" forward="round-1" filter="only-team-two" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
+    <portal destination="team-one-spawn-point" forward="should-teleport" filter="only-team-one" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}"/>
+    <portal destination="team-two-spawn-point" forward="should-teleport" filter="only-team-two" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
     <!-- Void -->
     <portal y="@-110" sound="false" region="void" observers="always"/>
 </portals>
