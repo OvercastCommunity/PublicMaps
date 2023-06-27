@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.06.27-2 -->
+<!-- Version 2023.06.27-3 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -266,7 +266,6 @@
 </actions>
 <regions>
     <apply block-place="deny-participating" region="not-buildable">
-    <apply block="deny-participating" region="not-buildable" message="You may not modify blocks here!"/>
         <message>{"translate":"map.protectPortal"}</message>
     </apply>
     <apply block-break="deny-participating" region="not-buildable" message="You may not break that block!"/>
