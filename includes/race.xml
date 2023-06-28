@@ -3,7 +3,7 @@
 <game>Laps</game>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.05.26-1 -->
+<!-- Version 2023.06.27-1 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
@@ -33,12 +33,12 @@
     <give kit="remove-effects-kit" filter="race-started"/>
     <kit id="lap-completed-kit" force="true">
         <action>
-            <message text="`e⚠ `aYou have completed a lap!"/>
+            <message text=" `e⚠ `aYou have completed a lap!"/>
         </action>
     </kit>
     <give kit="lap-completed-kit" filter="finish-line-participating"/>
     <kit id="void-kit" force="true">
-        <clear effects="true"/>
+        <clear effects="true" items="false" armor="false"/>
     </kit>
     <give kit="void-kit" filter="below-y0-player"/> <!-- Fallback -->
 </kits>
@@ -53,33 +53,33 @@
     <class name="Touring Car" description="4/5 speed, knockback 1 and efficiency 2 shears" icon="iron boots" default="true">
         <kit parents="spawn-kit">
             <item slot="0" enchantment="knockback:1;dig_speed:2" material="shears"/>
-            <boots name="`fTouring Car" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.50" damage="-3000" material="iron boots" locked="true" show-enchantments="false" show-attributes="false"/>
+            <boots name="`fTouring Car" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.50" unbreakable="true" material="iron boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
     <class name="Formula One" description="5/5 speed, snowballs, no shears" icon="chainmail boots">
         <kit parents="spawn-kit">
             <item slot="0" amount="127" material="snow ball"/>
-            <boots name="`fFormula One" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.55" damage="-3000" material="chainmail boots" locked="true" show-enchantments="false" show-attributes="false"/>
+            <boots name="`fFormula One" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.55" unbreakable="true" material="chainmail boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
     <class name="Buggy" description="2/5 speed and efficiency 3 shears" icon="leather boots">
         <kit parents="spawn-kit" force="true">
             <item slot="0" enchantment="dig_speed:3" material="shears"/>
-            <boots name="`fBuggy" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.40" damage="-3000" material="leather boots" locked="true" show-enchantments="false" show-attributes="false"/>
+            <boots name="`fBuggy" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.40" unbreakable="true" material="leather boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
     <class name="Hot Rod" description="3/5 speed, fire aspect and extra webs, hyperspeed shears" icon="gold boots">
         <kit parents="spawn-kit">
             <item slot="0" enchantment="fire_aspect:1;dig_speed:10" material="shears"/>
             <item slot="1" amount="32" material="web"/>
-            <boots name="`fHot Rod" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.45" damage="-3000" material="gold boots" locked="true" show-enchantments="false" show-attributes="false"/>
+            <boots name="`fHot Rod" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.45" unbreakable="true" material="gold boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
     <class name="Truck" description="1/5 speed, knockback 2 and extra TNT, no shears" icon="diamond boots">
         <kit parents="spawn-kit">
             <item slot="0" enchantment="knockback:2" material="stick"/>
             <item slot="1" amount="32" material="tnt"/>
-            <boots name="`fTruck" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.35" damage="-3000" material="diamond boots" locked="true" show-enchantments="false" show-attributes="false"/>
+            <boots name="`fTruck" enchantment="protection_explosions:100" attributes="generic.movementSpeed:base:0.35" unbreakable="true" material="diamond boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
 </classes>
