@@ -3,7 +3,7 @@
 <game>Laps</game>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.06.27-1 -->
+<!-- Version 2023.06.27-2 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
@@ -40,7 +40,7 @@
     <kit id="void-kit" force="true">
         <clear effects="true" items="false" armor="false"/>
     </kit>
-    <give kit="void-kit" filter="below-y0-player"/> <!-- Fallback -->
+    <give kit="void-kit" filter="below-level-player"/> <!-- Fallback: If a map doesn't use portals, remove resistance/instant health so that players can die -->
 </kits>
 <broadcasts>
     <alert after="1s" filter="race-not-started">`fThe countdown is starting!`r</alert>
@@ -127,13 +127,13 @@
         <participating/>
         <match-running/>
     </all>
-    <all id="below-y0-player">
-        <region id="below-y0"/>
+    <all id="below-level-player">
+        <region id="below-level"/>
         <participating/>
     </all>
 </filters>
 <regions>
-    <below y="0" id="below-y0"/>
+    <below y="-20" id="below-level"/>
 </regions>
 <variables>
     <variable id="race_started" scope="match" default="1"/> <!-- default="1" to disable countdown -->
