@@ -1,16 +1,16 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Together</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Kill the other team's members!</objective>
+<created>2016-02-21</created>
 <authors>
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="Map building"/> <!-- _3Each -->
 </authors>
 <contributors>
-    <contributor uuid="aa7f91cc-18b7-4aa6-9d87-8f4ec316dd7a" contribution="House Help"/> <!--  Cottex  -->
-    <contributor uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Aesthetics"/> <!--  Obelistics   -->
-    <contributor uuid="a6e1a19b-e1db-47fd-a178-5c4f6ef325e2" contribution="World Edit Help"/> <!--  Impostura   -->
-    <contributor uuid="a37e4da3-1c6c-4dc9-b085-63783406a963" contribution="Feedback"/> <!--  xCand   -->
+    <contributor uuid="aa7f91cc-18b7-4aa6-9d87-8f4ec316dd7a" contribution="House Help"/> <!-- Cottex -->
+    <contributor uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Aesthetics"/> <!-- Obelistics -->
+    <contributor uuid="a6e1a19b-e1db-47fd-a178-5c4f6ef325e2" contribution="World Edit Help"/> <!-- Impostura -->
+    <contributor uuid="a37e4da3-1c6c-4dc9-b085-63783406a963" contribution="Feedback"/> <!-- xCand -->
 </contributors>
 <blitz>
     <lives>1</lives>
@@ -27,21 +27,21 @@
 </teams>
 <kits>
     <kit id="spawn">
-        <item slot="0" enchantment="damage all:10">diamond sword</item>
-        <item slot="1" enchantment="arrow damage:10">bow</item>
-        <item slot="2">arrow</item>
+        <item slot="0" enchantment="damage all:10" material="diamond sword"/>
+        <item slot="1" enchantment="arrow damage:10" material="bow"/>
+        <item slot="2" material="arrow"/>
     </kit>
     <kit id="redArmour" parents="spawn">
-        <helmet color="cd0000">leather helmet</helmet>
-        <chestplate color="cd0000">leather chestplate</chestplate>
-        <leggings color="cd0000">leather leggings</leggings>
-        <boots color="cd0000">leather boots</boots>
+        <helmet color="cd0000" material="leather helmet"/>
+        <chestplate color="cd0000" material="leather chestplate"/>
+        <leggings color="cd0000" material="leather leggings"/>
+        <boots color="cd0000" material="leather boots"/>
     </kit>
     <kit id="blueArmour" parents="spawn">
-        <helmet color="0066cc">leather helmet</helmet>
-        <chestplate color="0066cc">leather chestplate</chestplate>
-        <leggings color="0066cc">leather leggings</leggings>
-        <boots color="0066cc">leather boots</boots>
+        <helmet color="0066cc" material="leather helmet"/>
+        <chestplate color="0066cc" material="leather chestplate"/>
+        <leggings color="0066cc" material="leather leggings"/>
+        <boots color="0066cc" material="leather boots"/>
     </kit>
 </kits>
 <itemremove>
@@ -53,11 +53,13 @@
     <item>leather boots</item>
     <item>arrow</item>
 </itemremove>
-<killreward>
-<item>arrow</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <regions>
-    <apply block="never" region="everywhere"/>
+    <apply block="never"/>
 </regions>
 <spawns>
     <spawn team="red" kit="redArmour">
@@ -66,7 +68,7 @@
         </regions>
     </spawn>
     <spawn team="blue" kit="blueArmour">
-        <regions yaw="0">
+        <regions>
             <cuboid min="-32,11,-82" max="-32,11,-82"/>
         </regions>
     </spawn>
