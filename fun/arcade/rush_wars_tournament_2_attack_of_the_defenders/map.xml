@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Rush Wars Tournament 2: Attack of the Defenders</name>
-<version>1.1.8</version>
+<version>1.1.9</version>
 <slug>rush_wars_tournament_2_attack_of_the_defenders</slug>
 <objective>Runners must break the monument at the end of the map without getting killed by the defenders!</objective>
 <created>2016-06-01</created>
@@ -197,7 +197,7 @@
     </portal>
     <portal x="@-63.5" y="@137" z="@-333.5" yaw="@-130">
         <region>
-            <cuboid min="-88,138,-332" max="-60,117,-331" />
+            <cuboid min="-89,138,-332" max="-60,117,-331" />
         </region>
     </portal>
 </portals>
