@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>The Wonders of the World</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Runners must break the monument at the end of the map without getting killed by the defenders.</objective>
 <gamemode>ad</gamemode>
 <gamemode>blitz</gamemode>
@@ -395,8 +395,8 @@
     <cuboid id="void-death-region" min="-49,33,-230" max="-84,35,-205"/>
     <cuboid id="blindness-region" min="-43,33,-230" max="-84,70,-205"/>
     <rectangle id="end-bridge-region" min="-694.0,-213.0" max="-714.0,-227.0"/>
-    <point id="runners-spawn">153.5,7.1,-214.5</point>
-    <point id="defenders-spawn">148.5,6.1,-173.5</point>
+    <point id="runners-spawn">153.5,7,-214.5</point>
+    <point id="defenders-spawn">148.5,6,-173.5</point>
     <negative id="play">
         <block id="defenders-monument">-707,78,-218</block>
     </negative>
