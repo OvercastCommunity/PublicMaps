@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Thin Ice</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Cross the enemy line to score points.</objective>
 <gamemode>arcade</gamemode>
 <authors>
@@ -71,8 +71,8 @@
 </regions>
 <time>2m</time>
 <score>
-    <box points="1" filter="only-red" region="blue-scorebox"/>
-    <box points="1" filter="only-blue" region="red-scorebox"/>
+    <box points="1" filter="only-red" region="blue-scorebox" silent="true"/>
+    <box points="1" filter="only-blue" region="red-scorebox" silent="true"/>
 </score>
 <portals>
     <portal z="46" filter="only-red" region="blue-scorebox"/>
