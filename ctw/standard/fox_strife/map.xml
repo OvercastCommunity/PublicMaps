@@ -2,38 +2,38 @@
 <map proto="1.3.1">
 <!-- include src="tutorial.xml"/ -->
 <name>Fox Strife</name>
-<version>4.1.4</version>
+<version>4.1.5</version>
 <objective>Capture both of the enemy's wools, and place it in your victory monument.</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team color="dark red" max="32">Red</team>
-    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="28">Red</team>
+    <team color="blue" max="28">Blue</team>
 </teams>
 <kits>
     <kit name="teams">
         <clear/>
-        <item slot="0">iron sword</item>
-        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite">bow</item>
         <item slot="28">arrow</item>
-        <item slot="2" enchantment="dig speed:1">iron pickaxe</item>
-        <item slot="3" enchantment="dig speed:1">iron axe</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:1">iron pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:1">iron axe</item>
         <item slot="4" amount="64" damage="2">wood</item>
         <item slot="31" amount="32" damage="2">wood</item>
         <item slot="5" amount="48">glass</item>
         <item slot="6" amount="24">ladder</item>
         <item slot="7">water bucket</item>
         <item slot="8">golden apple</item>
-        <chestplate>chainmail chestplate</chestplate>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
     </kit>
     <kit name="red" parents="teams">
-        <helmet color="993333">leather helmet</helmet>
-        <boots color="993333">leather boots</boots>
+        <helmet color="993333" unbreakable="true">leather helmet</helmet>
+        <boots color="993333" unbreakable="true">leather boots</boots>
     </kit>
     <kit name="blue" parents="teams">
-        <helmet color="334CB2">leather helmet</helmet>
-        <boots color="334CB2">leather boots</boots>
+        <helmet color="334CB2" unbreakable="true">leather helmet</helmet>
+        <boots color="334CB2" unbreakable="true">leather boots</boots>
     </kit>
 </kits>
 <regions>
