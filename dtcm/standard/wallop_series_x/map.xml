@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Wallop Series X</name>
-<version>2.1.5</version>
+<version>2.1.6</version>
 <objective>Destroy the monument and leak the core.</objective>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
@@ -36,9 +36,8 @@
         <item slot="32" amount="64" material="smooth brick"/>
         <item slot="6" amount="32" material="ladder"/>
         <item slot="8" material="golden apple"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings"/>
+        <chestplate unbreakable="true" material="chainmail chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots">
             <enchantment level="2">blast_protection</enchantment>
         </boots>
@@ -98,16 +97,16 @@
     </complement>
     <union id="objectives">
         <union id="monuments">
-            <cylinder id="blue-monument" radius="2" base="-14.5,36,-64.5" height="10"/>
-            <cylinder id="red-monument" radius="2" base="-14.5,36,35.5" height="10"/>
+            <cylinder id="blue-monument" radius="2" base="-14.5,35,-64.5" height="10"/>
+            <cylinder id="red-monument" radius="2" base="-14.5,35,35.5" height="10"/>
         </union>
         <union id="cores">
-            <cylinder id="blue-core" radius="3" base="29.5,22,-75.5" height="5"/>
-            <cylinder id="red-core" radius="3" base="29.5,22,46.5" height="5"/>
+            <cylinder id="blue-core" radius="3" base="29.5,23,-75.5" height="5"/>
+            <cylinder id="red-core" radius="3" base="29.5,23,46.5" height="5"/>
         </union>
     </union>
-    <above id="tnt-height-limit" y="50"/>
-    <above id="above-height-limit" y="51"/>
+    <above id="tnt-height-limit" y="47"/>
+    <above id="above-height-limit" y="48"/>
     <apply enter="only-blue" region="blue-spawn-entry" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-red" region="red-spawn-entry" message="You may not enter the enemy team's spawn!"/>
     <apply block="never" region="not-playable" message="You may not build outside of the playable region!"/>
@@ -120,11 +119,11 @@
     </apply>
     <apply block-place="no-stone"/>
 </regions>
-<destroyables repairable="false" name="Monument" materials="emerald block" proximity-metric="none">
+<destroyables repairable="false" name="Monument" materials="emerald block" show-progress="true" proximity-metric="none">
     <destroyable owner="blue-team" region="blue-monument"/>
     <destroyable owner="red-team" region="red-monument"/>
 </destroyables>
-<cores repairable="false" material="obsidian" leak="4" modes="gold-core ice-core" proximity-metric="none">
+<cores repairable="false" material="obsidian" leak="5" modes="gold-core ice-core" proximity-metric="none">
     <core team="blue-team" region="blue-core"/>
     <core team="red-team" region="red-core"/>
 </cores>
@@ -141,9 +140,8 @@
 </toolrepair>
 <itemremove>
     <!-- absolutely necessary -->
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
     <item>leather boots</item>
     <item>emerald block</item>
     <item>obsidian</item>
