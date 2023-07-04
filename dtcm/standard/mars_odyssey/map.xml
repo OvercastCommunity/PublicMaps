@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Mars Odyssey</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Leak the enemy team's obsidian core and break their monument.</objective>
 <edition>standard</edition>
 <authors>
@@ -37,9 +37,8 @@
         <item slot="32" amount="64" name="`rSpace Bricks" material="smooth brick"/>
         <item slot="6" amount="32" material="ladder"/>
         <item slot="8" material="golden apple"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings"/>
+        <chestplate unbreakable="true" material="chainmail chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots">
             <enchantment level="2">blast_protection</enchantment>
         </boots>
@@ -101,11 +100,11 @@
     <union id="objectives">
         <union id="lime-objectives">
             <cuboid id="lime-core" min="-29,25,-188" max="-36,18,-195"/>
-            <cuboid id="lime-monument" min="13,26,-196" max="9,22,-200"/>
+            <cuboid id="lime-monument" min="13,26,-196" max="9,21,-200"/>
         </union>
         <union id="purple-objectives">
             <cuboid id="purple-core" min="-36,25,-279" max="-29,18,-272"/>
-            <cuboid id="purple-monument" min="13,26,-271" max="9,22,-267"/>
+            <cuboid id="purple-monument" min="13,26,-271" max="9,21,-267"/>
         </union>
     </union>
     <above id="tnt-height-limit" y="45"/>
@@ -121,11 +120,11 @@
     </apply>
     <apply block-place="no-stone"/>
 </regions>
-<destroyables name="Monument" materials="ender stone" proximity-metric="none">
+<destroyables name="Monument" materials="ender stone" show-progress="true" proximity-metric="none">
     <destroyable owner="lime-team" region="lime-monument"/>
     <destroyable owner="purple-team" region="purple-monument"/>
 </destroyables>
-<cores material="obsidian" name="Core" leak="3" modes="gold-core ice-core" proximity-metric="none">
+<cores material="obsidian" name="Core" leak="5" modes="gold-core ice-core" proximity-metric="none">
     <core team="lime-team" region="lime-core"/>
     <core team="purple-team" region="purple-core"/>
 </cores>
@@ -165,9 +164,8 @@
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
     <item>leather boots</item>
     <item>obsidian</item>
     <item>gold block</item>
