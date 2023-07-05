@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Rusteze</name>
-<version>1.1.11</version>
+<version>1.1.12</version>
 <edition>standard</edition>
 <objective>Capture the opponent's flag as many times as possible in 12 minutes!</objective>
 <authors>
@@ -99,7 +99,9 @@
         <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
     </flags>
 </flags>
-<score/>
+<score>
+    <mercy>5</mercy>
+</score>
 <spawners>
     <spawner id="gapple-spawner" spawn-region="gapple-spawn-drop" player-region="gapple-spawn-activation" delay="9s">
         <item material="golden apple"/>
@@ -132,7 +134,7 @@
     <item material="golden apple"/>
     <item amount="6" material="arrow"/>
 </kill-reward>
-<respawn delay="2s" auto="true"/>
+<respawn auto="true"/>
 <hunger>
     <depletion>off</depletion>
 </hunger>
