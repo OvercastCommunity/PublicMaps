@@ -1,0 +1,139 @@
+<map proto="1.4.2">
+<name>Rusteze</name>
+<version>1.1.11</version>
+<edition>standard</edition>
+<objective>Capture the opponent's flag as many times as possible in 12 minutes!</objective>
+<authors>
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
+</authors>
+<time result="score" overtime="1m" max-overtime="3m">12m</time>
+<teams>
+    <team id="blue" color="blue" max="10">Blue</team>
+    <team id="red" color="dark red" max="10">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="12" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="4s" amplifier="255">resistance</effect>
+        <effect duration="4s" amplifier="255">regeneration</effect>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0s" amplifier="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <cuboid min="202.5,48,-108.5" max="201.5,48,-112.5"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="0">
+            <cuboid min="141.5,52.5,-148.5" max="139.5,52.5,-146.5"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="180">
+            <cuboid min="167.5,52.5,-74.5" max="169.5,52.5,-72.5"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <time id="flag-respawns">0</time>
+</filters>
+<regions>
+    <union id="flag-nets">
+        <cylinder id="blue-net" base="173.5,11,-145.5" radius="0.5" height="2"/>
+        <cylinder id="red-net" base="135.5,11,-75.5" radius="0.5" height="2"/>
+    </union>
+    <union id="spawner-stuff">
+        <union id="gapple-spawner-stuff">
+            <cuboid id="gapple-spawn-drop" min="154.4,9.5,-110.4" max="154.6,9.5,-110.6"/>
+            <cuboid id="gapple-spawn-activation" min="159,7,-106" max="150,13,-115"/>
+        </union>
+        <union id="red-arrow-spawner-stuff">
+            <cuboid id="red-arrow-spawn-drop" min="154.4,9.5,-91.4" max="154.6,9.5,-91.6"/>
+            <cuboid id="red-arrow-spawn-activation" min="152.1,8,-89.1" max="156.9,11,-92.9"/>
+        </union>
+        <union id="blue-arrow-spawner-stuff">
+            <cuboid id="blue-arrow-spawn-drop" min="154.4,9.5,-129.4" max="154.6,9.5,-129.6"/>
+            <cuboid id="blue-arrow-spawn-activation" min="152.1,8,-127.1" max="156.9,11,-131.9"/>
+        </union>
+    </union>
+    <apply block="never"/>
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          color="blue"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="10s">173.5,11,-145.5</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red"
+          color="red"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="10s">135.5,11,-75.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<score/>
+<spawners>
+    <spawner id="gapple-spawner" spawn-region="gapple-spawn-drop" player-region="gapple-spawn-activation" delay="9s">
+        <item material="golden apple"/>
+    </spawner>
+    <spawner id="red-arrow-spawner" spawn-region="red-arrow-spawn-drop" player-region="red-arrow-spawn-activation" delay="2s">
+        <item material="arrow"/>
+    </spawner>
+    <spawner id="blue-arrow-spawner" spawn-region="blue-arrow-spawn-drop" player-region="blue-arrow-spawn-activation" delay="2s">
+        <item material="arrow"/>
+    </spawner>
+</spawners>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="6" material="arrow"/>
+</kill-reward>
+<respawn delay="2s" auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
