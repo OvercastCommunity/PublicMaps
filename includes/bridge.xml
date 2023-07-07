@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.06.27-3 -->
+<!-- Version 2023.07.07-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -174,6 +174,14 @@
         <alive/>
         <participating/>
     </all>
+    <all id="team-one-buytime">
+        <filter id="only-team-one"/>
+        <filter id="on-buytime"/>
+    </all>
+    <all id="team-two-buytime">
+        <filter id="only-team-two"/>
+        <filter id="on-buytime"/>
+    </all>
     <after id="cage-time" message="`a» `fNext round begins in {0} `a«" duration="${pre-round-time}" filter="round-0"/>
     <all id="no-arrows">
         <not>
@@ -272,7 +280,9 @@
     <apply block="some-blocks" message="You may not interact with that block!"/>
     <translate id="team-one-big-scorebox" offset="0,0.5,0"><region id="team-one-portal"/></translate>
     <translate id="team-two-big-scorebox" offset="0,0.5,0"><region id="team-two-portal"/></translate>
-    <apply leave="not-on-buytime" region="cages" message="The next round will begin shortly!"/>
+    <negative id="not-cages">
+        <region id="cages"/>
+    </negative>
     <below id="void" y="${void-plane}"/>
     <apply kit="void-death" region="void"/>
     <!-- Spawn points -->
@@ -286,6 +296,9 @@
     <!-- Scoring -->
     <portal destination="team-one-spawn-point" forward="should-teleport" filter="only-team-one" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}"/>
     <portal destination="team-two-spawn-point" forward="should-teleport" filter="only-team-two" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
+    <!-- Buytime -->
+    <portal destination="team-one-spawn-point" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}"/>
+    <portal destination="team-two-spawn-point" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
     <!-- Void -->
     <portal y="@-110" sound="false" region="void" observers="always"/>
 </portals>
