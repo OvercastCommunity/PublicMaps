@@ -1,8 +1,32 @@
 <map proto="1.4.2">
 <name>Smoke KotH</name>
-<version>1.3</version>
-<objective>Be the first team to reach 750 points!</objective>
-<edition>standard</edition>
+<version>1.3.1</version>
+<variant id="5v5">5v5</variant>
+<variant id="7v7">7v7</variant>
+<unless variant="7v7">
+    <constant id="score">750</constant>
+    <constant id="respawn-timer">3</constant>
+    <constant id="points-per-second">1</constant>
+    <constant id="team-size">5</constant>
+    <constant id="damage-resistance">2</constant>
+</unless>
+<if variant="7v7">
+    <constant id="score">2500</constant>
+    <constant id="respawn-timer">5</constant>
+    <constant id="points-per-second">3</constant>
+    <constant id="team-size">7</constant>
+    <constant id="damage-resistance">4</constant>
+</if>
+<unless variant="default">
+    <include id="conquest-comp"/>
+</unless>
+<if variant="default">
+    <include id="conquest"/>
+</if>
+<objective>Be the first team to reach ${score} points!</objective>
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
@@ -11,26 +35,22 @@
     <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
 </contributors>
 <teams>
-    <team id="red" color="dark red" max="14">Red</team>
-    <team id="yellow" color="yellow" max="14">Yellow</team>
+    <unless variant="default">
+        <team id="red" color="dark red" max="${team-size}" max-overfill="${team-size}">Red</team>
+        <team id="yellow" color="yellow" max="${team-size}" max-overfill="${team-size}">Yellow</team>
+    </unless>
+    <if variant="default">
+        <team id="red" color="dark red" max="14">Red</team>
+        <team id="yellow" color="yellow" max="14">Yellow</team>
+    </if>
 </teams>
 <kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots">
-            <enchantment>fire_protection</enchantment>
-        </boots>
-        <effect duration="2s" amplifier="255">resistance</effect>
-        <game-mode>adventure</game-mode>
+    <kit id="spawn-kit" force="true" parent="base-kit">
+        <if variant="default">
+            <boots unbreakable="true" material="iron boots">
+                <enchantment>fire_protection</enchantment>
+            </boots>
+        </if>
     </kit>
 </kits>
 <spawns>
@@ -57,37 +77,13 @@
     <apply block="never" use="never"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <hills required="false" capture-time="5s" points="${points-per-second}" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
         <hill name="Top" capture="top" progress="top"/>
         <hill name="Bottom" capture="bottom" progress="bottom"/>
         <hill name="Cave" capture="cave" progress="cave"/>
     </hills>
 </king>
 <score>
-    <limit>750</limit>
+    <limit>${score}</limit>
 </score>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
-<itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
-<respawn delay="3s" auto="true"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
