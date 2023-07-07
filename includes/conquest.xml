@@ -1,4 +1,7 @@
 <map proto="1.4.2">
+<!-- Base conquest (non-CTF/KotF) kit include file -->
+<!-- Created by mameBT -->
+<!-- Version 2023.07.06-1 -->
 <kits>
     <kit id="base-kit">
         <clear/>
