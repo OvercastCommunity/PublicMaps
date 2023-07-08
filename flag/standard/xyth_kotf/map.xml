@@ -40,7 +40,7 @@
     <kit id="flag-pickup" force="true" locked="true">
         <helmet color="32CD32" unbreakable="true">leather helmet</helmet>
         <chestplate color="32CD32" unbreakable="true">leather chestplate</chestplate>
-        <leggings unbreakable="true">iron boots</leggingss>
+        <leggings unbreakable="true">iron boots</leggings>
         <boots unbreakable="true">iron boots</boots>
         <saturation>0</saturation>
         <foodlevel>2</foodlevel>
