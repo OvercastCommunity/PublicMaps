@@ -38,10 +38,13 @@
         <boots unbreakable="true">iron boots</boots>
     </kit>
     <kit id="flag-pickup" force="true" locked="true">
-        <potion duration="oo" amplifier="2">slowness</potion>
+        <helmet color="32CD32" unbreakable="true">leather helmet</helmet>
+        <chestplate color="32CD32" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron boots</leggingss>
+        <boots unbreakable="true">iron boots</boots>
         <saturation>0</saturation>
         <foodlevel>2</foodlevel>
-        <fly flying="true" can-fly="true" fly-speed="0.1"/>
+        <fly flying="true" can-fly="true" fly-speed="0.7"/>
     </kit>
 </kits>
 <projectiles>
