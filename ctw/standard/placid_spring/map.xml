@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Placid Spring</name>
-<version>1.2.4</version>
+<version>1.2.5</version>
 <objective>Grab your enemy's wools and place them on your side.</objective>
 <authors>
     <author uuid="4a57e6bc-6100-47a8-a02f-fef8c23952b4" contribution="Map idea and building"/> <!-- 9grenier -->
@@ -72,6 +72,9 @@
             <carrying>
                 <item material="boat"/>
             </carrying>
+            <wearing>
+                <item material="boat"/>
+            </wearing>
         </any>
     </not>
     <not id="boat-carry-red">
@@ -80,6 +83,9 @@
             <carrying>
                 <item material="boat"/>
             </carrying>
+            <wearing>
+                <item material="boat"/>
+            </wearing>
         </any>
     </not>
     <not id="boat-carry-blue-inverse">
@@ -88,6 +94,9 @@
                 <carrying>
                     <item material="boat"/>
                 </carrying>
+                <wearing>
+                    <item material="boat"/>
+                </wearing>
             </any>
             <filter id="only-blue"/>
         </all>
@@ -98,6 +107,9 @@
                 <carrying>
                     <item material="boat"/>
                 </carrying>
+                <wearing>
+                    <item material="boat"/>
+                </wearing>
             </any>
             <filter id="only-red"/>
         </all>
@@ -114,9 +126,9 @@
         <cuboid id="portal-to-spawn-red" min="1,6,56" max="-2,8,57"/>
     </union>
     <!-- Spawns -->
-    <cuboid id="blue-spawn" min="1,19.5,-80" max="-1,19.5,-79"/>
-    <cuboid id="red-spawn" min="-1,19.5,83" max="1,19.5,82"/>
-    <cuboid id="default-spawn" min="-6.0,40.0,-2.0" max="5.0,40.0,4.0"/>
+    <cuboid id="blue-spawn" min="1,19,-80" max="-1,19,-79"/>
+    <cuboid id="red-spawn" min="-1,19,83" max="1,19,82"/>
+    <cuboid id="default-spawn" min="-6.0,40,-2.0" max="5.0,40,4.0"/>
     <union id="spawn-protection">
         <rectangle id="blue-spawn-protection" min="-7.0,-88.0" max="7.0,-62.0"/>
         <rectangle id="red-spawn-protection" min="-7.0,65.0" max="7.0,91.0"/>
