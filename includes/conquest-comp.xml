@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Base conquest (competitive) kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.07.06-1 -->
+<!-- Version 2023.07.08-1 -->
 <kits>
     <kit id="base-kit">
         <clear/>
@@ -41,7 +41,7 @@
 <kill-rewards>
     <kill-reward>
         <item material="golden apple"/>
-        <item amount="3" material="arrow"/>
+        <item amount="4" material="arrow"/>
     </kill-reward>
 </kill-rewards>
 <respawn delay="${respawn-timer}s" auto="true"/>
