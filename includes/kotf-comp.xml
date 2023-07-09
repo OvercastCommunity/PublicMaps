@@ -1,0 +1,34 @@
+<map proto="1.4.2">
+<!-- Base competitive KotF kit include file -->
+<!-- Created by mameBT -->
+<!-- Version 2023.07.08-1 -->
+<include id="conquest-comp"/>
+<constant id="respawn-timer">2</constant>
+<kits>
+    <kit id="flag-kit" force="true">
+        <effect amplifier="-3">health boost</effect>
+        <effect duration="3s" amplifier="2">absorption</effect>
+    </kit>
+    <kit id="reset-health" force="true">
+        <effect duration="0s" amplifier="0">health boost</effect>
+    </kit>
+</kits>
+<filters>
+    <any id="has-flag">
+        <carrying-flag id="flag-carrier">flag</carrying-flag>
+        <not>
+            <same-team>
+                <filter id="flag-carrier"/>
+            </same-team>
+        </not>
+    </any>
+    <deny id="deny-flag-carrier">
+        <filter id="flag-carrier"/>
+    </deny>
+</filters>
+<respawn spectate="true">
+    <message>
+        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
+    </message>
+</respawn>
+</map>
