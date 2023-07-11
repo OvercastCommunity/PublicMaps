@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fairy Tales 2: A Tale or Two</name>
-<version>3.10.3</version>
+<version>3.10.4</version>
 <objective>Take the enemy's wool located in bedrock castles on the enemy's side and place it in your victory monument.</objective>
 <authors>
     <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/> <!-- D347HxD -->
@@ -10,7 +10,7 @@
     <contributor uuid="ccb7a66f-ed6c-4f8d-953e-78205c33abba" contribution="Map Design"/> <!-- GabeisAwesome199 -->
 </contributors>
 <rules>
-    <rule>You many not make lava curtains or obsidian walls near the wool rooms or across entire lanes.</rule>
+    <rule>You may not make lava curtains or obsidian walls near the wool rooms or across entire lanes.</rule>
 </rules>
 <teams>
     <team id="blue" color="blue" max="32">Blue</team>
