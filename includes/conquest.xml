@@ -15,7 +15,7 @@
             <enchantment level="3">projectile_protection</enchantment>
         </leggings>
         <boots unbreakable="true" material="iron boots"/>
-        <effect duration="${damage-resistance}s" amplifier="255">resistance</effect>
+        <effect duration="${damage-resistance}" amplifier="255">resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
@@ -41,7 +41,7 @@
         <item amount="6" material="arrow"/>
     </kill-reward>
 </kill-rewards>
-<respawn delay="${respawn-timer}s" auto="true"/>
+<respawn delay="${respawn-timer}" auto="true"/>
 <hunger>
     <depletion>off</depletion>
 </hunger>

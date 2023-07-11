@@ -5,17 +5,17 @@
 <variant id="7v7">7v7</variant>
 <unless variant="7v7">
     <constant id="score">750</constant>
-    <constant id="respawn-timer">3</constant>
+    <constant id="respawn-timer">3s</constant>
     <constant id="points-per-second">1</constant>
     <constant id="team-size">5</constant>
-    <constant id="damage-resistance">2</constant>
+    <constant id="damage-resistance">2s</constant>
 </unless>
 <if variant="7v7">
     <constant id="score">2500</constant>
-    <constant id="respawn-timer">5</constant>
+    <constant id="respawn-timer">5s</constant>
     <constant id="points-per-second">3</constant>
     <constant id="team-size">7</constant>
-    <constant id="damage-resistance">4</constant>
+    <constant id="damage-resistance">4s</constant>
 </if>
 <unless variant="default">
     <include id="conquest-comp"/>

@@ -18,7 +18,7 @@
             <enchantment>feather_falling</enchantment>
             <enchantment>fire_protection</enchantment>
         </boots>
-        <effect duration="${damage-resistance}s" amplifier="255">resistance</effect>
+        <effect duration="${damage-resistance}" amplifier="255">resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
@@ -44,7 +44,7 @@
         <item amount="4" material="arrow"/>
     </kill-reward>
 </kill-rewards>
-<respawn delay="${respawn-timer}s" auto="true"/>
+<respawn delay="${respawn-timer}" auto="true"/>
 <hunger>
     <depletion>off</depletion>
 </hunger>

@@ -1,9 +1,12 @@
 <map proto="1.4.2">
 <!-- Base KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.07.08-1 -->
+<!-- Version 2023.07.11-1 -->
 <include id="conquest"/>
-<constant id="respawn-timer">2</constant>
+<constant id="respawn-timer">2s</constant>
+<constant id="score">200</constant>
+<constant id="flag-respawn-timer">20s</constant>
+<constant id="announce-post-pickup">true</constant>
 <kits>
     <kit id="flag-kit" force="true">
         <effect>slowness</effect>
@@ -13,6 +16,7 @@
     <kit id="reset-health" force="true">
         <effect duration="0s" amplifier="0">slowness</effect>
         <effect duration="0s" amplifier="0">health boost</effect>
+        <effect duration="2s" amplifier="10">regeneration</effect>
     </kit>
 </kits>
 <filters>
@@ -28,6 +32,9 @@
         <filter id="flag-carrier"/>
     </deny>
 </filters>
+<score>
+    <limit>${score}</limit>
+</score>
 <respawn spectate="true">
     <message>
         {"translate":"death.respawn.confirmed.waiting.flagDropped"}

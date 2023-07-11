@@ -3,14 +3,14 @@
 <version>1.4.3</version>
 <variant id="5v5">5v5</variant>
 <unless variant="5v5">
-    <constant id="respawn-timer">8</constant>
+    <constant id="respawn-timer">8s</constant>
     <constant id="team-size">7</constant>
 </unless>
 <if variant="5v5">
-    <constant id="respawn-timer">6</constant>
+    <constant id="respawn-timer">6s</constant>
     <constant id="team-size">5</constant>
 </if>
-<constant id="damage-resistance">2</constant>
+<constant id="damage-resistance">2s</constant>
 <include id="conquest-comp"/>
 <objective>Capture all five control points.</objective>
 <phase>development</phase>
