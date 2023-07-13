@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <!-- Base conquest (competitive) kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.07.08-1 -->
+<!-- Version 2023.07.13-1 -->
+<phase>development</phase> <!-- prevent competitive conquest from sponsoring -->
 <kits>
     <kit id="base-kit">
         <clear/>
