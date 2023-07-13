@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Race: Circuit</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Score points by completing laps around the track.</objective>
 <include id="race"/>
 <authors>
@@ -11,13 +11,18 @@
     <default yaw="0" region="spawn"/>
 </spawns>
 <regions>
-    <cuboid id="spawn" min="-7,7,2" max="7,7,4"/>
+    <cuboid id="spawn" min="6.5,7,4.5" max="-6.5,7,1.5"/>
     <cuboid id="finish-line" min="-7,14,-2" max="7,18,-1"/>
     <apply velocity="0,2.45,13.75">
         <region><cuboid min="-7,6,-44" max="7,9,-41"/></region>
     </apply>
     <apply enter="never" message="Wrong way!">
-        <region><rectangle min="-13,0" max="oo,-1"/></region>
+        <region>
+            <union>
+                <rectangle min="-15,1" max="oo,-1"/>
+                <rectangle min="-15,48" max="-16,-42"/>
+            </union>
+        </region>
     </apply>
 </regions>
 <portals>
@@ -26,7 +31,7 @@
         <region><below y="0"/></region>
     </portal>
     <portal x="@0" y="@7.5" z="@-47" yaw="@0">
-        <region><cuboid min="-8,19,-3" max="8,100,1"/></region>
+        <region><cuboid min="7,0,-1" max="-8,6,-40"/></region>
     </portal>
 </portals>
 </map>

@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Race: Drought</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Score points by completing laps around the track.</objective>
 <include id="race"/>
 <authors>
@@ -11,10 +11,16 @@
     <default yaw="0" region="spawn"/>
 </spawns>
 <regions>
-    <cuboid id="spawn" min="-7,7,2" max="7,7,4"/>
+    <cuboid id="spawn" min="6.5,7,4.5" max="-6.5,7,1.5"/>
     <cuboid id="finish-line" min="-7,14,-2" max="7,18,-1"/>
     <apply enter="never" message="Wrong way!">
-        <region><rectangle min="18,0" max="-19,-1"/></region>
+        <region>
+            <rectangle id="first-wall" min="18,0" max="-19,-1"/>
+            <complement>
+                <translate offset="0,0,-15" region="first-wall"/>
+                <rectangle min="8,-16" max="-8,-15"/>
+            </complement>
+        </region>
     </apply>
 </regions>
 <portals>
