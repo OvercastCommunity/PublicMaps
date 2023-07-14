@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Base conquest kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.07.08-1 -->
+<!-- Version 2023.07.13-1 -->
 <kits>
     <kit id="base-kit">
         <clear/>
@@ -28,6 +28,7 @@
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
     <item>iron boots</item>
+    <item>banner</item>
 </itemremove>
 <itemkeep>
     <item>stone sword</item>
