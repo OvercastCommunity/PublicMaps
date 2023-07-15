@@ -1,0 +1,134 @@
+<map proto="1.4.2">
+<name>Nuclear Park</name>
+<version>2.0</version>
+<phase>development</phase>
+<objective>Capture and hold the hill or eliminate your enemies!</objective>
+<created>2014-03-23</created>
+<constants>
+    <constant id="map-origin">-303.5,0,260.5</constant>
+</constants>
+<authors>
+    <author uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Main author, overall ideas and building"/> <!-- iLifting -->
+    <author uuid="5297c14b-240d-4555-b0da-98d97eb93158" contribution="Ideas and screw around guy"/> <!-- TrollInForYou -->
+    <author uuid="0a3faab1-b5e0-4ff7-a93c-21aa0b5d565a" contribution="Derp build slave"/> <!-- l00katmedude -->
+</authors>
+<contributors>
+    <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="XML"/> <!-- zzuf -->
+    <contributor uuid="29c9cfd6-79c2-4aa7-ae2c-0a614b7f814c" contribution="Derp prisoner slave"/> <!-- dittos -->
+    <contributor uuid="15101f54-cdbc-4cb2-8ed7-51e876824b71" contribution="Best moral support award"/> <!-- duckagent007 -->
+    <contributor uuid="743bff39-4eec-4622-9c33-581154d37123" contribution="Testing and minor moral support"/> <!-- rax123 -->
+    <contributor uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="Original XML"/> <!-- BlockDrop74 -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="5">Red</team>
+    <team id="orange-team" color="gold" max="5">Orange</team>
+    <team id="green-team" color="dark green" max="5">Green</team>
+    <team id="blue-team" color="blue" max="5">Blue</team>
+</teams>
+<blitz>
+    <lives>2</lives>
+</blitz>
+<time>8m</time>
+<respawn auto="true"/>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="90">
+            <cylinder base="-303.5,38,260.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="red-team" kit="spawn-kit" yaw="90" region="red-spawn-point"/>
+    <spawn team="orange-team" kit="spawn-kit" yaw="-90" region="orange-spawn-point"/>
+    <spawn team="green-team" kit="spawn-kit" yaw="180" region="green-spawn-point"/>
+    <spawn team="blue-team" kit="spawn-kit" yaw="0" region="blue-spawn-point"/>
+</spawns>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" amount="16" material="arrow"/>
+        <item slot="3" material="373" damage="8229"/> <!-- Instant Healh 2 potion -->
+        <item slot="8" amount="2" material="tnt" name="`fDynamite" lore="`7Use this to destroy base walls!" prevent-sharing="true" show-can-place-on="false"><can-place-on><material>redstone block</material></can-place-on></item>
+        <helmet unbreakable="true" material="iron helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="iron leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="5" amplifier="3">heal</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<filters>
+    <deny id="deny-participating">
+        <participating/>
+    </deny>
+    <material id="only-tnt">tnt</material>
+    <any id="visual-materials">
+        <material>159:0</material>
+        <material>159:1</material>
+        <material>159:11</material>
+        <material>159:13</material>
+        <material>159:14</material>
+    </any>
+    <all id="allow-tnt">
+        <cause>explosion</cause>
+        <region id="base-fronts"/>
+    </all>
+</filters>
+<regions>
+    <apply block-break="allow-tnt" block-place="only-tnt" use="never"/>
+    <point id="red-spawn-point">-253.5,8,260.5</point>
+    <mirror id="orange-spawn-point" region="red-spawn-point" origin="${map-origin}" normal="1,0,0"/>
+    <point id="green-spawn-point">-303.5,8,310.5</point>
+    <mirror id="blue-spawn-point" region="green-spawn-point" origin="${map-origin}" normal="0,0,1"/>
+    <union id="base-fronts">
+        <cuboid id="red-base-front" min="-276,8,271" max="-268,16,250"/>
+        <mirror id="orange-base-front" region="red-base-front" origin="${map-origin}" normal="1,0,0"/>
+        <cuboid id="green-base-front" min="-314,8,288" max="-293,16,295"/>
+        <mirror id="blue-base-front" region="green-base-front" origin="${map-origin}" normal="0,0,1"/>
+    </union>
+</regions>
+<control-points>
+    <control-point id="center-hill" name="Center" capture-time="4s" points="1" incremental="true" visual-materials="visual-materials" required="false">
+        <capture>
+            <cylinder base="-303.5,3,260.5" radius="8.5" height="5"/>
+        </capture>
+        <progress>
+            <cylinder base="-303.5,3,260.5" radius="8.5" height="1"/>
+        </progress>
+    </control-point>
+</control-points>
+<score>
+    <limit>60</limit>
+</score>
+<tnt>
+    <friendly-defuse>false</friendly-defuse>
+</tnt>
+<gamerules>
+    <doTileDrops>false</doTileDrops>
+</gamerules>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>glass bottle</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
