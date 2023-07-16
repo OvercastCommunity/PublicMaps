@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Nuclear Park</name>
-<version>2.0</version>
+<version>2.0.1</version>
 <phase>development</phase>
 <objective>Capture and hold the hill or eliminate your enemies!</objective>
 <created>2014-03-23</created>
@@ -20,10 +20,10 @@
     <contributor uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="Original XML"/> <!-- BlockDrop74 -->
 </contributors>
 <teams>
-    <team id="red-team" color="dark red" max="5">Red</team>
-    <team id="orange-team" color="gold" max="5">Orange</team>
-    <team id="green-team" color="dark green" max="5">Green</team>
-    <team id="blue-team" color="blue" max="5">Blue</team>
+    <team id="red-team" color="dark red" max="8">Red</team>
+    <team id="orange-team" color="gold" max="8">Orange</team>
+    <team id="green-team" color="dark green" max="8">Green</team>
+    <team id="blue-team" color="blue" max="8">Blue</team>
 </teams>
 <blitz>
     <lives>2</lives>
