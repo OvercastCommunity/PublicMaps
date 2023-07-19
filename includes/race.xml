@@ -3,11 +3,12 @@
 <game>Laps</game>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.07.13-1 -->
+<!-- Version 2023.07.18-1 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
     <constant id="jump-boost-duration">0</constant> <!-- Negative jump boost duration after race starts -->
+    <constant id="game-mode">survival</constant>
 </constants>
 <players max="50" colors="true"/>
 <kits>
@@ -18,6 +19,7 @@
         <helmet material="wool" team-color="true" locked="true"/>
         <effect duration="oo" amplifier="100" ambient="false">heal</effect>
         <effect duration="oo" amplifier="4" ambient="false">damage resistance</effect>
+        <game-mode>${game-mode}</game-mode>
     </kit>
     <kit id="countdown-kit" force="true">
         <foodlevel>6</foodlevel>
@@ -52,7 +54,7 @@
 <classes family="Cars" sticky="true" restrict="false">
     <class name="Touring Car" description="4/5 speed, knockback 1 and efficiency 2 shears" icon="iron boots" default="true">
         <kit parents="spawn-kit">
-            <item slot="0" enchantment="knockback:1;dig_speed:2" material="shears"/>
+            <item slot="0" enchantment="knockback:1;dig_speed:2" material="shears" show-can-destroy="false"><can-destroy><material>web</material></can-destroy></item>
             <boots name="`fTouring Car" attributes="generic.movementSpeed:base:0.50" unbreakable="true" material="iron boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
@@ -64,21 +66,21 @@
     </class>
     <class name="Buggy" description="2/5 speed and efficiency 3 shears" icon="leather boots">
         <kit parents="spawn-kit" force="true">
-            <item slot="0" enchantment="dig_speed:3" material="shears"/>
+            <item slot="0" enchantment="dig_speed:3" material="shears" show-can-destroy="false"><can-destroy><material>web</material></can-destroy></item>
             <boots name="`fBuggy" attributes="generic.movementSpeed:base:0.40" unbreakable="true" material="leather boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
     <class name="Hot Rod" description="3/5 speed, fire aspect and extra webs, hyperspeed shears" icon="gold boots">
         <kit parents="spawn-kit">
-            <item slot="0" enchantment="fire_aspect:1;dig_speed:10" material="shears"/>
-            <item slot="1" amount="32" material="web"/>
+            <item slot="0" enchantment="fire_aspect:1;dig_speed:10" material="shears" show-can-destroy="false"><can-destroy><material>web</material></can-destroy></item>
+            <item slot="1" amount="32" material="web" show-can-place-on="false"><can-place-on><all-blocks/></can-place-on></item>
             <boots name="`fHot Rod" attributes="generic.movementSpeed:base:0.45" unbreakable="true" material="gold boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
     <class name="Truck" description="1/5 speed, knockback 2 and extra TNT, no shears" icon="diamond boots">
         <kit parents="spawn-kit">
             <item slot="0" enchantment="knockback:2" material="stick"/>
-            <item slot="1" amount="32" material="tnt"/>
+            <item slot="1" amount="32" material="tnt" show-can-place-on="false"><can-place-on><all-blocks/></can-place-on></item>
             <boots name="`fTruck" attributes="generic.movementSpeed:base:0.35" unbreakable="true" material="diamond boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
@@ -136,7 +138,7 @@
     <below y="-20" id="below-level"/>
 </regions>
 <variables>
-    <variable id="race_started" scope="match" default="1"/> <!-- default="1" to disable countdown -->
+    <variable id="race_started" scope="match" default="0"/> <!-- default="1" to disable countdown -->
 </variables>
 <actions>
     <action id="start-race" scope="match">
@@ -160,10 +162,7 @@
 </mobs>
 <damage>
     <deny>
-        <all>
-            <cause>PROJECTILE</cause>
-            <filter id="during-countdown"/>
-        </all>
+        <filter id="during-countdown"/>
     </deny>
 </damage>
 <disabledamage>
