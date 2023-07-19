@@ -1,7 +1,8 @@
 <map proto="1.4.2">
-<!-- version 1.0.3 -->
-<constants>
-    <constant id="void-plane">-5</constant> <!-- Default Y level to apply include effects -->
+<!-- version 1.0.4 -->
+<constants> <!-- Default values. Each of them be modified by authors on their maps if needed. -->
+    <constant id="void-plane">-5</constant> <!-- Y level to apply include effects -->
+    <constant id="affect-obs">always</constant> <!-- Will observers also get teleported to their spawn on contact with the region? -->
 </constants>
 <kits>
     <kit id="void-death" force="true">
@@ -10,7 +11,7 @@
     </kit>
 </kits>
 <portals>
-    <portal y="-110" sound="false">
+    <portal y="-110" sound="false" observers="${affect-obs}">
         <region>
             <below y="${void-plane}"/>
         </region>
