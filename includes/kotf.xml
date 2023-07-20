@@ -1,12 +1,13 @@
 <map proto="1.4.2">
 <!-- Base KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.07.11-1 -->
+<!-- Version 2023.07.19-1 -->
 <include id="conquest"/>
 <constant id="respawn-timer">2s</constant>
 <constant id="score">200</constant>
 <constant id="flag-respawn-timer">20s</constant>
 <constant id="announce-post-pickup">true</constant>
+<gamemode>kotf</gamemode>
 <kits>
     <kit id="flag-kit" force="true">
         <effect>slowness</effect>
