@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Sanctuary</name>
-<version>1.6</version>
+<version>1.6.1</version>
 <variant id="5v5" world="5v5">5v5</variant>
 <variant id="7v7" world="7v7">7v7</variant>
 <variant id="halloween" world="halloween" override="true">Deserted Sanctuary</variant>
@@ -41,6 +41,9 @@
 </if>
 <constant id="damage-resistance">7.5s</constant>
 <objective>Control the flag for ${score} seconds to win!</objective>
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
