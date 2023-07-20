@@ -10,7 +10,6 @@
 </if>
 <constant id="damage-resistance">0s</constant>
 <objective>Control the flag for ${score} seconds to win!</objective>
-<gamemode>kotf</gamemode>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
     <author uuid="3a64dcf4-5d71-4664-80bf-4e5c54e41b86"/> <!-- Zaquez -->
