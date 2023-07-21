@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>UBoat König</name>
-<version>3.9</version>
+<version>3.9.1</version>
 <objective>Be the team with the most amount of points within 8 minutes.</objective>
 <time result="score">8m</time>
 <gamemode>tdm</gamemode>
@@ -38,23 +38,23 @@
 <spawns>
     <default>
         <region yaw="90">
-            <block>1764,39,-1098</block>
+            <point>1764.5,39,-1097.5</block>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="-135">
-            <block>1726,20,-1066</block>
+            <point>1726.5,20,-1065.5</point>
         </region>
         <region yaw="-45">
-            <block>1726,20,-1130</block>
+            <point>1726.5,20,-1129.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" >
+    <spawn team="red" kit="spawn-kit">
         <region yaw="135">
-            <block>1802,20,-1066</block>
+            <point>1802.5,20,-1065.5</point>
         </region>
         <region yaw="45">
-            <block>1802,20,-1130</block>
+            <point>1802.5,20,-1129.5</point>
         </region>
     </spawn>
 </spawns>
