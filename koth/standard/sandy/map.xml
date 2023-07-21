@@ -1,0 +1,61 @@
+<map proto="1.4.2">
+<name>Sandy</name>
+<version>1.1.4</version>
+<include id="conquest-comp"/>
+<constant id="respawn-timer">5s</constant>
+<constant id="damage-resistance">4s</constant>
+<objective>Be the first to 750 points</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="9116d3fa-1400-4ada-aecd-2eae1d73e383"/> <!-- Xuph -->
+    <author uuid="0b8f95fa-0f40-4f28-9fd0-b8e243bb6800"/> <!-- Fouled -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
+    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+</teams>
+<spawns>
+    <default>
+        <region yaw="0">
+            <block>-892,42,-697</block>
+        </region>
+    </default>
+    <spawn team="blue" kit="base-kit">
+        <region yaw="-90">
+            <block>-922,19,-665</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="base-kit">
+        <region yaw="90">
+            <block>-862,19,-665</block>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <union id="a-capture">
+        <cuboid min="-895,16,-690" max="-888,20,-685"/>
+        <cuboid min="-894,16,-691" max="-889,20,-684"/>
+    </union>
+    <cuboid id="a-captured" min="-896,28,-696" max="-887,37,-693"/>
+    <union id="mid-capture">
+        <cuboid min="-894,8,-668" max="-889,12,-661"/>
+        <cuboid min="-895,8,-667" max="-888,12,-662"/>
+    </union>
+    <union id="b-capture">
+        <cuboid min="-894,16,-645" max="-889,20,-638"/>
+        <cuboid min="-895,16,-644" max="-888,20,-639"/>
+    </union>
+    <cuboid id="b-captured" min="-896,28,-636" max="-887,37,-633"/>
+    <apply block="never" use="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Hill A" capture="a-capture" progress="a-capture" captured="a-captured"/>
+        <hill name="Middle" capture="mid-capture" progress="mid-capture"/>
+        <hill name="Hill B" capture="b-capture" progress="b-capture" captured="b-captured"/>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+</score>
+</map>
