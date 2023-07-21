@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Kï</name>
-<version>3.0.2</version>
+<version>3.0.3</version>
 <objective>Destroy 60% of the enemy's base! You only have 10 minutes!</objective>
 <!-- <include id="tutorial"/> -->
 <authors>
@@ -103,6 +103,19 @@
             <material>87</material>
         </any>
     </deny>
+    <deny id="only-tnt-mon">
+        <all>
+            <any>
+                <material>stained clay:11</material>
+                <material>stained clay:3</material>
+                <material>stained clay:14</material>
+                <material>stained clay:1</material>
+            </any>
+            <not>
+                <cause>explosion</cause>
+            </not>
+        </all>
+    </deny>
     <material id="only-repair-block">stained clay:9</material>
 </filters>
 <regions>
@@ -126,6 +139,7 @@
     <apply block-place="deny-void" message="`eYou may not bridge to the enemy side!" region="bases"/>
     <apply block-place="deny-fire" message="`eYou may not burn down the bases!" region="bases"/>
     <apply use="deny-beacon"/>
+    <apply block-break="only-tnt-mon" message="You may only break monument blocks with TNT!"/>
     <apply block-break="deny-some"/>
     <apply enter="only-blue" message="`eYou may not enter the enemy's spawn area!" region="blue-spawn"/>
     <apply enter="only-red" message="`eYou may not enter the enemy's spawn area!" region="red-spawn"/>
