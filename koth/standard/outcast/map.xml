@@ -1,0 +1,76 @@
+<map proto="1.4.2">
+<name>OutCast</name>
+<version>1.1</version>
+<variant id="5v5">5v5</variant>
+<unless variant="default">
+    <include id="conquest-comp"/>
+    <constant id="respawn-timer">4s</constant>
+</unless>
+<if variant="default">
+    <include id="conquest"/>
+    <constant id="respawn-timer">3s</constant>
+</if>
+<constant id="damage-resistance">4s</constant>
+<objective>Be the first team to reach 750 points!</objective>
+<unless variant="default">
+    <phase>development</phase>
+</unless>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<teams>
+    <unless variant="default">
+        <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
+        <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+    </unless>
+    <if variant="default">
+        <team id="blue" color="blue" max="8">Blue</team>
+        <team id="red" color="dark red" max="8">Red</team>
+    </if>
+</teams>
+<spawns>
+    <default>
+        <region yaw="0">
+            <point>40.5,72,67.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="base-kit">
+        <region yaw="90">
+            <point>87.5,32,46.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="base-kit">
+        <region yaw="-90">
+            <point>-6.5,32,46.5</point>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <union id="hill-a">
+        <cuboid min="23,36,45" size="4,4,6"/>
+        <cuboid min="22,36,46" size="6,4,4"/>
+    </union>
+    <cylinder id="hill-a-progress" base="25,0,48" radius="7" height="61"/>
+    <union id="middle">
+        <cuboid min="38,39,21" size="5,4,7"/>
+        <cuboid min="37,39,22" size="7,4,5"/>
+    </union>
+    <cylinder id="middle-progress" base="40.5,0,24.5" radius="9" height="64"/>
+    <union id="hill-b">
+        <cuboid min="54,36,45" size="4,4,6"/>
+        <cuboid min="53,36,46" size="6,4,4"/>
+    </union>
+    <cylinder id="hill-b-progress" base="56,0,48" radius="7" height="61"/>
+    <apply block="never" use="never"/>
+</regions>
+<king>
+    <hills required="false" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Hill A" capture-time="3s" capture="hill-a" progress="hill-a-progress"/>
+        <hill name="Middle" capture-time="5s" capture="middle" progress="middle-progress"/>
+        <hill name="Hill B" capture-time="3s" capture="hill-b" progress="hill-b-progress"/>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+</score>
+</map>
