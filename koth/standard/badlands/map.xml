@@ -25,9 +25,6 @@
 </if>
 <constant id="damage-resistance">4s</constant>
 <objective>Be the first team to reach ${score} points!</objective>
-<unless variant="default">
-    <phase>development</phase>
-</unless>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani -->
     <unless variant="5v5">
