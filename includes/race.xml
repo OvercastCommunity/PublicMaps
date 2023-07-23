@@ -1,9 +1,10 @@
 <map proto="1.4.2">
 <gamemode>arcade</gamemode>
 <game>Laps</game>
+<phase>development</phase>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.07.18-1 -->
+<!-- Version 2023.07.22-1 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
