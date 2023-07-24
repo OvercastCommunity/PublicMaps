@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.07.07-1 -->
+<!-- Version 2023.07.24-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -24,11 +24,11 @@
     <constant id="team-two-pitch">0</constant>
 </constants>
 <broadcasts>
-    <alert after="10m">`7If neither team has won by then, the match will end in `c`l5 minutes`7!</alert>
-    <alert after="13m">`7If neither team has won by then, the match will end in `c`l2 minutes`7!</alert>
-    <alert after="14m">`7If neither team has won by then, the match will end in `c`l1 minute`7!</alert>
-    <alert after="14m30s">`7If neither team has won by then, the match will end in `c`l30 seconds`7!</alert>
-    <alert after="14m50s">`7If neither team has won by then, the match will end in `4`l10 seconds`7!</alert>
+    <alert after="10m" filter="overtime-disabled">`7If neither team has won by then, the match will end in `c`l5 minutes`7!</alert>
+    <alert after="13m" filter="overtime-disabled">`7If neither team has won by then, the match will end in `c`l2 minutes`7!</alert>
+    <alert after="14m" filter="overtime-disabled">`7If neither team has won by then, the match will end in `c`l1 minute`7!</alert>
+    <alert after="14m30s" filter="overtime-disabled">`7If neither team has won by then, the match will end in `c`l30 seconds`7!</alert>
+    <alert after="14m50s" filter="overtime-disabled">`7If neither team has won by then, the match will end in `4`l10 seconds`7!</alert>
 </broadcasts>
 <spawns>
     <spawn team="team-one" kit="spawn-kit" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn-point"/>
@@ -202,13 +202,14 @@
     <not id="no-absorption">
         <effect>absorption</effect>
     </not>
-    <time id="after-13m">13m</time>
-    <time id="after-15m2s">15m2s</time>
+    <all id="after-13m">
+        <time>13m</time>
+        <variable id="overtime-disabled" var="overtime">0</variable>
+    </all>
     <after duration="2m" filter="after-13m">
         <message>`4» `fThe match will `cend`f in {0} `4«</message>
         <!-- <message>{"translate":"misc.timeRemaining"}</message> -->
     </after>
-    <after duration="1s" filter="after-15m2s" message="`e`lOvertime"/> <!-- Only appears if the time limit has been cancelled via commands -->
 </filters>
 <consumables>
     <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
@@ -217,6 +218,7 @@
     <variable id="can_score" scope="match" default="1"/>
     <variable id="round_status" scope="match" default="2"/>
     <variable id="buytime" scope="match" default="0"/>
+    <variable id="overtime" scope="match" default="0"/>
 </variables>
 <actions>
     <action id="increment-round" scope="player">
@@ -271,6 +273,9 @@
     <trigger filter="more-than-1-arrow" action="remove-arrow" scope="player"/>
     <trigger filter="no-arrows" action="no-arrows-message" scope="player"/>
     <trigger filter="1-arrow" action="1-arrow-message" scope="player"/>
+    <action id="remove-timelimit" scope="match" expose="true">
+        <set var="overtime" value="1"/>
+    </action>
 </actions>
 <regions>
     <apply block-place="deny-participating" region="not-buildable">
