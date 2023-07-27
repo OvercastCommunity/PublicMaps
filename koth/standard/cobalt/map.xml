@@ -1,8 +1,22 @@
 <map proto="1.4.2">
-<name>Cobalt</name> <!-- Cobalt - Colorblind -->
-<version>2.2.6</version>
-<objective>Reach 2500 points before the opposing team!</objective>
-<edition>standard</edition>
+<name>Cobalt</name>
+<version>2.3.1</version>
+<variant id="5v5">5v5</variant>
+<include id="conquest-comp"/>
+<if variant="default">
+    <constant id="score">2500</constant>
+    <constant id="respawn-timer">5s</constant>
+    <constant id="points-per-second">3</constant>
+    <constant id="team-size">7</constant>
+</if>
+<if variant="5v5">
+    <constant id="score">750</constant>
+    <constant id="respawn-timer">3s</constant>
+    <constant id="points-per-second">1</constant>
+    <constant id="team-size">5</constant>
+</if>
+<constant id="damage-resistance">4s</constant>
+<objective>Reach ${score} points before the opposing team!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>
@@ -10,28 +24,14 @@
     <contributor uuid="3a64dcf4-5d71-4664-80bf-4e5c54e41b86"/> <!-- Zaquez -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="16">Blue</team>
-    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${team-size}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${team-size}">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit" parents="default-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="4" amplifier="255">resistance</effect>
-        <game-mode>adventure</game-mode>
-    </kit>
+    <kit id="spawn-kit" parents="default-kit,base-kit"/>
 </kits>
 <spawns>
     <default kit="default-kit">
@@ -51,71 +51,42 @@
     </spawn>
 </spawns>
 <regions>
-    <union id="spawner-stuff">
-        <cuboid id="mid-spawn-area" min="289.4,12.5,95.4" max="289.6,12.5,95.6"/>
-        <cuboid id="mid-spawn-radius" min="299,17,91" max="281,7,100"/>
-    </union>
-    <union id="cap-region-mid">
-        <cuboid min="286,18,98" max="293,21,93"/>
-        <cuboid min="292,18,92" max="287,21,99"/>
-    </union>
-    <union id="cap-region-east">
-        <cuboid min="320,13,93" max="313,16,98"/>
-        <cuboid min="319,13,92" max="314,16,99"/>
-    </union>
-    <union id="cap-region-west">
+    <union id="capture-west">
         <cuboid min="265,13,99" max="260,16,92"/>
         <cuboid min="266,13,98" max="259,16,93"/>
     </union>
-    <apply block="never"/>
+    <cuboid id="captured-west" min="259,34,92" max="266,41,99"/>
+    <union id="capture-mid">
+        <cuboid min="286,18,98" max="293,21,93"/>
+        <cuboid min="292,18,92" max="287,21,99"/>
+    </union>
+    <cuboid id="captured-mid" min="286,40,92" max="293,47,99"/>
+    <union id="capture-east">
+        <cuboid min="320,13,93" max="313,16,98"/>
+        <cuboid min="319,13,92" max="314,16,99"/>
+    </union>
+    <cuboid id="captured-east" min="313,34,92" max="320,41,99"/>
+    <apply block="never" use="never"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
-        <hill name="West Hill" capture="cap-region-west" progress="cap-region-west">
-            <captured>
-                <cuboid min="259,34,92" max="266,41,99"/>
-            </captured>
-        </hill>
-        <hill name="Mid Hill" capture="cap-region-mid" progress="cap-region-mid">
-            <captured>
-                <cuboid min="286,40,92" max="293,47,99"/>
-            </captured>
-        </hill>
-        <hill name="East Hill" capture="cap-region-east" progress="cap-region-east">
-            <captured>
-                <cuboid min="313,34,92" max="320,41,99"/>
-            </captured>
-        </hill>
+    <hills required="false" capture-time="5s" points="${points-per-second}" time-multiplier="0" show-progress="true" neutral-state="true" recovery="1" decay="0" permanent="false">
+        <hill name="West" capture="capture-west" progress="capture-west" captured="captured-west"/>
+        <hill name="Mid" capture="capture-mid" progress="capture-mid" captured="captured-mid"/>
+        <hill name="East" capture="capture-east" progress="capture-east" captured="captured-east"/>
     </hills>
 </king>
 <score>
-    <limit>750</limit>
+    <limit>${score}</limit>
 </score>
 <spawners>
-    <spawner spawn-region="mid-spawn-area" player-region="mid-spawn-radius" delay="6s">
-        <item material="golden apple"/>
+    <spawner delay="6s">
+        <spawn-region>
+            <cuboid min="289.4,12.5,95.4" max="289.6,12.5,95.6"/>
+        </spawn-region>
+        <player-region>
+            <cuboid min="281,7,91" max="299,17,100"/>
+        </player-region>
+        <item amount="1" material="golden apple"/>
     </spawner>
 </spawners>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
-<itemkeep>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<respawn auto="true" blackout="true"/>
 </map>
