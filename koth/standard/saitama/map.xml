@@ -1,8 +1,16 @@
 <map proto="1.4.2">
 <name>Saitama</name>
-<version>1.0.1</version>
+<version>1.2.2</version>
+<variant id="5v5">5v5</variant>
+<unless variant="5v5">
+    <include id="conquest"/>
+</unless>
+<if variant="5v5">
+    <include id="conquest-comp"/>
+</if>
+<constant id="respawn-timer">3s</constant>
+<constant id="damage-resistance">4s</constant>
 <objective>Reach 750 points before the opposing team!</objective>
-<edition>standard</edition>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
     <author uuid="c1d94f18-6ea3-495a-8d1b-7d9eaf393f64"/> <!-- sqyid -->
@@ -13,39 +21,29 @@
     <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac" contribution="XML"/> <!-- mameBT -->
 </contributors>
 <teams>
-    <team id="blue-team" color="blue" max="12">Blue</team>
-    <team id="red-team" color="dark red" max="12">Red</team>
+    <unless variant="5v5">
+        <team id="blue-team" color="blue" max="12">Blue</team>
+        <team id="red-team" color="dark red" max="12">Red</team>
+    </unless>
+    <if variant="5v5">
+        <team id="blue-team" color="blue" max="5" max-overfill="5">Blue</team>
+        <team id="red-team" color="dark red" max="5" max-overfill="5">Red</team>
+    </if>
 </teams>
-<kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="10" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="3">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="4s" amplifier="255">resistance</effect>
-    </kit>
-</kits>
 <spawns>
     <default>
         <region yaw="90">
             <cylinder base="29,17,0.5" height="0" radius="1"/>
         </region>
     </default>
-    <spawn team="blue-team" kit="spawn-kit">
+    <spawn team="blue-team" kit="base-kit">
         <region yaw="0">
-            <point>-11.5,5,-47.5</point>
+            <point>-14.5,5,-48.5</point>
         </region>
     </spawn>
-    <spawn team="red-team" kit="spawn-kit">
+    <spawn team="red-team" kit="base-kit">
         <region yaw="180">
-            <point>-11.5,5,48.5</point>
+            <point>-14.5,5,49.5</point>
         </region>
     </spawn>
 </spawns>
@@ -80,36 +78,12 @@
 <spawners>
     <spawner delay="8s" max-entities="1">
         <spawn-region>
-            <point>-36.5,9.2,0.5</point>
+            <point>-32.5,10.2,0.5</point>
         </spawn-region>
         <player-region>
-            <cylinder base="-36.5,8,0.5" height="4" radius="2.5"/>
+            <cylinder base="-32.5,9,0.5" height="4" radius="2.5"/>
         </player-region>
         <item material="golden apple"/>
     </spawner>
 </spawners>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
-<itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="5" material="arrow"/>
-</kill-reward>
-<respawn auto="true"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
