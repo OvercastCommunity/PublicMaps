@@ -1,0 +1,90 @@
+<map proto="1.4.2">
+<name>Hammerhead</name>
+<version>1.5</version>
+<include id="ctf-comp"/>
+<constants>
+    <constant id="team-1">green</constant>
+    <constant id="team-1-id">green-team</constant>
+    <constant id="team-1-name">Green</constant>
+    <constant id="team-1-flag-color">lime</constant>
+    <constant id="team-2">purple</constant>
+    <constant id="team-2-id">purple-team</constant>
+    <constant id="team-2-name">Purple</constant>
+    <constant id="team-2-flag-color">purple</constant>
+    <constant id="respawn-timer">8s</constant>
+    <constant id="damage-resistance">3s</constant>
+</constants>
+<objective>Capture the opponent's flag as many times as possible before the timer ends!</objective>
+<authors>
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
+</authors>
+<contributors>
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</contributors>
+<teams>
+    <team id="${team-1-id}" color="green" max="5" max-overfill="5">${team-1-name}</team>
+    <team id="${team-2-id}" color="dark purple" max="5" max-overfill="5">${team-2-name}</team>
+</teams>
+<spawns>
+    <default>
+        <region yaw="45">
+            <cuboid min="-108.5,20.25,139.5" max="-109.5,20.25,140.5"/>
+        </region>
+    </default>
+    <spawn team="${team-1-id}" kit="base-kit">
+        <region yaw="0">
+            <point>-140.5,11.25,109.5</point>
+        </region>
+    </spawn>
+    <spawn team="${team-2-id}" kit="base-kit">
+        <region yaw="90">
+            <point>-78.5,11.25,171.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <after id="open-shark-pit" duration="60s" message="`eShark pit opens in {0}">
+        <time>7m</time>
+    </after>
+    <material id="only-stained-glass">stained glass</material>
+</filters>
+<regions>
+    <union id="flag-nets">
+        <cuboid id="${team-1}-net" min="-153,14,131" max="-152,16,132"/>
+        <cuboid id="${team-2}-net" min="-100,14,184" max="-101,16,183"/>
+    </union>
+    <union id="flag-posts">
+        <block id="${team-1}-post">-153,14,131</block>
+        <block id="${team-2}-post">-101,14,183</block>
+    </union>
+    <cuboid id="shark-pit" min="-144,8,175" max="-133,9,164"/>
+    <apply block="never" use="never"/>
+</regions>
+<actions>
+    <trigger scope="match" filter="open-shark-pit">
+        <action>
+            <fill region="shark-pit" material="air" filter="only-stained-glass"/>
+        </action>
+    </trigger>
+</actions>
+<spawners>
+    <spawner id="gapple-spawner" delay="8s">
+        <spawn-region>
+            <cuboid min="-128.4,12.5,159.4" max="-128.6,12.5,159.6"/>
+        </spawn-region>
+        <player-region>
+            <cuboid min="-125,11,156" max="-132,14,163"/>
+        </player-region>
+        <item material="golden apple"/>
+    </spawner>
+    <spawner id="arrow-spawner" delay="2s">
+        <spawn-region>
+            <cuboid min="-148.4,12.5,179.4" max="-148.6,12.5,179.6"/>
+        </spawn-region>
+        <player-region>
+            <cuboid min="-151,13,182" max="-146,16,177"/>
+        </player-region>
+        <item material="arrow"/>
+    </spawner>
+</spawners>
+</map>
