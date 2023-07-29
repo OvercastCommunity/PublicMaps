@@ -2,14 +2,20 @@
 <gamemode>arcade</gamemode>
 <game>Laps</game>
 <phase>development</phase>
+<respawn auto="true" delay="0s"/>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.07.22-1 -->
+<!-- Version 2023.07.29-1 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
     <constant id="jump-boost-duration">0</constant> <!-- Negative jump boost duration after race starts -->
     <constant id="game-mode">survival</constant>
+    <constant id="checkpoints">0</constant>
+    <constant id="checkpoint-1-center">0,0</constant>
+    <constant id="checkpoint-1-radius">0</constant>
+    <constant id="checkpoint-2-center">0,0</constant>
+    <constant id="checkpoint-2-radius">0</constant>
 </constants>
 <players max="50" colors="true"/>
 <kits>
@@ -21,6 +27,10 @@
         <effect duration="oo" amplifier="100" ambient="false">heal</effect>
         <effect duration="oo" amplifier="4" ambient="false">damage resistance</effect>
         <game-mode>${game-mode}</game-mode>
+        <action>
+            <kit id="reset-lap-kit"/>
+            <kit id="countdown-kit"/>
+        </action>
     </kit>
     <kit id="countdown-kit" force="true">
         <foodlevel>6</foodlevel>
@@ -37,9 +47,22 @@
     <kit id="lap-completed-kit" force="true">
         <action>
             <message text=" `e⚠ `aYou have completed a lap!"/>
+            <kit id="reset-lap-kit"/>
         </action>
     </kit>
     <give kit="lap-completed-kit" filter="finish-line-participating"/>
+    <kit id="lap-cheated-kit" force="true">
+        <action>
+            <message text=" `e⚠ `cYou did not get all the checkpoints!"/>
+            <kit id="reset-lap-kit"/>
+        </action>
+    </kit>
+    <give kit="lap-cheated-kit" filter="finish-line-no-checkpoints"/>
+    <kit id="reset-lap-kit">
+        <action>
+            <set var="checkpoint_progress" value="0"/>
+        </action>
+    </kit>
     <kit id="void-kit" force="true">
         <clear effects="true" items="false" armor="false"/>
     </kit>
@@ -102,7 +125,7 @@
             </any>
             <all>
                 <not>
-                    <filter id="during-countdown"/>
+                    <filter id="during-countdown-plus"/>
                 </not>
             </all>
         </all>
@@ -118,6 +141,15 @@
         <region id="finish-line"/>
         <participating/>
         <match-running/>
+        <filter id="all-checkpoints"/>
+    </all>
+    <all id="finish-line-no-checkpoints">
+        <region id="finish-line"/>
+        <participating/>
+        <match-running/>
+        <not>
+            <filter id="all-checkpoints"/>
+        </not>
     </all>
     <all id="during-countdown">
         <variable id="race-not-started" var="race_started">0</variable>
@@ -125,6 +157,7 @@
         <participating/>
         <match-running/>
     </all>
+    <after id="during-countdown-plus" filter="during-countdown" duration="2s"/>
     <all id="race-started">
         <variable var="race_started">1</variable>
         <participating/>
@@ -134,23 +167,50 @@
         <region id="below-level"/>
         <participating/>
     </all>
+    <variable id="all-checkpoints" var="checkpoint_progress">${checkpoints}</variable>
+    <variable id="0-checkpoints" var="checkpoint_progress">0</variable>
+    <variable id="1-checkpoint" var="checkpoint_progress">1</variable>
+    <all id="checkpoint-1-filter">
+        <region id="checkpoint-1"/>
+        <any>
+            <filter id="0-checkpoints"/>
+            <filter id="all-checkpoints"/>
+        </any>
+    </all>
+    <all id="checkpoint-2-filter">
+        <region id="checkpoint-2"/>
+        <filter id="1-checkpoint"/>
+    </all>
 </filters>
 <regions>
     <below y="-20" id="below-level"/>
+    <union id="checkpoints">
+        <circle id="checkpoint-1" center="${checkpoint-1-center}" radius="${checkpoint-1-radius}"/>
+        <circle id="checkpoint-2" center="${checkpoint-2-center}" radius="${checkpoint-2-radius}"/>
+    </union>
 </regions>
 <variables>
     <variable id="race_started" scope="match" default="0"/> <!-- default="1" to disable countdown -->
+    <variable id="checkpoint_progress" scope="player" default="0"/>
 </variables>
 <actions>
     <action id="start-race" scope="match">
         <set var="race_started" value="1"/>
     </action>
     <trigger action="start-race" filter="race-start" scope="match"/>
+    <action id="1st-checkpoint" scope="player">
+        <set var="checkpoint_progress" value="1"/>
+    </action>
+    <trigger action="1st-checkpoint" filter="checkpoint-1-filter" scope="player"/>
+    <action id="2nd-checkpoint" scope="player">
+        <set var="checkpoint_progress" value="2"/>
+    </action>
+    <trigger action="2nd-checkpoint" filter="checkpoint-2-filter" scope="player"/>
 </actions>
 <score>
     <limit>${laps}</limit>
     <kills>0</kills>
-    <box value="1" silent="true" region="finish-line"/>
+    <box value="1" silent="true" region="finish-line" filter="all-checkpoints"/>
 </score>
 <tnt>
     <instantignite>on</instantignite>
@@ -193,6 +253,16 @@
     <item>bone</item>
     <item>raw beef</item>
 </itemremove>
+<renewables>
+    <renewable interval="10s" grow="false" particles="false" sound="false" avoid-players="0">
+        <renew-filter>
+            <material>air</material>
+        </renew-filter>
+        <replace-filter>
+            <material>web</material>
+        </replace-filter>
+    </renewable>
+</renewables>
 <hunger>
     <depletion>off</depletion>
 </hunger>

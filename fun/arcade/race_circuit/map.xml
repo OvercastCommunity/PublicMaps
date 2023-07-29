@@ -1,8 +1,15 @@
 <map proto="1.4.2">
 <name>Race: Circuit</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Score points by completing laps around the track.</objective>
 <include id="race"/>
+<constants>
+    <constant id="checkpoints">2</constant>
+    <constant id="checkpoint-1-center">-15.5,63</constant>
+    <constant id="checkpoint-1-radius">9</constant>
+    <constant id="checkpoint-2-center">-15.5,-63</constant>
+    <constant id="checkpoint-2-radius">20</constant>
+</constants>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
@@ -24,13 +31,13 @@
             </union>
         </region>
     </apply>
+    <apply enter="never">
+        <region><cuboid min="-8,19,-3" max="8,oo,-1"/></region>
+    </apply>
 </regions>
 <portals>
     <portal x="0" y="-6.5" z="3.5" region="finish-line"/>
-    <portal x="@0" y="@7.5" z="@3" yaw="@0">
-        <region><below y="0"/></region>
-    </portal>
-    <portal x="@0" y="@7.5" z="@-47" yaw="@0">
+    <portal x="@0" y="@7.5" z="@-47" yaw="@0" filter="all-checkpoints">
         <region><cuboid min="7,0,-1" max="-8,6,-40"/></region>
     </portal>
 </portals>
