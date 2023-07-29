@@ -1,0 +1,57 @@
+<map proto="1.4.2">
+<name>Revolution</name>
+<version>1.2</version>
+<include id="kotf-comp"/>
+<constant id="respawn-timer">7s</constant>
+<constant id="damage-resistance">6s</constant>
+<objective>Hold the flag for ${score} seconds to win!</objective>
+<authors>
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
+    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+</teams>
+    <kits>${
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit,base-kit"/>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="-90">
+            <point>-120.5,66,70.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit" filter="has-flag">
+        <region yaw="90">
+            <point>-24,14,70.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" filter="has-flag">
+        <region yaw="-90">
+            <point>-111,14,70.5</point>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never" block-physics="never" use="never"/>
+</regions>
+<flags>
+    <flag id="flag"
+          name="Flag"
+          color="white"
+          shared="true"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health"
+          flag-proximity-metric="none"
+          show-respawn-on-pickup="${announce-post-pickup}">
+        <post return-time="0s" respawn-time="${flag-respawn-timer}">
+            <post name="North Post" yaw="-90">-67.5,13,53.5</post>
+            <post name="South Post" yaw="90">-67.5,13,87.5</post>
+        </post>
+    </flag>
+</flags>
+</map>
