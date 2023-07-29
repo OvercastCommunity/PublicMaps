@@ -5,7 +5,7 @@
 <respawn auto="true" delay="0s"/>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.07.29-1 -->
+<!-- Version 2023.07.29-2 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
@@ -44,6 +44,7 @@
         <effect duration="${jump-boost-duration}" amplifier="-10" ambient="false">jump</effect>
     </kit>
     <give kit="remove-effects-kit" filter="race-started"/>
+    <give kit="remove-effects-kit" filter="respawned"/>
     <kit id="lap-completed-kit" force="true">
         <action>
             <message text=" `e⚠ `aYou have completed a lap!"/>
@@ -97,14 +98,14 @@
     <class name="Hot Rod" description="3/5 speed, fire aspect and extra webs, hyperspeed shears" icon="gold boots">
         <kit parents="spawn-kit">
             <item slot="0" enchantment="fire_aspect:1;dig_speed:10" material="shears" show-can-destroy="false"><can-destroy><material>web</material></can-destroy></item>
-            <item slot="1" amount="32" material="web" show-can-place-on="false"><can-place-on><all-blocks/></can-place-on></item>
+            <item slot="1" amount="10" material="web" show-can-place-on="false"><can-place-on><all-blocks/></can-place-on></item>
             <boots name="`fHot Rod" attributes="generic.movementSpeed:base:0.45" unbreakable="true" material="gold boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
     <class name="Truck" description="1/5 speed, knockback 2 and extra TNT, no shears" icon="diamond boots">
         <kit parents="spawn-kit">
             <item slot="0" enchantment="knockback:2" material="stick"/>
-            <item slot="1" amount="32" material="tnt" show-can-place-on="false"><can-place-on><all-blocks/></can-place-on></item>
+            <item slot="1" amount="10" material="tnt" show-can-place-on="false"><can-place-on><all-blocks/></can-place-on></item>
             <boots name="`fTruck" attributes="generic.movementSpeed:base:0.35" unbreakable="true" material="diamond boots" locked="true" show-enchantments="false" show-attributes="false"/>
         </kit>
     </class>
@@ -125,7 +126,7 @@
             </any>
             <all>
                 <not>
-                    <filter id="during-countdown-plus"/>
+                    <filter id="during-countdown"/>
                 </not>
             </all>
         </all>
@@ -157,7 +158,6 @@
         <participating/>
         <match-running/>
     </all>
-    <after id="during-countdown-plus" filter="during-countdown" duration="2s"/>
     <all id="race-started">
         <variable var="race_started">1</variable>
         <participating/>
@@ -180,6 +180,11 @@
     <all id="checkpoint-2-filter">
         <region id="checkpoint-2"/>
         <filter id="1-checkpoint"/>
+    </all>
+    <alive id="is-alive"/>
+    <all id="respawned">
+        <filter id="race-started"/>
+        <after duration="0.05" filter="is-alive"/>
     </all>
 </filters>
 <regions>
