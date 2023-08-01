@@ -6,7 +6,7 @@
 <constant id="damage-resistance">4s</constant>
 <objective>Be the first to 750 points</objective>
 <authors>
-    <author uuid="9116d3fa-1400-4ada-aecd-2eae1d73e383"/> <!-- Xuph -->
+    <author uuid="53f0b566-4ae5-48d7-ac86-5a6f7a38bd3a"/> <!-- Xuph -->
     <author uuid="0b8f95fa-0f40-4f28-9fd0-b8e243bb6800"/> <!-- Fouled -->
 </authors>
 <teams>
