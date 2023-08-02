@@ -1,0 +1,65 @@
+<map proto="1.4.2">
+<name>Ultraviolet</name>
+<version>1.1.7</version>
+<include id="conquest-comp"/>
+<constant id="respawn-timer">5s</constant>
+<constant id="damage-resistance">2s</constant>
+<objective>Reach 750 points before the opposing team!</objective>
+<authors>
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit,base-kit"/>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="-45">
+            <cuboid min="123.5,43,-43.5" max="125.5,43,-41.5"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-135">
+            <point>133.5,13,16.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="45">
+            <point>183.5,13,-33.5</point>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <cuboid id="top" min="166,16,-1" max="173,19,6"/>
+    <cuboid id="fort" min="141,12,-26" max="148,15,-19"/>
+    <cuboid id="cave" min="165,7,-2" max="172,10,5"/>
+    <apply use="never" block="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Top" capture="top" progress="top"/>
+        <hill name="Fort" capture="fort" progress="fort"/>
+        <hill name="Cave" capture="cave" progress="cave"/>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+</score>
+<spawners>
+    <spawner delay="6s">
+        <spawn-region>
+            <cuboid min="154.4,11.5,-12.4" max="154.6,11.5,-12.6"/>
+        </spawn-region>
+        <player-region>
+            <cuboid min="151.1,10,-15.9" max="157.9,13,-9.1"/>
+        </player-region>
+        <item material="golden apple"/>
+    </spawner>
+</spawners>
+</map>
