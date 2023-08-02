@@ -12,7 +12,7 @@
     <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
     <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
 </teams>
-    <kits>${
+<kits>
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
