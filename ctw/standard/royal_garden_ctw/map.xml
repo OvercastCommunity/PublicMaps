@@ -1,8 +1,7 @@
 <map proto="1.4.2">
 <name>Royal Garden CTW</name>
-<version>1.6.7</version>
+<version>1.6.8</version>
 <objective>Capture the opposing team's wools and place them at your victory monuments.</objective>
-<gamemode>ctw</gamemode>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
 </authors>
@@ -34,7 +33,6 @@
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
-        <effect duration="8s" amplifier="255">heal</effect>
         <effect duration="8s" amplifier="255">damage resistance</effect>
     </kit>
 </kits>
@@ -59,24 +57,26 @@
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
-    <deny id="no-void">
+    <deny id="deny-blue">
+        <team id="only-blue">blue</team>
+    </deny>
+    <deny id="deny-red">
+        <team id="only-red">red</team>
+    </deny>
+    <deny id="deny-in-wr">
+        <any>
+            <material>chest</material>
+            <material>mob spawner</material>
+        </any>
+    </deny>
+    <deny id="deny-void">
         <void/>
     </deny>
-    <deny id="blue-in-wr">
-        <any>
-            <team id="only-red">red</team>
-            <material>chest</material>
-            <material>mob spawner</material>
-        </any>
-    </deny>
-    <deny id="red-in-wr">
-        <any>
-            <team id="only-blue">blue</team>
-            <material>chest</material>
-            <material>mob spawner</material>
-        </any>
-    </deny>
+    <after id="add-water-lane" duration="300s" message="`eWater lanes will be added in {0}">
+        <time>55m</time>
+    </after>
     <material id="only-iron">iron block</material>
+    <material id="only-air">air</material>
 </filters>
 <regions>
     <union id="spawns">
@@ -119,9 +119,11 @@
     <apply enter="only-blue" region="blue-wool-rooms" message="You may not enter your own wool rooms!"/>
     <apply enter="only-red" region="red-wool-rooms" message="You may not enter your own wool rooms!"/>
     <apply block-break="only-iron" block-place="never" region="spawns" message="You may only break iron blocks in spawn!"/>
-    <apply block="blue-in-wr" use="only-blue" region="blue-wool-rooms"/>
-    <apply block="red-in-wr" use="only-red" region="red-wool-rooms"/>
-    <apply block="no-void" region="non-bridge" message="You may not build in the void!"/>
+    <apply block="deny-in-wr" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
+    <apply block="deny-blue" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny-red" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="add-water-lane" region="water-lanes"/>
+    <apply block="deny-void" region="non-bridge" message="You may not build in the void!"/>
 </regions>
 <wools craftable="false">
     <wool team="blue" color="orange" location="68,23,-36">
@@ -145,13 +147,13 @@
         </monument>
     </wool>
 </wools>
-<modes>
-    <mode id="water-lane" after="1h" name="`eWater Lane added" material="water" show-before="5m"/>
-</modes>
-<destroyables name="lanes" materials="air;water" completion="0%" required="false" show="false" modes="water-lane">
-    <destroyable owner="blue" region="blue-lanes"/>
-    <destroyable owner="red" region="red-lanes"/>
-</destroyables>
+<actions>
+    <trigger scope="match" filter="add-water-lane">
+        <action>
+            <fill region="water-lanes" material="water" filter="only-air"/>
+        </action>
+    </trigger>
+</actions>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
