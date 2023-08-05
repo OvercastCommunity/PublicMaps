@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Long Shot: Payload</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Push your team's cart back to your base before the enemy!</objective>
 <phase>development</phase>
 <authors>
@@ -14,7 +14,7 @@
 <broadcasts>
     <tip after="1s" every="2m">`bAfter `32 kills `byou will receive `35 firecharges`b.</tip>
     <tip after="3s" every="3m">`bAfter `35 kills `byou will receive `35 auto-igniting TNT`b.</tip>
-    <tip after="5s" every="2m">`bBe careful building around the track; you may fall!</tip>
+    <tip after="5s" every="2m">`bEntering the enemy lane temporarily lowers your maximum health!</tip>
 </broadcasts>
 <teams>
     <team id="blue" color="blue" max="24">Blue</team>
@@ -43,6 +43,25 @@
             <enchantment>feather_falling</enchantment>
         </boots>
     </kit>
+    <kit id="health-debuff">
+        <max-health>14</max-health>
+    </kit>
+    <lend kit="health-debuff">
+        <filter>
+            <all>
+                <filter id="only-red"/>
+                <filter id="blue-lane"/>
+            </all>
+        </filter>
+    </lend>
+    <lend kit="health-debuff">
+        <filter>
+            <all>
+                <filter id="only-blue"/>
+                <filter id="red-lane"/>
+            </all>
+        </filter>
+    </lend>
 </kits>
 <spawns>
     <default>
@@ -85,40 +104,44 @@
     <negative id="outside-map">
         <cuboid id="playable" min="-152,0,-32" max="158,78,33"/>
     </negative>
-    <union id="rail-radii">
-        <union id="blue-radii">
-            <!-- Payload island -->
-            <cuboid min="-145,0,-25" max="-138,78,-18"/>
-            <cuboid min="-138,28,-23" max="-131,32,-20"/>
-            <!-- Last island from the back -->
-            <cuboid min="-52,38,-23" max="-46,42,-20"/>
-            <cuboid min="-49,38,-20" max="-46,42,-15"/>
-            <cuboid min="-46,38,-18" max="-34,42,-15"/>
-            <cuboid min="-37,38,-23" max="-34,42,-18"/>
-            <cuboid min="-34,38,-23" max="-31,42,-20"/>
-            <!-- Middle island -->
-            <cuboid min="28,48,-23" max="34,52,-20"/>
-            <cuboid min="31,48,-20" max="34,52,-15"/>
-            <cuboid min="34,48,-18" max="46,52,-15"/>
-            <cuboid min="43,48,-23" max="46,52,-18"/>
-            <cuboid min="46,48,-23" max="49,52,-20"/>
-            <!-- Spawn island -->
-            <cuboid min="89,58,-23" max="96,62,-20"/>
-            <cuboid min="96,0,-25" max="103,78,-18"/>
-            <!-- Void -->
-            <cuboid min="48,48,-23" max="90,62,-20"/>
-            <cuboid min="-32,38,-23" max="29,52,-20"/>
-            <cuboid min="-132,28,-23" max="-51,42,-20"/>
-        </union>
-        <mirror id="red-radii" region="blue-radii" origin="38.5,39,0.5" normal="0,0,1"/>
+    <union id="lanes">
+        <rectangle id="blue-lane" min="-152,-32" max="110,-11"/>
+        <mirror id="red-lane" region="blue-lane" origin="38.5,0,0.5" normal="0,0,1"/>
     </union>
     <apply enter="only-blue" region="blue-above"/>
     <apply enter="only-red" region="red-above"/>
     <apply block="never" region="outside-map" message="You may not build outside of the map's boundaries!"/>
     <apply block="never" region="bases" message="You may not modify the bases!"/>
     <apply block="never" region="deny-lane" message="You may only cross the void on the wooden platforms!"/>
-    <apply block="never" region="rail-radii" message="You may not interfere with the areas around the payload tracks!"/>
     <apply block="deny-tracks" block-physics="deny-tracks"/>
+    <!-- union id="rail-radii">
+        <union id="blue-radii">
+            Payload island
+            <cuboid min="-145,0,-25" max="-138,78,-18"/>
+            <cuboid min="-138,28,-23" max="-131,32,-20"/>
+            Last island from the back
+            <cuboid min="-52,38,-23" max="-46,42,-20"/>
+            <cuboid min="-49,38,-20" max="-46,42,-15"/>
+            <cuboid min="-46,38,-18" max="-34,42,-15"/>
+            <cuboid min="-37,38,-23" max="-34,42,-18"/>
+            <cuboid min="-34,38,-23" max="-31,42,-20"/>
+            Middle island
+            <cuboid min="28,48,-23" max="34,52,-20"/>
+            <cuboid min="31,48,-20" max="34,52,-15"/>
+            <cuboid min="34,48,-18" max="46,52,-15"/>
+            <cuboid min="43,48,-23" max="46,52,-18"/>
+            <cuboid min="46,48,-23" max="49,52,-20"/>
+            Spawn island
+            <cuboid min="89,58,-23" max="96,62,-20"/>
+            <cuboid min="96,0,-25" max="103,78,-18"/>
+            Void
+            <cuboid min="48,48,-23" max="90,62,-20"/>
+            <cuboid min="-32,38,-23" max="29,52,-20"/>
+            <cuboid min="-132,28,-23" max="-51,42,-20"/>
+        </union>
+        <mirror id="red-radii" region="blue-radii" origin="38.5,39,0.5" normal="0,0,1"/>
+    </union -->
+    <!-- apply block="never" region="rail-radii" message="You may not interfere with the areas around the payload tracks!"/ -->
 </regions>
 <payloads radius="6" capture-time="5m" decay-rate="0.25" contested-decay="0.75" capture-rule="exclusive" points="1">
     <payload location="99.5,60,-21.5" name="Blue Payload" capture-filter="only-blue"/>
