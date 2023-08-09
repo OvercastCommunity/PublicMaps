@@ -3,9 +3,6 @@
 <!-- Include version number : v1.1.1 --> 
 <objective>Destroy the enemy teams' bed and eliminate them before they get to yours.</objective>
 <gamemode>bedwars</gamemode>
-<gamemode>dtm</gamemode>
-<gamemode>blitz</gamemode>
-<game>Bed Wars</game>
 <respawn auto="true" delay="5s"/>
 <time>50m</time>
 <!-- Blitz and Sudden Death -->
