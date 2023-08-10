@@ -24,7 +24,7 @@
 <rage/>
 <kits>
     <kit id="spawn">
-        <item slot="0" name="Yeeter" lore="Get Back!" enchantment="damage:1">bow</item>
+        <item slot="0" name="Yeeter" lore="Get Back!" enchantment="punch:1">bow</item>
         <item slot="8" material="arrow" amount="12"/>
     </kit>
 </kits>
