@@ -23,7 +23,7 @@
 </constants>
 <blitz>
     <lives>5</lives>
-    <broadcastLives>false</broadcastLives>
+    <broadcastLives>true</broadcastLives>
 </blitz>
 <score>
     <!-- First team to reach 100 points wins the match -->
