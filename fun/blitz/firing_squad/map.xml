@@ -28,7 +28,7 @@
     <!-- First team to reach 100 points wins the match -->
     <limit>100</limit>
     <kills>2</kills> <!-- +3 points for every kill -->
-    <deaths>1</deaths> <!-- -2 points for accidentally dying -->
+    <deaths>0</deaths> <!-- -2 points for accidentally dying -->
 </score>
 <time>5m</time>
 <respawn delay="3s" blackout="true"/>
