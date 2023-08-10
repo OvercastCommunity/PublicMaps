@@ -19,8 +19,8 @@
 </teams>
 <blitz>
     <lives>1</lives>
-    <time>5m</time>
 </blitz>
+<time>5m</time>
 <rage/>
 <kits>
     <kit id="spawn">
