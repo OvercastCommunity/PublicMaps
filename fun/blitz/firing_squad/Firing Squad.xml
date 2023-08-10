@@ -1,0 +1,55 @@
+<map proto="1.0.0">
+<name>Firing Squad</name>
+<version>1.0.0</version>
+<objective>Eliminate the enemy team!</objective>
+<gamemode>blitz</gamemode>
+<gamemode>rage</gamemode>
+<created>2023-08-09</created>
+<authors>
+    <author uuid="79d4d76e-e08a-4a35-9411-05dd2397361f"/> <!-- Hydrosion -->
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac" contribution="MCEdit, XML"/> <!-- mame_BT -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="1337">Red</team>
+    <team id="blue" color="blue" max="1337">Blue</team>
+</teams>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<rage/>
+<time>10m</time>
+<kits>
+    <kit id="spawn">
+        <item slot="0" name="Yeeter" lore="Get Back!" enchantment="damage:1">bow</item>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn">
+        <regions yaw="0">
+            <cuboid min="0.5,2,4.5" max="0.5,2,4.5"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="spawn">
+        <regions yaw="0">
+            <cuboid min="0.5,2,-3.5" max="0.5,2,-3.5"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180" pitch="25">
+            <cylinder base="0.5,12.5,0.5" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<regions>
+    <apply block="never" use="never" region="everywhere"/>
+</regions>
+<itemremove>
+    <item>bow</item>
+</itemremove>
+</map>
