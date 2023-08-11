@@ -25,7 +25,7 @@
     <broadcastLives>true</broadcastLives>
 </blitz>
 <time>5m</time>
-<respawn delay="0s" blackout="true"/>
+<respawn auto="true"/>
 <kits>
     <kit id="spawn">
         <item slot="0" name="Yeeter" lore="Get Back!" enchantment="punch:1">bow</item>
