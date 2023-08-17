@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Kryta: Rage</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Kill and survive. There are no teams, so watch your back!</objective>
 <players min="2" max="64"/>
 <time>8m</time>
@@ -28,12 +28,12 @@
         <effect duration="4" amplifier="100">damage resistance</effect>
         <effect duration="4" amplifier="20">weakness</effect>
         <effect duration="4" amplifier="20">regeneration</effect>
-        <double-jump recharge-before-landing="true" power="5" recharge-time="4.5s"/>
+        <double-jump recharge-before-landing="true" power="5" recharge-time="3s"/>
     </kit>
     <kit id="kr-base-kit" force="true">
         <effect amplifier="2" duration="0.5">night vision</effect>
         <effect amplifier="4" duration="2">regeneration</effect>
-        <double-jump recharge-before-landing="true" power="5" recharge-time="4.5s"/>
+        <double-jump recharge-before-landing="true" power="5" recharge-time="3s"/>
     </kit>
 </kits>
 <spawns>
