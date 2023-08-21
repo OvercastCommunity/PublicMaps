@@ -5,7 +5,7 @@
 <respawn auto="true" delay="0s"/>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
-<!-- Version 2023.07.29-2 -->
+<!-- Version 2023.08.20-1 -->
 <constants>
     <constant id="laps">3</constant>
     <constant id="food-level">20</constant> <!-- Food level after race starts-->
@@ -235,7 +235,7 @@
     <damage>fall</damage>
 </disabledamage>
 <crafting>
-    <disable override-all="true">snow block</disable>
+    <disable>snow block</disable>
 </crafting>
 <toolrepair>
     <tool>wood sword</tool>
