@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Titan</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Control all 5 hills!</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Design, gear system, XML, terraforming, and building"/> <!-- Reshif -->
@@ -121,27 +121,27 @@
 </portals>
 <king>
     <hills>
-        <hill name="Quarry" capture-time="8s" ratio="1">
+        <hill name="Quarry" capture-time="8s" points="1">
             <capture><cuboid min="-6,2,-7" max="9,7,8"/></capture>
             <progress><cuboid min="-6,2,-7" max="9,7,8"/></progress>
             <captured><cuboid min="-6,2,-7" max="9,24,8"/></captured>
         </hill>
-        <hill name="Radio Station" capture-time="8s" ratio="1">
+        <hill name="Radio Station" capture-time="8s" points="1">
             <capture><cuboid min="57,7,-51" max="66,11,-42"/></capture>
             <progress><cuboid min="55,6,-53" max="68,11,-40"/></progress>
             <captured><cuboid min="53,6,-55" max="70,36,-38"/></captured>
         </hill>
-        <hill name="Missle Silo" capture-time="8s" ratio="1">
+        <hill name="Missile Silo" capture-time="8s" points="1">
             <capture><cuboid min="-61,6,37" max="-46,9,52"/></capture>
             <progress><cuboid min="-62,6,36" max="-45,9,53"/></progress>
             <captured><cuboid min="-65,6,33" max="-42,36,56"/></captured>
         </hill>
-        <hill name="Ruins" capture-time="8s" ratio="1">
+        <hill name="Ruins" capture-time="8s" points="1">
             <capture><cuboid min="-105,6,-14" max="-95,10,-4"/></capture>
             <progress><cuboid min="-110,6,-19" max="-90,14,1"/></progress>
             <captured><cuboid min="-110,6,-19" max="-90,20,1"/></captured>
         </hill>
-        <hill name="Crateyard" capture-time="8s" ratio="1">
+        <hill name="Crateyard" capture-time="8s" points="1">
             <capture><cuboid min="93,6,4" max="107,10,17"/></capture>
             <progress><cuboid min="93,6,4" max="107,10,17"/></progress>
             <captured><cuboid min="93,6,4" max="107,20,17"/></captured>
@@ -170,5 +170,4 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
-<multitrade/>
 </map>
