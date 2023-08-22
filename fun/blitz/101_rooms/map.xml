@@ -32,7 +32,7 @@
     <contributor uuid="9bfbc560-244a-4e28-ab70-185f39740ec1" contribution="Found the ender pearl glitch"/> <!-- TheZaner - appears twice in halloween variant -->
     <contributor uuid="10c7915f-26b2-4cd6-9d42-7675a9259374" contribution="Help with spawner"/> <!-- RabidRabbit30 -->
     <if variant="lifesteal">
-        <contributor uuid="0b009ce8-969a-4f61-a894-e757a7164ba0" contribution="Lifesteal idea"/> <!-- FlyDwen -->
+        <contributor uuid="0b009ce8-969a-4f61-a894-e757a7164ba0" contribution="Lifesteal for 101 Rooms idea"/> <!-- FlyDwen -->
         <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="Lifesteal XML"/> <!-- zzuf -->
     </if>
 </contributors>
@@ -132,12 +132,12 @@
         <item amount="1" material="arrow"/>
     </kill-reward>
     <if variant="lifesteal">
-    <kill-reward>
-        <filter>
-            <variable var="extra_life">0</variable>
-        </filter>
-        <kit id="add-life-kit"/>
-    </kill-reward>
+        <kill-reward>
+            <filter>
+                <variable var="extra_life">0</variable>
+            </filter>
+            <kit id="add-life-kit"/>
+        </kill-reward>
     </if>
 </kill-rewards>
 <itemremove>
