@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.07.24-1 -->
+<!-- Version 2023.08.22-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -195,7 +195,7 @@
         <participating/>
     </all>
     <all id="more-than-1-arrow">
-        <carrying ignore-metadata="true"><item material="arrow" amount="2"/></carrying>
+        <carrying ignore-metadata="true" amount="(1,oo)"><item material="arrow"/></carrying>
         <participating/>
     </all>
     <after id="arrow-regen" duration="3.5s" filter="no-arrows"/>
@@ -239,15 +239,11 @@
         <set var="can_score" value="1"/>
         <set var="buytime" value="0"/>
         <message title="`aGo!" fade-in="0.1" stay="0.5" fade-out="0.1"/>
-        <switch-scope outer="match" inner="player">
-            <replace-item>
-                <find material="ink sack" damage="5" locked="true"/>
-                <replace material="air"/>
-            </replace-item>
-        </switch-scope>
+        <sound key="note.pling" volume="1" pitch="1.59"/> <!-- Used as SOUND_MATCH_START in PGM -->
     </action>
     <action id="reset-counter" scope="match">
         <set var="round_status" value="0"/>
+        <sound key="fireworks.twinkle"/>
     </action>
     <action id="remove-arrow" scope="player">
         <replace-item>
@@ -264,6 +260,7 @@
     <action id="give-arrow" scope="player">
         <kit id="arrow-kit"/>
         <message text=" `e⚠ `aYou got an arrow!"/>
+        <sound key="random.pop" pitch="0.8"/>
     </action>
     <trigger filter="arrow-regen" action="give-arrow" scope="player"/>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
