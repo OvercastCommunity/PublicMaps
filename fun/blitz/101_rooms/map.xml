@@ -3,7 +3,7 @@
 <variant id="tdm">TDM</variant> <!-- original map was called 101 Rooms TDM without colon -->
 <variant id="halloween" world="halloween" override="true">101 Pumpkins</variant>
 <variant id="lifesteal">Lifesteal</variant>
-<version>1.3.2</version>
+<version>1.3.3</version>
 <unless variant="lifesteal,tdm">
     <objective>Kill all your opponents! Each person has 2 lives</objective>
     <gamemode>br</gamemode>
@@ -100,10 +100,18 @@
         <potion duration="4" amplifier="1">heal</potion>
         <potion duration="4" amplifier="10">damage resistance</potion>
         <potion duration="oo" amplifier="-4">health boost</potion>
+        <if variant="lifesteal">
+            <action>
+                <set var="extra_life" value="0"/>
+            </action>
+        </if>
     </kit>
     <kit id="add-life-kit">
         <action>
             <set var="blitzlives" value="blitzlives+1"/>
+            <set var="extra_life" value="1"/>
+            <message title="" text=" `e⚠ `aYou've earned an extra life! You won't earn any additional lives until you respawn."/>
+            <sound key="fireworks.twinkle"/>
         </action>
     </kit>
 </kits>
@@ -117,14 +125,20 @@
 </regions>
 <variables>
     <lives id="blitzlives"/>
+    <variable id="extra_life" scope="player" default="0"/>
 </variables>
 <kill-rewards>
     <kill-reward>
         <item amount="1" material="arrow"/>
-        <if variant="lifesteal">
-            <kit id="add-life-kit"/>
-        </if>
     </kill-reward>
+    <if variant="lifesteal">
+    <kill-reward>
+        <filter>
+            <variable var="extra_life">0</variable>
+        </filter>
+        <kit id="add-life-kit"/>
+    </kill-reward>
+    </if>
 </kill-rewards>
 <itemremove>
     <item>leather helmet</item>
