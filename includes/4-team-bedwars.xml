@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <!-- Created by Cazadorian, built upon work by _Pear and ElectroidFilms -->
 <!-- Include version number : v1.1.2 --> 
+<phase>development</phase>
 <objective>Destroy the enemy teams' bed and eliminate them before they get to yours.</objective>
 <gamemode>bedwars</gamemode>
 <respawn auto="true" delay="5s"/>
