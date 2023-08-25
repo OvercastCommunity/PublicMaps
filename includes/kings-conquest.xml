@@ -4,6 +4,7 @@
 <objective>Kill the enemy team's King to win!</objective>
 <gamemode>arcade</gamemode>
 <gamemode>blitz</gamemode>
+<phase>development</phase>
 <game>Kill the King</game>
 <respawn auto="true" delay="3s"/>
 <time>15m</time>
