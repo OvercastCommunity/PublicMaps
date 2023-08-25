@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <!-- Created by mitchiii, based on the King's Conquest maps created by Chicky -->
-<!-- Include version number : v2.1.0 -->
+<!-- Include version number : v2.1.1 -->
 <objective>Kill the enemy team's King to win!</objective>
 <gamemode>arcade</gamemode>
 <gamemode>blitz</gamemode>
@@ -135,6 +135,15 @@
         <effect duration="3" amplifier="4">regeneration</effect>
         <action>
             <switch-scope inner="team">
+                <set var="king_health_recovery_amount" value="king_health_recovery_amount+8"/>
+<!--                <message text="`6» `bKing recovery increased by 8"/>-->
+            </switch-scope>
+        </action>
+    </kit>
+    <kit id="king-gapple-kit">
+        <effect duration="3" amplifier="4">regeneration</effect>
+        <action>
+            <switch-scope inner="team">
                 <set var="king_health_recovery_amount" value="king_health_recovery_amount+5"/>
 <!--                <message text="`6» `bKing recovery increased by 5"/>-->
             </switch-scope>
@@ -180,6 +189,7 @@
 </kits>
 <consumables>
     <consumable id="king-berserking-consumable" action="king-berserking-kit" on="eat"/>
+    <consumable id="king-gapple-consumable" action="king-gapple-kit" on="eat"/>
 </consumables>
 <classes family="king" sticky="false">
     <class name="Knight" icon="iron sword" default="true"
@@ -298,6 +308,7 @@
     </kill-reward>
     <kill-reward filter="only-king">
         <item material="arrow" amount="8"/>
+        <item material="golden apple" consumable="king-gapple-consumable" prevent-sharing="true"/>
     </kill-reward>
 </kill-rewards>
 <filters>
@@ -359,26 +370,28 @@
             </all>
         </any>
     </all>
-    <all id="reduce-king-health">
-        <filter id="only-king"/>
-        <filter id="initial-action-delay"/>
-        <not>
-            <any id="king-has-armor">
-                <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
-                    <item material="gold chestplate"/>
-                </wearing>
-                <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
-                    <item material="gold leggings"/>
-                </wearing>
-                <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
-                    <item material="gold boots"/>
-                </wearing>
-            </any>
-        </not>
-        <not>
-            <score>0</score>
-        </not>
-    </all>
+    <pulse id="reduce-king-health" period="0.2s" duration="0.1s">
+        <all>
+            <filter id="only-king"/>
+            <filter id="initial-action-delay"/>
+            <not>
+                <any id="king-has-armor">
+                    <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
+                        <item material="gold chestplate"/>
+                    </wearing>
+                    <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
+                        <item material="gold leggings"/>
+                    </wearing>
+                    <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
+                        <item material="gold boots"/>
+                    </wearing>
+                </any>
+            </not>
+            <not>
+                <score>0</score>
+            </not>
+        </all>
+    </pulse>
     <pulse id="recover-king-health" period="0.5s" duration="0.1s">
         <all>
             <score>[1,99]</score>
