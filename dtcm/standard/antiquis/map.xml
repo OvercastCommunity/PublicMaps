@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Antiquis</name>
-<version>1.2.7</version>
+<version>1.2.8</version>
 <objective>Destroy the enemy's obsidian monument!</objective>
 <gamemode>dtm</gamemode>
 <authors>
@@ -12,7 +11,7 @@
     <team id="red-team" color="dark red" max="16">Red</team>
 </teams>
 <broadcasts>
-    <tip after="5s" every="8m">Combine `f4 `4Infused Shards`r in a crafting area to get an `4Infused Plate`r!</tip>
+    <tip after="5s" every="10m">Combine `f4 `4Infused Shards`r in a crafting area to get one `4Infused Plate`r! This allows you to craft pickaxe upgrades in your `e2x2`r inventory crafting grid.</tip>
 </broadcasts>
 <kits>
     <kit id="pickaxe" filter="upgraded-pickaxe">
