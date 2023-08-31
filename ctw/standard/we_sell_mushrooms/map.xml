@@ -1,0 +1,296 @@
+<map proto="1.4.2">
+<name>We Sell Mushrooms</name>
+<version>1.6.5</version>
+<variant id="comp" world="comp">TE</variant>
+<if variant="comp">
+    <phase>development</phase>
+    <time overtime="5m" max-overtime="15m" end-overtime="1m">45m</time>
+</if>
+<objective>Capture the enemy team's two wools.</objective>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<contributors>
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+    <contributor uuid="fd4e2236-23a7-4e3c-a6ab-a656cff18aea"/> <!-- east____ -->
+    <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655"/> <!-- wylt -->
+    <contributor uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Winneror -->
+</contributors>
+<teams>
+    <unless variant="comp">
+        <team id="blue-team" color="blue" max="32">Blue</team>
+        <team id="red-team" color="dark red" max="32">Red</team>
+    </unless>
+    <if variant="comp">
+        <team id="blue-team" color="blue" max="8" max-overfill="8">Blue</team>
+        <team id="red-team" color="dark red" max="8" max-overfill="8">Red</team>
+    </if>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="diamond axe"/>
+        <item slot="4" amount="64" damage="2" material="wood"/>
+        <item slot="31" amount="64" damage="2" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="32" amount="16" material="smooth brick"/>
+        <unless variant="comp">
+            <item slot="30" unbreakable="true" material="shears"/>
+            <item slot="6" material="bucket"/>
+            <item slot="8" material="golden apple"/>
+            <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        </unless>
+        <if variant="comp">
+            <item slot="7" material="golden apple"/>
+            <item slot="8" amount="64" material="golden carrot"/>
+            <item slot="9" material="mushroom soup"/>
+        </if>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <point>-247.5,59,15.5</point>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="-135">
+            <point>-346.5,2.0625,113.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="45">
+            <point>-150.5,2.0625,-82.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <deny id="deny-blue">
+        <team id="only-blue">blue-team</team>
+    </deny>
+    <deny id="deny-red">
+        <team id="only-red">red-team</team>
+    </deny>
+    <deny id="deny-in-wrs">
+        <any>
+            <material>chest</material>
+            <material>tnt</material>
+        </any>
+    </deny>
+    <deny id="deny-explosions">
+        <cause>explosion</cause>
+    </deny>
+    <all id="only-iron-renew">
+        <any id="break-in-spawn">
+            <material id="only-iron">iron block</material>
+            <material>leaves 2</material>
+            <material>log 2</material>
+        </any>
+        <cause>world</cause>
+    </all>
+</filters>
+<regions>
+    <union id="spawns">
+        <unless variant="comp">
+            <!-- deny entry further back than block placement deny region -->
+            <rectangle id="blue-spawn-entry" min="-355,122" max="-319,86"/>
+            <rectangle id="red-spawn-entry" min="-142,-91" max="-199,-34"/>
+            <rectangle id="blue-spawn-build" min="-355,122" max="-298,65"/>
+            <rectangle id="red-spawn-build" min="-142,-91" max="-178,-55"/>
+        </unless>
+        <if variant="comp">
+            <!-- keep as it was for TE, yes these are duplicates of eachother -->
+            <rectangle id="blue-spawn-entry" min="-355,122" max="-319,86"/>
+            <rectangle id="red-spawn-entry" min="-142,-91" max="-199,-34"/>
+            <rectangle id="blue-spawn-build" min="-355,122" max="-319,86"/>
+            <rectangle id="red-spawn-build" min="-142,-91" max="-199,-34"/>
+        </if>
+    </union>
+    <union id="wool-rooms">
+        <union id="blue-defends">
+            <rectangle min="-373,45" max="-360,32"/> <!-- cyan -->
+            <rectangle min="-265,140" max="-278,127"/> <!-- lime -->
+        </union>
+        <union id="red-defends">
+            <rectangle min="-124,-14" max="-137,-1"/> <!-- orange -->
+            <rectangle min="-232,-109" max="-219,-96"/> <!-- yellow -->
+        </union>
+    </union>
+    <union id="wool-monuments">
+        <unless variant="comp">
+            <block id="orange-monument" location="-278,24,45"/>
+            <block id="yellow-monument" location="-279,24,44"/>
+            <block id="cyan-monument" location="-220,24,-15"/>
+            <block id="lime-monument" location="-219,24,-14"/>
+        </unless>
+        <if variant="comp">
+            <block id="orange-monument" location="-278,24,45"/>
+            <block id="yellow-monument" location="-279,24,44"/>
+            <block id="cyan-monument" location="-220,24,-15"/>
+            <block id="lime-monument" location="-219,24,-14"/>
+        </if>
+    </union>
+    <complement id="void">
+        <everywhere/>
+        <rectangle min="-315,82" max="-242,9"/> <!-- blue -->
+        <rectangle min="-182,-51" max="-255,22"/> <!-- red -->
+        <rectangle min="-208,56" max="-243,21"/> <!-- mid -->
+        <rectangle min="-289,-25" max="-254,10"/> <!-- mid -->
+        <rectangle min="-349,48" max="-315,29"/> <!-- cyan -->
+        <rectangle min="-262,116" max="-281,82"/> <!-- lime -->
+        <rectangle min="-148,-17" max="-182,2"/> <!-- orange -->
+        <rectangle min="-235,-85" max="-216,-51"/> <!-- yellow -->
+    </complement>
+    <cuboid id="obs-spawn" min="-252,62,19" max="-245,55,12"/>
+    <apply use="only-blue" region="red-defends"/>
+    <apply use="only-red" region="blue-defends"/>
+    <apply enter="only-blue" region="blue-spawn-entry" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-red" region="red-spawn-entry" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-blue" region="red-defends" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-red" region="blue-defends" message="You may not enter your team's own wool rooms!"/>
+    <apply block-place="only-iron-renew" block-break="break-in-spawn" region="spawns" message="You may only break iron blocks in spawn!"/>
+    <apply block="deny-in-wrs" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
+    <apply block="deny-blue" region="blue-defends" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny-red" region="red-defends" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny-explosions" region="wool-rooms"/>
+    <apply block="deny-void" region="void" message="You may not edit the void!"/>
+</regions>
+<renewables>
+    <renewable interval="5s" renew-filter="only-iron" region="spawns"/>
+</renewables>
+<wools wool-proximity-metric="none" monument-proximity-metric="closest block">
+    <wool team="blue-team" color="orange" monument="orange-monument" location="-128.5,23.5,-7.5"/>
+    <wool team="blue-team" color="yellow" monument="yellow-monument" location="-225.5,23.5,-104.5"/>
+    <wool team="red-team" color="cyan" monument="cyan-monument" location="-368.5,23.5,38.5"/>
+    <wool team="red-team" color="lime" monument="lime-monument" location="-271.5,23.5,135.5"/>
+</wools>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>diamond axe</tool>
+    <unless variant="comp">
+        <tool>shears</tool>
+    </unless>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>golden carrot</item>
+    <item>mushroom soup</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>string</item>
+    <item>redstone</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>seeds</item>
+    <item>long grass</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>double plant</item>
+    <item>sugar cane</item>
+    <item>glowstone dust</item>
+    <item>banner</item>
+    <item>apple</item>
+    <item>leaves</item>
+    <item>flower pot item</item>
+    <item>melon</item>
+    <item>carpet</item>
+    <item>sand</item>
+    <item>obsidian</item>
+    <item>boat</item>
+    <item>minecart</item>
+    <if variant="comp">
+        <item>stained clay</item>
+        <item>stone</item>
+        <item>double step</item>
+        <item>cobblestone</item>
+        <item>mossy cobblestone</item>
+        <item>iron trapdoor</item>
+    </if>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+                <material>smooth brick</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>gravel</material>
+        </filter>
+        <drops>
+            <item material="flint"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>smooth brick</item>
+    <unless variant="comp">
+        <item>shears</item>
+        <item>golden apple</item>
+        <item>bucket</item>
+        <item>water bucket</item>
+    </unless>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+        <item amount="8" material="smooth brick"/>
+        <if variant="comp">
+            <item material="mushroom soup"/>
+        </if>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>31</maxbuildheight>
+<unless variant="comp">
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+</unless>
+<if variant="comp">
+    <crafting>
+        <disable>boat</disable>
+        <disable>minecart</disable>
+        <disable>iron trapdoor</disable>
+        <disable>dispenser</disable>
+        <disable>dropper</disable>
+    </crafting>
+</if>
+<tnt>
+    <instantignite>on</instantignite>
+</tnt>
+</map>
