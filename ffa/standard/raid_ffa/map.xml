@@ -4,7 +4,6 @@
 <version>1.0.5</version>
 <objective>Be the player with the most kills in 6 minutes!</objective>
 <created>2023-05-12</created>
-<phase>development</phase>
 <authors>
     <author uuid="27ac2daf-3c38-4b8e-9448-46f221bb612a"/> <!-- N11cK -->
 </authors>
