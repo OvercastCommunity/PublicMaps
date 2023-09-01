@@ -1,6 +1,6 @@
 <map proto="1.3.2">
 <name>Royal Garden DTC</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Leak the enemy team's core!</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -98,13 +98,13 @@
 <itemremove>
     <item>leather helmet</item>
     <item>leather chestplate</item>
-    <item damage="7">step</item>
-    <item damage="2">quartz block</item>
-    <item damage="3">step</item>
+    <item>step:7</item>
+    <item>quartz block:2</item>
+    <item>step:3</item>
     <item>cobblestone stairs</item>
     <item>yellow flower</item>
     <item>seeds</item>
-    <item damage="2">long grass</item>
+    <item>long grass:2</item>
     <item>brown mushroom</item>
     <item>glowstone dust</item>
     <item>obsidian</item>
