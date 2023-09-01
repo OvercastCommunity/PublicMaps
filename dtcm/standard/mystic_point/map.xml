@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Mystic Point</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Destroy the enemy team's left and right monuments!</objective>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df" contribution="Map Design"/> <!-- Nadastorm -->
@@ -98,7 +98,7 @@
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-green" region="green-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply block="never" region="spawn-buildings" message="You may not modify the spawn buildings!"/>
-    <apply block="deny-spawner" region="spawners" messgae="Do not break the spawners!"/>
+    <apply block="deny-spawner" region="spawners" message="Do not break the spawners!"/>
     <apply block="never" region="void" message="You cannot build outside of the map!"/>
 </regions>
 <destroyables materials="obsidian" modes="beacon-mode coal-mode" repairable="false">
