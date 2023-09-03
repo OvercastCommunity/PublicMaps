@@ -1,8 +1,9 @@
+<!-- BRIDGE DEBUG INCLUDE - FOR INTERNAL ZZUF USAGE  -->
 <map proto="1.4.2">
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.09.02-1 -->
+<!-- Version 2023.09.03-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -36,7 +37,6 @@
 </spawns>
 <kits>
     <kit id="spawn-kit">
-        <clear/>
         <item slot="0" material="iron sword" unbreakable="true"/>
         <item slot="1" material="bow" unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
         <item slot="2" material="diamond pickaxe" enchantment="dig speed:2" unbreakable="true"/>
@@ -317,7 +317,6 @@
     <item>iron sword</item>
     <item>bow</item>
     <item>diamond pickaxe</item>
-    <item>golden apple</item>
 </itemkeep>
 <itemremove>
     <item>leather chestplate</item>
@@ -325,6 +324,7 @@
     <item>leather boots</item>
     <item>arrow</item>
     <item>stained clay</item>
+    <item>golden apple</item>
 </itemremove>
 <toolrepair>
     <tool>iron sword</tool>
