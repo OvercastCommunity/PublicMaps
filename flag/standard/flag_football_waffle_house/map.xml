@@ -98,7 +98,9 @@
         <net points="1" region="purple-spawn" capture-filter="only-purple"/>
     </flag>
 </flags>
-<score/>
+<score>
+    <mercy>5</mercy>
+</score>
 <portals>
     <portal observers="never" filter="green-team-carrying-flag" region="green-net" destination="green-spawn-point" yaw="@-90"/>
     <portal observers="never" filter="purple-team-carrying-flag" region="purple-net" destination="purple-spawn-point" yaw="@90"/>
