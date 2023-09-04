@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.09.03-2 -->
+<!-- Version 2023.09.04-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -49,6 +49,7 @@
         <action>
             <kit id="arrow-kit"/>
         </action>
+        <action id="remove-extra-armor"/>
     </kit>
     <kit id="armor-kit">
         <chestplate material="leather chestplate" team-color="true" unbreakable="true" prevent-sharing="true"/>
@@ -88,7 +89,7 @@
     <give kit="spawn-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
-    <give kit="armor-kit" filter="not-on-buytime"/>
+    <give kit="armor-kit" filter="not-on-buytime-after"/>
     <give kit="remove-effects-kit" filter="not-on-buytime"/>
 </kits>
 <filters>
@@ -168,11 +169,13 @@
         <alive/>
         <participating/>
     </all>
-    <all id="not-on-buytime">
-        <variable var="buytime">0</variable>
-        <alive/>
-        <participating/>
-    </all>
+    <after id="not-on-buytime-after" duration="0.05">
+        <all id="not-on-buytime">
+            <variable var="buytime">0</variable>
+            <alive/>
+            <participating/>
+        </all>
+    </after>
     <all id="team-one-buytime">
         <filter id="only-team-one"/>
         <filter id="on-buytime"/>
@@ -261,6 +264,20 @@
         <kit id="arrow-kit"/>
         <message text=" `e⚠ `aYou got an arrow!"/>
         <sound key="random.pop" pitch="0.8"/>
+    </action>
+    <action id="remove-extra-armor" scope="player">
+        <replace-item ignore-metadata="true">
+            <find material="leather chestplate"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="leather leggings"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="leather boots"/>
+            <replace material="air"/>
+        </replace-item>
     </action>
     <trigger filter="arrow-regen" action="give-arrow" scope="player"/>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
