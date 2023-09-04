@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>We Sell Mushrooms</name>
-<version>1.6.5</version>
+<version>1.7</version>
 <variant id="comp" world="comp">TE</variant>
 <if variant="comp">
     <phase>development</phase>
@@ -19,8 +19,8 @@
 </contributors>
 <teams>
     <unless variant="comp">
-        <team id="blue-team" color="blue" max="32">Blue</team>
-        <team id="red-team" color="dark red" max="32">Red</team>
+        <team id="blue-team" color="blue" max="30">Blue</team>
+        <team id="red-team" color="dark red" max="30">Red</team>
     </unless>
     <if variant="comp">
         <team id="blue-team" color="blue" max="8" max-overfill="8">Blue</team>
@@ -55,24 +55,26 @@
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <unless variant="comp">
+            <kit id="speed">
+                <effect>speed</effect>
+            </kit>
+        </unless>
     </kit>
+    <unless variant="comp">
+        <take kit="speed">
+            <filter>
+                <not>
+                    <region id="spawns"/>
+                </not>
+            </filter>
+        </take>
+    </unless>
 </kits>
 <spawns>
-    <default>
-        <region yaw="90">
-            <point>-247.5,59,15.5</point>
-        </region>
-    </default>
-    <spawn team="blue-team" kit="spawn-kit">
-        <region yaw="-135">
-            <point>-346.5,2.0625,113.5</point>
-        </region>
-    </spawn>
-    <spawn team="red-team" kit="spawn-kit">
-        <region yaw="45">
-            <point>-150.5,2.0625,-82.5</point>
-        </region>
-    </spawn>
+    <default region="default-spawn" yaw="90"/>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn" yaw="-135"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn" yaw="45"/>
 </spawns>
 <filters>
     <deny id="deny-void">
@@ -103,6 +105,17 @@
     </all>
 </filters>
 <regions>
+    <union id="spawn-points">
+        <point id="default-spawn">-247.5,59,15.5</point>
+        <unless variant="comp">
+            <point id="blue-spawn">-341.5,2.0625,108.5</point>
+            <point id="red-spawn">-155.5,2.0625,-77.5</point>
+        </unless>
+        <if variant="comp">
+            <point id="blue-spawn">-346.5,2.0625,113.5</point>
+            <point id="red-spawn">-150.5,2.0625,-82.5</point>
+        </if>
+    </union>
     <union id="spawns">
         <unless variant="comp">
             <!-- deny entry further back than block placement deny region -->
@@ -131,10 +144,10 @@
     </union>
     <union id="wool-monuments">
         <unless variant="comp">
-            <block id="orange-monument" location="-278,24,45"/>
-            <block id="yellow-monument" location="-279,24,44"/>
-            <block id="cyan-monument" location="-220,24,-15"/>
-            <block id="lime-monument" location="-219,24,-14"/>
+            <block id="orange-monument" location="-334,3,103"/>
+            <block id="yellow-monument" location="-337,3,100"/>
+            <block id="cyan-monument" location="-164,3,-73"/>
+            <block id="lime-monument" location="-161,3,-70"/>
         </unless>
         <if variant="comp">
             <block id="orange-monument" location="-278,24,45"/>
@@ -147,8 +160,14 @@
         <everywhere/>
         <rectangle min="-315,82" max="-242,9"/> <!-- blue -->
         <rectangle min="-182,-51" max="-255,22"/> <!-- red -->
-        <rectangle min="-208,56" max="-243,21"/> <!-- mid -->
-        <rectangle min="-289,-25" max="-254,10"/> <!-- mid -->
+        <unless variant="comp">
+            <rectangle min="-205,59" max="-243,21"/> <!-- mid -->
+            <rectangle min="-292,-28" max="-254,10"/> <!-- mid -->
+        </unless>
+        <if variant="comp">
+            <rectangle min="-208,56" max="-243,21"/> <!-- mid -->
+            <rectangle min="-289,-25" max="-254,10"/> <!-- mid -->
+        </if>
         <rectangle min="-349,48" max="-315,29"/> <!-- cyan -->
         <rectangle min="-262,116" max="-281,82"/> <!-- lime -->
         <rectangle min="-148,-17" max="-182,2"/> <!-- orange -->
