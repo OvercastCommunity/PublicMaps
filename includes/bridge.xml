@@ -1,9 +1,8 @@
-<!-- BRIDGE DEBUG INCLUDE - FOR INTERNAL ZZUF USAGE  -->
 <map proto="1.4.2">
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.09.03-1 -->
+<!-- Version 2023.09.03-2 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -222,6 +221,7 @@
 </variables>
 <actions>
     <action id="increment-round" scope="player">
+        <sound key="mob.wither.death" volume="1" pitch="0.4"/>
         <switch-scope outer="player" inner="match">
             <message text="`5# # # # # # # # # # # #"/>
             <message text="`5# #    `6» `6`lGOAL! `6«`5    # #"/>
@@ -299,8 +299,8 @@
     <portal destination="team-one-spawn-point" forward="should-teleport" filter="only-team-one" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}"/>
     <portal destination="team-two-spawn-point" forward="should-teleport" filter="only-team-two" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
     <!-- Buytime -->
-    <portal destination="team-one-spawn-point" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}"/>
-    <portal destination="team-two-spawn-point" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
+    <portal destination="team-one-spawn-point" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}" sound="false"/>
+    <portal destination="team-two-spawn-point" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
     <!-- Void -->
     <portal y="@-110" sound="false" region="void" observers="always"/>
 </portals>
