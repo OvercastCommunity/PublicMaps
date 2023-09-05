@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fourchette</name>
-<version>2.0.4</version>
+<version>2.0.5</version>
 <objective>Capture all three wools to win.</objective>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Main author"/> <!-- Timothee38 -->
@@ -8,8 +8,8 @@
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Tywnisification"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="35">Blue</team>
-    <team id="red" color="dark red" max="35">Red</team>
+    <team id="blue" color="blue" max="28">Blue</team>
+    <team id="red" color="dark red" max="28">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
