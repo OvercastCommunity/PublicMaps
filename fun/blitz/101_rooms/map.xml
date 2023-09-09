@@ -9,8 +9,8 @@
     <gamemode>br</gamemode>
 </unless>
 <if variant="lifesteal">
-    <objective>Kill all your opponents! When you kill someone, you get one more life!</objective>
-    <game>Lifesteal</game>
+    <objective>Kill all your opponents! You can get an extra life if you get a kill! (once per spawn)</objective>
+    <include id="lifesteal"/>
 </if>
 <if variant="tdm">
     <objective>Get the most kills after 5 minutes!</objective>
@@ -100,22 +100,9 @@
         <potion duration="4" amplifier="1">heal</potion>
         <potion duration="4" amplifier="10">damage resistance</potion>
         <potion duration="oo" amplifier="-4">health boost</potion>
-        <if variant="lifesteal">
-            <action>
-                <set var="extra_life" value="0"/>
-            </action>
-        </if>
         <unless variant="halloween">
             <game-mode>adventure</game-mode>
         </unless>
-    </kit>
-    <kit id="add-life-kit">
-        <action>
-            <set var="blitzlives" value="blitzlives+1"/>
-            <set var="extra_life" value="1"/>
-            <message title="" text=" `e⚠ `aYou've earned an extra life! You won't earn any additional lives until you respawn."/>
-            <sound key="fireworks.twinkle"/>
-        </action>
     </kit>
 </kits>
 <filters>
@@ -126,22 +113,10 @@
     <apply block-break="never"/>
     <apply enter="never" region="roof"/>
 </regions>
-<variables>
-    <lives id="blitzlives"/>
-    <variable id="extra_life" scope="player" default="0"/>
-</variables>
 <kill-rewards>
     <kill-reward>
         <item amount="1" material="arrow"/>
     </kill-reward>
-    <if variant="lifesteal">
-        <kill-reward>
-            <filter>
-                <variable var="extra_life">0</variable>
-            </filter>
-            <kit id="add-life-kit"/>
-        </kill-reward>
-    </if>
 </kill-rewards>
 <itemremove>
     <item>leather helmet</item>
