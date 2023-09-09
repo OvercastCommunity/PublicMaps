@@ -1,0 +1,55 @@
+<map proto="1.4.2">
+<!--       /| ________________  -->
+<!-- O|===|* >________________> -->
+<!--       \|                   -->
+<!-- Lifesteal Blitz gamemode include file -->
+<!-- Created by zzuf -->
+<!-- Version 2023.09.09-1 -->
+<game>Lifesteal</game>
+<constants>
+    <constant id="extra-lives">1</constant> <!-- Lives you get after a kill -->
+    <constant id="total-lives">1</constant> <!-- Total lives you can get per spawn -->
+</constants>
+<filters>
+    <all id="is-alive">
+        <alive/>
+        <participating/>
+        <match-running/>
+    </all>
+    <variable id="earned-total" var="extra_life">${total-lives}</variable>
+</filters>
+<kits>
+    <kit id="add-life-kit">
+        <action>
+            <set var="blitzlives" value="blitzlives+${extra-lives}"/>
+            <set var="extra_life" value="extra_life+1"/>
+            <message title="" text=" `e⚠ `aYou have earned an extra life!"/>
+            <sound key="fireworks.twinkle"/>
+        </action>
+    </kit>
+</kits>
+<variables>
+    <lives id="blitzlives"/>
+    <variable id="extra_life" scope="player" default="0"/>
+</variables>
+<actions>
+    <trigger filter="is-alive" scope="player">
+        <action scope="player">
+            <set var="extra_life" value="0"/>
+        </action>
+    </trigger>
+    <trigger filter="earned-total" scope="player">
+        <action scope="player">
+            <message title="" text=" `e⚠ `cYou won't earn any additional lives until you respawn."/>
+        </action>
+    </trigger>
+</actions>
+<kill-rewards>
+    <kill-reward>
+        <filter>
+            <variable var="extra_life">[0,${total-lives})</variable>
+        </filter>
+        <kit id="add-life-kit"/>
+    </kill-reward>
+</kill-rewards>
+</map>
