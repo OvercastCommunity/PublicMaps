@@ -45,7 +45,7 @@
         </region>
     </default>
     <spawn team="blue-team" kit="blue-kit">
-        <region yaw="0">
+        <region>
             <point>0.5,9,-14.5</point>
         </region>
     </spawn>
@@ -162,6 +162,6 @@
     <depletion>off</depletion>
 </hunger>
 <crafting>
-    <disable override-all="true">iron block</disable>
+    <disable>iron block</disable>
 </crafting>
 </map>

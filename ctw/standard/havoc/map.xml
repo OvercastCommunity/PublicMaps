@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <!-- include src="tutorial.xml"/ -->
 <name>Havoc</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Capture both wools from the enemy's wool rooms and return them to your victory monument.</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
@@ -106,23 +106,23 @@
         </negative>
     </apply>
     <apply enter="only-orange" block="only-orange" use="only-orange-usage" message="You may not enter or modify your own wool rooms!">
-        <!--   Yellow Room   -->
+        <!-- Yellow Room -->
         <rectangle min="-114,11" max="-135,-10"/>
-        <!--   Red Room   -->
+        <!-- Red Room -->
         <rectangle min="-7,-98" max="-26,-117"/>
     </apply>
     <apply enter="only-purple" block="only-purple" use="only-purple-usage" message="You may not enter or modify your own wool rooms!">
-        <!--   Green Room   -->
+        <!-- Green Room -->
         <rectangle min="29,154" max="50,172"/>
-        <!--   Blue Room   -->
+        <!-- Blue Room -->
         <rectangle min="137,46" max="155,65"/>
     </apply>
-    <!--   spawn room protection   -->
+    <!-- spawn room protection -->
     <apply block="only-iron" message="You may not modify the spawn!">
         <rectangle name="purple-storage-room" min="90,143" max="128,106"/>
         <rectangle name="orange-storage-room" min="-105,-49" max="-65,-90"/>
     </apply>
-    <!--   prevent teams from entering each other's spawns   -->
+    <!-- prevent teams from entering each other's spawns -->
     <apply enter="only-purple" block="deny-all" message="You may not enter `5Purple Team`c's spawn path!">
         <rectangle min="25,-74" max="60,-60"/>
         <rectangle min="-81,42" max="-94,78"/>
@@ -180,7 +180,7 @@
         <cuboid min="55,22,-70" max="56,19,-68"/>
     </portal>
 </portals>
-<tutorial>
+<!-- <tutorial>
     <stage title="Capture the Wool">
         <message>
             <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
@@ -220,5 +220,5 @@
             <point yaw="0">-86,19,65</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

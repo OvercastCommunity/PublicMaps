@@ -1,10 +1,10 @@
 <map proto="1.4.2">
 <name>Aureola KotF</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Hold the flag for 180 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>
-    <author conribution="Map design and layout, XML" uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/> <!-- Pbat -->
+    <author contribution="Map design and layout, XML" uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/> <!-- Pbat -->
     <author contribution="Building help" uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->
 </authors>
 <contributors>
@@ -77,16 +77,8 @@
     <apply block="never"/>
 </regions>
 <flags>
-    <flag id="flag"
-          name="Flag"
-          color="white"
-          shared="true"
-          points-rate="1"
-          pickup-kit="flag-kit"
-          drop-kit="reset-health"
-          flag-proximity-metric="none"
-          show-respawn-on-pickup="true">
-        <post return-time="0s" respwn-time="15s">
+    <flag id="flag" name="Flag" color="white" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" flag-proximity-metric="none" show-respawn-on-pickup="true">
+        <post return-time="0s" respawn-time="15s">
             <post name="Top Post">185,15,25</post>
             <!-- <post name="Mid Post">185,6,25</post> -->
             <post name="Northeast Post" yaw="45">216,6,-6</post>
@@ -112,10 +104,12 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <respawn auto="true" spectate="true">
     <message>
         {"translate":"death.respawn.confirmed.waiting.flagDropped"}

@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Verlate</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Capture and hold the two hills for as long as possible.</objective>
 <authors>
     <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Map building and XML"/> <!-- Obelistics -->
@@ -84,7 +84,7 @@
 <score>
     <limit>500</limit>
 </score>
-<control-points capture-players="lead" incremental="true" show-progress="true" neutral-state="true" required="false" points="0.75">
+<control-points capture-rule="lead" incremental="true" show-progress="true" neutral-state="true" required="false" points="0.75">
     <control-point name="Upper Hill" capture-time="5s">
         <capture>
             <cuboid min="-67,39,-129" max="-72,42,-134"/>
@@ -159,11 +159,13 @@
         </modify>
     </rule>
 </item-mods>
-<killreward>
-    <item material="gold ingot"/>
-    <item material="arrow" amount="5"/>
-    <item material="golden apple" amount="1"/>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item material="gold ingot"/>
+        <item amount="5" material="arrow"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <!-- No pick
 <block-drops>
     <rule wrong-tool="false">

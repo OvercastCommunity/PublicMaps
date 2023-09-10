@@ -1,6 +1,6 @@
-<map proto="1.4.0" game="King of the Flag and Rage">
+<map proto="1.4.2" game="King of the Flag and Rage">
 <name>Xyth KotF</name>
-<version>1.4.3</version>
+<version>1.4.4</version>
 <gamemode>kotf</gamemode>
 <gamemode>rage</gamemode>
 <objective>Be the first team to reach a set amount of points!</objective>
@@ -20,60 +20,52 @@
 </respawn>
 <kits>
     <kit id="spawn">
-        <item slot="0" unbreakable="true" enchantment="damage all:10" projectile="lazer" name="`aLazer Blaster`7">iron barding</item>
+        <item slot="0" unbreakable="true" enchantment="damage all:10" projectile="lazer" name="`aLazer Blaster`7" material="iron barding"/>
         <potion duration="3" amplifier="25">heal</potion>
         <potion duration="3" amplifier="25">damage resistance</potion>
         <fly flying="true" can-fly="true" fly-speed="1"/>
     </kit>
     <kit id="redkit" parents="spawn" filter="red-only">
-        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
-        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
-        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
-        <boots unbreakable="true">iron boots</boots>
+        <helmet color="cd0000" unbreakable="true" material="leather helmet"/>
+        <chestplate color="cd0000" unbreakable="true" material="leather chestplate"/>
+        <leggings color="cd0000" unbreakable="true" material="leather leggings"/>
+        <boots unbreakable="true" material="iron boots"/>
     </kit>
     <kit id="bluekit" parents="spawn" filter="blue-only">
-        <helmet color="74BBFB" unbreakable="true">leather helmet</helmet>
-        <chestplate color="74BBFB" unbreakable="true">leather chestplate</chestplate>
-        <leggings color="74BBFB" unbreakable="true">leather leggings</leggings>
-        <boots unbreakable="true">iron boots</boots>
+        <helmet color="74BBFB" unbreakable="true" material="leather helmet"/>
+        <chestplate color="74BBFB" unbreakable="true" material="leather chestplate"/>
+        <leggings color="74BBFB" unbreakable="true" material="leather leggings"/>
+        <boots unbreakable="true" material="iron boots"/>
     </kit>
-    <kit id="flag-pickup" force="true" locked="true">
-        <helmet color="32CD32" unbreakable="true">leather helmet</helmet>
-        <chestplate color="32CD32" unbreakable="true">leather chestplate</chestplate>
-        <leggings unbreakable="true">iron boots</leggings>
-        <boots unbreakable="true">iron boots</boots>
+    <kit id="flag-pickup" force="true">
+        <helmet locked="true" color="32CD32" unbreakable="true" material="leather helmet"/>
+        <chestplate locked="true" color="32CD32" unbreakable="true" material="leather chestplate"/>
+        <leggings locked="true" unbreakable="true" material="leather leggings"/>
+        <boots locked="true" unbreakable="true" material="iron boots"/>
         <saturation>0</saturation>
         <foodlevel>2</foodlevel>
         <fly flying="true" can-fly="true" fly-speed="0.7"/>
     </kit>
 </kits>
 <projectiles>
-    <projectile
-        id="lazer"
-        name="lazer"
-        projectile="Snowball"
-        velocity="5"
-        damage="50"
-        throwable="false"
-        click="both"
-        cooldown="0.1s"/>
+    <projectile id="lazer" name="lazer" projectile="Snowball" velocity="5" damage="50" throwable="false" click="both" cooldown="0.1s"/>
 </projectiles>
 <spawns>
     <default>
         <regions yaw="-45">
-            <cylinder name="obs-spawn" base="-56.5,101,-70.5" radius="1" height="0"/>
+            <cylinder id="obs-spawn" base="-56.5,101,-70.5" radius="1" height="0"/>
         </regions>
     </default>
     <spawn kit="redkit" team="red" filter="no-flag">
         <regions yaw="-135">
-            <cylinder name="red-spawn-low" base="-31.5,12,32.5" radius="1" height="0"/>
-            <cylinder name="red-spawn-high" base="-31.5,42,32.5" radius="1" height="0"/>
+            <cylinder id="red-spawn-low" base="-31.5,12,32.5" radius="1" height="0"/>
+            <cylinder id="red-spawn-high" base="-31.5,42,32.5" radius="1" height="0"/>
         </regions>
     </spawn>
     <spawn kit="bluekit" team="blue" filter="no-flag">
         <regions yaw="45">
-            <cylinder name="blue-spawn-low" base="46.5,12,-45.5" radius="1" height="0"/>
-            <cylinder name="blue-spawn-high" base="46.5,42,-45.5" radius="1" height="0"/>
+            <cylinder id="blue-spawn-low" base="46.5,12,-45.5" radius="1" height="0"/>
+            <cylinder id="blue-spawn-high" base="46.5,42,-45.5" radius="1" height="0"/>
         </regions>
     </spawn>
 </spawns>
@@ -94,11 +86,7 @@
     <rectangle id="walls" min="-48.5,49.5" max="63.5,-62.5"/>
     <cuboid id="roof" min="-50.5,75,51.5" max="65.5,91,-64.5"/>
     <!-- Applications -->
-    <apply block="never">
-        <region>
-            <rectangle min="-oo,-oo" max="oo,oo"/>
-        </region>
-    </apply>
+    <apply block="never"/>
     <apply enter="no-flag" message="You may not enter your base when the flag is being held!">
         <region>
             <cylinder base="-30,0,30" radius="8" height="100"/>

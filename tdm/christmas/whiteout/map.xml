@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.3">
 <name>Whiteout</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <phase>development</phase>
 <objective>Have the most kills after 10 minutes to win.</objective>
 <authors>
@@ -72,7 +72,7 @@
 <timelock>on</timelock>
 <regions>
     <rectangle name="main" min="oo,oo" max="-oo,-oo"/>
-    <apply world="deny-world">
+    <apply block="deny-world">
         <region name="main"/>
     </apply>
     <apply block="allow-certain-blocks">

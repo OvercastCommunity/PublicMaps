@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Howdy Partner</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Capture both of the enemy's flags.</objective>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
@@ -8,7 +8,7 @@
     <author uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Gayquil -->
 </authors>
 <contributors>
-    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko-->
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
     <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655"/> <!-- wylt -->
 </contributors>
 <teams>
@@ -85,7 +85,7 @@
     <apply kit="flag-captured" filter="red-captures-flag" region="red-flag-reward"/>
     <apply block="never"/>
 </regions>
-<flags flag-proximity-metric="none" net-proximity-metric="none" permanent="true">
+<flags flag-proximity-metric="none" net-proximity-metric="none">
     <!-- Blue's objective flags -->
     <flag id="magenta-flag"
           name="Magenta Flag"

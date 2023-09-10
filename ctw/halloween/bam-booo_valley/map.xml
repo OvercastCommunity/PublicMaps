@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Bam-BOOO Valley</name>
-<version>1.2.6</version>
+<version>1.2.7</version>
 <phase>development</phase>
 <objective>Capture the opposing team's wool and place it at your victory monument.</objective>
 <authors>
@@ -31,7 +31,7 @@
         <item slot="6" amount="32" material="vine"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="64" material="pumpkin pie"/>
-        <helmet>jack o lantern</helmet>
+        <helmet material="jack o lantern"/>
         <effect duration="9">heal</effect>
         <effect duration="9">damage resistance</effect>
     </kit>
@@ -190,7 +190,7 @@
     <item>jungle wood stairs</item>
     <item>smooth stairs</item>
     <item>hay block</item>
-    <item damage="3">sapling</item>
+    <item>sapling:3</item>
     <item>wood door</item>
     <item>redstone</item>
     <item>redstone torch on</item>
@@ -229,10 +229,12 @@
     <item>vine</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item amount="16" damage="1" material="wood"/>
-    <item amount="12" damage="3" material="leaves"/>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" damage="1" material="wood"/>
+        <item amount="12" damage="3" material="leaves"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>54</maxbuildheight>
 </map>

@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Paladin Saga</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Kill everyone!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -26,146 +25,147 @@
 </spawns>
 <kits>
     <kit id="obs">
-        <potion duration="oo">night vision</potion>
+        <effect>night vision</effect>
     </kit>
-    <kit id="spawn">
-        <item slot="0" unbreakable="true">stone sword</item>
-        <item slot="1" unbreakable="true">bow</item>
-        <item slot="2" unbreakable="true">shears</item>
-        <item slot="4" damage="8" amount="16">wool</item>
-        <item slot="6" amount="2">golden apple</item>
-        <item slot="7" amount="32">cooked beef</item>
-        <item slot="8" amount="12">arrow</item>
-        <helmet color="FFFFFF" unbreakable="true">leather helmet</helmet>
-        <chestplate color="FFFFFF" unbreakable="true">leather chestplate</chestplate>
-        <leggings color="FFFFFF" unbreakable="true">leather leggings</leggings>
-        <boots color="FFFFFF" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
-        <potion duration="5" amplifier="2">heal</potion>
-        <potion duration="5" amplifier="5">damage resistance</potion>
-        <potion duration="oo">night vision</potion>
+    <kit id="spawn" parent="obs">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" material="shears"/>
+        <item slot="4" damage="8" amount="16" material="wool"/>
+        <item slot="6" amount="2" material="golden apple"/>
+        <item slot="7" amount="32" material="cooked beef"/>
+        <item slot="8" amount="12" material="arrow"/>
+        <helmet color="FFFFFF" unbreakable="true" material="leather helmet"/>
+        <chestplate color="FFFFFF" unbreakable="true" material="leather chestplate"/>
+        <leggings color="FFFFFF" unbreakable="true" material="leather leggings"/>
+        <boots color="FFFFFF" unbreakable="true" enchantment="protection fall:2" material="leather boots"/>
+        <effect duration="5" amplifier="2">heal</effect>
+        <effect duration="5" amplifier="5">damage resistance</effect>
     </kit>
     <kit id="observers">
-        <potion duration="oo" amplifier="1">speed</potion>
+        <effect>speed</effect>
     </kit>
-    <kit id="tier 0" force="true" locked="true">
-        <potion duration="5" amplifier="1">speed</potion>
-        <potion duration="3" amplifier="2">heal</potion>
+    <kit id="tier 0" force="true">
+        <effect duration="5">speed</effect>
+        <effect duration="3" amplifier="2">heal</effect>
     </kit>
-    <kit id="tier 1" force="true" locked="true">
-        <item slot="0" attributes="generic.attackDamage:add:5">stone sword</item>
-        <leggings unbreakable="true">gold leggings</leggings>
-        <potion duration="5" amplifier="1">speed</potion>
+    <kit id="tier 1" force="true">
+        <item slot="0" attributes="generic.attackDamage:add:5" material="stone sword"/>
+        <leggings locked="true" unbreakable="true" material="gold leggings"/>
+        <effect duration="5">speed</effect>
     </kit>
-    <kit id="tier 2" force="true" locked="true">
-        <item slot="0" attributes="generic.attackDamage:add:5">stone sword</item>
-        <leggings unbreakable="true">chainmail leggings</leggings>
-        <potion duration="5" amplifier="1">speed</potion>
+    <kit id="tier 2" force="true">
+        <item slot="0" attributes="generic.attackDamage:add:5" material="stone sword"/>
+        <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
+        <effect duration="5">speed</effect>
     </kit>
-    <kit id="tier 3" force="true" locked="true">
-        <item slot="0" attributes="generic.attackDamage:add:5.25">stone sword</item>
-        <leggings unbreakable="true">iron leggings</leggings>
-        <potion duration="5" amplifier="1">speed</potion>
+    <kit id="tier 3" force="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.25" material="stone sword"/>
+        <leggings locked="true" unbreakable="true" material="iron leggings"/>
+        <effect duration="5">speed</effect>
     </kit>
-    <kit id="tier 4" force="true" locked="true">
-        <item slot="0" attributes="generic.attackDamage:add:5.5">stone sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
-        <boots unbreakable="true">iron boots</boots>
-        <potion duration="5" amplifier="1">speed</potion>
+    <kit id="tier 4" force="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.5" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow damage" material="bow"/>
+        <boots locked="true" unbreakable="true" material="iron boots"/>
+        <effect duration="5">speed</effect>
     </kit>
-    <kit id="tier 5" force="true" locked="true">
-        <item slot="0" attributes="generic.attackDamage:add:5.75">stone sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
-        <boots color="FFFFFF" unbreakable="true">leather boots</boots>
-        <chestplate unbreakable="true">gold chestplate</chestplate>
-        <potion duration="5" amplifier="1">speed</potion>
+    <kit id="tier 5" force="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.75" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow damage" material="bow"/>
+        <boots color="FFFFFF" locked="true" unbreakable="true" material="leather boots"/>
+        <chestplate locked="true" unbreakable="true" material="gold chestplate"/>
+        <effect duration="5">speed</effect>
     </kit>
-    <kit id="tier 6" force="true" locked="true">
-        <item slot="0" attributes="generic.attackDamage:add:6">stone sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
-        <boots unbreakable="true">iron boots</boots>
-        <potion duration="5" amplifier="1">speed</potion>
+    <kit id="tier 6" force="true">
+        <item slot="0" attributes="generic.attackDamage:add:6" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow damage" material="bow"/>
+        <boots locked="true" unbreakable="true" material="iron boots"/>
+        <effect duration="5">speed</effect>
     </kit>
-    <kit id="tier 7" force="true" locked="true">
-        <item slot="0" attributes="generic.attackDamage:add:6.25">stone sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
-        <chestplate unbreakable="true">iron chestplate</chestplate>
-        <potion duration="5" amplifier="1">speed</potion>
+    <kit id="tier 7" force="true">
+        <item slot="0" attributes="generic.attackDamage:add:6.25" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow damage" material="bow"/>
+        <chestplate locked="true" unbreakable="true" material="iron chestplate"/>
+        <effect duration="5">speed</effect>
     </kit>
-    <kit id="tier 8" force="true" locked="true">
-        <item slot="0" attributes="generic.attackDamage:add:6.5">stone sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
-        <boots unbreakable="true">diamond boots</boots>
-        <potion duration="5" amplifier="1">speed</potion>
+    <kit id="tier 8" force="true">
+        <item slot="0" attributes="generic.attackDamage:add:6.5" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:1" material="bow"/>
+        <boots locked="true" unbreakable="true" material="diamond boots"/>
+        <effect duration="5">speed</effect>
     </kit>
 </kits>
-<!-- Normal rewards, every kill -->
-<killreward>
-    <item amount="4">arrow</item>
-    <item>golden apple</item>
-</killreward>
-<!-- Tier 0 -->
-<killreward>
-    <filter>
-        <kill-streak count="1"/>
-    </filter>
-    <kit id="tier 0"/>
-</killreward>
-<!-- Tier 1 -->
-<killreward>
-    <filter>
-        <kill-streak count="3"/>
-    </filter>
-    <kit id="tier 1"/>
-</killreward>
-<!-- Tier 2 -->
-<killreward>
-    <filter>
-        <kill-streak count="6"/>
-    </filter>
-    <kit id="tier 2"/>
-</killreward>
-<!-- Tier 3 -->
-<killreward>
-    <filter>
-        <kill-streak count="10"/>
-    </filter>
-    <kit id="tier 3"/>
-</killreward>
-<!-- Tier 4 -->
-<killreward>
-    <filter>
-        <kill-streak count="15"/>
-    </filter>
-    <kit id="tier 4"/>
-</killreward>
-<!-- Tier 5 -->
-<killreward>
-    <filter>
-        <kill-streak count="21"/>
-    </filter>
-    <kit id="tier 5"/>
-</killreward>
-<!-- Tier 6 -->
-<killreward>
-    <filter>
-        <kill-streak count="28"/>
-    </filter>
-    <kit id="tier 6"/>
-</killreward>
-<!-- Tier 7 -->
-<killreward>
-    <filter>
-        <kill-streak count="37"/>
-    </filter>
-    <kit id="tier 7"/>
-</killreward>
-<!-- Tier 8 -->
-<killreward>
-    <filter>
-        <kill-streak count="46"/>
-    </filter>
-    <kit id="tier 8"/>
-</killreward>
+<kill-rewards>
+    <!-- Normal rewards, every kill -->
+    <kill-reward>
+        <item amount="4" material="arrow"/>
+        <item material="golden apple"/>
+    </kill-reward>
+    <!-- Tier 0 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="1"/>
+        </filter>
+        <kit id="tier 0"/>
+    </kill-reward>
+    <!-- Tier 1 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="3"/>
+        </filter>
+        <kit id="tier 1"/>
+    </kill-reward>
+    <!-- Tier 2 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="6"/>
+        </filter>
+        <kit id="tier 2"/>
+    </kill-reward>
+    <!-- Tier 3 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="10"/>
+        </filter>
+        <kit id="tier 3"/>
+    </kill-reward>
+    <!-- Tier 4 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="15"/>
+        </filter>
+        <kit id="tier 4"/>
+    </kill-reward>
+    <!-- Tier 5 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="21"/>
+        </filter>
+        <kit id="tier 5"/>
+    </kill-reward>
+    <!-- Tier 6 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="28"/>
+        </filter>
+        <kit id="tier 6"/>
+    </kill-reward>
+    <!-- Tier 7 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="37"/>
+        </filter>
+        <kit id="tier 7"/>
+    </kill-reward>
+    <!-- Tier 8 -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="46"/>
+        </filter>
+        <kit id="tier 8"/>
+    </kill-reward>
+</kill-rewards>
 <filters>
     <any id="breakable-blocks">
         <material>leaves</material>
@@ -186,9 +186,7 @@
     </any>
 </filters>
 <regions>
-    <apply block-break="breakable-blocks" block-place="allow-place">
-        <rectangle min="-oo,-oo" max="oo,oo"/>
-    </apply>
+    <apply block-break="breakable-blocks" block-place="allow-place"/>
 </regions>
 <toolrepair>
     <tool>stone sword</tool>

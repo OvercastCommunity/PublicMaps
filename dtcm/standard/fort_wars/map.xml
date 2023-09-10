@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <!-- include src="tutorial.xml"/ -->
 <name>Fort Wars</name>
-<version>1.4.5</version>
+<version>1.4.6</version>
 <objective>Destroy the enemy's flag!</objective>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
@@ -53,6 +53,7 @@
 </crafting>
 <killreward>
     <item amount="16">arrow</item>
+    <item>golden apple</item>
 </killreward>
 <toolrepair>
     <tool>diamond sword</tool>
@@ -172,7 +173,7 @@
         <cuboid min="-61,36,-74" max="-71,24,-75"/>
     </destroyable>
 </destroyables>
-<tutorial>
+<!-- <tutorial>
     <stage title="Fort Wars">
         <message>
             <line>This is Fort Wars, `aDestroy the Monument (DTM) `rmap.</line>
@@ -210,8 +211,5 @@
             <point yaw="-90">-121.5,55,-152</point>
         </teleport>
     </stage>
-</tutorial>
-<killreward>
-    <item>golden apple</item>
-</killreward>
+</tutorial> -->
 </map>

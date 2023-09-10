@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
-<map proto="1.4.0" game="Water Drop">
+<map proto="1.4.2" game="Water Drop">
 <name>Water Drop: Long Shot</name>
 <phase>development</phase>
-<version>1.3.0</version>
+<version>1.3.1</version>
 <objective>Carry the flag to the end!</objective>
-<gamemode>Arcade</gamemode>
+<gamemode>arcade</gamemode>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Original map theme"/> <!-- StealthMedia -->
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9" contribution="Original map theme"/> <!-- KasiCrafter -->
@@ -54,14 +53,18 @@
         </boots>
     </kit>
     <kit id="force-kill">
-        <potion duration="1" amplifier="100">harm</potion>
+        <effect duration="1" amplifier="100">harm</effect>
     </kit>
 </kits>
-<kill-reward>
-    <item material="arrow" amount="3"/>
-    <item material="water bucket" locked="true" name="`a`lWater-Drop Area!" prevent-sharing="true"/>
-    <potion duration="8">absorption</potion>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow" amount="3"/>
+        <item material="water bucket" locked="true" name="`a`lWater-Drop Area!" prevent-sharing="true"/>
+        <kit>
+            <effect duration="8">absorption</effect>
+        </kit>
+    </kill-reward>
+</kill-rewards>
 <filters>
     <all id="water">
         <any>

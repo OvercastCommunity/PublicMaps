@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Bamboo Valley III</name>
-<version>1.6.2</version>
+<version>1.6.3</version>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
 </authors>
@@ -154,10 +154,10 @@
     <item>chainmail chestplate</item>
     <item>leather boots</item>
     <item>step</item>
-    <item damage="3">step</item>
-    <item damage="7">step</item>
+    <item>step:3</item>
+    <item>step:7</item>
     <item>leaves</item>
-    <item damage="3">leaves</item>
+    <item>leaves:3</item>
     <item>cobblestone stairs</item>
     <item>cobble wall</item>
     <item>smooth stairs</item>
@@ -166,14 +166,14 @@
     <item>wood step</item>
     <item>item frame</item>
     <item>torch</item>
-    <item damage="3">wood step</item>
+    <item>wood step:3</item>
     <item>cocoa</item>
     <item>seeds</item>
     <item>glowstone dust</item>
     <item>sand</item>
-    <item damage="1">grass</item>
-    <item damage="2">grass</item>
-    <item damage="13">grass</item>
+    <item>grass:1</item>
+    <item>grass:2</item>
+    <item>grass:13</item>
     <item>cobblestone</item>
     <item>clay ball</item>
     <item>sugar cane</item>
@@ -212,8 +212,8 @@
 </block-drops>
 <itemkeep>
     <item>wood</item>
-    <item damage="14">stained clay</item>
-    <item damage="11">stained clay</item>
+    <item>stained clay:14</item>
+    <item>stained clay:11</item>
     <item>golden apple</item>
 </itemkeep>
 <kill-rewards>

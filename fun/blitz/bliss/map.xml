@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Bliss</name>
 <variant id="rage">Rage</variant>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <unless variant="rage">
     <objective>Kill an enemy 3 times to eliminate them; eliminate all enemies to win the match.</objective>
     <gamemode>blitz</gamemode>
@@ -38,7 +38,7 @@
             <cylinder base="-51,8,-4" radius="2" height="0"/>
         </region>
     </spawn>
-    <default yaw="0">
+    <default>
         <region>
             <cylinder base="-6,21,16" radius="1" height="0"/>
         </region>
@@ -94,7 +94,9 @@
         </kill-reward>
     </unless>
     <if variant="rage">
-        <item amount="1" material="arrow"/>
+        <kill-reward>
+            <item material="arrow"/>
+        </kill-reward>
     </if>
 </kill-rewards>
 <filters>

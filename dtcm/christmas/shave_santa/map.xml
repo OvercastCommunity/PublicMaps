@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.2">
 <name>Shave Santa</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <phase>development</phase>
 <objective>Shave off the other team's beard to win.</objective>
 <authors>
@@ -83,7 +83,7 @@
     <apply block="deny-all" message="You may not modify the spawn areas!">
         <region name="spawns"/>
     </apply>
-    <apply block="deny-all" messgae="You are not allowed to place in this area!">
+    <apply block="deny-all" message="You are not allowed to place in this area!">
         <rectangle name="denied-area" min="3,-71" max="-11,-20"/>
     </apply>
     <apply block="deny-all" message="You may not place outside the area!">

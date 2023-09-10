@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Funerea</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Kill the enemy players as much as you can before time runs out.</objective>
 <created>2013-07-07</created>
 <authors>
@@ -40,7 +40,7 @@
         <leggings>diamond leggings</leggings>
         <boots enchantment="protection fall:1">diamond boots</boots>
         <potion amplifier="4" duration="5">heal</potion>
-        <potion aplifier="1" duration="15">increase_damage</potion>
+        <potion amplifier="1" duration="15">increase_damage</potion>
     </kit>
 </kits>
 <killreward>

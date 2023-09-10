@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Jungle Spook</name>
-<version>1.6</version>
+<version>1.6.1</version>
 <phase>development</phase>
 <objective>Capture the wool from the enemy's wool rooms and return them to your spawn!</objective>
 <authors>
@@ -47,7 +47,7 @@
 </kits>
 <spawns>
     <default>
-        <region yaw="0">
+        <region>
             <cylinder id="obs-spawn" base="77,64,-28" radius="2" height="0"/>
         </region>
     </default>
@@ -245,7 +245,7 @@
 </kill-reward>
 <maxbuildheight>48</maxbuildheight>
 <crafting>
-    <disable override-all="true">bed</disable>
+    <disable>bed</disable>
 </crafting>
 </map>
 <!-- include src="tutorial.xml"/>

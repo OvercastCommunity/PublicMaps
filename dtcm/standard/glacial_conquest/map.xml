@@ -129,7 +129,7 @@
     <tool>iron axe</tool>
     <tool>iron pickaxe</tool>
 </toolrepair>
-<tutorial>
+<!-- <tutorial>
     <stage title="Destroy the Core">
         <message>
             <line>`rThis map is a `c`lDestroy the Core `r(DTC) map.</line>
@@ -157,7 +157,7 @@
             <point yaw="11" pitch="10">-103,61,-45</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 <killreward>
     <item>golden apple</item>
 </killreward>

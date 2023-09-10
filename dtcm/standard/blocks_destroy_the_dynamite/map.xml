@@ -100,8 +100,8 @@
         <boots unbreakable="true" color="334cb2">leather boots</boots>
     </kit>
     <kit id="debuff" force="true">
-        <effect duration="1" amplifier="1" force="true">invisibility</effect>
-        <effect duration="5" amplifier="3" force="true">regeneration</effect>
+        <effect duration="1" amplifier="1">invisibility</effect>
+        <effect duration="5" amplifier="3">regeneration</effect>
     </kit>
 </kits>
 <spawns>

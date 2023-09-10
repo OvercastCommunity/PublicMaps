@@ -6,15 +6,9 @@
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomyBoy -->
 </authors>
 <broadcasts>
-    <tip after="4s" every="3m" count="oo">
-        `3`oYou have to capture the `6flags`3`o behind `6spawn`3.
-    </tip>
-    <tip after="6s" every="3m" count="oo">
-        `3`oTo make the `6flags`3`o respawn you have to capture both enemy flags first.
-    </tip>
-    <tip after="10s" every="3m" count="oo">
-        `3`oThere is a `6lilypad spawner`3`o in the center that can assist you in offense.
-    </tip>
+    <tip after="4s" every="3m" count="oo">`3`oYou have to capture the `6flags`3`o behind `6spawn`3.</tip>
+    <tip after="6s" every="3m" count="oo">`3`oTo make the `6flags`3`o respawn you have to capture both enemy flags first.</tip>
+    <tip after="10s" every="3m" count="oo">`3`oThere is a `6lilypad spawner`3`o in the center that can assist you in offense.</tip>
 </broadcasts>
 <teams>
     <team id="blue" color="blue" max="24">Blue</team>
@@ -52,7 +46,7 @@
 </kits>
 <spawns>
     <default kit="default-kit">
-        <region yaw="0">
+        <region>
             <cylinder base="-887.5,47,-452.5" radius="1" height="0"/>
         </region>
     </default>
@@ -82,7 +76,7 @@
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit" filter="only-face-south">
-        <region yaw="0">
+        <region>
             <block>-959,4,-394</block>
         </region>
     </spawn>
@@ -151,10 +145,10 @@
         </union>
     </union>
     <union id="all-flag-posts-y">
-        <!--  Blue  -->
+        <!-- Blue -->
         <cylinder base="-810.5,4,-339.5" radius="2" height="4"/>
         <cylinder base="-810.5,4,-447.5" radius="2" height="4"/>
-        <!--  Red  -->
+        <!-- Red -->
         <cylinder base="-964.5,4,-339.5" radius="2" height="4"/>
         <cylinder base="-964.5,4,-447.5" radius="2" height="4"/>
     </union>
@@ -177,7 +171,7 @@
     <apply block="never" message="You may not modify the area around the flags!" region="all-flag-posts-y"/>
     <apply block="not-spawner" message="You may not destroy the spawner!"/>
 </regions>
-<flags permanent="true" drop-on-water="false">
+<flags drop-on-water="false">
     <flag id="north-blue-flag" name="North Blue Flag" owner="blue" color="blue">
         <carry-message>
             You have the flag! Return it to the island `6`lbehind spawn
@@ -243,11 +237,13 @@
     <item>bucket</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="16" material="wood"/>
-    <item amount="8" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="16" material="wood"/>
+        <item amount="8" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>20</maxbuildheight>
 <respawn delay="3s"/>
 <hunger>

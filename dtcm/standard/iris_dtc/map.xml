@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Iris DTC</name>
-<version>1.10.1</version>
+<version>1.10.2</version>
 <objective>Leak the lava contained inside the opposing teams core to the void.</objective>
 <authors>
     <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
@@ -37,17 +37,17 @@
 </kits>
 <spawns>
     <default kit="default-kit">
-        <region yaw="0">
+        <region>
             <cylinder base="-17,36,13" radius="3" height="0"/>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cuboid min="-63,160,-100" max="-63,160,-100"/>
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cuboid min="29,160,-100" max="29,160,-100"/>
         </region>
     </spawn>
@@ -144,14 +144,16 @@
     <item>water bucket</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-    <item amount="16" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <!-- include src="tutorial.xml"/ -->
-<tutorial>
+<!-- <tutorial>
     <stage title="Destroy the Core">
         <message>
             <line>`rThe objective of this map is to `cleak `rthe lava from other team's core.</line>
@@ -183,12 +185,12 @@
     </stage>
     <stage title="Iron and TNT Supplies">
         <message>
-            <line>`rOn the side asteroid--across from the main asteroid--you will find TNT and Iron.</line>
+            <line>`rOn the side asteroid-across from the main asteroid-you will find TNT and Iron.</line>
             <line>`rUse this to your advantage and capture the enemy's asteroid.</line>
         </message>
         <teleport>
             <point yaw="180" pitch="0">-63,41,-157</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Fortress of an Easterly Battle</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <phase>development</phase>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <rules>
@@ -23,15 +22,15 @@
         <knockback-reduction>1</knockback-reduction>
     </kit>
     <kit id="spawn">
-        <item slot="0" enchantment="sharpness:1">stone sword</item>
-        <item slot="1">bow</item>
-        <item slot="28" amount="64">arrow</item>
-        <item slot="2">diamond pickaxe</item>
-        <item slot="3" enchantment="durability:3">gold axe</item>>
-        <item slot="4" amount="64">glass</item>
-        <item slot="6">bucket</item>
-        <item slot="8" amount="64">golden carrot</item>
-        <chestplate enchantment="protection explosions:4">chainmail chestplate</chestplate>
+        <item slot="0" enchantment="sharpness" material="stone sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="28" amount="64" material="arrow"/>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" enchantment="durability:3" material="gold axe"/>
+        <item slot="4" amount="64" material="glass"/>
+        <item slot="6" material="bucket"/>
+        <item slot="8" amount="64" material="golden carrot"/>
+        <chestplate enchantment="protection explosions:4" material="chainmail chestplate"/>
         <effect duration="10" amplifier="2">regeneration</effect>
         <effect duration="5" amplifier="10">heal</effect>
     </kit>
@@ -62,16 +61,12 @@
         <material>chest</material>
     </deny>
     -->
-    <deny id="only-orange">
-        <team>pink</team>
-    </deny>
-    <deny id="only-pink">
-        <team>orange</team>
-    </deny>
+    <team id="only-pink">pink</team>
+    <team id="only-orange">orange</team>
 </filters>
 <regions>
-    <cuboid name="orange-spawn-protect" min="16,61,-84" max="11,68,-51"/>
-    <cuboid name="pink-spawn-protect" min="72,61,-84" max="77,68,-51"/>
+    <cuboid id="orange-spawn-protect" min="16,61,-84" max="11,68,-51"/>
+    <cuboid id="pink-spawn-protect" min="72,61,-84" max="77,68,-51"/>
     <negative id="outside-map">
         <rectangle id="map" min="4,40" max="85,-47"/>
     </negative>
@@ -83,12 +78,8 @@
         <rectangle min="78,-45" max="72,-83"/>
         <rectangle min="59,-77" max="72,-83"/>
     </union>
-    <apply lend-kit="spawn-protection" filter="only-orange">
-       <region name="orange-spawn-protect"/>
-    </apply>
-    <apply lend-kit="spawn-protection" filter="only-pink">
-        <region name="pink-spawn-protect"/>
-    </apply>
+    <apply region="orange-spawn-protect" lend-kit="spawn-protection" filter="only-orange"/>
+    <apply region="pink-spawn-protect" lend-kit="spawn-protection" filter="only-pink"/>
     <!--
     <apply block="deny-chest-break" message="This block can not be placed or broken on this map!">
         <rectangle min="1,-50" max="85,39"/>
@@ -98,10 +89,12 @@
     <apply block="deny-dispenser" region="map" message="Dispensers are disabled on this map!"/>
     <apply enter="never" build="never" region="spawns" message="You may not enter the spawns!"/>
     <apply enter="never" message="You may not enter the observer spawn!">
-        <circle center="44.5,64.5,-79.5" radius="16"/>
+        <region>
+            <circle base="44.5,64.5,-79.5" radius="16"/>
+        </region>
     </apply>
 </regions>
-<cores material="obsidian" leak="4" mode-change="true" name="Core">
+<cores material="obsidian" leak="4" mode-changes="true" name="Core">
     <core team="orange">
         <region>
             <cuboid min="5,60,0" max="10,66,-7"/>

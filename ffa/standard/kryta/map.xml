@@ -1,25 +1,21 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Kryta</name>
-<version>2.2.4</version>
+<version>2.2.5</version>
 <gamemode>ffa</gamemode>
 <authors>
-    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" />
-    <!--  Qixit  -->
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!-- Qixit -->
 </authors>
 <objective>Kill and survive. There are no teams, so watch your back!</objective>
 <score>
     <kills>1</kills>
 </score>
 <time>10m</time>
-
 <broadcasts>
     <tip after="1s" every="4m">`f`lIf you kill another player your weapons/armour will be upgraded! You will lose your upgrades upon death.</tip>
     <tip after="1s" every="5m">`f`lGet emeralds with kills and trade them with villagers for new gear! Emerald spawners are also located around the map...</tip>
     <tip after="2m" every="1m">`f`lEMERALDS = GOOD VILLAGER TRADES</tip>
 </broadcasts>
-
 <players min="2" max="64"/>
-
 <spawns>
     <spawn kit="spawn" spread="true" safe="true">
         <regions>
@@ -38,16 +34,16 @@
             <point yaw="-115">40.5,50,261.5</point>
             <point yaw="134">49.5,49,253.5</point>
             <point yaw="-180">68.5,49,281.5</point>
-            <point yaw="0">75.5,50,274.5</point>
+            <point>75.5,50,274.5</point>
             <point yaw="42">72.5,56,272.5</point>
             <point yaw="90">38.5,57,277.5</point>
-            <point yaw="0">23.5,52,285.5</point>
+            <point>23.5,52,285.5</point>
             <point yaw="-180">10.5,63,283.5</point>
             <point yaw="55">0.5,57,279.5</point>
             <point yaw="142">-1.5,61,276.5</point>
             <point yaw="-7">-5.5,64,249.5</point>
             <point yaw="-90">-32.5,62,275.5</point>
-            <point yaw="0">-31.5,67,254.5</point>
+            <point>-31.5,67,254.5</point>
             <point yaw="18">-8.5,62,293.5</point>
             <point yaw="7">-16.5,58,299.5</point>
             <point yaw="-140">-26.5,51,315.5</point>
@@ -60,15 +56,15 @@
             <point yaw="-90">38.5,49,281.5</point>
             <point yaw="-180">45.5,53,309.5</point>
             <point yaw="-123">67.5,48,299.5</point>
-            <point yaw="0">53.5,45,291.5</point>
-            <point yaw="0">71.5,39,280.5</point>
-            <point yaw="0">83.5,39,284.5</point>
+            <point>53.5,45,291.5</point>
+            <point>71.5,39,280.5</point>
+            <point>83.5,39,284.5</point>
             <point yaw="-30">72.5,40,294.5</point>
             <point yaw="60">80.5,38,300.5</point>
-            <point yaw="0">73.5,38,300.5</point>
-            <point yaw="0">80.5,35,302.5</point>
-            <point yaw="0">86.5,39,301.5</point>
-            <point yaw="0">71.5,33,306.5</point>
+            <point>73.5,38,300.5</point>
+            <point>80.5,35,302.5</point>
+            <point>86.5,39,301.5</point>
+            <point>71.5,33,306.5</point>
             <point yaw="-70">63.5,31,316.5</point>
             <point yaw="-157">64.5,44,344.5</point>
             <point yaw="90">61.5,34,342.5</point>
@@ -89,11 +85,11 @@
             <point yaw="165">24.5,57,342.5</point>
             <point yaw="-40">29.5,66,343.5</point>
             <point yaw="-90">29.5,60,346.5</point>
-            <point yaw="0">32.5,55,349.5</point>
+            <point>32.5,55,349.5</point>
             <point yaw="-30">36.5,49,351.5</point>
-            <point yaw="0">27.5,55,352.5</point>
+            <point>27.5,55,352.5</point>
             <point yaw="43">20.5,51,351.5</point>
-            <point yaw="0">25.5,61,346.5</point>
+            <point>25.5,61,346.5</point>
             <point yaw="-132">10.5,44,364.5</point>
             <point yaw="-90">19.5,46,361.5</point>
             <point yaw="-90">13.5,52,355.5</point>
@@ -107,23 +103,23 @@
             <point yaw="177">27.5,37,326.5</point>
             <point yaw="90">42.5,46,318.5</point>
             <point yaw="90">43.5,49,312.5</point>
-            <point yaw="0">28.5,48.5,295.5</point>
-            <point yaw="0">18.5,31,295.5</point>
+            <point>28.5,48.5,295.5</point>
+            <point>18.5,31,295.5</point>
             <point yaw="-111">-0.5,48,296.5</point>
-            <point yaw="0">-9.5,73,292.5</point>
+            <point>-9.5,73,292.5</point>
             <point yaw="-90">-5.5,61,294.5</point>
             <point yaw="180">-12.5,62,313.5</point>
             <point yaw="-90">-28.5,54,319.5</point>
             <point yaw="-180">3.5,71.5,307.5</point>
-            <point yaw="0">13.5,67.5,288.5</point>
+            <point>13.5,67.5,288.5</point>
             <point yaw="180">29.5,59,336.5</point>
             <point yaw="-180">11.5,43,336.5</point>
             <point yaw="50">34.5,42,300.5</point>
-            <point yaw="0">-12.5,58,300.5</point>
+            <point>-12.5,58,300.5</point>
             <point yaw="-90">-5.5,52,300.5</point>
             <point yaw="90">-18.5,57,296.5</point>
             <point yaw="-45">-22.5,38,314.5</point>
-            <point yaw="0">-2.5,56,343.5</point>
+            <point>-2.5,56,343.5</point>
             <point yaw="-150">-1.5,71,341.5</point>
             <point yaw="42">2.5,86,309.5</point>
             <point yaw="-90">-40.5,51,338.5</point>
@@ -138,7 +134,7 @@
             <point yaw="119">-8.5,13,356.5</point>
             <point yaw="90">-3.5,22,361.5</point>
             <point yaw="-40">-21.5,22,336.5</point>
-            <point yaw="0">-16.5,31,332.5</point>
+            <point>-16.5,31,332.5</point>
             <point yaw="-90">-3.5,51,292.5</point>
             <point yaw="51">9.5,52,355.5</point>
             <point yaw="90">7.5,33,348.5</point>
@@ -153,7 +149,7 @@
             <point yaw="-150">-28.5,25,374.5</point>
             <point yaw="180">-17.5,26,374.5</point>
             <point yaw="-157">-30.5,27,337.5</point>
-            <point yaw="0">-19.5,52,299.5</point>
+            <point>-19.5,52,299.5</point>
             <point yaw="-113">-32.5,66.5,278.5</point>
             <point yaw="-90">-31.5,74,270.5</point>
             <point yaw="-56">-29.5,73,256.5</point>
@@ -164,8 +160,8 @@
             <point yaw="-180">16.5,63.5,27.5</point>
             <point yaw="-90">-6.5,50,275.5</point>
             <point yaw="-90">-0.5,53,250.5</point>
-            <point yaw="0">-9.5,42,307.5</point>
-            <point yaw="0">-30.5,36,324.5</point>
+            <point>-9.5,42,307.5</point>
+            <point>-30.5,36,324.5</point>
             <point yaw="-90">-38.5,36,338.5</point>
             <point yaw="-180">-17.5,37,369.5</point>
             <point yaw="-107">53.5,38,355.5</point>
@@ -182,200 +178,191 @@
     </default>
 </spawns>
 <respawn auto="false" delay="1s" spectate="true" blackout="false" />
-
 <item-mods>
     <rule>
         <match>
             <material>diamond axe</material>
         </match>
         <modify>
-            <enchantment level="1">Knockback</enchantment>
+            <enchantment level="1">knockback</enchantment>
             <enchantment level="4">sharpness</enchantment>
         </modify>
     </rule>
 </item-mods>
-
 <toolrepair>
     <tool>iron sword</tool>
     <tool>stone sword</tool>
     <tool>bow</tool>
 </toolrepair>
-
-
 <kits>
     <kit id="spawn" force="true">
-        <item slot="0" unbreakable="true" name="`f`lLevel 1 Sword" lore="`7`oThis will be upgraded with kills.">stone sword</item>
-        <item slot="1" unbreakable="true" name="`f`lLevel 1 Bow" lore="`7`oThis will be upgraded with kills.">bow</item>
-        <item slot="27" amount="32">arrow</item>
-        <item slot="7" amount="5">emerald</item>
-        <item slot="8" amount="2">golden apple</item>
-        <helmet color="667F33" unbreakable="true" locked="true" name="`f`lLevel 1 Helmet" lore="`7`oThis will be upgraded with kills.">leather helmet</helmet>
-        <chestplate unbreakable="true" color="667F33" locked="false" name="`f`lAdjustable Chestplate" lore="`7`oThis piece of armour can be removed and replaced with more advanced upgrades from trading.">leather chestplate</chestplate>
-        <boots locked="true" color="667F33" unbreakable="true" name="`f`lLevel 1 Boots" lore="`7`oThis will be upgraded with kills.">leather boots</boots>
-        <potion duration="5" amplifier="100">damage resistance</potion>
-        <potion duration="5" amplifier="20">weakness</potion>
-        <potion duration="3" amplifier="20">regeneration</potion>
-        <potion duration="3" amplifier="20">heal</potion>
+        <item slot="0" unbreakable="true" name="`f`lLevel 1 Sword" lore="`7`oThis will be upgraded with kills." material="stone sword"/>
+        <item slot="1" unbreakable="true" name="`f`lLevel 1 Bow" lore="`7`oThis will be upgraded with kills." material="bow"/>
+        <item slot="27" amount="32" material="arrow"/>
+        <item slot="7" amount="5" material="emerald"/>
+        <item slot="8" amount="2" material="golden apple"/>
+        <helmet color="667F33" unbreakable="true" locked="true" name="`f`lLevel 1 Helmet" lore="`7`oThis will be upgraded with kills." material="leather helmet"/>
+        <chestplate unbreakable="true" color="667F33" locked="false" name="`f`lAdjustable Chestplate" lore="`7`oThis piece of armour can be removed and replaced with more advanced upgrades from trading." material="leather chestplate"/>
+        <boots locked="true" color="667F33" unbreakable="true" name="`f`lLevel 1 Boots" lore="`7`oThis will be upgraded with kills." material="leather boots"/>
+        <effect duration="5" amplifier="100">damage resistance</effect>
+        <effect duration="5" amplifier="20">weakness</effect>
+        <effect duration="3" amplifier="20">regeneration</effect>
+        <effect duration="3" amplifier="20">heal</effect>
     </kit>
-
     <kit id="kit-00" force="true">
-        <leggings color="667F33" unbreakable="true" name="`f`lLevel 1 Leggings" lore="`7`oThis will be upgraded with kills.">leather leggings</leggings>
+        <leggings color="667F33" unbreakable="true" name="`f`lLevel 1 Leggings" lore="`7`oThis will be upgraded with kills." material="leather leggings"/>
         <item slot="0" unbreakable="true" name="`f`lLevel 2 Sword" lore="`7`oThis will be upgraded with kills." material="stone sword">
             <enchantment level="1">sharpness</enchantment>
         </item>
     </kit>
     <kit id="kit-0" force="true">
-        <chestplate unbreakable="true" name="`f`lLevel 2 Chestplate" lore="`7`oThis will be upgraded with kills.">gold chestplate</chestplate>
-        <potion duration="15" amplifier="1">speed</potion>
+        <chestplate unbreakable="true" name="`f`lLevel 2 Chestplate" lore="`7`oThis will be upgraded with kills." material="gold chestplate"/>
+        <effect duration="15">speed</effect>
     </kit>
     <kit id="kit-1" force="true">
-        <boots unbreakable="true" locked="true" name="`f`lLevel 2 Boots" lore="`7`oThis will be upgraded with kills.">chainmail boots</boots>
-        <item slot="0" unbreakable="true" name="`f`lLevel 3 Sword" lore="`7`oThis will be upgraded with kills.">iron sword</item>
+        <boots unbreakable="true" locked="true" name="`f`lLevel 2 Boots" lore="`7`oThis will be upgraded with kills." material="chainmail boots"/>
+        <item slot="0" unbreakable="true" name="`f`lLevel 3 Sword" lore="`7`oThis will be upgraded with kills." material="iron sword"/>
     </kit>
     <kit id="kit-2" force="true">
-        <chestplate locked="true" unbreakable="true" name="`f`lLevel 3 Chestplate" lore="`7`oThis will be upgraded with kills." enchantment="protection environmental:1">chainmail chestplate</chestplate>
+        <chestplate locked="true" unbreakable="true" name="`f`lLevel 3 Chestplate" lore="`7`oThis will be upgraded with kills." enchantment="protection environmental" material="chainmail chestplate"/>
     </kit>
     <kit id="kit-3" force="false">
-        <item unbreakable="true" enchantment="arrow damage" slot="1" name="`f`lLevel 2 Bow" lore="`7`oThis will be upgraded with kills.">bow</item>
-        <leggings locked="true" unbreakable="true" name="`f`lLevel 2 Leggings" lore="`7`oThis will be upgraded with kills.">chainmail leggings</leggings>
+        <item unbreakable="true" enchantment="arrow damage" slot="1" name="`f`lLevel 2 Bow" lore="`7`oThis will be upgraded with kills." material="bow"/>
+        <leggings locked="true" unbreakable="true" name="`f`lLevel 2 Leggings" lore="`7`oThis will be upgraded with kills." material="chainmail leggings"/>
     </kit>
     <kit id="kit-4" force="true">
-        <helmet locked="true" unbreakable="true" name="`f`lLevel 2 Helmet" lore="`7`oThis will be upgraded with kills.">chainmail helmet</helmet>
-        <potion duration="15" amplifier="1">speed</potion>
+        <helmet locked="true" unbreakable="true" name="`f`lLevel 2 Helmet" lore="`7`oThis will be upgraded with kills." material="chainmail helmet"/>
+        <effect duration="15">speed</effect>
     </kit>
     <kit id="kit-5" force="true">
-        <helmet locked="true" unbreakable="true" name="`f`lLevel 3 Helmet" lore="`7`oThis will be upgraded with kills.">iron helmet</helmet>
+        <helmet locked="true" unbreakable="true" name="`f`lLevel 3 Helmet" lore="`7`oThis will be upgraded with kills." material="iron helmet"/>
     </kit>
     <kit id="kit-6" force="true">
-        <boots locked="true" unbreakable="true" name="`f`lLevel 3 Boots" lore="`7`oThis item has reached its final upgrade, well done.">iron boots</boots>
+        <boots locked="true" unbreakable="true" name="`f`lLevel 3 Boots" lore="`7`oThis item has reached its final upgrade, well done." material="iron boots"/>
     </kit>
     <kit id="kit-7" force="true">
-        <helmet locked="true" unbreakable="true" name="`f`lLevel 4 Helmet" lore="`7`oThis item has reached its final upgrade, well done.">diamond helmet</helmet>
-        <potion duration="oo" amplifier="-1">health boost</potion>
+        <helmet locked="true" unbreakable="true" name="`f`lLevel 4 Helmet" lore="`7`oThis item has reached its final upgrade, well done." material="diamond helmet"/>
+        <effect amplifier="-1">health boost</effect>
     </kit>
     <kit id="kit-8" force="true">
-        <leggings locked="true" unbreakable="true" name="`f`lLevel 3 Leggings" lore="`7`oThis item has reached its final upgrade, well done.">iron leggings</leggings>
-        <potion duration="oo" amplifier="-1">health boost</potion>
+        <leggings locked="true" unbreakable="true" name="`f`lLevel 3 Leggings" lore="`7`oThis item has reached its final upgrade, well done." material="iron leggings"/>
+        <effect amplifier="-1">health boost</effect>
     </kit>
     <kit id="kit-9" force="true">
-        <chestplate locked="true" unbreakable="true" name="`f`lGodlike Chestplate" lore="`7`oThis item has reached its final upgrade, well done.">iron chestplate</chestplate>
-        <potion duration="oo" amplifier="-2">health boost</potion>
+        <chestplate locked="true" unbreakable="true" name="`f`lGodlike Chestplate" lore="`7`oThis item has reached its final upgrade, well done." material="iron chestplate"/>
+        <effect amplifier="-2">health boost</effect>
     </kit>
     <kit id="kit-10" force="true">
-        <chestplate locked="true" unbreakable="true" name="`f`lGodlike Chestplate" lore="`7`oThis item has reached its final upgrade, well done.">iron chestplate</chestplate>
-        <potion duration="oo" amplifier="-3">health boost</potion>
+        <chestplate locked="true" unbreakable="true" name="`f`lGodlike Chestplate" lore="`7`oThis item has reached its final upgrade, well done." material="iron chestplate"/>
+        <effect amplifier="-3">health boost</effect>
     </kit>
     <kit id="killreward-base-kit">
-        <potion amplifier="2" duration="0.5">night vision</potion>
-        <potion amplifier="1" duration="6">absorption</potion>
-        <potion amplifier="1" duration="3">regeneration</potion>
+        <effect amplifier="2" duration="0.5">night vision</effect>
+        <effect duration="6">absorption</effect>
+        <effect duration="3">regeneration</effect>
     </kit>
 </kits>
-
 <tnt>
     <instantignite>on</instantignite>
     <fuse>1s</fuse>
     <power>6</power>
 </tnt>
-
 <hunger>
     <depletion>off</depletion>
 </hunger>
-
 <disabledamage>
     <damage self="true" ally="true" enemy="false" other="false">block explosion</damage>
     <damage>fall</damage>
     <damage>suffocation</damage>
 </disabledamage>
-
-<killreward>
-    <kit id="killreward-base-kit" />
-    <item amount="1">golden apple</item>
-    <item amount="3">emerald</item>
-    <item amount="20">arrow</item>
-</killreward>
-
-<killreward>
-    <filter>
-        <kill-streak count="1" />
-    </filter>
-    <kit id="kit-00" />
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="2" />
-    </filter>
-    <kit id="kit-0" />
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="3" />
-    </filter>
-    <kit id="kit-1" />
-    <item amount="3">emerald</item>
-    <item amount="1">web</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="4" />
-    </filter>
-    <kit id="kit-2" />
-    <item amount="5">clay</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="5" />
-    </filter>
-    <kit id="kit-3" />
-    <item amount="4" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="6" />
-    </filter>
-    <kit id="kit-4" />
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="7" />
-    </filter>
-    <kit id="kit-5" />
-    <item amount="1">emerald</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="8" />
-    </filter>
-    <kit id="kit-6" />
-    <item amount="3" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="9" />
-    </filter>
-    <kit id="kit-7" />
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="10" />
-    </filter>
-    <kit id="kit-8" />
-    <item amount="1">emerald</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="11" />
-    </filter>
-    <kit id="kit-9" />
-    <item amount="1">emerald</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="12" />
-    </filter>
-    <kit id="kit-10" />
-</killreward>
-
+<kill-rewards>
+    <kill-reward>
+        <kit id="killreward-base-kit" />
+        <item material="golden apple"/>
+        <item amount="3" material="emerald"/>
+        <item amount="20" material="arrow"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="1" />
+        </filter>
+        <kit id="kit-00" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="2" />
+        </filter>
+        <kit id="kit-0" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="3" />
+        </filter>
+        <kit id="kit-1" />
+        <item amount="3" material="emerald"/>
+        <item material="web"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="4" />
+        </filter>
+        <kit id="kit-2" />
+        <item amount="5" material="clay"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="5" />
+        </filter>
+        <kit id="kit-3" />
+        <item amount="4" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="6" />
+        </filter>
+        <kit id="kit-4" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="7" />
+        </filter>
+        <kit id="kit-5" />
+        <item material="emerald"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="8" />
+        </filter>
+        <kit id="kit-6" />
+        <item amount="3" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="9" />
+        </filter>
+        <kit id="kit-7" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="10" />
+        </filter>
+        <kit id="kit-8" />
+        <item material="emerald"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="11" />
+        </filter>
+        <kit id="kit-9" />
+        <item material="emerald"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="12" />
+        </filter>
+        <kit id="kit-10" />
+    </kill-reward>
+</kill-rewards>
 <itemremove>
     <!-- environmental items -->
     <item>chest</item>
@@ -455,11 +442,9 @@
     <item>firework</item>
     <item>snowball</item>
 </itemremove>
-
 <itemkeep>
     <item>emerald</item>
 </itemkeep>
-
 <filters>
     <any id="breakable-blocks">
         <material>long grass</material>
@@ -491,17 +476,8 @@
         <material>web</material>
     </any>
 </filters>
-
 <regions>
-    <apply use="never">
-        <everywhere />
-    </apply>
-    <apply block-physics="never">
-        <everywhere />
-    </apply>
-    <apply block="breakable-blocks">
-        <everywhere />
-    </apply>
+    <apply use="never" block-physics="never" block="breakable-blocks"/>
     <apply block="never">
         <region>
             <region id="jumpad-5"/>
@@ -513,51 +489,49 @@
             <region id="jumpad-9"/>
         </region>
     </apply>
-
     <!-- top closest to kryta sign -2, 48, 302  -->
-    <apply velocity="3.2, 2, 3.2">
+    <apply velocity="3.2,2,3.2">
         <region>
             <cuboid id="jumpad-5" min="-2,47.5,307" max="-0,48.5,305" />
         </region>
     </apply>
     <!--  opposite torwards above ^ also opposite kryta sign33,51,325  -->
-    <apply velocity="-4, 2, -4">
+    <apply velocity="-4,2,-4">
         <region>
             <cuboid id="jumpad-4" min="32,50.5,324" max="30,51.5,322" />
         </region>
     </apply>
     <!--  botttom below kryta sign 13,31,306  -->
-    <apply velocity="-1.5, 3, -1.5">
+    <apply velocity="-1.5,3,-1.5">
         <region>
             <cuboid id="jumpad-6" min="11,30.5,303" max="13,31.5,305" />
         </region>
     </apply>
     <!--  above jumppad goes to this one  -->
-    <apply velocity="2, 2, 2">
+    <apply velocity="2,2,2">
         <region>
             <cuboid id="jumpad-15" min="-13,54.5,278" max="-11,57.5,280" />
         </region>
     </apply>
     <!--  -22,10,354  -->
-    <apply velocity="2, 4, -2">
+    <apply velocity="2,4,-2">
         <region>
             <cuboid id="jumpad-7" min="-25,8.5,358" max="-23,9.5,356" />
         </region>
     </apply>
     <!--  right above the kryta sign  -->
-    <apply velocity="-2, 6, 2">
+    <apply velocity="-2,6,2">
         <region>
             <cuboid id="jumpad-8" min="22,56.5,295" max="24,57.5,293" />
         </region>
     </apply>
     <!--  top village  -->
-    <apply velocity="3, 5, 3">
+    <apply velocity="3,5,3">
         <region>
             <cuboid id="jumpad-9" min="13,48.5,242" max="11,49.5,240" />
         </region>
     </apply>
 </regions>
-
 <portals smooth="true" sound="true">
     <portal x="@37.5" y="@49" z="@279.5" yaw="@-90">
         <region>
@@ -600,7 +574,6 @@
         </region>
     </portal>
 </portals>
-
 <renewables>
     <renewable interval="400s" grow="true" particles="false" sound="false" avoid-players="20">
         <region>
@@ -644,11 +617,10 @@
         </renew-filter>
     </renewable>
 </renewables>
-
 <block-drops>
     <rule>
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <filter>
             <any>
@@ -660,7 +632,6 @@
         </drops>
     </rule>
 </block-drops>
-
 <falling-blocks>
     <rule>
         <filter>
@@ -676,5 +647,4 @@
         </sticky>
     </rule>
 </falling-blocks>
-
 </map>

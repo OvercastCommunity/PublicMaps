@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Fallen Debris</name>
-<version>4.2.4</version>
+<version>4.2.5</version>
 <phase>development</phase>
 <authors>
     <author uuid="77912861-9fc0-45fa-aac5-aa455614edbf"/> <!-- Nanu -->
@@ -18,7 +17,7 @@
             <point yaw="180">18,7,47</point>
             <point yaw="90">-15,8,46</point>
             <point yaw="-118">-45.5,8,59.5</point>
-            <point yaw="0">-54.5,7,35.5</point>
+            <point>-54.5,7,35.5</point>
             <point yaw="-180">-45,8,37</point>
             <point yaw="-143">-45,20,35</point>
             <point yaw="-179">-16,7,21</point>
@@ -33,12 +32,12 @@
             <point yaw="-26">-14,16,-76</point>
             <point yaw="-141">-1,5,-43</point>
             <point yaw="-131">-32,8,-44</point>
-            <point yaw="0">-13,7,-16</point>
+            <point>-13,7,-16</point>
             <point yaw="-38">-21,11,-21</point>
             <point yaw="-143">13,12,-29</point>
             <point yaw="-143">13,12,-29</point>
             <point yaw="90">13,7,-25</point>
-            <point yaw="0">22,7,-19</point>
+            <point>22,7,-19</point>
             <point yaw="130">23,11,-8</point>
             <point yaw="-20">46,7,-19</point>
             <point yaw="-4">38,11,-16</point>
@@ -113,8 +112,8 @@
         <kit parents="global-kit">
             <item slot="0" unbreakable="true" material="iron axe" />
             <item slot="1" name="`rPotion of Rage" material="potion">
-                <effect level="1" duration="4">strength</effect>
-                <effect level="2" duration="4">regeneration</effect>
+                <effect duration="4">strength</effect>
+                <effect amplifier="2" duration="4">regeneration</effect>
             </item>
             <helmet locked="true" unbreakable="true" material="diamond helmet" />
             <chestplate locked="true" unbreakable="true" material="diamond chestplate" />
@@ -176,7 +175,7 @@
     <class name="Necromancer" description="Blood trails and flaming skulls!" icon="bone">
         <kit parents="global-kit">
             <item slot="0" projectile="shulker-gun" name="`rShrieking Bone (`aRight-click`r)" material="bone">
-                <attribute slot="weapon.mainhand" operation="add" amount="4">generic.attackDamage</attribute>
+                <attribute operation="add" amount="4">generic.attackDamage</attribute>
             </item>
             <!-- <item slot="1" amount="24" material="chorus fruit" /> -->
             <helmet locked="true" unbreakable="true" material="gold helmet" />
@@ -191,7 +190,7 @@
         <kit parents="global-kit">
             <item slot="0" material="rabbit foot">
                 <!-- what is this??? -->
-                <attribute slot="weapon.mainhand" operation="add" amount="3">generic.attackDamage</attribute>
+                <attribute operation="add" amount="3">generic.attackDamage</attribute>
             </item>
             <item slot="1" grenade="true" grenade-power="1" amount="24" material="egg"/>
             <!-- 16384 + 11 = 16395 -->
@@ -211,7 +210,8 @@
             </boots>
             <double-jump/>
         </kit>
-    </class><!-- Winter Class
+    </class>
+    <!-- Winter Class
     <class name="Santa" description="Exploding gifts and levitation - Christmas Special!" icon="snow ball">
         <kit parents="global-kit">
             <head slot="0" projectile="tnt-gun" uuid="6d46f5a1-a833-414c-ba0d-9842cb59316e">
@@ -240,7 +240,7 @@
     </kit>
     <kit id="witch-effects">
         <effect duration="3">wither</effect>
-        <effect duration="5" level="2">weakness</effect>
+        <effect duration="5" amplifier="2">weakness</effect>
     </kit>
 </kits>
 <projectiles>
@@ -251,152 +251,154 @@
     </projectile>
 </projectiles>
 <kill-rewards>
-    <kill-reward kit="kill-reward" />
-</kill-rewards>
-<!-- Soldier Kill Rewards -->
-<kill-rewards>
-    <filter>
-        <class>Soldier</class>
-    </filter>
-    <item amount="2" material="arrow" />
-</kill-rewards>
-<!-- Archer Kill Rewards -->
-<kill-rewards>
-    <filter>
-        <class>Archer</class>
-    </filter>
-    <item amount="8" material="arrow" />
-</kill-rewards>
-<kill-rewards>
-    <filter>
-        <all>
+    <kill-reward>
+        <kill-reward kit="kill-reward" />
+    </kill-reward>
+    <!-- Soldier Kill Rewards -->
+    <kill-reward>
+        <filter>
+            <class>Soldier</class>
+        </filter>
+        <item amount="2" material="arrow" />
+    </kill-reward>
+    <!-- Archer Kill Rewards -->
+    <kill-reward>
+        <filter>
             <class>Archer</class>
-            <kill-streak count="3" repeat="true" />
-        </all>
-    </filter>
-    <item amount="3" material="tipped arrow">
-        <effect>harm</effect>
-    </item>
-</kill-rewards>
-<!-- Assassin Kill Rewards -->
-<kill-rewards>
-    <filter>
-        <class>Assassin</class>
-    </filter>
-    <item amount="2" material="tipped arrow">
-        <effect duration="3" amplifier="2">slowness</effect>
-        <effect duration="3">weakness</effect>
-    </item>
-</kill-rewards>
-<kill-rewards>
-    <filter>
-        <all>
+        </filter>
+        <item amount="8" material="arrow" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <class>Archer</class>
+                <kill-streak count="3" repeat="true" />
+            </all>
+        </filter>
+        <item amount="3" material="tipped arrow">
+            <effect>harm</effect>
+        </item>
+    </kill-reward>
+    <!-- Assassin Kill Rewards -->
+    <kill-reward>
+        <filter>
             <class>Assassin</class>
-            <kill-streak count="3" repeat="true" />
-        </all>
-    </filter>
-    <!-- 16384 + 12 = 16396 -->
-    <item amount="2" name="`rSplash Potion of Harming and Weakness" damage="16396" material="potion">
-        <effect>harm</effect>
-        <effect duration="3">weakness</effect>
-    </item>
-</kill-rewards>
-<!-- Blocker Kill Rewards -->
-<kill-rewards>
-    <filter>
-        <all>
-            <class>Blocker</class>
-            <kill-streak count="4" repeat="true" />
-        </all>
-    </filter>
-    <item name="`rPotion of Rage" material="potion">
-        <effect level="1" duration="4">strength</effect>
-        <effect level="2" duration="4">regeneration</effect>
-    </item>
-</kill-rewards>
-<!-- Pyro Kill Rewards -->
-<kill-rewards>
-    <filter>
-        <class>Pyro</class>
-    </filter>
-    <item amount="6" material="arrow" />
-</kill-rewards>
-<!-- Scientist Kill Rewards -->
-<kill-rewards>
-    <filter>
-        <class>Scientist</class>
-    </filter>
-    <item amount="3" material="arrow" /> <!-- was spectral -->
-</kill-rewards>
-<kill-rewards>
-    <filter>
-        <all>
+        </filter>
+        <item amount="2" material="tipped arrow">
+            <effect duration="3" amplifier="2">slowness</effect>
+            <effect duration="3">weakness</effect>
+        </item>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <class>Assassin</class>
+                <kill-streak count="3" repeat="true" />
+            </all>
+        </filter>
+        <!-- 16384 + 12 = 16396 -->
+        <item amount="2" name="`rSplash Potion of Harming and Weakness" damage="16396" material="potion">
+            <effect>harm</effect>
+            <effect duration="3">weakness</effect>
+        </item>
+    </kill-reward>
+    <!-- Blocker Kill Rewards -->
+    <kill-reward>
+        <filter>
+            <all>
+                <class>Blocker</class>
+                <kill-streak count="4" repeat="true" />
+            </all>
+        </filter>
+        <item name="`rPotion of Rage" material="potion">
+            <effect level="1" duration="4">strength</effect>
+            <effect level="2" duration="4">regeneration</effect>
+        </item>
+    </kill-reward>
+    <!-- Pyro Kill Rewards -->
+    <kill-reward>
+        <filter>
+            <class>Pyro</class>
+        </filter>
+        <item amount="6" material="arrow" />
+    </kill-reward>
+    <!-- Scientist Kill Rewards -->
+    <kill-reward>
+        <filter>
             <class>Scientist</class>
-            <kill-streak count="2" repeat="true" />
-        </all>
-    </filter>
-    <!-- 16384 + 12 = 16396 -->
-    <item amount="4" name="`rSplash Potion of Harming" damage="16396" material="potion">
-        <effect amplifier="2">harm</effect>
-    </item>
-</kill-rewards>
-<!-- Necromancer Kill Rewards -->
-<kill-rewards>
-    <filter>
-        <class>Necromancer</class>
-    </filter>
-    <!-- <item amount="6" material="chorus fruit" /> -->
-</kill-rewards>
-<kill-rewards>
-    <filter>
-        <all>
+        </filter>
+        <item amount="3" material="arrow" /> <!-- was spectral -->
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <class>Scientist</class>
+                <kill-streak count="2" repeat="true" />
+            </all>
+        </filter>
+        <!-- 16384 + 12 = 16396 -->
+        <item amount="4" name="`rSplash Potion of Harming" damage="16396" material="potion">
+            <effect amplifier="2">harm</effect>
+        </item>
+    </kill-reward>
+    <!-- Necromancer Kill Rewards -->
+    <kill-reward>
+        <filter>
             <class>Necromancer</class>
-            <kill-streak count="3" repeat="true" />
-        </all>
-    </filter>
-    <!-- jump boost replaces levitation -->
-    <!-- 16384 + 11 = 16395 -->
-    <item amount="6" name="`rSplash Potion of Leaping" damage="16395" material="potion">
-        <effect duration="15s" amplifier="4">jump_boost</effect>
-    </item>
-</kill-rewards>
-<!-- Rabbit Kill Rewards (Summer only) -->
-<kill-rewards>
-    <filter>
-        <class>Vicious Rabbit</class>
-    </filter>
-    <item grenade="true" grenade-power="1" amount="6" material="egg"/>
-</kill-rewards>
-<kill-rewards>
-    <filter>
-        <all>
-        <class>Vicious Rabbit</class>
-            <kill-streak count="3" repeat="true" />
-        </all>
-    </filter>
-    <!-- 16384 + 11 = 16395 -->
-    <item amount="2" name="`rSplash Potion of Leaping" damage="16395" material="potion">
-        <effect duration="15s" amplifier="4">jump_boost</effect>
-    </item>
-</kill-rewards>
-<!-- Santa Kill Rewards (Winter only)
-<kill-rewards>
-    <filter>
-        <class>Santa</class>
-    </filter>
-    <item projectile="snowball-gun" amount="6" material="snow ball" />
-</kill-rewards>
-<kill-rewards>
-    <filter>
-        <all>
+        </filter>
+        <!-- <item amount="6" material="chorus fruit" /> -->
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <class>Necromancer</class>
+                <kill-streak count="3" repeat="true" />
+            </all>
+        </filter>
+        <!-- jump boost replaces levitation -->
+        <!-- 16384 + 11 = 16395 -->
+        <item amount="6" name="`rSplash Potion of Leaping" damage="16395" material="potion">
+            <effect duration="15s" amplifier="4">jump_boost</effect>
+        </item>
+    </kill-reward>
+    <!-- Rabbit Kill Rewards (Summer only) -->
+    <kill-reward>
+        <filter>
+            <class>Vicious Rabbit</class>
+        </filter>
+        <item grenade="true" grenade-power="1" amount="6" material="egg"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+            <class>Vicious Rabbit</class>
+                <kill-streak count="3" repeat="true" />
+            </all>
+        </filter>
+        <!-- 16384 + 11 = 16395 -->
+        <item amount="2" name="`rSplash Potion of Leaping" damage="16395" material="potion">
+            <effect duration="15s" amplifier="4">jump_boost</effect>
+        </item>
+    </kill-reward>
+    <!-- Santa Kill Rewards (Winter only)
+    <kill-reward>
+        <filter>
             <class>Santa</class>
-            <kill-streak count="3" repeat="true" />
-        </all>
-    </filter>
-    <item amount="1" name="`rLingering Potion of Levitation" material="lingering potion">
-        <effect duration="5">levitation</effect>
-    </item>
-</kill-rewards> -->
+        </filter>
+        <item projectile="snowball-gun" amount="6" material="snow ball" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <class>Santa</class>
+                <kill-streak count="3" repeat="true" />
+            </all>
+        </filter>
+        <item amount="1" name="`rLingering Potion of Levitation" material="lingering potion">
+            <effect duration="5">levitation</effect>
+        </item>
+    </kill-reward> -->
+</kill-rewards>
 <item-mods>
     <rule>
         <match>
@@ -408,7 +410,7 @@
 <regions>
     <apply block="allowed-blocks" use="use" />
 </regions>
-<block-drops trample="true">
+<block-drops>
     <rule trample="true">
         <filter>
             <all>
@@ -456,7 +458,7 @@
 </block-drops>
 <renewables>
     <renewable interval="6s" grow="true" particles="true">
-        <renew-filer>
+        <renew-filter>
             <any>
                 <material>grass</material>
                 <material>smooth brick</material>
@@ -467,7 +469,7 @@
                 <material>stained clay</material>
                 <material>cobblestone</material>
             </any>
-        </renew-filer>
+        </renew-filter>
         <replace-filter>
             <material>redstone block</material>
         </replace-filter>

@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Eternal Virus</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <gamemode>koth</gamemode>
 <phase>development</phase>
 <objective>You have one chance to capture the hill. Make it worth it!</objective>
@@ -20,7 +19,7 @@
         <item slot="6" material="bread" amount="16"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" material="arrow" amount="16"/>
-        <potion duration="8">damage resistance</potion>
+        <effect duration="8">damage resistance</effect>
     </kit>
     <kit id="green-kit" parents="spawn">
         <helmet color="45b711" material="leather helmet"/>
@@ -73,7 +72,7 @@
     <!-- Applicators -->
     <apply enter="only-green" region="green-spawn" message="You may not enter Green team's spawn!"/>
     <apply enter="only-blue" region="blue-spawn" message="You may not enter Blue team's spawn!"/>
-    <apply build="never" region="everywhere"/>
+    <apply block="never"/>
 </regions>
 <control-points required="true" permanent="true" show-progress="true">
     <control-point name="Center" capture-time="5s">

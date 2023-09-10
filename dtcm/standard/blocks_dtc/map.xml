@@ -2,7 +2,7 @@
 <map proto="1.0.0">
 <!-- include src="tutorial.xml"/ -->
 <name>Blocks DTC</name>
-<version>1.4.8</version>
+<version>1.4.9</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
@@ -133,7 +133,7 @@
     <item>melon block</item>
     <item>wood</item>
 </itemremove>
-<tutorial>
+<!-- <tutorial>
     <stage title="Destroy the Core">
         <message>
             <line>`rThis map is a `a`lDestroy the Core `r(DTC) map.</line>
@@ -178,5 +178,5 @@
             <point yaw="-50" pitch="-10">90,42,60</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

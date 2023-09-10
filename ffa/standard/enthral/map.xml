@@ -1,14 +1,14 @@
-<map proto="1.4.0" game="Survival Games">
+<map proto="1.4.2" game="Survival Games">
 <name>Enthral</name>
 <phase>development</phase>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Be the sole survivor of the games</objective>
 <authors>
-    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" /> <!--  Yoyo_  -->
-    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" /> <!--  Rockymine  -->
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" /> <!-- Yoyo_ -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" /> <!-- Rockymine -->
 </authors>
 <contributors>
-    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" /> <!--  DoomyBoy  -->
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" /> <!-- DoomyBoy -->
 </contributors>
 <players max="24"/>
 <filters>
@@ -69,12 +69,12 @@
 </spawns>
 <kits>
     <kit id="playerKit">
-        <item material="cooked beef" amount="6" slot="1" />
-        <potion duration="48" amplifier="40">weakness</potion>
-        <potion duration="17" amplifier="30">slowness</potion>
-        <potion duration="14" amplifer="30">blindness</potion>
-        <potion duration="17" amplifier="-30">jump</potion>
-        <potion duration="48" amplifier="1">speed</potion>
+        <item slot="1" amount="6" material="cooked beef"/>
+        <effect duration="48" amplifier="40">weakness</effect>
+        <effect duration="17" amplifier="30">slowness</effect>
+        <effect duration="14" amplifier="30">blindness</effect>
+        <effect duration="17" amplifier="-30">jump</effect>
+        <effect duration="48" amplifier="1">speed</effect>
     </kit>
 </kits>
 <!--<structures>

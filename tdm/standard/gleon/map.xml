@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0" game="`f`lTeam Deathmatch">
+<map proto="1.4.2">
 <name>Gleon</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <gamemode>tdm</gamemode>
 <created>2016-04-07</created>
 <objective>Be the team with the most kills at the end of 12 minutes!</objective>
@@ -12,12 +11,10 @@
 <score>
     <kills>1</kills>
 </score>
-
 <teams>
     <team id="red" color="dark red" max="35" max-overfill="38">Red</team>
     <team id="blue" color="blue" max="35" max-overfill="38">Blue</team>
 </teams>
-
 <spawns>
     <spawn team="red" kit="red-kit">
         <regions yaw="135">
@@ -35,13 +32,11 @@
         </regions>
     </default>
 </spawns>
-
-<respawn auto="false" delay="2s" spectate="true" blackout="false"/>
-
+<respawn spectate="true"/>
 <kits>
     <kit id="spawn" force="true">
         <item slot="0" unbreakable="true" material="iron sword"/>
-        <item slot="1" unbreakable="true" enchantment="arrow infinite:1" material="bow"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
         <item slot="2" amount="20" material="stained glass"/>
         <item slot="3" amount="64" material="vine"/>
         <item slot="4" amount="64" material="water lily"/>
@@ -49,8 +44,8 @@
         <item slot="8" unbreakable="true" name="`f`lGold Block/Gold Ore Pick" enchantment="dig speed" material="stone pickaxe"/>
         <item slot="28" amount="1" material="arrow"/>
         <boots unbreakable="true" name="`6Feather Falling boots" enchantment="protection fall:4" material="iron boots"/>
-        <potion duration="20" amplifier="1">speed</potion>
-        <potion duration="15" amplifier="2">regeneration</potion>
+        <effect duration="20" amplifier="1">speed</effect>
+        <effect duration="15" amplifier="2">regeneration</effect>
     </kit>
     <kit id="red-kit" parents="spawn">
         <helmet unbreakable="true" color="C40000" material="leather helmet"/>
@@ -63,49 +58,47 @@
         <leggings unbreakable="true" color="334CB2" material="leather leggings"/>
     </kit>
     <kit id="spawn-protection-r" force="true" filter="only-red">
-        <potion amplifier="100" duration="oo">damage resistance</potion>
+        <effect amplifier="100" duration="oo">damage resistance</effect>
         <knockback-reduction>1</knockback-reduction>
     </kit>
     <kit id="spawn-protection-b" force="true" filter="only-blue">
-        <potion amplifier="100" duration="oo">damage resistance</potion>
+        <effect amplifier="100" duration="oo">damage resistance</effect>
         <knockback-reduction>1</knockback-reduction>
     </kit>
 </kits>
-
 <hunger>
     <depletion>off</depletion>
 </hunger>
-
-<killreward>
-    <item amount="1" material="golden apple"/>
-    <item amount="3" material="gold ingot"/>
-    <potion duration="3" amplifier="1">speed</potion>
-</killreward>
-
-<killreward>
-    <filter>
-        <kill-streak count="3" repeat="false"/>
-    </filter>   
-    <item amount="1" material="golden apple"/>
-    <item amount="3" material="gold ingot"/>
-</killreward>
-
-<killreward>
-    <filter>
-        <kill-streak count="5" repeat="false"/>
-    </filter>   
-    <item amount="1" material="golden apple"/>
-    <item amount="3" material="gold ingot"/>
-</killreward>
-
-<killreward>
-    <filter>
-        <kill-streak count="7" repeat="true"/>
-    </filter>   
-    <item amount="1" material="golden apple"/>
-    <item amount="3" material="gold ingot"/>
-</killreward>
-
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="3" material="gold ingot"/>
+        <kit>
+            <effect duration="3">speed</effect>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="3" repeat="false"/>
+        </filter>   
+        <item material="golden apple"/>
+        <item amount="3" material="gold ingot"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="5" repeat="false"/>
+        </filter>   
+        <item material="golden apple"/>
+        <item amount="3" material="gold ingot"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="7" repeat="true"/>
+        </filter>   
+        <item material="golden apple"/>
+        <item amount="3" material="gold ingot"/>
+    </kill-reward>
+</kill-rewards>
 <item-mods>
     <rule>
         <match>
@@ -132,15 +125,12 @@
         </modify>
     </rule>
 </item-mods>
-
 <gamerules>
     <doFireTick>false</doFireTick>
     <naturalRegeneration>true</naturalRegeneration>
     <doDaylightCycle>false</doDaylightCycle>
 </gamerules>
-
-<terrain pre-match-physics="false"/>
-
+<!-- <terrain pre-match-physics="false"/> -->
 <filters>
     <team id="only-red">red</team>
     <team id="only-blue">blue</team>
@@ -179,14 +169,12 @@
         <void />
     </deny>
 </filters>
-
 <regions>
     <cuboid id="undermap" min="oo,22,oo" max="-oo,1,-oo"/>
     <cuboid id="overmap" min="oo,80,oo" max="-oo,120,-oo"/>
     <cylinder id="middle-diamonds" base="-12.5,61,-1038" radius="6" height="oo"/>
     <apply block="never" region="undermap" message="`lYou may not place blocks in the void! `e⚠"/>
     <apply block="never" region="overmap" message="`lYou have reached the maximum height limit! `e⚠"/>
-    
     <union id="blue-spawn">
         <!-- Main spawn area -->
         <cuboid min="-55,59,-1081" max="-65,130,-1091"/>
@@ -223,37 +211,15 @@
         <cuboid min="41,37,-985" max="29,45,-989"/>
         <cuboid min="41,37,-985" max="37,45,-997"/>
     </union>
-
     <!-- Never -->
-    <apply block="deny-void" message="`lYou may not place blocks in the void! `e⚠">
-        <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
-        </region>
-    </apply>
+    <apply block="deny-void" message="`lYou may not place blocks in the void! `e⚠"/>
     <apply block="never" region="red-spawn" message="`lYou may not obstruct `4`lRed Spawn! `e⚠"/>
     <apply block="never" region="blue-spawn" message="`lYou may not obstruct `1`lBlue Spawn! `e⚠"/>
     <!-- general never -->
-    <apply block-physics="never">
-        <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
-        </region>
-    </apply>
-    <apply block="breakable-blocks">
-        <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
-        </region>
-    </apply>
+    <apply block="breakable-blocks" block-physics="never"/>
     <!-- Enters -->
-    <apply enter="only-red" message="`lYou may not enter the opposing team's spawn! `e⚠">
-        <region>
-            <region id="red-spawn"/>
-        </region>
-    </apply>
-    <apply enter="only-blue" message="`lYou may not enter the opposing team's spawn! `e⚠">
-        <region>
-            <region id="blue-spawn"/>
-        </region>
-    </apply>
+    <apply region="red-spawn" enter="only-red" message="`lYou may not enter the opposing team's spawn! `e⚠"/>
+    <apply region="blue-spawn" enter="only-blue" message="`lYou may not enter the opposing team's spawn! `e⚠"/>
     <!-- Spawn protection -->
     <apply lend-kit="spawn-protection-r" region="red-spawn-protection" filter="only-red"/>
     <apply lend-kit="spawn-protection-b" region="blue-spawn-protection" filter="only-blue"/>
@@ -263,7 +229,7 @@
     <!-- stained glass blocks removal after 4m of being placed -->
     <renewable interval="1800" grow="true" avoid-entities="false" particles="true" sound="true">
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <renew-filter>
             <any>
@@ -280,7 +246,7 @@
     <!-- water blocks that have been destroyed (NOT REPLACED) are renewed -->
     <renewable interval="1200s" grow="false" avoid-entities="true" particles="false" sound="false">
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <renew-filter>
             <any>
@@ -296,7 +262,7 @@
     <!-- gold blocks -->
     <renewable interval="225s" grow="false" avoid-entities="false" particles="true" sound="true">
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <renew-filter>
             <any>
@@ -347,7 +313,7 @@
     <!-- gold ores -->
     <renewable interval="500s" grow="false" avoid-entities="false" particles="true" sound="false">
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <renew-filter>
             <any>
@@ -364,7 +330,7 @@
     <!-- shrubs/etc that have been destroyed (NOT REPLACED) are renewed -->
     <renewable interval="100000s" grow="false" avoid-entities="true" particles="false" sound="false">
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <renew-filter>
             <any>
@@ -416,20 +382,17 @@
         </renewable>
 
         middle diamond area stained glass blocks removal after 1m of being placed -->
-    
 
 <!-- Prevent stained glass panes and gold blocks from being crafted -->
 </renewables>
-
 <crafting>
     <disable>stained glass pane:7</disable>
     <disable>gold block</disable>
 </crafting>
-
 <block-drops>
     <rule>
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <!-- Make diamond blocks drop diamond chest plates -->
         <filter>
@@ -443,7 +406,7 @@
     </rule>
     <rule>
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <!-- Make stained glass drop stained glass -->
         <filter>
@@ -457,7 +420,7 @@
     </rule>
     <rule>
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <!-- Make gold blocks drop gold ingots -->
         <filter>
@@ -472,7 +435,7 @@
     <!-- Make gold ores drop golden apples -->
     <rule>
         <region>
-            <rectangle min="oo,oo" max="-oo,-oo"/>
+            <everywhere />
         </region>
         <filter>
             <any>
@@ -484,7 +447,6 @@
         </drops>
     </rule>
 </block-drops>
-
 <falling-blocks>
     <rule>
         <filter>
@@ -548,12 +510,10 @@
         </sticky>
     </rule>
 </falling-blocks>
-
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
 </toolrepair>
-
 <itemremove>
     <item>iron leggings</item>
     <item>seeds</item>
@@ -601,7 +561,6 @@
     <item>red rose:8</item>
     <item>vine</item>
 </itemremove>
-
 <!--
 <tutorial>
     <stage title="Welcome to Gleon!">

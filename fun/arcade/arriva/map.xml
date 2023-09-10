@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Arriva</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Escape the Minotaur!</objective>
 <gamemode>arcade</gamemode>
 <authors>
@@ -13,7 +13,6 @@
 </teams>
 <kits>
     <kit id="min-kit">
-        <helmet team-color="true" material="leather helmet" unbreakable="true"/>
         <helmet team-color="true" material="leather helmet" unbreakable="true"/>
         <chestplate team-color="true" material="leather chestplate" unbreakable="true"/>
         <leggings team-color="true" material="leather leggings" unbreakable="true"/>
@@ -53,7 +52,6 @@
 </regions>
 <score>
     <limit>1</limit>
-    <kills>0</kills>
     <box region="endgoal" filter="only-players" points="1"/>
 </score>
 <time>8m</time>

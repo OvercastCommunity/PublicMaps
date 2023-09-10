@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Athirk</name>
-<version>1.2</version>
+<version>1.2.1</version>
 <authors>
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
@@ -116,7 +116,7 @@
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
     <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
-<cores repairable="false" material="obsidian" leak="2" modes="gold-core ice-core">
+<cores material="obsidian" leak="2" modes="gold-core ice-core">
     <cores team="blue">
         <core name="North Core">
             <region>
@@ -227,11 +227,13 @@
     <item>golden apple</item>
     <item>bucket</item>
 </itemkeep>
-<kill-reward>
-    <item amount="32" material="wood"/>
-    <item amount="16" material="glass"/>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" material="wood"/>
+        <item amount="16" material="glass"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <item-mods>
     <rule>
         <match>

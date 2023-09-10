@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Airship Battle: Christmas</name>
-<version>1.0</version> <!-- Regular 1.2.6 -->
+<version>1.0.1</version> <!-- Regular 1.2.6 -->
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <created>2022-12-08</created>
 <gamemode>dtc</gamemode>
@@ -65,12 +65,8 @@
     <!-- Recent changes to implement spawn and chest protection -->
     <cuboid id="red-spawn-protect" min="-42,87,3" max="-35,90,-36"/>
     <cuboid id="blue-spawn-protect" min="12,87,3" max="19,90,-36"/>
-    <apply lend-kit="spawn-protection" filter="only-blue">
-       <region id="blue-spawn-protect"/>
-    </apply>
-    <apply lend-kit="spawn-protection" filter="only-red">
-        <region id="red-spawn-protect"/>
-    </apply>
+    <apply region="blue-spawn-protect" lend-kit="spawn-protection" filter="only-blue"/>
+    <apply region="red-spawn-protect" lend-kit="spawn-protection" filter="only-red"/>
     <apply block="deny-dispenser" use="deny-dispenser" message="This block can not be interacted with on this map!"/>
     <rectangle id="outside-playing-field-area" min="-102,-4" max="102,125"/> <!-- Main area -->
     <apply region="outside-playing-field-area" leave="never" message="Don't exit the playing field!"/>
@@ -88,11 +84,13 @@
 <crafting>
     <disable>boat</disable>
 </crafting>
-<killreward>
-    <item amount="16">arrow</item>
-    <item damage="1" amount="32">wood</item>
-	<item>golden apple</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+        <item amount="32" damage="1" material="wood"/>
+    	<item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <toolrepair>
     <tool>diamond sword</tool>
     <tool>bow</tool>

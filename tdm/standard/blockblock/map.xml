@@ -130,7 +130,7 @@
         </modify>
     </rule>
 </item-mods>
-<tutorial>
+<!-- <tutorial>
     <stage title="Team Death Match">
         <message>
             <line>`rThis map is a `a`lTeam Death Match `r(TDM) map with `bscoreboxes`r.</line>
@@ -184,5 +184,5 @@
             <point angle="0,7,0">-2,16,-3</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

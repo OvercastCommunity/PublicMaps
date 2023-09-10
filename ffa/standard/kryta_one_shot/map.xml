@@ -1,20 +1,17 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Kryta: One Shot</name>
-<version>1.4.3</version>
+<version>1.4.4</version>
 <phase>development</phase>
 <gamemode>ffa</gamemode>
 <authors>
-    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" />
-    <!--  Qixit  -->
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!-- Qixit -->
 </authors>
 <objective>Kill and survive. There are no teams, so watch your back!</objective>
 <score>
     <kills>1</kills>
 </score>
 <time>10m</time>
-
 <players min="2" max="64"/>
-
 <spawns>
     <spawn kit="spawn" spread="true" safe="true">
         <regions>
@@ -33,16 +30,16 @@
             <point yaw="-115">40.5,50,261.5</point>
             <point yaw="134">49.5,49,253.5</point>
             <point yaw="-180">68.5,49,281.5</point>
-            <point yaw="0">75.5,50,274.5</point>
+            <point>75.5,50,274.5</point>
             <point yaw="42">72.5,56,272.5</point>
             <point yaw="90">38.5,57,277.5</point>
-            <point yaw="0">23.5,52,285.5</point>
+            <point>23.5,52,285.5</point>
             <point yaw="-180">10.5,63,283.5</point>
             <point yaw="55">0.5,57,279.5</point>
             <point yaw="142">-1.5,61,276.5</point>
             <point yaw="-7">-5.5,64,249.5</point>
             <point yaw="-90">-32.5,62,275.5</point>
-            <point yaw="0">-31.5,67,254.5</point>
+            <point>-31.5,67,254.5</point>
             <point yaw="18">-8.5,62,293.5</point>
             <point yaw="7">-16.5,58,299.5</point>
             <point yaw="-140">-26.5,51,315.5</point>
@@ -55,15 +52,15 @@
             <point yaw="-90">38.5,49,281.5</point>
             <point yaw="-180">45.5,53,309.5</point>
             <point yaw="-123">67.5,48,299.5</point>
-            <point yaw="0">53.5,45,291.5</point>
-            <point yaw="0">71.5,39,280.5</point>
-            <point yaw="0">83.5,39,284.5</point>
+            <point>53.5,45,291.5</point>
+            <point>71.5,39,280.5</point>
+            <point>83.5,39,284.5</point>
             <point yaw="-30">72.5,40,294.5</point>
             <point yaw="60">80.5,38,300.5</point>
-            <point yaw="0">73.5,38,300.5</point>
-            <point yaw="0">80.5,35,302.5</point>
-            <point yaw="0">86.5,39,301.5</point>
-            <point yaw="0">71.5,33,306.5</point>
+            <point>73.5,38,300.5</point>
+            <point>80.5,35,302.5</point>
+            <point>86.5,39,301.5</point>
+            <point>71.5,33,306.5</point>
             <point yaw="-70">63.5,31,316.5</point>
             <point yaw="-157">64.5,44,344.5</point>
             <point yaw="90">61.5,34,342.5</point>
@@ -84,11 +81,11 @@
             <point yaw="165">24.5,57,342.5</point>
             <point yaw="-40">29.5,66,343.5</point>
             <point yaw="-90">29.5,60,346.5</point>
-            <point yaw="0">32.5,55,349.5</point>
+            <point>32.5,55,349.5</point>
             <point yaw="-30">36.5,49,351.5</point>
-            <point yaw="0">27.5,55,352.5</point>
+            <point>27.5,55,352.5</point>
             <point yaw="43">20.5,51,351.5</point>
-            <point yaw="0">25.5,61,346.5</point>
+            <point>25.5,61,346.5</point>
             <point yaw="-132">10.5,44,364.5</point>
             <point yaw="-90">19.5,46,361.5</point>
             <point yaw="-90">13.5,52,355.5</point>
@@ -102,23 +99,23 @@
             <point yaw="177">27.5,37,326.5</point>
             <point yaw="90">42.5,46,318.5</point>
             <point yaw="90">43.5,49,312.5</point>
-            <point yaw="0">28.5,48.5,295.5</point>
-            <point yaw="0">18.5,31,295.5</point>
+            <point>28.5,48.5,295.5</point>
+            <point>18.5,31,295.5</point>
             <point yaw="-111">-0.5,48,296.5</point>
-            <point yaw="0">-9.5,73,292.5</point>
+            <point>-9.5,73,292.5</point>
             <point yaw="-90">-5.5,61,294.5</point>
             <point yaw="180">-12.5,62,313.5</point>
             <point yaw="-90">-28.5,54,319.5</point>
             <point yaw="-180">3.5,71.5,307.5</point>
-            <point yaw="0">13.5,67.5,288.5</point>
+            <point>13.5,67.5,288.5</point>
             <point yaw="180">29.5,59,336.5</point>
             <point yaw="-180">11.5,43,336.5</point>
             <point yaw="50">34.5,42,300.5</point>
-            <point yaw="0">-12.5,58,300.5</point>
+            <point>-12.5,58,300.5</point>
             <point yaw="-90">-5.5,52,300.5</point>
             <point yaw="90">-18.5,57,296.5</point>
             <point yaw="-45">-22.5,38,314.5</point>
-            <point yaw="0">-2.5,56,343.5</point>
+            <point>-2.5,56,343.5</point>
             <point yaw="-150">-1.5,71,341.5</point>
             <point yaw="42">2.5,86,309.5</point>
             <point yaw="-90">-40.5,51,338.5</point>
@@ -133,7 +130,7 @@
             <point yaw="119">-8.5,13,356.5</point>
             <point yaw="90">-3.5,22,361.5</point>
             <point yaw="-40">-21.5,22,336.5</point>
-            <point yaw="0">-16.5,31,332.5</point>
+            <point>-16.5,31,332.5</point>
             <point yaw="-90">-3.5,51,292.5</point>
             <point yaw="51">9.5,52,355.5</point>
             <point yaw="90">7.5,33,348.5</point>
@@ -148,7 +145,7 @@
             <point yaw="-150">-28.5,25,374.5</point>
             <point yaw="180">-17.5,26,374.5</point>
             <point yaw="-157">-30.5,27,337.5</point>
-            <point yaw="0">-19.5,52,299.5</point>
+            <point>-19.5,52,299.5</point>
             <point yaw="-113">-32.5,66.5,278.5</point>
             <point yaw="-90">-31.5,74,270.5</point>
             <point yaw="-56">-29.5,73,256.5</point>
@@ -159,8 +156,8 @@
             <point yaw="-180">16.5,63.5,27.5</point>
             <point yaw="-90">-6.5,50,275.5</point>
             <point yaw="-90">-0.5,53,250.5</point>
-            <point yaw="0">-9.5,42,307.5</point>
-            <point yaw="0">-30.5,36,324.5</point>
+            <point>-9.5,42,307.5</point>
+            <point>-30.5,36,324.5</point>
             <point yaw="-90">-38.5,36,338.5</point>
             <point yaw="-180">-17.5,37,369.5</point>
             <point yaw="-107">53.5,38,355.5</point>
@@ -184,15 +181,15 @@
             <point yaw="-180">79.5,35.5,354.5</point>
             <point yaw="-180">77.5,31,350.5</point>
             <point yaw="-90">59.5,36,351.5</point>
-            <point yaw="0">53.5,38,353.5</point>
+            <point>53.5,38,353.5</point>
             <point yaw="60">45.5,42,359.5</point>
             <point yaw="-109">19.5,52,364.5</point>
             <point yaw="-150">40.5,51,366.5</point>
             <point yaw="-100">73.5,58,347.5</point>
             <point yaw="162">-8.5,18.5,375.5</point>
             <point yaw="-180">-27.5,25,374.5</point>
-            <point yaw="0">-28.5,17,346.5</point>
-            <point yaw="0">-11.5,22,326.5</point>
+            <point>-28.5,17,346.5</point>
+            <point>-11.5,22,326.5</point>
             <point yaw="90">3.5,22,344.5</point>
             <point yaw="2">-9.5,42,307.5</point>
         </regions>
@@ -204,103 +201,97 @@
     </default>
 </spawns>
 <respawn auto="false" delay="1s" spectate="true" blackout="false" />
-
 <item-mods>
     <rule>
         <match>
             <material>diamond axe</material>
         </match>
         <modify>
-            <enchantment level="1">Knockback</enchantment>
+            <enchantment level="1">knockback</enchantment>
             <enchantment level="4">sharpness</enchantment>
         </modify>
     </rule>
 </item-mods>
-
 <kits>
     <kit id="spawn">
-        <helmet unbreakable="true" color="FFFFFF">leather helmet</helmet>
-        <chestplate unbreakable="true" color="FFFFFF">leather chestplate</chestplate>
-        <boots unbreakable="true" color="667F33">leather boots</boots>
-        <item slot="0" unbreakable="true">diamond sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow damage:100" lore="`aOne-shot kill!">bow</item>
-        <item slot="2" amount="1">arrow</item>
-        <potion duration="4" amplifier="100">damage resistance</potion>
-        <potion duration="4" amplifier="20">weakness</potion>
-        <potion duration="4" amplifier="20">regeneration</potion>
+        <helmet unbreakable="true" color="FFFFFF" material="leather helmet"/>
+        <chestplate unbreakable="true" color="FFFFFF" material="leather chestplate"/>
+        <boots unbreakable="true" color="667F33" material="leather boots"/>
+        <item slot="0" unbreakable="true" material="diamond sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:100" lore="`aOne-shot kill!" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <effect duration="4" amplifier="100">damage resistance</effect>
+        <effect duration="4" amplifier="20">weakness</effect>
+        <effect duration="4" amplifier="20">regeneration</effect>
         <double-jump recharge-before-landing="true" power="5" recharge-time="6s"/>
     </kit>
     <kit id="killreward-base-kit">
-        <potion amplifier="2" duration="0.5">night vision</potion>
-        <potion amplifier="4" duration="2">regeneration</potion>
+        <effect amplifier="2" duration="0.5">night vision</effect>
+        <effect amplifier="4" duration="2">regeneration</effect>
         <double-jump recharge-before-landing="true" power="5" recharge-time="6s"/>
     </kit>
 </kits>
-
 <hunger>
     <depletion>off</depletion>
 </hunger>
-
 <disabledamage>
     <damage self="true" ally="true" enemy="false" other="false">block explosion</damage>
     <damage>fall</damage>
     <damage>suffocation</damage>
 </disabledamage>
-
-<killreward>
-    <item amount="1">arrow</item>
-    <kit id="killreward-base-kit" />
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="2" />
-    </filter>
-    <item>tnt</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="3" />
-    </filter>
-    <item amount="5" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
-    <potion duration="oo" amplifier="1">speed</potion>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="5" />
-    </filter>
-    <item amount="5" name="`2`cGrenade" grenade="true" grenade-power="1.5" material="snowball"/>
-    <item>tnt</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="8" />
-    </filter>
-    <item>tnt</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="10" />
-    </filter>
-    <item amount="5" name="`2`cGrenade" grenade="true" grenade-power="1.5" material="snowball"/>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="12" />
-    </filter>
-    <item>tnt</item>
-</killreward>
-
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow" />
+        <kit id="killreward-base-kit" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="2" />
+        </filter>
+        <item material="tnt" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="3" />
+        </filter>
+        <item amount="5" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
+        <effect>speed</effect>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="5" />
+        </filter>
+        <item amount="5" name="`2`cGrenade" grenade="true" grenade-power="1.5" material="snowball"/>
+        <item material="tnt" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="8" />
+        </filter>
+        <item material="tnt" />
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="10" />
+        </filter>
+        <item amount="5" name="`2`cGrenade" grenade="true" grenade-power="1.5" material="snowball"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="12" />
+        </filter>
+        <item material="tnt" />
+    </kill-reward>
+</kill-rewards>
 <tnt>
     <instantignite>on</instantignite>
     <fuse>1s</fuse>
     <power>5</power>
 </tnt>
-
 <toolrepair>
     <tool>diamond sword</tool>
     <tool>bow</tool>
 </toolrepair>
-
 <itemremove>
     <!-- environmental items -->
     <item>chest</item>
@@ -378,7 +369,6 @@
     <item>web</item>
     <item>firework</item>
 </itemremove>
-
 <filters>
     <any id="breakable-blocks">
         <material>long grass</material>
@@ -410,17 +400,8 @@
         <material>web</material>
     </any>
 </filters>
-
 <regions>
-    <apply use="never">
-        <everywhere />
-    </apply>
-    <apply block-physics="never">
-        <everywhere />
-    </apply>
-    <apply block="breakable-blocks">
-        <everywhere />
-    </apply>
+    <apply use="never" block-physics="never" block="breakable-blocks"/>
     <apply block="never">
         <region>
             <region id="jumpad-5"/>
@@ -432,7 +413,6 @@
             <region id="jumpad-9"/>
         </region>
     </apply>
-
     <!-- top closest to kryta sign -2, 48, 302  -->
     <apply velocity="3.2, 2, 3.2">
         <region>
@@ -476,7 +456,6 @@
         </region>
     </apply>
 </regions>
-
 <portals smooth="true" sound="true">
     <portal x="@37.5" y="@49" z="@279.5" yaw="@-90">
         <region>
@@ -519,7 +498,6 @@
         </region>
     </portal>
 </portals>
-
 <renewables>
     <renewable interval="600s" grow="true" particles="false" sound="false" avoid-players="20">
         <region>
@@ -551,5 +529,4 @@
         </renew-filter>
     </renewable>
 </renewables>
-
 </map>

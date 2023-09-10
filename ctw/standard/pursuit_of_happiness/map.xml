@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <!-- include src="tutorial.xml"/ -->
 <name>Pursuit of Happiness</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Capture the other team's two wools and place it at your victory monument!</objective>
 <authors>
     <author uuid="878de754-59dd-4828-9328-2bb1b848dc43"/> <!-- MrM00se -->
@@ -234,7 +234,10 @@
     <item>glass</item>
     <item>golden apple</item>
 </itemremove>
-<tutorial>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<!-- <tutorial>
     <stage title="Capture the Wool">
         <message>
             <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
@@ -274,8 +277,5 @@
             <point yaw="0" pitch="0">95,3,-395</point>
         </teleport>
     </stage>
-</tutorial>
-<killreward>
-    <item>golden apple</item>
-</killreward>
+</tutorial> -->
 </map>

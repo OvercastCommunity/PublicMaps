@@ -1,27 +1,20 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Christmas Country</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <phase>development</phase>
 <objective>Capture the wools located on the opposite side.</objective>
 <gamemode>ctw</gamemode>
 <!--  Map authors & contributors.  -->
 <authors>
-    <author uuid="b5967591-14fc-421f-a5e2-931498e10fb8"/>
-    <!--  OCNs_OMEN  -->
-    <author uuid="6d256510-f2ec-4a5b-b678-fc01c5abd7b3"/>
-    <!--  Sp33dfr3ak  -->
-    <author uuid="f066a092-d825-4316-bc9a-5f8ddd21b167"/>
-    <!--  Valkyyyy  -->
-    <author uuid="6972affb-504d-4114-b52f-696e5b567095"/>
-    <!--  SaltyDude44  -->
-    <author uuid="d1e3251c-def5-4328-a7e9-09335934d316"/>
-    <!--  byRobo  -->
-    <author uuid="2f4ec1a6-10bd-4a5c-8054-b7c56999d79b"/>
-    <!--  Alex_Plosivo  -->
+    <author uuid="b5967591-14fc-421f-a5e2-931498e10fb8"/> <!-- OCNs_OMEN -->
+    <author uuid="6d256510-f2ec-4a5b-b678-fc01c5abd7b3"/> <!-- Sp33dfr3ak -->
+    <author uuid="f066a092-d825-4316-bc9a-5f8ddd21b167"/> <!-- Valkyyyy -->
+    <author uuid="6972affb-504d-4114-b52f-696e5b567095"/> <!-- SaltyDude44 -->
+    <author uuid="d1e3251c-def5-4328-a7e9-09335934d316"/> <!-- byRobo -->
+    <author uuid="2f4ec1a6-10bd-4a5c-8054-b7c56999d79b"/> <!-- Alex_Plosivo -->
 </authors>
 <contributors>
-    <contributor uuid="7cbf2168-7f49-4fb3-aea8-6df8048a7ade" contribution="Original map author"/>
-    <!--  nigges60  -->
+    <contributor uuid="7cbf2168-7f49-4fb3-aea8-6df8048a7ade" contribution="Original map author"/> <!-- nigges60 -->
 </contributors>
 <broadcasts>
     <tip after="2s">`7You will get `b8 wood`7 and `b10 arrows `7every kill</tip>
@@ -59,8 +52,8 @@
         <item slot="7" amount="40" material="snow block"/>
         <item slot="8" amount="16" damage="1" material="log 2"/>
         <item slot="17" amount="64" material="arrow"/>
-        <potion amplifier="10" duration="15">damage resistance</potion>
-        <potion amplifier="10" duration="15">regeneration</potion>
+        <effect amplifier="10" duration="15">damage resistance</effect>
+        <effect amplifier="10" duration="15">regeneration</effect>
     </kit>
     <kit id="green-kit" parents="spawn">
         <helmet color="667F33" material="leather helmet"/>
@@ -81,7 +74,7 @@
         <chestplate material="chainmail chestplate">
             <enchantment level="1">protection projectile</enchantment>
         </chestplate>
-        <potion duration="30s">regeneration</potion>
+        <effect duration="30">regeneration</effect>
     </kit>
 </kits>
 <kill-rewards>
@@ -152,12 +145,12 @@
         </union>
     </union>
     <union id="rooms">
-        <!--  Blue Wool Rooms (Wools blue need to get)  -->
+        <!-- Blue Wool Rooms (Wools blue need to get) -->
         <union id="blue-wool-rooms">
             <rectangle id="purple-wool-room" min="534.5,-113" max="524,-98"/>
             <rectangle id="red-wool-room" min="534.5,-113" max="545,-98"/>
         </union>
-        <!--  Green Wool Rooms (Wools green need to get)  -->
+        <!-- Green Wool Rooms (Wools green need to get) -->
         <union id="green-wool-rooms">
             <rectangle id="orange-wool-room" min="534.5,-354" max="524,-339"/>
             <rectangle id="yellow-wool-room" min="534.5,-354" max="545,-339"/>
@@ -241,7 +234,7 @@
 <timelock>on</timelock>
 <maxbuildheight>23</maxbuildheight>
 <renewables>
-    <renewable rate="1.5" grow="false" particles="true" sound="true" avoid-entites="true" region="Iron">
+    <renewable rate="1.5" grow="false" particles="true" sound="true" region="Iron">
         <renew-filter>
             <material>iron block</material>
         </renew-filter>

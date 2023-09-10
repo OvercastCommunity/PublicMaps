@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Molendinis</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Destroy the enemy's monument while protecting your own</objective>
 <authors>
     <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->
@@ -40,7 +40,7 @@
 </kits>
 <spawns>
     <default>
-        <region yaw="0">
+        <region>
             <cylinder base="-121.5,55,41.5" radius="1.5" height="0"/>
         </region>
     </default>
@@ -146,15 +146,17 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="24" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="24" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>43</maxbuildheight>
 <respawn delay="3.5s"/>
 <!-- include src="tutorial.xml"/ -->
-<tutorial>
+<!-- <tutorial>
     <stage title="Destroy the Monument">
         <message>
             <line>`rThis map is a `a`lDestroy the Monument (DTM) `rmap.</line>
@@ -200,5 +202,5 @@
             <point yaw="-135" pitch="65">-56,28,30.8</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Bam-BOOO Valley III</name>
-<version>1.6.1</version>
+<version>1.6.2</version>
 <phase>development</phase>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -107,7 +107,7 @@
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
     <mode id="ice-core" after="25m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
-<cores material="obsidian" leak="5" mode="gold-core ice-core">
+<cores material="obsidian" leak="5" modes="gold-core ice-core">
     <core team="purple">
         <region>
             <cuboid min="-4,24,-46" max="3,30,-39"/>
@@ -156,10 +156,10 @@
     <item>chainmail chestplate</item>
     <item>leather boots</item>
     <item>step</item>
-    <item damage="3">step</item>
-    <item damage="7">step</item>
+    <item>step:3</item>
+    <item>step:7</item>
     <item>leaves</item>
-    <item damage="3">leaves</item>
+    <item>leaves:3</item>
     <item>cobblestone stairs</item>
     <item>cobble wall</item>
     <item>smooth stairs</item>
@@ -168,14 +168,14 @@
     <item>wood step</item>
     <item>item frame</item>
     <item>torch</item>
-    <item damage="1">wood step</item>
+    <item>wood step:1</item>
     <item>ink sack</item>
     <item>seeds</item>
     <item>glowstone dust</item>
     <item>sand</item>
-    <item damage="1">grass</item>
-    <item damage="2">grass</item>
-    <item damage="13">grass</item>
+    <item>grass:1</item>
+    <item>grass:2</item>
+    <item>grass:13</item>
     <item>cobblestone</item>
     <item>clay ball</item>
     <item>sugar cane</item>
@@ -216,8 +216,8 @@
 </block-drops>
 <itemkeep>
     <item>wood</item>
-    <item damage="14">stained clay</item>
-    <item damage="11">stained clay</item>
+    <item>stained clay:14</item>
+    <item>stained clay:11</item>
     <item>golden apple</item>
 </itemkeep>
 <kill-rewards>

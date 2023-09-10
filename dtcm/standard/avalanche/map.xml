@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Avalanche</name>
-<version>1.2.9</version>
+<version>1.2.10</version>
 <objective>Leak lava from the enemy's mountaintop core.</objective>
 <authors>
     <author uuid="74664520-5d92-4661-b207-b0434b342e8b"/> <!-- way2hot4rs -->
@@ -33,11 +32,11 @@
         <effect duration="8" amplifier="4">resistance</effect>
     </kit>
     <kit id="red-kit" parents="default">
-        <helmet material="leather helmet"         unbreakable="true" color="993333"/>
+        <helmet material="leather helmet" unbreakable="true" color="993333"/>
         <chestplate material="leather chestplate" unbreakable="true" color="993333"/>
     </kit>
     <kit id="blue-kit" parents="default">
-        <helmet material="leather helmet"         unbreakable="true" color="334CB2"/>
+        <helmet material="leather helmet" unbreakable="true" color="334CB2"/>
         <chestplate material="leather chestplate" unbreakable="true" color="334CB2"/>
     </kit>
 </kits>
@@ -105,7 +104,7 @@
 <cores material="obsidian" leak="3">
     <core team="red">
         <region>
-        ``<cuboid min="213,55,-1" max="206,62,-8"/>
+            <cuboid min="213,55,-1" max="206,62,-8"/>
         </region>
     </core>
     <core team="blue">
@@ -114,10 +113,12 @@
         </region>
     </core>
 </cores>
-<killreward>
-    <item amount="16">arrow</item>
-    <item>golden apple</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <toolrepair>
     <tool>diamond sword</tool>
     <tool>bow</tool>
@@ -139,7 +140,7 @@
     <item>golden apple</item>
 </itemremove>
 <maxbuildheight>70</maxbuildheight>
-<tutorial>
+<!-- <tutorial>
     <stage title="Gamemode Information">
         <message>
             <line>This map is a `a`lDestroy the Core `r(DTC).</line>
@@ -197,5 +198,5 @@
             </point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

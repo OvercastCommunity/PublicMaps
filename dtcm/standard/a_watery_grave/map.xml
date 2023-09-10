@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <!-- include src="tutorial.xml"/ -->
 <name>A Watery Grave</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Break the enchanting table inside of the enemy team's obsidian core.</objective>
 <authors>
     <author uuid="9a96b43e-e5d7-47e4-9679-ccbfe3fffc10"/> <!-- Skirmisher47 -->
@@ -136,7 +136,7 @@
     <item>wood</item>
     <item>log</item>
 </itemremove>
-<tutorial>
+<!-- <tutorial>
     <stage title="Gamemode Information">
         <message>
             <line>`rThis map is a `a`lDestroy the Monument `r(DTM)</line>
@@ -190,5 +190,5 @@
             <point yaw="0">58.5,26,57.5</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

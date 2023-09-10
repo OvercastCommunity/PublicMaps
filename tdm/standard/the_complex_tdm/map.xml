@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.4">
 <name>The Complex TDM</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Get the most kills after 7 minutes.</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
@@ -42,52 +42,68 @@
     </apply>
 </regions>
 <portals>
-    <portal name="red-portal-main" x="-14" y="12" z="14" yaw="@45">
+    <!-- red-portal-main -->
+    <portal x="-14" y="12" z="14" yaw="@45">
         <cuboid min="26,12,-26" max="27,15,-25"/>
     </portal>
-    <portal name="red-portal-center" x="14" y="-12" z="-14" yaw="@-145">
+    <!-- red-portal-center -->
+    <portal x="14" y="-12" z="-14" yaw="@-145">
         <cuboid min="15,27,-13" max="14,24,-14"/>
     </portal>
-    <portal name="blue-portal-main" x="14" y="12" z="-14" yaw="@-145">
+    <!-- blue-portal-main -->
+    <portal x="14" y="12" z="-14" yaw="@-145">
         <cuboid min="-25,14,27" max="-26,12,26"/>
     </portal>
-    <portal name="blue-portal-center" x="-14" y="-12" z="14" yaw="@45">
+    <!-- blue-portal-center -->
+    <portal x="-14" y="-12" z="14" yaw="@45">
         <cuboid min="-13,27,15" max="-14,24,14"/>
     </portal>
-    <portal name="top-portal-1" x="15" y="-30" z="15" yaw="@135">
+    <!-- top-portal-1 -->
+    <portal x="15" y="-30" z="15" yaw="@135">
         <cuboid min="32,39,32" max="31,36,31"/>
     </portal>
-    <portal name="bottom-portal-1" x="-19" y="30" z="-19" yaw="@135">
+    <!-- bottom-portal-1 -->
+    <portal x="-19" y="30" z="-19" yaw="@135">
         <cuboid min="49,9,49" max="48,6,48"/>
     </portal>
-    <portal name="top-portal-2" x="-15" y="-30" z="-15" yaw="@-45">
+    <!-- top-portal-2 -->
+    <portal x="-15" y="-30" z="-15" yaw="@-45">
         <cuboid min="-30,39,-30" max="-31,36,-31"/>
     </portal>
-    <portal name="bottom-portal-2" x="19" y="30" z="19" yaw="@-45">
+    <!-- bottom-portal-2 -->
+    <portal x="19" y="30" z="19" yaw="@-45">
         <cuboid min="-47,9,-47" max="-48,6,-48"/>
     </portal>
-    <portal name="red-portal-base-left" x="-71" y="-6" z="3" yaw="@90">
+    <!-- red-portal-base-left -->
+    <portal x="-71" y="-6" z="3" yaw="@90">
         <cuboid min="43,24,-51" max="44,27,-53"/>
     </portal>
-    <portal name="mid-portal-right2" x="71" y="6" z="-3" yaw="@-90">
+    <!-- mid-portal-right2 -->
+    <portal x="71" y="6" z="-3" yaw="@-90">
         <cuboid min="-25,21,-48" max="-26,18,-50"/>
     </portal>
-    <portal name="red-portal-base-right" x="-3" y="-6" z="71" yaw="@0">
+    <!-- red-portal-base-right -->
+    <portal x="-3" y="-6" z="71" yaw="@0">
         <cuboid min="54,27,-42" max="52,24,-43"/>
     </portal>
-    <portal name="mid-portal-right1" x="3" y="6" z="-71" yaw="@180">
+    <!-- mid-portal-right1 -->
+    <portal x="3" y="6" z="-71" yaw="@180">
         <cuboid min="51,18,27" max="49,21,26"/>
     </portal>
-    <portal name="blue-portal-base-left" x="71" y="-6" z="-3" yaw="@-90">
+    <!-- blue-portal-base-left -->
+    <portal x="71" y="-6" z="-3" yaw="@-90">
         <cuboid min="-43,24,52" max="-42,27,54"/>
     </portal>
-    <portal name="mid-portal-left1" x="-71" y="6" z="3" yaw="@90">
+    <!-- mid-portal-left1 -->
+    <portal x="-71" y="6" z="3" yaw="@90">
         <cuboid min="26,18,49" max="27,21,51"/>
     </portal>
-    <portal name="blue-portal-base-right" x="3" y="-6" z="-71" yaw="@180">
+    <!-- blue-portal-base-right -->
+    <portal x="3" y="-6" z="-71" yaw="@180">
         <cuboid min="-53,24,43" max="-51,27,44"/>
     </portal>
-    <portal name="mid-portal-left2" x="-3" y="6" z="71" yaw="@0">
+    <!-- mid-portal-left2 -->
+    <portal x="-3" y="6" z="71" yaw="@0">
         <cuboid min="-50,18,-26" max="-48,21,-25"/>
     </portal>
 </portals>

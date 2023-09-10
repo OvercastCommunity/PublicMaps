@@ -1,13 +1,11 @@
 <map proto="1.4.2">
 <name>AFrostid</name>
-<version>2.1.2</version>
+<version>2.1.3</version>
 <phase>development</phase>
 <objective>Capture both of the enemy's wools!</objective>
 <authors>
-    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" />
-    <!-- Matic0B -->
-    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" />
-    <!-- rockymine -->
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" /> <!-- Matic0B -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" /> <!-- rockymine -->
 </authors>
 <contributors>
     <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Christmas-ification"/> <!-- Xerocoles -->
@@ -55,7 +53,7 @@
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>-765.5,9,-377.5</point>
         </region>
     </spawn>
@@ -132,7 +130,7 @@
     <apply block="red-in-wr" use="red-wr-usage" region="blue-wool-rooms"/>
     <apply block-place="no-void" region="void" message="You may not build in the void!"/>
 </regions>
-<wools craftable="false">
+<wools>
     <wool team="blue" color="pink" craftable="false" location="-810.5,9,-225.5">
         <monument>
             <block>-773,9,-370</block>
@@ -197,11 +195,13 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="16" damage="5" material="wood"/>
-    <item amount="8" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="16" damage="5" material="wood"/>
+        <item amount="8" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>22</maxbuildheight>
 <hunger>
     <depletion>off</depletion>

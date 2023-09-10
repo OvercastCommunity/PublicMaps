@@ -1,21 +1,18 @@
-<?xml version="1.0"?>
-<map proto="1.4.0" game="Wool Story Bro">
+<map proto="1.4.2" game="Wool Story Bro">
 <name>Humble Jungle</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Get the most points before time runs out!</objective>
 <gamemode>arcade</gamemode>
-<!-- include src="void-death.xml"/ -->
+<include id="void-death"/>
 <authors>
-    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/>
-        <!--  Timotheeee  -->
-    <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/>
-        <!--  Anthonny  -->
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timotheeee -->
+    <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!-- Anthonny -->
 </authors>
 <contributors>
-    <contributor contribution="Original map concept." uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+    <contributor contribution="Original map concept" uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
 </contributors>
 <players colors="true" max="50"/>
-<spawns unique="true">
+<spawns persistent="true">
     <spawn kit="kit">
         <regions>
             <point yaw="-70">130,4,-166</point>
@@ -23,7 +20,7 @@
     </spawn>
     <spawn kit="kit">
         <regions>
-            <point yaw="0">153,5,-168</point>
+            <point>153,5,-168</point>
         </regions>
     </spawn>
     <spawn kit="kit">
@@ -64,26 +61,24 @@
 </spawns>
 <kits>
     <kit id="kit" force="true">
-        <item slot="0" enchantment="knockback:2">stick</item>
-        <potion duration="oo" amplifier="2">speed</potion>
+        <item slot="0" enchantment="knockback:2" material="stick"/>
+        <effect amplifier="2">speed</effect>
         <health>6</health>
         <boots damage="64" material="leather boots">
             <attribute amount="2">generic.knockbackResistance</attribute>
         </boots>
-        <helmet unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true">leather helmet</helmet>
+        <helmet unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true" material="leather helmet"/>
     </kit>
 </kits>
 <hunger>
     <depletion>off</depletion>
 </hunger>
 <regions>
-    <apply block="never">
-        <everywhere/>
-    </apply>
+    <apply block="never"/>
 </regions>
 <king>
     <hills capture-time="0s" points="1" points-growth="100" permanent="false" show="false" neutral-state="false">
-        <!--Yellow Side-->
+        <!-- Yellow Side -->
         <hill id="yellow-1">
             <capture><cuboid min="135,3,-120" max="138,6,-124"/></capture>
             <captured><cuboid min="135,2,-120" max="138,4,-124"/></captured>
@@ -160,7 +155,7 @@
             <capture><cuboid min="151,3,-121" max="155,6,-125"/></capture>
             <captured><cuboid min="151,3,-121" max="155,6,-125"/></captured>
         </hill>
-        <!--Orange Side-->
+        <!-- Orange Side -->
         <hill id="orange-1">
             <capture><cuboid min="168,2,-120" max="172,6,-124"/></capture>
             <captured><cuboid min="168,2,-120" max="172,6,-124"/></captured>
@@ -217,7 +212,7 @@
             <capture><cuboid min="171,3,-141" max="175,6,-145"/></capture>
             <captured><cuboid min="171,3,-141" max="175,6,-145"/></captured>
         </hill>
-        <!--Pink Side-->
+        <!-- Pink Side -->
         <hill id="pink-1">
             <capture><cuboid min="131,3,-147" max="135,6,-151"/></capture>
             <captured><cuboid min="131,3,-147" max="135,6,-151"/></captured>
@@ -274,7 +269,7 @@
             <capture><cuboid min="145,3,-161" max="149,6,-165"/></capture>
             <captured><cuboid min="145,3,-161" max="149,6,-165"/></captured>
         </hill>
-        <!--Red Side-->
+        <!-- Red Side -->
         <hill id="red-1">
             <capture><cuboid min="168,2,-162" max="172,6,-166"/></capture>
             <captured><cuboid min="168,2,-162" max="172,6,-166"/></captured>

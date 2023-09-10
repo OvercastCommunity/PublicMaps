@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Ranger Outpost</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Be the first team to reach 750 points!</objective>
 <authors>
    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
@@ -89,7 +89,7 @@
    <item>iron sword</item>
 </itemremove>
 <toolrepair>
-   <item>potion</item>
+   <tool>potion</tool>
 </toolrepair>
 <killreward>
    <item damage="16373">potion</item>
