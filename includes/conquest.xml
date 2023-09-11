@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Base conquest kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.09.11-1 -->
+<!-- Version 2023.09.11-2 -->
 <include id="gapple-kill-reward"/>
 <kits>
     <kit id="base-kit">
@@ -39,7 +39,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="6" material="arrow"/>
     </kill-reward>
 </kill-rewards>
