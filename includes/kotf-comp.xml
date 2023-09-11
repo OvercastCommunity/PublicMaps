@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Base competitive KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.07.19-1 -->
+<!-- Version 2023.09.11-1 -->
 <include id="conquest-comp"/>
 <constant id="respawn-timer">2s</constant>
 <constant id="score">200</constant>
@@ -15,7 +15,6 @@
     </kit>
     <kit id="reset-health" force="true">
         <effect duration="0s" amplifier="0">health boost</effect>
-        <effect duration="2s" amplifier="10">regeneration</effect>
     </kit>
 </kits>
 <filters>
