@@ -1,9 +1,18 @@
 <map proto="1.4.2">
 <name>Splinter</name>
-<version>2.0</version>
-<objective>Hold the flag for 180 seconds to win!</objective>
-<gamemode>kotf</gamemode>
-<edition>standard</edition>
+<version>2.0.2</version>
+<variant id="5v5">5v5</variant>
+<unless variant="5v5">
+    <include id="kotf"/>
+    <constant id="respawn-timer">3s</constant>
+    <constant id="score">180</constant>
+</unless>
+<if variant="5v5">
+    <include id="kotf-comp"/>
+    <constant id="respawn-timer">6s</constant>
+</if>
+<constant id="damage-resistance">6s</constant>
+<objective>Hold the flag for ${score} seconds to win!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
@@ -12,34 +21,25 @@
     <contributor uuid="c1d94f18-6ea3-495a-8d1b-7d9eaf393f64"/> <!-- Squid -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="10">Blue</team>
-    <team id="red" color="dark red" max="10">Red</team>
+    <unless variant="5v5">
+        <team id="blue" color="blue" max="10">Blue</team>
+        <team id="red" color="dark red" max="10">Red</team>
+    </unless>
+    <if variant="5v5">
+        <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
+        <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+    </if>
 </teams>
 <kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="1s" amplifier="0">health boost</effect>
-        <effect duration="2s" amplifier="10">regeneration</effect>
-        <effect duration="6s" amplifier="255">resistance</effect>
-    </kit>
-    <kit id="flag-kit" force="true">
-        <effect>slowness</effect>
-        <effect amplifier="-3">health boost</effect>
-        <effect duration="3s" amplifier="2">absorption</effect>
-    </kit>
-    <kit id="reset-health" force="true">
-        <effect duration="0" amplifier="0">slowness</effect>
-        <effect duration="0" amplifier="0">health boost</effect>
+    <kit id="spawn-kit" parent="base-kit">
+        <if variant="default">
+            <action>
+                <replace-item>
+                    <find unbreakable="true" material="iron boots"/>
+                    <replace unbreakable="true" enchantment="feather_falling" material="iron boots"/>
+                </replace-item>
+            </action>
+        </if>
     </kit>
 </kits>
 <spawns>
@@ -59,19 +59,6 @@
         </region>
     </spawn>
 </spawns>
-<filters>
-    <any id="has-flag">
-        <carrying-flag id="flag-carrier">flag</carrying-flag>
-        <not>
-            <same-team>
-                <filter id="flag-carrier"/>
-            </same-team>
-        </not>
-    </any>
-    <deny id="deny-flag-carriers">
-        <filter id="flag-carrier"/>
-    </deny>
-</filters>
 <regions>
     <union id="spawn-edges">
         <cuboid min="80,18,47" max="89,27,56"/>
@@ -79,12 +66,12 @@
         <cuboid min="7,18,47" max="-2,27,56"/>
         <cuboid min="7,18,40" max="-2,27,31"/>
     </union>
-    <apply enter="deny-flag-carriers" region="spawn-edges" message="You may not carry the flag into spawn!"/>
+    <apply enter="deny-flag-carrier" region="spawn-edges" message="You may not carry the flag into spawn!"/>
     <apply block-physics="never" block="never" use="never"/>
 </regions>
 <spawners>
     <spawners>
-        <spawner delay="6s" max-entities="1">
+        <spawner delay="8s" max-entities="1">
             <spawn-region>
                 <point>43.5,12.25,43.5</point>
             </spawn-region>
@@ -104,44 +91,12 @@
           pickup-kit="flag-kit"
           drop-kit="reset-health"
           flag-proximity-metric="none"
-          show-respawn-on-pickup="true">
-        <post return-time="0s" respawn-time="20s">
+          show-respawn-on-pickup="${announce-post-pickup}">
+        <post return-time="0s" respawn-time="${flag-respawn-timer}">
             <post name="Mid Post" respawn-filter="never">43.5,22,43.5</post>
             <post name="North Post" yaw="0">43.5,21,14.5</post>
             <post name="South Post" yaw="180">43.5,21,72.5</post>
         </post>
     </flag>
 </flags>
-<score>
-    <limit>180</limit>
-</score>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-    <item>banner</item>
-</itemremove>
-<itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
-<respawn delay="3s" auto="true" spectate="true">
-    <message>
-        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
-    </message>
-</respawn>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
