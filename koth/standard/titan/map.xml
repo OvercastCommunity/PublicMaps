@@ -5,7 +5,7 @@
 <objective>Control all 5 hills!</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Design, gear system, XML, terraforming, and building"/> <!-- Reshif -->
-    <author uuid="dbe909c6-2b15-4528-b12a-c77ed4031496" contribution="Design and building"/> <!-- teheggy -->
+    <author uuid="c33a03bf-0f73-46e2-a93e-ddb7d25232d1" contribution="Design and building"/> <!-- teheggy -->
 </authors>
 <contributors>
     <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Building help"/> <!-- moo88888888 -->
