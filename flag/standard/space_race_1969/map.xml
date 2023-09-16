@@ -1,0 +1,138 @@
+<map proto="1.4.2">
+<name>Space Race: 1969</name>
+<version>1.1</version>
+<include id="ctf-comp"/>
+<constants>
+    <constant id="team-1">blue</constant>
+    <constant id="team-1-id">blue-team</constant>
+    <constant id="team-1-name">Blue</constant>
+    <constant id="team-1-flag-color">blue</constant>
+    <constant id="team-2">red</constant>
+    <constant id="team-2-id">red-team</constant>
+    <constant id="team-2-name">Red</constant>
+    <constant id="team-2-flag-color">red</constant>
+    <constant id="respawn-timer">5s</constant>
+    <constant id="damage-resistance">0s</constant>
+</constants>
+<objective>Capture the enemy's flag.</objective>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
+</authors>
+<teams>
+    <team id="${team-1-id}" color="blue" max="5" max-overfill="5">${team-1-name}</team>
+    <team id="${team-2-id}" color="dark red" max="5" max-overfill="5">${team-2-name}</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit,base-kit"/>
+</kits>
+<filters>
+    <not id="spawn-1">
+        <time>2m</time>
+    </not>
+    <all id="spawn-2">
+        <time>2m</time>
+        <not>
+            <time>4m</time>
+        </not>
+    </all>
+    <all id="spawn-3">
+        <time>4m</time>
+        <not>
+            <time>6m</time>
+        </not>
+    </all>
+    <all id="spawn-4">
+        <time>6m</time>
+        <not>
+            <time>8m</time>
+        </not>
+    </all>
+    <all id="spawn-5">
+        <time>8m</time>
+        <not>
+            <time id="spawn-6">10m</time>
+        </not>
+    </all>
+</filters>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="0">
+            <point>64.5,18,25.5</point>
+        </region>
+    </default>
+    <spawn team="${team-1-id}" filter="spawn-1" kit="spawn-kit">
+        <region yaw="90">
+            <block>76.5,8,-12.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-1-id}" filter="spawn-2" kit="spawn-kit">
+        <region yaw="90">
+            <block>76.5,56,-12.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-1-id}" filter="spawn-3" kit="spawn-kit">
+        <region yaw="90">
+            <block>76.5,96,-12.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-1-id}" filter="spawn-4" kit="spawn-kit">
+        <region yaw="90">
+            <block>76.5,136,-12.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-1-id}" filter="spawn-5" kit="spawn-kit">
+        <region yaw="90">
+            <block>76.5,176,-12.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-1-id}" filter="spawn-6" kit="spawn-kit">
+        <region yaw="90">
+            <block>76.5,216,-12.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-2-id}" filter="spawn-1" kit="spawn-kit">
+        <region yaw="-90">
+            <block>52.5,8,63.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-2-id}" filter="spawn-2" kit="spawn-kit">
+        <region yaw="-90">
+            <block>52.5,56,63.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-2-id}" filter="spawn-3" kit="spawn-kit">
+        <region yaw="-90">
+            <block>52.5,96,63.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-2-id}" filter="spawn-4" kit="spawn-kit">
+        <region yaw="-90">
+            <block>52.5,136,63.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-2-id}" filter="spawn-5" kit="spawn-kit">
+        <region yaw="-90">
+            <block>52.5,176,63.5</block>
+        </region>
+    </spawn>
+    <spawn team="${team-2-id}" filter="spawn-6" kit="spawn-kit">
+        <region yaw="-90">
+            <block>52.5,216,63.5</block>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <union id="flag-nets">
+        <cylinder id="${team-1}-net" base="56.5,13,-2.5" radius="0.5" height="2"/>
+        <cylinder id="${team-2}-net" base="72.5,13,53.5" radius="0.5" height="2"/>
+    </union>
+    <union id="flag-posts">
+        <block id="${team-1}-post">56.5,13,-2.5</block>
+        <block id="${team-2}-post">72.5,13,53.5</block>
+    </union>
+    <apply block="never" use="never"/>
+</regions>
+</map>
