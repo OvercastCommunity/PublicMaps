@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Cobalt</name>
-<version>2.3.2</version>
+<version>3.0</version>
 <variant id="5v5">5v5</variant>
 <include id="conquest-comp"/>
 <if variant="default">
@@ -22,6 +22,7 @@
 </authors>
 <contributors>
     <contributor uuid="3a64dcf4-5d71-4664-80bf-4e5c54e41b86"/> <!-- Zaquez -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="v3.0 update"/> <!-- Strangey -->
 </contributors>
 <teams> <!-- This is the colorblind blue vs red edit -->
     <team id="blue" color="blue" max="${team-size}" max-overfill="${team-size}">Blue</team>
@@ -52,18 +53,18 @@
 </spawns>
 <regions>
     <union id="capture-west">
-        <cuboid min="265,13,99" max="260,16,92"/>
-        <cuboid min="266,13,98" max="259,16,93"/>
+        <cuboid min="265,12,99" max="260,16,92"/>
+        <cuboid min="266,12,98" max="259,16,93"/>
     </union>
     <cuboid id="captured-west" min="259,34,92" max="266,41,99"/>
     <union id="capture-mid">
-        <cuboid min="286,18,98" max="293,21,93"/>
-        <cuboid min="292,18,92" max="287,21,99"/>
+        <cuboid min="286,18,98" max="293,22,93"/>
+        <cuboid min="292,18,92" max="287,22,99"/>
     </union>
     <cuboid id="captured-mid" min="286,40,92" max="293,47,99"/>
     <union id="capture-east">
-        <cuboid min="320,13,93" max="313,16,98"/>
-        <cuboid min="319,13,92" max="314,16,99"/>
+        <cuboid min="320,12,93" max="313,16,98"/>
+        <cuboid min="319,12,92" max="314,16,99"/>
     </union>
     <cuboid id="captured-east" min="313,34,92" max="320,41,99"/>
     <apply block="never" use="never"/>
@@ -86,7 +87,7 @@
         <player-region>
             <cuboid min="281,7,91" max="299,17,100"/>
         </player-region>
-        <item amount="1" material="golden apple"/>
+        <item material="golden apple"/>
     </spawner>
 </spawners>
 </map>
