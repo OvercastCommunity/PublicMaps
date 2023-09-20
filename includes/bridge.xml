@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.09.04-1 -->
+<!-- Version 2023.09.19-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -112,20 +112,6 @@
         <team>team-two</team>
         <participating/>
     </all>
-    <all id="team-one-about-to-score">
-        <team>team-one</team>
-        <region id="team-two-big-scorebox"/>
-        <variable var="can_score">1</variable>
-        <match-running/>
-        <alive/>
-    </all>
-    <all id="team-two-about-to-score">
-        <team>team-two</team>
-        <region id="team-one-big-scorebox"/>
-        <variable var="can_score">1</variable>
-        <match-running/>
-        <alive/>
-    </all>
     <all id="team-one-scored">
         <team>team-one</team>
         <region id="team-two-portal"/>
@@ -221,10 +207,13 @@
     <variable id="round_status" scope="match" default="2"/>
     <variable id="buytime" scope="match" default="0"/>
     <variable id="overtime" scope="match" default="0"/>
+    <score id="team_score"/>
 </variables>
 <actions>
     <action id="increment-round" scope="player">
         <sound key="mob.wither.death" volume="1" pitch="0.4"/>
+        <set var="team_score" value="team_score+1"/>
+        <message text="`aYou have scored a goal!"/>
         <switch-scope outer="player" inner="match">
             <message text="`5# # # # # # # # # # # #"/>
             <message text="`5# #    `6» `6`lGOAL! `6«`5    # #"/>
@@ -297,8 +286,6 @@
     </apply>
     <apply block-break="deny-participating" region="not-buildable" message="You may not break that block!"/>
     <apply block="some-blocks" message="You may not interact with that block!"/>
-    <translate id="team-one-big-scorebox" offset="0,0.5,0"><region id="team-one-portal"/></translate>
-    <translate id="team-two-big-scorebox" offset="0,0.5,0"><region id="team-two-portal"/></translate>
     <negative id="not-cages">
         <region id="cages"/>
     </negative>
@@ -322,8 +309,6 @@
     <portal y="@-110" sound="false" region="void" observers="always"/>
 </portals>
 <score>
-    <box points="1" region="team-one-portal" filter="team-two-about-to-score"/>
-    <box points="1" region="team-two-portal" filter="team-one-about-to-score"/>
     <limit>${score-limit}</limit>
     <mercy>${mercy-limit}</mercy>
 </score>
