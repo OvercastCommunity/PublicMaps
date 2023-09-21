@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.3">
 <name>Rage Maze</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Eliminate all of the enemy teams before 5 minutes!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -106,10 +106,9 @@
     <damage>fall</damage>
 </disabledamage>
 <killreward>
-    <item amount="1">arrow</item>
-    <item amount="1" name="`6Maze Cookie">cookie</item>
+    <item>arrow</item>
+    <item name="`6Maze Cookie">cookie</item>
 </killreward>
-<multitrade/>
 <!-- include src="blitz-global.xml"/ -->
 <respawn auto="true"/>
 </map>

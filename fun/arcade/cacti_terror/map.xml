@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Cacti Terror</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <gamemode>blitz</gamemode>
 <objective>Be the last man standing!</objective>
 <authors>
@@ -95,10 +94,10 @@
     <item>fishing rod</item>
 </itemkeep>
 <kill-rewards>
-    <reward>
-        <item material="cactus" amount="4"/>
+    <kill-reward>
+        <item amount="4" material="cactus"/>
         <item material="tnt"/>
-    </reward>
+    </kill-reward>
 </kill-rewards>
 <tnt>
     <fuse>2s</fuse>

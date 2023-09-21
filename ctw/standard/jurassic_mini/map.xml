@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Jurassic Mini</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Capture the enemy's two wools!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
@@ -185,7 +185,7 @@
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
-    <item damage="4">wood</item>
+    <item>wood:4</item>
     <item>glass</item>
     <item>golden carrot</item>
     <item>leather chestplate</item>
@@ -206,10 +206,12 @@
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" damage="4" material="wood"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="8" damage="4" material="wood"/>
+    </kill-reward>
+</kill-rewards>
 <crafting>
     <disable>iron trapdoor</disable>
     <disable>minecart</disable>

@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <map proto="1.3.6">
 <name>Bill's Town Blitz</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Eliminate the opposing team.</objective>
 <gamemode>blitz</gamemode>
 <authors>
-    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" />
-    <!--  Yoyo_  -->
-    <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042" />
-    <!--  Diamyx  -->
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" /> <!-- Yoyo_ -->
+    <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042" /> <!-- Diamyx -->
 </authors>
 <teams>
     <team color="dark purple" max="25">Purple</team>
@@ -97,7 +95,6 @@
     <time>5m</time>
     <lives>1</lives>
     <broadcastLives>true</broadcastLives>
-    <title>Blitz</title>
 </blitz>
 <respawn auto="true"/>
 </map>

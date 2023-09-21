@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Hekla</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Hold the flag for 120 seconds to win!</objective>
 <authors>
 	<author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
@@ -43,34 +42,34 @@
 </spawns>
 <kits>
     <kit id="spawn">
-        <item slot="0" unbreakable="true">stone sword</item> 
-        <item slot="1" unbreakable="true">bow</item>
-        <item slot="2" amount="12">arrow</item>
-        <chestplate unbreakable="true">chainmail chestplate</chestplate>
-		<potion duration="4" amplifier="4">heal</potion>
-		<potion duration="4" amplifier="4">damage resistance</potion>		
+        <item slot="0" unbreakable="true" material="stone sword"/> 
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" amount="12" material="arrow"/>
+        <chestplate unbreakable="true" material="chainmail chestplate"/>
+		<effect duration="4" amplifier="4">heal</effect>
+		<effect duration="4" amplifier="4">damage resistance</effect>		
     </kit>
     <kit id="red-spawn" parents="spawn">
-        <helmet color="AF002A" unbreakable="true">leather helmet</helmet>
-        <leggings color="AF002A" unbreakable="true">leather leggings</leggings>
-        <boots color="AF002A" unbreakable="true" enchantment="protection fall:1">leather boots</boots>
+        <helmet color="AF002A" unbreakable="true" material="leather helmet"/>
+        <leggings color="AF002A" unbreakable="true" material="leather leggings"/>
+        <boots color="AF002A" unbreakable="true" enchantment="protection fall:1" material="leather boots"/>
     </kit>
     <kit id="blue-spawn" parents="spawn">
-        <helmet color="6E6EF9" unbreakable="true">leather helmet</helmet>
-        <leggings color="6E6EF9" unbreakable="true">leather leggings</leggings>
-        <boots color="6E6EF9" unbreakable="true" enchantment="protection fall:1">leather boots</boots>
+        <helmet color="6E6EF9" unbreakable="true" material="leather helmet"/>
+        <leggings color="6E6EF9" unbreakable="true" material="leather leggings"/>
+        <boots color="6E6EF9" unbreakable="true" enchantment="protection fall:1" material="leather boots"/>
     </kit>
     <kit id="obs">
-        <effect duration="oo" amplifier="1">night vision</effect>
+        <effect>night vision</effect>
     </kit>
     <kit id="flag-kit" force="true">
-        <potion duration="oo" amplifier="-3">health boost</potion>
-		<potion duration="oo" amplifier="1">slowness</potion>
-        <potion duration="3" amplifier="2">absorption</potion>
+        <effect amplifier="-3">health boost</effect>
+		<effect>slowness</effect>
+        <effect duration="3" amplifier="2">absorption</effect>
     </kit>
     <kit id="reset-health" force="true">
-        <potion duration="1" amplifier="0">health boost</potion>
-        <potion duration="1" amplifier="10">regeneration</potion>
+        <effect duration="1" amplifier="0">health boost</effect>
+        <effect duration="1" amplifier="10">regeneration</effect>
     </kit>
 </kits>
 <itemremove>
@@ -86,8 +85,6 @@
 </itemremove>
 <score>
     <limit>120</limit>
-    <deaths>0</deaths>
-    <kills>0</kills>
 </score>
 <flags>
     <flag id="flag" name="Flag" post="post" points-rate="1" shared="true" pickup-kit="flag-kit" drop-kit="reset-health">
@@ -98,16 +95,16 @@
     </flag>
 </flags>
 <regions>
-    <apply block="never" block-physics="never">
-        <rectangle min="-oo,-oo" max="oo,oo"/>
-    </apply>
+    <apply block="never" block-physics="never"/>
 </regions>
 <timelock>on</timelock>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<killreward>
-    <item>golden apple</item>
-    <item amount="6">arrow</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="6" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 </map>

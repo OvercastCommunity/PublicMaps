@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Babylon</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Get the most kills in 10 minutes!</objective>
 <authors>
     <author uuid="75d87bcf-3921-4871-9330-e83736580a95"/> <!-- Rixiot -->
@@ -22,14 +22,14 @@
     <!-- The only way to ender pearl to a spawn is to shoot one straight up before you warp to the map -->
     <kit id="ender-kit" reset-ender-pearls="true">
         <clear-items/>
-        <item slot="0" amount="1" material="ender pearl"/>
+        <item slot="0" material="ender pearl"/>
     </kit>
     <kit id="spawn-kit" parents="ender-kit">
-        <helmet team-color="true" unbreakable="true" lock="true" material="leather helmet"/>
-        <chestplate team-color="true" unbreakable="true" lock="true" material="leather chestplate">
+        <helmet team-color="true" unbreakable="true" locked="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" locked="true" material="leather chestplate">
             <enchantment level="2">projectile_protection</enchantment>
         </chestplate>
-        <boots team-color="true" unbreakable="true" lock="true" material="leather boots">
+        <boots team-color="true" unbreakable="true" locked="true" material="leather boots">
             <enchantment level="2">feather_falling</enchantment>
         </boots>
         <game-mode>adventure</game-mode>
@@ -42,7 +42,7 @@
         </item>
         <item slot="2" material="golden apple"/>
         <item slot="8" amount="16" material="arrow"/>
-        <leggings unbreakable="true" lock="true" material="iron leggings"/>
+        <leggings unbreakable="true" locked="true" material="iron leggings"/>
         <effect duration="6">damage resistance</effect>
     </kit>
 </kits>
@@ -123,10 +123,12 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item amount="16" material="arrow"/>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <score>
     <kills>1</kills>
 </score>

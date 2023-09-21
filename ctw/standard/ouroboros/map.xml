@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Ouroboros</name>
-<version>6.4.5</version>
+<version>6.4.6</version>
 <objective>Capture the other team's wools to win the game!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -87,7 +87,7 @@
         </region>
     </spawn>
     <spawn team="yellow" kit="yellow-kit">
-        <region yaw="0">
+        <region>
             <point>70.5,4,-8.5</point>
         </region>
     </spawn>
@@ -336,7 +336,7 @@
     </kill-reward>
 </kill-rewards>
 <!-- include src="tutorial.xml"/ -->
-<tutorial>
+<!-- <tutorial>
     <stage title="Capture the Wool">
         <message>
             <line>`rThis map is a `a`lCapture the Wool (CTW) `rmap.</line>
@@ -370,5 +370,5 @@
             <point yaw="90">-8.5,4,-69.5</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

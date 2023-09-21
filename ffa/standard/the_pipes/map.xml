@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>The Pipes</name>
-<version>3.0.7</version>
+<version>3.0.8</version>
 <objective>Get the most kills in 10 minutes!</objective>
+<gamemode>ffa</gamemode>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11" /> <!-- JTr -->
 </authors>
@@ -14,7 +15,6 @@
 <broadcasts>
     <alert after="2s">Fall damage is disabled on this map! You can also double jump!</alert>
 </broadcasts>
-<gamemode>ffa</gamemode>
 <time>10m</time>
 <score>
     <kills>1</kills>
@@ -73,7 +73,7 @@
         <cuboid min="-290.5,6,-303.5" max="-298,11,-295"/> Spawn Area
     </union>
     <cuboid id="spawn-hole" min="-297,0,-302" max="-290,30,-295"/> -->
-    <apply velocity="0.0,8,0.0" force="true">
+    <apply velocity="0.0,8,0.0">
         <region>
             <block>-291,6,-302</block>
             <block>-291,6,-296</block>
@@ -81,7 +81,7 @@
             <block>-297,6,-302</block>
         </region>
     </apply>
-    <apply velocity="0.0,10,0.0" force="true">
+    <apply velocity="0.0,10,0.0">
         <region>
             <block>-272,6,-284</block>
             <block>-195,3,-279</block>
@@ -136,9 +136,11 @@
         </drops>
     </rule>
 </block-drops>
-<kill-reward>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <disabledamage>
     <damage>fall</damage>
     <damage>suffocation</damage>

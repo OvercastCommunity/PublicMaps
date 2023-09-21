@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Ozone EndeRAGE</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Be the team with the least amount of deaths after 7 minutes. One hit kills!</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Overall Map Design and XML code"/> <!-- Plastix -->
@@ -89,13 +89,9 @@
 <score>
     <time>7m</time>
 </score>
-<toolrepair>
-    <tool>iron sword</tool>
-    <tool>bow</tool>
-</toolrepair>
 <itemremove>
-    <tool>iron sword</tool>
-    <tool>bow</tool>
+    <item>iron sword</item>
+    <item>bow</item>
     <item>arrow</item>
     <item>cooked fish</item>
     <item>leather helmet</item>

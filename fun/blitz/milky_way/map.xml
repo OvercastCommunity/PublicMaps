@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
 <map proto="1.3.6">
 <name>Milky Way</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Kill the other team's players!</objective>
 <gamemode>rage</gamemode>
 <authors>
     <author uuid="eff8ed8e-4eae-4fe3-9bed-0485bc45d64e"/>
 </authors>
-<rage/>
 <respawn auto="true"/>
 <blitz>
     <time>5m</time>

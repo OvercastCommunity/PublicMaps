@@ -1,7 +1,7 @@
 <map proto="1.3.2">
 <!-- include src="tutorial.xml"/ -->
 <name>Argon</name>
-<version>1.2.8</version>
+<version>1.2.9</version>
 <objective>Capture the wools from the enemy wool rooms and return them to your spawn</objective>
 <authors>
     <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->
@@ -26,15 +26,15 @@
         <allow>
             <block>web</block>
             <block>glass</block>
-            <block damage="2">log</block>
-            <block damage="6">log</block>
-            <block damage="10">log</block>
-            <block damage="2">wood</block>
+            <block>log:2</block>
+            <block>log:6</block>
+            <block>log:10</block>
+            <block>wood:2</block>
             <block>piston base</block>
             <block>redstone wire</block>
-            <block damage="9">wool</block>
+            <block>wool:9</block>
             <block>smooth brick</block>
-            <block damage="10">wool</block>
+            <block>wool:10</block>
             <block>stationary water</block>
             <block>water</block>
         </allow>
@@ -135,6 +135,7 @@
 <maxbuildheight>35</maxbuildheight>
 <killreward>
     <item amount="16">arrow</item>
+    <item>golden apple</item>
 </killreward>
 <toolrepair>
     <tool>iron sword</tool>
@@ -145,7 +146,7 @@
 <itemremove>
     <item>golden apple</item>
     <item>step</item>
-    <item damage="3">sapling</item>
+    <item>sapling:3</item>
     <item>string</item>
     <item>trap door</item>
     <item>coal block</item>
@@ -212,7 +213,4 @@
         </teleport>
     </stage>
 </tutorial> -->
-<killreward>
-    <item>golden apple</item>
-</killreward>
 </map>

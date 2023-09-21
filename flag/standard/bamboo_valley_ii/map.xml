@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Bamboo Valley II</name>
-<version>2.0.2</version>
+<version>2.0.3</version>
 <objective>Destroy the other team's obsidian monument!</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -87,16 +87,10 @@
     <apply block="no-void" region="void" message="You may not build outside of the map!"/>
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
-    <flag id="blue-flag"
-          name="Blue Flag"
-          owner="red"
-          color="blue">
+    <flag id="blue-flag" name="Blue Flag" owner="red" color="blue">
         <post pickup-filter="only-blue" recover-time="45s">96.5,42,0.5</post>
     </flag>
-    <flag id="red-flag"
-          name="Red Flag"
-          owner="blue"
-          color="red">
+    <flag id="red-flag" name="Red Flag" owner="blue" color="red">
         <post pickup-filter="only-red" recover-time="45s">-71.5,42,0.5</post>
     </flag>
     <flags points="1">
@@ -120,23 +114,23 @@
     <item>leather chestplate</item>
     <item>leather leggings</item>
     <item>leather boots</item>
-    <item damage="3">sapling</item>
+    <item>sapling:3</item>
     <item>sugar cane</item>
     <item>cocoa</item>
     <item>clay ball</item>
     <item>seeds</item>
     <item>cobble wall</item>
-    <item damage="1">cobble wall</item>
+    <item>cobble wall:1</item>
     <item>anvil</item>
     <item>torch</item>
     <item>sand</item>
     <item>smooth brick</item>
-    <item damage="1">smooth brick</item>
-    <item damage="2">smooth brick</item>
+    <item>smooth brick:1</item>
+    <item>smooth brick:2</item>
     <item>smooth stairs</item>
     <item>wood stairs</item>
-    <item damage="11">stained clay</item>
-    <item damage="14">stained clay</item>
+    <item>stained clay:11</item>
+    <item>stained clay:14</item>
 </itemremove>
 <blockdrops>
     <rule>
@@ -160,11 +154,13 @@
     <item>water bucket</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="3" material="wood"/>
-    <item amount="16" damage="3" material="leaves"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="3" material="wood"/>
+        <item amount="16" damage="3" material="leaves"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>49</maxbuildheight>
 <hunger>
     <depletion>off</depletion>

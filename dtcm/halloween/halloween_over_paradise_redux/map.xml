@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Halloween Over Paradise Redux</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <phase>development</phase>
 <objective>Destroy both of the enemy team's monuments!</objective>
 <authors>
@@ -140,7 +140,7 @@
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
     <tool>iron axe</tool>
-    <item>arrow</item>
+    <tool>arrow</tool>
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
@@ -206,7 +206,7 @@
     </kill-reward>
     <kill-reward filter="only-purple">
         <item amount="16" damage="2" material="stained clay"/>
-        <ite amount="4" damage="2" material="stained glass"/>
+        <item amount="4" damage="2" material="stained glass"/>
     </kill-reward>
 </kill-rewards>
 <tnt>

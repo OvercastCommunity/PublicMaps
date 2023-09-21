@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Hadron</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Take both of the enemy team's wools back to your base before the other team can do the same!</objective>
 <authors>
-    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contibution="Overall map design and aesthetics"/> <!-- Stealth5061 -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Overall map design and aesthetics"/> <!-- Stealth5061 -->
 </authors>
 <contributors>
-    <contibutor contribution="Minor aesthetics help">SH4D0W_HAWK</contibutor>
+    <contributor uuid="1379cb6e-f291-4498-9807-e636f9674ac0" contribution="Minor aesthetics help"/> <!-- SH4D0W_HAWK -->
 </contributors>
 <teams>
     <team color="dark red" max="35">Red</team>

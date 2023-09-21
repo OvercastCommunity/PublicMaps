@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Tree of Life</name>
-<version>3.0.7</version>
+<version>3.0.8</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
@@ -122,10 +122,10 @@
     <!--  Main area  -->
 </playable>
 <cores material="obsidian" leak="8">
-    <core team="blue" leak="-2">
+    <core team="blue">
         <cuboid min="-194,90,-1011" max="-191,80,-1006"/>
     </core>
-    <core team="red" leak="-2">
+    <core team="red">
         <cuboid min="-362,90,-1006" max="-365,80,-1011"/>
     </core>
 </cores>

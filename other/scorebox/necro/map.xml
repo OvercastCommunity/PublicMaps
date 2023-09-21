@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Necro</name>
-<version>2.0.4</version>
+<version>2.0.5</version>
 <objective>Earn your team points by killing opponents, or scoring into scoreboxes in 25 minutes! Reach a score of 350 to end the game!</objective>
 <gamemode>scorebox</gamemode>
 <authors>
@@ -71,11 +71,6 @@
 <regions>
     <cylinder id="orange-spawn-room" base="112,21,145" radius="3" height="0"/>
     <circle id="orange-base" center="112,145" radius="13"/>
-    <cuboid id="orange-teleport-1" min="112,24,80" max="113,27,81"/>
-    <cuboid id="orange-teleport-2" min="144,24,43" max="145,27,44"/>
-    <cuboid id="orange-teleport-3" min="80,24,43" max="81,27,44"/>
-    <cuboid id="orange-teleport-4" min="185,23,50" max="186,27,51"/>
-    <cuboid id="orange-teleport-5" min="39,23,50" max="40,27,51"/>
     <cuboid id="orange-tower-1" min="107,15,75" max="117,29,85"/>
     <cuboid id="orange-tower-2" min="149,15,48" max="139,29,38"/>
     <cuboid id="orange-tower-3" min="85,15,38" max="75,29,48"/>
@@ -83,26 +78,19 @@
     <cuboid id="orange-tower-5" min="34,14,45" max="45,29,56"/>
     <cuboid id="orange-boss-entry" min="202,15,50" max="205,20,47"/>
     <cuboid id="orange-pit-escape" min="114,7,65" max="111,11,66"/>
-    <cuboid id="orange-score-zone-1" min="66,20,-137" max="69,18,-133"/>
-    <cuboid id="orange-score-zone-2" min="158,20,-133" max="156,18,-138"/>
     <union id="orange-portals">
-        <region id="orange-teleport-1"/>
-        <region id="orange-teleport-2"/>
-        <region id="orange-teleport-3"/>
-        <region id="orange-teleport-4"/>
-        <region id="orange-teleport-5"/>
+        <cuboid id="orange-teleport-1" min="112,24,80" max="113,27,81"/>
+        <cuboid id="orange-teleport-2" min="144,24,43" max="145,27,44"/>
+        <cuboid id="orange-teleport-3" min="80,24,43" max="81,27,44"/>
+        <cuboid id="orange-teleport-4" min="185,23,50" max="186,27,51"/>
+        <cuboid id="orange-teleport-5" min="39,23,50" max="40,27,51"/>
     </union>
     <union id="orange-score-zone">
-        <region id="orange-score-zone-1"/>
-        <region id="orange-score-zone-2"/>
+        <cuboid id="orange-score-zone-1" min="66,20,-137" max="69,18,-133"/>
+        <cuboid id="orange-score-zone-2" min="158,20,-133" max="156,18,-138"/>
     </union>
     <cylinder id="purple-spawn-room" base="112,21,-145" radius="3" height="0"/>
     <circle id="purple-base" center="112,-145" radius="13"/>
-    <cuboid id="purple-teleport-1" min="112,24,-80" max="113,27,-79"/>
-    <cuboid id="purple-teleport-2" min="144,24,-43" max="145,27,-42"/>
-    <cuboid id="purple-teleport-3" min="80,24,-43" max="81,27,-42"/>
-    <cuboid id="purple-teleport-4" min="39,23,-50" max="40,27,-49"/>
-    <cuboid id="purple-teleport-5" min="185,23,-50" max="186,27,-49"/>
     <cuboid id="purple-tower-1" min="117,15,-85" max="107,29,-75"/>
     <cuboid id="purple-tower-2" min="149,15,-48" max="139,29,-38"/>
     <cuboid id="purple-tower-3" min="85,15,-48" max="75,29,-38"/>
@@ -110,18 +98,16 @@
     <cuboid id="purple-tower-5" min="180,29,-44" max="191,14,-55"/>
     <cuboid id="purple-boss-entry" min="20,20,-47" max="23,15,-50"/>
     <cuboid id="purple-pit-escape" min="111,7,-65" max="114,11,-64"/>
-    <cuboid id="purple-score-zone-1" min="66,20,133" max="69,18,138"/>
-    <cuboid id="purple-score-zone-2" min="158,20,133" max="156,18,138"/>
     <union id="purple-portals">
-        <region id="purple-teleport-1"/>
-        <region id="purple-teleport-2"/>
-        <region id="purple-teleport-3"/>
-        <region id="purple-teleport-4"/>
-        <region id="purple-teleport-5"/>
+        <cuboid id="purple-teleport-1" min="112,24,-80" max="113,27,-79"/>
+        <cuboid id="purple-teleport-2" min="144,24,-43" max="145,27,-42"/>
+        <cuboid id="purple-teleport-3" min="80,24,-43" max="81,27,-42"/>
+        <cuboid id="purple-teleport-4" min="39,23,-50" max="40,27,-49"/>
+        <cuboid id="purple-teleport-5" min="185,23,-50" max="186,27,-49"/>
     </union>
     <union id="purple-score-zone">
-        <region id="purple-score-zone-1"/>
-        <region id="purple-score-zone-2"/>
+        <cuboid id="purple-score-zone-1" min="66,20,133" max="69,18,138"/>
+        <cuboid id="purple-score-zone-2" min="158,20,133" max="156,18,138"/>
     </union>
     <apply kit="heal">
         <region>
@@ -256,9 +242,11 @@
     <tool>iron axe</tool>
     <tool>bow</tool>
 </toolrepair>
-<kill-reward>
-    <item amount="2">emerald</item>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="2" material="emerald"/>
+    </kill-reward>
+</kill-rewards>
 <tnt>
     <instantignite>on</instantignite>
     <licensing>off</licensing>
@@ -270,5 +258,5 @@
     <box points="10" filter="only-purple" region="purple-score-zone"/>
     <limit>350</limit>
 </score>
-<time results="score">25m</time>
+<time result="score">25m</time>
 </map>

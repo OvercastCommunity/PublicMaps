@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Spaceship Battles II</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Leak lava from the enemy's obsidian core and destroy the enemy's Comm Tower made of coal ore.</objective>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
@@ -99,8 +99,8 @@
 </destroyables>
 <maxbuildheight>61</maxbuildheight>
 <crafting>
-    <disable override-all="true">boat</disable>
-    <disable override-all="true">minecart</disable>
+    <disable>boat</disable>
+    <disable>minecart</disable>
 </crafting>
 <toolrepair>
     <tool>diamond sword</tool>
@@ -159,9 +159,11 @@
     <item>golden apple</item>
     <item>water bucket</item>
 </itemkeep>
-<kill-reward>
-    <item amount="32" material="wood"/>
-    <item amount="16" material="cobblestone"/>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" material="wood"/>
+        <item amount="16" material="cobblestone"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 </map>

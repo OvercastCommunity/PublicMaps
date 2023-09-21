@@ -1,7 +1,7 @@
-<map proto="1.4.0" game="Kill the King">
+<map proto="1.4.2" game="Kill the King">
 <name>King's Conquest: Proelium</name>
 <phase>development</phase>
-<version>1.0.0</version>
+<version>1.0.1</version>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
 </authors>
@@ -105,7 +105,7 @@
             <item slot="28" material="arrow"/>
             <helmet unbreakable="true" material="chainmail helmet"/>
             <chestplate unbreakable="true" material="leather chestplate">
-                <enhantment level="2">protection projectile</enhantment>
+                <enchantment level="2">protection projectile</enchantment>
             </chestplate>
             <boots unbreakable="true" material="chainmail boots"/>
         </kit>
@@ -165,7 +165,7 @@
 <respawn delay="4s" blackout="true"/>
 <kits>
     <kit id="spawn">
-        <potion duration="3" amplifier="1">heal</potion>
+        <potion duration="3">heal</potion>
         <potion duration="5" amplifier="2">damage resistance</potion>
     </kit>
     <kit id="obs">
@@ -178,17 +178,17 @@
         <item slot="2" unbreakable="true" material="gold pickaxe"/>
         <item slot="3" material="potion" name="`rKing's Berserking Potion">
             <effect duration="6" amplifier="2">strength</effect>
-            <effect duration="6" amplifier="1">speed</effect>
+            <effect duration="6">speed</effect>
             <effect duration="3" amplifier="4">regeneration</effect>
         </item>
         <item slot="4" material="potion" name="`rKing's Berserking Potion">
             <effect duration="6" amplifier="2">strength</effect>
-            <effect duration="6" amplifier="1">speed</effect>
+            <effect duration="6">speed</effect>
             <effect duration="3" amplifier="4">regeneration</effect>
         </item>
         <item slot="5" material="potion" name="`rKing's Berserking Potion">
             <effect duration="6" amplifier="2">strength</effect>
-            <effect duration="6" amplifier="1">speed</effect>
+            <effect duration="6">speed</effect>
             <effect duration="3" amplifier="4">regeneration</effect>
         </item>
         <item slot="6" amount="16" material="arrow"/>

@@ -122,10 +122,12 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="6" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="6" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <respawn delay="3.5s" spectate="true" auto="true">
     <message>
         {"translate":"death.respawn.confirmed.waiting.flagDropped"}
@@ -134,7 +136,7 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<maptags>
+<!-- <maptags>
     <maptag>#mmc4</maptag>
-</maptags>
+</maptags> -->
 </map>

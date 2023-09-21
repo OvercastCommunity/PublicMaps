@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Thornwood</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Capture the enemy's two wools!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
@@ -103,7 +103,7 @@
     <apply block-place="no-void" message="You may not edit the void here!"/>
 </regions>
 <renewables>
-    <renewable grow="false" particles="true" sound="true" region="iron-regen" renew-filters="only-iron"/>
+    <renewable grow="false" particles="true" sound="true" region="iron-regen" renew-filter="only-iron"/>
 </renewables>
 <wools>
     <wool team="blue" color="cyan" craftable="false" location="-557.5,15,133.5">

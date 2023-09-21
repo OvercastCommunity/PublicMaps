@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Halloween Train</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <phase>development</phase>
 <objective>Break both of the enemy team's obsidian monuments.</objective>
 <authors>
@@ -14,7 +14,7 @@
     <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Fix up the XML"/> <!-- IM_A_H0B0 -->
 </contributors>
 <!-- include src="tutorial.xml"/ -->
-<tutorial>
+<!-- <tutorial>
     <stage title="Destroy the Monument">
         <message>
             <line>`rThis map is a `a`lDestroy the Monument `r(DTM) map.</line>
@@ -60,7 +60,7 @@
             <point yaw="0" pitch="20">-5,25,108</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 <teams>
     <team color="green" max="40">Green</team>
     <team color="dark purple" max="40">Purple</team>
@@ -132,7 +132,7 @@
         <rectangle min="63,-43" max="48,-67"/>
     </apply>
     <!-- Team grief protection -->
-    <apply name="team-chests" block-break="deny-chest" message="You can't break team supply chests!">
+    <apply block-break="deny-chest" message="You can't break team supply chests!">
         <!-- Green Team -->
         <!-- Dispenser room -->
         <cuboid min="110,18,-62" max="111,21,-54"/>

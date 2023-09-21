@@ -1,7 +1,7 @@
-<map proto="1.4.0" game="Wool Run">
+<map proto="1.4.2" game="Wool Run">
 <name>Crazy's Wool Run</name>
 <phase>development</phase>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Be the last man standing</objective>
 <gamemode>arcade</gamemode>
 <created>2019-08-09</created>
@@ -13,7 +13,7 @@
     <rule>So is fall damage</rule>
     <rule>Map functions similar to Hypixel's TNT Run</rule>
 </rules>
-<players id="ffa" min="2" max="50" colors="true"/>
+<players min="2" max="50" colors="true"/>
 <kits>
     <kit id="spawn">
         <game-mode>adventure</game-mode>

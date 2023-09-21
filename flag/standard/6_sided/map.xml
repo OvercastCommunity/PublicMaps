@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>6 Sided</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <edition>standard</edition>
 <phase>development</phase>
 <gamemode>kotf</gamemode>
@@ -86,9 +86,9 @@
         <progress>
             <cuboid min="1236,26,-941" max="1227,30,-934"/>
         </progress>
-        <owner>
+        <captured>
             <cuboid min="1236,26,-941" max="1227,30,-934"/>
-        </owner>
+        </captured>
     </control-point>
 </control-points>
 <portals>
@@ -104,15 +104,7 @@
     </portal>
 </portals>
 <flags>
-    <flag id="flag"
-          name="Flag"
-          color="white"
-          shared="true"
-          points-rate="1"
-          pickup-kit="flag-kit"
-          drop-kit="reset-health"
-          flag-proximity-metric="none"
-          show-respawn-on-pickup="true">
+    <flag id="flag" name="Flag" color="white" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" flag-proximity-metric="none" show-respawn-on-pickup="true">
         <post return-time="0s" respawn-time="20s">
             <post name="Centre Post">1231.5,25,-883.5</post>
             <post name="South Post">1231.5,27,-828.5</post>
@@ -137,10 +129,12 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="10" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="10" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <respawn auto="true" spectate="true">
     <message>
         {"translate":"death.respawn.confirmed.waiting.flagDropped"}

@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Justice</name>
-<version>0.9.2</version>
+<version>0.9.3</version>
 <time overtime="2m" max-overtime="6m" result="score">12m</time>
 <objective>Capture the enemy's flag as many times as possible in 12 minutes!</objective>
 <authors>
@@ -122,7 +122,7 @@
         <filter>
             <kill-streak count="3"/>
         </filter>
-        <material>web</material>
+        <item material="web"/>
     </kill-reward>
 </kill-rewards>
 <item-mods>

@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Lunar Crescent</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Destroy the enemy monuments and capture their wool!</objective>
 <authors>
     <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- samthecat43 -->
@@ -30,51 +30,51 @@
         <effect>night vision</effect>
     </kit>
     <kit id="spawn-kit" parents="default-kit">
-        <item slot="0">diamond pickaxe</item>
-        <item slot="1">bow</item>
-        <item slot="2" amount="64">vine</item>
-        <item slot="4" amount="64">nether fence</item>
-        <item slot="5" amount="16">stone button</item>
-        <item slot="6">water bucket</item>
-        <item slot="7" amount="16">redstone block</item>
-        <item slot="8" amount="64">tnt</item>
-        <item slot="9">workbench</item>
-        <item slot="10">shears</item>
-        <item slot="13" amount="16">trap door</item>
-        <item slot="15">water bucket</item>
-        <item slot="16" amount="16">diode</item>
-        <item slot="17" amount="64">tnt</item>
-        <item slot="22" amount="16">ladder</item>
-        <item slot="23" amount="16">lever</item>
-        <item slot="24">water bucket</item>
-        <item slot="25" amount="16">redstone torch on</item>
-        <item slot="26" amount="64">tnt</item>
-        <item slot="28" amount="16">arrow</item>s
-        <item slot="29" amount="64">vine</item>
-        <item slot="31" amount="64" damage="6">step</item>
-        <item slot="32" amount="16">stone plate</item>
-        <item slot="33">water bucket</item>
-        <item slot="34" amount="64">redstone</item>
-        <item slot="35" amount="64">tnt</item>
-        <chestplate unbreakable="true" enchantment="protection explosions:1" locked="true">diamond chestplate</chestplate>
+        <item slot="0" material="diamond pickaxe"/>
+        <item slot="1" material="bow"/>
+        <item slot="2" amount="64" material="vine"/>
+        <item slot="4" amount="64" material="nether fence"/>
+        <item slot="5" amount="16" material="stone button"/>
+        <item slot="6" material="water bucket"/>
+        <item slot="7" amount="16" material="redstone block"/>
+        <item slot="8" amount="64" material="tnt"/>
+        <item slot="9" material="workbench"/>
+        <item slot="10" material="shears"/>
+        <item slot="13" amount="16" material="trap door"/>
+        <item slot="15" material="water bucket"/>
+        <item slot="16" amount="16" material="diode"/>
+        <item slot="17" amount="64" material="tnt"/>
+        <item slot="22" amount="16" material="ladder"/>
+        <item slot="23" amount="16" material="lever"/>
+        <item slot="24" material="water bucket"/>
+        <item slot="25" amount="16" material="redstone torch on"/>
+        <item slot="26" amount="64" material="tnt"/>
+        <item slot="28" amount="16" material="arrow"/>
+        <item slot="29" amount="64" material="vine"/>
+        <item slot="31" amount="64" damage="6" material="step"/>
+        <item slot="32" amount="16" material="stone plate"/>
+        <item slot="33" material="water bucket"/>
+        <item slot="34" amount="64" material="redstone"/>
+        <item slot="35" amount="64" material="tnt"/>
+        <chestplate unbreakable="true" enchantment="protection explosions" locked="true" material="diamond chestplate"/>
     </kit>
     <kit id="magenta-kit" parents="spawn-kit">
-        <item slot="3" amount="64" damage="2">stained clay</item>
-        <item slot="30" amount="64" damage="2">stained clay</item>
-        <item slot="21" amount="64" damage="2">stained clay</item>
-        <item slot="12" amount="64" damage="2">stained clay</item>
-        <helmet color="B24CD8" unbreakable="true" locked="true">leather helmet</helmet>
-        <leggings color="B24CD8" unbreakable="true">leather leggings</leggings>
-        <boots color="B24CD8" unbreakable="true" locked="true">leather boots</boots>
+        <item slot="3" amount="64" damage="2" material="stained clay"/>
+        <item slot="30" amount="64" damage="2" material="stained clay"/>
+        <item slot="21" amount="64" damage="2" material="stained clay"/>
+        <item slot="12" amount="64" damage="2" material="stained clay"/>
+        <helmet color="B24CD8" unbreakable="true" locked="true" material="leather helmet"/>
+        <leggings color="B24CD8" unbreakable="true" material="leather leggings"/>
+        <boots color="B24CD8" unbreakable="true" locked="true" material="leather boots"/>
     </kit>
     <kit id="orange-kit" parents="spawn-kit">
-        <item slot="3" amount="64" damage="1">stained clay</item>
-        <item slot="30" amount="64" damage="1">stained clay</item>
-        <item slot="21" amount="64" damage="1">stained clay</item>
-        <item slot="12" amount="64" damage="1">stained clay</item>
-        <helmet color="D87F33" unbreakable="true" locked="true">leather helmet</helmet>
-        <leggings color="D87F33" unbreakable="true">leather leggings</leggings>
-        <boots color="D87F33" unbreakable="true" locked="true">leather boots</boots>
+        <item slot="3" amount="64" damage="1" material="stained clay"/>
+        <item slot="30" amount="64" damage="1" material="stained clay"/>
+        <item slot="21" amount="64" damage="1" material="stained clay"/>
+        <item slot="12" amount="64" damage="1" material="stained clay"/>
+        <helmet color="D87F33" unbreakable="true" locked="true" material="leather helmet"/>
+        <leggings color="D87F33" unbreakable="true" material="leather leggings"/>
+        <boots color="D87F33" unbreakable="true" locked="true" material="leather boots"/>
     </kit>
     <kit id="fall-kit">
         <effect duration="4" amplifier="255">damage resistance</effect>
@@ -192,7 +192,6 @@
     <cuboid id="orange-right-spawn-bottom" min="-49,21,-35" max="-47,23,-34"/>
     <cuboid id="orange-right-far-top" min="-29,29,-44" max="-27,31,-42"/>
     <cuboid id="orange-right-far-bottom" min="-29,21,-44" max="-27,23,-42"/>
-
     <!-- Applying Filters -->
     <apply block="only-magenta-wool-break" region="orange-wool-room"/>
     <apply block="only-orange-wool-break" region="magenta-wool-room"/>
@@ -325,12 +324,14 @@
         </replace-filter>
     </renewable>
 </renewables>
-<kill-reward>
-    <item>dispenser</item>
-    <kit>
-        <effect duration="5s" amplifier="2">regeneration</effect>
-    </kit>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="dispenser"/>
+        <kit>
+            <effect duration="5s" amplifier="2">regeneration</effect>
+        </kit>
+    </kill-reward>
+</kill-rewards>
 <itemremove>
     <item>diamond pickaxe</item>
     <item>workbench</item>
@@ -376,7 +377,7 @@
             <material>coal block</material>
         </filter>
         <drops>
-            <item amount="2" grenade="true" grenade-power="2" grenade-destroy="false" id="`e`lGrenade">snow ball</item>
+            <item amount="2" grenade="true" grenade-power="2" grenade-destroy="false" name="`e`lGrenade" material="snow ball"/>
         </drops>
         <wrongtool>false</wrongtool>
     </rule>
@@ -385,7 +386,7 @@
             <material>gold block</material>
         </filter>
         <drops>
-            <item amount="3">golden apple</item>
+            <item amount="3" material="golden apple"/>
         </drops>
         <wrongtool>false</wrongtool>
     </rule>
@@ -394,7 +395,7 @@
             <material>diamond block</material>
         </filter>
         <drops>
-            <item damage="470" enchantment="protection_explosions:2">diamond leggings</item>
+            <item damage="470" enchantment="protection_explosions:2" material="diamond leggings"/>
             <item damage="8193" material="potion">
                 <potion duration="15">regeneration</potion>
             </item>

@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Artholis</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Capture the opposing team's flags!</objective>
 <authors>
 	<author contribution="Original map" uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
@@ -9,7 +8,7 @@
 </authors>
 <teams>
 	<team id="blue-team" color="blue" max="32" max-overfill="35">Blue</team>
-	<team id="red-team" color="red" max="32" max-ovefill="35">Red</team>
+	<team id="red-team" color="red" max="32" max-overfill="35">Red</team>
 </teams>
 <spawns>
     <spawn team="red-team" kit="red-kit">
@@ -30,56 +29,60 @@
 </spawns>
 <kits>
 	<kit id="spawn" force="true">
-		<item slot="0" unbreakable="true">stone sword</item>
-		<item slot="1" unbreakable="true">bow</item>
-		<item slot="2" unbreakable="true" enchantment="dig speed:2">iron pickaxe</item>
-		<item slot="3" amount="8">sandstone</item>
-		<item slot="4" amount="4" damage="2">log</item>
-		<item slot="7" amount="2">golden apple</item>
-		<item slot="8" amount="64">cooked chicken</item>
-		<item slot="28" amount="32">arrow</item>
-		<potion duration="7" amplifier="8">heal</potion>
-        <potion duration="10" amplifier="2">speed</potion>
-        <potion duration="0.5" amplifier="1">night vision</potion>
-		<chestplate unbreakable="true" enchantment="depth strider:1">gold chestplate</chestplate>
+		<item slot="0" unbreakable="true" material="stone sword"/>
+		<item slot="1" unbreakable="true" material="bow"/>
+		<item slot="2" unbreakable="true" enchantment="dig speed:2" material="iron pickaxe"/>
+		<item slot="3" amount="8" material="sandstone"/>
+		<item slot="4" amount="4" damage="2" material="log"/>
+		<item slot="7" amount="2" material="golden apple"/>
+		<item slot="8" amount="64" material="cooked chicken"/>
+		<item slot="28" amount="32" material="arrow"/>
+		<effect duration="7" amplifier="8">heal</effect>
+        <effect duration="10" amplifier="2">speed</effect>
+        <effect duration="0.5">night vision</effect>
+		<chestplate unbreakable="true" enchantment="depth strider" material="gold chestplate"/>
 	</kit>
 	<kit id="red-kit" parents="spawn">
-		<helmet unbreakable="true" color="993333">leather helmet</helmet>
-		<leggings unbreakable="true" color="993333">leather leggings</leggings>
-		<boots unbreakable="true" color="993333">leather boots</boots>
+		<helmet unbreakable="true" color="993333" material="leather helmet"/>
+		<leggings unbreakable="true" color="993333" material="leather leggings"/>
+		<boots unbreakable="true" color="993333" material="leather boots"/>
 	</kit>
 	<kit id="blue-kit" parents="spawn">
-		<helmet unbreakable="true" color="334CB2">leather helmet</helmet>
-		<leggings unbreakable="true" color="334CB2">leather leggings</leggings>
-		<boots unbreakable="true" color="334CB2">leather boots</boots>
+		<helmet unbreakable="true" color="334CB2" material="leather helmet"/>
+		<leggings unbreakable="true" color="334CB2" material="leather leggings"/>
+		<boots unbreakable="true" color="334CB2" material="leather boots"/>
 	</kit>
 	<kit id="flag" force="true">
-        <potion duration="oo" amplifier="-3">health boost</potion>
-        <potion duration="oo" amplifier="1">slow</potion>
-        <potion duration="3" amplifier="10">regeneration</potion>
-        <chestplate unbreakable="true" enchantment="depth strider:-5">diamond chestplate</chestplate>
+        <effect duration="oo" amplifier="-3">health boost</effect>
+        <effect>slow</effect>
+        <effect duration="3" amplifier="10">regeneration</effect>
+        <chestplate unbreakable="true" enchantment="depth strider:-5" material="diamond chestplate"/>
     </kit>
     <kit id="renew" force="true">
-        <potion duration="1" amplifier="10">health boost</potion>
-        <potion duration="1" amplifier="0">slow</potion>
-        <potion duration="5" amplifier="2">regeneration</potion>
-        <chestplate unbreakable="true" enchantment="depth strider:3">iron chestplate</chestplate>
+        <effect duration="1" amplifier="10">health boost</effect>
+        <effect duration="1" amplifier="0">slow</effect>
+        <effect duration="5" amplifier="2">regeneration</effect>
+        <chestplate unbreakable="true" enchantment="depth strider:3" material="iron chestplate"/>
     </kit>
 </kits>
 <respawn delay="0.1s" blackout="false" spectate="false"/>
-<killreward>
-	<item amount="16">arrow</item>
-	<item amount="3" damage="2">log</item>
-	<item amount="2">golden apple</item>
-	<potion duration="3" amplifier="1">speed</potion>
-    <potion duration="0.5" amplifier="1">night vision</potion>
-</killreward>
-<kill-reward>
-    <filter>
-        <kill-streak count="2"/>
-    </filter>
-    <item material="tnt"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+    	<item amount="16" material="arrow"/>
+    	<item amount="3" damage="2" material="log"/>
+    	<item amount="2" material="golden apple"/>
+        <kit>
+    	    <effect duration="3">speed</effect>
+            <effect duration="0.5">night vision</effect>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="2"/>
+        </filter>
+        <item material="tnt"/>
+    </kill-reward>
+</kill-rewards>
 <tnt>
     <instantignite>on</instantignite>
     <fuse>4s</fuse>
@@ -109,7 +112,7 @@
     <item>chest</item>
     <item>iron axe</item>
     <item>iron pickaxe</item>
-    <item damage="2">log</item>
+    <item>log:2</item>
     <item>cobble wall</item>
     <item>nether fence</item>
     <item>flower pot</item>
@@ -119,7 +122,7 @@
     <item>glowstone dust</item>
     <item>sandstone</item>
     <item>flower pot</item>
-    <item damage="2">wood</item>
+    <item>wood:2</item>
 </itemremove>
 <maxbuildheight>22</maxbuildheight>
 <filters>
@@ -151,9 +154,7 @@
             <cylinder base="-196.5,0,242.5" radius="2" height="oo"/>
         </region>
     </apply>
-    <apply block-physics="never">
-        <region id="flag-area"/>
-    </apply>
+    <apply region="flag-area" block-physics="never"/>
     <rectangle id="red-spawn" min="-242,245" max="-247,250"/>
     <cuboid id="red-net" min="-242,4,245" max="-247,8,250"/>
     <rectangle id="blue-spawn" min="-242,65" max="-247,70"/>

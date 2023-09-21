@@ -1,9 +1,9 @@
-<map proto="1.4.0" game="Kill the King">
+<map proto="1.4.2" game="Kill the King">
 <name>King's Conquest: Easter</name>
 <phase>development</phase>
-<version>1.0.1</version>
+<version>1.0.3</version>
 <authors>
-    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" />
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" /> <!-- Xerocoles -->
 </authors>
 <spawns>
     <spawn team="red" region="red-spawn" sequential="true" yaw="-90" kit="spawn" />
@@ -53,7 +53,7 @@
         <kit>
             <clear />
             <item slot="0" unbreakable="true" material="gold hoe" name="`rEggun" projectile="eggy">
-                <attribute amount="6" slot="slot.weapon.mainhand">generic.attackDamage</attribute>
+                <attribute amount="6">generic.attackDamage</attribute>
             </item>
             <item slot="1" unbreakable="true" material="wood pickaxe" />
             <item slot="2" amount="12" material="cobblestone" />
@@ -79,7 +79,7 @@
             <chestplate unbreakable="true" locked="true" material="iron chestplate">
                 <enchantment level="2">protection environmental</enchantment>
                 <enchantment>thorns</enchantment>
-                <attribute slot="slot.armor.chest" operation="base" amount="-0.4">generic.movementSpeed</attribute>
+                <attribute operation="base" amount="-0.4">generic.movementSpeed</attribute>
             </chestplate>
             <leggings unbreakable="true" locked="true" material="iron leggings" />
             <boots unbreakable="true" locked="true" material="iron boots">
@@ -94,7 +94,7 @@
         <kit>
             <clear />
             <item slot="0" unbreakable="true" material="wood sword">
-                <attribute slot="slot.weapon.mainhand" operation="add" amount="3">generic.attackDamage</attribute>
+                <attribute operation="add" amount="3">generic.attackDamage</attribute>
             </item>
             <item slot="1" unbreakable="true" material="bow">
                 <enchantment>arrow infinite</enchantment>
@@ -108,7 +108,7 @@
             <item slot="28" material="arrow" />
             <head slot="slot.armor.head" locked="true" uuid="0336dbbc-f6f4-446d-82f6-b8eb6bd09c66" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzJjNTgxMTZhMTQ3ZDFhOWEyNjI2OTIyNGE4YmUxODRmZThlNWYzZjNkZjliNjE3NTEzNjlhZDg3MzgyZWM5In19fQ==" />
             <chestplate unbreakable="true" locked="true" material="leather chestplate" color="2d2d2d">
-                <enhantment>protection projectile</enhantment>
+                <enchantment>protection projectile</enchantment>
             </chestplate>
             <leggings unbreakable="true" locked="true" material="chainmail leggings" />
             <boots unbreakable="true" locked="true" material="gold boots" />
@@ -152,8 +152,8 @@
             <clear />
             <item slot="0" unbreakable="true" material="rabbit foot">
                 <enchantment>knockback</enchantment>
-                <enchantment level="1">sharpness</enchantment>
-                <attribute slot="slot.weapon.mainhand" operation="add" amount="6">generic.attackDamage</attribute>
+                <enchantment>sharpness</enchantment>
+                <attribute operation="add" amount="6">generic.attackDamage</attribute>
             </item>
             <item slot="1" unbreakable="true" material="stone pickaxe" />
             <item slot="2" amount="12" material="cobblestone" />
@@ -176,7 +176,7 @@
 <respawn delay="4s" blackout="true" />
 <kits>
     <kit id="spawn">
-        <potion duration="3" amplifier="1">heal</potion>
+        <potion duration="3">heal</potion>
         <potion duration="5" amplifier="2">damage resistance</potion>
     </kit>
     <kit id="obs">

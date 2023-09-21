@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Retaliation</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Leak the enemy team's core to win!</objective>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draeyx fka Draco_Rogue -->
@@ -54,7 +54,7 @@
         </region>
     </default>
     <spawn team="blue" kit="blue-kit">
-        <region yaw="0">
+        <region>
             <point>-4.5,28,-112.5</point>
         </region>
     </spawn>
@@ -93,7 +93,7 @@
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
     <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
-<cores material="obsidian" leak="4" mode="gold-core ice-core">
+<cores material="obsidian" leak="4" modes="gold-core ice-core">
     <core team="blue">
         <region>
             <cuboid min="-8,10,-42" max="-1,17,-35"/>
@@ -127,18 +127,20 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item amount="8" material="wood"/>
-    <item amount="4" material="glass"/>
-    <item material="golden apple"/>
-    <item amount="16" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" material="wood"/>
+        <item amount="4" material="glass"/>
+        <item material="golden apple"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>55</maxbuildheight>
 <world>
     <timeset>18000</timeset>
 </world>
 <!-- include src="tutorial.xml"/ -->
-<tutorial>
+<!-- <tutorial>
     <stage title="Destroy the Core">
         <message>
             <line>`rThe objective is to destroy the enemy's `cobsidian core`r.</line>
@@ -176,5 +178,5 @@
             <point yaw="90" pitch="45">-18,31,1</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

@@ -1,4 +1,4 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Mele Kalikimaka</name>
 <version>1.0.1</version>
 <objective>Capture the enemy wool!</objective>
@@ -49,18 +49,18 @@
         <effect duration="4s" amplifier="100">resistance</effect>
     </kit>
     <kit id="red-kit" parents="spawn-kit">
-        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
-	<chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
-        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
-	<boots color="cd0000" unbreakable="true">leather boots</boots>
-	<item slot="5" amount="16" damage="14">stained clay</item>	
+        <helmet color="cd0000" unbreakable="true" material="leather helmet"/>
+	<chestplate color="cd0000" unbreakable="true" material="leather chestplate"/>
+        <leggings color="cd0000" unbreakable="true" material="leather leggings"/>
+	<boots color="cd0000" unbreakable="true" material="leather boots"/>
+	<item slot="5" amount="16" damage="14" material="stained clay"/>	
     </kit>
     <kit id="blue-kit" parents="spawn-kit">
-        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
-	<chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
-        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
-	<boots color="0066cc" unbreakable="true">leather boots</boots>	
-	<item slot="5" amount="16" damage="11">stained clay</item>		
+        <helmet color="0066cc" unbreakable="true" material="leather helmet"/>
+	<chestplate color="0066cc" unbreakable="true" material="leather chestplate"/>
+        <leggings color="0066cc" unbreakable="true" material="leather leggings"/>
+	<boots color="0066cc" unbreakable="true" material="leather boots"/>	
+	<item slot="5" amount="16" damage="11" material="stained clay"/>		
     </kit>
 </kits>
 <filters>
@@ -99,7 +99,6 @@
 		<cuboid min="-101,0,-143" max="-90,20,-176"/>
 		<cuboid min="-100,0,-165" max="-122,20,-154"/>		
 	</union>
-	
 	<apply block="cobwebs-blue" message="You may not break blocks in the wool room." region="red-wool-room"/>
 	<apply block="cobwebs-red" message="You may not break blocks in the wool room." region="blue-wool-room"/>
 	<apply enter="only-blue" use="only-blue" message="You may not enter this wool room." region="red-wool-room"/>
@@ -193,14 +192,12 @@
     </rule>	
 </block-drops>
 <renewables>
-    <renewable rate="1.5" grow="false" particles="true" sound="true" avoid-entites="true" region="everywhere">
+    <renewable rate="1.5" grow="false" particles="true" sound="true" region="everywhere">
         <renew-filter>
 			<material>gold block</material>
         </renew-filter>
     </renewable>
-</renewables>
-<renewables>
-    <renewable rate="0.1" grow="false" particles="true" sound="true" avoid-entites="true" region="everywhere">
+    <renewable rate="0.1" grow="false" particles="true" sound="true" region="everywhere">
         <renew-filter>
 			<material>iron block</material>
         </renew-filter>

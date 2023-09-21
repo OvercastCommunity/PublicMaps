@@ -1,10 +1,10 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>The High Road</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Get the most kills in 8 minutes!</objective>
 <time>8m</time>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /><!-- AtlasGames -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
 </authors>
 <gamemode>ffa</gamemode>
 <gamemode>rage</gamemode>
@@ -57,7 +57,7 @@
             <point yaw="-50">-34, 77, -77.5</point>
             <point yaw="-45">-0.5, 72, -83.5</point>
             <point yaw="45">23, 72, -86</point>
-            <point yaw="0">41.5, 85, -82.5</point>
+            <point>41.5, 85, -82.5</point>
             <point yaw="90">53.5, 87, -72.5</point>
             <point yaw="90">53, 90, -65</point>
             <point yaw="90">51, 84, -57</point>
@@ -82,8 +82,7 @@
     <apply velocity="0.1, 2, -0.2" region="j-1"/>
     <apply velocity="0.2, 2, 0.2" region="j-2"/>
     <apply velocity="-0.4, 2, 0" region="j-3"/>
-    <apply use="deny-access"/>
-    <apply block="never"/>
+    <apply block="never" use="deny-access"/>
 </regions>
 <score>
     <kills>1</kills>
@@ -107,8 +106,8 @@
 <kill-rewards>
     <kill-reward>
         <item material="arrow"/>
-        <item slot="7" amount="1" name="Kill Streak" material="emerald"/>
-        <item slot="8" amount="1" name="Kill Counter" material="nether star"/>
+        <item amount="1" name="Kill Streak" material="emerald"/>
+        <item amount="1" name="Kill Counter" material="nether star"/>
         <!-- <kit id="kill-reward"/> -->
     </kill-reward>
     <kill-reward>

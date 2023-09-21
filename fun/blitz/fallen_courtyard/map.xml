@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Fallen Courtyard</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>One in the chamber!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -36,16 +36,14 @@
         <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!">bow</item>
         <item slot="2" amount="1">arrow</item>
         <item slot="3" amount="1">golden carrot</item>
+        <helmet locked="true">chainmail helmet</helmet>
+        <chestplate locked="true">chainmail chestplate</chestplate>
     </kit>
     <kit name="cyan" parents="spawn">
-        <helmet color="4C7F99" locked="true">chainmail helmet</helmet>
-        <chestplate color="4C7F99" locked="true">chainmail chestplate</chestplate>
         <leggings color="4C7F99" locked="true">leather leggings</leggings>
         <boots color="4C7F99" enchantment="protection fall:2" locked="true">leather boots</boots>
     </kit>
     <kit name="purple" parents="spawn">
-        <helmet color="7F3F82" locked="true">chainmail helmet</helmet>
-        <chestplate color="7F3F82" locked="true">chainmail chestplate</chestplate>
         <leggings color="7F3F82" locked="true">leather leggings</leggings>
         <boots color="7F3F82" enchantment="protection fall:2" locked="true">leather boots</boots>
     </kit>

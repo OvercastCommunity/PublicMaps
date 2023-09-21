@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Diramu Valley DTM</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <gamemode>dtm</gamemode>
 <objective>Destroy both of the opposing monuments to win!</objective>
 <authors>
@@ -13,33 +13,33 @@
 <kits>
     <kit id="spawn">
         <clear/>
-        <item slot="0" unbreakable="true">stone sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
-        <item slot="2" unbreakable="true">diamond pickaxe</item>
-        <item slot="3" unbreakable="true">iron axe</item>
-        <item slot="4" amount="48" damage="5">wood</item>
-        <item slot="6" amount="12">vine</item>
-        <item slot="7" amount="1">golden apple</item>
-        <item slot="8" amount="32">cooked fish</item>
-        <item slot="28" amount="1">arrow</item>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1" material="bow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="48" damage="5" material="wood"/>
+        <item slot="6" amount="12" material="vine"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="32" material="cooked fish"/>
+        <item slot="28" material="arrow"/>
         <potion duration="3" amplifier="3">heal</potion>
         <potion duration="6">damage resistance</potion>
         <leggings unbreakable="true">chainmail leggings</leggings>
     </kit>
     <kit id="red-kit" parents="spawn">
-        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
-        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
-        <boots color="cd0000" unbreakable="true">leather boots</boots>
+        <helmet color="cd0000" unbreakable="true" material="leather helmet"/>
+        <chestplate color="cd0000" unbreakable="true" material="leather chestplate"/>
+        <boots color="cd0000" unbreakable="true" material="leather boots"/>
     </kit>
     <kit id="blue-kit" parents="spawn">
-        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
-        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
-        <boots color="0066cc" unbreakable="true">leather boots</boots>
+        <helmet color="0066cc" unbreakable="true" material="leather helmet"/>
+        <chestplate color="0066cc" unbreakable="true" material="leather chestplate"/>
+        <boots color="0066cc" unbreakable="true" material="leather boots"/>
     </kit>
 </kits>
 <spawns>
     <spawn team="blue" kit="blue-kit">
-        <regions yaw="0">
+        <regions>
             <cuboid min="-90.5,24,130.5" max="-92.5,24,132.5"/>
         </regions>
     </spawn>
@@ -94,7 +94,7 @@
 <itemremove>
     <item>cooked fish</item>
     <item>obsidian</item>
-    <item damage="5">wood</item>
+    <item>wood:5</item>
     <item>string</item>
     <item>glowstone dust</item>
     <item>apple</item>

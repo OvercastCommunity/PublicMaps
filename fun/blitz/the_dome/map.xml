@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.4">
 <name>The Dome</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate the other team before the time is up!</objective>
 <gamemode>rage</gamemode>
 <authors>
@@ -65,7 +65,9 @@
 <timelock>on</timelock>
 <killreward>
     <item amount="1">arrow</item>
-    <potion duration="8" amplifier="1">speed</potion>
+    <kit>
+        <potion duration="8" amplifier="1">speed</potion>
+    </kit>
 </killreward>
 <hunger>
     <depletion>off</depletion>

@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Moonlight Summit</name>
-<version>1.5.7</version>
+<version>1.5.8</version>
 <objective>Destroy 90% of all three of the enemy's monuments!</objective>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- Chicky -->
@@ -66,7 +66,7 @@
 </kits>
 <spawns>
     <default>
-        <region yaw="0">
+        <region>
             <point>0.5,50,-421.5</point>
         </region>
     </default>
@@ -76,7 +76,7 @@
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cuboid min="2,36,-447" max="-1,36,-444"/>
         </region>
     </spawn>
@@ -92,8 +92,8 @@
     <any id="monument-material">
         <material>obsidian</material>
         <material>ender stone</material>
-        <material damage="9">double step</material>
-        <material damage="2">sandstone</material>
+        <material>double step:9</material>
+        <material>sandstone:2</material>
     </any>
     <any id="deny-blue-destroyable">
         <not>
@@ -350,8 +350,8 @@
     <item>seeds</item>
     <item>obsidian</item>
     <item>ender stone</item>
-    <item damage="9">double step</item>
-    <item damage="2">sandstone</item>
+    <item>double step:9</item>
+    <item>sandstone:2</item>
     <item>apple</item>
     <item>clay ball</item>
     <item>string</item>
@@ -367,15 +367,17 @@
     <item>wood</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item>golden apple</item>
-    <item name="`6Golden Coins" amount="2">gold nugget</item>
-    <item amount="12">wood</item>
-    <item amount="16">arrow</item>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item name="`6Golden Coins" amount="2" material="gold nugget"/>
+        <item amount="12" material="wood"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <crafting>
-    <disable override-all="true">boat</disable>
-    <disable override-all="true">sandstone</disable>
+    <disable>boat</disable>
+    <disable>sandstone</disable>
 </crafting>
 <timelock>off</timelock>
 <mobs>

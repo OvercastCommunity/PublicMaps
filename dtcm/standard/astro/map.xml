@@ -2,7 +2,7 @@
 <map proto="1.3.3">
 <!-- include src="tutorial.xml"/ -->
 <name>Astro</name>
-<version>1.0.10</version>
+<version>1.0.11</version>
 <objective>Destroy the enemy team's core!</objective>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
@@ -163,7 +163,7 @@
         <cuboid min="18,58,-252" max="23,63,-257"/>
     </core>
 </cores>
-<tutorial>
+<!-- <tutorial>
     <stage title="Destroy The Core">
         <message>
             <line>`rThis map is a `a`lDestroy The Core `r(DTC) map</line>
@@ -202,5 +202,5 @@
             <point yaw="55" pitch="45">34.5,64,-255.5</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>

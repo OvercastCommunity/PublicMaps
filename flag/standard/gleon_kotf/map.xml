@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Gleon KotF</name>
-<version>1.4.6</version>
+<version>1.4.7</version>
 <objective>Hold the flag for 200 seconds to win!</objective>
 <authors>
     <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!-- Qixit -->
@@ -31,16 +31,16 @@
         </boots>
     </kit>
     <kit id="spawn-protection-b" force="true" filter="only-blue">
-        <effect amplifier="100" duration="oo">damage resistance</effect>
+        <effect amplifier="100">damage resistance</effect>
         <knockback-reduction>1</knockback-reduction>
     </kit>
     <kit id="spawn-protection-r" force="true" filter="only-red">
-        <effect amplifier="100" duration="oo">damage resistance</effect>
+        <effect amplifier="100">damage resistance</effect>
         <knockback-reduction>1</knockback-reduction>
     </kit>
     <kit id="flag-hold" force="true">
-        <effect amplifier="-3" duration="oo">health boost</effect>
-        <effect duration="oo">absorption</effect>
+        <effect amplifier="-3">health boost</effect>
+        <effect>absorption</effect>
         <effect duration="15">speed</effect>
     </kit>
     <kit id="return-kit" force="true">
@@ -404,11 +404,13 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item>golden apple</item>
-    <item amount="10">arrow</item>
-    <kit id="kill-reward-base-kit"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="10" material="arrow"/>
+        <kit id="kill-reward-base-kit"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
@@ -420,5 +422,5 @@
     <naturalRegeneration>true</naturalRegeneration>
     <doDaylightCycle>false</doDaylightCycle>
 </gamerules>
-<terrain pre-match-physics="false"/>
+<!-- <terrain pre-match-physics="false"/> -->
 </map>

@@ -161,9 +161,10 @@
     <item>golden apple</item>
 </killreward>
 <killreward>
-    <kill-streak count="3">
-        <item damage="1" amount="3">leaves</item>
-    </kill-streak>
+    <filter>
+        <kill-streak count="3"/>
+    </filter>
+    <item amount="3">leaves</item>
 </killreward>
 <disabledamage>
     <damage>fall</damage>

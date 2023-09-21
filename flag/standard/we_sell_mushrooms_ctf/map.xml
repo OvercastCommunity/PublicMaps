@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>We Sell Mushrooms CTF</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Capture both enemy flags two times!</objective>
 <edition>standard</edition>
 <authors>
@@ -118,7 +118,7 @@
 <renewables>
     <renewable renew-filter="only-iron" region="spawns"/>
 </renewables>
-<flags permanent="true">
+<flags>
     <flag id="cyan-flag"
           name="Cyan Flag"
           owner="blue"
@@ -202,11 +202,13 @@
     <item>ladder</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="16" material="wood"/>
-    <item amount="8" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="16" material="wood"/>
+        <item amount="8" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>31</maxbuildheight>
 <hunger>
     <depletion>off</depletion>

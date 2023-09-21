@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Inheritance</name>
-<version>1.6.3</version>
+<version>1.6.4</version>
 <objective>Leak lava from both of the enemy's obsidian cores!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -75,7 +75,7 @@
     <apply block="never" message="You may not modify the spawn areas!" region="spawns"/>
     <apply block="never" message="You may not build in the void area!" region="playable-inverse"/>
 </regions>
-<cores material="obsidian" leak="5" mode-changes="true" repairable="false">
+<cores material="obsidian" leak="5" mode-changes="true">
     <cores team="blue">
         <core name="Left Core">
             <region>
@@ -155,11 +155,13 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="24" damage="2" material="wood"/>
-    <item amount="12" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="24" damage="2" material="wood"/>
+        <item amount="12" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>51</maxbuildheight>
 <hunger>
     <depletion>off</depletion>

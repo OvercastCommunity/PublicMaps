@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Flag Football: Iceblade</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Capture the flag as many times as possible in eight minutes!</objective>
 <gamemode>ffb</gamemode>
 <authors>
@@ -11,7 +11,7 @@
     <team id="blue-team" color="blue" max="8">Blue</team>
 </teams>
 <kits>
-    <kit id="spawn-kit">
+    <kit id="spawn-kit" parent="obs-kit">
         <item slot="0" material="stone sword" name="Icy Knife" unbreakable="true"/>
         <item slot="1" material="bow" name="Frost Bow" unbreakable="true"/>
         <item slot="2" material="golden apple"/>
@@ -19,7 +19,6 @@
         <leggings material="chainmail leggings" enchantment="protection projectile:2" unbreakable="true"/>
         <boots material="iron boots" unbreakable="true"/>
         <game-mode>adventure</game-mode>
-        <potion duration="9999" amplifier="255">night vision</potion>
     </kit>
     <kit id="red-kit" parent="spawn-kit">
         <helmet color="993333" unbreakable="true" material="leather helmet"/>
@@ -30,7 +29,7 @@
         <chestplate locked="true" color="334CB2" unbreakable="true" material="leather chestplate"/>
     </kit>
     <kit id="obs-kit">
-        <potion duration="9999" amplifier="255">night vision</potion>
+        <potion amplifier="255">night vision</potion>
     </kit>
 </kits>
 <spawns>
@@ -127,7 +126,7 @@
         <cuboid id="red-spawn" min="70,3,6" max="74,12,10"/>
         <cuboid id="blue-spawn" min="108,6,-3" max="112,12,1"/>
     </union>
-    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+    <apply block="never" message="You may not edit the map!"/>
 </regions>
 <!--
 <proximity-alarms>
@@ -140,8 +139,8 @@
     <portal observers="never" filter="blue-team-carrying-flag" region="blue-net" destination="blue-spawn-point" yaw="@90" pitch="@-15"/>
 </portals>
 <toolrepair>
-    <item>stone sword</item>
-    <item>bow</item>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>

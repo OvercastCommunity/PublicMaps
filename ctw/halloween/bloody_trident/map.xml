@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.6">
 <name>Bloody Trident</name>
-<version>2.0.2</version>
+<version>2.0.3</version>
 <phase>development</phase>
 <objective>Capture all three wools to win.</objective>
 <authors>
@@ -20,7 +20,7 @@
         <item slot="28">arrow</item>
         <item slot="2" enchantment="durability:3;dig speed:1">iron pickaxe</item>
         <item slot="3">iron axe</item>
-	<item slot="27" enchantment="durability:3;dig speed:1">iron spade</item>
+        <item slot="27" enchantment="durability:3;dig speed:1">iron spade</item>
         <item slot="4" amount="64" damage="1">log</item>
         <item slot="5" amount="64">glass</item>
         <item slot="6">bucket</item>
@@ -156,7 +156,7 @@
     </apply>
 </regions>
 <renewables>
-    <renewable rate="1.5" grow="false" particles="true" sound="true" avoid-entites="true">
+    <renewable rate="1.5" grow="false" particles="true" sound="true">
         <region>
             <region name="iron"/>
         </region>

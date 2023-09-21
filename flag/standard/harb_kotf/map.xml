@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Harb KotF</name>
-<version>2.2.5</version>
+<version>2.2.6</version>
 <objective>Control the flag for 200 seconds to win!</objective>
 <gamemode>kotf</gamemode>
 <authors>
@@ -56,7 +56,7 @@
     </default>
     <spawns safe="true" sequential="true" filter="has-flag">
         <spawn team="blue" kit="spawn-kit">
-            <regions yaw="0">
+            <regions>
                 <cuboid min="-15,32,-57" max="16,42,-32"/>
                 <point>0.5,33,-47.5</point>
             </regions>
@@ -93,8 +93,8 @@
         <union id="map">
             <rectangle id="main-area" min="-50,-32" max="51,33"/>
             <union id="bases">
-                <rectangle name="blue-base" min="-20,-62" max="21,-32"/>
-                <rectangle name="red-base" min="-20,33" max="21,63"/>
+                <rectangle id="blue-base" min="-20,-62" max="21,-32"/>
+                <rectangle id="red-base" min="-20,33" max="21,63"/>
             </union>
         </union>
     </negative>
@@ -121,15 +121,7 @@
     </portal>
 </portals>
 <flags>
-    <flag id="flag"
-          name="Flag"
-          color="white"
-          shared="true"
-          points-rate="1"
-          pickup-kit="flag-kit"
-          drop-kit="reset-health"
-          flag-proximity-metric="none"
-          show-respawn-on-pickup="true">
+    <flag id="flag" name="Flag" color="white" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" flag-proximity-metric="none" show-respawn-on-pickup="true">
         <post return-time="0s" respawn-time="20s">
             <post name="Centre Post">0.5,33,0.5</post>
             <post name="West Tower">-29.5,40,0.5</post>
@@ -173,11 +165,13 @@
     <item>arrow</item>
     <item>ladder</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item material="tnt"/>
-    <item amount="10" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item material="tnt"/>
+        <item amount="10" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>48</maxbuildheight>
 <respawn spectate="true" auto="true">
     <message>

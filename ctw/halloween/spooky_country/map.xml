@@ -1,4 +1,4 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Spooky Country</name>
 <version>1.0.11</version>
 <phase>development</phase>
@@ -49,29 +49,29 @@
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="64" material="pumpkin pie"/>
         <item slot="17" amount="64" material="arrow"/>
-        <potion amplifier="10" duration="7">damage resistance</potion>
-        <potion amplifier="10" duration="7">regeneration</potion>
+        <effect amplifier="10" duration="7">damage resistance</effect>
+        <effect amplifier="10" duration="7">regeneration</effect>
     </kit>
     <kit id="green-kit" parents="spawn">
         <helmet color="667F33" material="leather helmet"/>
         <chestplate color="667F33" material="leather chestplate">
-            <enchantment level="1">protection projectile</enchantment>
+            <enchantment>protection projectile</enchantment>
         </chestplate>
         <boots color="667F33" material="leather boots"/>
     </kit>
     <kit id="blue-kit" parents="spawn">
         <helmet color="334CB2" material="leather helmet"/>
         <chestplate color="334CB2" material="leather chestplate">
-            <enchantment level="1">protection projectile</enchantment>
+            <enchantment>protection projectile</enchantment>
         </chestplate>
         <boots color="334CB2" material="leather boots"/>
     </kit>
     <kit id="wool-gear" force="true">
         <knockback-reduction>0.1</knockback-reduction>
         <chestplate material="chainmail chestplate">
-            <enchantment level="1">protection projectile</enchantment>
+            <enchantment>protection projectile</enchantment>
         </chestplate>
-        <potion duration="30s">regeneration</potion>
+        <effect duration="30">regeneration</effect>
     </kit>
 </kits>
 <filters>
@@ -136,12 +136,12 @@
         </union>
     </union>
     <union id="rooms">
-        <!--  Blue Wool Rooms (Wools blue need to get)  -->
+        <!-- Blue Wool Rooms (Wools blue need to get) -->
         <union id="blue-wool-rooms">
             <rectangle id="purple-wool-room" min="534.5,-113" max="524,-98"/>
             <rectangle id="red-wool-room" min="534.5,-113" max="545,-98"/>
         </union>
-        <!--  Green Wool Rooms (Wools green need to get)  -->
+        <!-- Green Wool Rooms (Wools green need to get) -->
         <union id="green-wool-rooms">
             <rectangle id="orange-wool-room" min="534.5,-354" max="524,-339"/>
             <rectangle id="yellow-wool-room" min="534.5,-354" max="545,-339"/>
@@ -227,7 +227,7 @@
 <timelock>on</timelock>
 <maxbuildheight>23</maxbuildheight>
 <renewables>
-    <renewable rate="1.5" grow="false" particles="true" sound="true" avoid-entites="true" region="Iron">
+    <renewable rate="1.5" grow="false" particles="true" sound="true" region="Iron">
         <renew-filter>
             <material>iron block</material>
         </renew-filter>
