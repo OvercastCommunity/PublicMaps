@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.09.19-1 -->
+<!-- Version 2023.09.20-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -170,7 +170,12 @@
         <filter id="only-team-two"/>
         <filter id="on-buytime"/>
     </all>
-    <after id="cage-time" message="`a» `fNext round begins in {0} `a«" duration="${pre-round-time}" filter="round-0"/>
+    <after id="cage-time" message="`a» `fNext round begins in {0} `a«" duration="${pre-round-time}">
+        <all>
+            <filter id="round-0"/>
+            <match-running/>
+        </all>
+    </after>
     <all id="no-arrows">
         <not>
             <carrying ignore-metadata="true"><item material="arrow"/></carrying>
@@ -198,6 +203,37 @@
         <message>`4» `fThe match will `cend`f in {0} `4«</message>
         <!-- <message>{"translate":"misc.timeRemaining"}</message> -->
     </after>
+    <observing id="is-observer"/>
+    <all id="team-one-own-goal">
+        <team>team-one</team>
+        <variable var="scoring_team">1</variable>
+        <filter id="after-round-1"/>
+        <match-running/>
+    </all>
+    <all id="team-two-own-goal">
+        <team>team-two</team>
+        <variable var="scoring_team">2</variable>
+        <filter id="after-round-1"/>
+        <match-running/>
+    </all>
+    <all id="team-one-enemy-goal">
+        <team>team-one</team>
+        <variable var="scoring_team">2</variable>
+        <filter id="after-round-1"/>
+        <match-running/>
+    </all>
+    <all id="team-two-enemy-goal">
+        <team>team-two</team>
+        <variable var="scoring_team">1</variable>
+        <filter id="after-round-1"/>
+        <match-running/>
+    </all>
+    <all id="cant-score-obs">
+        <filter id="cant-score"/>
+        <filter id="is-observer"/>
+        <filter id="after-round-1"/>
+        <match-running/>
+    </all>
 </filters>
 <consumables>
     <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
@@ -208,6 +244,8 @@
     <variable id="buytime" scope="match" default="0"/>
     <variable id="overtime" scope="match" default="0"/>
     <score id="team_score"/>
+    <variable id="current_team" scope="player" default="0"/> <!-- 0: Observers, 1: team-one, 2: team-two -->
+    <variable id="scoring_team" scope="match" default="0"/>
 </variables>
 <actions>
     <action id="increment-round" scope="player">
@@ -215,15 +253,11 @@
         <set var="team_score" value="team_score+1"/>
         <message text="`aYou have scored a goal!"/>
         <switch-scope outer="player" inner="match">
-            <message text="`5# # # # # # # # # # # #"/>
-            <message text="`5# #    `6» `6`lGOAL! `6«`5    # #"/>
-            <message text="`5# # # # # # # # # # # #"/>
             <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
             <set var="buytime" value="1"/>
             <fill region="cages" material="stained glass"/>
             <kill-entities filter="remove-entities"/>
-            <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="1" fade-out="0.5"/>
         </switch-scope>
     </action>
     <action id="remove-cages" scope="match">
@@ -235,7 +269,7 @@
     </action>
     <action id="reset-counter" scope="match">
         <set var="round_status" value="0"/>
-        <sound key="fireworks.twinkle"/>
+        <set var="scoring_team" value="0"/>
     </action>
     <action id="remove-arrow" scope="player">
         <replace-item>
@@ -279,6 +313,60 @@
     <action id="remove-timelimit" scope="match" expose="true">
         <set var="overtime" value="1"/>
     </action>
+    <trigger filter="only-team-one" scope="player">
+        <action scope="player">
+            <set var="current_team" value="1"/>
+        </action>
+    </trigger>
+    <trigger filter="only-team-two" scope="player">
+        <action scope="player">
+            <set var="current_team" value="2"/>
+        </action>
+    </trigger>
+    <trigger filter="is-observer" scope="player">
+        <action scope="player">
+            <set var="current_team" value="0"/>
+        </action>
+    </trigger>
+    <action id="message-own-scored" scope="player">
+        <message text="`5# # # # # # # # # # # # # # # #"/>
+        <message text="`5# #         `6» `6`lGOAL! `6«`5         # #"/>
+        <message text="`5# #    `aYour team scored!`5    # #"/>
+        <message text="`5# # # # # # # # # # # # # # # #"/>
+        <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
+        <sound key="portal.travel" volume="0.2" pitch="2"/> <!-- OBJECTIVE_GOOD with lower volume -->
+    </action>
+    <action id="message-enemy-scored" scope="player">
+        <message text="`5# # # # # # # # # # # # # # # #"/>
+        <message text="`5# #         `6» `6`lGOAL! `6«`5         # #"/>
+        <message text="`5# #    `cThe enemy scored`5    # #"/>
+        <message text="`5# # # # # # # # # # # # # # # #"/>
+        <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
+        <sound key="mob.blaze.death" volume="0.2" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
+    </action>
+    <action id="message-obs-scored" scope="player">
+        <message text="`5# # # # # # # # # # # #"/>
+        <message text="`5# #    `6» `6`lGOAL! `6«`5    # #"/>
+        <message text="`5# # # # # # # # # # # #"/>
+        <sound key="fireworks.twinkle"/>
+    </action>
+    <trigger filter="team-one-own-goal" action="message-own-scored" scope="player"/>
+    <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
+    <trigger filter="team-one-enemy-goal" action="message-enemy-scored" scope="player"/>
+    <trigger filter="team-two-enemy-goal" action="message-enemy-scored" scope="player"/>
+    <trigger filter="cant-score-obs" action="message-obs-scored" scope="player"/>
+    <action id="set-team-one" scope="player">
+        <switch-scope outer="player" inner="match">
+            <set var="scoring_team" value="1"/>
+        </switch-scope>
+    </action>
+    <action id="set-team-two" scope="player">
+        <switch-scope outer="player" inner="match">
+            <set var="scoring_team" value="2"/>
+        </switch-scope>
+    </action>
+    <trigger filter="team-one-scored" action="set-team-one" scope="player"/>
+    <trigger filter="team-two-scored" action="set-team-two" scope="player"/>
 </actions>
 <regions>
     <apply block-place="deny-participating" region="not-buildable">
