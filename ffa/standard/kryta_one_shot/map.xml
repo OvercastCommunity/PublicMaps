@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Kryta: One Shot</name>
-<version>1.4.4</version>
+<version>1.4.5</version>
 <phase>development</phase>
 <gamemode>ffa</gamemode>
 <authors>
@@ -255,7 +255,9 @@
             <kill-streak count="3" />
         </filter>
         <item amount="5" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
-        <effect>speed</effect>
+        <kit>
+            <effect>speed</effect>
+        </kit>
     </kill-reward>
     <kill-reward>
         <filter>

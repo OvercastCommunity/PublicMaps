@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fallen Debris</name>
-<version>4.2.5</version>
+<version>4.2.6</version>
 <phase>development</phase>
 <authors>
     <author uuid="77912861-9fc0-45fa-aac5-aa455614edbf"/> <!-- Nanu -->
@@ -268,7 +268,7 @@
         </filter>
         <item amount="8" material="arrow" />
     </kill-reward>
-    <kill-reward>
+    <!-- <kill-reward>
         <filter>
             <all>
                 <class>Archer</class>
@@ -278,16 +278,16 @@
         <item amount="3" material="tipped arrow">
             <effect>harm</effect>
         </item>
-    </kill-reward>
+    </kill-reward> -->
     <!-- Assassin Kill Rewards -->
     <kill-reward>
         <filter>
             <class>Assassin</class>
         </filter>
-        <item amount="2" material="tipped arrow">
+        <!-- <item amount="2" material="tipped arrow">
             <effect duration="3" amplifier="2">slowness</effect>
             <effect duration="3">weakness</effect>
-        </item>
+        </item> -->
     </kill-reward>
     <kill-reward>
         <filter>

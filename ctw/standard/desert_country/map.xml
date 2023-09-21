@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Desert Country</name>
-<version>1.0.13</version>
+<version>1.0.14</version>
 <objective>Capture the wools located on the opposite side.</objective>
 <gamemode>ctw</gamemode>
 <!-- Map authors & contributors. -->
@@ -48,8 +48,8 @@
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="64" material="grilled pork"/>
         <item slot="17" amount="64" material="arrow"/>
-        <potion amplifier="10" duration="7">damage resistance</potion>
-        <potion amplifier="10" duration="7">regeneration</potion>
+        <effect amplifier="10" duration="7">damage resistance</effect>
+        <effect amplifier="10" duration="7">regeneration</effect>
     </kit>
     <kit id="green-kit" parents="spawn">
         <helmet color="667F33" material="leather helmet"/>
@@ -70,7 +70,7 @@
         <chestplate material="chainmail chestplate">
             <enchantment level="1">protection projectile</enchantment>
         </chestplate>
-        <potion duration="30s">regeneration</potion>
+        <effect duration="30s">regeneration</effect>
     </kit>
 </kits>
 <filters>
@@ -236,7 +236,7 @@
 <timelock>on</timelock>
 <maxbuildheight>23</maxbuildheight>
 <renewables>
-    <renewable rate="1.5" grow="false" particles="true" sound="true" avoid-entites="true" region="Iron">
+    <renewable rate="1.5" grow="false" particles="true" sound="true" region="Iron">
         <renew-filter>
             <material>iron block</material>
         </renew-filter>

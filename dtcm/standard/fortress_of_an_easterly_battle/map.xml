@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fortress of an Easterly Battle</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <phase>development</phase>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <rules>
@@ -87,14 +87,14 @@
     -->
     <apply block="never" region="outside-map" message="You may not build outside the playable region!"/>
     <apply block="deny-dispenser" region="map" message="Dispensers are disabled on this map!"/>
-    <apply enter="never" build="never" region="spawns" message="You may not enter the spawns!"/>
+    <apply enter="never" block="never" region="spawns" message="You may not enter the spawns!"/>
     <apply enter="never" message="You may not enter the observer spawn!">
         <region>
-            <circle base="44.5,64.5,-79.5" radius="16"/>
+            <cylinder base="44.5,64.5,-79.5" radius="16" height="3"/>
         </region>
     </apply>
 </regions>
-<cores material="obsidian" leak="4" mode-changes="true" name="Core">
+<cores material="obsidian" leak="3" mode-changes="true" name="Core">
     <core team="orange">
         <region>
             <cuboid min="5,60,0" max="10,66,-7"/>

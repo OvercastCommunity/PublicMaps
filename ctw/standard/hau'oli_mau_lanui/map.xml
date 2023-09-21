@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Hau'oli Mau Lanui</name> <!-- Non-Christmas edit of Mele Kalikimaka -->
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Capture the enemy wool!</objective>
 <gamemode>ctw</gamemode>
 <authors>
@@ -33,7 +33,7 @@
         </regions>
     </spawn>
     <default>
-        <regions yaw="0">
+        <regions>
             <cylinder base="-111,30,-159.5" radius="1" height="0" />
         </regions>
     </default>
@@ -201,14 +201,14 @@
     </rule>	
 </block-drops>
 <renewables>
-    <renewable rate="1.5" grow="false" particles="true" sound="true" avoid-entites="true" region="everywhere">
+    <renewable rate="1.5" grow="false" particles="true" sound="true" region="everywhere">
         <renew-filter>
             <material>gold block</material>
         </renew-filter>
     </renewable>
 </renewables>
 <renewables>
-    <renewable rate="0.1" grow="false" particles="true" sound="true" avoid-entites="true" region="everywhere">
+    <renewable rate="0.1" grow="false" particles="true" sound="true" region="everywhere">
         <renew-filter>
             <material>iron block</material>
         </renew-filter>

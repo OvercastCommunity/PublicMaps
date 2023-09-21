@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Elysium</name>
-<version>1.4.1</version>
+<version>1.4.2</version>
 <objective>Survive and get the most points.</objective>
 <phase>development</phase>
 <authors>
@@ -66,8 +66,8 @@
         <sphere id="blacksmith" origin="-11.5,107,28.5" radius="7"/>
         <cylinder id="obs-spawn" base="224.5,0,0.5" radius="30" height="200"/>
     </union>
-    <apply region="reversed-map" block="never" place="never" message="You may not build outside of the map"/>
-    <apply region="villages" block="never" place="never" message="You may not interact with this zone"/>
+    <apply region="reversed-map" block="never" message="You may not build outside of the map"/>
+    <apply region="villages" block="never" message="You may not interact with this zone"/>
 </regions>
 <maxbuildheight>130</maxbuildheight>
 <toolrepair>

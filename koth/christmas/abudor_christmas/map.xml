@@ -2,7 +2,7 @@
 <map proto="1.3.3">
 <!-- include src="tutorial.xml"/ -->
 <name>Abudor: Christmas</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <phase>development</phase>
 <objective>Capture the two hills to score points to win.</objective>
 <authors>
@@ -108,7 +108,7 @@
     <item>chainmail chestplate</item>
     <item>cooked chicken</item>
     <item>glass bottle</item>
-    <item>potion:8229</item>
+    <item>potion</item>
     <item>snow ball</item>
     <item>sapling</item>
 </itemremove>

@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="Wool Story Bro">
 <name>Wool Story Bro</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <gamemode>arcade</gamemode>
 <objective>Get the most points before time runs out!</objective>
 <!-- include src="void-death.xml"/ -->
@@ -70,7 +70,7 @@
         <boots damage="64" locked="true" material="leather boots">
             <attribute amount="2">generic.knockbackResistance</attribute>
         </boots>
-        <effect unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true" material="leather helmet"/>
+        <helmet unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true" material="leather helmet"/>
     </kit>
 </kits>
 <hunger>

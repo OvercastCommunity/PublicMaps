@@ -1,14 +1,12 @@
-<map proto="1.4.1">
+<map proto="1.4.2">
 <name>Boat Bolt</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Score 50 points before time runs out!</objective>
 <authors>
-    <author uuid="a43135a4-d7b9-49ab-ac8d-a16bb2513c8d"/>
-    <!-- Ny_ -->
+    <author uuid="a43135a4-d7b9-49ab-ac8d-a16bb2513c8d"/> <!-- Ny_ -->
 </authors>
 <contributors>
-    <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067" contribution="Spawn Design"/>
-    <!-- samthecat43 -->
+    <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067" contribution="Spawn Design"/> <!-- samthecat43 -->
 </contributors>
 <gamemode>ad</gamemode>
 <gamemode>arcade</gamemode>
@@ -44,27 +42,27 @@
 </spawns>
 <kits>
     <kit id="boater-kit">
-        <item slot="0">boat</item>
-        <item slot="1">boat</item>
-        <item slot="2">boat</item>
-        <item slot="3">boat</item>
-        <item slot="4">boat</item>
-        <item slot="5">boat</item>
-        <item slot="6">boat</item>
-        <item slot="7">boat</item>
-        <item slot="8">boat</item>
-        <boots unbreakable="true" color="993333" lock="true">leather boots</boots>
-        <potion duration="oo" amplifier="-4">health boost</potion>
+        <item slot="0" material="boat"/>
+        <item slot="1" material="boat"/>
+        <item slot="2" material="boat"/>
+        <item slot="3" material="boat"/>
+        <item slot="4" material="boat"/>
+        <item slot="5" material="boat"/>
+        <item slot="6" material="boat"/>
+        <item slot="7" material="boat"/>
+        <item slot="8" material="boat"/>
+        <boots unbreakable="true" color="993333" locked="true" material="leather boots"/>
+        <effect amplifier="-4">health boost</effect>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="defender-kit">
         <item projectile="your-mom" name="Hoe of Power" material="gold hoe" slot="1" unbreakable="true" enchantment="ARROW_DAMAGE:10"/>
-        <boots unbreakable="true" color="0066cc" lock="true">leather boots</boots>
+        <boots unbreakable="true" color="0066cc" locked="true" material="leather boots"/>
         <game-mode>adventure</game-mode>
         <walk-speed>2.5</walk-speed>
-        <potion duration="5s" amplifier="-100">jump_boost</potion>
-        <potion duration="5s" amplifier="1">blindness</potion>
-        <potion duration="5s" amplifier="10">slowness</potion>
+        <effect duration="5s" amplifier="-100">jump_boost</effect>
+        <effect duration="5s" amplifier="1">blindness</effect>
+        <effect duration="5s" amplifier="10">slowness</effect>
     </kit>
     <kit id="boating-kit">
         <clear-items/>
@@ -76,7 +74,7 @@
 <tnt>
     <blockdamage>false</blockdamage>
 </tnt>
-<destroyables name="Walls" id="walls" show="false" materials="stained glass:15" mode-changes="true" completion="0%">
+<destroyables name="Walls" show="false" materials="stained glass:15" mode-changes="true" completion="0%">
     <destroyable id="boater-walls" owner="boaters">
         <region>
             <cuboid min="-6,31,13" max="-7,39,-12"/>
@@ -172,18 +170,10 @@
         <cuboid min="-246,9,20" max="-266,8,-20"/>
         <cuboid min="-266,8,20" max="-oo,7,-20"/>
     </union>
-        <cuboid id="boating-area" min="-10,32,20" max="-30,26,-20"/>
-    <apply enter="only-boaters">
-        <region>
-            <region id="death-portal"/>
-        </region>
-    </apply>
-    <apply kit="boater-kit">
-        <region id="boaters-spawn"/>
-    </apply>
-    <apply kit="boating-kit">
-        <region id="boating-area"/>
-    </apply>
+    <cuboid id="boating-area" min="-10,32,20" max="-30,26,-20"/>
+    <apply region="death-portal" enter="only-boaters"/>
+    <apply region="boaters-spawn" kit="boater-kit"/>
+    <apply region="boating-area" kit="boating-kit"/>
 </regions>
 <hunger>
     <depletion>off</depletion>

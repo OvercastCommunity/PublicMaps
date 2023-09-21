@@ -1,13 +1,13 @@
 <map proto="1.4.2">
 <name>5man</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Get the most kills within 5 minutes!</objective>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- Jtr -->
 </authors>
-<contributor>
+<contributors>
     <contributor uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="XML Source Material"/> <!-- mitchiii_ -->
-</contributor>
+</contributors>
 <time>5m</time>
 <score>
     <kills>1</kills>
