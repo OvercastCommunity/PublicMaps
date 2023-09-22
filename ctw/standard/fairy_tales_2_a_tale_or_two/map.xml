@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Fairy Tales 2: A Tale or Two</name>
-<version>3.10.4</version>
+<version>3.10.5</version>
 <objective>Take the enemy's wool located in bedrock castles on the enemy's side and place it in your victory monument.</objective>
+<include id="lava-buckets"/>
 <authors>
     <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/> <!-- D347HxD -->
 </authors>
