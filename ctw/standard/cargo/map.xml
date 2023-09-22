@@ -1,8 +1,18 @@
 <map proto="1.4.2">
 <name>Cargo</name>
-<version>1.2.12</version>
+<version>1.3.0</version>
+<variant id="halloween" world="halloween" override="true">Haunted Cargo</variant>
 <objective>Capture the enemy's wools!</objective>
-<created>2013-12-27</created>
+<if variant="default">
+    <created>2013-12-27</created>
+</if>
+<if variant="halloween">
+    <created>2019-10-10</created>
+</if>
+<!-- Set variant below to current season (default/halloween) -->
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <authors>
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
     <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->
@@ -18,6 +28,9 @@
     <contributor uuid="3d4c3318-8487-4c9f-b137-df73fa930ea9" contribution="Minor aesthetics"/> <!-- ttaylorr -->
     <contributor uuid="91295196-9cd2-4963-b7ec-afd1a110edbe" contribution="Feedback and zen"/> <!-- PandaBattalion -->
     <contributor uuid="a02e9415-05bc-40f8-be9f-7b1b521b6a0e" contribution="Feedback and design"/> <!-- CacklingPanda -->
+    <if variant="halloween">
+        <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Halloween-ification"/> <!-- Xerocoles -->
+    </if>
 </contributors>
 <teams>
     <team id="blue" color="blue" max="16">Blue</team>
@@ -34,7 +47,12 @@
         <item slot="2" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="3" amount="64" damage="2" material="wood"/>
+        <if variant="default">
+            <item slot="3" amount="64" damage="2" material="wood"/>
+        </if>
+        <if variant="halloween">
+            <item slot="3" amount="64" material="wood"/>
+        </if>
         <item slot="4" amount="48" material="leaves"/>
         <item slot="5" amount="32" material="ladder"/>
         <item slot="8" material="golden apple"/>
@@ -189,11 +207,18 @@
     <item>ladder</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="16" damage="2" material="wood"/>
-    <item amount="12" material="leaves"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <if variant="default">
+            <item amount="16" damage="2" material="wood"/>
+        </if>
+        <if variant="halloween">
+            <item amount="16" material="wood"/>
+        </if>
+        <item amount="12" material="leaves"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>28</maxbuildheight>
 <gamerules>
     <doFireTick>false</doFireTick>
