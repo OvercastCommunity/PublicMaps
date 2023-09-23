@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Connected</name>
-<version>1.1.1</version>
+<version>1.2.0</version>
+<variant id="christmas" world="christmas">Christmas</variant>
 <phase>development</phase>
 <objective>Capture the wool and return it to your victory monument.</objective>
 <authors>
@@ -53,7 +54,7 @@
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cylinder base="11.5,7,-114.5" radius="1" height="0"/>
         </region>
     </spawn>
@@ -185,11 +186,13 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>30</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
