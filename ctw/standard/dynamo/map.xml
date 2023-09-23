@@ -1,7 +1,12 @@
 <map proto="1.4.2">
 <name>Dynamo</name>
-<version>1.5.3</version>
+<variant id="halloween" world="halloween" override="true">DynaboOo</variant>
+<version>1.6.0</version>
 <objective>Grab the wool from the enemy's wool room and place it on your victory monument.</objective>
+<!-- Set variant below to current season (default/halloween) -->
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <authors>
     <author uuid="6968cbde-c2b7-479c-a8da-f33f109f013b" contribution="Map design and XML"/> <!-- Brottweiler -->
     <author uuid="053ca59c-92f9-4c80-8c42-9ff175dff97e" contribution="Map design"/> <!-- xDino_Saurus -->
@@ -12,6 +17,9 @@
     <contributor uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150" contribution="Feedback"/> <!-- Pandaboy999 -->
     <contributor uuid="af209afd-77dc-4bdb-8cf1-f1513c77bb0b" contribution="Feedback"/> <!-- TranquilSea -->
     <contributor uuid="8dfe823e-3359-44e2-b1c4-3875bf9f57d9" contribution="Feedback"/> <!-- andykay18 -->
+    <if variant="halloween">
+        <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Halloween Version"/> <!-- Timothee38 -->
+    </if>
 </contributors>
 <teams>
     <team id="blue" color="blue" max="8" max-overfill="12">Blue</team>
@@ -53,7 +61,7 @@
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cuboid min="-28.5,36,19.5" max="-28.5,36,20.5"/>
         </region>
         <region yaw="180">
@@ -61,7 +69,7 @@
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cuboid min="47.5,36,19.5" max="47.5,36,20.5"/>
         </region>
         <region yaw="180">
@@ -172,11 +180,13 @@
     <item>wood</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="12" material="smooth brick"/>
-    <item amount="6" damage="1" material="wood"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="12" material="smooth brick"/>
+        <item amount="6" damage="1" material="wood"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>15</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
