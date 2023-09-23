@@ -1,13 +1,21 @@
 <map proto="1.4.2">
 <name>Downtown</name>
-<version>1.1.4</version>
+<variant id="christmas" world="christmas">Christmas Eve</variant>
+<version>1.2.4</version>
 <objective>Be the first team to 2500 points!</objective>
+<gamemode>koth</gamemode>
+<!-- Set variant below to current season (default/christmas) -->
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <authors>
-    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
-    <author uuid="510cf71c-0f8a-44b6-87c2-b1ed9c197040"/> <!-- fleuor -->
+    <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Main Builder"/> <!-- Xerocoles -->
+    <author uuid="510cf71c-0f8a-44b6-87c2-b1ed9c197040" contribution="Helper Builder"/> <!-- fleuor -->
 </authors>
 <contributors>
     <contributor uuid="bf331953-4f92-43ee-8abc-7544b8234936" contribution="XML"/> <!-- ViceTechnicolour -->
+    <contributor uuid="d3814d5a-3d37-42f2-9db8-916846bb70ad" contribution="Feedback"/> <!-- AlmightyBread -->
+    <contributor uuid="74e59389-2b3e-490d-954a-a7af1fb1eded" contribution="Feedback"/> <!-- Dowly_ -->
 </contributors>
 <broadcasts>
     <tip after="10s" every="2m">Centre Hill is worth more points than any other hill!</tip>
@@ -17,6 +25,9 @@
     <team id="red" color="dark red" max="18">Red</team>
 </teams>
 <kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
@@ -34,22 +45,34 @@
         <effect duration="5" amplifier="4">heal</effect>
         <effect duration="5" amplifier="4">damage resistance</effect>
         <game-mode>adventure</game-mode>
+        <if variant="christmas">
+            <effect>night vision</effect>
+        </if>
     </kit>
 </kits>
 <spawns>
-    <default>
-        <region yaw="180">
-            <point>0.5,60,75.5</point>
-        </region>
-    </default>
+    <if variant="default">
+        <default>
+            <region yaw="180">
+                <point>0.5,60,75.5</point>
+            </region>
+        </default>
+    </if>
+    <if variant="christmas">
+        <default kit="default-kit">
+            <region yaw="180">
+                <point>0.5,60,75.5</point>
+            </region>
+        </default>
+    </if>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="180">
-            <cylinder base="-45,7,6" radius="2" height="1"/>
+            <point>-44.5,7,6.5</point>
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
-            <cylinder base="45,7,-6" radius="2" height="1"/>
+        <region>
+            <point>45.5,7,-5.5</point>
         </region>
     </spawn>
 </spawns>
@@ -78,43 +101,41 @@
     </apply>
     <apply block="never"/>
 </regions>
-<king>
-    <hills required="false" capture-time="5s" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
-        <hill name="Café" points="2.5">
-            <capture>
-                <cylinder height="3" radius="4.5" base="30,10,-32"/>
-            </capture>
-            <progress>
-                <cylinder height="3" radius="4.5" base="30,10,-32"/>
-            </progress>
-            <captured>
-                <cylinder height="3" radius="4.5" base="30,10,-32"/>
-            </captured>
-        </hill>
-        <hill name="Centre" points="4">
-            <capture>
-                <cylinder height="3" radius="4.5" base="0,22,0"/>
-            </capture>
-            <progress>
-                <cylinder height="3" radius="4.5" base="0,22,0"/>
-            </progress>
-            <captured>
-                <cylinder height="3" radius="4.5" base="0,22,0"/>
-            </captured>
-        </hill>
-        <hill name="Park" points="2.5">
-            <capture>
-                <cylinder height="3" radius="4.5" base="-32,9,36"/>
-            </capture>
-            <progress>
-                <cylinder height="3" radius="4.5" base="-32,9,36"/>
-            </progress>
-            <captured>
-                <cylinder height="3" radius="4.5" base="-32,9,36"/>
-            </captured>
-        </hill>
-    </hills>
-</king>
+<control-points required="false" capture-time="5s" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <control-point id="cafe-hill" name="Café" points="2.5">
+        <capture>
+            <cylinder height="3" radius="4.5" base="30.5,10,-31.5"/>
+        </capture>
+        <progress>
+            <cylinder height="3" radius="4.5" base="30.5,10,-31.5"/>
+        </progress>
+        <captured>
+            <cylinder height="3" radius="4.5" base="30.5,10,-31.5"/>
+        </captured>
+    </control-point>
+    <control-point id="centre-hill" name="Centre" points="4">
+        <capture>
+            <cylinder height="3" radius="4" base="0.5,22,0.5"/>
+        </capture>
+        <progress>
+            <cylinder height="3" radius="4" base="0.5,22,0.5"/>
+        </progress>
+        <captured>
+            <cylinder height="3" radius="4" base="0.5,22,0.5"/>
+        </captured>
+    </control-point>
+    <control-point id="park-hill" name="Park" points="2.5">
+        <capture>
+            <cylinder height="3" radius="4.5" base="-31.5,9,36.5"/>
+        </capture>
+        <progress>
+            <cylinder height="3" radius="4.5" base="-31.5,9,36.5"/>
+        </progress>
+        <captured>
+            <cylinder height="3" radius="4.5" base="-31.5,9,36.5"/>
+        </captured>
+    </control-point>
+</control-points>
 <score>
     <limit>2500</limit>
 </score>
@@ -135,10 +156,12 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
