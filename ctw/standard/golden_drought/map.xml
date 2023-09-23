@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Golden Drought</name>
-<version>1.3.16</version>
+<variant id="christmas" world="christmas" override="true">Merry Drought</variant>
+<version>1.4.0</version>
 <objective>Take the wool from the enemy wool rooms and place it on your victory monument while defending your own wool.</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
@@ -25,9 +26,16 @@
             <enchantment>efficiency</enchantment>
         </item>
         <item slot="3" unbreakable="true" material="gold axe"/>
-        <item slot="4" amount="64" material="sandstone"/>
-        <item slot="31" amount="64" material="sandstone"/>
-        <item slot="5" amount="64" damage="2" material="wood"/>
+        <if variant="default">
+            <item slot="4" amount="64" material="sandstone"/>
+            <item slot="31" amount="64" material="sandstone"/>
+            <item slot="5" amount="64" damage="2" material="wood"/>
+        </if>
+        <if variant="christmas">
+            <item slot="4" amount="64" material="quartz block"/>
+            <item slot="31" amount="64" material="quartz block"/>
+            <item slot="5" amount="64" damage="1" material="wood"/>
+        </if>
         <item slot="32" amount="4" material="web"/>
         <item slot="6" amount="64" material="ladder"/>
         <item slot="33" material="bucket"/>
@@ -150,6 +158,9 @@
     <tool>iron pickaxe</tool>
     <tool>gold axe</tool>
     <tool>arrow</tool>
+    <if variant="christmas">
+        <tool>wood spade</tool>
+    </if>
 </toolrepair>
 <itemremove>
     <item>golden carrot</item>
@@ -158,14 +169,34 @@
     <item>string</item>
 </itemremove>
 <block-drops>
-    <rule>
-        <filter>
-            <material>sandstone</material>
-        </filter>
-        <drops>
-            <item chance="0" material="sandstone"/>
-        </drops>
-    </rule>
+    <if variant="default">
+        <rule>
+            <filter>
+                <material>sandstone</material>
+            </filter>
+            <drops>
+                <item chance="0" material="sandstone"/>
+            </drops>
+        </rule>
+    </if>
+    <if variant="christmas">
+        <rule>
+            <filter>
+                <material>quartz block</material>
+            </filter>
+            <drops>
+                <item chance="0" material="quartz block"/>
+            </drops>
+        </rule>
+        <rule>
+            <filter>
+                <material>snow block</material>
+            </filter>
+            <drops>
+                <item chance="0" material="snow ball"/>
+            </drops>
+        </rule>
+    </if>
     <rule>
         <filter>
             <material>wood</material>
@@ -184,7 +215,12 @@
     </rule>
 </block-drops>
 <itemkeep>
-    <item>sandstone</item>
+    <if variant="default">
+        <item>sandstone</item>
+    </if>
+    <if variant="christmas">
+        <item>quartz block</item>
+    </if>
     <item>wood</item>
     <item>ladder</item>
     <item>bucket</item>
@@ -193,8 +229,14 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item amount="16" material="sandstone"/>
-        <item amount="8" damage="2" material="wood"/>
+        <if variant="default">
+            <item amount="16" material="sandstone"/>
+            <item amount="8" damage="2" material="wood"/>
+        </if>
+        <if variant="christmas">
+            <item amount="16" material="quartz block"/>
+            <item amount="8" damage="1" material="wood"/>
+        </if>
         <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
@@ -229,6 +271,9 @@
         <ingredient symbol="G">gold block</ingredient>
         <ingredient symbol="A">apple</ingredient>
     </shaped>
+    <if variant="christmas">
+        <disable>gold spade</disable>
+    </if>
 </crafting>
 <!-- include src="tutorial.xml"/ -->
 <!-- <tutorial>
