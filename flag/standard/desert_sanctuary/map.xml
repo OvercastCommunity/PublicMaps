@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Sanctuary</name>
-<version>1.6.1</version>
+<version>1.6.2</version>
 <variant id="5v5" world="5v5">5v5</variant>
 <variant id="7v7" world="7v7">7v7</variant>
 <variant id="halloween" world="halloween" override="true">Deserted Sanctuary</variant>
@@ -14,19 +14,15 @@
     <constant id="mid-post-filter">never</constant>
 </if>
 <unless variant="halloween">
-    <constant id="team-1-id">blue-team</constant>
     <constant id="team-1-color">blue</constant>
     <constant id="team-1-name">Blue</constant>
-    <constant id="team-2-id">red-team</constant>
     <constant id="team-2-color">dark red</constant>
     <constant id="team-2-name">Red</constant>
     <constant id="flag-color">purple</constant>
 </unless>
 <if variant="halloween">
-    <constant id="team-1-id">purple-team</constant>
     <constant id="team-1-color">dark purple</constant>
     <constant id="team-1-name">Purple</constant>
-    <constant id="team-2-id">orange-team</constant>
     <constant id="team-2-color">gold</constant>
     <constant id="team-2-name">Orange</constant>
     <constant id="flag-color">lime</constant>
@@ -56,12 +52,12 @@
 </contributors>
 <teams>
     <unless variant="default,halloween,christmas">
-        <team id="${team-1-id}" color="${team-1-color}" max="${team-size}" max-overfill="${team-size}">${team-1-name}</team>
-        <team id="${team-2-id}" color="${team-2-color}" max="${team-size}" max-overfill="${team-size}">${team-2-name}</team>
+        <team id="team-1" color="${team-1-color}" max="${team-size}" max-overfill="${team-size}">${team-1-name}</team>
+        <team id="team-2" color="${team-2-color}" max="${team-size}" max-overfill="${team-size}">${team-2-name}</team>
     </unless>
     <if variant="default,halloween,christmas">
-        <team id="${team-1-id}" color="${team-1-color}" max="20">${team-1-name}</team>
-        <team id="${team-2-id}" color="${team-2-color}" max="20">${team-2-name}</team>
+        <team id="team-1" color="${team-1-color}" max="20">${team-1-name}</team>
+        <team id="team-2" color="${team-2-color}" max="20">${team-2-name}</team>
     </if>
 </teams>
 <kits>
@@ -96,8 +92,8 @@
 </kits>
 <spawns>
     <default kit="default-kit" region="default-spawn" yaw="90"/>
-    <spawn team="${team-1-id}" kit="spawn-kit" filter="has-flag" region="${team-1-id}-spawn" yaw="0"/>
-    <spawn team="${team-2-id}" kit="spawn-kit" filter="has-flag" region="${team-2-id}-spawn" yaw="180"/>
+    <spawn team="team-1" kit="spawn-kit" filter="has-flag" region="team-1-spawn" yaw="0"/>
+    <spawn team="team-2" kit="spawn-kit" filter="has-flag" region="team-2-spawn" yaw="180"/>
 </spawns>
 <regions>
     <unless variant="5v5,christmas">
@@ -107,13 +103,13 @@
         <cylinder id="default-spawn" base="70.5,51,24.5" radius="2" height="0"/>
     </if>
     <unless variant="5v5">
-        <point id="${team-1-id}-spawn">11.5,16,-47.5</point>
-        <point id="${team-2-id}-spawn">11.5,16,96.5</point>
+        <point id="team-1-spawn">11.5,16,-47.5</point>
+        <point id="team-2-spawn">11.5,16,96.5</point>
     </unless>
     <if variant="5v5">
         <cylinder id="default-spawn" base="0.5,51,0.5" radius="2" height="0"/>
-        <point id="${team-1-id}-spawn">0.5,16,-61.5</point>
-        <point id="${team-2-id}-spawn">0.5,16,62.5</point>
+        <point id="team-1-spawn">0.5,16,-61.5</point>
+        <point id="team-2-spawn">0.5,16,62.5</point>
     </if>
     <apply block="never" use="never"/>
 </regions>
