@@ -1,12 +1,24 @@
 <map proto="1.4.2">
 <name>Agrostid</name>
-<version>2.1.4</version>
+<variant id="christmas" world="christmas" override="true">AFrostid</variant>
+<version>2.2.0</version>
 <objective>Capture both of the enemy's wools!</objective>
-<created>2015-04-26</created>
+<if variant="default">
+    <created>2015-04-26</created>
+</if>
+<!-- Set variant below to current season (default/christmas) -->
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <authors>
     <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" /> <!-- Matic0B -->
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" /> <!-- rockymine -->
 </authors>
+<if variant="christmas">
+    <contributors>
+        <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Christmas-ification"/> <!-- Xerocoles -->
+    </contributors>
+</if>
 <broadcasts>
     <tip after="5s">`7Your wool rooms are located to the sides of your spawn. Defend them!</tip>
     <tip after="30s">`7Four `fIron Blocks `r`7can be found in the middle of the map!</tip>
@@ -33,7 +45,12 @@
             <enchantment>efficiency</enchantment>
         </item>
         <item slot="31" unbreakable="true" material="shears"/>
-        <item slot="5" amount="64" damage="1" material="wood"/>
+        <if variant="default">
+            <item slot="5" amount="64" damage="1" material="wood"/>
+        </if>
+        <if variant="christmas">
+            <item slot="5" amount="64" damage="5" material="wood"/>
+        </if>
         <item slot="6" amount="48" material="glass"/>
         <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
@@ -50,7 +67,7 @@
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>-765.5,9,-377.5</point>
         </region>
     </spawn>
@@ -182,25 +199,36 @@
     <item>beacon</item>
     <item>sapling</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="16" damage="1" material="wood"/>
-    <item amount="8" material="glass"/>
-</kill-reward>
 <block-drops>
     <rule>
         <filter>
-            <any>
-                <material>wood</material>
-                <material>glass</material>
-            </any>
-            
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>glass</material>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
         </drops>
     </rule>
 </block-drops>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <if variant="default">
+            <item amount="16" damage="1" material="wood"/>
+        </if>
+        <if variant="christmas">
+            <item amount="16" damage="5" material="wood"/>
+        </if>
+        <item amount="8" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>22</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
