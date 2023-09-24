@@ -1,17 +1,38 @@
 <map proto="1.4.2">
 <name>Two Tier</name>
-<version>1.2.4</version>
+<variant id="christmas" world="christmas" override="true">Two Trees</variant>
+<variant id="halloween" world="halloween" override="true">Two Tear</variant>
+<version>1.3.0</version>
 <objective>Capture both of the enemy's wools!</objective>
+<!-- Set variant below to current season (default/halloween/christmas) -->
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <authors>
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
+<if variant="christmas">
+    <contributors>
+        <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="'Borrowed' the trees"/> <!-- ElectroidFilms -->
+    </contributors>
+</if>
+<if variant="halloween">
+    <contributors>
+        <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655" contribution="Halloween-ification"/> <!-- wylt -->
+        <contributor uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa" contribution="Halloween-ification"/> <!-- Antnecb -->
+        <contributor uuid="6863869b-4b8c-4445-b778-a8e016775ae4" contribution="Halloween aesthetic police"/> <!-- Cazadorian -->
+    </contributors>
+</if>
 <teams>
     <team id="blue" color="blue" max="32">Blue</team>
     <team id="red" color="dark red" max="32">Red</team>
 </teams>
 <kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
@@ -25,10 +46,16 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="4" amount="64" damage="2" material="wood"/>
-        <item slot="31" amount="64" damage="2" material="wood"/>
+        <unless variant="halloween">
+            <item slot="4" amount="64" damage="2" material="wood"/>
+            <item slot="31" amount="64" damage="2" material="wood"/>
+        </unless>
+        <if variant="halloween">
+            <item slot="4" amount="64" damage="5" material="wood"/>
+            <item slot="31" amount="64" damage="5" material="wood"/>
+        </if>
         <item slot="5" amount="64" material="glass"/>
-        <item slot="6" amount="24" lore="`5Use this iron to craft armor!">iron ingot</item>
+        <item slot="6" amount="24" lore="`5Use this iron to craft armor!" material="iron ingot"/>
         <item slot="33" material="bucket"/>
         <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
@@ -36,14 +63,26 @@
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect duration="5s" amplifier="255">damage resistance</effect>
+        <if variant="halloween">
+            <effect>night vision</effect>
+        </if>
     </kit>
 </kits>
 <spawns>
-    <default>
-        <region yaw="180">
-            <cuboid min="-68.5,53,53.5" max="-65.5,53,56.5"/>
-        </region>
-    </default>
+    <unless variant="halloween">
+        <default>
+            <region yaw="180">
+                <cuboid min="-68.5,53,53.5" max="-65.5,53,56.5"/>
+            </region>
+        </default>
+    </unless>
+    <if variant="halloween">
+        <default kit="default-kit">
+            <region yaw="180">
+                <cuboid min="-68.5,53,53.5" max="-65.5,53,56.5"/>
+            </region>
+        </default>
+    </if>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="-90">
             <cuboid min="-156.5,19,52.5" max="-154.5,19,59.5"/>
@@ -193,13 +232,25 @@
     <item>water bucket</item>
     <item>iron ingot</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <unless variant="halloween">
+            <item amount="32" damage="2" material="wood"/>
+        </unless>
+        <if variant="halloween">
+            <item amount="32" damage="5" material="wood"/>
+        </if>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>32</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<if variant="halloween">
+    <world>
+        <timeset>18000</timeset>
+    </world>
+</if>
 </map>
