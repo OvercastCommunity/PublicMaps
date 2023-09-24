@@ -1,9 +1,14 @@
 <map proto="1.4.2">
 <name>PixelMix</name>
-<version>2.2.5</version>
+<variant id="halloween" world="halloween" override="true">PixelMissing</variant>
+<version>2.3.0</version>
+<!-- Set variant below to current season (default/halloween) -->
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <objective>Take the enemy's wool located at two sides of the enemy's base and place it in your victory monument.</objective>
 <authors>
-    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Idea, map design and XML"/> <!-- DoomRobotBoy -->
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Idea, map design, and XML"/> <!-- DoomRobotBoy -->
 </authors>
 <contributors>
     <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML fixing"/> <!-- ollyj -->
@@ -13,6 +18,9 @@
     <team id="red" color="dark red" max="35">Red</team>
 </teams>
 <kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
@@ -38,14 +46,26 @@
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots team-color="true" unbreakable="true" material="leather boots"/>
         <effect duration="7" amplifier="10">damage resistance</effect>
+        <if variant="halloween">
+            <effect>night vision</effect>
+        </if>
     </kit>
 </kits>
 <spawns>
-    <default>
-        <region yaw="0">
-            <cylinder base="-3.5,65,-257" radius="1" height="0"/>
-        </region>
-    </default>
+    <unless variant="halloween">
+        <default>
+            <region>
+                <cylinder base="-3.5,65,-257" radius="1" height="0"/>
+            </region>
+        </default>
+    </unless>
+    <if variant="halloween">
+        <default kit="default-kit">
+            <region>
+                <cylinder base="-3.5,65,-257" radius="1" height="0"/>
+            </region>
+        </default>
+    </if>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="90">
             <point>104.5,57,-187.5</point>
@@ -191,6 +211,11 @@
     <item>glowstone dust</item>
     <item>yellow flower</item>
     <item>red rose</item>
+    <if variant="halloween">
+        <item>red mushroom</item>
+        <item>brown mushroom</item>
+        <item>jack o lantern</item>
+    </if>
 </itemremove>
 <block-drops>
     <rule>
@@ -259,11 +284,13 @@
     <item>wood</item>
     <item>stained clay</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" damage="10" material="stained clay"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" damage="10" material="stained clay"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>32</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
