@@ -1,13 +1,23 @@
 <map proto="1.4.2">
 <name>Clearcut</name>
-<version>2.1.12</version>
+<variant id="christmas" world="christmas" override="true">Coldcut</variant>
+<version>2.2.0</version>
 <objective>Capture and place both of the enemy's wools!</objective>
 <gamemode>ctw</gamemode>
+<!-- Set variant below to current season (default/halloween/christmas) -->
+<unless variant="default">
+    <phase>development</phase>
+</unless>
 <authors>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
     <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9"/> <!-- Obelistics -->
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- Doomy -->
 </authors>
+<if variant="christmas">
+    <contributors>
+        <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Christmas-ification"/> <!-- Xerocoles -->
+    </contributors>
+</if>
 <teams>
     <team id="blue" color="blue" max="20">Blue</team>
     <team id="red" color="dark red" max="20">Red</team>
@@ -27,7 +37,12 @@
             <enchantment>efficiency</enchantment>
         </item>
         <item slot="4" unbreakable="true" material="iron spade"/>
-        <item slot="5" amount="64" damage="2" material="wood"/>
+        <if variant="default">
+            <item slot="5" amount="64" damage="2" material="wood"/>
+        </if>
+        <if variant="christmas">
+            <item slot="5" amount="64" damage="1" material="wood"/>
+        </if>
         <item slot="6" amount="48" material="glass"/>
         <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
@@ -49,7 +64,7 @@
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>273.5,11.5,-105.5</point>
         </region>
     </spawn>
@@ -131,7 +146,7 @@
     <apply block="never" region="wool-room-protection"/>
     <apply block="blue-in-wr" use="only-blue" region="blue-wools"/>
     <apply block="red-in-wr" use="only-red" region="red-wools"/>
-    <apply block-break="only-iron" block-place="only-iron-regen" region="spawns" message="You may not destroy the spawns!"/>
+    <apply block-break="only-iron" block-place="only-iron-regen" region="spawns" message="You may not modify the spawns!"/>
     <apply block-place="no-void" region="void-area" message="You may not build in the void!"/>
 </regions>
 <renewables>
@@ -238,11 +253,18 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="24" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <if variant="default">
+            <item amount="24" damage="2" material="wood"/>
+        </if>
+        <if variant="christmas">
+            <item amount="24" damage="1" material="wood"/>
+        </if>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>28</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
