@@ -1,0 +1,165 @@
+<map proto="1.4.2">
+<name>Golden Drought V</name>
+<version>1.2.0</version>
+<objective>Capture the enemy wool!</objective>
+<!-- <time result="objectives" max-overtime="10m" overtime="10m">25m</time> -->
+<authors>
+    <author uuid="52bcb4dd-a1a0-4d9b-94e0-49e145e318e4"/> <!-- Lich_of_Flowers -->
+</authors>
+<contributors>
+    <contributor uuid="13d54b8b-4abf-46a7-b3ad-f12d5dd74bc3" contribution="Building help"/> <!-- BlueSnowflakes -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="8" max-overfill="8">Blue</team>
+    <team id="red-team" color="dark red" max="8" max-overfill="8">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" show-unbreakable="false" material="stone sword"/>
+        <item slot="1" unbreakable="true" show-unbreakable="false" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" show-unbreakable="false" material="iron pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" show-unbreakable="false" material="iron axe"/>
+        <item slot="4" amount="64" material="sandstone"/>
+        <item slot="5" amount="24" damage="2" material="wood"/>
+        <item slot="6" amount="64" material="sandstone"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="golden carrot"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <effect duration="5" amplifier="3">heal</effect>
+        <effect duration="5" amplifier="3">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="180">
+            <cylinder base="36.5,14,-1226.5" radius="1.5" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="90">
+            <cylinder base="116,4,-1281" radius="1.5" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="-90">
+            <cylinder base="-43,4,-1274" radius="1.5" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="blue-in-wr">
+        <any>
+            <team id="only-red">red-team</team>
+            <material>chest</material>
+        </any>
+    </not>
+    <not id="red-in-wr">
+        <any>
+            <team id="only-blue">blue-team</team>
+            <material>chest</material>
+        </any>
+    </not>
+    <material id="only-gold">gold block</material>
+    <not id="deny-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="105,-1289" max="121,-1273"/>
+        <rectangle id="red-spawn" min="-48,-1282" max="-32,-1266"/>
+    </union>
+    <union id="wool-rooms">
+        <rectangle id="purple-for-blue" min="-15,-1273" max="-6,-1264"/> <!-- Blue must get -->
+        <rectangle id="green-for-red" min="79,-1282" max="88,-1291"/> <!-- Red must get -->
+    </union>
+    <complement id="void">
+        <everywhere/>
+        <rectangle min="8,-1309" max="65,-1246"/>
+        <union id="wr-bridges">
+            <rectangle min="81,-1269" max="86,-1260"/> <!-- to wool on blue's side -->
+            <rectangle min="-13,-1295" max="-8,-1286"/> <!-- to wool on red's side -->
+        </union>
+        <union id="skybridge-lanes">
+            <rectangle min="79,-1300" max="88,-1291"/> <!-- to wool on blue's side -->
+            <rectangle min="-15,-1264" max="-6,-1255"/> <!-- to wool on red's side -->
+        </union>
+    </complement>
+    <intersect id="under-bridges">
+        <region id="wr-bridges"/>
+        <below y="14"/>
+    </intersect>
+    <intersect id="under-skybridge">
+        <region id="skybridge-lanes"/>
+        <below y="13"/>
+    </intersect>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-blue" region="purple-for-blue" message="You may not enter your team's own wool room!"/>
+    <apply enter="only-red" region="green-for-red" message="You may not enter your team's own wool room!"/>
+    <apply block-break="only-gold" block-place="never" region="spawns" message="You may only break gold blocks in spawn!"/>
+    <apply block="blue-in-wr" use="only-blue" region="purple-for-blue"/>
+    <apply block="red-in-wr" use="only-red" region="green-for-red"/>
+    <apply block="never" region="under-bridges" message="You may not build in the void!"/>
+    <apply block="deny-void" region="under-skybridge" message="You may not build in the void!"/>
+    <apply block="deny-void" region="void" message="You may not build in the void!"/>
+</regions>
+<renewables>
+    <renewable rate="2" grow="true" region="spawns" renew-filter="only-gold"/>
+</renewables>
+<wools wool-proximity-metric="none" monument-proximity-metric="closest block">
+    <wool team="blue-team" color="purple" location="-10.5,13.5,-1265.5">
+        <monument>
+            <block>106,5,-1281</block>
+        </monument>
+    </wool>
+    <wool team="red-team" color="green" location="83.5,13.5,-1289.5">
+        <monument>
+            <block>-34,5,-1275</block>
+        </monument>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>sandstone</item>
+    <item>wood</item>
+    <item>golden carrot</item>
+    <item>leather helmet</item>
+    <item>arrow</item>
+</itemremove>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="32" material="sandstone"/>
+    <item amount="12" damage="2" material="wood"/>
+</kill-reward>
+<maxbuildheight>20</maxbuildheight>
+<respawn delay="3s" auto="true" blackout="false"/>
+<crafting>
+    <disable>boat</disable>
+</crafting>
+<item-mods>
+    <rule>
+        <match>
+            <material>gold sword</material>
+            <material>gold helmet</material>
+            <material>gold leggings</material>
+            <material>gold boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+</map>
