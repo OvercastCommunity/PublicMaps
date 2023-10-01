@@ -2,10 +2,6 @@
 <name>PixelMix</name>
 <variant id="halloween" world="halloween" override="true">PixelMissing</variant>
 <version>2.3.0</version>
-<!-- Set variant below to current season (default/halloween) -->
-<unless variant="default">
-    <phase>development</phase>
-</unless>
 <objective>Take the enemy's wool located at two sides of the enemy's base and place it in your victory monument.</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Idea, map design, and XML"/> <!-- DoomRobotBoy -->

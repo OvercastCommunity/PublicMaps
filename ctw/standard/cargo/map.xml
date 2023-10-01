@@ -9,10 +9,6 @@
 <if variant="halloween">
     <created>2019-10-10</created>
 </if>
-<!-- Set variant below to current season (default/halloween) -->
-<unless variant="default">
-    <phase>development</phase>
-</unless>
 <authors>
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
     <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->

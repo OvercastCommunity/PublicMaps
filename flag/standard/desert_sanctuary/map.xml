@@ -37,9 +37,6 @@
 </if>
 <constant id="damage-resistance">7.5s</constant>
 <objective>Control the flag for ${score} seconds to win!</objective>
-<unless variant="default">
-    <phase>development</phase>
-</unless>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->

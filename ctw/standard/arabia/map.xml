@@ -11,13 +11,11 @@
 </if>
 <if variant="halloween">
     <constant id="team-2-wool-color-a">red</constant>
-    <constant id="wood-type">1</constant>
     <created>2019-10-15</created>
-    <phase>development</phase>
 </if>
-<if variant="christmas">
+<if variant="halloween,christmas">
     <constant id="wood-type">1</constant>
-    <phase>development</phase>
+
 </if>
 <authors>
     <author uuid="b8add1ba-8e13-4673-bc73-4e3ed524d40e"/> <!-- Blazy36 -->
