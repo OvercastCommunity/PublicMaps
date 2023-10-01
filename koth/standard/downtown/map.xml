@@ -4,10 +4,6 @@
 <version>1.2.4</version>
 <objective>Be the first team to 2500 points!</objective>
 <gamemode>koth</gamemode>
-<!-- Set variant below to current season (default/christmas) -->
-<unless variant="default">
-    <phase>development</phase>
-</unless>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Main Builder"/> <!-- Xerocoles -->
     <author uuid="510cf71c-0f8a-44b6-87c2-b1ed9c197040" contribution="Helper Builder"/> <!-- fleuor -->

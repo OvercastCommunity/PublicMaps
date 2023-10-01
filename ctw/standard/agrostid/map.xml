@@ -6,10 +6,6 @@
 <if variant="default">
     <created>2015-04-26</created>
 </if>
-<!-- Set variant below to current season (default/christmas) -->
-<unless variant="default">
-    <phase>development</phase>
-</unless>
 <authors>
     <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" /> <!-- Matic0B -->
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" /> <!-- rockymine -->

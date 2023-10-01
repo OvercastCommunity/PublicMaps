@@ -4,10 +4,6 @@
 <version>2.2.0</version>
 <objective>Capture and place both of the enemy's wools!</objective>
 <gamemode>ctw</gamemode>
-<!-- Set variant below to current season (default/halloween/christmas) -->
-<unless variant="default">
-    <phase>development</phase>
-</unless>
 <authors>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
     <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9"/> <!-- Obelistics -->
