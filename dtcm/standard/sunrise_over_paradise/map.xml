@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Sunrise Over Paradise</name>
-<version>1.3.3</version>
+<version>1.3.4</version>
 <phase>development</phase>
 <objective>Break the obsidian from both of the enemy team's monuments.</objective>
 <authors>
@@ -23,17 +23,17 @@
 <spawns>
     <spawn team="red-team" kit="red" yaw="180">
         <region>
-            <cylinder base="0,3,80" radius="1" height="0"/>
+            <cylinder base="0.5,3,80.5" radius="1" height="0"/>
         </region>
     </spawn>
     <spawn team="blue-team" kit="blue" yaw="0">
         <region>
-            <cylinder base="0,3,-80" radius="1" height="0"/>
+            <cylinder base="0.5,3,-79.5" radius="1" height="0"/>
         </region>
     </spawn>
     <default yaw="90">
         <region>
-            <cylinder base="-45,35,0" radius="1" height="0"/>
+            <cylinder base="-44.5,35,0.5" radius="1" height="0"/>
         </region>
     </default>
 </spawns>
