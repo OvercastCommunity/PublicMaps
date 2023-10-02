@@ -2,7 +2,7 @@
 <name>Golden Drought III</name>
 <variant id="christmas" world="christmas" override="true">Merry Drought III</variant>
 <variant id="halloween" world="halloween" override="true">Spooky Drought III</variant>
-<version>1.4.0</version>
+<version>1.4.1</version>
 <objective>Capture the enemy wools and return them to your victory monument.</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
@@ -98,9 +98,9 @@
     <deny id="no-spawner">
         <material>mob spawner</material>
     </deny>
-    <not id="deny-void">
+    <deny id="deny-void">
         <void/>
-    </not>
+    </deny>
 </filters>
 <regions>
     <union id="no-bg">
@@ -146,13 +146,19 @@
         <rectangle id="mid-vertical" min="-58,-30" max="58,30"/>
         <rectangle id="mid-horizontal" min="-45,-31" max="45,31"/>
         <union id="bases">
-            <rectangle id="blue-base" min="65,-11" max="87,11"/>
-            <rectangle id="red-base" min="-87,-11" max="-65,11"/>
+            <union id="blue-base">
+                <rectangle min="65,-11" max="87,11"/>
+                <mirror region="red-base-tunnel" origin="0,0,0" normal="1,0,0"/> <!-- tunnel -->
+            </union>
+            <union id="red-base">
+                <rectangle min="-87,-11" max="-65,11"/>
+                <rectangle id="red-base-tunnel" min="-87,4" max="-123,-4"/> <!-- tunnel -->
+            </union>
         </union>
     </complement>
     <apply kit="no-bg-kit" region="no-bg"/>
-    <apply enter="only-blue" use="only-blue" region="blue-base" message="You may not enter the enemy base!"/>
-    <apply enter="only-red" use="only-red" region="red-base" message="You may not enter the enemy base!"/>
+    <apply enter="only-blue" region="blue-base" message="You may not enter the enemy base!"/>
+    <apply enter="only-red" region="red-base" message="You may not enter the enemy base!"/>
     <apply enter="only-blue" region="blue-wool-rooms" message="You may not enter your team's own wool rooms!"/>
     <apply enter="only-red" region="red-wool-rooms" message="You may not enter your team's own wool rooms!"/>
     <apply block-break="only-gold" block-place="only-gold-regen" region="bases" message="You may only break gold blocks in the bases!"/>
