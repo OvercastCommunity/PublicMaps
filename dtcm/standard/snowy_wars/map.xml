@@ -1,11 +1,15 @@
 <map proto="1.4.2">
 <name>Snowy Wars</name>
-<version>1.5.5</version>
+<if variant="christmas" world="christmas">Christmas</variant>
+<if variant="halloween" world="halloween">Halloween</variant>
+<version>1.6.0</version>
 <objective>Break the enemy's monument!</objective>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
 </authors>
-<created>2012-09-13</created>
+<if variant="default">
+    <created>2012-09-13</created>
+</if>
 <teams>
     <team id="blue" color="blue" max="16">Blue</team>
     <team id="red" color="dark red" max="16">Red</team>
@@ -153,11 +157,13 @@
     <item>glass</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item amount="16" damage="2" material="wood"/>
-    <item amount="8" material="glass"/>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" damage="2" material="wood"/>
+        <item amount="8" material="glass"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <item-mods>
     <rule>
         <match>
