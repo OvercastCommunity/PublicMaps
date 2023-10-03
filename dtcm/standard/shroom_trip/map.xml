@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Shroom Trip</name>
-<version>1.7.8</version>
+<version>1.7.9</version>
 <objective>Leak lava from the enemy's obsidian shroom into the void.</objective>
 <authors>
     <author uuid="8b210772-8b0c-44b4-a4e2-2b543707ffc6"/> <!-- Omnigarde -->
@@ -21,7 +21,6 @@
         <item slot="2">iron pickaxe</item>
         <item slot="29">shears</item>
         <item slot="3">iron axe</item>
-        <item slot="4" amount="64">huge mushroom 1</item>
         <item slot="31" amount="16">wood</item>
         <item slot="5" amount="32">glass</item>
         <item slot="6">water bucket</item>
@@ -39,11 +38,13 @@
         <helmet color="cd0000">leather helmet</helmet>
         <leggings color="cd0000">leather leggings</leggings>
         <boots color="cd0000">leather boots</boots>
+        <item slot="4" amount="64">huge mushroom 2</item>
     </kit>
     <kit name="blue" parents="spawn">
         <helmet color="0066cc">leather helmet</helmet>
         <leggings color="0066cc">leather leggings</leggings>
         <boots color="0066cc">leather boots</boots>
+        <item slot="4" amount="64">huge mushroom 1</item>
     </kit>
 </kits>
 <crafting>
@@ -75,6 +76,7 @@
     <item>glass</item>
     <item>ladder</item>
     <item>huge mushroom 1</item>
+    <item>huge mushroom 2</item>
     <item>bucket</item>
     <item>water bucket</item>
     <item>golden apple</item>
