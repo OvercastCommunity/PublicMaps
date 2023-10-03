@@ -2,7 +2,7 @@
 <name>Concourse</name>
 <variant id="christmas" world="christmas">Christmas</variant>
 <variant id="halloween" world="halloween" override="true">Concursed</variant>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <include id="kotf"/>
 <constant id="damage-resistance">3s</constant>
 <constant id="flag-respawn-timer">10s</constant>
@@ -35,7 +35,14 @@
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit" parents="default-kit,base-kit"/>
+    <kit id="spawn-kit" parents="default-kit,base-kit">
+        <action>
+            <replace-item>
+                <find unbreakable="true" material="iron boots"/>
+                <replace unbreakable="true" enchantment="feather_falling:2" material="iron boots"/>
+            </replace-item>
+        </action>
+    </kit>
 </kits>
 <spawns>
     <default kit="default-kit">
