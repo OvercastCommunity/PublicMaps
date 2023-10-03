@@ -1,8 +1,8 @@
 <map proto="1.4.2">
 <name>Snowy Wars</name>
-<if variant="christmas" world="christmas">Christmas</variant>
-<if variant="halloween" world="halloween">Halloween</variant>
-<version>1.6.0</version>
+<variant id="christmas" world="christmas">Christmas</variant>
+<variant id="halloween" world="halloween">Halloween</variant>
+<version>1.6.1</version>
 <objective>Break the enemy's monument!</objective>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
