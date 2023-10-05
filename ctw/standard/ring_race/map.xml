@@ -1,19 +1,24 @@
 <map proto="1.4.2">
 <name>Ring Race</name>
-<version>1.7.4</version>
+<variant id="halloween" world="halloween" override="true">Haunted Ring</variant>
+<!-- <variant id="tournament" world="tournament">TE</variant> -->
+<version>1.8.0</version>
 <phase>development</phase>
-<objective>Capture the wool from the enemies wool rooms and return them to your victory monument</objective>
+<objective>Capture both wools from the enemy's wool rooms and return them to your victory monument</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
 </authors>
 <contributors>
-    <contributor uuid="8e0b87e1-2369-4c3e-9819-c9e93cd4f8eb" contribution="eye candy"/> <!-- theDrewGuy -->
+    <contributor uuid="8e0b87e1-2369-4c3e-9819-c9e93cd4f8eb" contribution="Eye candy"/> <!-- theDrewGuy -->
 </contributors>
 <teams>
     <team id="orange" color="gold" max="32">Orange</team>
     <team id="purple" color="dark purple" max="32">Purple</team>
 </teams>
 <kits>
+    <kit id="default-kit">
+        <helmet material="jack o lantern"/>
+    </kit>
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
@@ -37,11 +42,20 @@
     </kit>
 </kits>
 <spawns>
-    <default>
-        <region yaw="180">
-            <cuboid id="default-sp" min="87,31,35" max="91,31,37"/>
-        </region>
-    </default>
+    <unless variant="halloween">
+        <default>
+            <region yaw="180">
+                <cuboid id="default-sp" min="87,31,35" max="91,31,37"/>
+            </region>
+        </default>
+    </unless>
+    <if variant="halloween">
+        <default kit="default-kit">
+            <region yaw="180">
+                <cuboid id="default-sp" min="87,31,35" max="91,31,37"/>
+            </region>
+        </default>
+    </if>
     <spawn team="orange" kit="spawn-kit">
         <region yaw="90">
             <cylinder id="orange-sp" base="159,17,-3" radius="3" height="0"/>
@@ -98,9 +112,15 @@
             <rectangle min="101,16" max="77,25"/>
         </union>
     </negative>
+    <if variant="halloween">
+        <union id="team-pumpkins">
+            <cuboid id="orange-pumpkin" min="152,32,5" max="167,16,-10"/>
+            <cuboid id="purple-pumpkin" min="27,32,-10" max="12,16,5"/>
+        </union>
+    </if>
     <!-- prevent teams from entering each other's spawns -->
-    <apply enter="only-orange" message="You may not enter orange's spawn room!" region="orange-spawn-room"/>
-    <apply enter="only-purple" message="You may not enter purple's spawn room!" region="purple-spawn-room"/>
+    <apply enter="only-orange" message="You may not enter Orange's spawn room!" region="orange-spawn-room"/>
+    <apply enter="only-purple" message="You may not enter Purple's spawn room!" region="purple-spawn-room"/>
     <!-- wool entry and use restriction -->
     <apply enter="only-orange" message="You may not enter your own wool rooms!" region="purple-wrs"/>
     <apply enter="only-purple" message="You may not enter your own wool rooms!" region="orange-wrs"/>
@@ -180,6 +200,20 @@
             <item chance="0" material="log"/>
         </drops>
     </rule>
+    <if variant="halloween">
+        <rule>
+            <filter>
+                <all>
+                    <region id="team-pumpkins"/>
+                    <material>wool</material>
+                </all>
+            </filter>
+            <drops>
+                <item chance="0.5" name="`rTrick" material="coal"/>
+                <item chance="0.5" name="`rTreat" material="sugar"/>
+            </drops>
+        </rule>
+    </if>
 </block-drops>
 <itemkeep>
     <item>golden apple</item>
