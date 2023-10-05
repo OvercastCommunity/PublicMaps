@@ -1,13 +1,21 @@
 <map proto="1.4.2">
 <name>Bamboo Valley</name>
-<version>1.2.6</version>
+<variant id="halloween" world="halloween" override="true">Bam-BOOO Valley</variant>
+<variant id="christmas" world="christmas" override="true">Candy Cane Valley</variant>
+<version>1.3.0</version>
 <objective>Capture the opposing team's wool and place it at your victory monument.</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="35">Blue</team>
-    <team id="red" color="dark red" max="35">Red</team>
+    <unless variant="halloween">
+        <team id="blue" color="blue" max="35">Blue</team>
+        <team id="red" color="dark red" max="35">Red</team>
+    </unless>
+    <if variant="halloween">
+        <team id="blue" color="gold" max="35">Orange</team>
+        <team id="red" color="dark purple" max="35">Purple</team>
+    </if>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -24,11 +32,27 @@
             <enchantment level="2">efficiency</enchantment>
         </item>
         <item slot="30" unbreakable="true" material="iron spade"/>
-        <item slot="4" amount="64" damage="3" material="wood"/>
-        <item slot="31" amount="64" damage="3" material="wood"/>
-        <item slot="5" amount="64" damage="3" material="leaves"/>
+        <unless variant="halloween,christmas">
+            <item slot="4" amount="64" damage="3" material="wood"/>
+            <item slot="31" amount="64" damage="3" material="wood"/>
+        </unless>
+        <if variant="halloween">
+            <item slot="4" amount="64" damage="1" material="wood"/>
+            <item slot="31" amount="64" damage="1" material="wood"/>
+        </if>
+        <unless variant="christmas">
+            <item slot="5" amount="64" damage="3" material="leaves"/>
+        </unless>
+        <if variant="christmas">
+            <item slot="4" amount="64" damage="5" material="wood"/>
+            <item slot="31" amount="64" damage="5" material="wood"/>
+            <item slot="5" amount="64" damage="1" material="leaves"/>
+        </if>
         <item slot="6" amount="32" material="vine"/>
         <item slot="8" material="golden apple"/>
+        <if variant="halloween">
+            <helmet material="jack o lantern"/>
+        </if>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots">
@@ -122,16 +146,31 @@
             <block>124,42,33</block>
         </monument>
     </wool>
-    <wool team="red" color="orange" location="104,52,-34">
-        <monument>
-            <block>-144,42,33</block>
-        </monument>
-    </wool>
-    <wool team="red" color="purple" location="104,52,100">
-        <monument>
-            <block>-140,42,33</block>
-        </monument>
-    </wool>
+    <unless variant="halloween">
+        <wool team="red" color="orange" location="104,52,-34">
+            <monument>
+                <block>-144,42,33</block>
+            </monument>
+        </wool>
+        <wool team="red" color="purple" location="104,52,100">
+            <monument>
+                <block>-140,42,33</block>
+            </monument>
+        </wool>
+    </unless>
+    <!-- Wool coloring is different on Halloween variant -->
+    <if variant="halloween">
+        <wool team="red" color="blue" location="104,52,-34">
+            <monument>
+                <block>-144,42,33</block>
+            </monument>
+        </wool>
+        <wool team="red" color="red" location="104,52,100">
+            <monument>
+                <block>-140,42,33</block>
+            </monument>
+        </wool>
+    </if>
 </wools>
 <toolrepair>
     <tool>iron sword</tool>
@@ -149,14 +188,23 @@
     <item>clay ball</item>
     <item>torch</item>
     <item>string</item>
-    <item>cocoa</item>
-    <item>jungle wood stairs</item>
+    <item>ink sack</item>
     <item>smooth stairs</item>
     <item>hay block</item>
     <item>sapling</item>
     <item>wood door</item>
     <item>redstone</item>
     <item>redstone torch on</item>
+    <unless variant="christmas">
+        <item>jungle wood stairs</item>
+    </unless>
+    <if variant="christmas">
+        <item>dark oak stairs</item>
+    </if>
+    <if variant="halloween">
+        <item>jack o lantern</item>
+        <item>nether stalk</item>
+    </if>
 </itemremove>
 <block-drops>
     <rule>
@@ -171,6 +219,16 @@
             <item chance="0" material="glass"/>
         </drops>
     </rule>
+    <if variant="christmas">
+        <rule>
+            <filter>
+                <material>snow block</material>
+            </filter>
+            <drops>
+                <item chance="0" material="snow block"/>
+            </drops>
+        </rule>
+    </if>
 </block-drops>
 <item-mods>
     <rule>
@@ -194,13 +252,33 @@
     <item>vine</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="24" damage="3" material="wood"/>
-    <item amount="12" damage="3" material="leaves"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <!-- Wood block -->
+        <unless variant="halloween,christmas">
+            <item amount="24" damage="3" material="wood"/>
+        </unless>
+        <if variant="christmas">
+            <item amount="24" damage="5" material="wood"/>
+        </if>
+        <if variant="halloween">
+            <item amount="24" damage="1" material="wood"/>
+        </if>
+        <!-- Leaves block -->
+        <unless variant="christmas">
+            <item amount="12" damage="3" material="leaves"/>
+        </unless>
+        <if variant="christmas">
+            <item amount="12" damage="1" material="leaves"/>
+        </if>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>54</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<if variant="christmas">
+    <timelock>on</timelock>
+</if>
 </map>
