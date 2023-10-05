@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Ring Run</name>
-<version>1.7.3</version>
+<variant id="halloween" world="halloween" override="true">Haunted Ring Run</variant>
+<version>1.8.0</version>
 <objective>Capture both enemy wools!</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
@@ -170,11 +171,13 @@
     <item>water bucket</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>33</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
