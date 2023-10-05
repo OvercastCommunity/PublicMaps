@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Abudor</name>
 <variant id="christmas" world="christmas">Christmas</variant>
-<version>1.6.0</version>
+<variant id="halloween" world="halloween" override="true">Abudracula</variant>
+<version>1.6.1</version>
 <objective>Capture the two hills to score points to win.</objective>
 <gamemode>koth</gamemode>
 <authors>
@@ -24,6 +25,10 @@
 <if variant="christmas">
     <constant id="pink-team-name">Pink Reindeers</constant>
     <constant id="yellow-team-name">Yellow Reindeers</constant>
+</if>
+<if variant="halloween">
+    <constant id="pink-team-name">Vampires</constant>
+    <constant id="yellow-team-name">Living Dead</constant>
 </if>
 <teams>
     <team id="pink" color="light purple" max="12">${pink-team-name}</team>
@@ -51,9 +56,9 @@
 <spawns>
     <default>
         <region yaw="90">
-            <if variant="default">
+            <unless variant="christmas">
                 <point>124.5,56,10.5</point>
-            </if>
+            </unless>
             <if variant="christmas">
                 <point>125.5,71,9.5</point>
             </if>
@@ -74,9 +79,17 @@
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
+    <if variant="halloween">
+        <material id="only-webs">web</material>
+    </if>
 </filters>
 <regions>
-    <apply block="never" use="deny-beacon"/>
+    <unless variant="halloween">
+        <apply block="never" use="deny-beacon"/>
+    </unless>
+    <if variant="halloween">
+        <apply block="only-webs" use="deny-beacon"/>
+    </if>
 </regions>
 <control-points capture-time="8s" recovery-rate="1" show-progress="true" neutral-state="false" required="false">
     <control-point id="north-hill" name="North Hill">
@@ -119,6 +132,9 @@
         <item>sapling:1</item>
         <item>snow ball</item>
     </if>
+    <if variant="halloween">
+        <item>string</item>
+    </if>
 </itemremove>
 <itemkeep>
     <item>golden apple</item>
@@ -133,4 +149,24 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<if variant="halloween">
+    <item-mods>
+        <rule>
+            <match>
+                <all-materials/>
+                <all-blocks/>
+            </match>
+            <modify show-can-destroy="false">
+                <can-destroy>
+                    <material>web</material>
+                </can-destroy>
+            </modify>
+        </rule>
+    </item-mods>
+    <mobs>
+        <filter>
+            <never/>
+        </filter>
+    </mobs>
+</if>
 </map>
