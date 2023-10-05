@@ -1,13 +1,20 @@
 <map proto="1.4.2">
 <name>Bamboo Valley III</name>
-<version>1.6.3</version>
+<variant id="halloween" world="halloween" override="true">Bam-BOOO Valley III</variant>
+<version>1.7.0</version>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
 </authors>
 <objective>Destroy the enemy's emerald monuments and leak their core!</objective>
 <teams>
-    <team id="blue" color="blue" max="35">Blue</team>
-    <team id="red" color="dark red" max="35">Red</team>
+    <unless variant="halloween">
+        <team id="blue" color="blue" max="35">Blue</team>
+        <team id="red" color="dark red" max="35">Red</team>
+    </unless>
+    <if variant="halloween">
+        <team id="blue" color="dark purple" max="35">Purple</team>
+        <team id="red" color="gold" max="35">Orange</team>
+    </if>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -21,26 +28,27 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment level="2">efficiency</enchantment>
         </item>
-        <item slot="4" amount="64" damage="3" material="wood"/>
-        <item slot="31" amount="64" damage="3" material="wood"/>
-        <item slot="22" amount="64" damage="3" material="wood"/>
+        <unless variant="halloween">
+            <item slot="4" amount="64" damage="3" material="wood"/>
+            <item slot="31" amount="64" damage="3" material="wood"/>
+            <item slot="22" amount="64" damage="3" material="wood"/>
+            <item slot="8" amount="64" material="golden carrot"/>
+        </unless>
+        <if variant="halloween">
+            <item slot="4" amount="64" damage="1" material="wood"/>
+            <item slot="31" amount="64" damage="1" material="wood"/>
+            <item slot="22" amount="64" damage="1" material="wood"/>
+            <item slot="8" amount="64" material="pumpkin pie"/>
+            <helmet material="jack o lantern"/>
+        </if>
+        <item slot="5" amount="64" team-color="true" material="stained clay"/>
         <item slot="7" material="golden apple"/>
-        <item slot="8" amount="64" material="golden carrot"/>
         <chestplate unbreakable="true" material="chainmail chestplate"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <enchantment level="2">feather_falling</enchantment>
+        </boots>
         <effect duration="7" amplifier="4">damage resistance</effect>
         <effect duration="5" amplifier="4">heal</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <item slot="5" amount="64" damage="11" material="stained clay"/>
-        <boots unbreakable="true" color="334CB2" material="leather boots">
-            <enchantment level="2">feather_falling</enchantment>
-        </boots>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <item slot="5" amount="64" damage="14" material="stained clay"/>
-        <boots unbreakable="true" color="993333" material="leather boots">
-            <enchantment level="2">feather_falling</enchantment>
-        </boots>
     </kit>
 </kits>
 <spawns>
@@ -49,12 +57,12 @@
             <cylinder base="-0.5,86.5,13" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
-        <region yaw="0">
+    <spawn team="blue" kit="spawn-kit">
+        <region>
             <cylinder base="-0.5,42.5,-127.5" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <region yaw="180">
             <cylinder base="-0.5,42.5,158.5" radius="1" height="0"/>
         </region>
@@ -108,12 +116,22 @@
 <cores material="obsidian" leak="5" modes="gold-core ice-core">
     <core team="blue">
         <region>
-            <cuboid min="-4,24,-46" max="3,31,-39"/>
+            <unless variant="halloween">
+                <cuboid min="-4,24,-46" max="3,31,-39"/>
+            </unless>
+            <if variant="halloween">
+                <cuboid min="-4,24,-46" max="3,30,-39"/>
+            </if>
         </region>
     </core>
     <core team="red">
         <region>
-            <cuboid min="-4,24,70" max="3,31,77"/>
+            <unless variant="halloween">
+                <cuboid min="-4,24,70" max="3,31,77"/>
+            </unless>
+            <if variant="halloween">
+                <cuboid min="-4,24,70" max="3,30,77"/>
+            </if>
         </region>
     </core>
 </cores>
@@ -166,8 +184,7 @@
     <item>wood step</item>
     <item>item frame</item>
     <item>torch</item>
-    <item>wood step:3</item>
-    <item>cocoa</item>
+    <item>ink sack</item>
     <item>seeds</item>
     <item>glowstone dust</item>
     <item>sand</item>
@@ -180,9 +197,18 @@
     <item>obsidian</item>
     <item>gold block</item>
     <item>packed ice</item>
-    <item>golden carrot</item>
     <item>smooth brick</item>
     <item>emerald block</item>
+    <unless variant="halloween">
+        <item>wood step:3</item>
+        <item>golden carrot</item>
+    </unless>
+    <if variant="halloween">
+        <item>wood step:1</item>
+        <item>pumpkin pie</item>
+        <item>nether stalk</item>
+        <item>jack o lantern</item>
+    </if>
 </itemremove>
 <block-drops>
     <rule>
@@ -219,13 +245,8 @@
 <kill-rewards>
     <kill-reward>
         <item amount="32" damage="3" material="wood"/>
+        <item amount="16" team-color="true" material="stained clay"/>
         <item material="golden apple"/>
-    </kill-reward>
-    <kill-reward filter="only-blue">
-        <item amount="16" damage="11" material="stained clay"/>
-    </kill-reward>
-    <kill-reward filter="only-red">
-        <item amount="16" damage="14" material="stained clay"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>42</maxbuildheight>
