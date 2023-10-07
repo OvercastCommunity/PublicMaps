@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Fourchette</name>
-<version>2.0.5</version>
+<variant id="halloween" world="halloween" override="true">Bloody Trident</variant>
+<version>2.1.0</version>
 <objective>Capture all three wools to win.</objective>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Main author"/> <!-- Timothee38 -->
@@ -22,6 +23,9 @@
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
         <item slot="3" unbreakable="true" material="diamond axe"/>
         <item slot="4" amount="64" damage="1" material="wood"/>
+        <!-- <if variant="halloween">
+            <item slot="27" enchantment="durability:3;dig speed" material="diamond spade"/>
+        </if> -->
         <item slot="31" amount="64" damage="1" material="wood"/>
         <item slot="5" amount="64" material="glass"/>
         <item slot="8" material="golden apple"/>
@@ -33,19 +37,19 @@
 </kits>
 <spawns>
     <default>
-        <region yaw="180">
+        <regions yaw="180">
             <cuboid min="60,48,183" max="58,48,185"/>
-        </region>
+        </regions>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="-90">
+        <regions yaw="-90">
             <cuboid min="-32,7,181" max="-28,7,187"/>
-        </region>
+        </regions>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="90">
+        <regions yaw="90">
             <cuboid min="150,7,187" max="146,7,182"/>
-        </region>
+        </regions>
     </spawn>
 </spawns>
 <filters>
@@ -93,9 +97,16 @@
     <complement id="void">
         <everywhere/>
         <!-- water lanes blue -->
-        <rectangle min="-55,231" max="-42,134"/>
-        <rectangle min="-33,149" max="-42,162"/>
-        <rectangle min="-42,207" max="-30,220"/>
+        <unless variant="halloween">
+            <rectangle min="-55,231" max="-42,134"/>
+            <rectangle min="-33,149" max="-42,162"/>
+            <rectangle min="-42,207" max="-30,220"/>
+        </unless>
+        <if variant="halloween">
+            <rectangle min="-55,231" max="-43,134"/>
+            <rectangle min="-33,149" max="-52,161"/>
+            <rectangle min="-53,207" max="-28,219"/>
+        </if>
         <!-- water lanes red -->
         <rectangle min="147,207" max="171,220"/>
         <rectangle min="161,232" max="174,135"/>
@@ -152,6 +163,9 @@
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
     <tool>diamond axe</tool>
+    <if variant="halloween">
+        <tool>diamond spade</tool>
+    </if>
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
@@ -159,6 +173,7 @@
     <item>chainmail leggings</item>
     <item>leather boots</item>
     <item>string</item>
+    <item>redstone block</item>
     <item>redstone lamp off</item>
     <item>diode</item>
     <item>stained clay</item>
@@ -189,13 +204,18 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="1" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="1" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>35</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<if variant="halloween">
+    <timelock>off</timelock>
+</if>
 </map>
