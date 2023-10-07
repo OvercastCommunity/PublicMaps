@@ -1,20 +1,45 @@
 <map proto="1.4.2">
 <name>Spaceship Battles</name>
-<version>1.2.14</version>
+<variant id="halloween" world="halloween">Halloween</variant>
+<variant id="blitz" world="blitz">Blitz</variant>
+<!-- <variant id="tournament" world="tournament">TE</variant> -->
+<version>1.3.0</version>
 <objective>Leak lava from the enemy's obsidian core and destroy both of their antennas.</objective>
-<created>2012-02-26</created>
+<if variant="default">
+    <created>2012-02-26</created>
+</if>
+<if variant="blitz">
+    <gamemode>blitz</gamemode>
+    <gamemode>mixed</gamemode>
+</if>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
 </authors>
 <rules>
-    <rule>Dispensers and chests are disabled.</rule>
-    <rule>Players have resistance and reduced knockback in spawn!</rule>
+    <unless variant="blitz">
+        <rule>Dispensers and chests are disabled.</rule>
+        <rule>Players have resistance and reduced knockback in spawn.</rule>
+    </unless>
+    <if variant="blitz">
+        <rule>Dispensers are disabled.</rule>
+    </if>
 </rules>
 <teams>
     <team id="blue" color="blue" max="24">Blue</team>
     <team id="red" color="dark red" max="24">Red</team>
 </teams>
+<if variant="blitz">
+    <timelock>on</timelock>
+    <time>25m</time>
+    <respawn auto="true"/>
+    <blitz filter="after-5m" join-filter="before-5m">
+        <lives>3</lives>
+    </blitz>
+</if>
 <kits>
+    <kit id="give-resistance" force="true">
+        <effect duration="7" amplifier="3">damage resistance</effect>
+    </kit>
     <kit id="spawn-protection">
         <effect amplifier="10">damage resistance</effect>
         <knockback-reduction>1</knockback-reduction>
@@ -29,8 +54,13 @@
         <item slot="4" amount="64" material="wood"/>
         <item slot="5" amount="32" material="cobblestone"/>
         <item slot="6" material="water bucket"/>
-        <item slot="8" amount="2" material="golden apple"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <item slot="7" amount="2" material="golden apple"/>
+        <unless variant="halloween">
+            <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        </unless>
+        <if variant="halloween">
+            <helmet material="jack o lantern"/>
+        </if>
         <chestplate unbreakable="true" material="chainmail chestplate">
             <enchantment level="4">blast_protection</enchantment>
         </chestplate>
@@ -39,21 +69,40 @@
     </kit>
 </kits>
 <spawns>
-    <default>
-        <region yaw="270">
-            <cylinder base="298.5,71,108.5" radius="2" height="0"/>
-        </region>
-    </default>
-    <spawn team="blue" kit="spawn-kit">
-        <region yaw="180">
-            <cuboid min="295.5,72,88.5" max="298.5,72,91.5"/>
-        </region>
-    </spawn>
-    <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
-            <cuboid min="295.5,72,124.5" max="298.5,72,127.5"/>
-        </region>
-    </spawn>
+    <unless variant="blitz">
+        <default yaw="270">
+            <regions>
+                <cylinder base="298.5,71,108.5" radius="2" height="0"/>
+            </regions>
+        </default>
+        <spawn team="blue" kit="spawn-kit" yaw="180">
+            <regions>
+                <cuboid min="295.5,72,88.5" max="298.5,72,91.5"/>
+            </regions>
+        </spawn>
+        <spawn team="red" kit="spawn-kit">
+            <regions>
+                <cuboid min="295.5,72,124.5" max="298.5,72,127.5"/>
+            </regions>
+        </spawn>
+    </unless>
+    <if variant="blitz">
+        <default yaw="90">
+            <regions>
+                <cylinder base="298.5,71,108.5" radius="2" height="0"/>
+            </regions>
+        </default>
+        <spawn team="blue" yaw="180">
+            <regions>
+                <cuboid min="295.5,72,88.5" max="298.5,72,91.5"/>
+            </regions>
+        </spawn>
+        <spawn team="red">
+            <regions>
+                <cuboid min="295.5,72,124.5" max="298.5,72,127.5"/>
+            </regions>
+        </spawn>
+    </if>
 </spawns>
 <filters>
     <!-- Recent changes to implement spawn and chest protection on Overcast Community -->
@@ -66,6 +115,9 @@
     <deny id="deny-dispenser">
         <material>dispenser</material>
     </deny>
+    <not id="before-5m">
+        <time id="after-5m">5m</time>
+    </not>
 </filters>
 <regions>
     <!-- Recent changes to implement spawn and chest protection -->
@@ -101,6 +153,16 @@
         <cuboid id="horizontal-tunnel" min="300,70,142" max="294,oo,74"/>
     </union>
     <apply enter="never" message="You may not re-enter the spawn area!" region="spawn-areas"/>
+    <if variant="blitz">
+        <apply kit="give-resistance">
+          <region>
+                <union id="resist-drops">
+                    <cuboid id="red-resist-drop" min="243,71,140" max="240,72,137"/>
+                    <cuboid id="blue-resist-drop" min="243,71,79" max="240,72,76"/>
+                </union>
+          </region>
+        </apply>
+    </if>
 </regions>
 <cores material="obsidian" leak="0" mode-changes="true">
     <core team="blue">
@@ -116,9 +178,14 @@
 </cores>
 <modes>
     <mode after="15m" material="gold block" name="`6GOLD CORE MODE"/>
-    <mode after="20m" material="packed ice" name="`bPACKED ICE CORE MODE"/>
+    <unless variant="blitz">
+        <mode after="20m" material="packed ice" name="`bPACKED ICE CORE MODE"/>
+    </unless>
+    <if variant="blitz">
+        <mode after="20m" material="glass" name="`bGLASS CORE MODE"/>
+    </if>
 </modes>
-<destroyables materials="coal ore" completion="100%" repairable="false">
+<destroyables materials="coal ore" repairable="false">
     <destroyables owner="blue">
         <destroyable name="Antenna A">
             <region>
@@ -163,6 +230,10 @@
     <item>glass</item>
     <item>coal</item>
     <item>coal ore</item>
+    <if variant="halloween">
+        <item>string</item>
+        <item>jack o lantern</item>
+    </if>
 </itemremove>
 <itemkeep>
     <item>golden apple</item>
@@ -172,25 +243,36 @@
     <item>arrow</item>
     <item>bucket</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="16" material="arrow"/>
-</kill-reward>
+<if variant="blitz">
+    <broadcasts>
+        <alert after="5s" every="5m">You'll only lose lives after 5 minutes!</alert>
+    </broadcasts>
+</if>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <unless variant="blitz">
+            <item amount="16" material="arrow"/>
+        </unless>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>70</maxbuildheight>
-<block-drops>
-    <rule>
-        <filter>
-            <any>
-                <material>wood</material>
-                <material>stone</material>
-                <material>cobblestone</material>
-            </any>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</block-drops>
+<unless variant="blitz">
+    <block-drops>
+        <rule>
+            <filter>
+                <any>
+                    <material>wood</material>
+                    <material>stone</material>
+                    <material>cobblestone</material>
+                </any>
+            </filter>
+            <drops>
+                <item chance="0" material="glass"/>
+            </drops>
+        </rule>
+    </block-drops>
+</unless>
 <crafting>
     <disable>chest</disable>
     <disable>boat</disable>
