@@ -1,9 +1,10 @@
 <map proto="1.4.2">
 <name>2014: Rage FFA</name>
-<version>1.2.12</version>
+<variant id="halloween" world="halloween" override="true">The Lobby: Halloween</variant>
+<version>1.3.0</version>
 <objective>Get the most kills after 5 minutes!</objective>
 <authors>
-    <author uuid="19388047-f04b-43ac-9546-22aa69aea75c" contribution="Lobby Builder"/> <!-- Bleanny/bleangamer -->
+    <author uuid="19388047-f04b-43ac-9546-22aa69aea75c" contribution="Lobby Builder"/> <!-- Bleanny -->
     <author uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="Map concept and XML"/> <!-- Crazy_ -->
 </authors>
 <rules>
@@ -33,14 +34,28 @@
 <spawns>
     <spawn kit="play" spread="true" safe="true">
         <regions>
-            <cylinder base="-1,12,-1" radius="46" height="38"/>
+            <unless variant="halloween">
+                <cylinder base="-1,12,-1" radius="46" height="38"/>
+            </unless>
+            <if variant="halloween">
+                <cylinder base="-1257.5,3,1552.5" radius="65" height="25"/>
+            </if>
         </regions>
     </spawn>
-    <default>
-        <regions>
-            <point>0,27.5,0</point>
-        </regions>
-    </default>
+    <unless variant="halloween">
+        <default>
+            <regions>
+                <point>0,27.5,0</point>
+            </regions>
+        </default>
+    </unless>
+    <if variant="halloween">
+        <default>
+            <regions yaw="90">
+                <point>-1286.5,7.5,1544.5</point>
+            </regions>
+        </default>
+    </if>
 </spawns>
 <respawns>
     <respawn auto="true" delay="2.5s"/>
@@ -59,6 +74,9 @@
         <item slot="3" amount="3" grenade="true" name="Grenade" grenade-power="1.5" material="snow ball"/>
         <double-jump enabled="true" recharge-before-landing="true" power="3.5"/>
         <effect>speed</effect>
+        <if variant="halloween">
+            <effect>fire resistance</effect>
+        </if>
     </kit>
 </kits>
 <projectiles>
@@ -67,7 +85,12 @@
 <regions>
     <apply velocity="0,1.5,0">
         <region>
-            <cuboid max="1,15,-1" min="-1,16,1"/> <!-- center lauchpad -->
+            <unless variant="halloween">
+                <cuboid max="1,15,-1" min="-1,16,1"/> <!-- center lauchpad -->
+            </unless>
+            <if variant="halloween">
+                <cuboid max="-1259,10,1550" min="-1256,8,1554"/> <!-- center lauchpad -->
+            </if>
         </region>
     </apply>
 </regions>
@@ -108,12 +131,9 @@
     </kill-reward>
 </kill-rewards>
 <renewables>
-    <renewable sound="false" interval="20s" particles="false">
-        <!-- Each block renews after approx 20 seconds -->
-        <region>
-            <everywhere/>
-        </region>
-        <!-- These are the blocks that will renew -->
+    <renewable region="everywhere" sound="false" interval="20s" particles="false">
+        <!-- Each block renews after approx 20 seconds.
+             These are the blocks that will renew -->
         <renew-filter>
             <any>
                 <material>wool</material>
@@ -149,14 +169,31 @@
                 <material>beacon</material>
                 <material>jack o lantern</material>
                 <material>sandstone</material>
+                <if variant="halloween">
+                    <material>nether fence</material>
+                    <material>leaves_2</material>
+                    <material>log_2</material>
+                    <material>torch</material>
+                    <material>sign</material>
+                    <material>beacon</material>
+                    <material>pumpkin</material>
+                    <material>lever</material>
+                    <material>anvil</material>
+                </if>
             </any>
         </renew-filter>
         <!-- These blocks can be replaced by renewing blocks -->
         <replace-filter>
             <any>
                 <material>air</material>
-                <material>water</material>
-                <material>stationary water</material>
+                <unless variant="halloween">
+                    <material>water</material>
+                    <material>stationary water</material>
+                </unless>
+                <if variant="halloween">
+                    <material>lava</material>
+                    <material>stationary lava</material>
+                </if>
                 <material>fire</material>
             </any>
         </replace-filter>
