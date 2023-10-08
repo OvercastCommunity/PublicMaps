@@ -1,91 +1,121 @@
-<map proto="1.3.2">
+<map proto="1.4.2">
 <name>Royal Garden DTC</name>
-<version>1.2.3</version>
+<variant id="christmas" world="christmas" override="true">Royal Christmas DTC</variant>
+<variant id="halloween" world="halloween" override="true">Spooky Garden DTC</variant>
+<version>1.3.0</version>
 <objective>Leak the enemy team's core!</objective>
 <authors>
-    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
 <contributors>
     <contributor uuid="e5eea785-51c1-40fe-a2d0-f83d4c035cd9" contribution="XML"/> <!-- pikpikmerchant -->
 </contributors>
 <teams>
-    <team color="dark red" max="32">Red</team>
-    <team color="blue" max="32">Blue</team>
+    <unless variant="halloween">
+        <team id="blue" color="blue" max="32">Blue</team>
+        <team id="red" color="dark red" max="32">Red</team>
+    </unless>
+    <if variant="halloween">
+        <team id="blue" color="dark purple" max="32">Trick</team>
+        <team id="red" color="gold" max="32">Treat</team>
+    </if>
 </teams>
+<constant id="wood-damage">2</constant>
+<constant id="food-material">golden carrot</constant>
+<if variant="christmas">
+    <constant id="wood-damage">1</constant>
+    <constant id="food-material">cooked beef</constant>
+</if>
+<if variant="halloween">
+    <constant id="wood-damage">1</constant>
+    <constant id="food-material">pumpkin pie</constant>
+</if>
 <kits>
-    <kit name="spawn">
-        <item slot="0" unbreakable="true">iron sword</item>
-        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
-        <item slot="2" unbreakable="true">diamond pickaxe</item>
-        <item slot="3" enchantment="dig speed:2" unbreakable="true">iron axe</item>
-        <item slot="4" amount="64" damage="2">wood</item>
-        <item slot="31" amount="32" damage="2">wood</item>
-        <item slot="6" amount="32">ladder</item>
-        <item slot="7">golden apple</item>
-        <item slot="8" amount="64">golden carrot</item>
-        <item slot="28" amount="1">arrow</item>
-        <potion duration="5" amplifier="1">increase damage</potion>
-        <potion duration="7" amplifier="8">damage resistance</potion>
-        <potion duration="5" amplifier="4">heal</potion>
-    </kit>
-    <kit name="red" parents="spawn">
-        <item slot="5" amount="64" damage="14">stained clay</item>
-        <helmet color="E41B17" unbreakable="true">leather helmet</helmet>
-        <chestplate color="E41B17" unbreakable="true">leather chestplate</chestplate>
-    </kit>
-    <kit name="blue" parents="spawn">
-        <item slot="5" amount="64" damage="11">stained clay</item>
-        <helmet color="334CB2" unbreakable="true">leather helmet</helmet>
-        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2" material="iron axe"/>
+        <item slot="4" amount="64" damage="${wood-damage}" material="wood"/>
+        <item slot="31" amount="32" damage="${wood-damage}" material="wood"/>
+        <!-- <if variant="christmas">
+            <item slot="30" unbreakable="true" enchantment="dig speed:2" material="iron spade"/>
+        </if> -->
+        <unless variant="halloween">
+            <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        </unless>
+        <if variant="halloween">
+            <item slot="17" amount="16" material="jack o lantern"/>
+            <helmet material="jack o lantern"/>
+        </if>
+        <item slot="5" amount="64" team-color="true" material="stained clay"/>
+        <item slot="6" amount="32" material="ladder"/>
+        <item slot="7" amount="64" material="${food-material}"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <effect duration="5">increase damage</effect>
+        <effect duration="7" amplifier="8">damage resistance</effect>
+        <effect duration="5" amplifier="4">heal</effect>
     </kit>
 </kits>
 <spawns>
     <default yaw="-90">
-        <cylinder base="-48.5,50,12.5" radius="1" height="0"/>
+        <region>
+            <cylinder base="-48.5,50,12.5" radius="1" height="0"/>
+        </region>
     </default>
-    <spawn team="red" kit="red" yaw="180">
-        <cylinder base="-48.5,11,173.5" radius="0" height="0"/>
+    <spawn team="red" kit="spawn-kit" yaw="180">
+        <region>
+            <cylinder base="-48.5,11,173.5" radius="0" height="0"/>
+        </region>
     </spawn>
-    <spawn team="blue" kit="blue" yaw="0">
-        <cylinder base="-48.5,11,-150.5" radius="0" height="0"/>
+    <spawn team="blue" kit="spawn-kit">
+        <region>
+            <cylinder base="-48.5,11,-150.5" radius="0" height="0"/>
+        </region>
     </spawn>
 </spawns>
 <filters>
-    <filter name="only-red">
-        <team>red</team>
-    </filter>
-    <filter name="only-blue">
-        <team>blue</team>
-    </filter>
-    <filter name="no-void">
-        <not>
-            <void/>
-        </not>
-    </filter>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <not id="no-void">
+        <void/>
+    </not>
 </filters>
 <regions>
+    <apply enter="only-blue" block="never">
+        <region>
+            <cuboid min="-39,10,-93" max="-58,18,-152"/>
+        </region>
+    </apply>
+    <apply enter="only-red" block="never">
+        <region>
+            <cuboid min="-58,10,118" max="-39,18,178"/>
+        </region>
+    </apply>
     <apply block="no-void">
-        <negative>
-            <rectangle min="-23,-1" max="-74,26"/>
-        </negative>
-    </apply>
-    <apply enter="only-red" block="deny-all">
-        <cuboid min="-39,18,177" max="-58,10,118"/>
-    </apply>
-    <apply enter="only-blue" block="deny-all">
-        <cuboid min="-58,18,-152" max="-39,10,-93"/>
+        <region>
+            <negative id="void-area">
+                <rectangle min="-23,-1" max="-74,26"/>
+            </negative>
+        </region>
     </apply>
 </regions>
 <modes>
     <mode after="15m" material="gold block" name="`6GOLD CORE MODE"/>
     <mode after="25m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
-<cores material="obsidian" leak="5" mode-changes="true">
+<cores mode-changes="true">
     <core team="red">
-        <cuboid min="-51,28,92" max="-46,23,97"/>
+        <region>
+            <cuboid min="-51,28,92" max="-46,23,97"/>
+        </region>
     </core>
     <core team="blue">
-        <cuboid min="-46,28,-72" max="-51,23,-67"/>
+        <region>
+            <cuboid min="-46,28,-72" max="-51,23,-67"/>
+        </region>
     </core>
 </cores>
 <toolrepair>
@@ -108,16 +138,28 @@
     <item>brown mushroom</item>
     <item>glowstone dust</item>
     <item>obsidian</item>
-    <item>golden carrot</item>
     <item>ladder</item>
     <item>stained clay</item>
     <item>golden apple</item>
     <item>log</item>
     <item>wood</item>
+    <item>golden carrot</item>
+    <if variant="christmas">
+        <item>cooked beef</item>
+    </if>
+    <if variant="halloween">
+        <item>pumpkin pie</item>
+        <item>jack o lantern</item>
+        <item>nether stalk</item>
+        <item>red rose</item>
+        <item>string</item>
+    </if>
 </itemremove>
-<killreward>
-    <item>golden apple</item>
-    <item amount="24" damage="2">wood</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="24" damage="${wood-damage}" material="wood"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>38</maxbuildheight>
 </map>
