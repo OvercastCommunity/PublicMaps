@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>The Last Sunset II</name>
 <variant id="halloween" world="halloween" override="true">A SpOOky Sunset</variant>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Capture each enemy flag two times!</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
