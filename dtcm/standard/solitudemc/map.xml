@@ -1,6 +1,8 @@
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>SolitudeMC</name>
-<version>1.4.5</version>
+<variant id="christmas" world="christmas">Christmas</variant>
+<variant id="halloween" world="halloween">Halloween</variant>
+<version>1.5.0</version>
 <objective>Leak the lava from your enemy's core!</objective>
 <authors>
     <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Main Author - Project starter, Building"/> <!-- Matic0B -->
@@ -11,80 +13,118 @@
     <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Building Assist"/> <!-- _IQ -->
     <contributor uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="XML Assist, Feedback"/> <!-- Mikeg542 -->
 </contributors>
+<broadcasts>
+    <unless variant="halloween">
+        <alert after="1s">`cYour core is located to the right of your spawn. Defend it!</alert>
+    </unless>
+    <if variant="halloween">
+        <tip after="10s">You are playing the `6Halloween`r version of SolitudeMC! The map features some extra items, such as `cTNT`r, hidden around the map!</tip>
+    </if>
+    <tip after="1m" every="2m" count="3">You can find infinity bows on the middle island!</tip>
+    <tip after="2m" every="3m" count="3">You can find extra arrows in the towers at the wall!</tip>
+</broadcasts>
 <teams>
-    <team color="dark aqua" max="14">Cyan</team>
-    <team color="light purple" max="14">Magenta</team>
+    <if variant="default">
+        <team id="cyan" color="dark aqua" dye-color="light blue" max="14">Cyan</team>
+        <team id="magenta" color="light purple" max="14">Magenta</team>
+    </if>
+    <if variant="christmas">
+        <team id="cyan" color="blue" max="14">Blue</team>
+        <team id="magenta" color="dark red" max="14">Red</team>
+    </if>
+    <if variant="halloween">
+        <team id="cyan" color="dark aqua" dye-color="light blue" max="14">Cyan</team>
+        <team id="magenta" color="green" max="14">Green</team>
+    </if>
 </teams>
 <kits>
-    <kit name="spawn">
-        <item slot="0">iron sword</item>
-        <item slot="1">bow</item>
-        <item slot="2">diamond pickaxe</item>
-        <item slot="3" amount="48">stone</item>
-        <item slot="5" amount="16">torch</item>
-        <item slot="6" amount="16">ladder</item>
-        <item slot="7">golden apple</item>
-        <item slot="8" amount="32">cooked beef</item>
-        <item slot="27" amount="32">arrow</item>
-        <chestplate>gold chestplate</chestplate>
-        <leggings>chainmail leggings</leggings>
-    </kit>
-    <kit name="magenta" parents="spawn">
-        <helmet color="b24cd8">leather helmet</helmet>
-        <boots color="b24cd8">leather boots</boots>
-        <item slot="4" amount="32" damage="2">stained clay</item>
-    </kit>
-    <kit name="cyan" parents="spawn">
-        <helmet color="6699d8">leather helmet</helmet>
-        <boots color="6699d8">leather boots</boots>
-        <item slot="4" amount="32" damage="3">stained clay</item>
+    <kit id="spawn-kit">
+        <item slot="0" material="iron sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" amount="48" material="stone"/>
+        <item slot="4" amount="32" team-color="true" material="stained clay"/>
+        <unless variant="halloween">
+            <item slot="5" amount="16" material="torch"/>
+        </unless>
+        <if variant="halloween">
+            <item slot="5" amount="16" material="redstone torch on"/>
+        </if>
+        <item slot="6" amount="16" material="ladder"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="32" material="cooked beef"/>
+        <item slot="27" amount="32" material="arrow"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <boots team-color="true" material="leather boots"/>
+        <chestplate material="gold chestplate"/>
+        <leggings material="chainmail leggings"/>
     </kit>
 </kits>
 <spawns safe="true">
-    <spawn team="magenta" kit="magenta" yaw="0">
-        <point>1,18,57</point>
+    <spawn team="magenta" kit="spawn-kit">
+        <region>
+            <point>1,18,57</point>
+        </region>
     </spawn>
-    <spawn team="cyan" kit="cyan" yaw="180">
-        <point>1,18,-56</point>
+    <spawn team="cyan" kit="spawn-kit" yaw="180">
+        <region>
+            <point>1,18,-56</point>
+        </region>
     </spawn>
-    <default yaw="0">
-        <cylinder name="default-spawn" base="-1.0,69.0,0" radius="5" height="0" />
+    <default>
+        <region>
+            <cylinder id="default-spawn" base="-0.5,69,0.5" radius="4" height="0"/>
+        </region>
     </default>
 </spawns>
 <filters>
-    <filter name="deny-stained-glass">
-        <not>
-            <block>stained glass:0</block>
-        </not>
-    </filter>
-    <filter name="no-void">
-        <deny>
-            <void/>
-        </deny>
-    </filter>
-    <filter name="deny-some">
-        <deny>
-            <block>dispenser</block>
-        </deny>
-    </filter>
+    <deny id="deny-stained-glass">
+        <unless variant="halloween">
+            <material>stained glass:0</material>
+        </unless>
+        <if variant="halloween">
+            <material>stained glass:14</material>
+        </if>
+    </deny>
+    <deny id="no-void">
+        <void/>
+    </deny>
+    <deny id="deny-some">
+        <any>
+            <material>dispenser</material>
+            <material>beacon</material>
+        </any>
+    </deny>
 </filters>
 <regions>
-    <apply block="deny-stained-glass">
-        <rectangle min="-oo,-oo" max="oo,oo" />
+    <apply block="never" message="You may not build in the spawns!">
+        <region>
+            <cuboid min="5,17,-49" max="-3,25,-60"/>
+            <cuboid min="-2,17,50" max="5,25,61"/>
+        </region>
     </apply>
+    <apply block="deny-stained-glass"/>
+    <apply block="deny-some" use="deny-some" message="You may not interact with Beacons and Dispensers!"/>
     <apply block="no-void" message="You may not build in the void!">
-        <negative>
-            <rectangle name="whole-map" min="-29,66" max="31,-66" />
-        </negative>
-    </apply>
-    <apply block="deny-some" use="deny-some" message="Beacons and Dispensers are disabled on this map!">
-        <rectangle min="-oo,-oo" max="oo,oo" />
-    </apply>
-    <apply block="deny-all" message="You may not destroy the spawns!">
-        <cuboid min="5,17,-49" max="-3,25,-60" />
-        <cuboid min="-2,17,50" max="5,25,61" />
+        <region>
+            <negative id="outside-map">
+                <rectangle id="whole-map" min="-29,66" max="31,-66"/>
+            </negative>
+        </region>
     </apply>
 </regions>
+<cores leak="6">
+    <core team="cyan">
+        <region>
+            <cuboid id="cyan-core" min="25,28,-47" max="19,34,-53"/>
+        </region>
+    </core>
+    <core team="magenta">
+        <region>
+            <cuboid id="magenta-core" min="-24,28,47" max="-18,34,53"/>
+        </region>
+    </core>
+</cores>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -94,8 +134,7 @@
     <item>cooked beef</item>
     <item>arrow</item>
     <item>stone</item>
-    <item>stained clay:2</item>
-    <item>stained clay:3</item>
+    <item>stained clay</item>
     <item>gold chestplate</item>
     <item>chainmail leggings</item>
     <item>leather helmet</item>
@@ -106,25 +145,35 @@
     <item>beacon</item>
     <item>iron block</item>
     <item>fence</item>
+    <if variant="halloween">
+        <item>redstone torch on</item>
+        <item>jack o lantern</item>
+        <item>nether fence</item>
+        <item>banner</item>
+        <item>coal block</item>
+        <item>tnt</item>
+    </if>
     <item>obsidian</item>
 </itemremove>
-<killreward>
-    <item>golden apple</item>
-    <item amount="8">stone</item>
-    <item amount="16">arrow</item>
-</killreward>
+<if variant="halloween">
+    <tnt>
+        <licensing>false</licensing>
+    </tnt>
+</if>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="8" material="stone"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+    <if variant="halloween">
+        <kill-reward>
+            <filter>
+                <kill-streak count="3"/>
+            </filter>
+            <item material="tnt"/>
+        </kill-reward>
+    </if>
+</kill-rewards>
 <maxbuildheight>34</maxbuildheight>
-<cores material="obsidian" leak="6">
-    <core team="cyan">
-        <cuboid name="cyan-core" min="25,28,-47" max="19,34,-53" />
-    </core>
-    <core team="magenta">
-        <cuboid name="magenta-core" min="-24,28,47" max="-18,34,53" />
-    </core>
-</cores>
-<broadcasts>
-    <alert after="1s">`cYour core is located to the right of your spawn. Defend it!</alert>
-    <tip after="1m" every="2m" count="3">`9You can find infinity bows on the middle island!</tip>
-    <tip after="2m" every="3m" count="3">`9You can find extra arrows in the towers at the wall!</tip>
-</broadcasts>
 </map>
