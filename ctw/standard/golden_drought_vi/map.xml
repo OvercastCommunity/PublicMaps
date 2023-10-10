@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Golden Drought VI</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Capture the enemy wools and return them to your victory monument.</objective>
 <authors>
     <author uuid="52bcb4dd-a1a0-4d9b-94e0-49e145e318e4"/> <!-- Lich_of_Flowers -->
@@ -150,12 +150,12 @@
         </union>
     </complement>
 
-    <complement id="above-36"><above y="36"/><region id="bases"/></complement>
-    <complement id="above-44"><above y="44"/><region id="bases"/></complement>
-    <complement id="above-52"><above y="52"/><region id="bases"/></complement>
-    <complement id="above-60"><above y="60"/><region id="bases"/></complement>
-    <complement id="above-68"><above y="68"/><region id="bases"/></complement>
-    <complement id="above-76"><above y="76"/><region id="bases"/></complement>
+    <above id="above-36" above y="36"/>
+    <above id="above-44" above y="44"/>
+    <above id="above-52" above y="52"/>
+    <above id="above-60" above y="60"/>
+    <above id="above-68" above y="68"/>
+    <above id="above-76" above y="76"/>
 
     <apply kit="no-bg-kit" region="no-bg"/>
     <apply kit="leave-spawn" use="arrowless" region="spawn-drops"/>
@@ -232,7 +232,7 @@
     <item>step</item>
     <item>sandstone stairs</item>
 </itemremove>
-<block-drops>
+<!--<block-drops>
     <rule>
         <filter>
             <material>sandstone</material>
@@ -257,7 +257,7 @@
             <item chance="0" material="ladder"/>
         </drops>
     </rule>
-</block-drops>
+</block-drops>-->
 <itemkeep>
     <item>golden apple</item>
     <item>sandstone</item>
