@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <!-- Created by mitchiii, based on the King's Conquest maps created by Chicky -->
-<!-- Include version number : v2.2.1 -->
+<!-- Include version number : v2.2.2 -->
 <objective>Kill the enemy team's King to win!</objective>
 <gamemode>arcade</gamemode>
 <game>Kill the King</game>
@@ -130,7 +130,7 @@
         <item slot="8" material="potion" name="`r`6King's Berserking Warhorn" lore="`r`5Inspires fleeting strength across your kingdom." consumable="king-berserking-consumable" prevent-sharing="true">
             <effect>regeneration</effect>
         </item>
-        <item slot="21" material="arrow"/>
+        <item slot="28" material="arrow"/>
         <effect amplifier="100">resistance</effect>
         <knockback-reduction>0.25</knockback-reduction>
         <walk-speed>0.9</walk-speed>
@@ -538,7 +538,7 @@
 </flags>
 <score/>
 <control-points>
-    <control-point id="conquest" name="King's Conquest" capture-time="0.25s" permanent="true" capture="everywhere" player-filter="allow-conquest-capture" required="true" scoreboard-filter="never"/>
+    <control-point id="conquest" name="King's Conquest" capture-time="0.5s" permanent="true" capture="everywhere" player-filter="allow-conquest-capture" required="true" scoreboard-filter="never"/>
 </control-points>
 <variables>
     <variable id="debug" scope="match" default="0"/>
@@ -641,7 +641,7 @@
                     <message text="`6» » » ${team-one-text-color-symbol}${team-one-name} King Eliminated! `6« « «"/>
                 </action>
                 <action filter="team-two-king-has-died">
-                    <message text="`6» » » ${team-one-text-color-symbol}${team-two-name} King Eliminated! `6« « «"/>
+                    <message text="`6» » » ${team-two-text-color-symbol}${team-two-name} King Eliminated! `6« « «"/>
                 </action>
                 <message text=" "/>
             </switch-scope>
