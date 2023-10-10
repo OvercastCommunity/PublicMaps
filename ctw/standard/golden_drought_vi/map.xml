@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Golden Drought VI</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Capture the enemy wools and return them to your victory monument.</objective>
 <authors>
     <author uuid="52bcb4dd-a1a0-4d9b-94e0-49e145e318e4"/> <!-- Lich_of_Flowers -->
@@ -14,10 +14,10 @@
     <team id="red" color="dark red" max="24">Red</team>
 </teams>
 <broadcasts>
-    <tip after="10s" every="4m">Golden tools are granted efficiency IV!  Go nuts with defending.</tip>
+    <tip after="5s" every="4m">Golden tools are granted efficiency IV!  Go nuts with defending.</tip>
     <tip after="25s" every="4m">Stairs cannot be crafted, along with a few blocks that would replace them.</tip>
-    <tip after="40s" every="4m">The height limit increases by 8 blocks every 10 minutes!</tip>
-    <tip after="41s" every="4m">Each time this happens new skybridge islands will be spawned.</tip>
+    <tip after="45s" every="4m">The height limit increases by 8 blocks every 10 minutes!</tip>
+    <tip after="46s" every="4m">Each time this happens new skybridge islands will be spawned.</tip>
     <alert after="10m">`c`lHeight limit increased to 44!</alert>
     <alert after="20m">`c`lHeight limit increased to 52!</alert>
     <alert after="30m">`c`lHeight limit increased to 60!</alert>
@@ -45,6 +45,7 @@
         <item slot="3" amount="64" material="sandstone"/>
         <item slot="30" amount="64" material="sandstone"/>
         <item slot="4" amount="64" damage="2" material="wood"/>
+        <item slot="31" amount="4" material="stick"/>
         <item slot="5" amount="32" material="ladder"/>
         <item slot="6" amount="4" material="web"/>
         <item slot="7" material="golden apple"/>
@@ -297,7 +298,7 @@
         </match>
         <modify>
             <enchantment level="4">efficiency</enchantment>
-            <enchantment level="2">unbreaking</enchantment>
+            <enchantment level="4">unbreaking</enchantment>
         </modify>
     </rule>
 </item-mods>
