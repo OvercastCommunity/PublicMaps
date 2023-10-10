@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Medieval Warfare</name>
 <variant id="dte" world="dte">DTE</variant>
-<version>1.8.9</version>
+<version>1.8.10</version>
 <unless variant="dte">
     <objective>Leak lava from the enemy's obsidian core.</objective>
 </unless>
@@ -16,12 +16,12 @@
         <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="DTE Mode"/> <!-- last_username -->
     </contributors>
     <broadcasts>
-        <alert after="10s">The wall comes down in 3 minutes</alert>
-        <alert after="70s">The wall comes down in 2 minutes</alert>
-        <alert after="130s">The wall comes down in 1 minute</alert>
-        <alert after="160s">The wall comes down in 30 seconds</alert>
-        <alert after="180s">The wall comes down in 10 seconds</alert>
-        <alert after="190s">THE WALL IS GONE!! BOOM BOOM TIEM!!!111</alert> <!-- Original monument mode message -->
+        <alert after="10s" filter="wall-exists">The wall comes down in 3 minutes</alert>
+        <alert after="70s" filter="wall-exists">The wall comes down in 2 minutes</alert>
+        <alert after="130s" filter="wall-exists">The wall comes down in 1 minute</alert>
+        <alert after="160s" filter="wall-exists">The wall comes down in 30 seconds</alert>
+        <alert after="180s" filter="wall-exists">The wall comes down in 10 seconds</alert>
+        <alert after="190s" filter="wall-exists">THE WALL IS GONE!! BOOM BOOM TIEM!!!111</alert> <!-- Original monument mode message -->
     </broadcasts>
 </if>
 <created>2012-05-27</created>
@@ -122,9 +122,15 @@
         <material>glass</material>
     </deny>
     <if variant="dte">
-        <after id="after-190s" duration="190s" message="The wall comes down in {0}">
-            <match-started/>
-        </after>
+        <any id="destroy-wall">
+            <after duration="190s" message="The wall comes down in {0}">
+                <all>
+                    <match-started/>
+                    <variable id="wall-exists" var="wall_down">0</variable>
+                </all>
+            </after>
+            <variable var="wall_down">1</variable>
+        </any>
     </if>
 </filters>
 <regions>
@@ -200,8 +206,10 @@
         <!-- -->
         <cuboid id="blue-chests" min="92,86,67" max="71,93,87"/>
         <cuboid id="red-chests" min="-92,86,67" max="-71,93,87"/>
-        <cuboid id="blue-wall" min="0,0,16" max="1,136,144"/>
-        <cuboid id="red-wall" min="-1,0,16" max="0,136,144"/>
+        <union id="wall">
+            <cuboid id="blue-wall" min="0,0,16" max="1,136,144"/>
+            <cuboid id="red-wall" min="-1,0,16" max="0,136,144"/>
+        </union>
         <apply block="deny-chest">
             <region>
                 <union>
@@ -218,7 +226,7 @@
                 </union>
             </region>
         </apply>
-        <apply leave="after-190s" message="You may not go to the enemy's island yet!">
+        <apply leave="destroy-wall" message="You may not go to the enemy's island yet!">
             <region>
                 <union>
                     <above x="1"/>
@@ -239,6 +247,9 @@
     </cores>
 </unless>
 <if variant="dte">
+    <variables>
+        <variable id="wall_down" scope="match" default="0"/>
+    </variables>
     <destroyables>
         <destroyables name="Castle" show-progress="true" completion="50%" materials="smooth brick;step:0;step:5;double step:0;double step:5;smooth stairs;thin glass;wool">
             <destroyable owner="blue">
@@ -248,11 +259,14 @@
                 <region><cuboid min="-95,86,40" max="-33,112,114"/></region>
             </destroyable>
         </destroyables>
-        <destroyables name="Wall" mode-changes="true" materials="glass" completion="0%" show="false">
-            <destroyable id="blue-wall-mon" owner="blue" region="blue-wall"/>
-            <destroyable id="red-wall-mon" owner="red" region="red-wall"/>
-        </destroyables>
     </destroyables>
+    <actions>
+        <action id="tear-down-wall" scope="match" expose="true">
+            <fill material="air" region="wall"/>
+            <set var="wall_down" value="1"/>
+        </action>
+        <trigger filter="destroy-wall" action="tear-down-wall" scope="match"/>
+    </actions>
 </if>
 <kill-rewards>
     <kill-reward>
