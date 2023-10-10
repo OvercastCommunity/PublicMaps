@@ -150,12 +150,12 @@
         </union>
     </complement>
 
-    <above id="above-36" above y="36"/>
-    <above id="above-44" above y="44"/>
-    <above id="above-52" above y="52"/>
-    <above id="above-60" above y="60"/>
-    <above id="above-68" above y="68"/>
-    <above id="above-76" above y="76"/>
+    <above id="above-36" y="36"/>
+    <above id="above-44" y="44"/>
+    <above id="above-52" y="52"/>
+    <above id="above-60" y="60"/>
+    <above id="above-68" y="68"/>
+    <above id="above-76" y="76"/>
 
     <apply kit="no-bg-kit" region="no-bg"/>
     <apply kit="leave-spawn" use="arrowless" region="spawn-drops"/>
