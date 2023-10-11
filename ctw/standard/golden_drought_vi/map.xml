@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Golden Drought VI</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Capture the enemy wools and return them to your victory monument.</objective>
 <authors>
     <author uuid="52bcb4dd-a1a0-4d9b-94e0-49e145e318e4"/> <!-- Lich_of_Flowers -->
@@ -129,8 +129,8 @@
         </union>
     </union>
     <union id="spawn-drops">
-        <cuboid id="blue-drop" min="-2,14,83" max="3,19,99"/>
-        <cuboid id="red-drop" min="-2,14,-98" max="3,19,-82"/>
+        <cuboid id="blue-drop" min="-2,14,83" max="3,19,103"/>
+        <cuboid id="red-drop" min="-2,14,-102" max="3,19,-82"/>
     </union>
     <complement id="void">
         <everywhere/>
@@ -146,12 +146,8 @@
         <union id="perches">
             <rectangle min="18,-123" max="20,-108"/>
             <rectangle min="-19,-123" max="-17,-108"/>
-            <rectangle min="18,-83" max="20,-68"/>
-            <rectangle min="-19,-83" max="-17,-68"/>
             <rectangle min="18,109" max="20,124"/>
             <rectangle min="-19,109" max="-17,124"/>
-            <rectangle min="18,69" max="20,84"/>
-            <rectangle min="-19,69" max="-17,84"/>
         </union>
     </complement>
 
@@ -182,11 +178,11 @@
     <apply block="10m" region="above-36" message="The height limit will increase at 10 minutes!"/>
 </regions>
 <portals>
-    <portal y="40" z="15" yaw="180">
-        <region><cuboid id="blue-portal" min="-1,15,99" max="2,18,100"/></region>
+    <portal y="40" z="3" yaw="180">
+        <region><cuboid id="blue-portal" min="-1,15,111" max="2,18,112"/></region>
     </portal>
-    <portal y="40" z="-15" yaw="180">
-        <region><cuboid id="red-portal" min="-1,15,-99" max="2,18,-98"/></region>
+    <portal y="40" z="-3" yaw="180">
+        <region><cuboid id="red-portal" min="-1,15,-111" max="2,18,-110"/></region>
     </portal>
 </portals>
 <renewables>
@@ -195,24 +191,24 @@
     </renewable>
 </renewables>
 <wools>
-    <wool team="blue" color="magenta" location="26.5,23.5,-157.5">
+    <wool team="blue" color="pink" location="26.5,23.5,-157.5">
         <monument>
-            <block>1,28,84</block>
+            <block>1,28,114</block>
         </monument>
     </wool>
-    <wool team="blue" color="pink" location="-25.5,23.5,-157.5">
+    <wool team="blue" color="magenta" location="-25.5,23.5,-157.5">
         <monument>
-            <block>-1,28,84</block>
+            <block>-1,28,114</block>
         </monument>
     </wool>
     <wool team="red" color="lime" location="26.5,23.5,158.5">
         <monument>
-            <block>1,28,-84</block>
+            <block>1,28,-114</block>
         </monument>
     </wool>
     <wool team="red" color="green" location="-25.5,23.5,158.5">
         <monument>
-            <block>-1,28,-84</block>
+            <block>-1,28,-114</block>
         </monument>
     </wool>
 </wools>
