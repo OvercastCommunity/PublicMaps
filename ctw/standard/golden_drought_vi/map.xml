@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Golden Drought VI</name>
-<version>1.0.3</version>
+<version>1.1.0</version>
 <objective>Capture the enemy wools and return them to your victory monument.</objective>
 <authors>
     <author uuid="52bcb4dd-a1a0-4d9b-94e0-49e145e318e4"/> <!-- Lich_of_Flowers -->
@@ -14,22 +14,26 @@
     <team id="red" color="dark red" max="24">Red</team>
 </teams>
 <broadcasts>
-    <tip after="5s" every="4m">Golden tools are granted efficiency IV!  Go nuts with defending.</tip>
+    <tip after="5s" every="4m">Golden tools are granted efficiency V!  Go nuts with defending.</tip>
     <tip after="25s" every="4m">Stairs cannot be crafted, along with a few blocks that would replace them.</tip>
-    <tip after="45s" every="4m">The height limit increases by 8 blocks every 10 minutes!</tip>
-    <tip after="46s" every="4m">Each time this happens new skybridge islands will be spawned.</tip>
-    <alert after="10m">`c`lHeight limit increased to 44!</alert>
-    <alert after="20m">`c`lHeight limit increased to 52!</alert>
-    <alert after="30m">`c`lHeight limit increased to 60!</alert>
-    <alert after="40m">`c`lHeight limit increased to 68!</alert>
-    <alert after="50m">`c`lHeight limit increased to 76!</alert>
-    <alert after="60m">`c`lHeight limit increased to 84!  It will not increase further.</alert>
-    <alert after="10m2s">`cNew platform spawned!</alert>
-    <alert after="20m2s">`cNew platform spawned!</alert>
+    <tip after="45s">Starting at 30 minutes, the height limit will begin to increase!</tip>
+    <tip after="46s">Each time this happens new skybridge islands will be spawned.</tip>
+    <tip after="4m45s" count="6">Starting at 30 minutes, the height limit will begin to increase!</tip>
+    <tip after="4m46s" count="6">Each time this happens, new skybridge islands will be spawned.</tip>
+    <tip after="32m45s" every="4m">The height limit increases by 8 blocks every 15 minutes!</tip>
+    <tip after="32m46s" every="4m">Each time this happens, new skybridge islands will be spawned.</tip>
+    <alert after="30m">`c`lHeight limit increased to 44!</alert>
+    <alert after="45m">`c`lHeight limit increased to 52!</alert>
+    <alert after="60m">`c`lHeight limit increased to 60!</alert>
+    <alert after="75m">`c`lHeight limit increased to 68!</alert>
+    <alert after="90m">`c`lHeight limit increased to 76!</alert>
+    <alert after="105m">`c`lHeight limit increased to 84!  It will not increase further.</alert>
     <alert after="30m2s">`cNew platform spawned!</alert>
-    <alert after="40m2s">`cNew platform spawned!</alert>
-    <alert after="50m2s">`cNew platform spawned!</alert>
-    <alert after="60m2s">`cFinal platform spawned!</alert>
+    <alert after="45m2s">`cNew platform spawned!</alert>
+    <alert after="60m2s">`cNew platform spawned!</alert>
+    <alert after="75m2s">`cNew platform spawned!</alert>
+    <alert after="90m2s">`cNew platform spawned!</alert>
+    <alert after="105m2s">`cFinal platform spawned!</alert>
 </broadcasts>
 <kits>
     <kit id="spawn-kit">
@@ -102,12 +106,12 @@
     <not id="deny-void">
         <void/>
     </not>
-    <time id="10m">10m</time>
-    <time id="20m">20m</time>
-    <time id="30m">30m</time>
-    <time id="40m">40m</time>
-    <time id="50m">50m</time>
-    <time id="60m">60m</time>
+    <time id="10m">30m</time>
+    <time id="20m">45m</time>
+    <time id="30m">60m</time>
+    <time id="40m">75m</time>
+    <time id="50m">90m</time>
+    <time id="60m">105m</time>
 </filters>
 <regions>
     <union id="no-bg">
@@ -186,7 +190,7 @@
     </portal>
 </portals>
 <renewables>
-    <renewable region="bases" rate="0.35" grow="true" particles="true" avoid-entities="true">
+    <renewable region="bases" rate="1" grow="true" particles="true" avoid-entities="true">
         <renew-filter><material>gold block</material></renew-filter>
     </renewable>
 </renewables>
@@ -281,7 +285,6 @@
 <item-mods>
     <rule>
         <match>
-            <material>gold sword</material>
             <material>gold helmet</material>
             <material>gold chestplate</material>
             <material>gold leggings</material>
@@ -295,9 +298,10 @@
             <material>gold axe</material>
             <material>gold spade</material>
             <material>gold hoe</material>
+            <material>gold sword</material>
         </match>
         <modify>
-            <enchantment level="4">efficiency</enchantment>
+            <enchantment level="5">efficiency</enchantment>
             <enchantment level="4">unbreaking</enchantment>
         </modify>
     </rule>
@@ -319,6 +323,7 @@
     <disable>wood step</disable>
     <disable>step</disable>
     <disable>sandstone stairs</disable>
+    <disable>boat</disable>
 </crafting>
 <structures>
     <structure id="skybridge-platform" air="false">
