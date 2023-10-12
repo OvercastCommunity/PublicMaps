@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Empire</name>
 <variant id="halloween" world="halloween" override="true">Empire in Ruins</variant>
-<version>2.3.9</version>
+<version>2.3.10</version>
 <objective>Capture both wools and return them safely to your victory monument.</objective>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
