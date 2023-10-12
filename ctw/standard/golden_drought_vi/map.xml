@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Golden Drought VI</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Capture the enemy wools and return them to your victory monument.</objective>
 <authors>
     <author uuid="52bcb4dd-a1a0-4d9b-94e0-49e145e318e4"/> <!-- Lich_of_Flowers -->
@@ -170,12 +170,12 @@
     <apply block="red-in-wr" use="only-red" region="red-wool-rooms"/>
 
     <apply block="deny-void" region="void" message="You may not build in the void!"/>
-    <apply block="60m" region="above-76" message="The height limit will increase at 60 minutes!"/>
-    <apply block="50m" region="above-68" message="The height limit will increase at 50 minutes!"/>
-    <apply block="40m" region="above-60" message="The height limit will increase at 40 minutes!"/>
-    <apply block="30m" region="above-52" message="The height limit will increase at 30 minutes!"/>
-    <apply block="20m" region="above-44" message="The height limit will increase at 20 minutes!"/>
-    <apply block="10m" region="above-36" message="The height limit will increase at 10 minutes!"/>
+    <apply block="60m" region="above-76" message="The height limit will increase at 105 minutes!"/>
+    <apply block="50m" region="above-68" message="The height limit will increase at 90 minutes!"/>
+    <apply block="40m" region="above-60" message="The height limit will increase at 75 minutes!"/>
+    <apply block="30m" region="above-52" message="The height limit will increase at 60 minutes!"/>
+    <apply block="20m" region="above-44" message="The height limit will increase at 45 minutes!"/>
+    <apply block="10m" region="above-36" message="The height limit will increase at 30 minutes!"/>
 </regions>
 <portals>
     <portal y="40" z="3" yaw="180">
@@ -328,35 +328,35 @@
         </region>
     </structure>
 
-    <dynamic structure="skybridge-platform" location="-30,40,-18"><trigger><time>10m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,40,10"><trigger><time>10m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,40,-18"><trigger><time>10m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="-30,40,10"><trigger><time>10m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,40,-18"><trigger><time>30m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,40,10"><trigger><time>30m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,40,-18"><trigger><time>30m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,40,10"><trigger><time>30m</time></trigger></dynamic>
 
-    <dynamic structure="skybridge-platform" location="-30,48,-27"><trigger><time>20m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,48,19"><trigger><time>20m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,48,-27"><trigger><time>20m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="-30,48,19"><trigger><time>20m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,48,-27"><trigger><time>45m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,48,19"><trigger><time>45m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,48,-27"><trigger><time>45m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,48,19"><trigger><time>45m</time></trigger></dynamic>
 
-    <dynamic structure="skybridge-platform" location="-30,56,-36"><trigger><time>30m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,56,28"><trigger><time>30m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,56,-36"><trigger><time>30m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="-30,56,28"><trigger><time>30m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,56,-36"><trigger><time>60m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,56,28"><trigger><time>60m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,56,-36"><trigger><time>60m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,56,28"><trigger><time>60m</time></trigger></dynamic>
 
-    <dynamic structure="skybridge-platform" location="-30,64,-45"><trigger><time>40m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,64,37"><trigger><time>40m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,64,-45"><trigger><time>40m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="-30,64,37"><trigger><time>40m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,64,-45"><trigger><time>75m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,64,37"><trigger><time>75m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,64,-45"><trigger><time>75m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,64,37"><trigger><time>75m</time></trigger></dynamic>
 
-    <dynamic structure="skybridge-platform" location="-30,72,-54"><trigger><time>50m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,72,46"><trigger><time>50m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,72,-54"><trigger><time>50m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="-30,72,46"><trigger><time>50m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,72,-54"><trigger><time>90m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,72,46"><trigger><time>90m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,72,-54"><trigger><time>90m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,72,46"><trigger><time>90m</time></trigger></dynamic>
 
-    <dynamic structure="skybridge-platform" location="-30,80,-63"><trigger><time>60m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,80,55"><trigger><time>60m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="22,80,-63"><trigger><time>60m</time></trigger></dynamic>
-    <dynamic structure="skybridge-platform" location="-30,80,55"><trigger><time>60m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,80,-63"><trigger><time>105m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,80,55"><trigger><time>105m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="22,80,-63"><trigger><time>105m</time></trigger></dynamic>
+    <dynamic structure="skybridge-platform" location="-30,80,55"><trigger><time>105m</time></trigger></dynamic>
 
 </structures>
 </map>
