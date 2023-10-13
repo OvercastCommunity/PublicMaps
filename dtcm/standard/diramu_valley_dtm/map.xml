@@ -1,17 +1,28 @@
 <map proto="1.4.2">
 <name>Diramu Valley DTM</name>
-<version>1.0.7</version>
+<variant id="christmas" world="christmas" override="true">Danagal Valley DTM</variant>
+<version>1.1.0</version>
 <gamemode>dtm</gamemode>
 <objective>Destroy both of the opposing monuments to win!</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>
+<if variant="christmas">
+    <contributors>
+        <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Christmas-ification"/> <!-- Xerocoles -->
+    </contributors>
+</if>
 <teams>
-    <team id="red" color="dark red" max="8">Red</team>
+    <unless variant="christmas">
+        <team id="red" color="dark red" max="8">Red</team>
+    </unless>
+    <if variant="christmas">
+        <team id="red" color="green" max="8">Green</team>
+    </if>
     <team id="blue" color="blue" max="8">Blue</team>
 </teams>
 <kits>
-    <kit id="spawn">
+    <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" enchantment="arrow infinite:1" material="bow"/>
@@ -22,28 +33,24 @@
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="32" material="cooked fish"/>
         <item slot="28" material="arrow"/>
+        <if variant="christmas">
+            <item slot="30" unbreakable="true" material="stone spade"/>
+        </if>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
         <potion duration="3" amplifier="3">heal</potion>
         <potion duration="6">damage resistance</potion>
-        <leggings unbreakable="true">chainmail leggings</leggings>
-    </kit>
-    <kit id="red-kit" parents="spawn">
-        <helmet color="cd0000" unbreakable="true" material="leather helmet"/>
-        <chestplate color="cd0000" unbreakable="true" material="leather chestplate"/>
-        <boots color="cd0000" unbreakable="true" material="leather boots"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn">
-        <helmet color="0066cc" unbreakable="true" material="leather helmet"/>
-        <chestplate color="0066cc" unbreakable="true" material="leather chestplate"/>
-        <boots color="0066cc" unbreakable="true" material="leather boots"/>
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue" kit="spawn-kit">
         <regions>
             <cuboid min="-90.5,24,130.5" max="-92.5,24,132.5"/>
         </regions>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <regions yaw="180">
             <cuboid min="-92.5,24,274.5" max="-90,24,272.5"/>
         </regions>
@@ -73,13 +80,13 @@
         <apply enter="only-red" message="You may not enter the enemy spawn" region="red-spawn"/>
         <apply enter="only-blue" message="You may not enter the enemy spawn" region="blue-spawn"/>
 </regions>
-<destroyables completion="100%" mode-changes="true" materials="obsidian" repairable="false">
-    <destroyable owner="red" name="Monument">
+<destroyables name="Monument" mode-changes="true" materials="obsidian" repairable="false">
+    <destroyable owner="red">
         <region>
             <cuboid min="-92.5,22,230.5" max="-90.5,25,232.5"/>
         </region>
     </destroyable>
-    <destroyable owner="blue" name="Monument">
+    <destroyable owner="blue">
         <region>
             <cuboid min="-92.5,22,172.5" max="-90.5,25,174.5"/>
         </region>
@@ -111,12 +118,11 @@
     <item>red rose</item>
     <item>arrow</item>
     <item>beacon</item>
+    <if variant="christmas">
+        <item>snow ball</item>
+        <item>vine</item>
+    </if>
 </itemremove>
-<kill-rewards> 
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>
@@ -125,5 +131,13 @@
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
     <tool>iron axe</tool>
+    <if variant="christmas">
+        <tool>stone spade</tool>
+    </if>
 </toolrepair>
+<kill-rewards> 
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 </map>
