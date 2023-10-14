@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Chocolate Diamonds</name>
-<version>2.1.2</version>
+<version>2.1.3</version>
 <objective>Capture the enemy's flag 3 times!</objective>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- kroest -->
@@ -65,7 +65,11 @@
         <void/>
     </deny>
     <deny id="deny-beacon">
-        <material>beacon</material>
+        <any>
+            <material>beacon</material>
+            <material>stained glass</material>
+            <material>gold block</material>
+        </any>
     </deny>
     <any id="flag-carrier">
         <carrying-flag>green-flag</carrying-flag>
@@ -96,10 +100,11 @@
         <everywhere/>
         <rectangle min="-52,89" max="52,-89"/>
     </complement>
-    <apply use="deny-beacon"/>
+    <apply block-break="deny-beacon" use="deny-beacon"/>
     <apply enter="only-green" region="green-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply block="never" region="flag-platforms" message="You may not modify the flag platforms!"/>
+    <apply block="only-red" region="green-platform" message="You may not modify your flag platform!"/>
+    <apply block="only-green" region="red-platform" message="You may not modify your flag platform!"/>
     <apply block="never" region="spawns" message="You may not modify the spawn areas!"/>
     <apply block="never" region="spawner" message="You may not interfere with the arrow spawner!"/>
     <apply block="deny-void" region="void" message="You may not build in the void!"/>
