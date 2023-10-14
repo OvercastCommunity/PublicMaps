@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Vertex</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Capture the wool and return it to your victory monument</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
@@ -9,7 +9,7 @@
     <team id="blue-team" color="blue" max="7">Blue</team>
     <team id="red-team" color="dark red" max="7">Red</team>
 </teams>
-<time>20m</time>
+<time>30m</time>
 <kits>
     <kit id="main-kit">
         <clear/>
@@ -87,10 +87,12 @@
     <union id="wool-rooms">
         <cuboid id="blue-wool" min="264,12,324" max="271,19,316"/>
         <cuboid id="red-wool" min="221,12,273" max="229,19,281"/>
+        <cuboid id="blue-door" min="272,12,319" max="273,19,321"/>
+        <cuboid id="red-door" min="224,12,272" max="226,19,273"/>
     </union>
     <union id="wool-ledges">
-        <cuboid id="blue-ledge" min="263,12,325" max="273,19,324"/>
-        <cuboid id="red-ledge" min="220,12,272" max="221,19,282"/>
+        <cuboid id="blue-ledge" min="263,12,325" max="273,15,324"/>
+        <cuboid id="red-ledge" min="220,12,272" max="221,15,282"/>
     </union>
     <block id="item-chest">277,12,267</block>
     <above id="world-limit" y="15"/>
