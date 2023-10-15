@@ -1,7 +1,9 @@
 <map proto="1.4.2">
 <name>Xi</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <phase>development</phase>
+<include id="variable-maxbuildheight"/>
+<constant id="maxbuild-default">23</constant>
 <objective>Capture both enemy wools.</objective>
 <authors>
     <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade"/> <!-- chle_ -->
@@ -11,10 +13,7 @@
     <team id="purple" color="dark purple" max="24">Purple</team>
 </teams>
 <kits>
-    <kit id="spawn-tube">
-        <effect amplifier="255">jump</effect>
-    </kit>
-    <kit id="spawn-kit" parents="spawn-tube">
+    <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow">
@@ -26,23 +25,28 @@
         <item slot="30" unbreakable="true" material="iron spade"/>
         <item slot="4" amount="64" damage="4" material="wood"/>
         <item slot="31" amount="64" damage="4" material="wood"/>
-        <item slot="6" material="water bucket"/>
+        <item slot="5" amount="64" team-color="true" material="stained glass"/>
+        <item slot="32" amount="64" damage="4" material="wood"/>
+        <item slot="6" material="bucket"/>
         <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <action scope="player">
+            <set var="fall_variable" value="1"/>
+        </action>
     </kit>
-    <kit id="cyan-kit" parents="spawn-kit">
-        <item slot="5" amount="64" damage="9" material="stained glass"/>
-    </kit>
-    <kit id="purple-kit" parents="spawn-kit">
-        <item slot="5" amount="64" damage="10" material="stained glass"/>
-    </kit>
-    <take kit="spawn-tube">
+    <give>
         <filter>
             <grounded/>
         </filter>
-    </take>
+        <kit>
+            <action scope="player">
+                <set var="fall_variable" value="0"/>
+            </action>
+        </kit>
+    </give>
 </kits>
 <spawns>
     <default>
@@ -50,59 +54,34 @@
             <cylinder base="395.5,42,-656.5" radius="1.5" height="0"/>
         </region>
     </default>
-    <spawn team="cyan" kit="cyan-kit">
+    <spawn team="cyan" kit="spawn-kit">
         <region yaw="180">
             <cylinder base="308.5,40,-531.5" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="purple" kit="purple-kit">
-        <region yaw="0">
+    <spawn team="purple" kit="spawn-kit">
+        <region>
             <cylinder base="308.5,40,-781.5" radius="1" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <deny id="cyan-in-wr">
-        <any>
-            <team id="only-purple">purple</team>
-            <material>chest</material>
-        </any>
+    <deny id="deny-cyan">
+        <team id="only-cyan">cyan</team>
     </deny>
-    <deny id="purple-in-wr">
-        <any>
-            <team id="only-cyan">cyan</team>
-            <material>chest</material>
-        </any>
+    <deny id="deny-purple">
+        <team id="only-purple">purple</team>
+    </deny>
+    <deny id="deny-chest">
+        <material>chest</material>
+    </deny>
+    <deny id="deny-void">
+        <void/>
     </deny>
     <all id="only-iron-regen">
         <material id="only-iron">iron block</material>
         <cause>world</cause>
     </all>
-    <deny id="deny-void">
-        <void/>
-    </deny>
-    <not id="before-15m"> <!-- 2s -->
-        <time>15m</time>
-    </not>
-    <all id="before-30m-after-15m"> <!-- 2.2s -->
-        <time>15m</time>
-        <not>
-            <time>30m</time>
-        </not>
-    </all>
-    <all id="before-45m-after-30m"> <!-- 2.5s -->
-        <time>30m</time>
-        <not>
-            <time>45m</time>
-        </not>
-    </all>
-    <all id="before-1h-after-45m"> <!-- 3s -->
-        <time>45m</time>
-        <not>
-            <time>1h</time>
-        </not>
-    </all>
-    <time id="after-1h">1h</time> <!-- 3.5s -->
 </filters>
 <regions>
     <union id="spawns">
@@ -129,17 +108,19 @@
         <rectangle min="301,-602" max="317,-579"/>
         <rectangle min="300,-733" max="317,-710"/>
     </complement>
-    <!--  applied  -->
-    <apply enter="only-cyan" region="cyan-spawn" message="You may not enter the enemy spawn!"/>
-    <apply enter="only-purple" region="purple-spawn" message="You may not enter the enemy spawn!"/>
+    <apply use="only-cyan" region="cyan-wool-rooms"/>
+    <apply use="only-purple" region="purple-wool-rooms"/>
+    <apply enter="only-cyan" region="cyan-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-purple" region="purple-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-cyan" region="cyan-wool-rooms" message="You may not enter your team's own wool rooms!"/>
     <apply enter="only-purple" region="purple-wool-rooms" message="You may not enter your team's own wool rooms!"/>
-    <apply block="cyan-in-wr" use="only-cyan" region="cyan-wool-rooms"/>
-    <apply block="purple-in-wr" use="only-purple" region="purple-wool-rooms"/>
     <apply block-break="only-iron" block-place="only-iron-regen" region="spawns" message="You may only break iron blocks in the spawn areas!"/>
+    <apply block="deny-chest" region="wool-rooms" message="You may not break or place chests in the wool rooms!"/>
+    <apply block="deny-cyan" region="purple-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny-purple" region="cyan-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny-void" region="not-yes-void" message="You may not build in the void!"/>
 </regions>
-<wools>
+<wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
     <wool team="cyan" color="orange" location="357,9,-774">
         <monument>
             <block>309,8,-543</block>
@@ -170,6 +151,7 @@
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
+    <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
     <item>leather boots</item>
@@ -197,24 +179,23 @@
 <kill-rewards>
     <kill-reward>
         <item material="golden apple"/>
-        <item amount="32" damage="4" material="wood"/>
-    </kill-reward>
-    <kill-reward filter="only-cyan">
-        <item amount="16" damage="9" material="stained glass"/>
-    </kill-reward>
-    <kill-reward filter="only-purple">
-        <item amount="16" damage="10" material="stained glass"/>
+        <item amount="48" damage="4" material="wood"/>
+        <item amount="24" team-color="true" material="stained glass"/>
     </kill-reward>
 </kill-rewards>
-<maxbuildheight>23</maxbuildheight>
-<respawns>
-    <respawn delay="3s" filter="before-15m"/>
-    <respawn delay="3.2s" filter="before-30m-after-15m"/>
-    <respawn delay="3.5s" filter="before-45m-after-30m"/>
-    <respawn delay="4s" filter="before-1h-after-45m"/>
-    <respawn delay="4.5s" filter="after-1h"/>
-</respawns>
+<respawn delay="3s"/>
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<variables>
+    <variable id="fall_variable" scope="player"/>
+</variables>
+<damage>
+    <deny>
+        <all>
+            <cause>fall</cause>
+            <variable var="fall_variable">1</variable>
+        </all>
+    </deny>
+</damage>
 </map>

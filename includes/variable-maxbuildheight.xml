@@ -1,0 +1,333 @@
+<map>
+<!-- Variable maxbuildheight include file -->
+<!-- Author: Pablete1234 -->
+<!-- Version 2023.10.14 -->
+<!-- This include file adds support for variable-based maxbuild height -->
+<constants>
+    <!-- Must be set to the initial desired build height, or set it yourself on match load -->
+    <constant id="maxbuild-default" delete="true"/>
+    <!-- May be overriden if you want different players or teams using different max height -->
+    <constant id="maxbuild-scope">match</constant>
+</constants>
+<variables>
+    <variable id="maxbuildheight" scope="${maxbuild-scope}" default="${maxbuild-default}"/>
+</variables>
+<regions>
+    <apply region="everywhere">
+        <message>{"translate":"match.maxBuildHeight"}</message>
+        <block-place>
+            <deny>
+                <any>
+                    <!-- For optimization purposes (avoiding evaluation of 500 filters each blockplace) -->
+                    <!-- The filters are in compartments so PGM can skip whole sections at a time. -->
+                    <all>
+                        <above y="0"/>
+                        <below y="16"/>
+                        <any>
+                            <all><above y="0"/><variable var="maxbuildheight">..0</variable></all>
+                            <all><above y="1"/><variable var="maxbuildheight">..1</variable></all>
+                            <all><above y="2"/><variable var="maxbuildheight">..2</variable></all>
+                            <all><above y="3"/><variable var="maxbuildheight">..3</variable></all>
+                            <all><above y="4"/><variable var="maxbuildheight">..4</variable></all>
+                            <all><above y="5"/><variable var="maxbuildheight">..5</variable></all>
+                            <all><above y="6"/><variable var="maxbuildheight">..6</variable></all>
+                            <all><above y="7"/><variable var="maxbuildheight">..7</variable></all>
+                            <all><above y="8"/><variable var="maxbuildheight">..8</variable></all>
+                            <all><above y="9"/><variable var="maxbuildheight">..9</variable></all>
+                            <all><above y="10"/><variable var="maxbuildheight">..10</variable></all>
+                            <all><above y="11"/><variable var="maxbuildheight">..11</variable></all>
+                            <all><above y="12"/><variable var="maxbuildheight">..12</variable></all>
+                            <all><above y="13"/><variable var="maxbuildheight">..13</variable></all>
+                            <all><above y="14"/><variable var="maxbuildheight">..14</variable></all>
+                            <all><above y="15"/><variable var="maxbuildheight">..15</variable></all>
+                        </any>
+                    </all>
+                    <all>
+                        <above y="16"/>
+                        <below y="32"/>
+                        <any>
+                            <all><above y="16"/><variable var="maxbuildheight">..16</variable></all>
+                            <all><above y="17"/><variable var="maxbuildheight">..17</variable></all>
+                            <all><above y="18"/><variable var="maxbuildheight">..18</variable></all>
+                            <all><above y="19"/><variable var="maxbuildheight">..19</variable></all>
+                            <all><above y="20"/><variable var="maxbuildheight">..20</variable></all>
+                            <all><above y="21"/><variable var="maxbuildheight">..21</variable></all>
+                            <all><above y="22"/><variable var="maxbuildheight">..22</variable></all>
+                            <all><above y="23"/><variable var="maxbuildheight">..23</variable></all>
+                            <all><above y="24"/><variable var="maxbuildheight">..24</variable></all>
+                            <all><above y="25"/><variable var="maxbuildheight">..25</variable></all>
+                            <all><above y="26"/><variable var="maxbuildheight">..26</variable></all>
+                            <all><above y="27"/><variable var="maxbuildheight">..27</variable></all>
+                            <all><above y="28"/><variable var="maxbuildheight">..28</variable></all>
+                            <all><above y="29"/><variable var="maxbuildheight">..29</variable></all>
+                            <all><above y="30"/><variable var="maxbuildheight">..30</variable></all>
+                            <all><above y="31"/><variable var="maxbuildheight">..31</variable></all>
+                        </any>
+                    </all>
+                    <all>
+                        <above y="32"/>
+                        <below y="48"/>
+                        <any>
+                            <all><above y="32"/><variable var="maxbuildheight">..32</variable></all>
+                            <all><above y="33"/><variable var="maxbuildheight">..33</variable></all>
+                            <all><above y="34"/><variable var="maxbuildheight">..34</variable></all>
+                            <all><above y="35"/><variable var="maxbuildheight">..35</variable></all>
+                            <all><above y="36"/><variable var="maxbuildheight">..36</variable></all>
+                            <all><above y="37"/><variable var="maxbuildheight">..37</variable></all>
+                            <all><above y="38"/><variable var="maxbuildheight">..38</variable></all>
+                            <all><above y="39"/><variable var="maxbuildheight">..39</variable></all>
+                            <all><above y="40"/><variable var="maxbuildheight">..40</variable></all>
+                            <all><above y="41"/><variable var="maxbuildheight">..41</variable></all>
+                            <all><above y="42"/><variable var="maxbuildheight">..42</variable></all>
+                            <all><above y="43"/><variable var="maxbuildheight">..43</variable></all>
+                            <all><above y="44"/><variable var="maxbuildheight">..44</variable></all>
+                            <all><above y="45"/><variable var="maxbuildheight">..45</variable></all>
+                            <all><above y="46"/><variable var="maxbuildheight">..46</variable></all>
+                            <all><above y="47"/><variable var="maxbuildheight">..47</variable></all>
+                        </any>
+                    </all>
+                    <all>
+                        <above y="48"/>
+                        <below y="64"/>
+                        <any>
+                            <all><above y="48"/><variable var="maxbuildheight">..48</variable></all>
+                            <all><above y="49"/><variable var="maxbuildheight">..49</variable></all>
+                            <all><above y="50"/><variable var="maxbuildheight">..50</variable></all>
+                            <all><above y="51"/><variable var="maxbuildheight">..51</variable></all>
+                            <all><above y="52"/><variable var="maxbuildheight">..52</variable></all>
+                            <all><above y="53"/><variable var="maxbuildheight">..53</variable></all>
+                            <all><above y="54"/><variable var="maxbuildheight">..54</variable></all>
+                            <all><above y="55"/><variable var="maxbuildheight">..55</variable></all>
+                            <all><above y="56"/><variable var="maxbuildheight">..56</variable></all>
+                            <all><above y="57"/><variable var="maxbuildheight">..57</variable></all>
+                            <all><above y="58"/><variable var="maxbuildheight">..58</variable></all>
+                            <all><above y="59"/><variable var="maxbuildheight">..59</variable></all>
+                            <all><above y="60"/><variable var="maxbuildheight">..60</variable></all>
+                            <all><above y="61"/><variable var="maxbuildheight">..61</variable></all>
+                            <all><above y="62"/><variable var="maxbuildheight">..62</variable></all>
+                            <all><above y="63"/><variable var="maxbuildheight">..63</variable></all>
+                        </any>
+                    </all>
+                    <all>
+                        <above y="64"/>
+                        <below y="128"/>
+                        <any>
+                            <all><above y="64"/><variable var="maxbuildheight">..64</variable></all>
+                            <all><above y="65"/><variable var="maxbuildheight">..65</variable></all>
+                            <all><above y="66"/><variable var="maxbuildheight">..66</variable></all>
+                            <all><above y="67"/><variable var="maxbuildheight">..67</variable></all>
+                            <all><above y="68"/><variable var="maxbuildheight">..68</variable></all>
+                            <all><above y="69"/><variable var="maxbuildheight">..69</variable></all>
+                            <all><above y="70"/><variable var="maxbuildheight">..70</variable></all>
+                            <all><above y="71"/><variable var="maxbuildheight">..71</variable></all>
+                            <all><above y="72"/><variable var="maxbuildheight">..72</variable></all>
+                            <all><above y="73"/><variable var="maxbuildheight">..73</variable></all>
+                            <all><above y="74"/><variable var="maxbuildheight">..74</variable></all>
+                            <all><above y="75"/><variable var="maxbuildheight">..75</variable></all>
+                            <all><above y="76"/><variable var="maxbuildheight">..76</variable></all>
+                            <all><above y="77"/><variable var="maxbuildheight">..77</variable></all>
+                            <all><above y="78"/><variable var="maxbuildheight">..78</variable></all>
+                            <all><above y="79"/><variable var="maxbuildheight">..79</variable></all>
+                            <all><above y="80"/><variable var="maxbuildheight">..80</variable></all>
+                            <all><above y="81"/><variable var="maxbuildheight">..81</variable></all>
+                            <all><above y="82"/><variable var="maxbuildheight">..82</variable></all>
+                            <all><above y="83"/><variable var="maxbuildheight">..83</variable></all>
+                            <all><above y="84"/><variable var="maxbuildheight">..84</variable></all>
+                            <all><above y="85"/><variable var="maxbuildheight">..85</variable></all>
+                            <all><above y="86"/><variable var="maxbuildheight">..86</variable></all>
+                            <all><above y="87"/><variable var="maxbuildheight">..87</variable></all>
+                            <all><above y="88"/><variable var="maxbuildheight">..88</variable></all>
+                            <all><above y="89"/><variable var="maxbuildheight">..89</variable></all>
+                            <all><above y="90"/><variable var="maxbuildheight">..90</variable></all>
+                            <all><above y="91"/><variable var="maxbuildheight">..91</variable></all>
+                            <all><above y="92"/><variable var="maxbuildheight">..92</variable></all>
+                            <all><above y="93"/><variable var="maxbuildheight">..93</variable></all>
+                            <all><above y="94"/><variable var="maxbuildheight">..94</variable></all>
+                            <all><above y="95"/><variable var="maxbuildheight">..95</variable></all>
+                            <all><above y="96"/><variable var="maxbuildheight">..96</variable></all>
+                            <all><above y="97"/><variable var="maxbuildheight">..97</variable></all>
+                            <all><above y="98"/><variable var="maxbuildheight">..98</variable></all>
+                            <all><above y="99"/><variable var="maxbuildheight">..99</variable></all>
+                            <all><above y="100"/><variable var="maxbuildheight">..100</variable></all>
+                            <all><above y="101"/><variable var="maxbuildheight">..101</variable></all>
+                            <all><above y="102"/><variable var="maxbuildheight">..102</variable></all>
+                            <all><above y="103"/><variable var="maxbuildheight">..103</variable></all>
+                            <all><above y="104"/><variable var="maxbuildheight">..104</variable></all>
+                            <all><above y="105"/><variable var="maxbuildheight">..105</variable></all>
+                            <all><above y="106"/><variable var="maxbuildheight">..106</variable></all>
+                            <all><above y="107"/><variable var="maxbuildheight">..107</variable></all>
+                            <all><above y="108"/><variable var="maxbuildheight">..108</variable></all>
+                            <all><above y="109"/><variable var="maxbuildheight">..109</variable></all>
+                            <all><above y="110"/><variable var="maxbuildheight">..110</variable></all>
+                            <all><above y="111"/><variable var="maxbuildheight">..111</variable></all>
+                            <all><above y="112"/><variable var="maxbuildheight">..112</variable></all>
+                            <all><above y="113"/><variable var="maxbuildheight">..113</variable></all>
+                            <all><above y="114"/><variable var="maxbuildheight">..114</variable></all>
+                            <all><above y="115"/><variable var="maxbuildheight">..115</variable></all>
+                            <all><above y="116"/><variable var="maxbuildheight">..116</variable></all>
+                            <all><above y="117"/><variable var="maxbuildheight">..117</variable></all>
+                            <all><above y="118"/><variable var="maxbuildheight">..118</variable></all>
+                            <all><above y="119"/><variable var="maxbuildheight">..119</variable></all>
+                            <all><above y="120"/><variable var="maxbuildheight">..120</variable></all>
+                            <all><above y="121"/><variable var="maxbuildheight">..121</variable></all>
+                            <all><above y="122"/><variable var="maxbuildheight">..122</variable></all>
+                            <all><above y="123"/><variable var="maxbuildheight">..123</variable></all>
+                            <all><above y="124"/><variable var="maxbuildheight">..124</variable></all>
+                            <all><above y="125"/><variable var="maxbuildheight">..125</variable></all>
+                            <all><above y="126"/><variable var="maxbuildheight">..126</variable></all>
+                            <all><above y="127"/><variable var="maxbuildheight">..127</variable></all>
+                        </any>
+                    </all>
+                    <all>
+                        <above y="128"/>
+                        <below y="256"/>
+                        <any>
+                            <all><above y="128"/><variable var="maxbuildheight">..128</variable></all>
+                            <all><above y="129"/><variable var="maxbuildheight">..129</variable></all>
+                            <all><above y="130"/><variable var="maxbuildheight">..130</variable></all>
+                            <all><above y="131"/><variable var="maxbuildheight">..131</variable></all>
+                            <all><above y="132"/><variable var="maxbuildheight">..132</variable></all>
+                            <all><above y="133"/><variable var="maxbuildheight">..133</variable></all>
+                            <all><above y="134"/><variable var="maxbuildheight">..134</variable></all>
+                            <all><above y="135"/><variable var="maxbuildheight">..135</variable></all>
+                            <all><above y="136"/><variable var="maxbuildheight">..136</variable></all>
+                            <all><above y="137"/><variable var="maxbuildheight">..137</variable></all>
+                            <all><above y="138"/><variable var="maxbuildheight">..138</variable></all>
+                            <all><above y="139"/><variable var="maxbuildheight">..139</variable></all>
+                            <all><above y="140"/><variable var="maxbuildheight">..140</variable></all>
+                            <all><above y="141"/><variable var="maxbuildheight">..141</variable></all>
+                            <all><above y="142"/><variable var="maxbuildheight">..142</variable></all>
+                            <all><above y="143"/><variable var="maxbuildheight">..143</variable></all>
+                            <all><above y="144"/><variable var="maxbuildheight">..144</variable></all>
+                            <all><above y="145"/><variable var="maxbuildheight">..145</variable></all>
+                            <all><above y="146"/><variable var="maxbuildheight">..146</variable></all>
+                            <all><above y="147"/><variable var="maxbuildheight">..147</variable></all>
+                            <all><above y="148"/><variable var="maxbuildheight">..148</variable></all>
+                            <all><above y="149"/><variable var="maxbuildheight">..149</variable></all>
+                            <all><above y="150"/><variable var="maxbuildheight">..150</variable></all>
+                            <all><above y="151"/><variable var="maxbuildheight">..151</variable></all>
+                            <all><above y="152"/><variable var="maxbuildheight">..152</variable></all>
+                            <all><above y="153"/><variable var="maxbuildheight">..153</variable></all>
+                            <all><above y="154"/><variable var="maxbuildheight">..154</variable></all>
+                            <all><above y="155"/><variable var="maxbuildheight">..155</variable></all>
+                            <all><above y="156"/><variable var="maxbuildheight">..156</variable></all>
+                            <all><above y="157"/><variable var="maxbuildheight">..157</variable></all>
+                            <all><above y="158"/><variable var="maxbuildheight">..158</variable></all>
+                            <all><above y="159"/><variable var="maxbuildheight">..159</variable></all>
+                            <all><above y="160"/><variable var="maxbuildheight">..160</variable></all>
+                            <all><above y="161"/><variable var="maxbuildheight">..161</variable></all>
+                            <all><above y="162"/><variable var="maxbuildheight">..162</variable></all>
+                            <all><above y="163"/><variable var="maxbuildheight">..163</variable></all>
+                            <all><above y="164"/><variable var="maxbuildheight">..164</variable></all>
+                            <all><above y="165"/><variable var="maxbuildheight">..165</variable></all>
+                            <all><above y="166"/><variable var="maxbuildheight">..166</variable></all>
+                            <all><above y="167"/><variable var="maxbuildheight">..167</variable></all>
+                            <all><above y="168"/><variable var="maxbuildheight">..168</variable></all>
+                            <all><above y="169"/><variable var="maxbuildheight">..169</variable></all>
+                            <all><above y="170"/><variable var="maxbuildheight">..170</variable></all>
+                            <all><above y="171"/><variable var="maxbuildheight">..171</variable></all>
+                            <all><above y="172"/><variable var="maxbuildheight">..172</variable></all>
+                            <all><above y="173"/><variable var="maxbuildheight">..173</variable></all>
+                            <all><above y="174"/><variable var="maxbuildheight">..174</variable></all>
+                            <all><above y="175"/><variable var="maxbuildheight">..175</variable></all>
+                            <all><above y="176"/><variable var="maxbuildheight">..176</variable></all>
+                            <all><above y="177"/><variable var="maxbuildheight">..177</variable></all>
+                            <all><above y="178"/><variable var="maxbuildheight">..178</variable></all>
+                            <all><above y="179"/><variable var="maxbuildheight">..179</variable></all>
+                            <all><above y="180"/><variable var="maxbuildheight">..180</variable></all>
+                            <all><above y="181"/><variable var="maxbuildheight">..181</variable></all>
+                            <all><above y="182"/><variable var="maxbuildheight">..182</variable></all>
+                            <all><above y="183"/><variable var="maxbuildheight">..183</variable></all>
+                            <all><above y="184"/><variable var="maxbuildheight">..184</variable></all>
+                            <all><above y="185"/><variable var="maxbuildheight">..185</variable></all>
+                            <all><above y="186"/><variable var="maxbuildheight">..186</variable></all>
+                            <all><above y="187"/><variable var="maxbuildheight">..187</variable></all>
+                            <all><above y="188"/><variable var="maxbuildheight">..188</variable></all>
+                            <all><above y="189"/><variable var="maxbuildheight">..189</variable></all>
+                            <all><above y="190"/><variable var="maxbuildheight">..190</variable></all>
+                            <all><above y="191"/><variable var="maxbuildheight">..191</variable></all>
+                            <all><above y="192"/><variable var="maxbuildheight">..192</variable></all>
+                            <all><above y="193"/><variable var="maxbuildheight">..193</variable></all>
+                            <all><above y="194"/><variable var="maxbuildheight">..194</variable></all>
+                            <all><above y="195"/><variable var="maxbuildheight">..195</variable></all>
+                            <all><above y="196"/><variable var="maxbuildheight">..196</variable></all>
+                            <all><above y="197"/><variable var="maxbuildheight">..197</variable></all>
+                            <all><above y="198"/><variable var="maxbuildheight">..198</variable></all>
+                            <all><above y="199"/><variable var="maxbuildheight">..199</variable></all>
+                            <all><above y="200"/><variable var="maxbuildheight">..200</variable></all>
+                            <all><above y="201"/><variable var="maxbuildheight">..201</variable></all>
+                            <all><above y="202"/><variable var="maxbuildheight">..202</variable></all>
+                            <all><above y="203"/><variable var="maxbuildheight">..203</variable></all>
+                            <all><above y="204"/><variable var="maxbuildheight">..204</variable></all>
+                            <all><above y="205"/><variable var="maxbuildheight">..205</variable></all>
+                            <all><above y="206"/><variable var="maxbuildheight">..206</variable></all>
+                            <all><above y="207"/><variable var="maxbuildheight">..207</variable></all>
+                            <all><above y="208"/><variable var="maxbuildheight">..208</variable></all>
+                            <all><above y="209"/><variable var="maxbuildheight">..209</variable></all>
+                            <all><above y="210"/><variable var="maxbuildheight">..210</variable></all>
+                            <all><above y="211"/><variable var="maxbuildheight">..211</variable></all>
+                            <all><above y="212"/><variable var="maxbuildheight">..212</variable></all>
+                            <all><above y="213"/><variable var="maxbuildheight">..213</variable></all>
+                            <all><above y="214"/><variable var="maxbuildheight">..214</variable></all>
+                            <all><above y="215"/><variable var="maxbuildheight">..215</variable></all>
+                            <all><above y="216"/><variable var="maxbuildheight">..216</variable></all>
+                            <all><above y="217"/><variable var="maxbuildheight">..217</variable></all>
+                            <all><above y="218"/><variable var="maxbuildheight">..218</variable></all>
+                            <all><above y="219"/><variable var="maxbuildheight">..219</variable></all>
+                            <all><above y="220"/><variable var="maxbuildheight">..220</variable></all>
+                            <all><above y="221"/><variable var="maxbuildheight">..221</variable></all>
+                            <all><above y="222"/><variable var="maxbuildheight">..222</variable></all>
+                            <all><above y="223"/><variable var="maxbuildheight">..223</variable></all>
+                            <all><above y="224"/><variable var="maxbuildheight">..224</variable></all>
+                            <all><above y="225"/><variable var="maxbuildheight">..225</variable></all>
+                            <all><above y="226"/><variable var="maxbuildheight">..226</variable></all>
+                            <all><above y="227"/><variable var="maxbuildheight">..227</variable></all>
+                            <all><above y="228"/><variable var="maxbuildheight">..228</variable></all>
+                            <all><above y="229"/><variable var="maxbuildheight">..229</variable></all>
+                            <all><above y="230"/><variable var="maxbuildheight">..230</variable></all>
+                            <all><above y="231"/><variable var="maxbuildheight">..231</variable></all>
+                            <all><above y="232"/><variable var="maxbuildheight">..232</variable></all>
+                            <all><above y="233"/><variable var="maxbuildheight">..233</variable></all>
+                            <all><above y="234"/><variable var="maxbuildheight">..234</variable></all>
+                            <all><above y="235"/><variable var="maxbuildheight">..235</variable></all>
+                            <all><above y="236"/><variable var="maxbuildheight">..236</variable></all>
+                            <all><above y="237"/><variable var="maxbuildheight">..237</variable></all>
+                            <all><above y="238"/><variable var="maxbuildheight">..238</variable></all>
+                            <all><above y="239"/><variable var="maxbuildheight">..239</variable></all>
+                            <all><above y="240"/><variable var="maxbuildheight">..240</variable></all>
+                            <all><above y="241"/><variable var="maxbuildheight">..241</variable></all>
+                            <all><above y="242"/><variable var="maxbuildheight">..242</variable></all>
+                            <all><above y="243"/><variable var="maxbuildheight">..243</variable></all>
+                            <all><above y="244"/><variable var="maxbuildheight">..244</variable></all>
+                            <all><above y="245"/><variable var="maxbuildheight">..245</variable></all>
+                            <all><above y="246"/><variable var="maxbuildheight">..246</variable></all>
+                            <all><above y="247"/><variable var="maxbuildheight">..247</variable></all>
+                            <all><above y="248"/><variable var="maxbuildheight">..248</variable></all>
+                            <all><above y="249"/><variable var="maxbuildheight">..249</variable></all>
+                            <all><above y="250"/><variable var="maxbuildheight">..250</variable></all>
+                            <all><above y="251"/><variable var="maxbuildheight">..251</variable></all>
+                            <all><above y="252"/><variable var="maxbuildheight">..252</variable></all>
+                            <all><above y="253"/><variable var="maxbuildheight">..253</variable></all>
+                            <all><above y="254"/><variable var="maxbuildheight">..254</variable></all>
+                        </any>
+                    </all>
+                </any>
+            </deny>
+        </block-place>
+    </apply>
+</regions>
+<actions>
+    <action id="buildheight+1" scope="match" expose="true">
+        <set var="maxbuildheight" value="maxbuildheight+1"/>
+    </action>
+    <action id="buildheight+5" scope="match" expose="true">
+        <set var="maxbuildheight" value="maxbuildheight+5"/>
+    </action>
+    <action id="buildheight-1" scope="match" expose="true">
+        <set var="maxbuildheight" value="maxbuildheight-1"/>
+    </action>
+    <action id="buildheight-5" scope="match" expose="true">
+        <set var="maxbuildheight" value="maxbuildheight-5"/>
+    </action>
+</actions>
+</map>
