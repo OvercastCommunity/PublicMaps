@@ -1,14 +1,23 @@
 <map proto="1.4.2">
 <name>PixelMix</name>
 <variant id="halloween" world="halloween" override="true">PixelMissing</variant>
-<version>2.3.0</version>
+<version>2.3.1</version>
 <objective>Take the enemy's wool located at two sides of the enemy's base and place it in your victory monument.</objective>
+<if variant="halloween">
+    <created>2015-10-28</created>
+</if>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Idea, map design, and XML"/> <!-- DoomRobotBoy -->
 </authors>
 <contributors>
     <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML fixing"/> <!-- ollyj -->
 </contributors>
+<constants>
+    <constant id="observers-kit" delete="true"/>
+</constants>
+<if variant="halloween">
+    <constant id="observers-kit">default-kit</constant>
+</if>
 <teams>
     <team id="blue" color="blue" max="35">Blue</team>
     <team id="red" color="dark red" max="35">Red</team>
@@ -17,7 +26,7 @@
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit">
+    <kit id="spawn-kit" parents="${observers-kit}">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow">
@@ -42,26 +51,14 @@
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots team-color="true" unbreakable="true" material="leather boots"/>
         <effect duration="7" amplifier="10">damage resistance</effect>
-        <if variant="halloween">
-            <effect>night vision</effect>
-        </if>
     </kit>
 </kits>
 <spawns>
-    <unless variant="halloween">
-        <default>
-            <region>
-                <cylinder base="-3.5,65,-257" radius="1" height="0"/>
-            </region>
-        </default>
-    </unless>
-    <if variant="halloween">
-        <default kit="default-kit">
-            <region>
-                <cylinder base="-3.5,65,-257" radius="1" height="0"/>
-            </region>
-        </default>
-    </if>
+    <default kit="${observers-kit}">
+        <region>
+            <cylinder base="-3.5,65,-257" radius="1" height="0"/>
+        </region>
+    </default>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="90">
             <point>104.5,57,-187.5</point>

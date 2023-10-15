@@ -1,9 +1,15 @@
 <map proto="1.4.2">
 <name>Downtown</name>
 <variant id="christmas" world="christmas">Christmas Eve</variant>
-<version>1.2.4</version>
+<version>1.2.5</version>
 <objective>Be the first team to 2500 points!</objective>
 <gamemode>koth</gamemode>
+<if variant="default">
+    <created>2019-04-17</created>
+</if>
+<if variant="christmas">
+    <created>2019-11-26</created>
+</if>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Main Builder"/> <!-- Xerocoles -->
     <author uuid="510cf71c-0f8a-44b6-87c2-b1ed9c197040" contribution="Helper Builder"/> <!-- fleuor -->
@@ -13,6 +19,12 @@
     <contributor uuid="d3814d5a-3d37-42f2-9db8-916846bb70ad" contribution="Feedback"/> <!-- AlmightyBread -->
     <contributor uuid="74e59389-2b3e-490d-954a-a7af1fb1eded" contribution="Feedback"/> <!-- Dowly_ -->
 </contributors>
+<constants>
+    <constant id="observers-kit" delete="true"/>
+</constants>
+<if variant="christmas">
+    <constant id="observers-kit">default-kit</constant>
+</if>
 <broadcasts>
     <tip after="10s" every="2m">Centre Hill is worth more points than any other hill!</tip>
 </broadcasts>
@@ -24,7 +36,7 @@
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit">
+    <kit id="spawn-kit" parents="${observers-kit}">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
@@ -41,26 +53,14 @@
         <effect duration="5" amplifier="4">heal</effect>
         <effect duration="5" amplifier="4">damage resistance</effect>
         <game-mode>adventure</game-mode>
-        <if variant="christmas">
-            <effect>night vision</effect>
-        </if>
     </kit>
 </kits>
 <spawns>
-    <if variant="default">
-        <default>
-            <region yaw="180">
-                <point>0.5,60,75.5</point>
-            </region>
-        </default>
-    </if>
-    <if variant="christmas">
-        <default kit="default-kit">
-            <region yaw="180">
-                <point>0.5,60,75.5</point>
-            </region>
-        </default>
-    </if>
+    <default kit="${observers-kit}">
+        <region yaw="180">
+            <point>0.5,60,75.5</point>
+        </region>
+    </default>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="180">
             <point>-44.5,7,6.5</point>

@@ -2,15 +2,24 @@
 <name>Ring Race</name>
 <variant id="halloween" world="halloween" override="true">Haunted Ring</variant>
 <!-- <variant id="tournament" world="tournament">TE</variant> -->
-<version>1.8.0</version>
+<version>1.8.1</version>
 <phase>development</phase>
 <objective>Capture both wools from the enemy's wool rooms and return them to your victory monument</objective>
+<if variant="halloween">
+    <created>2013-10-24</created>
+</if>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
 </authors>
 <contributors>
     <contributor uuid="8e0b87e1-2369-4c3e-9819-c9e93cd4f8eb" contribution="Eye candy"/> <!-- theDrewGuy -->
 </contributors>
+<constants>
+    <constant id="observers-kit" delete="true"/>
+</constants>
+<if variant="halloween">
+    <constant id="observers-kit">default-kit</constant>
+</if>
 <teams>
     <team id="orange" color="gold" max="32">Orange</team>
     <team id="purple" color="dark purple" max="32">Purple</team>
@@ -42,20 +51,11 @@
     </kit>
 </kits>
 <spawns>
-    <unless variant="halloween">
-        <default>
-            <region yaw="180">
-                <cuboid id="default-sp" min="87,31,35" max="91,31,37"/>
-            </region>
-        </default>
-    </unless>
-    <if variant="halloween">
-        <default kit="default-kit">
-            <region yaw="180">
-                <cuboid id="default-sp" min="87,31,35" max="91,31,37"/>
-            </region>
-        </default>
-    </if>
+    <default kit="${observers-kit}">
+        <region yaw="180">
+            <cuboid id="default-sp" min="87,31,35" max="91,31,37"/>
+        </region>
+    </default>
     <spawn team="orange" kit="spawn-kit">
         <region yaw="90">
             <cylinder id="orange-sp" base="159,17,-3" radius="3" height="0"/>
@@ -220,11 +220,13 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>40</maxbuildheight>
 <hunger>
     <depletion>off</depletion>

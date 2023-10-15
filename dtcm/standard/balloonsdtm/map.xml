@@ -3,8 +3,20 @@
 <variant id="halloween" world="halloween">Halloween</variant>
 <variant id="christmas" world="xmas">Xmas</variant> <!-- Preferred Christmas map -->
 <variant id="christmas-legacy-ocn" world="christmas-ocn">Christmas</variant>
-<version>2.3.0</version>
+<version>2.3.1</version>
 <objective>Destroy the enemy team's monument!</objective>
+<if variant="default">
+    <created>2014-05-20</created>
+</if>
+<if variant="halloween">
+    <created>2015-10-24</created>
+</if>
+<if variant="christmas">
+    <created>2021-12-02</created>
+</if>
+<if variant="christmas-legacy-ocn">
+    <created>2014-12-08</created>
+</if>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
 </authors>
@@ -17,16 +29,20 @@
         <contributor uuid="ec5ec930-5cf3-4f8a-ad9f-09056aeed71b" contribution="Christmas Edit"/> <!-- Tundren -->
     </if>
 </contributors>
+<constants>
+    <constant id="observers-kit" delete="true"/>
+</constants>
+<if variant="halloween">
+    <constant id="observers-kit">obs-pumpkin</constant>
+</if>
 <teams>
     <team id="red" color="dark red" max="12">Red</team>
     <team id="blue" color="blue" max="12">Blue</team>
 </teams>
 <kits>
-    <if variant="halloween">
-        <kit id="observers">
-            <helmet material="jack o lantern"/>
-        </kit>
-    </if>
+    <kit id="obs-pumpkin">
+        <helmet material="jack o lantern"/>
+    </kit>
     <kit id="spawn-kit">
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
@@ -69,20 +85,11 @@
             <cylinder base="-22.5,9,-26.5" height="0" radius="2"/>
         </regions>
     </spawn>
-    <unless variant="halloween">
-        <default>
-            <regions>
-                <point>0.5,63,0.5</point>
-            </regions>
-        </default>
-    </unless>
-    <if variant="halloween">
-        <default kit="observers">
-            <regions>
-                <point>0.5,63,0.5</point>
-            </regions>
-        </default>
-    </if>
+    <default kit="${observers-kit}">
+        <regions>
+            <point>0.5,63,0.5</point>
+        </regions>
+    </default>
 </spawns>
 <filters>
     <if variant="halloween">
