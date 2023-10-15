@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Xi</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <phase>development</phase>
 <include id="variable-maxbuildheight"/>
 <constant id="maxbuild-default">23</constant>
@@ -96,8 +96,8 @@
         </union>
         <!-- Purple wool rooms (wools purple needs to get) -->
         <union id="purple-wool-rooms">
-            <rectangle id="blue-wool" min="259,-529" max="279,-511"/>
-            <rectangle id="light-blue-wool" min="357,-529" max="337,-511"/>
+            <rectangle id="blue-wool" min="259,-530" max="279,-511"/>
+            <rectangle id="light-blue-wool" min="357,-530" max="337,-511"/>
         </union>
     </union>
     <complement id="not-yes-void">
