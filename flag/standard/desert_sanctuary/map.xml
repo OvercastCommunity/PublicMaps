@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Sanctuary</name>
-<version>1.6.2</version>
+<version>1.6.3</version>
 <variant id="5v5" world="5v5">5v5</variant>
 <variant id="7v7" world="7v7">7v7</variant>
 <variant id="halloween" world="halloween" override="true">Deserted Sanctuary</variant>
@@ -8,6 +8,8 @@
 <unless variant="5v5,7v7">
     <include id="kotf"/>
     <constant id="mid-post-filter">always</constant>
+    <constant id="team-size">20</constant>
+    <constant id="max-overfill" delete="true"/>
 </unless>
 <if variant="5v5,7v7">
     <include id="kotf-comp"/>
@@ -29,10 +31,12 @@
 </if>
 <if variant="5v5">
     <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
     <constant id="respawn-timer">4s</constant>
 </if>
 <if variant="7v7">
     <constant id="team-size">7</constant>
+    <constant id="max-overfill">7</constant>
     <constant id="respawn-timer">5s</constant>
 </if>
 <constant id="damage-resistance">7.5s</constant>
@@ -48,14 +52,8 @@
     </if>
 </contributors>
 <teams>
-    <unless variant="default,halloween,christmas">
-        <team id="team-1" color="${team-1-color}" max="${team-size}" max-overfill="${team-size}">${team-1-name}</team>
-        <team id="team-2" color="${team-2-color}" max="${team-size}" max-overfill="${team-size}">${team-2-name}</team>
-    </unless>
-    <if variant="default,halloween,christmas">
-        <team id="team-1" color="${team-1-color}" max="20">${team-1-name}</team>
-        <team id="team-2" color="${team-2-color}" max="20">${team-2-name}</team>
-    </if>
+    <team id="team-1" color="${team-1-color}" max="${team-size}" max-overfill="${max-overfill}">${team-1-name}</team>
+    <team id="team-2" color="${team-2-color}" max="${team-size}" max-overfill="${max-overfill}">${team-2-name}</team>
 </teams>
 <kits>
     <kit id="default-kit">
