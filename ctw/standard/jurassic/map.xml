@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Jurassic</name>
-<version>2.7.7</version> <!-- v2.7.6 competitive -->
+<version>2.7.8</version> <!-- v2.7.6 competitive -->
 <objective>Capture the enemy's two wools!</objective>
 <edition>standard</edition>
 <authors>
@@ -9,6 +9,8 @@
 <contributors>
     <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Most of obs-spawn Dino"/> <!-- rockymine -->
 </contributors>
+<include id="variable-maxbuildheight"/>
+<constant id="maxbuild-default">25</constant>
 <teams>
     <team id="purple-team" color="dark purple" max="32">Purple</team>
     <team id="yellow-team" color="yellow" max="32">Yellow</team>
@@ -56,21 +58,21 @@
     </spawn>
 </spawns>
 <filters>
-    <not id="no-void">
+    <deny id="no-void">
         <void/>
-    </not>
-    <not id="deny-purple-wool-rooms">
+    </deny>
+    <deny id="deny-purple-wool-rooms">
         <any>
             <team id="only-purple">purple-team</team>
             <material>chest</material>
         </any>
-    </not>
-    <not id="deny-yellow-wool-rooms">
+    </deny>
+    <deny id="deny-yellow-wool-rooms">
         <any>
             <team id="only-yellow">yellow-team</team>
             <material>chest</material>
         </any>
-    </not>
+    </deny>
     <all id="only-iron-regen">
         <material id="only-iron">iron block</material>
         <cause>world</cause>
@@ -200,7 +202,7 @@
     <item amount="32" damage="4" material="wood"/>
     <item amount="16" material="glass"/>
 </kill-reward>
-<maxbuildheight>25</maxbuildheight>
+<!-- <maxbuildheight>25</maxbuildheight> -->
 <!-- <crafting>
     <disable>iron trapdoor</disable>
     <disable>minecart</disable>
