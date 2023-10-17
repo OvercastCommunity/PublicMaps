@@ -1,121 +1,220 @@
-<?xml version="1.0"?>
-<map proto="1.0.0">
-<!-- include src="tutorial.xml"/ -->
+<map proto="1.4.2">
 <name>Blocks DTC</name>
-<version>1.4.9</version>
+<variant id="christmas" world="christmas" override="true">Holiday Blocks</variant>
+<variant id="halloween" world="halloween" override="true">Haunted Blocks</variant>
+<variant id="tnt" world="dtc_tnt">TNT</variant>
+<variant id="te" world="dtc_te">TE</variant>
+<version>1.5.0</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
+<if variant="default">
+    <created>2012-06-29</created>
+</if>
+<if variant="christmas">
+    <created>2013-12-15</created>
+</if>
+<if variant="halloween">
+    <created>2012-10-25</created>
+</if>
+<if variant="tnt,te">
+    <created>2013-12-13</created>
+</if>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
+    <if variant="christmas">
+        <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->
+    </if>
+    <if variant="halloween">
+        <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->
+    </if>
 </authors>
-<created>2012-06-29</created>
+<if variant="tnt,te">
+    <contributors>
+        <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML and feedback"/> <!-- dinner1111 -->
+        <contributor uuid="17ea601d-11b8-4f84-a35d-3da2f92f28b7" contribution="Minor map help"/> <!-- ZExLegacy -->
+        <contributor uuid="e30862a8-a6cd-473d-9dd5-6adf5f45ffa7" contribution="Minor map help"/> <!-- adamryan13 -->
+    </contributors>
+</if>
 <teams>
-    <team color="blue" max="35">Blue</team>
-    <team color="dark red" max="35">Red</team>
+    <team id="blue" color="blue" max="35">Blue</team>
+    <team id="red" color="dark red" max="35">Red</team>
 </teams>
 <kits>
-    <kit name="spawn">
-        <item slot="0">diamond sword</item>
-        <item slot="1">bow</item>
-        <item slot="2" enchantment="efficiency:2;unbreaking:3">iron pickaxe</item>
-        <item slot="3" enchantment="efficiency:1">diamond axe</item>
-        <item slot="4" amount="64" damage="2">log</item>
-        <item slot="6" amount="64">melon block</item>
-        <item slot="7" enchantment="efficiency:1">shears</item>
-        <item slot="8" amount="64">golden apple</item>
-        <item slot="28" amount="64">arrow</item>
-        <item slot="30">diamond spade</item>
-        <potion amplifier="5" duration="6">damage resistance</potion>
-        <potion amplifier="1" duration="6">strength</potion>
-    </kit>
-    <kit name="red" parents="spawn">
-        <item slot="5" amount="64" damage="14">wool</item>
-    </kit>
-    <kit name="blue" parents="spawn">
-        <item slot="5" amount="64" damage="11">wool</item>
+    <kit id="spawn-kit">
+        <clear/>
+        <!-- TE variant intentionally has no kits -->
+        <unless variant="te">
+            <item slot="0">diamond sword</item>
+            <item slot="1">bow</item>
+            <item slot="2" enchantment="efficiency:2;unbreaking:3">iron pickaxe</item>
+            <item slot="3" enchantment="efficiency">diamond axe</item>
+            <item slot="4" amount="64" damage="2">log</item>
+            <item slot="5" amount="64" team-color="true">wool</item>
+            <item slot="6" amount="64">melon block</item>
+            <item slot="7" enchantment="efficiency">shears</item>
+            <item slot="8" amount="64">golden apple</item>
+            <item slot="28" amount="64">arrow</item>
+            <item slot="30">diamond spade</item>
+            <if variant="tnt">
+                <chestplate team-color="true" unbreakable="true">leather chestplate</chestplate>
+                <leggings team-color="true" unbreakable="true">leather leggings</leggings>
+                <boots team-color="true" unbreakable="true">leather boots</boots>
+            </if>
+            <effect amplifier="5" duration="6">damage resistance</effect>
+            <effect duration="6">strength</effect>
+        </unless>
     </kit>
 </kits>
+<constant id="blue-spawn-yaw">90</constant>
+<constant id="red-spawn-yaw">270</constant>
+<constant id="default-spawn-yaw">180</constant>
+<if variant="tnt,te">
+    <constant id="red-spawn-yaw">-90</constant>
+    <constant id="default-spawn-yaw" delete="true"/>
+</if>
 <spawns>
-    <spawn team="blue" kit="blue" yaw="90">
-        <cylinder base="123,25,72" radius="3" height="0"/>
+    <spawn team="blue" kit="spawn-kit" yaw="${blue-spawn-yaw}">
+        <region>
+            <cylinder base="123,25,72" radius="3" height="0"/>
+        </region>
     </spawn>
-    <spawn team="red" kit="red" yaw="270">
-        <cylinder base="-89,25,72" radius="3" height="0"/>
+    <spawn team="red" kit="spawn-kit" yaw="${red-spawn-yaw}">
+        <region>
+            <cylinder base="-89,25,72" radius="3" height="0"/>
+        </region>
     </spawn>
-    <default yaw="180">
-        <cylinder base="17,34,-17" radius="5" height="0"/>
+    <default yaw="${default-spawn-yaw}">
+        <region>
+            <unless variant="christmas">
+                <cylinder base="17,34,-17" radius="5" height="0"/>
+            </unless>
+            <if variant="christmas">
+                <cylinder base="16,40,-5" radius="5" height="0"/>
+            </if>
+        </region>
     </default>
 </spawns>
 <filters>
-    <filter name="only-red">
-        <team>red</team>
-    </filter>
-    <filter name="only-blue">
-        <team>blue</team>
-    </filter>
-    <filter name="only-water" parents="deny-all">
-        <allow>
-            <block>water</block>
-            <block>stationary water</block>
-        </allow>
-    </filter>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <any id="only-water">
+        <material>water</material>
+        <material>stationary water</material>
+    </any>
 </filters>
 <regions>
-    <union name="blue-storage">
-        <cuboid name="blue-storage-main" min="116,24,58" max="129,34,86"/>
-        <cuboid name="blue-storage-left" min="116,24,41" max="130,30,50"/>
-        <cuboid name="blue-storage-right" min="116,24,94" max="130,30,103"/>
-        <cuboid name="blue-storage-entrance" min="111,23,67" max="116,31,77"/>
+    <negative id="playable-inverse">
+        <rectangle id="playable" min="131,40" max="-97,104"/>
+    </negative>
+    <union id="storages">
+        <union id="blue-storage">
+            <unless variant="halloween,christmas">
+                <cuboid id="blue-storage-main" min="116,24,58" max="129,34,86"/>
+            </unless>
+            <if variant="halloween,christmas">
+                <cuboid id="blue-storage-main" min="117,24,58" max="129,32,86"/>
+            </if>
+            <cuboid id="blue-storage-left" min="116,24,41" max="130,30,50"/>
+            <cuboid id="blue-storage-right" min="116,24,94" max="130,30,103"/>
+            <cuboid id="blue-storage-entrance" min="111,23,67" max="116,31,77"/>
+        </union>
+        <union id="red-storage">
+            <unless variant="halloween,christmas">
+                <cuboid id="red-storage-main" min="-95,24,58" max="-82,34,86"/>
+            </unless>
+            <if variant="halloween,christmas">
+                <cuboid id="red-storage-main" min="-95,24,58" max="-83,32,86"/>
+            </if>
+            <cuboid id="red-storage-left" min="-96,24,94" max="-82,30,103"/>
+            <cuboid id="red-storage-right" min="-96,24,41" max="-82,30,50"/>
+            <cuboid id="red-storage-entrance" min="-77,23,77" max="-82,31,67"/>
+        </union>
     </union>
-    <union name="red-storage">
-        <cuboid name="red-storage-main" min="-95,24,58" max="-82,34,86"/>
-        <cuboid name="red-storage-left" min="-96,24,94" max="-82,30,103"/>
-        <cuboid name="red-storage-right" min="-96,24,41" max="-82,30,50"/>
-        <cuboid name="red-storage-entrance" min="-77,23,77" max="-82,31,67"/>
+    <union id="tnt-chests">
+        <unless variant="tnt">
+            <cuboid id="red-chest1" min="-78,47,85" max="-79,42,83"/>
+            <cuboid id="red-chest2" min="-78,47,80" max="-79,42,78"/>
+            <cuboid id="red-chest3" min="-78,44,73" max="-79,42,71"/>
+            <cuboid id="red-chest4" min="-78,47,66" max="-79,42,64"/>
+            <cuboid id="red-chest5" min="-78,47,61" max="-79,42,59"/>
+            <cuboid id="blue-chest1" min="113,47,59" max="112,42,61"/>
+            <cuboid id="blue-chest2" min="113,47,64" max="112,42,66"/>
+            <cuboid id="blue-chest3" min="113,44,71" max="112,42,73"/>
+            <cuboid id="blue-chest4" min="113,47,78" max="112,42,80"/>
+            <cuboid id="blue-chest5" min="113,47,83" max="112,42,85"/>
+        </unless>
+        <if variant="tnt">
+            <cuboid id="red-chests" min="-81,41,57" max="-78,49,86"/>
+            <cuboid id="blue-chests" min="111,41,57" max="114,49,86"/>
+        </if>
     </union>
-    <union name="tnt-chests">
-        <cuboid name="red-chest1" min="-78,47,85" max="-79,42,83"/>
-        <cuboid name="red-chest2" min="-78,47,80" max="-79,42,78"/>
-        <cuboid name="red-chest3" min="-78,44,73" max="-79,42,71"/>
-        <cuboid name="red-chest4" min="-78,47,66" max="-79,42,64"/>
-        <cuboid name="red-chest5" min="-78,47,61" max="-79,42,59"/>
-        <cuboid name="blue-chest1" min="113,47,59" max="112,42,61"/>
-        <cuboid name="blue-chest2" min="113,47,64" max="112,42,66"/>
-        <cuboid name="blue-chest3" min="113,44,71" max="112,42,73"/>
-        <cuboid name="blue-chest4" min="113,47,78" max="112,42,80"/>
-        <cuboid name="blue-chest5" min="113,47,83" max="112,42,85"/>
-    </union>
-    <apply block-break="only-water" block-place="deny-all" message="You may not modify storage room!">
-        <region name="blue-storage"/>
-        <region name="red-storage"/>
-    </apply>
-    <apply block="deny-all" message="You may not break the chests!">
-        <region name="tnt-chests"/>
-    </apply>
-    <apply enter="only-red" message="You may not enter the enemy base!">
-        <region name="red-storage-main"/>
-    </apply>
-    <apply enter="only-blue" message="You may not enter the enemy base!">
-        <region name="blue-storage-main"/>
-    </apply>
-    <!-- Main Area -->
-    <apply block="deny-all" message="You may not build in the void on the side">
-        <negative name="playable-inverse">
-            <rectangle min="131,40" max="-97,104"/>
-        </negative>
-    </apply>
+    <apply region="storages" block-break="only-water" block-place="never" message="You may not modify storage room!"/>
+    <apply region="tnt-chests" block="never" message="You may not break the chests!"/>
+    <apply region="red-storage-main" enter="only-red" message="You may not enter the enemy base!"/>
+    <apply region="blue-storage-main" enter="only-blue" message="You may not enter the enemy base!"/>
+    <apply region="playable-inverse" block="never" message="You may not build in the void on the side"/>
 </regions>
-<cores material="obsidian" leak="8">
+<!-- Only TNT variant has core modes -->
+<constant id="cores-mode-changes" delete="true"/>
+<if variant="tnt">
+    <constant id="cores-mode-changes">true</constant>
+    <modes>
+        <mode after="20m" material="gold block"/>
+    </modes>
+</if>
+<cores material="obsidian" leak="8" mode-changes="${cores-mode-changes}">
     <core team="blue">
-        <cuboid min="86,46,74" max="92,40,70"/>
+        <region>
+            <if variant="default,tnt,te">
+                <cuboid min="86,46,74" max="92,40,70"/>
+            </if>
+            <if variant="christmas">
+                <cuboid min="89,42,69" max="93,46,73"/>
+            </if>
+            <if variant="halloween">
+                <cuboid min="92,44,70" max="99,54,74"/>
+            </if>
+        </region>
     </core>
     <core team="red">
-        <cuboid min="-52,46,74" max="-59,40,70"/>
+        <region>
+            <if variant="default,tnt,te">
+                <cuboid min="-52,46,74" max="-59,40,70"/>
+            </if>
+            <if variant="christmas">
+                <cuboid min="-56,42,74" max="-60,46,70"/>
+            </if>
+            <if variant="halloween">
+                <cuboid min="-65,44,70" max="-58,54,74"/>
+            </if>
+        </region>
     </core>
 </cores>
 <maxbuildheight>60</maxbuildheight>
-<killreward>
-    <item amount="16">arrow</item>
-</killreward>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<unless variant="te">
+    <kill-rewards>
+        <kill-reward>
+            <item amount="16" material="arrow"/>
+            <if variant="tnt">
+                <item material="golden apple"/>
+            </if>
+        </kill-reward>
+    </kill-rewards>
+    <if variant="tnt">
+        <renewables>
+            <renewable rate="20" grow="false" particles="false" sound="false" avoid-players="0">
+                <region>
+                    <union>
+                        <cuboid min="126,24,71" max="126,24,72"/>
+                        <cuboid min="-93,24,71" max="-93,24,72"/>
+                    </union>
+                </region>
+            </renewable>
+        </renewables>
+    </if>
+</unless>
 <toolrepair>
     <tool>diamond sword</tool>
     <tool>bow</tool>
@@ -132,7 +231,21 @@
     <item>arrow</item>
     <item>melon block</item>
     <item>wood</item>
+    <item>item frame</item>
+    <if variant="tnt">
+        <item>gold block</item>
+        <item>leather chestplate</item>
+        <item>leather leggings</item>
+        <item>leather boots</item>
+    </if>
 </itemremove>
+<if variant="christmas">
+    <modifybowprojectile>
+        <projectile>Snowball</projectile>
+        <velocityMod>2.0</velocityMod>
+    </modifybowprojectile>
+</if>
+<!-- include src="tutorial.xml"/ -->
 <!-- <tutorial>
     <stage title="Destroy the Core">
         <message>
