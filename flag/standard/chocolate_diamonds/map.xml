@@ -1,14 +1,52 @@
 <map proto="1.4.2">
 <name>Chocolate Diamonds</name>
-<version>2.1.3</version>
+<variant id="christmas" world="christmas" override="true">Snowy Diamonds</variant>
+<variant id="halloween" world="halloween" override="true">SpOOky Diamonds</variant>
+<version>2.2.0</version>
 <objective>Capture the enemy's flag 3 times!</objective>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- kroest -->
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Map and XML changes"/> <!-- ogel / GoldenOre -->
 </authors>
+<if variant="default">
+    <created>2015-09-27</created>
+    <constant id="team-green-color">dark green</constant>
+    <constant id="team-green-name">Green</constant> <!-- Team display name -->
+    <constant id="team-green-flag-color">green</constant>
+    <constant id="team-green-flag-coordinate">-0.5,30,-58.5</constant>
+    <constant id="team-red-color">dark red</constant>
+    <constant id="team-red-name">Red</constant> <!-- Team display name -->
+    <constant id="team-red-flag-color">red</constant>
+    <constant id="team-red-flag-coordinate">0.5,30,61.5</constant>
+    <constant id="kit-wood-dmg-value">1</constant>
+</if>
+<if variant="christmas">
+    <created>2015-12-04</created>
+    <constant id="team-green-color">green</constant>
+    <constant id="team-green-name">Green</constant> <!-- Team display name -->
+    <constant id="team-green-flag-color">green</constant>
+    <constant id="team-green-flag-coordinate">0.5,30,-60.5</constant>
+    <constant id="team-red-color">red</constant>
+    <constant id="team-red-name">Red</constant> <!-- Team display name -->
+    <constant id="team-red-flag-color">red</constant>
+    <constant id="team-red-flag-coordinate">0.5,30,61.5</constant>
+    <constant id="kit-wood-dmg-value">5</constant>
+</if>
+<if variant="halloween">
+    <created>2015-10-06</created>
+    <constant id="team-green-color">gold</constant>
+    <constant id="team-green-name">Orange</constant> <!-- Team display name -->
+    <constant id="team-green-flag-color">orange</constant>
+    <constant id="team-green-flag-coordinate">-0.5,30,-58.5</constant>
+    <constant id="team-red-color">light purple</constant>
+    <constant id="team-red-name">Purple</constant> <!-- Team display name -->
+    <constant id="team-red-flag-color">purple</constant>
+    <constant id="team-red-flag-coordinate">0.5,30,61.5</constant>
+    <constant id="kit-wood-dmg-value">4</constant>
+</if>
 <teams>
-    <team id="green" color="dark green" max="14">Green</team>
-    <team id="red" color="dark red" max="14">Red</team>
+    <team id="green" color="${team-green-color}" max="14">${team-green-name}</team>
+    <team id="red" color="${team-red-color}" max="14">${team-red-name}</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -21,7 +59,7 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment level="2">efficiency</enchantment>
         </item>
-        <item slot="4" amount="48" damage="1" material="wood"/>
+        <item slot="4" amount="48" damage="${kit-wood-dmg-value}" material="wood"/>
         <item slot="5" amount="24" team-color="true" material="stained clay"/> 
         <item slot="7" amount="16" material="arrow"/>
         <item slot="8" material="golden apple"/>
@@ -40,21 +78,33 @@
     </lend>
 </kits>
 <spawns>
-    <default>
-        <region yaw="90">
-            <cylinder base="56,56,0.5" height="0" radius="0.5"/>
+    <default yaw="90">
+        <region>
+            <point>56.5,56,0.5</point>
         </region>
     </default>
     <spawn team="green" kit="spawn-kit">
         <regions>
-            <point yaw="45">39,31,-66</point>
-            <point yaw="-45">-39,31,-66</point>
+            <unless variant="christmas">
+                <point yaw="45">39,31,-66</point>
+                <point yaw="-45">-39,31,-66</point>
+            </unless>
+            <if variant="christmas">
+                <point yaw="45">38.5,31,-67.5</point>
+                <point yaw="-45">-38.5,31,-67.5</point>
+            </if>
         </regions>
     </spawn>
     <spawn team="red" kit="spawn-kit">
         <regions>
-            <point yaw="130">39,31,69</point>
-            <point yaw="-130">-39,31,69</point>
+            <unless variant="christmas">
+                <point yaw="130">39,31,69</point>
+                <point yaw="-130">-39,31,69</point>
+            </unless>
+            <if variant="christmas">
+                <point yaw="130">38.5,31,68.5</point>
+                <point yaw="-130">-38.5,31,68.5</point>
+            </if>
         </regions>
     </spawn>
 </spawns>
@@ -106,24 +156,18 @@
     <apply block="only-red" region="green-platform" message="You may not modify your flag platform!"/>
     <apply block="only-green" region="red-platform" message="You may not modify your flag platform!"/>
     <apply block="never" region="spawns" message="You may not modify the spawn areas!"/>
-    <apply block="never" region="spawner" message="You may not interfere with the arrow spawner!"/>
+    <unless variant="christmas">
+        <apply block="never" region="spawner" message="You may not interfere with the arrow spawner!"/>
+    </unless>
     <apply block="deny-void" region="void" message="You may not build in the void!"/>
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
-    <flag id="green-flag"
-          name="Green Flag"
-          owner="green"
-          color="green"
-          carry-message="`eCapture the flag at the `4Red Beacon!">
-        <post pickup-filter="only-red" recover-time="22s" respawn-time="15s" yaw="0">-0.5,30,-58.5</post>
+    <flag id="green-flag" name="${team-green-name} Flag" owner="green" color="${team-green-flag-color}" carry-message="`eCapture the flag at the ${team-red-name} Beacon!">
+        <post pickup-filter="only-red" recover-time="22s" respawn-time="15s" yaw="0">${team-green-flag-coordinate}</post>
         <net region="red-net" points="1"/>
     </flag>
-    <flag id="red-flag"
-          name="Red Flag"
-          owner="red"
-          color="red"
-          carry-message="`eCapture the flag at the `2Green Beacon!">
-        <post pickup-filter="only-green" recover-time="22s" respawn-time="15s" yaw="180">0.5,30,61.5</post>
+    <flag id="red-flag" name="${team-red-name} Flag" owner="red" color="${team-red-flag-color}" carry-message="`eCapture the flag at the ${team-green-name} Beacon!">
+        <post pickup-filter="only-green" recover-time="22s" respawn-time="15s" yaw="180">${team-red-flag-coordinate}</post>
         <net region="green-net" points="1"/>
     </flag>
 </flags>
@@ -169,7 +213,7 @@
 <kill-rewards>
     <kill-reward>
         <item material="golden apple"/>
-        <item amount="16" damage="1" material="wood"/>
+        <item amount="16" damage="${kit-wood-dmg-value}" material="wood"/>
         <item amount="8" team-color="true" material="stained clay"/>
         <item amount="4" material="arrow"/>
     </kill-reward>
