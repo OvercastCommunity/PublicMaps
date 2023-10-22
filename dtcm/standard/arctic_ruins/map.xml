@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Arctic Ruins</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Destroy the opposing team's monument!</objective>
 <time result="objectives">20m</time>
 <authors>
@@ -104,7 +104,7 @@
     <tool>stone sword</tool>
     <tool>bow</tool>
     <tool>iron pickaxe</tool>
-    <tool>stone axe</tool>
+    <tool>iron axe</tool>
     <tool>iron spade</tool>
 </toolrepair>
 <itemremove>
@@ -142,12 +142,14 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="12" damage="1" material="wood"/>
-    <item amount="6" material="glass"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="12" damage="1" material="wood"/>
+        <item amount="6" material="glass"/>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>24</maxbuildheight>
 <respawn delay="4s" auto="true"/>
 <hunger>
