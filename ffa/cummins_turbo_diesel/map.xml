@@ -1,6 +1,7 @@
 <map proto="1.4.0">
 <name>Cummins Turbo Diesel</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
+<phase>development</phase>
 <objective>Get the most kills in 8 minutes!</objective>
 <authors>
     <author uuid="57c4813e-ecc2-4aee-9479-8d58991d1a0c"/> <!-- CincoDeMayo -->
@@ -128,7 +129,7 @@
     <apply block="never" />
     <apply use="deny-access">
         <rectangle min="-oo,-oo" max="oo,oo" />
-    </apply>
+</apply>
     <cuboid id="j-1" min="-22,66,10" max="-19,67,13" />
     <cuboid id="j-2" min="22,71,-83" max="25,72,-80" />
     <cuboid id="j-3" min="39,48,-26" max="42,49,-23" />
