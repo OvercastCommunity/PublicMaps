@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>The High Road</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Get the most kills in 8 minutes!</objective>
 <time>8m</time>
 <authors>
@@ -13,13 +13,13 @@
 <kits>
     <kit id="spawn-kit">
         <double-jump />
-        <item slot="0" enchantments="damage_all:10" material="diamond sword"/>
-        <item slot="1" enchantments="arrow_damage:10" material="bow"/>
+        <item slot="0" enchantments="damage_all" material="diamond sword"/>
+        <item slot="1" enchantments="damage_all;arrow_damage" material="bow"/>
         <item slot="2" amount="2" material="arrow"/>
         <chestplate unbreakable="true" material="iron chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" material="iron boots"/>
-        <effect duration="3" amplifier="10">resistance</effect>
+        <effect duration="3s" amplifier="255">resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="speed-kit" force="true">
@@ -31,7 +31,7 @@
         <effect amplifier="3">speed</effect>
     </kit>
     <!-- <kit id="kill-reward">
-        <effect duration="3" amplifier="3">regeneration</effect>
+        <effect duration="3s" amplifier="3">regeneration</effect>
     </kit> -->
 </kits>
 <spawns>
