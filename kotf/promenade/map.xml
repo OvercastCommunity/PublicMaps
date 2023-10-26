@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Promenade</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Hold the flag for 120 seconds to win!</objective>
 <authors>
 	<author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
@@ -86,8 +86,8 @@
     <limit>120</limit>
 </score>
 <flags>
-    <flag id="flag" name="Flag" post="post" points-rate="1" shared="true" pickup-kit="flag-kit" drop-kit="reset-health">
-        <post id="post" return-time="0s" respawn-time="8s">
+    <flag id="flag" name="Flag" points-rate="1" shared="true" pickup-kit="flag-kit" drop-kit="reset-health">
+        <post return-time="0s" respawn-time="8s">
             <block>-255.5,12,383.5</block>
         </post>
     </flag>

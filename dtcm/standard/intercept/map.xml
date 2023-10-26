@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <time result="objectives">1h</time>
 <name>Intercept</name>
-<version>0.1.4</version>
+<version>0.1.5</version>
 <objective>Destroy the enemy's emerald monument before the timer runs out</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -12,7 +12,8 @@
     <team id="red" color="dark red" max="50">Red</team>
     <team id="blue" color="blue" max="50">Blue</team>
 </teams>
-<spawns safe="true" bedspawn="on">
+<respawn bed="true"/>
+<spawns safe="true">
     <spawn team="red" kit="player">
         <regions yaw="90">
             <region id="red-spawn"/>
@@ -29,7 +30,7 @@
         </regions>
     </default>
 </spawns>
-<destroyables name="Orb" materials="emerald block">
+<destroyables materials="emerald block">
     <destroyable id="red-orb-mon" region="red-orb" owner="red" name="Red Orb"/>
     <destroyable id="blue-orb-mon" region="blue-orb" owner="blue" name="Blue Orb"/>
 </destroyables>

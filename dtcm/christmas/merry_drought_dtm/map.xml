@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Merry Drought DTM</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <phase>development</phase>
 <objective>Destroy the obsidian monuments on the enemy side while defending your own monuments.</objective>
 <authors>
@@ -105,17 +105,17 @@
 </toolrepair>
 <spawns>
     <spawn team="blue" kit="spawn">
-        <point type="random" yaw="135">
+        <point yaw="135">
             <cylinder base="136,17,-346" radius="1" height="0"/>
         </point>
     </spawn>
     <spawn team="red" kit="spawn">
-        <point type="random" yaw="315">
+        <point yaw="315">
             <cylinder base="2,17,-481" radius="1" height="0"/>
         </point>
     </spawn>
     <default>
-        <point type="random" yaw="225">
+        <point yaw="225">
             <cylinder base="116,12,-461" radius="2" height="0"/>
         </point>
     </default>

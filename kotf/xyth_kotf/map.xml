@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="King of the Flag and Rage">
 <name>Xyth KotF</name>
-<version>1.4.4</version>
+<version>1.4.5</version>
 <gamemode>kotf</gamemode>
 <gamemode>rage</gamemode>
 <objective>Be the first team to reach a set amount of points!</objective>
@@ -56,13 +56,13 @@
             <cylinder id="obs-spawn" base="-56.5,101,-70.5" radius="1" height="0"/>
         </regions>
     </default>
-    <spawn kit="redkit" team="red" filter="no-flag">
+    <spawn kit="redkit" team="red" filter="has-flag">
         <regions yaw="-135">
             <cylinder id="red-spawn-low" base="-31.5,12,32.5" radius="1" height="0"/>
             <cylinder id="red-spawn-high" base="-31.5,42,32.5" radius="1" height="0"/>
         </regions>
     </spawn>
-    <spawn kit="bluekit" team="blue" filter="no-flag">
+    <spawn kit="bluekit" team="blue" filter="has-flag">
         <regions yaw="45">
             <cylinder id="blue-spawn-low" base="46.5,12,-45.5" radius="1" height="0"/>
             <cylinder id="blue-spawn-high" base="46.5,42,-45.5" radius="1" height="0"/>
@@ -72,13 +72,16 @@
 <filters>
     <team id="red-only">red</team>
     <team id="blue-only">blue</team>
-    <not id="no-flag">
-        <same-team>
-            <carrying-flag>flag</carrying-flag>
-        </same-team>
-    </not>
-    <deny name="no-flag">
-        <carrying-flag>flag</carrying-flag>
+    <any id="has-flag">
+        <carrying-flag id="flag-carrier">flag</carrying-flag>
+        <not>
+            <same-team>
+                <filter id="flag-carrier"/>
+            </same-team>
+        </not>
+    </any>
+    <deny id="deny-flag-carrier">
+        <filter id="flag-carrier"/>
     </deny>
 </filters>
 <regions>
@@ -87,7 +90,7 @@
     <cuboid id="roof" min="-50.5,75,51.5" max="65.5,91,-64.5"/>
     <!-- Applications -->
     <apply block="never"/>
-    <apply enter="no-flag" message="You may not enter your base when the flag is being held!">
+    <apply enter="deny-flag-carrier" message="You may not enter your base when the flag is being held!">
         <region>
             <cylinder base="-30,0,30" radius="8" height="100"/>
             <cylinder base="45,0,-44" radius="8" height="100"/>

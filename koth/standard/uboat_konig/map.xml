@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>UBoat König</name>
-<version>3.9.1</version>
+<version>3.9.2</version>
 <objective>Be the team with the most amount of points within 8 minutes.</objective>
 <time result="score">8m</time>
 <gamemode>tdm</gamemode>
@@ -85,8 +85,8 @@
 </regions>
 <score>
     <kills>1</kills>
-    <box value="7" team="blue" filter="only-blue" region="blue-score"/>
-    <box value="7" team="red" filter="only-red" region="red-score"/>
+    <box value="7" filter="only-blue" region="blue-score"/>
+    <box value="7" filter="only-red" region="red-score"/>
 </score>
 <portals>
     <portal x="@1725" y="@20" z="@-1130" yaw="@-45" pitch="@0" filter="only-blue" region="blue-score"/>
@@ -123,7 +123,7 @@
 </itemkeep>
 <kill-reward>
     <item material="golden apple"/>
-    <item count="8" material="arrow"/>
+    <item amount="8" material="arrow"/>
 </kill-reward>
 <hunger>
     <depletion>off</depletion>

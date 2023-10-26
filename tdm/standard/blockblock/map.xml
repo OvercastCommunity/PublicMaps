@@ -2,7 +2,7 @@
 <map proto="1.3.0">
 <!-- include src="tutorial.xml"/ -->
 <name>BlockBlock</name>
-<version>1.3.13</version>
+<version>1.3.14</version>
 <objective>Get the most kills in 7 minutes!</objective>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
@@ -88,10 +88,10 @@
 </tnt>
 <score>
     <time overtime="30s" max-overtime="10m">7m</time>
-    <box value="10" filter="only-blue" cooldown="5">
+    <box value="10" filter="only-blue">
         <region name="blue-score-zone"/>
     </box>
-    <box value="10" filter="only-red" cooldown="5">
+    <box value="10" filter="only-red">
         <region name="red-score-zone"/>
     </box>
 </score>

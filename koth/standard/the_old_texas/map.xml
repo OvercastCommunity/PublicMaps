@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.2">
 <name>The Old Texas</name>
-<version>1.2.1</version> 
+<version>1.2.2</version> 
 <objective>Capture the hills to score points!</objective>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Main author, main aesthetics and XML."/> <!-- Timothee38 -->
@@ -52,7 +52,7 @@
 </regions>
 <king>
     <hills>
-        <hill name="Middle" capture-time="10s" ratio="1">
+        <hill name="Middle" capture-time="10s">
             <capture>
                 <cylinder base="-67.5,4,106.5" radius="4" height="5"/>
             </capture>
@@ -63,7 +63,7 @@
                 <cuboid min="0,0,0" max="0,0,0"/>
             </captured>
         </hill>
-        <hill name="North" capture-time="10s" ratio="1">
+        <hill name="North" capture-time="10s">
             <capture>
                 <cylinder base="-95.5,14,67.5" radius="4" height="5"/>
             </capture>
@@ -74,7 +74,7 @@
                 <cuboid min="0,0,0" max="0,0,0"/>
             </captured>
         </hill>
-        <hill name="South" capture-time="10s" ratio="1">
+        <hill name="South" capture-time="10s">
             <capture>
                 <cylinder base="-35.5,14,145.5" radius="4" height="5"/>
             </capture>

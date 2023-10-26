@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Hekla</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Hold the flag for 120 seconds to win!</objective>
 <authors>
 	<author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
@@ -87,10 +87,10 @@
     <limit>120</limit>
 </score>
 <flags>
-    <flag id="flag" name="Flag" post="post" points-rate="1" shared="true" pickup-kit="flag-kit" drop-kit="reset-health">
-        <post id="post" return-time="0s" respawn-time="8s">
-            <block>-175.5,14,-1.5</block>
-            <block>-184.5,11,-1.5</block>
+    <flag id="flag" name="Flag" points-rate="1" shared="true" pickup-kit="flag-kit" drop-kit="reset-health">
+        <post return-time="0s" respawn-time="8s">
+            <post name="East Post">-175.5,14,-1.5</post>
+            <post name="West Post" yaw="-90">-184.5,11,-1.5</post>
         </post>
     </flag>
 </flags>

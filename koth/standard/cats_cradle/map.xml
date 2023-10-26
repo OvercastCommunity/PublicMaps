@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.0">
 <name>Cat's Cradle</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Capture and hold the hills!</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
@@ -231,8 +231,8 @@
     </portal>
 </portals>
 <king>
-    <hills>
-        <hill name="North Hill" capture-time="5s" ratio="1">
+    <hills capture-time="5s" points="1.5">
+        <hill name="North Hill">
             <capture>
                 <cuboid min="-15,18,-47" max="-3,21,-35"/>
             </capture>
@@ -243,7 +243,7 @@
                 <cuboid min="-15,18,-47" max="-3,29,-35"/>
             </captured>
         </hill>
-        <hill name="South Hill" capture-time="5s" ratio="1">
+        <hill name="South Hill">
             <capture>
                 <cuboid min="2,18,34" max="14,21,46"/>
             </capture>

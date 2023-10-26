@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fracture DTM</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Destroy the other team's monument to win</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
@@ -216,7 +216,7 @@
         </filter>
         <item amount="2" material="tnt" />
     </kill-reward>
-    <kill-reward>
+    <!-- kill-reward>
         <filter>
             <any>
                 <filter id="defending-monument-far" />
@@ -236,7 +236,7 @@
                 </option>
             </any>
         </kit>
-    </kill-reward>
+    </kill-reward -->
 </kill-rewards>
 <block-drops>
     <rule>

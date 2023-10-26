@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Voltage</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Capture the opposing team's flag 4 times!</objective>
 <time result="score" overtime="1m" max-overtime="1m">10m</time>
 <authors>
@@ -60,16 +60,16 @@
     <apply block="never"/>
 </regions>
 <flags>
-    <flag id="green-flag" name="Green Flag" color="lime" pickup-kit="flag-pickup" drop-kit="flag-drop" recover-time="8s" respawn-time="3s">
-        <post pickup-filter="only-purple" yaw="135">-12,11,60</post>
+    <flag id="green-flag" name="Green Flag" color="lime" pickup-kit="flag-pickup" drop-kit="flag-drop">
+        <post recover-time="8s" respawn-time="3s" pickup-filter="only-purple" yaw="135">-12,11,60</post>
         <net points="1">
             <region>
                 <cuboid min="-22,11,49" max="-23,13,50"/>
             </region>
         </net>
     </flag>
-    <flag id="purple-flag" name="Purple Flag" color="purple" pickup-kit="flag-pickup" drop-kit="flag-drop" recover-time="8s" respawn-time="3s">
-        <post pickup-filter="only-green" yaw="-45">-23,11,49</post>
+    <flag id="purple-flag" name="Purple Flag" color="purple" pickup-kit="flag-pickup" drop-kit="flag-drop">
+        <post recover-time="8s" respawn-time="3s" pickup-filter="only-green" yaw="-45">-23,11,49</post>
         <net points="1">
             <region>
                 <cuboid min="-11,11,61" max="-12,13,60"/>

@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Forest Shadows</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Have the flag in your possesion as much as possible.</objective>
 <gamemode>kotf</gamemode>
 <authors>
@@ -57,11 +57,11 @@
     <limit>400</limit>
 </score>
 <flags>
-    <flag id="mid-flag" name="Flag" post="post" color="white" shared="true" points-rate="1" pickup-kit="flag" drop-kit="reset-health">
-        <post id="post" return-time="0s" respawn-time="15s">
-            <block>393,2,-217</block>
-            <block>390,16,-189</block>
-            <block>397,13,-247</block>
+    <flag id="mid-flag" name="Flag" color="white" shared="true" points-rate="1" pickup-kit="flag" drop-kit="reset-health">
+        <post return-time="0s" respawn-time="15s">
+            <post name="Middle">393,2,-217</post>
+            <post name="Blue's Hill" yaw="0">397,13,-247</post>
+            <post name="Red's Hill" yaw="180">390,16,-189</post>
         </post>
     </flag>
 </flags>

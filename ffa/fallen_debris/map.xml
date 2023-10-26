@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fallen Debris</name>
-<version>4.2.6</version>
+<version>4.2.7</version>
 <phase>development</phase>
 <authors>
     <author uuid="77912861-9fc0-45fa-aac5-aa455614edbf"/> <!-- Nanu -->
@@ -251,9 +251,7 @@
     </projectile>
 </projectiles>
 <kill-rewards>
-    <kill-reward>
-        <kill-reward kit="kill-reward" />
-    </kill-reward>
+    <kill-reward kit="kill-reward" />
     <!-- Soldier Kill Rewards -->
     <kill-reward>
         <filter>
@@ -311,8 +309,8 @@
             </all>
         </filter>
         <item name="`rPotion of Rage" material="potion">
-            <effect level="1" duration="4">strength</effect>
-            <effect level="2" duration="4">regeneration</effect>
+            <effect duration="4">strength</effect>
+            <effect amplifier="2" duration="4">regeneration</effect>
         </item>
     </kill-reward>
     <!-- Pyro Kill Rewards -->

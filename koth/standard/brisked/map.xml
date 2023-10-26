@@ -1,7 +1,7 @@
 <map proto="1.4.0">
 <name>Brisked</name>
 <phase>development</phase>
-<version>1.0.12</version>
+<version>1.0.13</version>
 <objective>Collect the most points in 10 minutes!</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" />
@@ -21,13 +21,13 @@
 </broadcasts>
 <score>
     <kills>1</kills>
-    <box kit="return-reward" region="purple-depot" filter="only-purple">
+    <box region="purple-depot" filter="only-purple">
         <redeemables>
             <item points="6">iron ingot</item>
             <item points="12">gold ingot</item>
         </redeemables>
     </box>
-    <box kit="return-reward" region="orange-depot" filter="only-orange">
+    <box region="orange-depot" filter="only-orange">
         <redeemables>
             <item points="6">iron ingot</item>
             <item points="12">gold ingot</item>
@@ -192,6 +192,8 @@
     <apply kit="give-dark-grey" region="wool-island-complete" filter="objective-single-se" />
     <apply kit="give-dark-grey" region="wool-island-complete" filter="objective-single-nw" />
     <apply kit="give-black"     region="wool-island-complete" filter="objective-exclusive" />
+    <apply kit="return-reward" region="purple-depot" filter="only-purple"/>
+    <apply kit="return-reward" region="orange-depot" filter="only-orange"/>
 </regions>
 <falling-blocks>
     <rule>
