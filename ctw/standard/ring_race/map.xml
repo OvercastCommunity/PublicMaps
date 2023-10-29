@@ -1,8 +1,8 @@
 <map proto="1.4.2">
 <name>Ring Race</name>
-<variant id="halloween" world="halloween" override="true">Haunted Ring</variant>
+<variant id="halloween" world="halloween" override="true">Haunted Rings</variant>
 <!-- <variant id="tournament" world="tournament">TE</variant> -->
-<version>1.8.1</version>
+<version>1.8.2</version>
 <phase>development</phase>
 <objective>Capture both wools from the enemy's wool rooms and return them to your victory monument</objective>
 <if variant="halloween">
