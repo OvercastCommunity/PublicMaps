@@ -1,7 +1,14 @@
 <map proto="1.4.2">
 <name>Sunrise Over Paradise Redux</name>
 <variant id="halloween" world="halloween" override="true">Halloween Over Paradise Redux</variant>
-<version>1.3.6</version>
+<variant id="christmas" world="christmas" override="true">Christmas Over Paradise Redux</variant>
+<if variant="halloween">
+    <constant id="season">Halloween</constant> 
+</if>
+<if variant="christmas">
+    <constant id="season">Christmas</constant>
+</if>
+<version>1.3.7</version>
 <objective>Destroy both of the enemy team's monuments!</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
@@ -9,10 +16,10 @@
 <contributors>
     <contributor uuid="e39fe3bc-b80e-46d2-81fe-d18042471989" contribution="Map feedback"/> <!-- EnarRikardz -->
     <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b" contribution="Redux-ification"/> <!-- Jexel -->
-    <if variant="halloween">
-        <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655" contribution="Halloween-ification"/> <!-- wylt -->
-        <contributor uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa" contribution="Halloween-ification"/> <!-- Antnecb -->
-    </if>
+    <unless variant="default">
+        <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655" contribution="${season}-ification"/> <!-- wylt -->
+        <contributor uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa" contribution="${season}-ification"/> <!-- Antnecb -->
+    </unless>
 </contributors>
 <teams>
     <unless variant="halloween">
@@ -26,7 +33,6 @@
 </teams>
 <kits>
     <kit id="spawn-resistance">
-        <effect duration="5s" amplifier="255">heal</effect>
         <effect duration="10s" amplifier="255">damage resistance</effect>
     </kit>
     <kit id="spawn-kit" parents="spawn-resistance">
@@ -96,7 +102,7 @@
                     <material>wood step</material>
                     <material>fence</material>
                     <material>torch</material>
-                    <if variant="halloween">
+                    <!-- if variant="halloween">
                         <material>nether brick</material>
                         <material>nether fence</material>
                         <material>nether brick stairs</material>
@@ -104,8 +110,10 @@
                         <material>double step:6</material>
                         <material>smooth stairs</material>
                         <material>step:8</material>
-                        <material>cobble wall</material>
                     </if>
+                    <unless variant="default">
+                        <material>cobble wall</material>
+                    </unless -->
                 </any>
             </not>
             <cause>explosion</cause>
@@ -117,10 +125,10 @@
     </deny>
 </filters>
 <regions>
-    <cuboid id="blue-mon-a" min="-46,9,-52" max="-43,5,-49"/>
-    <cuboid id="blue-mon-b" min="44,9,-52" max="47,5,-49"/>
-    <cuboid id="red-mon-a" min="44,9,50" max="47,5,53"/>
-    <cuboid id="red-mon-b" min="-46,9,50" max="-43,5,53"/>
+    <cylinder id="blue-mon-a" base="-44.5,7,-50.5" radius="0.5" height="2"/>
+    <cylinder id="blue-mon-b" base="45.5,7,-50.5" radius="0.5" height="2"/>
+    <cylinder id="red-mon-a" base="45.5,7,51.5" radius="0.5" height="2"/>
+    <cylinder id="red-mon-b" base="-44.5,7,51.5" radius="0.5" height="2"/>
     <union id="no-spawn-island">
         <circle center="0.5,-79.5" radius="10.5"/>
         <circle center="0.5,80.5"  radius="10.5"/>
