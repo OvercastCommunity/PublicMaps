@@ -2,7 +2,7 @@
 <map proto="1.3.6">
 <!-- include src="tutorial.xml"/ -->
 <name>Lasa</name> 
-<version>1.3.2</version> 
+<version>1.3.3</version> 
 <objective>Attackers have 15 minutes to destroy the Monument. The Red defenders must hold them back.</objective>
 <gamemode>ad</gamemode>
 <authors>
@@ -76,6 +76,7 @@
     <item>ice</item>
     <item>packed ice</item>
     <item>obsidian</item>
+    <item>emerald block</item>
     <item>iron axe</item>
 </itemremove>
 <filters>
