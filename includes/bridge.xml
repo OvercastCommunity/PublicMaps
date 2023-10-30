@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.09.20-1 -->
+<!-- Version 2023.10.29-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -15,6 +15,8 @@
     <constant id="score-limit">5</constant>
     <constant id="mercy-limit">-1</constant>
     <constant id="pre-round-time">5s</constant>
+    <!-- Kit - ADVANCED, not recommended to change yet -->
+    <constant id="main-kit">spawn-kit</constant> <!-- If using a custom name, requires a clear-[your kit name] action -->
     <!-- Teams (placeholders) -->
     <constant id="team-one-spawn">0.5,0,0.5</constant>
     <constant id="team-one-yaw">-90</constant>
@@ -31,22 +33,26 @@
     <alert after="14m50s" filter="overtime-disabled">`7If neither team has won by then, the match will end in `4`l10 seconds`7!</alert>
 </broadcasts>
 <spawns>
-    <spawn team="team-one" kit="spawn-kit" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn-point"/>
-    <spawn team="team-two" kit="spawn-kit" yaw="${team-two-yaw}" pitch="${team-two-pitch}" region="team-two-spawn-point"/>
+    <spawn team="team-one" kit="map-kit" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn-point"/>
+    <spawn team="team-two" kit="map-kit" yaw="${team-two-yaw}" pitch="${team-two-pitch}" region="team-two-spawn-point"/>
 </spawns>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" material="iron sword" unbreakable="true"/>
-        <item slot="1" material="bow" unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
-        <item slot="2" material="diamond pickaxe" enchantment="dig speed:2" unbreakable="true"/>
-        <item slot="3" material="stained clay" team-color="true" amount="64"/>
-        <item slot="4" material="stained clay" team-color="true" amount="64"/>
-        <item slot="5" material="golden apple" amount="8" consumable="bridge-apple" prevent-sharing="true" lore="`9ⓘ `7Instantly restores to `c20 HP`7!|`9ⓘ `7Grants `eAbsorption`7 for `f1 minute`7!"/>
+        <item material="iron sword" unbreakable="true"/>
+        <item material="bow" unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
+        <item material="diamond pickaxe" enchantment="dig speed:2" unbreakable="true"/>
+        <item material="stained clay" team-color="true" amount="64"/>
+        <item material="stained clay" team-color="true" amount="64"/>
+        <item material="golden apple" amount="8" consumable="bridge-apple" prevent-sharing="true" lore="`9ⓘ `7Instantly restores to `c20 HP`7!|`9ⓘ `7Grants `eAbsorption`7 for `f1 minute`7!"/>
         <effect duration="oo">invisibility</effect>
         <effect duration="oo" amplifier="255">slow_digging</effect>
         <effect duration="2s" amplifier="255">resistance</effect>
         <health>20</health>
+    </kit>
+    <kit id="map-kit">
+        <action id="clear-${main-kit}"/>
         <action>
+            <kit id="${main-kit}"/>
             <kit id="arrow-kit"/>
         </action>
         <action id="remove-extra-armor"/>
@@ -86,7 +92,7 @@
         <clear effects="true" items="false" armor="false"/>
         <health>1</health>
     </kit>
-    <give kit="spawn-kit" filter="during-buytime"/>
+    <give kit="map-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="armor-kit" filter="not-on-buytime-after"/>
@@ -234,6 +240,7 @@
         <filter id="after-round-1"/>
         <match-running/>
     </all>
+    <match-finished id="ended"/>
 </filters>
 <consumables>
     <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
@@ -249,16 +256,17 @@
 </variables>
 <actions>
     <action id="increment-round" scope="player">
-        <sound key="mob.wither.death" volume="1" pitch="0.4"/>
         <set var="team_score" value="team_score+1"/>
         <message text="`aYou have scored a goal!"/>
         <switch-scope outer="player" inner="match">
             <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
             <set var="buytime" value="1"/>
-            <fill region="cages" material="stained glass"/>
             <kill-entities filter="remove-entities"/>
         </switch-scope>
+    </action>
+    <action id="create-cages" scope="match">
+        <fill region="cages" material="stained glass"/>
     </action>
     <action id="remove-cages" scope="match">
         <fill region="cages" material="air"/>
@@ -305,6 +313,7 @@
     <trigger filter="arrow-regen" action="give-arrow" scope="player"/>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
+    <trigger filter="all(can_score=0,not(ended))" action="create-cages" scope="match"/>
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
     <trigger filter="after-round-1" action="reset-counter" scope="match"/>
     <trigger filter="more-than-1-arrow" action="remove-arrow" scope="player"/>
@@ -342,7 +351,7 @@
         <message text="`5# #    `cThe enemy scored`5    # #"/>
         <message text="`5# # # # # # # # # # # # # # # #"/>
         <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
-        <sound key="mob.blaze.death" volume="0.2" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
+        <sound key="mob.blaze.death" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
     </action>
     <action id="message-obs-scored" scope="player">
         <message text="`5# # # # # # # # # # # #"/>
@@ -367,6 +376,32 @@
     </action>
     <trigger filter="team-one-scored" action="set-team-one" scope="player"/>
     <trigger filter="team-two-scored" action="set-team-two" scope="player"/>
+    <action id="clear-spawn-kit" scope="player">
+        <replace-item ignore-metadata="true">
+            <find material="iron sword"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="bow"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="arrow"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="diamond pickaxe"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="stained clay"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="golden apple"/>
+            <replace material="air"/>
+        </replace-item>
+    </action>
 </actions>
 <regions>
     <apply block-place="deny-participating" region="not-buildable">
@@ -383,7 +418,7 @@
     <point id="team-one-spawn-point">${team-one-spawn}</point>
     <point id="team-two-spawn-point">${team-two-spawn}</point>
 </regions>
-<portals sound="true" observers="never">
+<portals sound="false" observers="never">
     <!-- Falling on own team's portal -->
     <portal destination="team-one-spawn-point" filter="only-team-one" region="team-one-portal" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}"/>
     <portal destination="team-two-spawn-point" filter="only-team-two" region="team-two-portal" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
@@ -428,4 +463,19 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
+<!-- can't use consumable nor prevent-sharing on item-mods at the moment -->
+<!-- <item-mods>
+    <rule>
+        <match>
+            <material>bow</material>
+        </match>
+        <modify unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
+    </rule>
+    <rule>
+        <match>
+            <material>golden apple</material>
+        </match>
+        <modify consumable="bridge-apple" prevent-sharing="true" lore="`9ⓘ `7Instantly restores to `c20 HP`7!|`9ⓘ `7Grants `eAbsorption`7 for `f1 minute`7!"/>
+    </rule>
+</item-mods> -->
 </map>
