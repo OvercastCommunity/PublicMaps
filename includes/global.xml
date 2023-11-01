@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <if has-variant="halloween">
-    <if variant="default">
+    <if variant="halloween">
         <phase>development</phase>
     </if>
 </if>
