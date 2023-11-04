@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map>
 <!-- Created by Cazadorian -->
-<!-- Include version 1.0.6 --> 
+<!-- Include version 1.0.7 --> 
 <objective>Survive against the Zombies for 8 minutes!</objective>
 <gamemode>arcade</gamemode>
 <game>Infection</game>
@@ -13,8 +13,8 @@
     <tip after="4s" filter="only-zombies">You are a Zombie, You must kill all of the Humans to win!</tip>
 </broadcasts>
 <teams>
-    <team id="zombie-team" color="dark green" show-name-tags="false" plural="true" min="1" max="4">Zombies</team>
-    <team id="human-team" color="gold" plural="true" min="1" max="36">Humans</team>
+    <team id="zombie-team" color="dark green" plural="true" min="1" max="4">Zombies</team>
+    <team id="human-team" color="gold" show-name-tags="false"  plural="true" min="1" max="36">Humans</team>
 </teams>
 <kits>
     <kit id="human-kit">
