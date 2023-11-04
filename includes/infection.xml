@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <map>
 <!-- Created by Cazadorian -->
 <!-- Include version 1.0.7 --> 
@@ -14,7 +13,7 @@
 </broadcasts>
 <teams>
     <team id="zombie-team" color="dark green" plural="true" min="1" max="4">Zombies</team>
-    <team id="human-team" color="gold" show-name-tags="false"  plural="true" min="1" max="36">Humans</team>
+    <team id="human-team" color="gold" show-name-tags="false" plural="true" min="1" max="36">Humans</team>
 </teams>
 <kits>
     <kit id="human-kit">
