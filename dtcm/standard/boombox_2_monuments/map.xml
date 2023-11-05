@@ -1,0 +1,611 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>BoomBox: 2 Monuments</name>
+<version>1.0.4</version>
+<phase>development</phase>
+<objective>Destroy the other team's Endstone Pillar before they destroy yours!</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+    <author uuid="30401f63-f5bb-4f24-9a5a-0ecd5f706115"/> <!-- dentmaged -->
+</authors>
+<gamemode>dtm</gamemode>
+
+<rules>
+    <rule>There are NO restrictions on spawn camping/killing</rule>
+    <rule>Attacker pickaxes do double damage</rule>
+    <rule>Smooth quartz blocks are fully blast resistant (and can be mined)</rule>
+    <rule>Return to spawn to be fully healed and resupplied</rule>
+</rules>
+
+<teams>
+    <team color="dark red" max="18" max-overfill="21" plural="true">Red</team>
+    <team color="blue" max="18" max-overfill="21" plural="true">Blue</team>
+</teams>
+
+<kits>
+    <!-- kit given to everyone, including observers -->
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">saturation</potion>
+    </kit>
+
+    <!-- kit given to both teams -->
+    <kit name="team" parents="all">
+        <item slot="0">diamond pickaxe</item>
+        <item slot="1">bow</item>
+
+        <item slot="9">workbench</item>
+        <item slot="18" amount="3">dispenser</item>
+        <!-- slot="27" -->
+        <!-- slot="0" -->
+
+        <item slot="10">shears</item>
+        <!-- slot="19" -->
+        <item slot="28" amount="48">arrow</item>
+        <!-- slot="1" -->
+
+        <item slot="11" name="Blade of Icarus">wood sword</item>
+
+        <!-- slot="20" -->
+        <item slot="29" amount="64">vine</item>
+        <item slot="2" amount="64">vine</item>
+
+        <!-- slot="12" -->
+        <!-- slot="21" -->
+        <!-- slot="30" -->
+        <!-- slot="3" -->
+
+        <item slot="13" amount="16">trap door</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="31" amount="64">step</item>
+        <item slot="4" amount="64">nether fence</item>
+
+        <item slot="14" amount="16">piston base</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="32" amount="16">stone plate</item>
+        <item slot="5" amount="16">stone button</item>
+
+        <item slot="15">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="6">water bucket</item>
+
+        <item slot="16" amount="16">diode</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="7" amount="16">redstone block</item>
+
+        <item slot="17" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="8" amount="64">tnt</item>
+
+        <!-- this will be removed when they leave spawn -->
+        <potion duration="oo" amplifier="5">damage resistance</potion>
+    </kit>
+
+    <kit name="red-gear" parents="team">
+        <item slot="12" damage="14" amount="64">stained glass</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+
+        <helmet color="222222" enchantment="protection explosions:3;water worker:3" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="dd5566" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="dd5566" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="dd5566" enchantment="protection fall:1" damage="-3000">leather boots</boots>
+    </kit>
+
+    <kit name="blue-gear" parents="team">
+        <item slot="12" damage="11" amount="64">stained glass</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="3" damage="11" amount="64">stained clay</item>
+
+        <helmet enchantment="protection explosions:3" unbreakable="true">iron helmet</helmet>
+        <chestplate locked="true" color="5e55dd" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="5e55dd" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="5e55dd" enchantment="protection fall:3" damage="-3000">leather boots</boots>
+    </kit>
+
+    <kit name="spawn-buff-apply" force="true">
+        <potion amplifier="5" duration="oo">damage resistance</potion>
+        <potion amplifier="10" duration="1">heal</potion>
+    </kit>
+
+    <kit name="spawn-buff-remove" force="true">
+        <potion amplifier="5" duration="3">damage resistance</potion>
+    </kit>
+
+    <kit name="red-resupply" parents="red-gear,spawn-buff-apply"/>
+    <kit name="blue-resupply" parents="blue-gear,spawn-buff-apply"/>
+</kits>
+
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>workbench</item>
+    <item>dispenser</item>
+    <item>shears</item>
+    <item>wood sword</item>
+    <item>bow</item>
+    <item>snow ball</item>
+    <item>arrow:0</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>ender stone</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+</itemremove>
+
+<killreward>
+    <item amount="16">tnt</item>
+</killreward>
+
+<killreward>
+    <filter>
+        <team>blue</team>
+    </filter>
+    <item>dispenser</item>
+    <item amount="8">arrow</item>
+</killreward>
+
+<killreward>
+    <filter>
+        <team>red</team>
+    </filter>
+    <item>dispenser</item>
+    <item amount="8">arrow</item>
+</killreward>
+
+<blockdrops>
+    <rule>
+        <filter>
+            <block>quartz block:0</block>
+        </filter>
+        <drops>
+            <item>quartz</item>
+        </drops>
+    </rule>
+</blockdrops>
+
+<filters>
+    <filter name="red-only">
+        <team>red</team>
+    </filter>
+
+    <filter name="blue-only">
+        <team>blue</team>
+    </filter>
+
+    <filter name="blue-or-world">
+        <any>
+            <team>blue</team>
+            <filter name="allow-world"/>
+        </any>
+    </filter>
+
+    <filter name="red-or-world">
+        <any>
+            <team>red</team>
+            <filter name="allow-world"/>
+        </any>
+    </filter>
+
+    <filter name="deny-unbreakable-blocks">
+        <deny>
+            <any>
+                <block>stained glass:8</block> <!-- light grey stained glass -->
+                <block>stained glass:15</block> <!-- black stained glass -->
+                <block>stained glass pane:11</block> <!-- blue stained glass pane -->
+                <block>beacon</block>
+                <block>emerald block</block>
+            </any>
+        </deny>
+    </filter>
+
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+
+    <filter name="deny-water">
+        <deny>
+            <any>
+                <block>water</block>
+                <block>stationary water</block>
+            </any>
+        </deny>
+    </filter>
+
+    <filter name="deny-manual-endstone">
+        <not>
+            <all>
+                <block>ender stone</block>
+                <any>
+                    <filter name="allow-players"/>
+                    <filter name="deny-all"/>
+                </any>
+            </all>
+        </not>
+    </filter>
+
+    <filter name="deny-quartz-world">
+        <not>
+            <all>
+                <any>
+                    <block>quartz block:0</block>
+                    <block>quartz stairs</block>
+                </any>
+                <any>
+                    <filter name="allow-world"/>
+                    <filter name="deny-all"/>
+                </any>
+            </all>
+        </not>
+    </filter>
+    <filter name="building-blocks">
+            <any>
+                <block>stained clay</block>
+                <block>stained glass</block>
+                <block>step</block>
+                <block>nether fence</block>
+                <block>quartz block</block>
+                <block>quartz stairs</block>
+            </any>
+    </filter>
+    <filter name="deny-building-blocks">
+        <not>
+            <filter name="building-blocks"/>
+        </not>
+    </filter>
+    <filter name="deny-blue-building-blocks">
+        <not>
+            <all>
+                <team>blue</team>
+                <filter name="building-blocks"/>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-red-building-blocks">
+        <not>
+            <all>
+                <team>red</team>
+                <filter name="building-blocks"/>
+            </all>
+        </not>
+    </filter>
+</filters>
+
+<regions>
+
+    <!--                    -->
+    <!-- Region Definitions -->
+    <!--                    -->
+
+    <!-- the entire inside of the box -->
+    <cuboid name="box" min="2,0,2" max="102,50,102"/>
+
+    <!-- the pillars -->
+    <cuboid name="blue-pillar" min="92,11,92" max="97,50,97"/>
+    <cuboid name="red-pillar" min="7,11,7" max="12,50,12"/>
+
+    <cuboid name="top-layer" min="2,47,2" max="102,48,102"/>
+
+    <!-- the blue spawn area, including floor and ceiling -->
+    <union name="blue-spawn">
+        <cuboid min="87,4,87" max="102,11,102"/> <!-- platform -->
+        <cuboid min="82,5,82" max="92,10,92"/> <!-- stairs -->
+    </union>
+    <union name="red-spawn">
+        <cuboid min="2,4,2" max="17,11,17"/> <!-- platform -->
+        <cuboid min="12,5,12" max="22,10,22"/> <!-- stairs -->
+    </union>
+
+    <!-- water exclusion region inside the fortress -->
+    <union name="water-free-zone">
+        <!-- blue -->
+        <cuboid min="87,11,87" max="102,50,102"/>
+        <cuboid min="82,0,82" max="102,11,102"/>
+
+        <!-- red -->
+        <cuboid min="1,11,1" max="17,50,17"/>
+        <cuboid min="11,0,11" max="1,11,1"/>
+    </union>
+
+    <union name="blue-bridge-gates">
+        <cuboid name="gate7" min="12,5,102" max="17,10,103"/>
+        <cuboid name="gate8" min="7,19,102" max="12,24,103"/>
+        <cuboid name="gate9" min="2,35,102" max="7,40,103"/>
+
+        <cuboid name="gate10" min="72,5,102" max="77,10,103"/>
+        <cuboid name="gate11" min="72,19,102" max="77,24,103"/>
+        <cuboid name="gate12" min="72,35,102" max="77,40,103"/>
+    </union>
+
+    <!-- bridges -->
+    <intersect name="blue-bridges">
+        <cuboid min="-oo,-oo,-oo" max="oo,50,oo"/>
+        <union>
+            <cuboid min="12,0,103" max="17,18,117"/>
+            <cuboid min="7,18,103" max="17,34,117"/>
+            <cuboid min="2,34,103" max="17,oo,117"/>
+            <rectangle min="72,103" max="77,117"/>
+            <rectangle min="17,107" max="72,117"/>
+        </union>
+    </intersect>
+
+    <intersect name="red-bridges">
+        <cuboid min="-oo,-oo,-oo" max="oo,50,oo"/>
+        <union>
+            <cuboid min="92,0,1" max="87,18,-14"/>
+            <cuboid min="97,18,1" max="87,34,-14"/>
+            <cuboid min="102,34,1" max="87,oo,-14"/>
+            <rectangle min="32,1" max="27,-13"/>
+            <rectangle min="87,-3" max="32,-13"/>
+        </union>
+    </intersect>
+
+    <!-- forward drop shafts -->
+    <cuboid name="forward-drop" min="0,0,0" max="7,50,7"/>
+    <union name="forward-drops">
+        <translate name="north-drop" region="forward-drop"  offset="54,0,11"/>
+        <translate name="east-drop"  region="forward-drop"  offset="76,0,43"/>
+        <mirror    name="west-drop"  region="north-drop"    normal="1,0,-1"/>
+        <mirror    name="south-drop" region="east-drop"     normal="1,0,-1"/>
+    </union>
+
+    <union name="forward-tp">
+        <point name="north-destination">57,51,18</point>
+        <point name="east-destination">76,51,46</point>
+        <point name="west-destination">18,51,57</point>
+        <point name="south-destination">46,51,76</point>
+    </union>
+    <union name="spawn-regions">
+        <cylinder name="red-spawn-region" base="9.5,5,9.5" radius="3" height="0"/>
+        <cylinder name="blue-spawn-region" base="94.5,5,94.5" radius="3" height="0"/>
+    </union>
+    <intersect name="forward-drop-tubes">
+        <region name="forward-drops"/>
+        <cuboid min="-oo,30,-oo" max="oo,50,oo"/>
+    </intersect>
+
+    <union name="portals">
+        <!-- blue -->
+        <cuboid name="south-portal" min="85,4,92" max="87,9,97" />
+        <cuboid name="east-portal" min="92,4,85" max="97,9,87" />
+
+        <!-- red -->
+        <cuboid name="north-portal" min="17,4,7" max="19,9,12" />
+        <cuboid name="west-portal" min="7,4,17" max="12,9,19" />
+
+        <!-- portal back to blue spawn -->
+        <union name="blue-portals">
+            <cuboid name="south-spawn-portal" min="44,50,74" max="49,55,75" />
+            <cuboid name="east-spawn-portal" min="74,50,44" max="75,55,49" />
+        </union>
+
+        <union name="red-portals">
+            <cuboid name="north-spawn-portal" min="55,50,19" max="60,55,20" />
+            <cuboid name="west-spawn-portal" min="19,50,55" max="20,55,60" />
+        </union>
+    </union>
+
+    <!--             -->
+    <!-- Block Rules -->
+    <!--             -->
+
+    <apply block="deny-all" message="You may not modify the drop tube area">
+        <region name="forward-drop-tubes"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not modify the spawn area">
+        <region name="blue-spawn"/>
+        <region name="red-spawn"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not modify the portals!">
+        <region name="portals"/>
+    </apply>
+
+    <apply block="deny-unbreakable-blocks" message="This type of block is unbreakable">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+
+    <apply block="deny-water" message="You may not place `9water`c around the pillar">
+        <region name="water-free-zone"/>
+    </apply>
+
+    <apply block="deny-water" message="You may not place `9water`c under the drop tubes">
+        <region name="forward-drops"/>
+    </apply>
+
+    <apply block-place="deny-red-building-blocks" message="You may not build under Blue's drop tubes!">
+        <union>
+            <region name="south-drop"/>
+            <region name="east-drop"/>
+        </union>
+    </apply>
+
+    <apply block-place="deny-blue-building-blocks" message="You may not build under Red's drop tubes!">
+        <union>
+            <region name="north-drop"/>
+            <region name="west-drop"/>
+        </union>
+    </apply>
+
+    <apply block-place="deny-building-blocks" message="You may not place building blocks at this level">
+        <region name="top-layer"/>
+    </apply>
+
+    <!-- prevent manual mining of the monument -->
+    <apply block-break="deny-manual-endstone" message="The Endstone Pillar can only be damaged with TNT">
+        <region name="blue-pillar"/>
+        <region name="red-pillar"/>
+    </apply>
+    <apply block="deny-all" message="You may not place or break blocks outside of the BoomBox">
+        <complement>
+            <negative>
+                <region name="box"/>
+            </negative>
+
+            <region name="blue-bridges"/>
+            <region name="red-bridges"/>
+        </complement>
+    </apply>
+
+    <apply block-break="deny-quartz-world">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+
+    <!-- prevent beacons from being used -->
+    <apply use="deny-beacon">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+
+    <apply block="blue-or-world" message="You may not place or break blocks on Blue's bridge!">
+        <region name="blue-bridges"/>
+    </apply>
+
+    <apply block="red-or-world" message="You may not place or break blocks on Red's bridge!">
+        <region name="red-bridges"/>
+    </apply>
+
+    <!--                 -->
+    <!-- Player Movement -->
+    <!--                 -->
+
+    <apply enter="red-only" message="You may not use Red's bridge!">
+        <region name="red-bridges"/>
+    </apply>
+
+    <apply enter="blue-only" message="You may not use Blue's bridge!">
+        <region name="blue-bridges"/>
+    </apply>
+
+    <!--                 -->
+    <!-- Kit Application -->
+    <!--                 -->
+
+    <!-- apply spawn buffs -->
+    <apply kit="red-resupply" filter="red-only">
+        <region name="red-spawn"/>
+    </apply>
+
+    <!-- remove spawn buffs -->
+    <apply kit="spawn-buff-remove" filter="red-only">
+        <negative>
+            <region name="red-spawn"/>
+        </negative>
+    </apply>
+
+    <apply kit="blue-resupply" filter="blue-only">
+        <region name="blue-spawn"/>
+    </apply>
+
+    <apply kit="spawn-buff-remove" filter="blue-only">
+        <negative>
+            <region name="blue-spawn"/>
+        </negative>
+    </apply>
+    
+    <apply enter="deny-all" message="You may not go up here!">
+        <above y="56"/> <!-- anachronistic: introduced in proto 1.4.2 -->
+    </apply>
+</regions>
+
+<spawns pitch="0">
+    <default kit="all" yaw="315">
+        <cylinder base="7,70,7" radius="4" height="0"/>
+    </default>
+    <spawn team="red" kit="red-gear" yaw="-45">
+        <region name="red-spawn-region"/>
+    </spawn>
+    <spawn team="blue" kit="blue-gear" yaw="135">
+        <region name="blue-spawn-region"/>
+    </spawn>
+</spawns>
+
+<destroyables>
+    <destroyable id="blue-pillar"
+                 name="Endstone Pillar"
+                 owner="blue"
+                 show-progress="true"
+                 materials="ender stone"
+                 sparks="true"
+                 proximity-metric="closest block"
+                 proximity-horizontal="true">
+
+        <region name="blue-pillar"/>
+    </destroyable>
+    <destroyable id="red-pillar"
+                 name="Endstone Pillar"
+                 owner="red"
+                 show-progress="true"
+                 materials="ender stone"
+                 sparks="true"
+                 proximity-metric="closest block"
+                 proximity-horizontal="true">
+
+        <region name="red-pillar"/>
+    </destroyable>
+</destroyables>
+
+<portals>
+    <portal yaw="@0">
+        <region name="south-portal" />
+        <destination><region name="south-destination" /></destination>
+    </portal>
+    <portal yaw="@-90">
+        <region name="east-portal" />
+        <destination><region name="east-destination" /></destination>
+    </portal>
+
+    <portal yaw="@180">
+        <region name="north-portal" />
+        <destination><region name="north-destination" /></destination>
+    </portal>
+    <portal yaw="@90">
+        <region name="west-portal" />
+        <destination><region name="west-destination" /></destination>
+    </portal>
+
+    <portal yaw="@135">
+        <region name="blue-portals" />
+        <destination><region name="blue-spawn-region" /></destination>
+    </portal>
+    <portal yaw="@-45">
+        <region name="red-portals" />
+        <destination><region name="red-spawn-region" /></destination>
+    </portal>
+</portals>
+
+<time result="blue">20m</time>
+
+<disabledamage>
+    <damage self="false" ally="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+
+</map>
