@@ -1,22 +1,34 @@
 <map>
+<!-- Infection gamemode include file -->
 <!-- Created by Cazadorian -->
-<!-- Include version 1.0.7 --> 
-<objective>Survive against the Zombies for 8 minutes!</objective>
-<gamemode>arcade</gamemode>
-<game>Infection</game>
+<!-- Modified by zzuf -->
+<!-- Version 2023-11-06-1 -->
+<constants>
+    <constant id="time-limit">8</constant> <!-- Time limit in minutes -->
+    <constant id="map-zombie-kit">default-zombie-kit</constant>
+    <constant id="map-human-kit">default-human-kit</constant>
+    <constant id="zombie-team-name">Zombies</constant>
+    <constant id="human-team-name">Humans</constant>
+    <constant id="zombie-team-color">dark green</constant>
+    <constant id="human-team-color">gold</constant>
+</constants>
+<objective>${human-team-name} must survive against the ${zombie-team-name} for ${time-limit} minutes!</objective>
+<gamemode>infection</gamemode>
+<broadcasts>
+    <tip after="4s" filter="only-humans">You are a Human, you must survive for as long as possible against the waves of Zombies. If you die, you become a Zombie!</tip>
+    <tip after="4s" filter="only-zombies">You are a Zombie, you must kill all of the Humans to win!</tip>
+</broadcasts>
+<teams>
+    <team id="zombie-team" color="${zombie-team-color}" plural="true" min="1" max="4">${zombie-team-name}</team>
+    <team id="human-team" color="${human-team-color}" show-name-tags="false" plural="true" min="1" max="36">${human-team-name}</team>
+</teams>
+<time result="human-team">${time-limit}m</time>
+<respawn auto="true"/>
 <blitz filter="never" join-filter="always">
     <broadcastLives>false</broadcastLives>
 </blitz>
-<broadcasts>
-    <tip after="4s" filter="only-humans">You are a Human, You must survive for as long as possible against the waves of Zombies. If you die, you become a Zombie!</tip>
-    <tip after="4s" filter="only-zombies">You are a Zombie, You must kill all of the Humans to win!</tip>
-</broadcasts>
-<teams>
-    <team id="zombie-team" color="dark green" plural="true" min="1" max="4">Zombies</team>
-    <team id="human-team" color="gold" show-name-tags="false" plural="true" min="1" max="36">Humans</team>
-</teams>
 <kits>
-    <kit id="human-kit">
+    <kit id="default-human-kit">
         <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" material="arrow" amount="48"/>
@@ -26,7 +38,7 @@
         <boots locked="true" unbreakable="true" material="iron boots"/>
         <game-mode>adventure</game-mode>
     </kit>
-    <kit id="zombie-kit">
+    <kit id="default-zombie-kit">
         <item slot="0" unbreakable="true" material="stone sword" name="`2`lInfection Sword"/>
         <helmet locked="true" material="skull item" damage="2"/>
         <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
@@ -38,9 +50,6 @@
     </kit>
     <kit id="zombie-switch-kit" force="true">
         <team-switch team="zombie-team"/>
-    </kit>
-    <kit id="human-kill-reward">
-        <effect duration="5s" amplifier="2">regeneration</effect>
     </kit>
 </kits>
 <filters>
@@ -74,10 +83,6 @@
     <item>bow</item>
     <item>iron boots</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward filter="only-humans" kit="human-kill-reward"/>
-</kill-rewards>
-<respawn auto="true"/>
 <hunger>
     <depletion>off</depletion>
 </hunger>
