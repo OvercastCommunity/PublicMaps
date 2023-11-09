@@ -2,6 +2,7 @@
 <name>Lotus</name>
 <version>1.3.1</version>
 <objective>Capture the enemy's two wools!</objective>
+<phase>development</phase>
 <time overtime="5m" max-overtime="10m" end-overtime="1m">35m</time>
 <authors>
     <author uuid="f1352a57-4fe3-4f0c-b867-56b771fc1a0f"/> <!-- teagod -->
