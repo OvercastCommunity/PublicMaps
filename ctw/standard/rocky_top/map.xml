@@ -11,7 +11,7 @@
         <author uuid="f1352a57-4fe3-4f0c-b867-56b771fc1a0f">teagod</author>
     </authors>
     <contributors>
-        <contribuor uuid="510cf71c-0f8a-44b6-87c2-b1ed9c197040">finshu</contribuor>
+        <contributor uuid="510cf71c-0f8a-44b6-87c2-b1ed9c197040">finshu</contributor>
     </contributors>
     <teams>
         <team color="blue" max="8" id="blue-team">Blue</team>
