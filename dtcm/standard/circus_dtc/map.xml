@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Circus DTC</name>
 <variant id="halloween" world="halloween">Halloween</variant>
-<version>1.4.0</version>
+<version>1.4.1</version>
 <objective>Leak the opposing circus's cannonball (core) mid-flight while defending your own!</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -46,7 +46,7 @@
 <spawns>
     <default>
         <region yaw="-90">
-            <cuboid min="-827,70,77" max="-829,73,79"/>
+            <cylinder base="-825.5,69,8.5" height="0" radius="4"/>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
