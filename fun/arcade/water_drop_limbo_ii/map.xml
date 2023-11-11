@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0" game="Water Drop">
 <name>Water Drop: Limbo II</name>
-<phase>development</phase>
-<version>1.3.0</version>
+<version>1.4.0</version>
 <objective>Get the most points in 3 minutes!</objective>
 <gamemode>Arcade</gamemode>
 <authors>
@@ -17,7 +16,7 @@
             <point yaw="135">106.5,250,-60.5</point>
         </regions>
     </spawn>
-    <default kit="obs" yaw="90" region="spawn"/> 
+    <default kit="obs" yaw="90" region="spawn"/>
 </spawns>
 <kits>
     <kit id="obs">
@@ -157,5 +156,5 @@
     <control-point id="point-m" name="Point M" capture="point-m-region" captured="point-m-region" player-filter="holding-m"/>
     <control-point id="point-n" name="Point N" capture="point-n-region" captured="point-n-region" player-filter="holding-n"/>
 </control-points>
-<time>5m</time>
+<time>3m</time>
 </map>
