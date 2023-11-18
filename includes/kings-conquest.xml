@@ -1,10 +1,10 @@
 <map proto="1.4.2">
 <!-- Created by mitchiii, based on the King's Conquest maps created by Chicky -->
-<!-- Include version number : v2.2.2 -->
+<!-- Include version number : v2.3.0 -->
 <objective>Kill the enemy team's King to win!</objective>
 <gamemode>arcade</gamemode>
 <game>Kill the King</game>
-<respawn auto="true" delay="5s" spectate="true"/>
+<respawn auto="true" delay="5s"/>
 <time>15m</time>
 <constants>
     <constant id="team-size">16</constant>
@@ -136,19 +136,19 @@
         <walk-speed>0.9</walk-speed>
     </kit>
     <kit id="king-berserking-kit">
-        <effect duration="8" amplifier="2">strength</effect>
+        <effect duration="6" amplifier="2">strength</effect>
         <effect duration="10" amplifier="2">speed</effect>
-        <effect duration="3" amplifier="4">regeneration</effect>
+        <effect duration="3" amplifier="2">regeneration</effect>
         <action>
             <switch-scope inner="team">
-                <set var="king_health_recovery_amount" value="king_health_recovery_amount+16"/>
+                <set var="king_health_recovery_amount" value="king_health_recovery_amount+6"/>
                 <action filter="show-debug-message">
-                    <message text="`7» `bKing recovery increased by 16 (beserking)"/>
+                    <message text="`7» `bKing recovery increased by 6 (beserking)"/>
                 </action>
                 <switch-scope inner="player">
                     <action filter="not-king">
                         <kit>
-                            <effect duration="6">strength</effect>
+                            <effect duration="4">strength</effect>
                             <effect duration="10">speed</effect>
                             <effect duration="3" amplifier="4">regeneration</effect>
                         </kit>
@@ -201,12 +201,12 @@
         </action>
     </kit>
     <kit id="king-gapple-kit">
-        <effect duration="3" amplifier="4">regeneration</effect>
+        <effect duration="2" amplifier="4">regeneration</effect>
         <action>
             <switch-scope inner="team">
-                <set var="king_health_recovery_amount" value="king_health_recovery_amount+8"/>
+                <set var="king_health_recovery_amount" value="king_health_recovery_amount+3"/>
                 <action filter="show-debug-message">
-                    <message text="`7» `bKing recovery increased by 8 (gapple)"/>
+                    <message text="`7» `bKing recovery increased by 3 (gapple)"/>
                 </action>
             </switch-scope>
         </action>
@@ -384,6 +384,11 @@
             <all>
                 <filter id="only-king"/>
                 <kill-streak count="3" repeat="true"/>
+                <not>
+                    <carrying ignore-metadata="true">
+                        <item material="potion" name="`r`6King's Berserking Warhorn"/>
+                    </carrying>
+                </not>
             </all>
         </filter>
         <item material="potion" name="`r`6King's Berserking Warhorn" lore="`r`5Inspires fleeting strength across your kingdom." consumable="king-berserking-consumable" prevent-sharing="true">
@@ -480,7 +485,7 @@
             </not>
         </all>
     </pulse>
-    <pulse id="recover-king-health" period="0.2s" duration="0.1s">
+    <pulse id="recover-king-health" period="0.35s" duration="0.1s">
         <all>
             <score>[1,99]</score>
             <variable var="king_health_recovery_amount">[1,oo)</variable>
@@ -565,7 +570,9 @@
     </trigger>
     <trigger filter="reduce-king-health" scope="player">
         <action>
-            <kit id="king-armor-kit"/>
+            <action filter="only-king">
+                <kit id="king-armor-kit"/>
+            </action>
             <switch-scope inner="team">
                 <set var="king_health" value="king_health-1"/>
                 <action filter="show-debug-message">
@@ -590,7 +597,7 @@
                 <message text="`7» `eKing health increased by 1"/>
                 <message text="`7» `bKing recovery reduced by 1"/>
             </action>
-            <switch-scope inner="player">
+            <switch-scope filter="only-king" inner="player">
                 <kit id="king-armor-kit"/>
             </switch-scope>
         </action>
@@ -609,6 +616,7 @@
             <message text=" "/>
             <message text="`6» `c`lSUDDEN DEATH"/>
             <message text="`6» `bKing health has been reduced to ${sudden-death-hp} HP!"/>
+            <message text="`6» `6Blitz `bhas been enabled!"/>
             <message text=" "/>
             <switch-scope inner="team">
                 <action filter="king-health-above-sudden-death-amount">
@@ -616,10 +624,8 @@
                 </action>
                 <set var="king_health_recovery_amount" value="0"/>
             </switch-scope>
-            <switch-scope inner="player">
-                <action filter="only-king">
-                    <kit id="king-armor-kit"/>
-                </action>
+            <switch-scope filter="only-king" inner="player">
+                <kit id="king-armor-kit"/>
             </switch-scope>
         </action>
     </trigger>
