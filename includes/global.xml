@@ -9,4 +9,7 @@
         <phase>development</phase>
     </if>
 </if>
+<variables>
+    <maxbuildheight id="maxbuildheight"/>
+</variables>
 </map>
