@@ -1,9 +1,8 @@
 <map proto="1.4.2">
 <name>Xi</name>
-<version>1.2.4</version>
+<version>1.2.5</version>
 <phase>development</phase>
-<include id="variable-maxbuildheight"/>
-<constant id="maxbuild-default">23</constant>
+<maxbuildheight>23</maxbuildheight>
 <objective>Capture both enemy wools.</objective>
 <authors>
     <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade"/> <!-- chle_ -->
