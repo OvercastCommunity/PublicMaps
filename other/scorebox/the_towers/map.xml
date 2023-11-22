@@ -1,0 +1,95 @@
+<map proto="1.4.2">
+<name>The Towers</name>
+<version>1.0.2</version>
+<created>2013-04-02</created>
+<objective>Score 10 points to win.</objective>
+<gamemode>scorebox</gamemode>
+<phase>development</phase>
+<authors>
+    <author uuid="f48faa1f-aab2-44d5-94d2-8b0404f3a227"/> <!-- Quijx -->
+</authors>
+<contributors>
+    <contributor uuid="1c898c77-b0cc-474a-8ce4-b5521f2b18e7" contribution="XML"/> <!-- Prodigy4532 -->
+</contributors>
+<teams>
+    <team id="blue-team" color="dark blue" max="8">Blue</team>
+    <team id="red-team" color="dark red" max="8">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="28" amount="64" material="arrow"/>
+        <item slot="2" amount="64" material="quartz block"/>
+        <item slot="3" amount="64" material="nether brick"/>
+        <item slot="8" amount="64" material="baked potato"/>
+        <item slot="9" material="lapis block"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings team-color="true" enchantment="protection projectile:2" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
+        <effect duration="5" amplifier="255">regeneration</effect>
+        <effect duration="5" amplifier="255">damage resistance</effect>
+        <effect duration="5" amplifier="2">speed</effect>
+        <effect duration="3" amplifier="100">haste</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5,25,1152.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
+<regions>
+    <point id="blue-spawn-point">-83.5,20,1152.5</point>
+    <point id="red-spawn-point">84.5,20,1152.5</point>
+    <union id="spawns">
+        <cuboid id="blue-spawn-room" min="-87,0,1149" max="-80,25,1156"/>
+        <cuboid id="blue-pathway" min="-80,0,1149" max="-74,24,1156"/>
+        <cuboid id="red-spawn-room" min="88,0,1156" max="81,25,1149"/>
+        <cuboid id="red-pathway" min="80,0,1156" max="75,24,1149"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-82,33,1150" max="-86,27,1154"/>
+        <cuboid id="red-scorebox" min="82,33,1154" max="86,27,1150"/>
+    </union>
+    <!-- applications -->
+    <apply region="blue-scorebox" enter="only-red" message="You may not enter your own scorebox!"/>
+    <apply region="red-scorebox" enter="only-blue" message="You may not enter your own scorebox!"/>
+    <apply region="blue-spawn-room" enter="only-blue" message="You may not enter the enemy's spawn!"/>
+    <apply region="red-spawn-room" enter="only-red" message="You may not enter the enemy's spawn!"/>
+    <apply region="spawns" block="never" message="You may not build here!"/>
+	<apply block="never" message="You may not build in the void!">
+        <region>
+            <rectangle min="88,oo" max="oo,-oo"/>
+            <rectangle min="-87,oo" max="-oo,-oo"/>
+            <rectangle min="oo,1170" max="-oo,oo"/>
+            <rectangle min="oo,1135" max="-oo,-oo"/>
+        </region>
+    </apply>
+</regions>
+<score>
+    <limit>10</limit>
+    <box value="1" filter="only-red" region="blue-scorebox"/>
+    <box value="1" filter="only-blue" region="red-scorebox"/>
+</score>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90"/>
+</portals>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>leather helmet</tool>
+    <tool>leather chestplate</tool>
+    <tool>leather leggings</tool>
+    <tool>leather boots</tool>
+</toolrepair>
+</map>
