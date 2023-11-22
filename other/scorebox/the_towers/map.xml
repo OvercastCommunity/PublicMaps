@@ -66,7 +66,7 @@
     <apply region="blue-spawn-room" enter="only-blue" message="You may not enter the enemy's spawn!"/>
     <apply region="red-spawn-room" enter="only-red" message="You may not enter the enemy's spawn!"/>
     <apply region="spawns" block="never" message="You may not build here!"/>
-	<apply block="never" message="You may not build in the void!">
+    <apply block="never" message="You may not build in the void!">
         <region>
             <rectangle min="88,oo" max="oo,-oo"/>
             <rectangle min="-87,oo" max="-oo,-oo"/>
