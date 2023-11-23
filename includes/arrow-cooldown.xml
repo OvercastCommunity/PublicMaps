@@ -1,0 +1,75 @@
+<map proto="1.4.2">
+<!-- Arrow cooldown/regen include file -->
+<!-- Created by Pugzy, Pablete1234 -->
+<!-- Version 2023.07.29-1 -->
+<constant id="arrow-count">4</constant>
+<constant id="lock-arrows">true</constant>
+<kits>
+    <kit id="arrow-kit" deduct-items="false">
+        <item slot="8" material="arrow"/>
+    </kit>
+    <kit id="max-arrow-kit">
+        <item slot="8" amount="${arrow-count}" material="arrow"/>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward>
+        <kit id="max-arrow-kit"/>
+    </kill-reward>
+</kill-rewards>
+<itemremove>
+    <item>arrow</item>
+</itemremove>
+<modifybowprojectile pickup-filter="never"/>
+<variables>
+    <variable id="prevent_arrows" default="1" scope="player"/>
+</variables>
+<actions>
+    <trigger scope="player">
+        <filter>
+            <after id="requires-arrows" duration="4s">
+                <all>
+                    <any>
+                        <not>
+                            <carrying ignore-metadata="true">
+                                <item material="arrow"/>
+                            </carrying>
+                        </not>
+                        <carrying ignore-metadata="true" amount="[0,${arrow-count})">
+                            <item material="arrow"/>
+                        </carrying>
+                    </any>
+                    <alive/>
+                    <variable var="prevent_arrows">1</variable>
+                </all>
+            </after>
+        </filter>
+        <action>
+            <set var="prevent_arrows" value="0"/>
+            <kit id="arrow-kit"/>
+        </action>
+    </trigger>
+    <trigger scope="player">
+        <filter>
+            <variable var="prevent_arrows">0</variable>
+        </filter>
+        <action>
+            <set var="prevent_arrows" value="1"/>
+        </action>
+    </trigger>
+    <trigger scope="player">
+        <filter>
+            <carrying amount="(${arrow-count},oo)">
+                <item material="arrow"/>
+            </carrying>
+        </filter>
+        <action>
+            <replace-item>
+                <find material="arrow"/>
+                <replace>air</replace>
+            </replace-item>
+            <kit id="max-arrow-kit"/>
+        </action>
+    </trigger>
+</actions>
+</map>
