@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Base KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.11.21-1 -->
+<!-- Version 2023.11.22-1 -->
 <include id="conquest"/>
 <constant id="respawn-timer">2s</constant>
 <constant id="score">200</constant>
@@ -9,16 +9,18 @@
 <constant id="announce-post-pickup">false</constant>
 <gamemode>kotf</gamemode>
 <kits>
-    <kit id="flag-kit" force="true">
+    <kit id="flag-kit-no-slowness" force="true">
         <action>
             <replace-item>
                 <find unbreakable="true" enchantment="projectile_protection:3" material="chainmail leggings"/>
                 <replace unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
             </replace-item>
         </action>
-        <effect>slowness</effect>
         <effect amplifier="-3">health boost</effect>
         <effect duration="3s" amplifier="2">absorption</effect>
+    </kit>
+    <kit id="flag-kit" force="true" parent="flag-kit-no-slowness">
+        <effect>slowness</effect>
     </kit>
     <kit id="reset-health" force="true">
         <action>
