@@ -1,7 +1,18 @@
 <map proto="1.4.2">
 <name>Little China</name>
-<version>1.4.6</version>
-<include id="kotf"/>
+<variant id="7v7">7v7</variant>
+<version>1.4.7</version>
+<unless variant="7v7">
+    <include id="kotf"/>
+    <constant id="max">18</constant>
+    <constant id="max-overfill" delete="true"/>
+</unless>
+<if variant="7v7">
+    <include id="kotf-comp"/>
+    <constant id="max">7</constant>
+    <constant id="max-overfill">7</constant>
+    <constant id="respawn-timer">5s</constant>
+</if>
 <constant id="damage-resistance">3s</constant>
 <objective>Control the flag for ${score} seconds to win!</objective>
 <created>2018-06-04</created>
@@ -12,14 +23,14 @@
     <contributor uuid="c0f05391-054c-4cd4-9968-588fecbd4e16"/> <!-- Razrivon -->
 </contributors>
 <teams>
-    <team id="purple" color="dark purple" max="18">Purple</team>
-    <team id="yellow" color="yellow" max="18">Yellow</team>
+    <team id="purple" color="dark purple" max="${max}" max-overfill="${max-overfill}">Purple</team>
+    <team id="yellow" color="yellow" max="${max}" max-overfill="${max-overfill}">Yellow</team>
 </teams>
 <kits>
     <kit id="spawn-kit" parent="base-kit">
         <action>
-            <replace-item>
-                <find unbreakable="true" material="iron boots"/>
+            <replace-item ignore-metadata="true">
+                <find material="iron boots"/>
                 <replace unbreakable="true" enchantment="feather_falling:2" material="iron boots"/>
             </replace-item>
         </action>
