@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Sanctuary</name>
-<version>1.6.3</version>
+<version>1.6.4</version>
 <variant id="5v5" world="5v5">5v5</variant>
 <variant id="7v7" world="7v7">7v7</variant>
 <variant id="halloween" world="halloween" override="true">Deserted Sanctuary</variant>
@@ -63,10 +63,10 @@
         </if>
     </kit>
     <kit id="spawn-kit" parents="default-kit,base-kit">
-        <unless variant="5v5,7v7">
+        <unless variant="5v5">
             <action>
-                <replace-item>
-                    <find unbreakable="true" material="iron boots"/>
+                <replace-item ignore-metadata="true">
+                    <find material="iron boots"/>
                     <replace unbreakable="true" enchantment="feather_falling:2" material="iron boots"/>
                 </replace-item>
             </action>
