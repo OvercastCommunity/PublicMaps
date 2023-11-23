@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>CannonQuad</name>
 <phase>development</phase>
-<version>1.3.7</version>
+<version>1.3.8</version>
 <objective>Destroy your opponents within 10 minutes and 30 seconds.</objective>
 <gamemode>blitz</gamemode>
 <authors>
@@ -43,7 +43,7 @@
     </default>
 </spawns>
 <time>10m30s</time>
-<blitz>
+<blitz join-filter="blitz-join-filter">
     <lives>1</lives>
 </blitz>
 <teams>
@@ -127,6 +127,9 @@
     <all id="region-enabled">
         <time>6m</time>
     </all>
+    <not id="blitz-join-filter">
+        <time>20s</time>
+    </not>
 </filters>
 <regions>
     <!-- Region Definitions -->
