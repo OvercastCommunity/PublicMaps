@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Golden Drought</name>
 <variant id="christmas" world="christmas" override="true">Merry Drought</variant>
-<version>1.4.0</version>
+<version>1.4.1</version>
 <objective>Take the wool from the enemy wool rooms and place it on your victory monument while defending your own wool.</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
@@ -47,17 +47,17 @@
 <spawns>
     <default>
         <region yaw="225">
-            <cylinder base="116,12,-461" radius="2" height="0"/>
+            <cylinder base="116.5,12,-4610.5" radius="2" height="0"/>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
         <region yaw="135">
-            <cylinder base="136,17,-346" radius="1" height="0"/>
+            <cylinder base="136.5,16,-346.5" radius="1" height="0"/>
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="315">
-            <cylinder base="2,17,-481" radius="1" height="0"/>
+        <region yaw="-45">
+            <cylinder base="2.5,16,-480.5" radius="1" height="0"/>
         </region>
     </spawn>
 </spawns>
