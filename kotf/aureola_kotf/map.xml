@@ -1,8 +1,11 @@
 <map proto="1.4.2">
 <name>Aureola KotF</name>
-<version>1.1.6</version>
-<objective>Hold the flag for 180 seconds to win!</objective>
-<gamemode>kotf</gamemode>
+<version>1.1.7</version>
+<include id="kotf"/>
+<constant id="score">180</constant>
+<constant id="damage-resistance">3s</constant>
+<constant id="flag-respawn-timer">15s</constant>
+<objective>Hold the flag for ${score} seconds to win!</objective>
 <authors>
     <author contribution="Map design and layout, XML" uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/> <!-- Pbat -->
     <author contribution="Building help" uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->
@@ -16,69 +19,51 @@
     <team id="red" color="dark red" max="12">Red</team>
 </teams>
 <kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots">
-            <enchantment>feather_falling</enchantment>
-        </boots>
-        <effect duration="1" amplifier="0">health boost</effect>
-        <effect duration="2" amplifier="10">regeneration</effect>
-        <effect duration="2">increase damage</effect>
-        <effect duration="3" amplifier="255">damage resistance</effect>
-        <game-mode>adventure</game-mode>
-    </kit>
-    <kit id="flag-kit" force="true">
-        <effect>slowness</effect>
-        <effect amplifier="-3">health boost</effect>
-        <effect duration="3" amplifier="2">absorption</effect>
-    </kit>
-    <kit id="reset-health" force="true">
-        <effect duration="0" amplifier="0">slowness</effect>
-        <effect duration="0" amplifier="0">health boost</effect>
+    <kit id="spawn-kit" parent="base-kit">
+        <action>
+            <replace-item ignore-metadata="true">
+                <find material="chainmail leggings"/>
+                <replace unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
+            </replace-item>
+            <replace-item ignore-metadata="true">
+                <find material="iron boots"/>
+                <replace unbreakable="true" enchantment="feather_falling" material="iron boots"/>
+            </replace-item>
+        </action>
+        <effect duration="2s">strength</effect>
     </kit>
 </kits>
-<filters>
-    <any id="has-flag">
-        <carrying-flag>flag</carrying-flag>
-        <not>
-            <same-team>
-                <carrying-flag>flag</carrying-flag>
-            </same-team>
-        </not>
-    </any>
-</filters>
 <spawns>
-    <spawn team="red" kit="spawn-kit" angle="158.5,7,-1.5" filter="has-flag">
-        <region>
-            <cuboid min="154.5,6,-5.5" max="156.5,7,-3.5"/>
-        </region>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit" angle="212.5,7,52.5" filter="has-flag">
-        <region>
+    <spawn team="blue" kit="spawn-kit" filter="has-flag">
+        <region angle="212.5,7,52.5">
             <cuboid min="214.5,6,54.5" max="216.5,7,56.5"/>
         </region>
     </spawn>
-    <default angle="126.5,33,25.5">
-        <region>
+    <spawn team="red" kit="spawn-kit" filter="has-flag">
+        <region angle="158.5,7,-1.5">
+            <cuboid min="154.5,6,-5.5" max="156.5,7,-3.5"/>
+        </region>
+    </spawn>
+    <default>
+        <region angle="126.5,33,25.5">
             <cuboid min="120.5,32,24.5" max="122.5,33,26.5"/>
         </region>
     </default>
 </spawns>
 <regions>
-    <apply block="never"/>
+    <apply block="never" use="never"/>
 </regions>
 <flags>
-    <flag id="flag" name="Flag" color="white" shared="true" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" flag-proximity-metric="none" show-respawn-on-pickup="true">
-        <post return-time="0s" respawn-time="15s">
+    <flag id="flag"
+          name="Flag"
+          color="white"
+          shared="true"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health"
+          flag-proximity-metric="none"
+          show-respawn-on-pickup="${announce-post-pickup}">
+        <post return-time="0s" respawn-time="${flag-respawn-timer}">
             <post name="Top Post">185,15,25</post>
             <!-- <post name="Mid Post">185,6,25</post> -->
             <post name="Northeast Post" yaw="45">216,6,-6</post>
@@ -86,36 +71,4 @@
         </post>
     </flag>
 </flags>
-<score>
-    <limit>180</limit>
-</score>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-    <item>banner</item>
-</itemremove>
-<itemkeep>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-        <item amount="8" material="arrow"/>
-    </kill-reward>
-</kill-rewards>
-<respawn auto="true" spectate="true">
-    <message>
-        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
-    </message>
-</respawn>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
