@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Bigger Bubble Brawl</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <gamemode>arcade</gamemode>
 <phase>development</phase>
 <objective>Knock all opponents out of the water!</objective>
@@ -28,7 +28,6 @@
         <effect duration="oo" amplifier="1">water breathing</effect>
         <effect duration="oo" amplifier="1">night vision</effect>
         <effect duration="oo" amplifier="10">resistance</effect>
-        <effect duration="oo" amplifier="1">saturation</effect>
     </kit>
     <kit id="death-kit" force="true">
         <effect duration="0">resistance</effect>
@@ -156,4 +155,7 @@
 </blitz>
 <time>4m</time>
 <timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
