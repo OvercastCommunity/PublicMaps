@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.10.29-1 -->
+<!-- Version 2023.11.29-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -15,8 +15,8 @@
     <constant id="score-limit">5</constant>
     <constant id="mercy-limit">-1</constant>
     <constant id="pre-round-time">5s</constant>
-    <!-- Kit - ADVANCED, not recommended to change yet -->
-    <constant id="main-kit">spawn-kit</constant> <!-- If using a custom name, requires a clear-[your kit name] action -->
+    <!-- Kit - EXPERIMENTAL -->
+    <constant id="main-kit">spawn-kit</constant> <!-- If using a custom name, requires a clear-[your kit name] action - can throw an error, but the map will still load -->
     <!-- Teams (placeholders) -->
     <constant id="team-one-spawn">0.5,0,0.5</constant>
     <constant id="team-one-yaw">-90</constant>
@@ -145,6 +145,7 @@
     <variable id="cant-score" var="can_score">0</variable>
     <variable id="can-score" var="can_score">1</variable>
     <after id="after-round-1" duration="0.05" filter="round-1"/>
+    <after id="after-round-0" duration="0.05" filter="round-0"/>
     <all id="during-buytime">
         <after duration="0.05" filter="on-buytime"/>
         <not>
@@ -213,25 +214,25 @@
     <all id="team-one-own-goal">
         <team>team-one</team>
         <variable var="scoring_team">1</variable>
-        <filter id="after-round-1"/>
+        <filter id="after-round-0"/>
         <match-running/>
     </all>
     <all id="team-two-own-goal">
         <team>team-two</team>
         <variable var="scoring_team">2</variable>
-        <filter id="after-round-1"/>
+        <filter id="after-round-0"/>
         <match-running/>
     </all>
     <all id="team-one-enemy-goal">
         <team>team-one</team>
         <variable var="scoring_team">2</variable>
-        <filter id="after-round-1"/>
+        <filter id="after-round-0"/>
         <match-running/>
     </all>
     <all id="team-two-enemy-goal">
         <team>team-two</team>
         <variable var="scoring_team">1</variable>
-        <filter id="after-round-1"/>
+        <filter id="after-round-0"/>
         <match-running/>
     </all>
     <all id="cant-score-obs">
@@ -277,7 +278,6 @@
     </action>
     <action id="reset-counter" scope="match">
         <set var="round_status" value="0"/>
-        <set var="scoring_team" value="0"/>
     </action>
     <action id="remove-arrow" scope="player">
         <replace-item>
@@ -381,8 +381,8 @@
             <find material="iron sword"/>
             <replace material="air"/>
         </replace-item>
-        <replace-item ignore-metadata="true">
-            <find material="bow"/>
+        <replace-item>
+            <find material="bow" unbreakable="true" lore="`e⚠ `cYou can only hold `f1`c arrow at a time!|`9ⓘ `7Get a new one `f3.5 seconds `7after shooting!"/>
             <replace material="air"/>
         </replace-item>
         <replace-item ignore-metadata="true">
