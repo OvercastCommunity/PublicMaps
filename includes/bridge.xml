@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.11.29-1 -->
+<!-- Version 2023.11.30-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -353,6 +353,10 @@
         <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
         <sound key="mob.blaze.death" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
     </action>
+    <action id="message-reset-scoring-team" scope="match">
+        <set var="scoring_team" value="0"/>
+    </action>
+    <trigger filter="after-round-0" action="message-reset-scoring-team" scope="match"/>
     <action id="message-obs-scored" scope="player">
         <message text="`5# # # # # # # # # # # #"/>
         <message text="`5# #    `6» `6`lGOAL! `6«`5    # #"/>
