@@ -1,6 +1,6 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Bigger Bubble Brawl</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <gamemode>arcade</gamemode>
 <phase>development</phase>
 <objective>Knock all opponents out of the water!</objective>
@@ -15,7 +15,7 @@
 <broadcasts>
     <alert after="1s">Fishing rod upgrades will be given every minute!</alert>
     <alert after="1m">Fishing rods upgraded! `e`lKnockback III</alert>
-    <alert after="2m">Fishing rods upgraded! `6`lKnockback IIV</alert>
+    <alert after="2m">Fishing rods upgraded! `6`lKnockback IV</alert>
     <alert after="3m">Fishing rods upgraded! `4`lKnockback V</alert>
 </broadcasts>
 <players max="50" colors="true"/>
