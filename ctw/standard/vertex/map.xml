@@ -102,12 +102,6 @@
         <item material="wood" amount="12" damage="1"/>
         <item material="stained glass" amount="6" team-color="true"/>
     </kill-reward>
-    <kill-reward filter="only-blue">
-        <item amount="6" damage="11" material="stained clay"/>
-    </kill-reward>
-    <kill-reward filter="only-red">
-        <item amount="6" damage="14" material="stained clay"/>
-    </kill-reward>
     <kill-reward>
         <filter>
             <kill-streak count="3" repeat="false"/>
@@ -167,6 +161,7 @@
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
+    <item>chainmail chestplate</item>
     <item>leather leggings</item>
     <item>iron boots</item>
     <item>seeds</item>
@@ -175,7 +170,6 @@
     <item>string</item>
 </itemremove>
 <itemkeep>
-    <item>chainmail chestplate</item>
     <item>stained clay</item>
     <item>stained glass</item>
     <item>wood</item>
