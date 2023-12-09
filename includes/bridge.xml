@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.11.30-1 -->
+<!-- Version 2023.12.09-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -92,6 +92,35 @@
         <clear effects="true" items="false" armor="false"/>
         <health>1</health>
     </kit>
+    <kit id="obs-kit">
+        <book show-other="false">
+            <title>`e`lHow to Play</title>
+            <author>zzuf</author>
+            <pages>
+                <page>
+                    `2» `lBRIDGE
+                    `2» gamemode`0
+                    
+                    Each team has a
+                    `6portal`0, usually located
+                    below or behind their
+                    spawn point, and
+                    sometimes marked with
+                    a `1Beacon`0.
+                    
+                    Fall into the enemy
+                    team's `6portal`0 to `nscore`0,
+                    or defend your own!
+                </page>
+                <page>
+                    Some maps might have
+                    extra objectives, like
+                    `omonuments`0 or `ohills`0!
+                </page>
+            </pages>
+        </book>
+    </kit>
+    <give kit="obs-kit" filter="is-observer"/>
     <give kit="map-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
