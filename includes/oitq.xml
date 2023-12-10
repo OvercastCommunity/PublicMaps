@@ -8,7 +8,7 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.12.10-1 -->
+<!-- Version 2023.12.10-2 -->
 <constants>
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
@@ -26,7 +26,7 @@
 </score>
 <broadcasts>
     <alert after="1s" every="1m">`7Swords `c`ldo not `7kill in one hit, but bow shots `a`ldo`7!`r</alert>
-    <tip after="2s" every="1m">`7You can tap your jump key twice for a small `fdouble jump`7!`r</tip>
+    <tip after="2s" every="1m">`7You can tap your jump key twice to use your `fdouble jumps`7! Time them carefully to quickly move around!`r</tip>
 </broadcasts>
 <kits>
     <kit id="default-players-kit">
@@ -57,8 +57,8 @@
                     `ochain`0 them and fly
                     around!
                     
-                    Play using one of the
-                    `6${classes-amount}`0 available classes!
+                    Play using one of `6${classes-amount}`0
+                    available classes!
                 </page>
             </pages>
         </book>
