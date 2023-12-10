@@ -1,6 +1,6 @@
-<map proto="1.4.0" game="Capture Progress">
+<map proto="1.4.2" game="Capture Progress">
 <name>Trinus</name>
-<version>1.4.3</version>
+<version>1.4.4</version>
 <objective>Grab the flag and capture the center point!</objective>
 <gamemode>koth</gamemode>
 <authors>
@@ -262,7 +262,7 @@
     </structure>
     <structures offset="0,0,0">
         <dynamic structure="red-beacon">
-            <filter>
+            <trigger>
                 <all>
                     <any>
                         <flag-returned>red-flag</flag-returned>
@@ -272,10 +272,10 @@
                         <flag-carried>blue-flag</flag-carried>
                     </not>
                 </all>
-            </filter>
+            </trigger>
         </dynamic>
         <dynamic structure="blue-beacon">
-            <filter>
+            <trigger>
                 <all>
                     <any>
                         <flag-returned>blue-flag</flag-returned>
@@ -285,37 +285,37 @@
                         <flag-carried>red-flag</flag-carried>
                     </not>
                 </all>
-            </filter>
+            </trigger>
         </dynamic>
         <dynamic structure="center-beacon">
-            <filter>
+            <trigger>
                 <any>
                     <flag-carried>blue-flag</flag-carried>
                     <flag-carried>red-flag</flag-carried>
                     <objective team="red">red-capture-real</objective>
                     <objective team="blue">blue-capture-real</objective>
                 </any>
-            </filter>
+            </trigger>
         </dynamic>
     </structures>
     <structures offset="0,-1,0">
         <dynamic structure="red-glass">
-            <filter>
+            <trigger>
                 <any>
                     <flag-carried>blue-flag</flag-carried>
                     <objective team="red">red-capture-real</objective>
                 </any>
-            </filter>
+            </trigger>
         </dynamic>
     </structures>
     <structures offset="0,-2,0">
         <dynamic structure="blue-glass">
-            <filter>
+            <trigger>
                 <any>
                     <flag-carried>red-flag</flag-carried>
                     <objective team="blue">blue-capture-real</objective>
                 </any>
-            </filter>
+            </trigger>
         </dynamic>
     </structures>
 </structures>
