@@ -1,8 +1,8 @@
-<map proto="1.4.0" game="`eProgress">
+<map proto="1.4.2" game="`eProgress">
 <objective>Be the first to the end!</objective>
 <gamemode>Arcade</gamemode> 
 <blitz>
-    <lives>1</lives>    
+    <lives>1</lives>
 </blitz>
 <players min="4" max="8" colors="true"/>
 <broadcasts>
@@ -69,7 +69,7 @@
 </kits>
 <structures>
     <structure id="mon-struct" region="mon" air="false"/>
-    <dynamic structure="mon-struct" offset="0,0,0" filter="countdown"/>
+    <dynamic structure="mon-struct" offset="0,0,0" trigger="countdown"/>
 </structures>
 <filters>
     <not id="countdown">
