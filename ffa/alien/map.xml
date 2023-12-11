@@ -1,8 +1,9 @@
 <map proto="1.4.2">
 <name>Alien</name>
 <slug>alien</slug>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Get the most kills within 5 minutes!</objective>
+<created>2016-03-05</created>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
 </authors>

@@ -2,8 +2,9 @@
 <map proto="1.4.2">
 <name>Festive</name>
 <slug>festive</slug>
-<version>1.0</version>
+<version>1.0.1</version>
 <objective>Kill as many players as you can in 5 minutes!</objective>
+<created>2016-03-03</created>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" />
     <!--  Timotheeee  -->

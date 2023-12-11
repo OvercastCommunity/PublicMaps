@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Geometric</name>
-<version>1.9.2</version>
+<version>1.9.3</version>
 <objective>Kill as many players as you can with your gun!</objective>
+<created>2016-03-02</created>
 <authors>
     <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/> <!-- Strmr -->
 </authors>

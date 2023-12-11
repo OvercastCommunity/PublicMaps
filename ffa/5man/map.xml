@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>5man</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Get the most kills within 5 minutes!</objective>
+<created>2016-02-28</created>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- Jtr -->
 </authors>

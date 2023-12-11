@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Clutter</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate you, and you, and that guy over there.</objective>
+<created>2015-11-22</created>
 <phase>development</phase>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!--Jtr-->

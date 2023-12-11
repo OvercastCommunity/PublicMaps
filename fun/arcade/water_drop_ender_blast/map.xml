@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
 <map proto="1.4.2" game="Water Drop">
 <name>Water Drop: Ender Blast</name>
-<version>2.0.1</version>
+<version>2.0.2</version>
 <objective>Get to the bottom 2 times!</objective>
+<created>2019-04-01</created>
 <gamemode>Arcade</gamemode>
 <authors>
-    <author uuid="ca2306d1-1198-4d46-8c44-a82f5b3c8a4e" contribution="Original map theme" /> <!-- BeanButt -->
-    <author uuid="36e46b32-80ef-4fa5-b1e2-6c777736d888" contribution="Original map theme" /> <!-- Elijah -->
+    <author uuid="ca2306d1-1198-4d46-8c44-a82f5b3c8a4e" contribution="Original map theme"/> <!-- BeanButt -->
+    <author uuid="36e46b32-80ef-4fa5-b1e2-6c777736d888" contribution="Original map theme"/> <!-- Elijah -->
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="Water Drop adaptation"/> <!-- mitchiii_ -->
 </authors>
 <players min="1" max="60" colors="true"/>
 <spawns>
     <spawn kit="players" yaw="-90" region="spawn"/>
-    <default kit="obs" yaw="-90" region="spawn"/> 
+    <default kit="obs" yaw="-90" region="spawn"/>
 </spawns>
 <kits>
     <kit id="obs">

@@ -1,8 +1,9 @@
 <map proto="1.4.2" game="Survival Games">
 <name>Enthral</name>
 <phase>development</phase>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Be the sole survivor of the games</objective>
+<created>2015-12-06</created>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" /> <!-- Yoyo_ -->
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" /> <!-- Rockymine -->

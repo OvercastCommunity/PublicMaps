@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Decay</name>
-<version>1.5.4</version>
+<version>1.5.5</version>
 <objective>Kill as many people before the time is up!</objective>
+<created>2016-02-26</created>
 <authors>
       <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!--Jtr-->
 </authors>

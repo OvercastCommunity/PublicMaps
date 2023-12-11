@@ -1,7 +1,8 @@
 <map proto="1.4.2" game="Water Drop">
 <name>Water Drop: Long Shot</name>
-<version>1.5.0</version>
+<version>1.5.1</version>
 <objective>Grab the flag and return it to your spawn!</objective>
+<created>2019-04-01</created>
 <include id="void-death"/>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Original map theme"/> <!-- StealthMedia -->

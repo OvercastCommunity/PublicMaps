@@ -5,8 +5,9 @@
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
 </authors>
-<version>1.0.0</version>
+<version>1.0.1</version>
 <objective>Kill as many players as possible in 8 minutes</objective>
+<created>2015-12-28</created>
 <time>8m</time>
 <players min="2" max="18"/>
 <score>

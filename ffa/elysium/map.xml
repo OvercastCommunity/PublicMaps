@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Elysium</name>
-<version>1.4.2</version>
+<version>1.4.3</version>
 <objective>Survive and get the most points.</objective>
+<created>2015-05-05</created>
 <phase>development</phase>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -54,7 +55,7 @@
         <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
-<regions>    
+<regions>
     <negative id="reversed-map">
         <cylinder base="0.5,0,0.5" radius="200" height="200"/>
     </negative>
