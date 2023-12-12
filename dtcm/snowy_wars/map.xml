@@ -2,7 +2,7 @@
 <name>Snowy Wars</name>
 <variant id="christmas" world="christmas">Christmas</variant>
 <variant id="halloween" world="halloween">Halloween</variant>
-<version>1.6.1</version>
+<version>1.6.2</version>
 <objective>Break the enemy's monument!</objective>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
@@ -125,6 +125,11 @@
     <tool>arrow</tool>
     <tool>stone spade</tool>
 </toolrepair>
+<itemkeep>
+    <item>wood</item>
+    <item>glass</item>
+    <item>golden apple</item>
+</itemkeep>
 <itemremove>
     <item>leather helmet</item>
     <item>leather chestplate</item>
@@ -133,6 +138,7 @@
     <item>obsidian</item>
     <item>beacon</item>
     <item>coal block</item>
+    <item>skull item</item>
 </itemremove>
 <block-drops>
     <rule>
@@ -152,11 +158,6 @@
         </drops>
     </rule>
 </block-drops>
-<itemkeep>
-    <item>wood</item>
-    <item>glass</item>
-    <item>golden apple</item>
-</itemkeep>
 <kill-rewards>
     <kill-reward>
         <item amount="16" damage="2" material="wood"/>
