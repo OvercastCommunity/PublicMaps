@@ -1,11 +1,15 @@
 <map proto="1.4.2">
 <name>CannonQuad</name>
 <phase>development</phase>
-<version>1.3.8</version>
+<version>1.4.0</version>
 <objective>Destroy your opponents within 10 minutes and 30 seconds.</objective>
 <gamemode>blitz</gamemode>
+<variant id="christmas" world="christmas" override="true">ChristmasQuad</variant>
 <authors>
-    <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->
+    <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- Zan -->
+    <if variant="christmas">
+        <author uuid="205d1aad-c619-499b-9885-b91c372b1c13" contribution="Christmas-izing"/> <!-- lord_creeper01 -->
+    </if>
 </authors>
 <contributors>
     <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Kits and Ideas (From Cannon Duel)"/> <!-- last_username -->
@@ -102,27 +106,12 @@
     <team id="only-blue">blue</team>
     <team id="only-green">green</team>
     <team id="only-yellow">yellow</team>
-    <not id="deny-glass-world">
-        <all>
-            <any>
-                <material>160</material>
-                <material>95</material>
-                <material>chest</material>
-            </any>
-            <any>
-                <cause>world</cause>
-                <not>
-                    <cause>player</cause>
-                </not>
-            </any>
-        </all>
-    </not>
-    <deny id="deny-glass-break">
-        <all>
+    <deny id="deny-break">
+        <any>
             <material>160</material>
             <material>95</material>
             <material>chest</material>
-        </all>
+        </any>
     </deny>
     <all id="region-enabled">
         <time>6m</time>
@@ -154,10 +143,9 @@
     <apply kit="death" region="death-kit-region"/>
     <apply block="never" region="top" message="You may not build here."/>
     <apply block="never" region="void" message="You may not build outside the playable area."/>
-    <apply block="region-enabled" region="center-bridging-areas" message="This region is disabled until 7m 30s has passed."/>
+    <apply block="region-enabled" region="center-bridging-areas" message="This region is disabled until 6m have passed."/>
     <apply block="never" region="no-bridge-region" message="You may not bridge outside your area."/>
-    <apply block-break="deny-glass-world" region="main"/>
-    <apply block-break="deny-glass-break" region="main" message="You may not break this block."/>
+    <apply block-break="deny-break" region="main" message="You may not break this block."/>
 </regions>
 <disabledamage>
     <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
@@ -208,6 +196,9 @@
     <item>dispenser</item>
     <item>wool</item>
     <item>wood sword</item>
+    <item>snow ball</item>
+    <item>log</item>
+    <item>glowstone dust</item>
 </itemremove>
 <timelock>on</timelock>
 <maxbuildheight>25</maxbuildheight>
@@ -224,6 +215,6 @@
 </modes>
 <world-borders center="-12.5,-38.5">
     <world-border size="125"/>
-    <world-border size="10" after="5m30s" duration="4m30s"/>
+    <world-border size="10" after="6m" duration="4m30s"/>
 </world-borders>
 </map>
