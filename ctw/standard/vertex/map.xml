@@ -1,14 +1,14 @@
 <map proto="1.4.2">
 <name>Vertex</name>
-<version>1.3.0</version>
+<version>1.3.1</version>
 <objective>Capture the wool and return it to your victory monument</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>
 <include id="gapple-kill-reward"/>
 <teams>
-    <team id="blue-team" color="blue" max="8">Blue</team>
-    <team id="red-team" color="dark red" max="8">Red</team>
+    <team id="blue-team" color="blue" max="7">Blue</team>
+    <team id="red-team" color="dark red" max="7">Red</team>
 </teams>
 <kits>
     <kit id="main-kit">
@@ -32,8 +32,8 @@
 <spawns>
     <default>
         <regions>
-            <point yaw="180">268,18,353</point>
-            <point yaw="-90">192,18,277</point>
+            <point yaw="180">268,18,346</point>
+            <point yaw="-90">199,18,277</point>
         </regions>
     </default>
     <spawn team="blue-team" kit="main-kit" yaw="180">
@@ -50,7 +50,16 @@
 <filters>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
-    <material id="chest">chest</material>
+    <deny id="deny-woolroom-blocks">
+        <blocks region="wool-rooms">
+            <not>
+                <any>
+                    <material>air</material>
+                    <material>web</material>
+                </any>
+            </not>
+        </blocks>
+    </deny>
     <deny id="deny-bottom-layer">
         <all>
             <below y="1"/>
@@ -67,9 +76,11 @@
         <mirror id="red-spawn" region="blue-spawn" origin="261,0,284" normal="-1,0,-1"/>
     </union>
     <union id="wool-rooms">
-        <cuboid id="blue-wool" min="264,10,348" max="272,oo,375"/>
+        <cuboid id="blue-wool" min="264,10,341" max="272,21,349"/>
         <mirror id="red-wool" region="blue-wool" origin="261,0,284" normal="-1,0,-1"/>
     </union>
+    <point id="blue-wool-spawner">268,13,345</point>
+    <mirror id="red-wool-spawner" region="blue-wool-spawner" origin="261,0,284" normal="-1,0,-1"/>
     <union id="playable-area">
         <rectangle id="blue-side" min="281,349" max="249,264"/>
         <mirror id="red-side" region="blue-side" origin="261,0,284" normal="-1,0,-1"/>
@@ -79,13 +90,13 @@
     <apply region="team-spawns" block="never" message="You may not modify the spawn area!"/>
     <apply region="blue-wool" enter="only-red" message="You may not enter this wool room!"/>
     <apply region="red-wool" enter="only-blue" message="You may not enter this wool room!"/>
-    <apply region="blue-wool" block="all(only-red, not(chest))" use="only-red" message="You may not modify that block!"/>
-    <apply region="red-wool" block="all(only-blue, not(chest))" use="only-blue" message="You may not modify that block!"/>
+    <apply region="blue-wool" block="all(deny-woolroom-blocks, only-red)" use="only-red" message="You may not modify that block!"/>
+    <apply region="red-wool" block="all(deny-woolroom-blocks, only-blue)" use="only-blue" message="You may not modify that block!"/>
     <apply block-place="playable-area" block-break="deny-bottom-layer"/>
 </regions>
 <maxbuildheight>20</maxbuildheight>
 <wools>
-    <wool team="blue-team" color="orange" location="192,12,277">
+    <wool team="blue-team" color="orange" location="200,12,277">
         <monument>
             <block>268,4,346</block>
         </monument>
@@ -96,6 +107,14 @@
         </monument>
     </wool>
 </wools>
+<spawners max-entities="1" delay="1s">
+    <spawner spawn-region="blue-wool-spawner" player-region="blue-wool" filter="only-red">
+        <item material="wool" damage="3"/>
+    </spawner>
+    <spawner spawn-region="red-wool-spawner" player-region="red-wool" filter="only-blue">
+        <item material="wool" damage="1"/>
+    </spawner>
+</spawners>
 <kill-rewards>
     <kill-reward>
         <item material="arrow" amount="16"/>
