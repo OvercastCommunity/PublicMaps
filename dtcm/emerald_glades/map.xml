@@ -1,13 +1,13 @@
 <map proto="1.4.2">
 <name>Emerald Glades</name>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Destroy the other team's monument!</objective>
 <authors>
-    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii -->
 </authors>
 <teams>
-    <team id="blue-team" color="blue" max="6">Blue</team>
-    <team id="red-team" color="dark red" max="6">Red</team>
+    <team id="blue-team" color="blue" max="7">Blue</team>
+    <team id="red-team" color="dark red" max="7">Red</team>
 </teams>
 <kits>
     <kit id="main-kit">
@@ -100,8 +100,8 @@
     <destroyable region="red-monument" owner="red-team"/>
 </destroyables>
 <modes>
-    <mode after="15s" material="gold block"/>
-    <mode after="30s" material="stained clay:5"/>
+    <mode after="15m" material="gold block"/>
+    <mode after="30m" material="stained clay:5"/>
 </modes>
 <kill-rewards>
     <kill-reward>
@@ -170,4 +170,7 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemkeep>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
