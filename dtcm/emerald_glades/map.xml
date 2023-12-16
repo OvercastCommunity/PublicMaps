@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Emerald Glades</name>
-<version>1.3.2</version>
+<version>1.3.3</version>
 <objective>Destroy the other team's monument!</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii -->
@@ -141,6 +141,7 @@
     <tool>stone sword</tool>
     <tool>stone pickaxe</tool>
     <tool>stone axe</tool>
+    <tool>stone spade</tool>
     <tool>gold helmet</tool>
     <tool>gold chestplate</tool>
     <tool>gold leggings</tool>
