@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Cyril</name>
-<version>1.3.6</version>
+<version>1.3.7</version>
 <objective>Capture the enemy team's wool!</objective>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
@@ -102,10 +102,10 @@
         <!-- block 36 in wool lanes -->
     </complement>
     <union id="iron-mines">
-        <cuboid id="blue-spawn-iron" min="27,8,-18" max="37,12,-13"/>
-        <cuboid id="blue-lane-iron" min="22,8,-43" max="27,12,-30"/>
-        <cuboid id="red-spawn-iron" min="-36,8,14" max="-26,12,19"/>
-        <cuboid id="red-lane-iron" min="-26,8,44" max="-21,12,31"/>
+        <cuboid id="blue-spawn-iron" min="27,5,-18" max="37,12,-13"/>
+        <cuboid id="blue-lane-iron" min="22,5,-43" max="27,12,-30"/>
+        <cuboid id="red-spawn-iron" min="-36,5,14" max="-26,12,19"/>
+        <cuboid id="red-lane-iron" min="-26,5,44" max="-21,12,31"/>
     </union>
     <union id="spawner-protection">
         <cylinder id="blue-spawner-prot" base="-47.5,7,-57.5" radius="0.5" height="2"/>
