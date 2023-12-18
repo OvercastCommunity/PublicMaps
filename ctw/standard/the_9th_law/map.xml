@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>The 9th Law</name>
-<version>1.2.0</version>
+<version>1.2.1</version>
 <objective>Capture both of the enemy team's wools!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -72,6 +72,9 @@
     <deny id="deny-void">
         <void/>
     </deny>
+    <deny id="deny-spruce-wood">
+        <material>log:13</material>
+    </deny>
 </filters>
 <regions>
     <union id="wool-rooms">
@@ -134,6 +137,12 @@
     <apply enter="only-red" message="You may not enter your own wool room!" region="red-access-top"/>
     <!-- Deny use of dispensers, hoppers, beacons -->
     <apply use="deny-use"/>
+    <!-- Prevent players from breaking the void filter -->
+    <apply block-break="deny-spruce-wood" message="You may not break this block!">
+        <region>
+            <below y="1"/>
+        </region>
+    </apply>
 </regions>
 <spawners>
     <spawner id="green-spawner" spawn-region="green-wool-spawner" player-region="green-wool-spawner-player-region" max-entities="10" delay="3s">
