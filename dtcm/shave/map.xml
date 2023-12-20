@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Shave</name>
 <variant id="christmas" world="christmas">Santa</variant>
-<version>1.2.0</version>
+<version>1.2.1</version>
 <objective>Shave off the other team's beard to win.</objective>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
@@ -97,8 +97,8 @@
 <regions>
     <union id="spawns">
         <unless variant="christmas">
-            <circle id="red-spawn" center="-3,-67" radius="6"/>
-            <circle id="blue-spawn" center="-3,-24" radius="6"/>
+            <rectangle id="red-spawn" min="-10,-20" max="2,-31"/>
+            <rectangle id="blue-spawn" min="2,-72" max="-10,-61"/>
         </unless>
         <if variant="christmas">
             <rectangle id="red-spawn" max="-11,-9" min="3,-20"/>
@@ -115,8 +115,8 @@
             <rectangle id="red-man" min="-25,12" max="16,-9"/>
         </if>
     </union>
-    <apply region="blue-spawn" enter="only-red" message="You may not enter `4Red Spawn!"/>
-    <apply region="red-spawn" enter="only-blue" message="You may not enter `1Blue Spawn!"/>
+    <apply region="blue-spawn" enter="only-blue" message="You may not enter `9Blue`r's spawn!"/>
+    <apply region="red-spawn" enter="only-red" message="You may not enter `4Red`r's spawn!"/>
     <apply region="blue-spawn" lend-kit="spawn-protection" filter="only-red"/>
     <apply region="red-spawn" lend-kit="spawn-protection" filter="only-blue"/>
     <apply region="spawns" block="never" message="You may not modify the spawn areas!"/>
