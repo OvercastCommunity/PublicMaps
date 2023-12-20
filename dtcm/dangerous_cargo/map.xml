@@ -1,135 +1,127 @@
-<?xml version="1.0"?>
-<map proto="1.3.6">
+<map proto="1.4.2">
 <name>Dangerous Cargo</name>
-<version>1.0.6</version>
-<objective>Leak lava from the enemy's obsidian core, and destroy their two monuments!</objective>
+<version>1.0.7</version>
+<objective>Leak lava from the enemy's obsidian core and destroy their two monuments!</objective>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
 </authors>
-<timelock>on</timelock>
 <rules>
     <rule>Dispensers are disabled</rule>
 </rules>
 <teams>
-    <team color="dark red" max="24">Red</team>
-    <team color="blue" max="24">Blue</team>
+    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue" color="blue" max="24">Blue</team>
 </teams>
 <kits>
-    <kit name="spawn">
-        <item slot="0">diamond sword</item>
-        <item slot="1">bow</item>
-        <item slot="28" amount="64">arrow</item>
-        <item slot="2">diamond pickaxe</item>
-        <item slot="3">diamond axe</item>
-        <item slot="4" amount="16">log</item>
-        <item slot="5" amount="32">ladder</item>
-        <item slot="6">water bucket</item>
-        <item slot="8" amount="64">cooked fish</item>
-        <chestplate enchantment="protection explosions:4">chainmail chestplate</chestplate>
+    <kit id="spawn">
+        <item slot="0" material="diamond sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="28" amount="64" material="arrow"/>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" material="diamond axe"/>
+        <item slot="4" amount="16" material="log"/>
+        <item slot="5" amount="32" material="ladder"/>
+        <item slot="6" material="water bucket"/>
+        <item slot="8" amount="64" material="cooked fish"/>
+        <chestplate enchantment="protection explosions:4" material="chainmail chestplate"/>
     </kit>
-    <kit name="give-resistance" force="true">
-        <potion duration="7" amplifier="3">damage resistance</potion>
+    <kit id="give-resistance" force="true">
+        <effect duration="7" amplifier="3">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn">
-        <regions yaw="-90"><cuboid min="-104,67,-20" max="-102,67,-18"/></regions>
+        <regions yaw="-90">
+            <cuboid min="-104,67,-20" max="-102,67,-18"/>
+        </regions>
     </spawn>
     <spawn team="red" kit="spawn">
-        <regions yaw="-90"><cuboid min="-104,67,56" max="-102,67,58"/></regions>
+        <regions yaw="-90">
+            <cuboid min="-104,67,56" max="-102,67,58"/>
+        </regions>
     </spawn>
     <default>
-        <regions yaw="-90"><cuboid min="-102,70,17" max="-104,70,21"/></regions>
+        <regions yaw="-90">
+            <cuboid min="-102,70,17" max="-104,70,21"/>
+        </regions>
     </default>
 </spawns>
 <filters>
-    <filter name="deny-dispenser">
-        <deny>
-            <block>dispenser</block>
-        </deny>
-    </filter>
+    <deny id="deny-dispenser">
+        <material>dispenser</material>
+    </deny>
 </filters>
 <regions>
-    <apply block="deny-all" message="You may not modify the spawn tunnels!">
-        <union>
-            <cuboid name="blue-tunnel" min="-55,66,-22" max="-106,71,-16"/>
-            <cuboid name="red-tunnel" min="-55,66,54" max="-106,71,60"/>
-        </union>
-    </apply>
-    <apply block="deny-all" message="You may not modify the spawn pools!">
-        <union>
-            <cuboid name="blue-pool-a" min="-50,51,-12" max="-46,63,-15"/>
-            <cuboid name="blue-pool-b" min="-50,51,-23" max="-46,63,-26"/>
-            <cuboid name="red-pool-a" min="-50,51,64" max="-46,63,61"/>
-            <cuboid name="red-pool-b" min="-50,51,53" max="-46,63,50"/>
-        </union>
-    </apply>
-    <!-- Playable region -->
-    <rectangle name="play" min="-62,-36" max="20,74"/>
-    <apply block="deny-all" message="You may not interact with blocks outside the playing field.">
-        <negative>
-            <region name="play"/>
-        </negative>
-    </apply>
-    <apply block-place="deny-dispenser" message="You cannot place dispensers on this map!">
-        <region name="play"/>
-    </apply>
-    <apply enter="deny-all" message="You may not re-enter the spawn area!">
-        <union name="spawn-areas">
-            <cuboid name="blue-entrance" min="-58,66,-21" max="-105,71,-17"/>
-            <cuboid name="red-entrance" min="-58,66,55" max="-105,71,59"/>
-        </union>
-    </apply>
-    <apply kit="give-resistance">
-        <union name="spawn-exits">
-            <cuboid name="blue-exit" min="-60,66,-21" max="-61,71,-17"/>
-            <cuboid name="red-exit" min="-60,66,55" max="-61,71,59"/>
-        </union>
-    </apply>
+    <union id="tunnels">
+        <cuboid id="blue-tunnel" min="-55,66,-22" max="-106,71,-16"/>
+        <cuboid id="red-tunnel" min="-55,66,54" max="-106,71,60"/>
+    </union>
+    <union id="pools">
+        <cuboid id="blue-pool-a" min="-50,51,-12" max="-46,63,-15"/>
+        <cuboid id="blue-pool-b" min="-50,51,-23" max="-46,63,-26"/>
+        <cuboid id="red-pool-a" min="-50,51,64" max="-46,63,61"/>
+        <cuboid id="red-pool-b" min="-50,51,53" max="-46,63,50"/>
+    </union>
+    <union id="spawn-areas">
+        <cuboid id="blue-entrance" min="-58,66,-21" max="-105,71,-17"/>
+        <cuboid id="red-entrance" min="-58,66,55" max="-105,71,59"/>
+    </union>
+    <union id="spawn-exits">
+        <cuboid id="blue-exit" min="-60,66,-21" max="-61,71,-17"/>
+        <cuboid id="red-exit" min="-60,66,55" max="-61,71,59"/>
+    </union>
+    <negative id="not-playable">
+        <rectangle id="playable" min="-62,-36" max="20,74"/> <!-- Playable region -->
+    </negative>
+    <apply region="tunnels" block="never" message="You may not modify the spawn tunnels!"/>
+    <apply region="pools" block="never" message="You may not modify the spawn pools!"/>
+    <apply region="spawn-areas" enter="never" message="You may not re-enter the spawn tunnel!"/>
+    <apply region="spawn-exits" kit="give-resistance"/>
+    <apply region="playable" block-place="deny-dispenser" message="You cannot place dispensers on this map!"/>
+    <apply region="not-playable" block="never" message="You may not interact with blocks outside the playing field."/>
 </regions>
-<maxbuildheight>85</maxbuildheight>
 <modes>
     <mode material="gold block" after="15m" name="GOLD CORE MODE"/>
     <mode material="glass" after="20m" name="GLASS CORE MODE"/>
 </modes>
 <cores material="obsidian" leak="1" mode-changes="true">
     <core team="blue">
-        <region><cuboid min="-21,54,-22" max="-15,60,-16"/></region>
+        <region>
+            <cuboid min="-21,54,-22" max="-15,60,-16"/>
+        </region>
     </core>
     <core team="red">
-        <region><cuboid min="-21,54,54" max="-15,60,60"/></region>
+        <region>
+            <cuboid min="-21,54,54" max="-15,60,60"/>
+        </region>
     </core>
 </cores>
-<destroyables materials="ender stone" completion="100%">
+<destroyables materials="ender stone">
     <destroyables owner="blue">
         <destroyable name="Antenna A">
-            <region><cuboid min="-53,73,-17" max="-56,80,-20"/></region>
+            <region>
+                <cuboid min="-53,73,-17" max="-56,80,-20"/>
+            </region>
         </destroyable>
         <destroyable name="Antenna B">
-            <region><cuboid min="10,66,-17" max="7,73,-20"/></region>
+            <region>
+                <cuboid min="10,66,-17" max="7,73,-20"/>
+            </region>
         </destroyable>
     </destroyables>
     <destroyables owner="red">
         <destroyable name="Antenna A">
-            <region><cuboid min="-53,73,57" max="-56,80,55"/></region>
+            <region>
+                <cuboid min="-53,73,57" max="-56,80,55"/>
+            </region>
         </destroyable>
         <destroyable name="Antenna B">
-            <region><cuboid min="10,66,57" max="7,73,55"/></region>
+            <region>
+                <cuboid min="10,66,57" max="7,73,55"/>
+            </region>
         </destroyable>
     </destroyables>
 </destroyables>
-<killreward>
-    <item amount="16">arrow</item>
-    <item amount="4">stone plate</item>
-    <item amount="4">stone button</item>
-    <item amount="4">fence</item>
-    <item amount="4">trap door</item>
-    <item amount="8">redstone torch on</item>
-    <item amount="16">tnt</item>
-    <item amount="8">redstone</item>
-    <item amount="8">ladder</item>
-    <item>golden apple</item>
-</killreward>
 <toolrepair>
     <tool>diamond sword</tool>
     <tool>bow</tool>
@@ -150,7 +142,23 @@
     <item>ender stone</item>
     <item>golden apple</item>
 </itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+        <item amount="4" material="stone plate"/>
+        <item amount="4" material="stone button"/>
+        <item amount="4" material="fence"/>
+        <item amount="4" material="trap door"/>
+        <item amount="8" material="redstone torch on"/>
+        <item amount="16" material="tnt"/>
+        <item amount="8" material="redstone"/>
+        <item amount="8" material="ladder"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<timelock>on</timelock>
+<maxbuildheight>85</maxbuildheight>
 </map>

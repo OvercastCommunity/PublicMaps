@@ -1,8 +1,7 @@
-<?xml version="1.0"?>
-<map proto="1.3.6">
+<map proto="1.4.2">
 <name>Polylith</name>
-<version>1.0.1</version>
-<objective>Destroy the enemy's Core!</objective>
+<version>1.0.2</version>
+<objective>Destroy the enemy's core!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
@@ -10,52 +9,44 @@
     <team id="red" color="dark red" max="10" max-overfill="12">Red</team>
     <team id="blue" color="blue" max="10" max-overfill="12">Blue</team>
 </teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" material="stone sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" material="iron axe"/>
+        <item slot="4" amount="24" material="baked potato"/>
+        <item slot="6" amount="24" material="glass"/>
+        <item slot="7" damage="2" amount="24" material="wood"/>
+        <item slot="8" amount="24" material="arrow"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate color="e4e432" material="leather chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots color="e4e432" material="leather boots"/>
+        <effect duration="5" amplifier="2">heal</effect>
+        <effect duration="5">damage resistance</effect>
+    </kit>
+    <kit id="observers">
+        <effect>speed</effect>
+    </kit>
+</kits>
 <spawns>
-    <spawn team="red" kit="red">
+    <spawn team="red" kit="spawn-kit">
         <regions yaw="90">
-            <point>227,13,391</point>
+            <point>227.5,13,391.5</point>
         </regions>
     </spawn>
-    <spawn team="blue" kit="blue">
+    <spawn team="blue" kit="spawn-kit">
         <regions yaw="-90">
-            <point>-1,13,391</point>
+            <point>-0.5,13,391.5</point>
         </regions>
     </spawn>
     <default kit="observers">
         <regions yaw="180">
-            <point>113,18,443</point>
+            <point>113.5,18,443.5</point>
         </regions>
     </default>
 </spawns>
-<kits>
-    <kit name="spawn">
-        <item slot="0">stone sword</item>
-        <item slot="1">bow</item>
-        <item slot="2">diamond pickaxe</item>
-        <item slot="3">iron axe</item>
-        <item slot="4" amount="24">baked potato</item>
-        <item slot="6" amount="24">glass</item>
-        <item slot="7" damage="2" amount="24">wood</item>
-        <item slot="8" amount="24">arrow</item>
-        <potion duration="5" amplifier="2">heal</potion>
-        <potion duration="5">damage resistance</potion>
-    </kit>
-    <kit name="blue" parents="spawn">
-        <helmet color="0066cc">leather helmet</helmet>
-        <chestplate color="e4e432">leather chestplate</chestplate>
-        <leggings color="0066cc">leather leggings</leggings>
-        <boots color="e4e432">leather boots</boots>
-    </kit>
-    <kit name="red" parents="spawn">
-        <helmet color="cd0000">leather helmet</helmet>
-        <chestplate color="e4e432">leather chestplate</chestplate>
-        <leggings color="cd0000">leather leggings</leggings>
-        <boots color="e4e432">leather boots</boots>
-    </kit>
-    <kit name="observers">
-        <potion duration="oo" amplifier="1">speed</potion>
-    </kit>
-</kits>
 <item-mods>
     <rule>
         <match>
@@ -74,108 +65,100 @@
         </modify>
     </rule>
 </item-mods>
-<!-- Normal rewards, every kill -->
-<killreward>
-    <filter>
-        <kill-streak count="1" repeat="true"/>
-    </filter>
-    <kit>
-        <potion duration="3" amplifier="1">night vision</potion>
-    </kit>
-    <item>golden apple</item>
-</killreward>
 <filters>
-    <filter name="only-red">
-        <team>red</team>
-    </filter>
-    <filter name="only-blue">
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <material id="only-iron">iron block</material>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <!-- <all id="Core1">
         <team>blue</team>
-    </filter>
-    <filter name="only-iron">
-        <block>iron block</block>
-    </filter>
-    <filter name="deny-void">
-        <deny>
-            <void/>
-        </deny>
-    </filter>
-    <!--
-    <filter name="Core1">
-        <all>
-            <team>blue</team>
-            <objective team="blue">BelowRed</objective>
-        </all>
-    </filter>
-    <filter name="Core2">
-        <all>
-            <team>red</team>
-            <objective team="red">BelowBlue</objective>
-        </all>
-    </filter>-->
+        <objective team="blue">BelowRed</objective>
+    </all>
+    <all id="Core2">
+        <team>red</team>
+        <objective team="red">BelowBlue</objective>
+    </all> -->
 </filters>
 <regions>
     <!-- REGIONS TO USE -->
-    <!-- extended protections for spawns-->
-    <cylinder name="red spawn protection" base="227.5,0,391.5" radius="14" height="50"/>
-    <cylinder name="blue spawn protection" base="-0.5,0,391.5" radius="14" height="50"/>
-    <!-- no-enter zone for spawns-->
-    <cylinder name="red spawn no-enter-zone" base="227.5,0,391.5" radius="18" height="50"/>
-    <cylinder name="blue spawn no-enter-zone" base="-0.5,0,391.5" radius="18" height="50"/>
+    <!-- extended protections for spawns -->
+    <cylinder id="red spawn protection" base="227.5,0,391.5" radius="14" height="50"/>
+    <cylinder id="blue spawn protection" base="-0.5,0,391.5" radius="14" height="50"/>
+    <!-- no-enter zone for spawns -->
+    <cylinder id="red spawn no-enter-zone" base="227.5,0,391.5" radius="18" height="50"/>
+    <cylinder id="blue spawn no-enter-zone" base="-0.5,0,391.5" radius="18" height="50"/>
     <!-- APPLICATIONS -->
     <!-- Prevent building in the spawns -->
-    <apply block="deny-all" message="You may not interact with the spawns">
-        <region name="red spawn protection"/>
-        <region name="blue spawn protection"/>
+    <apply block="never" message="You may not interact with the spawns.">
+        <region>
+            <region id="red spawn protection"/>
+            <region id="blue spawn protection"/>
+        </region>
     </apply>
     <!-- Prevent building outside of the map -->
-    <apply block="deny-void" message="You may not build in the void">
-        <negative>
-            <cuboid min="90,0,354" max="137,40,429"/>
-        </negative>
+    <apply block="deny-void" message="You may not build in the void.">
+        <region>
+            <negative id="void-negative">
+                <cuboid min="90,0,354" max="137,40,429"/>
+            </negative>
+        </region>
     </apply>
     <!-- Prevent base entering -->
-    <apply enter="only-red" message="You may not enter the enemy base">
-        <region name="red spawn no-enter-zone"/>
-    </apply>
-    <apply enter="only-blue" message="You may not enter the enemy base">
-        <region name="blue spawn no-enter-zone"/>
-    </apply>
+    <apply region="red spawn no-enter-zone" enter="only-red" message="You may not enter the enemy base."/>
+    <apply region="blue spawn no-enter-zone" enter="only-blue" message="You may not enter the enemy base."/>
     <!-- Prevent base break -->
-    <apply block-break="only-iron" block-place="deny-all" message="You may not destroy the base">
-        <region name="red spawn protection"/>
-        <region name="blue spawn protection"/>
+    <apply block-break="only-iron" block-place="never" message="You may not destroy the base.">
+        <region>
+            <region id="red spawn protection"/>
+            <region id="blue spawn protection"/>
+        </region>
     </apply>
 </regions>
     <!-- Prevent control points break 
-    <apply block-break="only-iron" block-place="deny-all" message="You may not break the hill">
-        <cylinder base="47.5,1,391.5" radius="6" height="1"/>
-        <cylinder base="179.5,1,391.5" radius="6" height="1"/>
+    <apply block-break="only-iron" block-place="never" message="You may not break the hill">
+        <region>
+            <cylinder base="47.5,1,391.5" radius="6" height="1"/>
+            <cylinder base="179.5,1,391.5" radius="6" height="1"/>
+        </region>
     </apply>
 <king>
     <hills capture-players="lead" incremental="true" permanent="true" show-progress="true" neutral-state="false" required="false">
         <hill id="BelowBlue" name="Blue Hill" capture-time="12s">
-            <capture><cylinder name="capture-blue" base="47.5,1,391.5" radius="6" height="4"/></capture>
-            <progress><cylinder name="progress-blue" base="47.5,1,391.5" radius="6" height="27"/></progress>
+            <capture><cylinder id="capture-blue" base="47.5,1,391.5" radius="6" height="4"/></capture>
+            <progress><cylinder id="progress-blue" base="47.5,1,391.5" radius="6" height="27"/></progress>
         </hill>
         <hill id="BelowRed" name="Red Hill" capture-time="12s">
-            <capture><cylinder name="capture-red" base="179.5,1,391.5" radius="6" height="4"/></capture>
-            <progress><cylinder name="progress-red" base="179.5,1,391.5" radius="6" height="27"/></progress>
+            <capture><cylinder id="capture-red" base="179.5,1,391.5" radius="6" height="4"/></capture>
+            <progress><cylinder id="progress-red" base="179.5,1,391.5" radius="6" height="27"/></progress>
         </hill>
     </hills>
 </king>-->
 <cores material="obsidian" leak="5">
     <core team="red">
-        <region><cuboid min="182,19,388" max="176,10,394"/></region>
+        <region>
+            <cuboid min="182,19,388" max="176,10,394"/>
+        </region>
     </core>
     <core team="blue">
-        <region><cuboid min="50,19,388" max="44,10,394"/></region>
+        <region>
+            <cuboid min="50,19,388" max="44,10,394"/>
+        </region>
     </core>
 </cores>
-<maxbuildheight>29</maxbuildheight>
-<hunger>
-    <depletion>on</depletion>
-</hunger>
-<timelock>on</timelock>
+<!-- Normal rewards, every kill -->
+<kill-rewards>
+    <kill-reward>
+        <filter>
+            <kill-streak count="1" repeat="true"/>
+        </filter>
+        <kit>
+            <effect duration="3">night vision</effect>
+        </kit>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -193,4 +176,9 @@
     <item>golden apple</item>
     <item>baked potato</item>
 </itemremove>
+<maxbuildheight>29</maxbuildheight>
+<hunger>
+    <depletion>on</depletion>
+</hunger>
+<timelock>on</timelock>
 </map>
