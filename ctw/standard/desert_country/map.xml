@@ -5,7 +5,6 @@
 <version>1.1.0</version>
 <objective>Capture the wools located on the opposite side.</objective>
 <gamemode>ctw</gamemode>
-<phase>development</phase>
 <if variant="default">
     <created>2016-02-10</created>
 </if>
