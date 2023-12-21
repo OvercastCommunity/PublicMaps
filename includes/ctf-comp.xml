@@ -25,8 +25,8 @@
           name="${team-1-name} Flag"
           owner="${team-1-id}"
           color="${team-1-flag-color}"
-          pickup-kit="flag-kit"
-          drop-kit="reset-kit">
+          pickup-kit="${flag-kit-definition}"
+          drop-kit="${reset-kit-definition}">
         <post pickup-filter="only-${team-2}" recover-time="${flag-recover-time}" respawn-time="${flag-respawn-time}">
             <region id="${team-1}-post"/>
         </post>
@@ -35,8 +35,8 @@
           name="${team-2-name} Flag"
           owner="${team-2-id}"
           color="${team-2-flag-color}"
-          pickup-kit="flag-kit"
-          drop-kit="reset-kit">
+          pickup-kit="${flag-kit-definition}"
+          drop-kit="${reset-kit-definition}">
         <post pickup-filter="only-${team-1}" recover-time="${flag-recover-time}" respawn-time="${flag-respawn-time}">
             <region id="${team-2}-post"/>
         </post>
