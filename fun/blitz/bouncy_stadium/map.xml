@@ -1,14 +1,14 @@
 <map proto="1.4.2">
 <name>Bouncy Stadium</name>
 <variant id="christmas" world="christmas" override="true">Frosty Stadium</variant>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Eliminate the other team before 5 minutes are up!</objective>
 <gamemode>br</gamemode>
 <authors>
     <author uuid="95763a18-eb88-44e7-8a10-780acffceae8"/> <!-- Creephunter -->
 </authors>
 <contributors>
-    <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" contribution="XML and some gameplay help"/> <!--  Kroest  -->
+    <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" contribution="XML and some gameplay help"/> <!-- Kroest -->
 </contributors>
 <teams>
     <team id="green" color="green" max="20">Green</team>
@@ -112,10 +112,11 @@
         </region>
     </apply>
 </regions>
-<timelock>on</timelock>
-<killreward>
-    <item>arrow</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
