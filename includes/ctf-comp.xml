@@ -6,7 +6,7 @@
 <time result="score" overtime="1m" max-overtime="3m">12m</time>
 <constant id="flag-recover-time">12s</constant>
 <constant id="flag-respawn-time">10s</constant>
-<constant id="flag-kit-definiton">flag-kit</constant>
+<constant id="flag-kit-definition">flag-kit</constant>
 <constant id="reset-kit-definition">reset-kit</constant>
 <kits>
     <kit id="flag-kit" force="true">
