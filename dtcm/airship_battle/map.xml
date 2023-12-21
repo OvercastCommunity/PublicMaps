@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Airship Battle</name>
 <variant id="christmas" world="christmas">Christmas</variant>
-<version>1.3</version>
+<version>1.3.1</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <unless variant="christmas">
     <created>2011-12-05</created>
@@ -160,6 +160,11 @@
     </core>
 </cores>
 <maxbuildheight>125</maxbuildheight>
+<if variant="christmas">
+    <gamerules>
+        <randomTickSpeed>0</randomTickSpeed>
+    </gamerules>
+</if>
 <hunger>
     <depletion>off</depletion>
 </hunger>
