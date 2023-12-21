@@ -4,6 +4,9 @@
 <variant id="5v5">5v5</variant>
 <unless variant="5v5">
     <include id="ctf"/>
+    <score>
+        <mercy>5</mercy>
+    </score>
 </unless>
 <if variant="5v5">
     <include id="ctf-comp"/>

@@ -1,11 +1,13 @@
 <map proto="1.4.2">
 <!-- Base CTF include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.08.01-1 -->
+<!-- Version 2023.12.20-1 -->
 <include id="conquest"/>
 <time result="score" overtime="1m" max-overtime="3m">12m</time>
 <constant id="flag-recover-time">12s</constant>
 <constant id="flag-respawn-time">10s</constant>
+<constant id="flag-kit-definiton">flag-kit</constant>
+<constant id="reset-kit-definition">reset-kit</constant>
 <kits>
     <kit id="flag-kit" force="true">
         <effect>slowness</effect>
@@ -23,8 +25,8 @@
           name="${team-1-name} Flag"
           owner="${team-1-id}"
           color="${team-1-flag-color}"
-          pickup-kit="flag-kit"
-          drop-kit="reset-kit">
+          pickup-kit="${flag-kit-definition}"
+          drop-kit="${reset-kit-definition}">
         <post pickup-filter="only-${team-2}" recover-time="${flag-recover-time}" respawn-time="${flag-respawn-time}">
             <region id="${team-1}-post"/>
         </post>
@@ -33,8 +35,8 @@
           name="${team-2-name} Flag"
           owner="${team-2-id}"
           color="${team-2-flag-color}"
-          pickup-kit="flag-kit"
-          drop-kit="reset-kit">
+          pickup-kit="${flag-kit-definition}"
+          drop-kit="${reset-kit-definition}">
         <post pickup-filter="only-${team-1}" recover-time="${flag-recover-time}" respawn-time="${flag-respawn-time}">
             <region id="${team-2}-post"/>
         </post>
@@ -44,7 +46,5 @@
         <net region="${team-2}-net" flag="${team-1}-flag"/>
     </flags>
 </flags>
-<score>
-    <mercy>5</mercy>
-</score>
+<score/>
 </map>
