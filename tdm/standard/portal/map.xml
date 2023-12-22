@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.3.5">
+<map proto="1.4.2">
 <name>Portal</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Be the team with the most kills after 6 minutes.</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
@@ -17,90 +16,107 @@
     <team id="blue" color="blue" max="12" max-overfill="15">Blue</team>
     <team id="orange" color="gold" max="12" max-overfill="15">Orange</team>
 </teams>
-<spawns>
-    <default kit="all" yaw="-180">
-        <cuboid min="-236,21,-82" max="-234,22,-83"/>
-    </default>
-    <spawn team="blue" kit="blue" yaw="0">
-        <cuboid min="-213,7,-151" max="-211,8,-153"/>
-    </spawn>
-    <spawn team="orange" kit="orange" yaw="-180">
-        <cuboid min="-254,7,-12" max="-256,8,-14"/>
-    </spawn>
-</spawns>
 <kits>
-    <kit name="all">
-        <potion duration="oo">night vision</potion>
+    <kit id="all">
+        <effect>night vision</effect>
     </kit>
-    <kit name="teams" parents="all">
-        <item slot="0" unbreakable="true" enchantment="damage all:3">bow</item>
-        <item slot="1" amount="16">arrow</item>
-        <potion duration="3" amplifier="100">damage resistance</potion>
-        <potion duration="3" amplifier="100">heal</potion>
+    <kit id="spawn-kit" parents="all">
+        <item slot="0" unbreakable="true" enchantment="damage all:3" name="`rHandheld Portal Device" material="bow"/>
+        <item slot="1" amount="16" material="arrow"/>
+        <helmet locked="true" team-color="true" material="stained glass"/>
+        <chestplate unbreakable="true" locked="true" team-color="true" material="leather chestplate"/>
+        <effect duration="3" amplifier="100">damage resistance</effect>
+        <effect duration="3" amplifier="100">heal</effect>
+        <game-mode>adventure</game-mode>
     </kit>
-    <kit name="blue" parents="teams">
-        <helmet damage="11" locked="true">stained glass</helmet>
-        <chestplate unbreakable="true" locked="true" color="334CB2">leather chestplate</chestplate>
-    </kit>
-    <kit name="orange" parents="teams">
-        <helmet damage="1" locked="true">stained glass</helmet>
-        <chestplate unbreakable="true" locked="true" color="D87F33">leather chestplate</chestplate>
-    </kit>
-    <kit name="spawn">
-        <potion duration="4" amplifier="10">regeneration</potion>
+    <kit id="spawn">
+        <effect duration="4" amplifier="10">regeneration</effect>
     </kit>
 </kits>
+<spawns>
+    <default kit="all" yaw="-180">
+        <regions>
+            <cuboid min="-236,21,-82" max="-234,22,-83"/>
+        </regions>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <regions>
+            <cuboid min="-213,7,-151" max="-211,8,-153"/>
+        </regions>
+    </spawn>
+    <spawn team="orange" kit="spawn-kit" yaw="-180">
+        <regions>
+            <cuboid min="-254,7,-12" max="-256,8,-14"/>
+        </regions>
+    </spawn>
+</spawns>
 <filters>
-    <filter name="only-orange">
-        <team>orange</team>
-    </filter>
-    <filter name="only-blue">
-        <team>blue</team>
-    </filter>
+    <team id="only-orange">orange</team>
+    <team id="only-blue">blue</team>
 </filters>
 <regions>
-    <apply block="deny-all">
-        <rectangle min="-oo,-oo" max="oo,oo"/>
-    </apply>
+    <union id="spawns">
+        <cuboid id="blue-spawn" min="-216,11,-155" max="-208,11,-148"/>
+        <cuboid id="orange-spawn" min="-251,11,-10" max="-259,11,-17"/>
+    </union>
     <apply velocity="@0.5,1.75,0">
-        <cuboid min="-216,1,-48" max="-218,2,-46" name="orange-pad-a"/>
+        <region>
+            <cuboid min="-216,1,-48" max="-218,2,-46" id="orange-pad-a"/>
+        </region>
     </apply>
     <apply velocity="@-0.2,1.35,-30">
-        <cuboid min="-218,2,-55" max="-219,5,-57" name="orange-pad-b"/>
+        <region>
+            <cuboid min="-218,2,-55" max="-219,5,-57" id="orange-pad-b"/>
+        </region>
     </apply>
     <apply velocity="@0,-0.3,-7">
-        <cuboid min="-222,10,-82" max="-218,14,-83" name="orange-chicago-midway"/>
+        <region>
+            <cuboid min="-222,10,-82" max="-218,14,-83" id="orange-chicago-midway"/>
+        </region>
     </apply>
     <apply velocity="@-0.5,1.75,0">
-        <cuboid min="-249,1,-117" max="-251,2,-119" name="blue-pad-a"/>
+        <region>
+            <cuboid min="-249,1,-117" max="-251,2,-119" id="blue-pad-a"/>
+        </region>
     </apply>
     <apply velocity="@0.2,1.35,30">
-        <cuboid min="-249,2,-110" max="-248,5,-108" name="blue-pad-b"/>
+        <region>
+            <cuboid min="-249,2,-110" max="-248,5,-108" id="blue-pad-b"/>
+        </region>
     </apply>
     <apply velocity="@0,-0.3,7">
-        <cuboid min="-245,10,-82" max="-249,14,-83" name="blue-chicago-midway"/>
+        <region>
+            <cuboid min="-245,10,-82" max="-249,14,-83" id="blue-chicago-midway"/>
+        </region>
     </apply>
-    <apply kit="spawn">
-        <cuboid name="blue-spawn" min="-216,11,-155" max="-208,11,-148"/>
-        <cuboid name="orange-spawn" min="-251,11,-10" max="-259,11,-17"/>
-    </apply>
+    <apply region="spawns" kit="spawn"/>
+    <apply block="never"/>
 </regions>
 <portals>
     <portal x="10" y="15.5" z="20" yaw="@-90">
-        <block location="-255.5,1.9,-34.5" name="orange-portal-a"/>
+        <region>
+            <block location="-255.5,1.9,-34.5" id="orange-portal-a"/>
+        </region>
     </portal>
     <portal x="@-215.5" y="@13" z="@-27.5" yaw="@180" pitch="@0">
-        <cuboid min="-225,5,-39" max="-226,6,-41" name="orange-portal-b"/>
+        <region>
+            <cuboid min="-225,5,-39" max="-226,6,-41" id="orange-portal-b"/>
+        </region>
     </portal>
     <portal x="@-222" y="@18.5" z="@-150.5" yaw="@90">
-        <block location="-211.5,1.9,-130.5" name="blue-portal-a"/>
-        </portal>
+        <region>
+            <block location="-211.5,1.9,-130.5" id="blue-portal-a"/>
+        </region>
+    </portal>
     <portal x="@-251.5" y="@13" z="@-137.5" yaw="@0" pitch="@0">
-        <cuboid min="-241,5,-126" max="-242,6,-124" name="blue-portal-b"/>
+        <region>
+            <cuboid min="-241,5,-126" max="-242,6,-124" id="blue-portal-b"/>
+        </region>
     </portal>
 </portals>
+<time>5m</time>
 <score>
-    <time>5m</time>
+    <kills>1</kills>
 </score>
 <itemremove>
     <item>bow</item>
@@ -114,25 +130,27 @@
     <damage>fall</damage>
     <damage>suffocation</damage>
 </disabledamage>
-<killreward>
-    <item amount="8">arrow</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="3"/>
-    </filter>
-    <kit force="true">
-        <potion duration="oo" amplifier="1">speed</potion>
-    </kit>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="5"/>
-    </filter>
-    <kit force="true">
-        <potion duration="oo" amplifier="2">speed</potion>
-    </kit>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="3"/>
+        </filter>
+        <kit force="true">
+            <effect>speed</effect>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="5"/>
+        </filter>
+        <kit force="true">
+            <effect amplifier="2">speed</effect>
+        </kit>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
