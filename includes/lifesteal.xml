@@ -4,7 +4,7 @@
 <!--       \|                   -->
 <!-- Lifesteal Blitz gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.12.10-1 -->
+<!-- Version 2023.12.22-1 -->
 <game>Lifesteal</game>
 <constants>
     <constant id="extra-lives">1</constant> <!-- Lives you get after a kill -->
@@ -25,7 +25,11 @@
         <action>
             <set var="blitzlives" value="blitzlives+${extra-lives}"/>
             <set var="extra_life" value="extra_life+1"/>
-            <message title="" text=" `e⚠ `aYou have earned an extra life!"/>
+            <message title="" text=" `e⚠ `aYou have earned an extra life!`7 You now have `b{lives}`7 life/lives remaining.">
+                <replacements>
+                    <decimal id="lives" value="blitzlives"/>
+                </replacements>
+            </message>
             <sound key="fireworks.twinkle"/>
         </action>
     </kit>
