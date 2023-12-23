@@ -1,10 +1,10 @@
 <map proto="1.4.2">
 <name>Fallencrests</name>
 <variant id="halloween" world="halloween">Halloween</variant>
-<version>1.3.0</version>
+<version>1.3.1</version>
 <objective>Leak lava from each of the enemy's obsidian core 6 blocks downwards</objective>
 <rules>
-    <rule>Players have resistance and reduced knockback, haste and resistance in spawn!</rule>
+    <rule>Players have haste, resistance, and reduced knockback at their spawn!</rule>
 </rules>
 <authors>
     <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->
