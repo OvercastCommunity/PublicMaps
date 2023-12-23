@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.3.3">
+<map proto="1.4.2">
 <name>The End: Rage</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Eliminate the enemy team within 5 minutes </objective>
 <gamemode>br</gamemode>
 <authors>
@@ -12,54 +11,68 @@
     <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML"/> <!-- orky48 -->
 </contributors>
 <teams>
-    <team color="dark gray" max="20">Black</team>
-    <team color="dark purple" max="20">Purple</team>
+    <team id="black" color="dark gray" max="20">Black</team>
+    <team id="purple" color="dark purple" max="20">Purple</team>
 </teams>
 <kits>
-    <kit name="spawn">
-        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!" name="Styrofoam Sword">iron sword</item>
-        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!">bow</item>
-        <item slot="2">arrow</item>
-        <potion duration="5" amplifier="1">heal</potion>
-        <potion duration="5" amplifier="4">damage resistance</potion>
-    </kit>
-    <kit name="black" parents="spawn">
-        <chestplate color="595959" locked="true" name="Black Snuggie">leather chestplate</chestplate>
-        <boots color="595959" locked="true" name="Black Stompeez">leather boots</boots>
-    </kit>
-    <kit name="purple" parents="spawn">
-        <chestplate color="7F3FB2" locked="true" name="Purple Snuggie">leather chestplate</chestplate>
-        <boots color="7F3FB2" locked="true" name="Purple Stompeez">leather boots</boots>
+    <kit id="spawn-kit">
+        <item slot="0" enchantment="damage all:10" name="Styrofoam Sword" lore="`91-Hit Kill!" material="gold sword"/>
+        <item slot="1" enchantment="arrow damage:10" name="Nerf Ball Blaster" lore="`91-Shot Kill!" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <chestplate locked="true" name="Snuggie" team-color="true" material="leather chestplate"/>
+        <boots locked="true" name="Stompeez" team-color="true" material="leather boots"/>
+        <effect duration="5">heal</effect>
+        <effect duration="5" amplifier="4">damage resistance</effect>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
-    <spawn team="purple" kit="purple" yaw="-90">
-        <cuboid min="706,14,404" max="709,14,407"/>
+    <spawn team="purple" kit="spawn-kit" yaw="-90">
+        <regions>
+            <cuboid min="706,14,404" max="709,14,407"/>
+        </regions>
     </spawn>
-    <spawn team="black" kit="black" yaw="90">
-        <cuboid min="811,14,404" max="814,14,407"/>
+    <spawn team="black" kit="spawn-kit" yaw="90">
+        <regions>
+            <cuboid min="811,14,404" max="814,14,407"/>
+        </regions>
     </spawn>
-    <default yaw="0">
-        <cylinder base="760,27,486" radius="2" height="0"/>
+    <default>
+        <regions>
+            <cylinder base="760.5,27,486.5" radius="2" height="0"/>
+        </regions>
     </default>
 </spawns>
 <regions>
-    <apply block="deny-blocks allow-world" message="You may not interact with the map!">
-        <rectangle min="-oo,-oo" max="oo,oo"/>
-    </apply>
+    <apply block="never"/>
 </regions>
-<rage/>
+<time>5m</time>
 <blitz>
-    <time>5m</time>
     <lives>1</lives>
 </blitz>
-<timelock>on</timelock>
-<killreward>
-    <item>arrow</item>
-</killreward>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+<rage/>
+<portals>
+    <portal x="@795.5" y="@30" z="@437.5">
+        <region>
+            <cylinder base="795.5,11,437.5" radius="4" height="3"/>
+        </region>
+    </portal>
+    <portal x="@748.5" y="@25" z="@423.5">
+        <region>
+            <cylinder base="748.5,12,423.5" radius="4" height="3"/>
+        </region>
+    </portal>
+    <portal x="@772.5" y="@25" z="@385.5">
+        <region>
+            <cylinder base="772.5,12,385.5" radius="4" height="3"/>
+        </region>
+    </portal>
+    <portal x="@731.5" y="@30" z="@368.5">
+        <region>
+            <cylinder base="731.5,12,368.5" radius="4" height="3"/>
+        </region>
+    </portal>
+</portals>
 <itemremove>
     <item>arrow</item>
     <item>leather helmet</item>
@@ -71,22 +84,17 @@
     <tool>iron sword</tool>
     <tool>bow</tool>
 </toolrepair>
-<portals>
-    <portal x="@795.5" y="@30" z="@437.5">
-        <cylinder base="795.5,11,437.5" radius="4" height="3"/>
-    </portal>
-    <portal x="@748.5" y="@25" z="@423.5">
-        <cylinder base="748.5,12,423.5" radius="4" height="3"/>
-    </portal>
-    <portal x="@772.5" y="@25" z="@385.5">
-        <cylinder base="772.5,12,385.5" radius="4" height="3"/>
-    </portal>
-    <portal x="@731.5" y="@30" z="@368.5">
-        <cylinder base="731.5,12,368.5" radius="4" height="3"/>
-    </portal>
-</portals>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
+<timelock>on</timelock>
 <respawn auto="true"/>
 </map>
