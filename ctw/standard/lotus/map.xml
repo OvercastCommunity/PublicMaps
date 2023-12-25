@@ -242,6 +242,9 @@
             <any>
                 <material>wood:2</material>
                 <material>glass</material>
+                <if variant="comp">
+                    <material>birch wood stairs</material>
+                </if>
             </any>
         </filter>
         <drops>
