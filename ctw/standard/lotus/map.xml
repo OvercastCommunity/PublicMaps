@@ -260,10 +260,10 @@
     <item>iron spade</item>
     <item>wood:2</item>
     <item>glass</item>
+    <item>birch wood stairs</item>
     <unless variant="comp">
         <item>bucket</item>
         <item>water bucket</item>
-        <item>birch wood stairs</item>
         <item>golden apple</item>
     </unless>
 </itemkeep>
