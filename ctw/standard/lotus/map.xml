@@ -1,17 +1,19 @@
 <map proto="1.4.2">
 <name>Lotus</name>
 <variant id="comp">TE</variant>
-<version>1.3.2</version>
+<version>1.3.3</version>
 <objective>Capture the enemy's two wools!</objective>
 <unless variant="comp">
-    <constant id="max">24</constant>
+    <constant id="max">20</constant>
     <constant id="max-overfill" delete="true"/>
     <constant id="respawn-timer">2.5s</constant>
+    <constant id="max-build-height">28</constant>
 </unless>
 <if variant="comp">
     <constant id="max">8</constant>
     <constant id="max-overfill">8</constant>
     <constant id="respawn-timer">7s</constant>
+    <constant id="max-build-height">26</constant>
     <time overtime="5m" max-overtime="10m" end-overtime="1m">35m</time>
     <phase>development</phase>
 </if>
@@ -232,20 +234,30 @@
         <item>golden carrot</item>
         <item>water bucket</item>
         <item>bucket</item>
-        <item>glass</item>
-        <item>wood:2</item>
-        <item>birch wood stairs</item>
     </if>
 </itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood:2</material>
+                <material>glass</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</block-drops>
 <itemkeep>
     <item>iron sword</item>
     <item>bow</item>
     <item>iron pickaxe</item>
     <item>iron axe</item>
     <item>iron spade</item>
+    <item>wood:2</item>
+    <item>glass</item>
     <unless variant="comp">
-        <item>wood:2</item>
-        <item>glass</item>
         <item>bucket</item>
         <item>water bucket</item>
         <item>birch wood stairs</item>
@@ -263,7 +275,7 @@
     <disable>iron trapdoor</disable>
 </crafting>
 <respawn delay="${respawn-timer}" auto="true"/>
-<maxbuildheight>26</maxbuildheight>
+<maxbuildheight>${max-build-height}</maxbuildheight>
 <unless variant="comp">
     <hunger>
         <depletion>off</depletion>
