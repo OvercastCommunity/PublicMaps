@@ -1,30 +1,40 @@
 <map proto="1.4.2">
 <name>Foxtrot</name>
-<version>1.0.2</version>
+<variant id="halloween" world="halloween">A Dance to the Moonlight</variant>
+<version>1.0.3</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
 <gamemode>br</gamemode>
 <authors>
     <author uuid="82d03646-d1a1-4383-a533-9509b130f751"/> <!-- iLifting -->
 </authors>
 <contributors>
+    <if variant="halloween">
+        <contributor uuid="205d1aad-c619-499b-9885-b91c372b1c13"/> <!-- lord_creeper01 -->
+    </if>
     <contributor uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/> <!-- matic0basle -->
     <contributor uuid="8fd93764-6206-46c8-95c1-a6d764343461"/> <!-- gibbodaman -->
     <contributor uuid="f6e61e24-5143-4ab9-b269-d765c3ffb216"/> <!-- RedstoneVEVO -->
     <contributor uuid="33e00444-5c7b-4767-a28e-177c3041c74d"/> <!-- michael12lp -->
 </contributors>
 <teams>
-    <team id="green" color="dark green" max="20" max-overfill="30">Green</team>
-    <team id="purple" color="dark purple" max="20" max-overfill="30">Purple</team>
+    <unless variant="halloween">
+        <team id="green-team" color="dark green" max="20" max-overfill="30">Green</team>
+        <team id="purple-team" color="dark purple" max="20" max-overfill="30">Purple</team>
+    </unless>
+    <if variant="halloween">
+        <team id="green-team" color="dark green" max="20" max-overfill="30">Zombie</team>
+        <team id="purple-team" color="light purple" max="20" max-overfill="30">Pigman</team>
+    </if>
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!" material="iron sword"/>
-        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!" material="bow"/>
+        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!" material="iron sword" unbreakable="true"/>
+        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!" material="bow" unbreakable="true"/>
         <item slot="2" material="arrow"/>
-        <helmet locked="true" team-color="true" material="leather helmet"/>
-        <chestplate locked="true" team-color="true" material="leather chestplate"/>
-        <leggings locked="true" team-color="true" material="leather leggings"/>
-        <boots locked="true" team-color="true" material="leather boots"/>
+        <helmet locked="true" team-color="true" material="leather helmet" unbreakable="true"/>
+        <chestplate locked="true" team-color="true" material="leather chestplate" unbreakable="true"/>
+        <leggings locked="true" team-color="true" material="leather leggings" unbreakable="true"/>
+        <boots locked="true" team-color="true" material="leather boots" unbreakable="true"/>
         <effect duration="3" amplifier="100">heal</effect>
         <effect duration="3" amplifier="100">damage resistance</effect>
         <effect>speed</effect>
@@ -32,13 +42,13 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="green" kit="spawn-kit" yaw="180">
+    <spawn team="green-team" kit="spawn-kit" yaw="180">
         <regions>
             <point>75.5,30,168.5</point>
             <point>21.5,30,168.5</point>
         </regions>
     </spawn>
-    <spawn team="purple" kit="spawn-kit">
+    <spawn team="purple-team" kit="spawn-kit">
         <regions>
             <point>75.5,30,-11.5</point>
             <point>21.5,30,-11.5</point>
