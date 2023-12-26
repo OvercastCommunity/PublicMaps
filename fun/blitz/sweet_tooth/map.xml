@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Sweet Tooth</name>
-<version>1.0.8</version>
+<variant id="halloween" world="halloween" override="true">Sore Teeth</variant>
+<version>1.0.9</version>
 <objective>Elimate the enemy team before time runs out!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -11,40 +12,72 @@
     <rule>Fall damage is disabled.</rule>
 </rules>
 <teams>
-    <team id="lime" color="green" max="20" max-overfill="25">Lime</team>
-    <team id="blue" color="blue" max="20" max-overfill="25">Blue</team>
+    <unless variant="halloween">
+        <team id="lime" color="green" max="20" max-overfill="25">Lime</team>
+        <team id="blue" color="blue" max="20" max-overfill="25">Blue</team>
+    </unless>
+    <if variant="halloween">
+        <team id="lime" color="green" max="20" max-overfill="25">Green</team>
+        <team id="blue" color="dark purple" max="20" max-overfill="25">Purple</team>
+    </if>
 </teams>
 <spawns>
-    <spawn team="blue" kit="spawn-kit">
-        <regions yaw="90">
-            <point>71.5,52,3.5</point>
-        </regions>
-    </spawn>
-    <spawn team="lime" kit="spawn-kit">
-        <regions yaw="-90">
-            <point>-69.5,52,-4.5</point>
-        </regions>
-    </spawn>
-    <default>
-        <regions yaw="-90">
-            <block>1.5,68,0.5</block>
-        </regions>
-    </default>
+    <unless variant="halloween">
+        <spawn team="blue" kit="regular-kit">
+            <regions yaw="90">
+                <point>72.5,52,3.5</point>
+            </regions>
+        </spawn>
+        <spawn team="lime" kit="regular-kit">
+            <regions yaw="-90">
+                <point>-69.5,52,-4.5</point>
+            </regions>
+        </spawn>
+        <default>
+            <regions yaw="-90">
+                <point>1.5,68,0</point>
+            </regions>
+        </default>
+    </unless>
+    <if variant="halloween">
+        <spawn team="blue" kit="halloween-kit">
+            <regions yaw="90">
+                <point>72.5,50,5</point>
+            </regions>
+        </spawn>
+        <spawn team="lime" kit="halloween-kit">
+            <regions yaw="-90">
+                <point>-71.5,50,-6</point>
+            </regions>
+        </spawn>
+        <default>
+            <regions yaw="180">
+                <point>0,104,-2.5</point>
+            </regions>
+        </default>
+    </if>
 </spawns>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" enchantment="damage all:10" material="gold sword"/>
-        <item slot="1" enchantment="arrow damage:10" material="bow"/>
+        <item slot="1" enchantment="arrow damage:10" material="bow" unbreakable="true"/>
         <item slot="2" material="arrow"/>
         <item slot="3" amount="14" material="golden carrot"/>
-        <helmet material="gold helmet"/>
-        <chestplate team-color="true" material="leather chestplate"/>
-        <leggings team-color="true" material="leather leggings"/>
-        <boots material="gold boots"/>
         <effect duration="5" amplifier="25">heal</effect>
         <effect duration="5" amplifier="25">damage resistance</effect>
         <effect duration="oo" amplifier="2">speed</effect>
+        <chestplate team-color="true" material="leather chestplate" unbreakable="true"/>
+        <leggings team-color="true" material="leather leggings" unbreakable="true"/>
         <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="regular-kit" parents="spawn-kit">
+        <item slot="0" enchantment="damage all:10" material="gold sword" unbreakable="true"/>
+        <helmet material="gold helmet" unbreakable="true"/>
+        <boots material="gold boots" unbreakable="true"/>
+    </kit>
+    <kit id="halloween-kit" parents="spawn-kit">
+        <item slot="0" enchantment="damage all:10" material="iron sword" unbreakable="true"/>
+        <helmet material="iron helmet" unbreakable="true"/>
+        <boots material="iron boots" unbreakable="true"/>
     </kit>
 </kits>
 <regions>
@@ -59,11 +92,14 @@
 <itemremove>
     <item>golden carrot</item>
     <item>gold sword</item>
+    <item>iron sword</item>
     <item>arrow</item>
     <item>bow</item>
     <item>leather chestplate</item>
     <item>gold boots</item>
     <item>gold helmet</item>
+    <item>iron boots</item>
+    <item>iron helmet</item>
     <item>leather leggings</item>
 </itemremove>
 <kill-rewards>
