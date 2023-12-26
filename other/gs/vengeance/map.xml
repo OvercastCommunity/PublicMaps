@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Vengeance</name>
-<version>1.3.2</version>
+<variant id="christmas" world="christmas" override="true">Snowy Vengeance</variant>
+<version>1.3.3</version>
 <include id="gs"/>
 <objective>Eliminate the enemy squadron before time runs out!</objective>
 <authors>
@@ -13,8 +14,14 @@
     <contributor contribution="Help and Support">The Orange Sunglasses Build Team</contributor>
 </contributors>
 <teams>
-    <team id="red" show-name-tags="allies" color="dark red" max="8">Red</team>
-    <team id="blue" show-name-tags="allies" color="blue" max="8">Blue</team>
+    <unless variant="christmas">
+        <team id="red" show-name-tags="allies" color="dark red" max="8">Red</team>
+        <team id="blue" show-name-tags="allies" color="blue" max="8">Blue</team>
+    </unless>
+    <if variant="christmas">
+        <team id="red" show-name-tags="allies" color="dark red" max="8">Red</team>
+        <team id="blue" show-name-tags="allies" color="gold" max="8">Gold</team>
+    </if>
 </teams>
 <spawns>
     <spawn team="red" yaw="-90">
