@@ -1,6 +1,6 @@
-<map proto="1.3.3">
+<map proto="1.4.2">
 <name>Haunted Corridors</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>The team with the most amount of kills after 10 minutes wins!</objective>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
@@ -10,73 +10,72 @@
     <contributor uuid="7dee9c20-f1c4-4577-bf57-6f392e398b6d"/> <!-- Crafthappy2000 -->
 </contributors>
 <teams>
-    <team color="dark red" max="32">Red</team>
-    <team color="blue" max="32">Blue</team>
+    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue" color="blue" max="32">Blue</team>
 </teams>
-<spawns>
-    <spawn team="red" kit="red" yaw="90">
-        <cylinder base="106,8.5,38" radius="3" height="0"/>
-    </spawn>
-    <spawn team="blue" kit="blue" yaw="-90">
-        <cylinder base="-112,8.5,38" radius="3" height="0"/>
-    </spawn>
-    <default yaw="-90">
-        <block>79,20.5,38</block>
-    </default>
-</spawns>
 <kits>
-    <kit name="spawn">
+    <kit id="spawn-kit">
         <clear/>
-		<item slot="0" unbreakable="true">stone sword</item>
-		<item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
-		<item slot="28">arrow</item>
-		<item slot="2">golden apple</item>
-		<leggings unbreakable="true" enchantment="protection projectile:3">chainmail leggings</leggings>
-		<boots unbreakable="true">iron boots</boots>
-        <potion duration="3" amplifier="4">heal</potion>
-        <potion duration="3" amplifier="4">damage resistance</potion>
-    </kit>
-    <kit name="red" parents="spawn">
-        <helmet color="b2324b" unbreakable="true">leather helmet</helmet>
-        <chestplate color="b2324b" enchantment="protection projectile:1" unbreakable="true">leather chestplate</chestplate>
-    </kit>
-    <kit name="blue" parents="spawn">
-        <helmet color="334cb2" unbreakable="true">leather helmet</helmet>
-        <chestplate color="334cb2" enchantment="protection projectile:1" unbreakable="true">leather chestplate</chestplate>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="28" material="arrow"/>
+        <item slot="2" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" enchantment="protection projectile" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" enchantment="protection projectile:3" material="chainmail leggings"/>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="3" amplifier="4">heal</effect>
+        <effect duration="3" amplifier="4">damage resistance</effect>
     </kit>
 </kits>
+<spawns>
+    <spawn team="red" kit="spawn-kit" yaw="90">
+        <regions>
+            <cylinder base="106.0,8,38.0" radius="3" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="spawn-kit" yaw="-90">
+        <regions>
+            <cylinder base="-112.0,8,38.0" radius="3" height="0"/>
+        </regions>
+    </spawn>
+    <default yaw="-90">
+        <regions>
+            <point>79.0,20,38.0</point>
+        </regions>
+    </default>
+</spawns>
 <filters>
-    <filter name="allow-torches">
-        <block>torch</block>
-    </filter>
+    <material id="only-torch">torch</material>
 </filters>
 <regions>
-    <apply block="allow-torches">
-        <rectangle min="-oo,-oo" max="oo,oo"/>
-    </apply>
+    <apply block="only-torch"/>
 </regions>
+<time>10m</time>
+<score>
+    <kills>1</kills>
+</score>
 <itemremove>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
     <item>iron boots</item>
 </itemremove>
-<killreward>
-	<item>golden apple</item>
-</killreward>
 <toolrepair>
-	<tool>stone sword</tool>
-	<tool>bow</tool>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
 </toolrepair>
-<score>
-    <time>10m</time>
-</score>
 <itemkeep>
-	<item>arrow</item>
-	<item>golden apple</item>
+    <item>arrow</item>
+    <item>golden apple</item>
 </itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
-	<depletion>off</depletion>
+    <depletion>off</depletion>
 </hunger>
 <timelock>on</timelock>
 </map>
