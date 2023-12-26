@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Ghost Squadron gamemode include file -->
 <!-- Modified by zzuf - Original gs.xml file by the Overcast Network -->
-<!-- Version 2023.12.09-1 -->
+<!-- Version 2023.12.26-1 -->
 <game>Ghost Squadron</game>
 <constants>
     <constant id="base-kit">default-base-kit</constant>
@@ -98,6 +98,12 @@
             </item>
         </kit>
     </class>
+    <class name="Leprechaun" description="XP Orbs with double jump!" longdescription="XP bar is a double-jump cooldown, use Bottle O' Enchanting to track enemies with XP orbs (be sure to use them sparingly!)!" icon="exp bottle">
+        <kit parents="${base-kit}">
+            <item slot="0" amount="32" name="`aBottle o' Gold" material="exp bottle"/>
+            <double-jump/>
+        </kit>
+    </class>
     <class name="Demo" description="Place landmines or fire grenades!" longdescription="BOOM! Combine grenades and landmines together to destroy your enemies!" icon="tnt">
         <kit parents="${base-kit}">
             <item slot="0" amount="3" name="`4Landmine" lore="`7Automatically ignites once placed!" material="tnt" show-can-place-on="false">
@@ -153,13 +159,6 @@
     <!-- <class name="Tracker" description="Easily track your enemies!" longdescription="View enemy footsteps and reveal them using the compass melee!" icon="compass">
         <kit parents="${base-kit}">
             <item slot="0" amount="1" name="`bPlayer Locator" attributes="generic.attackDamage:add:1" material="compass"/>
-        </kit>
-    </class> -->
-    <!-- Disabled as it's pretty useless without sticky XP orbs -->
-    <!-- <class name="Leprechaun" description="XP Orbs with double jump!" longdescription="XP bar is a double-jump cooldown, use Bottle O' Enchanting to track enemies with XP orbs (be sure to use them sparingly!)!" icon="exp bottle">
-        <kit parents="${base-kit}">
-            <item slot="0" amount="8" name="`aBottle o' Gold" material="exp bottle"/>
-            <double-jump/>
         </kit>
     </class> -->
 </classes>
