@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Tanker TNT</name>
-<version>1.3.5</version>
+<version>1.3.6</version>
 <objective>Leak lava from the enemy's obsidian cores.</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -78,6 +78,9 @@
     <not id="deny-void">
         <void/>
     </not>
+    <deny id="deny-dispenser">
+        <material>dispenser</material>
+    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -88,6 +91,7 @@
         <everywhere/>
         <rectangle min="1922,-2032" max="2104,-1902"/>
     </complement>
+    <apply block="deny-dispenser" use="deny-dispenser" message="This block can not be interacted with on this map!"/>
     <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn-ship"/>
     <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn-ship"/>
     <apply block="never" message="You may not destroy the spawn areas!" region="spawns"/>
