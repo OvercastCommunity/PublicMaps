@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Lotus</name>
 <variant id="comp">TE</variant>
-<version>1.3.3</version>
+<version>1.3.4</version>
 <objective>Capture the enemy's two wools!</objective>
 <unless variant="comp">
     <constant id="max">20</constant>
@@ -230,11 +230,6 @@
     <item>redstone torch on</item>
     <item>seeds</item>
     <item>clay ball</item>
-    <if variant="comp">
-        <item>golden carrot</item>
-        <item>water bucket</item>
-        <item>bucket</item>
-    </if>
 </itemremove>
 <block-drops>
     <rule>
@@ -258,14 +253,18 @@
     <item>iron pickaxe</item>
     <item>iron axe</item>
     <item>iron spade</item>
+    <item>arrow</item>
     <item>wood:2</item>
     <item>glass</item>
     <item>birch wood stairs</item>
+    <item>bucket</item>
+    <item>water bucket</item>
     <unless variant="comp">
-        <item>bucket</item>
-        <item>water bucket</item>
         <item>golden apple</item>
     </unless>
+    <if variant="comp">
+        <item>golden carrot</item>
+    </if>
 </itemkeep>
 <kill-rewards>
     <kill-reward>
