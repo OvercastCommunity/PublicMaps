@@ -3,6 +3,7 @@
 <!-- include src="tutorial.xml"/ -->
 <name>Fox Strife</name>
 <version>4.1.6</version>
+<created>2013-12-25</created>
 <objective>Capture both of the enemy's wools, and place it in your victory monument.</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->

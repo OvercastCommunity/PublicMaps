@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Shroom Trip II: The Conspiracy</name>
 <version>1.1.2</version>
+<created>2012-11-22</created>
 <objective>Leak the enemy core, the Doom Shroom!</objective>
 <authors>
     <author uuid="b5f4323f-aec6-4066-9d9c-9970626b39ba"/> <!-- R3creat3 (R3C) AKA SkytopiaBot -->
@@ -13,7 +14,6 @@
     <contributor uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="New XML"/> <!-- CoWinkKeyDinkInc -->
     <contributor uuid="8b210772-8b0c-44b4-a4e2-2b543707ffc6" contribution="Original Author of Shroom Trip"/> <!-- Omnigarde -->
 </contributors>
-<created>2012-11-22</created>
 <teams>
     <team id="blue" color="blue" max="50">Blue</team>
     <team id="red" color="dark red" max="50">Red</team>
@@ -53,6 +53,15 @@
         </region>
     </default>
 </spawns>
+<filters>
+    <not id="no-break">
+        <any>
+            <material>chest</material>
+            <material>mob spawner</material>
+            <material>mycel</material>
+        </any>
+    </not>
+</filters>
 <regions>
     <rectangle id="playable" min="427,71" max="-962,-124"/>
     <union id="spawns">
@@ -66,15 +75,6 @@
     <apply block="never" region="spawns" message="You can't place blocks in spawn!"/>
     <apply block="no-break"/>
 </regions>
-<filters>
-    <not id="no-break">
-        <any>
-            <material>chest</material>
-            <material>mob spawner</material>
-            <material>mycel</material>
-        </any>
-    </not>
-</filters>
 <cores material="obsidian" leak="3">
     <core team="blue" name="Doom Shroom">
         <region>

@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Yggdrasil</name> 
-<version>1.0.3</version> 
+<version>1.0.3</version>
+<created>2013-06-14</created> 
 <objective>Get the most kills for your team within the allowed time.</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->

@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Discipline</name>
 <version>1.0.7</version>
+<created>2013-11-05</created>
 <objective>Be the first team to get to 2500 points by capturing the points!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->

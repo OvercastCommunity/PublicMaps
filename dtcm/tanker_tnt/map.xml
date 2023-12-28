@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Tanker TNT</name>
 <version>1.3.6</version>
+<created>2014-01-16</created>
 <objective>Leak lava from the enemy's obsidian cores.</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->

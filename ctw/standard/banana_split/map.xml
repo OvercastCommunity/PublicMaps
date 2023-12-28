@@ -2,6 +2,7 @@
 <map proto="1.3.2">
 <name>Banana Split</name>
 <version>2.2.2</version>
+<created>2013-08-28</created>
 <objective>Capture the other team's wools!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->

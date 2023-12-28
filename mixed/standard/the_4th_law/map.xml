@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>The 4th Law</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
+<created>2013-07-05</created>
 <objective>Capture both enemy wools and leak both enemy cores.</objective>
 <gamemode>ctw</gamemode>
 <gamemode>dtc</gamemode>
@@ -40,7 +41,7 @@
 </kits>
 <spawns>
     <default>
-        <region yaw="0">
+        <region>
             <cylinder base="0.5,63,0.5" radius="1" height="0"/>
         </region>
     </default>
@@ -194,6 +195,11 @@
     <item>flint</item>
     <item>gravel</item>
 </itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>wood</item>
+    <item>glass</item>
+</itemkeep>
 <block-drops>
     <rule>
         <filter>
@@ -207,14 +213,11 @@
         </drops>
     </rule>
 </block-drops>
-<itemkeep>
-    <item>golden apple</item>
-    <item>wood</item>
-    <item>glass</item>
-</itemkeep>
-<kill-reward>
-    <item>golden apple</item>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <tnt>
     <instantignite>off</instantignite>
     <blockdamage>off</blockdamage>

@@ -3,6 +3,7 @@
 <!-- include src="tutorial.xml"/ -->
 <name>Battle of Tenjin III</name>
 <version>1.1.4</version>
+<created>2014-03-15</created>
 <objective>Destroy the enemy team's two monuments and leak their core to win!</objective>
 <authors>
     <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba"/> <!-- SajinZero -->

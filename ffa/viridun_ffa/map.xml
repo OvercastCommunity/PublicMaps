@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Viridun FFA</name>
-<version>1.0.0</version>
+<version>1.0.1</version>
+<created>2012-09-22</created>
 <objective>Kill the most players in 10 minutes!</objective>
 <authors>
     <author uuid="27cf0cdd-c294-4163-a536-18e11360cc7b" contribution="Map design and layout"/> <!-- OurLoneHero -->
@@ -11,10 +11,6 @@
     <contributor uuid="97abb45c-e545-473d-9b93-e1b9b94a43ee" contribution="Design concepts and map design"/> <!-- ander301 -->
 </contributors>
 <players min="2" max="64" colors="true"/>
-<score>
-    <kills>1</kills>
-</score>
-<time>10m</time>
 <rules>
     <rule>Fall damage is disabled</rule>
 </rules>
@@ -24,15 +20,15 @@
 <kits>
     <kit id="spawn">
 		<clear/>
-        <item slot="0" unbreakable="true">stone sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
-        <item slot="2">golden apple</item>
-        <item slot="28">arrow</item>
-        <helmet unbreakable="true" team-color="true">leather helmet</helmet>
-        <chestplate unbreakable="true" team-color="true">leather chestplate</chestplate>
-        <leggings unbreakable="true">chainmail leggings</leggings>
-        <boots unbreakable="true" team-color="true" enchantment="protection fall:2;depth_strider:2">leather boots</boots>
-        <potion duration="2.5" amplifier="10">resistance</potion>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" enchantment="protection fall:2;depth_strider:2" material="leather boots"/>
+        <effect duration="2.5" amplifier="10">resistance</effect>
         <effect>speed</effect>
     </kit>
 </kits>
@@ -113,20 +109,20 @@
                     <material>PISTON_EXTENSION</material>
                     <material>PISTON_MOVING_PIECE</material>
                     <material>PISTON_STICKY_BASE</material>
-                    <material>AIR</material><!-- Allow the piston to extend -->
-                    <material>FENCE</material><!-- Block being modified is a fence -->
+                    <material>AIR</material> <!-- Allow the piston to extend -->
+                    <material>FENCE</material> <!-- Block being modified is a fence -->
                 </any>
             </all>
         </block>
     </apply>
 </filters>
 <regions>
-    <apply block="never" use="never">
-        <region>
-            <everywhere/>
-        </region>
-    </apply>
+    <apply block="never" use="never"/>
 </regions>
+<score>
+    <kills>1</kills>
+</score>
+<time>10m</time>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -139,9 +135,11 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
 	<depletion>off</depletion>
 </hunger>
