@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.3.3">
+<map proto="1.4.2">
 <name>Project Chromozome</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <objective>Airship Battle redefined... Destroy 75% of the enemy's battle ship!</objective>
 <authors>
     <author uuid="30e27366-0b14-4076-8f55-0819ece49ce3" contribution="Original Map (Airship Battle)"/> <!-- dewtroid -->
@@ -11,92 +10,146 @@
     <rule>Fall damage is disabled!</rule>
 </rules>
 <teams>
-    <team color="dark red" max="24">Red</team>
-    <team color="blue" max="24">Blue</team>
+    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue" color="blue" max="24">Blue</team>
 </teams>
-<spawns>
-    <spawn id="red" team="red" kit="red" yaw="135">
-        <region name="red-spawn"/>
-    </spawn>
-    <spawn id="blue" team="blue" kit="blue" yaw="-45">
-        <region name="blue-spawn"/>
-    </spawn>
-    <default kit="obs" yaw="135">
-        <point>-11.5,103,28.5</point>
-    </default>
-</spawns>
 <kits>
-    <kit name="obs">
-        <potion duration="oo">night vision</potion>
+    <kit id="obs">
+        <effect>night vision</effect>
     </kit>
-    <kit name="tnt-inventory">
-        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:7">diamond pickaxe</item>
-        <item slot="9" amount="64">tnt</item>
-        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
-        <item slot="28">arrow</item>
-        <item slot="10" amount="64">tnt</item>
-        <item slot="2" amount="64">vine</item>
-        <item slot="29" unbreakable="true" attributes="generic.attackDamage:add:1" name="`aiCarus Blade" lore="`7Right click to reduce TNT damage">wood sword</item>
-        <item slot="11" amount="64">tnt</item>
-        <item slot="4" amount="64">nether fence</item>
-        <item slot="31" amount="64">step</item>
-        <item slot="22" amount="16">ladder</item>
-        <item slot="5" amount="16">stone button</item>
-        <item slot="32" amount="8">stone plate</item>
-        <item slot="23" amount="16">lever</item>
-        <item slot="14" amount="16">trap door</item>
-        <item slot="6">water bucket</item>
-        <item slot="33">water bucket</item>
-        <item slot="24">water bucket</item>
-        <item slot="15" amount="16">piston base</item>
-        <item slot="7" amount="16">redstone block</item>
-        <item slot="34" amount="64">redstone</item>
-        <item slot="25" amount="16">redstone torch on</item>
-        <item slot="16" amount="16">diode</item>
-        <item slot="8" amount="64">tnt</item>
-        <item slot="35" amount="8">sand</item>
-        <item slot="26" amount="3">dispenser</item>
-        <item slot="17" amount="8">redstone comparator</item>
-    </kit>
-    <kit name="teams" parents="tnt-inventory" force="true">
-        <chestplate unbreakable="true" enchantment="protection explosions:4;water worker:3;oxygen:1">chainmail chestplate</chestplate>
-        <potion duration="oo">night vision</potion>
-        <potion duration="oo">heal</potion>
-        <potion duration="oo" amplifier="-5">jump</potion>
+    <kit id="tnt-inventory" parents="obs">
+        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:7" material="diamond pickaxe"/>
+        <item slot="9" amount="64" material="tnt"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="28" material="arrow"/>
+        <item slot="10" amount="64" material="tnt"/>
+        <item slot="2" amount="64" material="vine"/>
+        <item slot="3" team-color="true" amount="64" material="stained clay"/>
+        <item slot="29" unbreakable="true" attributes="generic.attackDamage:add:1" name="`aiCarus Blade" lore="`7Right click to reduce TNT damage" material="wood sword"/>
+        <item slot="11" amount="64" material="tnt"/>
+        <item slot="12" team-color="true" amount="64" material="stained clay"/>
+        <item slot="4" amount="64" material="nether fence"/>
+        <item slot="31" amount="64" material="step"/>
+        <item slot="21" team-color="true" amount="64" material="stained clay"/>
+        <item slot="22" amount="16" material="ladder"/>
+        <item slot="5" amount="16" material="stone button"/>
+        <item slot="32" amount="8" material="stone plate"/>
+        <item slot="23" amount="16" material="lever"/>
+        <item slot="14" amount="16" material="trap door"/>
+        <item slot="6" material="water bucket"/>
+        <item slot="33" material="water bucket"/>
+        <item slot="24" material="water bucket"/>
+        <item slot="15" amount="16" material="piston base"/>
+        <item slot="7" amount="16" material="redstone block"/>
+        <item slot="34" amount="64" material="redstone"/>
+        <item slot="25" amount="16" material="redstone torch on"/>
+        <item slot="16" amount="16" material="diode"/>
+        <item slot="8" amount="64" material="tnt"/>
+        <item slot="35" amount="8" material="sand"/>
+        <item slot="26" material="dispenser"/>
+        <item slot="27" unbreakable="true" enchantment="dig speed:10" attributes="generic.attackDamage:add:7" material="diamond axe"/>
+        <item slot="30" team-color="true" amount="64" material="stained clay"/>
+        <item slot="17" amount="8" material="redstone comparator"/>
+        <helmet team-color="true" material="stained clay"/>
+        <chestplate unbreakable="true" enchantment="protection explosions:4;water worker:3;oxygen" material="chainmail chestplate"/>
+        <effect>heal</effect>
+        <effect amplifier="-5">jump</effect>
         <foodlevel>6</foodlevel>
-        <!-- Override include -->
-        <item slot="26">dispenser</item>
-        <item slot="27" unbreakable="true" enchantment="dig speed:10" attributes="generic.attackDamage:add:7">diamond axe</item>
     </kit>
-    <kit name="red" parents="teams">
-        <helmet damage="14">stained clay</helmet>
-        <item slot="3" damage="14" amount="64">stained clay</item>
-        <item slot="30" damage="14" amount="64">stained clay</item>
-        <item slot="21" damage="14" amount="64">stained clay</item>
-        <item slot="12" damage="14" amount="64">stained clay</item>
-    </kit>
-    <kit name="blue" parents="teams">
-        <helmet damage="11">stained clay</helmet>
-        <item slot="3" damage="11" amount="64">stained clay</item>
-        <item slot="30" damage="11" amount="64">stained clay</item>
-        <item slot="21" damage="11" amount="64">stained clay</item>
-        <item slot="12" damage="11" amount="64">stained clay</item>
-    </kit>
-    <kit name="velocity" force="true">
-        <potion duration="oo">speed</potion>
-        <potion duration="oo">fast digging</potion>
-        <potion duration="oo">water breathing</potion>
-        <potion duration="0" amplifier="0">heal</potion>
-        <potion duration="0" amplifier="0">damage resistance</potion>
-        <potion duration="0" amplifier="0">jump</potion>
+    <kit id="velocity" force="true">
+        <effect>speed</effect>
+        <effect>fast digging</effect>
+        <effect>water breathing</effect>
+        <effect duration="0" amplifier="0">heal</effect>
+        <effect duration="0" amplifier="0">damage resistance</effect>
+        <effect duration="0" amplifier="0">jump</effect>
         <foodlevel>20</foodlevel>
     </kit>
-    <kit name="haste" force="true">
-        <potion duration="oo" amplifier="20">fast digging</potion>
-        <potion duration="0" amplifier="0">speed</potion>
+    <kit id="haste" force="true">
+        <effect duration="oo" amplifier="20">fast digging</effect>
+        <effect duration="0" amplifier="0">speed</effect>
     </kit>
 </kits>
+<spawns>
+    <spawn team="red" kit="tnt-inventory" region="red-spawn" yaw="135"/>
+    <spawn team="blue" kit="tnt-inventory" region="blue-spawn" yaw="-45"/>
+    <default kit="obs" yaw="135">
+        <regions>
+            <point>-11.5,103,28.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="deny-tnt-blue">
+        <all>
+            <team id="only-blue">blue</team>
+            <material>tnt</material>
+        </all>
+    </not>
+    <not id="deny-tnt-red">
+        <all>
+            <team id="only-red">red</team>
+            <material>tnt</material>
+        </all>
+    </not>
+</filters>
+<regions>
+    <union id="spawns">
+        <cylinder id="red-spawn" base="46,70,92" radius="1.5" height="1"/>
+        <cylinder id="blue-spawn" base="-69,70,-10" radius="1.5" height="1"/>
+        <cylinder id="red-spawn-b" base="46,70,92" radius="2" height="1"/>
+        <cylinder id="blue-spawn-b" base="-69,70,-10" radius="2" height="1"/>
+    </union>
+    <union id="ships">
+        <cuboid id="blue-ship" min="-22,15,87" max="-54,60,-8"/> <!-- double - -->
+        <cuboid id="red-ship" min="-1,15,-5" max="31,60,90"/> <!-- double ++ -->
+    </union>
+    <union id="velocity-pads">
+        <complement id="red-pad">
+            <cuboid min="38,70,92" max="46,73,84"/>
+            <region id="red-spawn-b"/>
+        </complement>
+        <complement id="blue-pad">
+            <cuboid min="-61,70,-10" max="-69,73,-2"/>
+            <region id="blue-spawn-b"/>
+        </complement>
+    </union>
+    <negative id="not-map">
+        <cuboid id="map" min="31,0,87" max="-54,40,-8"/>
+    </negative>
+    <!-- Applied -->
+    <apply region="red-ship" block-place="deny-tnt-blue" message="`aYou can't place TNT on the enemy ship, but you have more haste!"/>
+    <apply region="blue-ship" block-place="deny-tnt-red" message="`aYou can't place TNT on the enemy ship, but you have more haste!"/>
+    <apply region="ships" block="always"/>
+    <apply region="not-map" block="never" message="`eYou may not edit outside the main area!"/>
+    <apply region="red-ship" kit="haste" filter="only-blue"/>
+    <apply region="blue-ship" kit="haste" filter="only-red"/>
+    <apply region="red-pad" velocity="@-5,2.75,-12" kit="velocity"/>
+    <apply region="blue-pad" velocity="@5,2.75,12" kit="velocity"/>
+</regions>
+<destroyables name="Ship" show-progress="true" completion="75%" repairable="true">
+    <destroyable id="red-ship-monument" region="red-ship" materials="wood;quartz block;stained glass:8;stained glass:15;stained clay:9;stained clay:14" owner="red"/>
+    <destroyable id="blue-ship-monument" region="blue-ship" materials="wood;quartz block;stained glass:8;stained glass:15;stained clay:9;stained clay:11" owner="blue"/>
+</destroyables>
+<block-drops>
+    <rule>
+        <filter>
+            <material>iron block</material>
+        </filter>
+        <drops>
+            <item material="iron helmet"/>
+            <item material="iron leggings"/>
+            <item attributes="generic.movementSpeed:base:0.15" enchantment="protection fall" material="iron boots"/>
+        </drops>
+    </rule>
+</block-drops>
 <itemremove>
+    <item>quartz stairs</item>
+    <item>quartz ore</item>
+    <item>quartz</item>
+    <item>quartz block</item>
+    <item>wood</item>
+    <item>diamond axe</item>
     <item>diamond pickaxe</item>
     <item>bow</item>
     <item>workbench</item>
@@ -207,116 +260,15 @@
     <item>chainmail chestplate</item>
     <item>dispenser</item>
 </ignore-itemremove> -->
-<filters>
-    <filter name="only-red">
-        <team>red</team>
-    </filter>
-    <filter name="only-blue">
-        <team>blue</team>
-    </filter>
-    <filter name="deny-tnt-blue">
-        <not>
-            <all>
-                <team>blue</team>
-                <block>tnt</block>
-            </all>
-        </not>
-    </filter>
-    <filter name="deny-tnt-red">
-        <not>
-            <all>
-                <team>red</team>
-                <block>tnt</block>
-            </all>
-        </not>
-    </filter>
-</filters>
-<regions>
-    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
-    <cuboid name="map" min="31,0,87" max="-54,40,-8"/>
-    <union name="spawns">
-        <cylinder name="red-spawn" base="46,70,92" radius="1.5" height="1"/>
-        <cylinder name="blue-spawn" base="-69,70,-10" radius="1.5" height="1"/>
-        <cylinder name="red-spawn-b" base="46,70,92" radius="2" height="1"/>
-        <cylinder name="blue-spawn-b" base="-69,70,-10" radius="2" height="1"/>
-    </union>
-    <union name="ships">
-        <cuboid name="blue-ship" min="-22,15,87" max="-54,60,-8"/> <!-- double - -->
-        <cuboid name="red-ship" min="-1,15,-5" max="31,60,90"/> <!-- double ++ -->
-    </union>
-    <union name="velocity-pads">
-        <complement name="red-pad">
-            <cuboid min="38,70,92" max="46,73,84"/>
-            <region name="red-spawn-b"/>
-        </complement>
-        <complement name="blue-pad">
-            <cuboid min="-61,70,-10" max="-69,73,-2"/>
-            <region name="blue-spawn-b"/>
-        </complement>
-    </union>
-    <!-- Applied -->
-    <apply block-place="deny-tnt-blue" message="`aYou can't place tnt on the enemy ship, but you have more haste!">
-        <region name="red-ship"/>
-    </apply>
-    <apply block-place="deny-tnt-red" message="`aYou can't place tnt on the enemy ship, but you have more haste!">
-        <region name="blue-ship"/>
-    </apply>
-    <apply block="allow-all">
-        <region name="ships"/>
-    </apply>
-    <apply block="deny-all" message="`eYou may not edit outside the main area!">
-        <negative>
-            <region name="map"/>
-        </negative>
-    </apply>
-    <apply kit="haste" filter="only-blue">
-        <region name="red-ship"/>
-    </apply>
-    <apply kit="haste" filter="only-red">
-        <region name="blue-ship"/>
-    </apply>
-    <apply velocity="@-5,2.75,-12" kit="velocity">
-        <region name="red-pad"/>
-    </apply>
-    <apply velocity="@5,2.75,12" kit="velocity">
-        <region name="blue-pad"/>
-    </apply>
-</regions>
-<destroyables name="Ship" show-progress="true" completion="75%" repairable="true">
-    <destroyable id="red-ship" materials="wood;quartz block;stained glass:8;stained glass:15;stained clay:9;stained clay:14" owner="red">
-        <region name="red-ship"/>
-    </destroyable>
-    <destroyable id="blue-ship" materials="wood;quartz block;stained glass:8;stained glass:15;stained clay:9;stained clay:11" owner="blue">
-        <region name="blue-ship"/>
-    </destroyable>
-</destroyables>
-<itemremove>
-    <item>quartz stairs</item>
-    <item>quartz ore</item>
-    <item>quartz</item>
-    <item>quartz block</item>
-    <item>wood</item>
-    <item>diamond axe</item>
-</itemremove>
-<killreward>
-    <item amount="32">tnt</item>
-    <item>dispenser</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" material="tnt"/>
+        <item material="dispenser"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<blockdrops>
-    <rule>
-        <filter>
-            <block>iron block</block>
-        </filter>
-        <drops>
-            <item>iron helmet</item>
-            <item>iron leggings</item>
-            <item attributes="generic.movementSpeed:base:0.15" enchantment="protection fall:1">iron boots</item>
-        </drops>
-    </rule>
-</blockdrops>
 <disabledamage>
     <damage>fall</damage>
     <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
