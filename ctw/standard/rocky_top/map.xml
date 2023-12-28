@@ -1,13 +1,13 @@
 <map proto="1.4.2">
 <name>Rocky Top</name>
 <variant id="comp">TE</variant>
-<version>1.3.2</version>
+<version>1.3.3</version>
 <objective>Capture both of the enemy team's wools</objective>
 <unless variant="comp">
     <constant id="max">28</constant>
     <constant id="max-overfill" delete="true"/>
     <constant id="respawn-timer">2s</constant>
-    <constant id="max-build-height">28</constant>
+    <constant id="max-build-height">26</constant>
 </unless>
 <if variant="comp">
     <constant id="max">8</constant>
@@ -68,17 +68,17 @@
 <spawns>
     <default>
         <region yaw="90">
-            <point>-68.5,7,73.5</point>
+            <point>-68.5,8,73.5</point>
         </region>
     </default>
     <spawn team="blue-team" kit="spawn-kit">
         <region yaw="0">
-            <cuboid min="-104.5,8,-24.5" max="-102.5,8,-22.5"/>
+            <cuboid min="-104.5,9,-24.5" max="-102.5,9,-22.5"/>
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
         <region yaw="180">
-            <cuboid min="-104.5,8,169.5" max="-102.5,8,171.5"/>
+            <cuboid min="-104.5,9,169.5" max="-102.5,9,171.5"/>
         </region>
     </spawn>
 </spawns>
@@ -91,6 +91,7 @@
         <cause>world</cause>
         <material id="only-iron">iron block</material>
     </all>
+    <material id="only-stained-glass">stained glass</material>
     <if variant="comp">
         <deny id="water">
             <all>
@@ -105,19 +106,20 @@
 </filters>
 <regions>
     <union id="spawns">
-        <cuboid id="blue-spawn" min="-108.5,13,-29.5" max="-98.5,1,-9.5"/>
-        <cuboid id="red-spawn" min="-108.5,0.5,156.5" max="-98.5,13,176.5"/>
+        <cuboid id="blue-spawn" min="-108.5,14,-29.5" max="-98.5,2,-9.5"/>
+        <cuboid id="red-spawn" min="-108.5,2,156.5" max="-98.5,14,176.5"/>
     </union>
     <union id="wool-rooms">
         <union id="blue-def-red-obj">
-            <cuboid id="lime-wool" min="-151.5,13,-29.5" max="-143.5,100,-20.5"/>
-            <cuboid id="yellow-wool" min="-39.5,9,-19.5" max="-28.5,100,-6.5"/>
+            <cuboid id="lime-wool" min="-151.5,14,-29.5" max="-143.5,100,-20.5"/>
+            <cuboid id="yellow-wool" min="-39.5,10,-19.5" max="-28.5,100,-6.5"/>
         </union>
         <union id="red-def-blue-obj">
-            <cuboid id="pink-wool" min="-39.5,9,153.5" max="-28.5,100,166.5"/>
-            <cuboid id="light-blue-wool" min="-151.5,13,167.5" max="-143.5,100,176.5"/>
+            <cuboid id="pink-wool" min="-39.5,10,153.5" max="-28.5,100,166.5"/>
+            <cuboid id="light-blue-wool" min="-151.5,14,167.5" max="-143.5,100,176.5"/>
         </union>
     </union>
+    <cuboid id="floor" min="-152,1,-30" max="-28,2,177"/>
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the opponent's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the opponent's spawn!"/>
     <apply enter="only-blue" region="red-def-blue-obj" message="You may not enter your team's own wool rooms!"/>
@@ -126,7 +128,7 @@
     <apply block="deny(chest)" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
     <apply block="deny(only-blue)" region="blue-def-red-obj" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny(only-red)" region="red-def-blue-obj" message="You may not interfere with your team's own wool rooms!"/>
-    <apply block="deny(void)" message="You may not modify the void area!"/>
+    <apply block="deny(void)" block-physics="deny(void)" message="You may not modify the void area!"/>
     <if variant="comp">
         <negative id="non-wool-lanes">
             <union id="wool-lanes">
@@ -143,27 +145,37 @@
     <renewable renew-filter="only-iron" region="spawns"/>
 </renewables>
 <wools wool-proximity-metric="none" monument-proximity-metric="closest block">
-    <wool team="blue-team" color="light blue" location="-138.5,14.5,172.5">
+    <wool team="blue-team" color="light blue" location="-138.5,15.5,172.5">
         <monument>
-            <block>-107.5,7.5,-18.5</block>
+            <block>-107.5,8.5,-18.5</block>
         </monument>
     </wool>
-    <wool team="blue-team" color="pink" location="-43.5,9.5,159.5">
+    <wool team="blue-team" color="pink" location="-43.5,10.5,159.5">
         <monument>
-            <block>-99.5,7.5,-18.5</block>
+            <block>-99.5,8.5,-18.5</block>
         </monument>
     </wool>
-    <wool team="red-team" color="lime" location="-138.5,14.5,-25.5">
+    <wool team="red-team" color="lime" location="-138.5,15.5,-25.5">
         <monument>
-            <block>-107.5,7.5,165.5</block>
+            <block>-107.5,8.5,165.5</block>
         </monument>
     </wool>
-    <wool team="red-team" color="yellow" location="-43.5,9.5,-12.5">
+    <wool team="red-team" color="yellow" location="-43.5,10.5,-12.5">
         <monument>
-            <block>-99.5,7.5,165.5</block>
+            <block>-99.5,8.5,165.5</block>
         </monument>
     </wool>
 </wools>
+<actions>
+    <trigger scope="match">
+        <filter>
+            <match-started/>
+        </filter>
+        <action>
+            <fill material="air" region="floor" filter="only-stained-glass"/>
+        </action>
+    </trigger>
+</actions>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
