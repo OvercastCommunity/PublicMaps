@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Rooftops</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Eliminate the opposing team within 8 minutes.</objective>
 <created>2013-07-12</created>
 <include id="void-death"/>
@@ -19,6 +19,7 @@
     <lives>2</lives>
     <broadcastLives>true</broadcastLives>
 </blitz>
+<respawn auto="true"/>
 <teams>
    <team id="purple-team" color="dark purple" max="20">Purple</team>
    <team id="cyan-team" color="dark aqua" max="20">Cyan</team>
