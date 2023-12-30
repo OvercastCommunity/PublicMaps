@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Lotus</name>
 <variant id="comp">TE</variant>
-<version>1.3.4</version>
+<version>1.3.5</version>
 <objective>Capture the enemy's two wools!</objective>
 <unless variant="comp">
     <constant id="max">20</constant>
@@ -124,6 +124,12 @@
         <cuboid min="35,18,-232" max="34,19,-231"/>
         <cuboid min="35,18,-103" max="34,19,-104"/>
         <cuboid min="38,18,-103" max="39,19,-104"/>
+        <unless variant="comp">
+            <cuboid min="30,15,-106" max="43,21,-99"/>
+            <cuboid min="32,15,-107" max="41,21,-106"/>
+            <cuboid min="30,15,-236" max="43,21,-229"/>
+            <cuboid min="32,15,-229" max="41,21,-228"/>
+        </unless>
     </union>
     <union id="spawner-prot">
         <cuboid id="east-spawner-prot" min="67,11,-169" max="70,15,-166"/>
@@ -140,16 +146,17 @@
     <apply block="never" region="spawner-prot" message="You may not interfere with the golden apple spawners!"/>
     <apply block="never" region="wool-mons" message="You may not interfere with the wool monuments!"/>
     <if variant="comp">
-        <union id="non-wool-lanes">
-            <negative>
-                <union id="wool-lanes">
+        <negative id="non-wool-lanes">
+            <complement id="wool-lanes">
+                <union>
                     <rectangle min="6,-95" max="-7,-53"/>
                     <rectangle min="68,-94" max="81,-55"/>
                     <rectangle min="68,-241" max="81,-280"/>
                     <rectangle min="6,-240" max="-7,-282"/>
                 </union>
-            </negative>
-        </union>
+                <region id="wool-rooms"/>
+            </complement>
+        </negative>
         <apply block="water" region="non-wool-lanes"/>
     </if>
     <apply block-place="deny(void)" message="You may not edit the void!"/> <!-- uses block 36 -->
@@ -177,7 +184,7 @@
 <renewables>
     <renewable renew-filter="only-iron" region="spawns"/>
 </renewables>
-<wools wool-proximity-metric="none" monument-proximity-metric="closest block">
+<wools wool-proximity-metric="none" monument-proximity-metric="closest block" craftable="false">
     <wool team="blue-team" color="cyan" location="-0.5,8.5,-57">
         <monument>
             <block>34,17,-232</block>
