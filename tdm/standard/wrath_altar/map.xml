@@ -1,8 +1,13 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Wrath Altar</name>
-<version>2.4</version>
+<version>2.4.1</version>
 <objective>Be the team with the highest score after 9 minutes!</objective>
+<time result="score">9m</time>
+<score>
+    <kills>1</kills>
+</score>
+<rage/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
@@ -13,11 +18,6 @@
 <rules>
     <rule>Fall damage is disabled!</rule>
 </rules>
-<score>
-    <kills>1</kills>
-</score>
-<time result="score">9m</time>
-<rage/>
  <!-- Exit the hill for spreading players away from mid 
 <king>
     <hills>
@@ -31,63 +31,44 @@
 -->
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" unbreakable="true" enchantment="damage all:10" lore="`aOne hit slice!">iron sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow damage:10" lore="`aOne shot pierce!">bow</item>
-        <item slot="2" amount="2">ender pearl</item>
-        <item slot="8" amount="6">arrow</item>
-        <effect duration="oo">speed</effect>
-        <effect duration="4" amplifier="100">heal</effect>
-        <effect duration="4" amplifier="100">damage resistance</effect>
-    </kit>
-    <kit id="purple-kit" parents="spawn-kit">
-        <helmet color="AA00AA">leather helmet</helmet>
-        <chestplate color="AA00AA">leather chestplate</chestplate>
-        <leggings color="AA00AA">leather leggings</leggings>
-        <boots color="AA00AA">leather boots</boots>
-    </kit>
-    <kit id="orange-kit" parents="spawn-kit">
-        <helmet color="FFAA00">leather helmet</helmet>
-        <chestplate color="FFAA00">leather chestplate</chestplate>
-        <leggings color="FFAA00">leather leggings</leggings>
-        <boots color="FFAA00">leather boots</boots>
+        <item slot="0" unbreakable="true" enchantment="sharpness" lore="`aOne hit slice!">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="power;sharpness" lore="`aOne shot pierce!">bow</item>
+        <item slot="2" amount="2" material="ender pearl"/>
+        <item slot="8" amount="6" material="arrow"/>
+        <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings locked="true" unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots locked="true" unbreakable="true" team-color="true" attributes="generic.maxHealth:base:-0.7" material="leather boots"/>
+        <effect>speed</effect>
+        <effect duration="4s" amplifier="255">regeneration</effect>
+        <effect duration="4s" amplifier="255">damage resistance</effect>
     </kit>
 </kits>
-<kill-reward>
-    <item amount="2" material="arrow"/>
-    <item material="ender pearl"/>
-</kill-reward>
-<kill-reward>
-    <filter>
-        <kill-streak count="5"/>
-    </filter>
-    <item name="`bSpeed II" lore="`7Speed tier 2!" damage="8194" potions="speed:54000:1:true" material="potion"/>
-</kill-reward>
-<kill-reward>
-    <filter>
-        <kill-streak count="15"/>
-    </filter>
-    <item name="`bSpeed III" lore="`7Speed tier 3!" damage="8194" potions="speed:54000:2:true" material="potion"/>
-</kill-reward>
+<spawns>
+    <default>
+        <region angle="1692.5,100.5,-1461.5">
+            <cuboid min="1689,100,-1465" max="1686,100,-1458"/>
+        </region>
+    </default>
+    <spawn team="purple" kit="spawn-kit">
+        <region yaw="0">
+            <cuboid min="1694,8,-1566" max="1681,8,-1565"/>
+        </region>
+    </spawn>
+    <spawn team="orange" kit="spawn-kit">
+        <region yaw="180">
+            <cuboid min="1681,8,-1357" max="1694,8,-1357"/>
+        </region>
+    </spawn>
+</spawns>
 <filters>
     <not id="deny-fence">
         <material>fence</material>
     </not>
 </filters>
 <regions>
-    <apply block="never" use="deny-fence" region="everywhere"/>
+    <apply block="never" use="deny-fence"/>
 </regions>
-<spawns>
-    <spawn team="purple" kit="purple-kit" yaw="0">
-        <region><cuboid min="1694,8,-1566" max="1681,8,-1565"/></region>
-    </spawn>
-    <spawn team="orange" kit="orange-kit" yaw="180">
-        <region><cuboid min="1681,8,-1357" max="1694,8,-1357"/></region>
-    </spawn>
-    <default angle="1692.5,100.5,-1461.5">
-        <region><cuboid min="1689,100,-1465" max="1686,100,-1458"/></region>
-    </default>
-</spawns>
-<timelock>on</timelock>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -104,6 +85,24 @@
     <item>glass bottle</item>
     <item>arrow</item>
 </itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="2" material="arrow"/>
+        <item material="ender pearl"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="5"/>
+        </filter>
+        <item name="`bSpeed II" lore="`7Speed tier 2!" damage="8194" potions="speed:54000:1:true" material="potion"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="15"/>
+        </filter>
+        <item name="`bSpeed III" lore="`7Speed tier 3!" damage="8194" potions="speed:54000:2:true" material="potion"/>
+    </kill-reward>
+</kill-rewards>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
