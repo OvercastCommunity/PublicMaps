@@ -1,57 +1,57 @@
 <map proto="1.4.2">
 <name>Drow's Crevice: Blitz</name>
-<version>1.0.2</version>
-<objective>Eliminate the enemy team in 8 minutes or less. You have one life!</objective>
+<variant id="uhc" override="true">Drow's Crevice: UHC</variant>
+<version>1.0.3</version>
+<objective>Eliminate the enemy team in 6 minutes or less. You have one life!</objective>
 <gamemode>blitz</gamemode>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
     <author uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27"/> <!-- HardstyleRaver2 -->
 </authors>
 <teams>
-    <team id="orange" color="gold" max="16" max-overfill="20">Orange</team>
-    <team id="blue" color="blue" max="16" max-overfill="20">Blue</team>
+    <team id="orange-team" color="gold" max="16" max-overfill="20">Orange</team>
+    <team id="blue-team" color="blue" max="16" max-overfill="20">Blue</team>
 </teams>
-<kits>
-    <kit id="spawn-kit">
-        <item slot="0" material="stone sword"/>
-        <item slot="1" material="bow"/>
-        <item slot="2" amount="8" material="torch"/>
-        <item slot="3" amount="16" material="grilled pork"/>
-        <item slot="4" damage="8261" material="potion"/>
-        <item slot="8" amount="16" material="arrow"/>        
-        <helmet team-color="true" material="leather helmet"/>
-        <chestplate material="iron chestplate"/>
-        <leggings team-color="true" material="leather leggings"/>
-        <boots material="iron boots"/>
-    </kit>
-</kits>
+<if variant="uhc">
+    <game>Blitz: UHC</game>
+    <gamerules>
+        <naturalRegeneration>false</naturalRegeneration>
+    </gamerules>
+</if>
+<time>6m</time>
+<blitz/>
+<respawn auto="true"/>
 <spawns>
-    <spawn team="orange" kit="spawn-kit" yaw="-90">
-        <regions>
+    <spawn team="orange-team" kit="spawn-kit" yaw="-90">
+        <region>
             <cuboid min="244,21,-2" max="241,21,1"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="blue" kit="spawn-kit" yaw="90">
-        <regions>
+    <spawn team="blue-team" kit="spawn-kit" yaw="90">
+        <region>
             <cuboid min="156,21,1" max="153,21,-2"/>
-        </regions>
+        </region>
     </spawn>
-    <default>
-        <regions>
+    <default yaw="0">
+        <region>
             <point>198.5,14,-0.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
-<filters>
-    <material id="only-torch">torch</material>
-</filters>
-<regions>
-    <apply block="only-torch"/>
-</regions>
-<time>8m</time>
-<blitz>
-    <lives>1</lives>
-</blitz>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" amount="8" material="torch"/>
+        <item slot="3" damage="8261" material="potion"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate unbreakable="true" material="iron chestplate"/>
+        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="3" amplifier="128">heal</effect>
+    </kit>
+</kits>
 <itemremove>
     <item>leather helmet</item>
     <item>iron chestplate</item>
@@ -59,20 +59,29 @@
     <item>iron boots</item>
     <item>potion</item>
     <item>glass bottle</item>
-    <item>grilled pork</item>
     <item>torch</item>
+    <item>arrow</item>
 </itemremove>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
 </toolrepair>
+<filters>
+    <material id="only-torches">torch</material>
+</filters>
+<regions>
+    <apply block="only-torches"/>
+</regions>
 <kill-rewards>
     <kill-reward>
-        <item amount="4" material="arrow"/>
+        <item amount="8" material="arrow"/>
         <item damage="8261" material="potion"/>
     </kill-reward>
 </kill-rewards>
-<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<!-- BLITZ TUTORIAL -->
 <!-- <tutorial>
     <stage title="Regular Blitz">
         <message>
@@ -90,6 +99,28 @@
         </message>
         <teleport>
             <point yaw="90" pitch="5">204,15,-30</point>
+        </teleport>
+    </stage>
+</tutorial> -->
+<!-- UHC TUTORIAL -->
+<!-- <tutorial>
+    <stage title="Blitz: UHC">
+        <message>
+            <line>This map is a `4`lBlitz`r map.</line>
+            <line>It is in `bUHC`r mode, which means you will `lnot`r regenerate health through hunger.</line>
+        </message>
+        <teleport>
+            <point yaw="-150" pitch="10">180,9,19</point>
+        </teleport>
+    </stage>
+    <stage title="Regeneration Methods">
+        <message>
+            <line>This is a `aregeneration potion`r spawner. Each potion heals for `atwo and a half hearts`r.</line>
+            <line>`rEach set of potions spawn every 18 seconds.</line>
+            <line>`bPotions of Healing`r are also gained upon each `4kill`r.</line>
+        </message>
+        <teleport>
+            <point yaw="130" pitch="10">203,5,4</point>
         </teleport>
     </stage>
 </tutorial> -->
