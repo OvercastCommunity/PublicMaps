@@ -1,8 +1,7 @@
-<?xml version="1.0"?>
-<map proto="1.3.2">
+<map proto="1.4.2">
 <name>Bedrock Fortress Battles</name>
 <phase>development</phase>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <authors>
     <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
@@ -10,44 +9,68 @@
     <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
 </authors>
 <rules>
-    <rule>Do not glitch or bybass over/through the bedrock wall!</rule>
+    <rule>Do not bypass or glitch through the bedrock wall!</rule>
 </rules>
+<broadcasts>
+    <alert after="1s">The bedrock wall will drop at the 15 minute mark!</alert>
+    <alert after="15m">The bedrock wall has dropped!</alert>
+</broadcasts>
 <teams>
-    <team color="blue" max="100">Blue</team>
-    <team color="dark red" max="100">Red</team>
+    <team id="blue" color="blue" max="100">Blue</team>
+    <team id="red" color="dark red" max="100">Red</team>
 </teams>
 <spawns>
-    <spawn team="red" yaw="90"><point>1249,27,519</point></spawn>
-    <spawn team="blue" yaw="270"><point>1286,27,519</point></spawn>
-    <default yaw="180"><cylinder base="1267,27,518" radius="7" height="0"/></default>
+    <spawn team="red" yaw="90">
+        <regions>
+            <point>1249,27,519</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" yaw="270">
+        <regions>
+            <point>1286,27,519</point>
+        </regions>
+    </spawn>
+    <default yaw="180">
+        <regions>
+            <cylinder base="1267,27,518" radius="7" height="0"/>
+        </regions>
+    </default>
 </spawns>
 <regions>
-    <apply block="deny-all" message="You may not build outside the playable region">
-    <negative name="playable-inverse">
-        <rectangle min="1336,549" max="1199,637"/>
+    <rectangle id="spawns" min="1301,547" max="1234,517"/>
+    <cuboid id="bedrock-wall" min="1268,0,542" max="1266,94,646"/>
+    <negative id="playable-inverse">
+        <rectangle id="playable" min="1336,549" max="1199,637"/>
     </negative>
-    </apply>
-    <apply enter="deny-all" message="You may not enter spawns">
-        <rectangle min="1301,547" max="1234,517"/>
-    </apply>
+    <apply region="spawns" enter="never" message="You may not enter spawns"/>
+    <apply region="playable-inverse" block="never" message="You may not build outside the playable region"/>
 </regions>
 <cores material="obsidian" leak="5">
-    <core team="red"><cuboid min="1233,22,597" max="1227,30,589"/></core>
-    <core team="blue"><cuboid min="1302,22,589" max="1307,30,597"/></core>
+    <core team="red">
+        <region>
+            <cuboid min="1233,22,597" max="1227,30,589"/>
+        </region>
+    </core>
+    <core team="blue">
+        <region>
+            <cuboid min="1302,22,589" max="1307,30,597"/>
+        </region>
+    </core>
 </cores>
-<destroyables>
-    <destroyable name="Wall" show="false" completion="0%" materials="bedrock;air" mode-changes="true" owner="blue">
-        <cuboid min="1268,0,540" max="1267,95,646"/>
-    </destroyable>
-</destroyables>
-<modes>
-    <mode name="The bedrock wall is now down!" after="15m" material="air"/>
-</modes>
-<maxbuildheight>72</maxbuildheight>
-<broadcasts>
-    <alert after="1s" every="3m" count="5">The wall will drop at the 15 minute mark!</alert>
-</broadcasts>
+<actions>
+    <action id="wall" scope="match">
+        <fill id="clear-wall" region="bedrock-wall" material="air"/>
+    </action>
+    <trigger action="wall" scope="match">
+        <filter>
+            <after duration="15m" message="The bedrock wall will drop in {0}">
+                <match-running/>
+            </after>
+        </filter>
+    </trigger>
+</actions>
 <itemremove>
     <item>obsidian</item>
 </itemremove>
+<maxbuildheight>72</maxbuildheight>
 </map>
