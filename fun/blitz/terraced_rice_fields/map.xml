@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Terraced Rice Fields</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Eliminate the opposing team within 8 minutes.</objective>
 <created>2013-07-15</created>
 <authors>
@@ -18,6 +18,7 @@
     <lives>2</lives>
     <broadcastLives>true</broadcastLives>
 </blitz>
+<respawn auto="true"/>
 <teams>
    <team id="blue" color="blue" max="20">Blue</team>
    <team id="red" color="red" max="20">Red</team>
