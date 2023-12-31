@@ -4,10 +4,10 @@
 <objective>Destroy the other team's monuments!</objective>
 <gamemode>dtm</gamemode>
 <authors>
-    <author uuid="4a99223d-3465-492c-879a-81e65a21089d"> <!-- sweeeper -->
+    <author uuid="4a99223d-3465-492c-879a-81e65a21089d"/> <!-- sweeeper -->
 </authors>
 <contributors>
-    <contributor uuid="0c20aa0d-82f9-46cd-aeae-29cf1f112aa2"> <!-- resepignev -->
+    <contributor uuid="0c20aa0d-82f9-46cd-aeae-29cf1f112aa2"/> <!-- resepignev -->
 </contributors>
 <teams>
     <team id="red" color="dark red" max="35">Red</team>
