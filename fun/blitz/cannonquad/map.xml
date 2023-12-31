@@ -3,6 +3,7 @@
 <phase>development</phase>
 <version>1.4.0</version>
 <objective>Destroy your opponents within 10 minutes and 30 seconds.</objective>
+<created>2014-09-02</created>
 <gamemode>blitz</gamemode>
 <variant id="christmas" world="christmas" override="true">ChristmasQuad</variant>
 <authors>
