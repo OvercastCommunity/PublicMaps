@@ -3,34 +3,15 @@
 <version>1.0.0</version>
 <objective>Bring flags back to your base to earn the most points!</objective>
 <authors>
-    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>
 <contributors>
-    <contributor contribution="Design inspiration">Ustin_Jay</contributor>
+    <contributor uuid="62c954de-2419-41ff-9da2-db736291deeb" contribution="Design inspiration"/> <!-- Ustin_Jay -->
 </contributors>
 <teams>
     <team id="purple-team" color="dark purple" max="32">Purple</team>
     <team id="orange-team" color="gold" max="32">Orange</team>
 </teams>
-<spawns>
-    <spawn team="purple-team" kit="purple-kit">
-        <regions yaw="180">
-            <point>-766.5,36.5,17.5</point>
-            <point>-814.5,36.5,17.5</point>
-        </regions>
-    </spawn>
-    <spawn team="orange-team" kit="orange-kit">
-        <regions yaw="0">
-            <point>-766.5,36.5,-218.5</point>
-            <point>-814.5,36.5,-218.5</point>
-        </regions>
-    </spawn>
-    <default>
-        <regions angle="-790.5,186.5,-103.5">
-            <cylinder base="-790.5,185,-99.5" radius="2" height="0"/>
-        </regions>
-    </default>
-</spawns>
 <kits>
     <kit id="spawn-kit">
         <clear/>
@@ -65,6 +46,25 @@
         <item slot="4" material="wood" damage="2" amount="64"/>
     </kit>
 </kits>
+<spawns>
+    <spawn team="purple-team" kit="purple-kit">
+        <regions yaw="180">
+            <point>-766.5,36.5,17.5</point>
+            <point>-814.5,36.5,17.5</point>
+        </regions>
+    </spawn>
+    <spawn team="orange-team" kit="orange-kit">
+        <regions>
+            <point>-766.5,36.5,-218.5</point>
+            <point>-814.5,36.5,-218.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions angle="-790.5,186.5,-103.5">
+            <cylinder base="-790.5,185,-99.5" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
 <hunger>
     <depletion>off</depletion>
 </hunger>

@@ -7,7 +7,7 @@
     <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="XML"/>
 </authors>
 <contributors>
-    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Dawg Support"></contributor>
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Dawg Support"/>
 </contributors>
 <teams>
     <team id="blue" color="blue" max="20">Blue</team>
@@ -46,7 +46,7 @@
         </region>
     </default>
     <spawn team="blue" kit="blue-kit">
-        <regions yaw="0">
+        <regions>
             <cuboid min="-58.5,28.5,95.5" max="-62.5,30.5,91.5"/>
         </regions>
     </spawn>
@@ -143,7 +143,7 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<tutorial>
+<!-- <tutorial>
     <stage title="Capture the flag">
         <teleport>
             <point angle="-57,21,122">-31.5,54,111.5</point>
@@ -183,5 +183,5 @@
             <line>Use the viaduct as a bridge across the fighting and get past enemy defences.</line>
         </message>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>
