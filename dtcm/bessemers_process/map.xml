@@ -8,7 +8,7 @@
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Details, consistency, minor design"/> <!-- Stealth5061 -->
 </authors>
 <contributors>
-    <contributor contribution="Sewers">SH4DOW_HAWK</contributor>
+    <contributor uuid="1379cb6e-f291-4498-9807-e636f9674ac0" contribution="Sewers"/> <!-- SH4D0W_HAWK -->
 </contributors>
 <teams>
     <team color="blue" max="32">Blue</team>
