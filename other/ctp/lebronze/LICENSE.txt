@@ -1,4 +1,4 @@
-Copyright 2023 Xerorca
+Copyright 2024 Xerorca
 
 Please carefully read this license. This license is not a copy-pasted legal document. It has actual restrictions in it. If this license does not suit your purposes, contact Xerorca and sort something out, don't just ignore it.
 
