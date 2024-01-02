@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.12.09-1 -->
+<!-- Version 2024.01.02-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -434,6 +434,18 @@
             <find material="golden apple"/>
             <replace material="air"/>
         </replace-item>
+    </action>
+    <action id="remove-point" scope="team" expose="true">
+        <!--
+        This action is intended to remove points obtained through very obvious cheating (for instance, players using Blink or Fly, or Block Glitching)
+        This effect can also be achieved via the "/variable set" command, but this method prints a nice and public message in chat
+        
+        To use this, you need to join the team you want to remove the point from.
+        -->
+        <set var="team_score" value="team_score-1"/>
+        <switch-scope outer="team" inner="match">
+            <message text=" `e⚠ `cA point has been deducted from one of the teams as it had been obtained illegitimately."/>
+        </switch-scope>
     </action>
 </actions>
 <regions>
