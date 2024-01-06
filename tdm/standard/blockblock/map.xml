@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>BlockBlock</name>
 <variant id="rage" world="rage" override="true">BlockRAGE</variant>
-<version>1.6</version>
+<version>1.6.1</version>
 <objective>Get the most kills in 8 minutes!</objective>
 <time result="score">8m</time>
 <gamemode>tdm</gamemode>
@@ -35,11 +35,14 @@
     <if variant="rage">
         <kit id="spawn-kit">
             <clear/>
-            <item slot="0" locked="true" unbreakable="true" lore="`aAll-purpose instant killing device" material="bow">
+            <item slot="0" unbreakable="true" material="iron sword">
+                <enchantment>sharpness</enchantment>
+            </item>
+            <item slot="1" unbreakable="true" lore="`aAll-purpose instant killing device" material="bow">
                 <enchantment>power</enchantment>
                 <enchantment>sharpness</enchantment>
             </item>
-            <item slot="1" amount="2" material="arrow"/>
+            <item slot="2" amount="2" material="arrow"/>
             <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
             <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
             <leggings locked="true" unbreakable="true" team-color="true" material="leather leggings"/>
