@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>BlockBlock</name>
 <variant id="rage" world="rage" override="true">BlockRAGE</variant>
-<version>1.6.1</version>
+<version>1.6.2</version>
 <objective>Get the most kills in 8 minutes!</objective>
 <time result="score">8m</time>
 <gamemode>tdm</gamemode>
@@ -124,6 +124,7 @@
 </unless>
 <if variant="rage">
     <toolrepair>
+        <tool>iron sword</tool>
         <tool>bow</tool>
     </toolrepair>
     <itemremove>
