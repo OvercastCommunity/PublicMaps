@@ -1,0 +1,118 @@
+<map proto="1.4.2">
+<name>Fossil Canyon</name>
+<version>1.1.1</version>
+<objective>Destroy the enemy team's monuments!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- luvimaki -->
+</authors>
+<teams>
+    <team id="red-team" color="red" max="20">Red</team>
+    <team id="blue-team" color="blue" max="20">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" yaw="135">
+        <regions>
+            <point>-7.5,72,91.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit" yaw="-45">
+        <regions>
+            <point>-65.5,72,-84.5</point>
+        </regions>
+    </spawn>
+    <default yaw="90">
+        <regions>
+            <point>22.5,122,4.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" material="iron sword"/>
+        <item slot="1" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" material="iron axe"/>
+        <item slot="4" amount="48" material="stained clay" team-color="true"/>
+        <item slot="5" amount="32" material="log"/>
+        <item slot="7" amount="16" material="cooked fish"/>
+        <item slot="8" amount="3" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
+        <effect duration="5" amplifier="255">damage resistance</effect>
+        <effect duration="5" amplifier="255">heal</effect>
+    </kit>
+</kits>
+<filters>
+    <team id="only-blue">red-team</team>
+    <team id="only-red">blue-team</team>
+</filters>
+<regions>
+    <union id="spawns">
+        <circle id="red-spawn" center="-8,91" radius="5"/>
+        <circle id="blue-spawn" center="-66,-85" radius="5"/>
+        <cylinder id="obs-spawn" base="22.5,117,4.5" height="oo" radius="4"/>
+    </union>
+    <apply region="blue-spawn" enter="only-blue" message="You may not enter the enemy's spawn!"/>
+    <apply region="red-spawn" enter="only-red" message="You may not enter the enemy's spawn!"/>
+    <apply region="spawns" block="never" message="You may not modify spawn areas!"/>
+</regions>
+<destroyables materials="obsidian">
+    <destroyable name="Left" owner="blue-team">
+        <region>
+            <block>-9,76,59</block>
+        </region>
+    </destroyable>
+    <destroyable name="Front" owner="blue-team">
+        <region>
+            <block>-40,73,39</block>
+        </region>
+    </destroyable>
+    <destroyable name="Right" owner="blue-team">
+        <region>
+            <block>-66,72,88</block>
+        </region>
+    </destroyable>
+    <destroyable name="Left" owner="red-team">
+        <region>
+            <block>-65,76,-53</block>
+        </region>
+    </destroyable>
+    <destroyable name="Front" owner="red-team">
+        <region>
+            <block>-34,73,-33</block>
+        </region>
+    </destroyable>
+    <destroyable name="Right" owner="red-team">
+        <region>
+            <block>-8,72,-82</block>
+        </region>
+    </destroyable>
+</destroyables>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>log</item>
+    <item>stained glass</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+</itemremove>
+</map>
