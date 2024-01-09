@@ -3,7 +3,7 @@
 <game>Blasternauts</game>
 <!-- Blasternauts gamemode include file -->
 <!-- Modified by zzuf - Original blasternauts.xml file from the Overcast Network -->
-<!-- Version 2023.05.03-1 -->
+<!-- Version 2024.01.09-1 -->
 <autorespawn/>
 <rules>
     <rule>Fall damage is disabled</rule>
@@ -41,6 +41,7 @@
     </kit>
 </kits>
 <filters>
+    <observing id="is-observer"/>
     <any id="allowed-blocks">
         <allow>
             <material>tnt</material>
@@ -60,6 +61,7 @@
         </not>
     </all>
     <pulse id="delete-time" period="1s" duration="0.1" filter="match-started"/>
+    <entity id="old-fireball">dropped_item</entity> <!-- used when deleting vanilla-spawned fireballs (which won't work as projectiles) -->
 </filters>
 <regions>
     <negative id="not-spawn-areas">
@@ -76,6 +78,21 @@
     </action>
     <trigger action="delete-entities-at-spawns" filter="delete-time" scope="match"/>
 </actions>
+<!-- Action used to remove vanilla spawners in older maps -->
+<!--
+<actions>
+    <action id="replace-spawners" scope="match">
+        <fill region="real-spawners" material="159:3"/>
+        <kill-entities filter="old-fireball"/>
+    </action>
+    <trigger action="replace-spawners" filter="match-started" scope="match"/>
+</actions>
+<spawners>
+    <spawner spawn-region="middle-spawner" player-region="everywhere" max-entities="6" delay="4s">
+        <item amount="1" name="`cGrenade MK II `6| `9Right click to use." material="fireball" projectile="fireball-grenade"/>
+    </spawner>
+</spawners>
+-->
 <modifybowprojectile>
     <projectile>TNTPrimed</projectile>
     <velocityMod>1.0</velocityMod>
@@ -123,4 +140,26 @@
         <item damage="8229" material="potion"/>
     </kill-reward>
 </kill-rewards>
+<!-- Blasternauts tutorial taken from BN: Classic -->
+<!--
+<tutorial>
+    <stage title="Blasternauts">
+        <message>
+            <line>`9`lBlasternauts `ris a `4TNT `rbased gamemode.</line>
+            <line>The objective is to `4blow up`r as many people as you can...</line>
+            <line>using the `4TNT`r and `cGrenades `rin your inventory.</line>
+            <line>You will also find a `6melee stick`r incase you run out of equipment</line>
+        </message>
+    </stage>
+    <stage title="The Center">
+        <message>
+            <line>In the center, you will find spawners that spawn `cgrenades`r.</line>
+            <line>Go through here to get more `cgrenades`r.</line>
+        </message>
+        <teleport>
+            <point yaw="-49" pitch="50">-19,23,-27</point>
+        </teleport>
+    </stage>
+</tutorial>
+-->
 </map>
