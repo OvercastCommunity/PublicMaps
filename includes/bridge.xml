@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.01.02-1 -->
+<!-- Version 2024.01.09-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -435,7 +435,7 @@
             <replace material="air"/>
         </replace-item>
     </action>
-    <action id="remove-point" scope="team" expose="true">
+    <action id="deduct-point" scope="team" expose="true">
         <!--
         This action is intended to remove points obtained through very obvious cheating (for instance, players using Blink or Fly, or Block Glitching)
         This effect can also be achieved via the "/variable set" command, but this method prints a nice and public message in chat
