@@ -1,0 +1,90 @@
+<map proto="1.4.2">
+<name>BN: Classic</name>
+<version>1.2.1</version>
+<include id="blasternauts"/>
+<timelock>on</timelock>
+<authors>
+    <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ItsMiiOlly -->
+    <author uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83"/> <!-- lonelyhornet -->
+    <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->
+    <author uuid="9909505b-1f0f-4af1-ae21-afbee92427ce"/> <!-- Winarve -->
+    <author uuid="939a9a1c-f735-467a-bfd7-ae77cafd6693"/> <!-- PlasmaCross -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="4">Blue</team>
+    <team id="yellow" color="yellow" max="4">Yellow</team>
+    <team id="orange" color="gold" max="4">Orange</team>
+    <team id="purple" color="dark purple" max="4">Purple</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blasternaut-kit" yaw="-45">
+        <region><cylinder base="-39.5,11,-48.5" radius="1" height="0"/></region>
+    </spawn>
+    <spawn team="yellow" kit="blasternaut-kit" yaw="-135">
+        <region><cylinder base="-39.5,11,13.5" radius="1" height="0"/></region>
+    </spawn>
+    <spawn team="purple" kit="blasternaut-kit" yaw="135">
+        <region><cylinder base="22.5,11,13.5" radius="1" height="0"/></region>
+    </spawn>
+    <spawn team="orange" kit="blasternaut-kit" yaw="45">
+        <region><cylinder base="22.5,11,-48.5" radius="1" height="0"/></region>
+    </spawn>
+    <default yaw="-180">
+        <region><cylinder base="-8.5,26,25.5" radius="3" height="0"/></region>
+    </default>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-yellow">yellow</team>
+    <team id="only-purple">purple</team>
+    <team id="only-orange">orange</team>
+    <material id="only-spawner">mob spawner</material>
+</filters>
+<regions>
+    <union id="spawn-areas">
+        <cuboid id="blue-spawn-area" min="-22,9,-51" max="-42,20,-31"/>
+        <cuboid id="yellow-spawn-area" min="-22,9,15" max="-42,20,-5"/>
+        <cuboid id="orange-spawn-area" min="4,9,-51" max="24,20,-31"/>
+        <cuboid id="purple-spawn-area" min="4,9,15" max="24,20,-5"/>
+    </union>
+    <apply enter="only-blue" region="blue-spawn-area" message="You may not enter the enemy base"/>
+    <apply enter="only-yellow" region="yellow-spawn-area" message="You may not enter the enemy base"/>
+    <apply enter="only-orange" region="orange-spawn-area" message="You may not enter the enemy base"/>
+    <apply enter="only-purple" region="purple-spawn-area" message="You may not enter the enemy base"/>
+    <cuboid id="middle-spawner" min="-12,5,-21" size="7,2,7"/>
+    <cuboid id="real-spawners" min="-12,4,-21" size="7,1,7"/>
+</regions>
+<actions> <!-- leaves the original spawners visible before the match starts - the items they spawn don't work as custom projectiles -->
+    <action id="replace-spawners" scope="match">
+        <fill region="real-spawners" material="159:15" filter="only-spawner"/>
+        <kill-entities filter="old-fireball"/>
+    </action>
+    <trigger action="replace-spawners" filter="match-started" scope="match"/>
+</actions>
+<spawners>
+    <spawner spawn-region="middle-spawner" player-region="everywhere" max-entities="6" delay="4s">
+        <item amount="1" name="`cGrenade MK II `6| `9Right click to use." material="fireball" projectile="fireball-grenade"/>
+    </spawner>
+</spawners>
+<!--
+<tutorial>
+    <stage title="Blasternauts">
+        <message>
+            <line>`9`lBlasternauts `ris a `4TNT `rbased gamemode.</line>
+            <line>The objective is to `4blow up`r as many people as you can...</line>
+            <line>using the `4TNT`r and `cGrenades `rin your inventory.</line>
+            <line>You will also find a `6melee stick`r incase you run out of equipment</line>
+        </message>
+    </stage>
+    <stage title="The Center">
+        <message>
+            <line>In the center, you will find spawners that spawn `cgrenades`r.</line>
+            <line>Go through here to get more `cgrenades`r.</line>
+        </message>
+        <teleport>
+            <point yaw="-49" pitch="50">-19,23,-27</point>
+        </teleport>
+    </stage>
+</tutorial>
+-->
+</map>
