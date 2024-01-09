@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <include id="blasternauts"/>
 <name>BN: Spacecraft</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <authors>
     <author uuid="bada87c3-3383-42cb-973d-99032a0724b9"/> <!-- Holdfast33 -->
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
@@ -16,7 +16,6 @@
 <filters>
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
-    <entity id="old-fireball">dropped_item</entity>
 </filters>
 <regions>
     <union id="spawn-areas">
