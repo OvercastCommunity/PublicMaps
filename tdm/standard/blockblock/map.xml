@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>BlockBlock</name>
 <variant id="rage" world="rage" override="true">BlockRAGE</variant>
-<version>1.6.2</version>
+<version>1.6.3</version>
 <objective>Get the most kills in 8 minutes!</objective>
 <time result="score">8m</time>
 <gamemode>tdm</gamemode>
@@ -46,10 +46,11 @@
             <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
             <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
             <leggings locked="true" unbreakable="true" team-color="true" material="leather leggings"/>
-            <boots locked="true" unbreakable="true" team-color="true" attributes="generic.maxHealth:base:-0.7" material="leather boots"/>
+            <boots locked="true" unbreakable="true" team-color="true" material="leather boots"/>
             <effect>speed</effect>
             <effect duration="3s" amplifier="255">regeneration</effect>
             <effect duration="3s" amplifier="255">damage resistance</effect>
+            <max-health>6</max-health>
             <game-mode>adventure</game-mode>
         </kit>
     </if>
