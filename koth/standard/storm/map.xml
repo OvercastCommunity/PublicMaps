@@ -1,13 +1,13 @@
 <map proto="1.4.2">
 <name>Storm</name>
-<variant id="redux" world="redux" override="true">Storm Redux</variant>
-<version>1.1</version>
+<variant id="classic" world="classic">Classic</variant>
+<version>2.0</version>
 <include id="conquest"/>
 <constant id="respawn-timer">3s</constant>
 <constant id="damage-resistance">4s</constant>
-<unless variant="redux">
+<if variant="classic">
     <phase>development</phase>
-</unless>
+</if>
 <objective>Control the hills to be the first to ${score} points!</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
@@ -39,19 +39,19 @@
     <spawn team="red" kit="base-kit" yaw="180" region="red-spawn"/>
 </spawns>
 <constants>
-    <unless variant="redux">
-        <constant id="mid-capture-time">15</constant>
-        <constant id="a-b-capture-time">10</constant>
-        <constant id="mid-points">1</constant>
-        <constant id="a-b-points">1</constant>
-        <constant id="score">750</constant>
-    </unless>
-    <if variant="redux">
+    <unless variant="classic">
         <constant id="mid-capture-time">5</constant>
         <constant id="a-b-capture-time">5</constant>
         <constant id="mid-points">3.5</constant>
         <constant id="a-b-points">2.75</constant>
         <constant id="score">2500</constant>
+    </unless>
+    <if variant="classic">
+        <constant id="mid-capture-time">15</constant>
+        <constant id="a-b-capture-time">10</constant>
+        <constant id="mid-points">1</constant>
+        <constant id="a-b-points">1</constant>
+        <constant id="score">750</constant>
     </if>
 </constants>
 <king>
