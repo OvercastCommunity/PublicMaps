@@ -1,41 +1,31 @@
 <map proto="1.4.2">
 <name>Aerobellum</name>
-<version>1.2.5</version>
-<phase>development</phase>
+<variant id="classic" world="classic">Classic</variant>
+<version>1.2.7</version>
 <objective>Leak lava from the enemy team's engine to win the match!</objective>
+<maxbuildheight>50</maxbuildheight>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
 </rules>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
 </authors>
+<if variant="default">
+    <contributors>
+        <contributor uuid="1aad55f7-2dea-4f22-85ca-ad9de3a78609" contribution="Redux"/> <!-- Technodono -->
+    </contributors>
+    <slug>aerobellum_redux</slug>
+</if>
+<if variant="classic">
+    <phase>development</phase>
+</if>
 <teams>
     <team id="red" color="dark red" max="24">Red</team>
     <team id="blue" color="blue" max="24">Blue</team>
 </teams>
-<kits>
-    <kit id="spawn-protection">
-        <effect amplifier="10">damage resistance</effect>
-        <knockback-reduction>1</knockback-reduction>
-    </kit>
-    <kit id="spawn-kit">
-        <item slot="0" material="iron sword"/>
-        <item slot="1" enchantment="arrow infinite" material="bow"/>
-        <item slot="28" material="arrow"/>
-        <item slot="2" material="diamond pickaxe"/>
-        <item slot="3" material="iron axe"/>
-        <item slot="4" damage="1" amount="64" material="log"/>
-        <item slot="5" amount="64" material="ladder"/>
-        <item slot="6" material="water bucket"/>
-        <item slot="7" lore="More tnt can be found in your ship!" amount="32" material="tnt"/>
-        <item slot="8" amount="32" material="grilled pork"/>
-        <helmet team-color="true" material="leather helmet"/>
-        <chestplate enchantment="protection explosions:4" material="chainmail chestplate"/>
-        <leggings team-color="true" material="leather leggings"/>
-        <boots team-color="true" material="leather boots"/>
-        <effect duration="5" amplifier="10">heal</effect>
-    </kit>
-</kits>
+<broadcasts>
+    <alert after="1s">`7Engines are `4`lINVULNERABLE `7for `b120 seconds`7. `7`lBuild your defences!</alert>
+</broadcasts>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="90">
         <regions>
@@ -49,14 +39,17 @@
     </spawn>
     <default yaw="-90">
         <regions>
-            <cylinder base="-108.5,33.1,-7.5" radius="2" height="0"/>
+            <cylinder base="-108.5,33,-7.5" radius="2" height="0"/>
         </regions>
     </default>
 </spawns>
 <filters>
     <!-- Recent changes to implement spawn and chest protection -->
     <deny id="deny-chest-break">
-        <material>chest</material>
+        <any>
+            <material>chest</material>
+            <material>trapped_chest</material>
+        </any>
     </deny>
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
@@ -68,27 +61,97 @@
         </any>
     </deny>
 </filters>
+<tnt>
+    <yield>0</yield>
+</tnt>
+<kits>
+    <kit id="spawn-protection">
+        <effect amplifier="10" duration="oo">damage resistance</effect>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit id="spawn-kit">
+        <unless variant="classic">
+            <item slot="0" unbreakable="true" material="iron sword"/>
+            <item slot="1" enchantment="arrow_infinite:1" unbreakable="true" material="bow"/>
+            <item slot="28" material="arrow"/>
+            <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+            <item slot="3" unbreakable="true" material="iron axe"/>
+            <item slot="4" damage="1" amount="64" material="wood"/>
+            <item slot="31" damage="1" amount="64" material="wood"/>
+            <item slot="22" damage="1" amount="64" material="wood"/>
+            <item slot="13" damage="1" amount="64" material="wood"/>
+            <item slot="8" amount="64" material="grilled pork"/>
+        </unless>
+        <if variant="classic">
+            <item slot="0" material="iron sword"/>
+            <item slot="1" enchantment="arrow infinite" material="bow"/>
+            <item slot="28" material="arrow"/>
+            <item slot="2" material="diamond pickaxe"/>
+            <item slot="3" material="iron axe"/>
+            <item slot="4" damage="1" amount="64" material="log"/>
+            <item slot="8" amount="32" material="grilled pork"/>
+        </if>
+        <item slot="5" amount="64" material="ladder"/>
+        <item slot="6" material="water bucket"/>
+        <item slot="7" lore="More tnt can be found in your ship!" amount="32" material="tnt"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate enchantment="protection explosions:4" material="chainmail chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
+        <effect duration="5" amplifier="10">heal</effect>
+    </kit>
+</kits>
 <regions>
-    <!-- Recent changes to implement spawn and chest protection -->
-    <cylinder id="red-spawn-protect" base="-59,22,22" radius="3" height="1"/>
-    <cylinder id="blue-spawn-protect" base="-59,22,-39" radius="3" height="1"/>
-    <negative id="not-map">
-        <rectangle id="map" min="-102,-67" max="8,51"/>
-    </negative>
-    <apply region="blue-spawn-protect" block="never" lend-kit="spawn-protection" filter="only-blue"/>
-    <apply region="red-spawn-protect" block="never" lend-kit="spawn-protection" filter="only-red"/>
-    <apply block="deny-chest-break" message="This block can not be placed or broken on this map!"/>
-    <!-- Line where recent changes end -->
-    <apply block="never">
-        <region>
-            <cuboid min="-103,27,0" max="-114,44,-15"/>
-            <cylinder base="-58.5,21,22.5" radius="2.5" height="5"/>
-            <cylinder base="-58.5,21,-37.5" radius="2.5" height="5"/>
-        </region>
-    </apply>
-    <apply region="not-map" block="never"/>
-    <apply region="map" block="deny-fire"/>
+    <unless variant="classic">
+        <!-- Recent changes to implement spawn and chest protection -->
+        <union id="team-spawns">
+            <cylinder id="red-spawn-protect" base="-58.5,21,22.5" radius="3" height="5"/>
+            <cylinder id="blue-spawn-protect" base="-58.5,21,-37.5" radius="3" height="5"/>
+        </union>
+        <apply lend-kit="spawn-protection" filter="only-blue" region="blue-spawn-protect"/>
+        <apply lend-kit="spawn-protection" filter="only-red" region="red-spawn-protect"/>
+        <apply block="never" region="team-spawns"/>
+        <apply block="deny-chest-break" message="This block can not be placed or broken on this map!"/>
+        <!-- Line where recent changes end -->
+        <apply block="never" message="You may not build into the void!">
+            <region>
+                <negative>
+                    <rectangle min="-98,-67" max="3,51"/>
+                </negative>
+            </region>
+        </apply>
+    </unless>
+    <if variant="classic">
+        <!-- Recent changes to implement spawn and chest protection -->
+        <cylinder id="red-spawn-protect" base="-59,22,22" radius="3" height="1"/>
+        <cylinder id="blue-spawn-protect" base="-59,22,-39" radius="3" height="1"/>
+        <negative id="not-map">
+            <rectangle id="map" min="-102,-67" max="8,51"/>
+        </negative>
+        <apply region="blue-spawn-protect" block="never" lend-kit="spawn-protection" filter="only-blue"/>
+        <apply region="red-spawn-protect" block="never" lend-kit="spawn-protection" filter="only-red"/>
+        <apply block="deny-chest-break" message="This block can not be placed or broken on this map!"/>
+        <!-- Line where recent changes end -->
+        <apply block="never">
+            <region>
+                <cuboid min="-103,27,0" max="-114,44,-15"/>
+                <cylinder base="-58.5,21,22.5" radius="2.5" height="5"/>
+                <cylinder base="-58.5,21,-37.5" radius="2.5" height="5"/>
+            </region>
+        </apply>
+        <apply region="not-map" block="never"/>
+        <apply region="map" block="deny-fire"/>
+    </if>
 </regions>
+<crafting>
+    <disable>chest</disable>
+</crafting>
+<modes>
+    <mode after="3s" material="bedrock" name="`7Engines are `4`lINVULNERABLE `7for `b120 seconds`7."/>
+    <mode after="120s" material="obsidian" name="`7Engines are now `4`lVULNERABLE`7!"/>
+    <mode after="20m" material="gold block" name="`6`lGOLD `7engine mode now active!"/>
+    <mode after="25m" material="glass" name="`f`lGLASS `7engine mode now active!"/>
+</modes>
 <cores material="obsidian" leak="5" name="Engine" mode-changes="true">
     <core team="blue">
         <region>
@@ -101,12 +164,6 @@
         </region>
     </core>
 </cores>
-<modes>
-    <mode after="3s" material="bedrock" name="`7Engines are `4`lINVULNERABLE `7for `b120 seconds`7."/>
-    <mode after="120s" material="obsidian" name="`7Engines are now `4`lVULNERABLE`7!"/>
-    <mode after="20m" material="gold block" name="`6`lGOLD `7engine mode now active!"/>
-    <mode after="25m" material="glass" name="`f`lGLASS `7engine mode now active!"/>
-</modes>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>diamond pickaxe</tool>
@@ -139,22 +196,35 @@
     <item>shears</item>
     <item>bucket</item>
     <item>water bucket</item>
+    <unless variant="classic">
+        <item>quartz_stairs</item>
+        <item>wool</item>
+    </unless>
 </itemremove>
-<block-drops>
-    <rule wrong-tool="true">
-        <filter>
-            <material>jukebox</material>
-        </filter>
-        <drops>
-            <item amount="64" damage="5" material="wood"/>
-        </drops>
-    </rule>
-</block-drops>
-<tnt>
-    <yield>0</yield>
-</tnt>
-<crafting>
-    <disable>chest</disable>
-</crafting>
-<maxbuildheight>50</maxbuildheight>
+<if variant="classic">
+    <block-drops>
+        <rule wrong-tool="true">
+            <filter>
+                <material>jukebox</material>
+            </filter>
+            <drops>
+                <item amount="64" damage="5" material="wood"/>
+            </drops>
+        </rule>
+    </block-drops>
+</if>
+<unless variant="classic">
+    <item-mods>
+        <rule>
+            <match>
+                <material>iron axe</material>
+                <material>shears</material>
+            </match>
+            <modify unbreakable="true"/>
+        </rule>
+    </item-mods>
+    <gamerules>
+        <doFireTick>false</doFireTick>
+    </gamerules>
+</unless>
 </map>

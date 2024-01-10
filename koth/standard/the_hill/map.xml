@@ -1,149 +1,110 @@
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>The Hill</name>
-<version>1.1.6</version>
-<phase>development</phase>
-<objective>Capture and hold the hills.</objective>
+<version>1.0.5</version>
+<slug>the_hill_redux</slug>
+<objective>Capture and hold the hills!</objective>
 <authors>
     <author uuid="374988d6-4569-444e-885a-409c2f55e310" contribution="Map Creator"/> <!-- Articray -->
     <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1" contribution="XML and Planning"/> <!-- TheZaner -->
     <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Building and Planning"/> <!-- xXFracXx -->
 </authors>
 <contributors>
-    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="MCEdit, Feedback and XML Fixing"/> <!-- ItsMiiOlly -->
-    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Ideas, Building, Server Hosting, and real XML Fixing"/> <!-- ElectroidFilms -->
-    <contributor uuid="a59dce2e-79e2-4229-ab83-98c885fceb23" contribution="Feedback and Planning"/> <!-- XxNarwhalexX -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="MCEdit, feedback and XML fixing"/> <!-- ItsMiiOlly -->
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Ideas, building, server hosting, and real XML fixing"/> <!-- ElectroidFilms -->
+    <contributor uuid="a59dce2e-79e2-4229-ab83-98c885fceb23" contribution="Feedback and planning"/> <!-- XxNarwhalexX -->
 </contributors>
 <teams>
-    <team color="gold" max="40">Orange</team>
-    <team color="dark purple" max="40">Purple</team>
+    <team id="orange" color="gold" max="28">Orange</team>
+    <team id="purple" color="dark purple" max="28">Purple</team>
 </teams>
 <kits>
-    <kit name="spawn">
-		<clear/>
-        <item slot="0" unbreakable="true">stone sword</item>
-        <item slot="1" unbreakable="true">bow</item>
-        <item slot="2">golden apple</item>
-        <item slot="8" amount="16">arrow</item>
-		<leggings unbreakable="true" enchantment="protection projectile:3">chainmail leggings</leggings>
-		<boots unbreakable="true">iron boots</boots>
-        <potion duration="8" amplifier="3">heal</potion>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <leggings unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
+        <boots unbreakable="true" enchantment="feather_falling:2" material="iron boots"/>
+        <effect duration="8" amplifier="3">heal</effect>
+        <game-mode>adventure</game-mode>
     </kit>
-    <kit name="orange" parents="spawn">
-		<helmet color="FF8000" unbreakable="true">leather helmet</helmet>
-        <chestplate color="FF8000" unbreakable="true">leather chestplate</chestplate>
+    <kit id="orange-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="FF8000" material="leather helmet"/>
+        <chestplate unbreakable="true" color="FF8000" material="leather chestplate"/>
     </kit>
-    <kit name="purple" parents="spawn">
-		<helmet color="800080" unbreakable="true">leather helmet</helmet>
-        <chestplate color="800080" unbreakable="true">leather chestplate</chestplate>
+    <kit id="purple-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="800080" material="leather helmet"/>
+        <chestplate unbreakable="true" color="800080" material="leather chestplate"/>
     </kit>
 </kits>
 <spawns>
-	<spawn team="orange" kit="orange" yaw="0">
-		<cylinder base="1101,11,-604" radius="1" height="1"/>
-	</spawn>
-	<spawn team="purple" kit="purple" yaw="180">
-		<cylinder base="1101,11,-472" radius="1" height="1"/>
-	</spawn>
-	<default yaw="-90">
-		<cuboid min="1024,40,-538" max="1024,40,-538"/>
-	</default>
+    <default>
+        <region yaw="-90">
+            <cylinder base="1027.5,40,-538.5" radius="2" height="1"/>
+        </region>
+    </default>
+    <spawn team="orange" kit="orange-kit">
+        <region yaw="0">
+            <cylinder base="1101.5,11,-604.5" radius="1" height="1"/>
+        </region>
+    </spawn>
+    <spawn team="purple" kit="purple-kit">
+        <region yaw="180">
+            <cylinder base="1101.5,11,-472.5" radius="1" height="1"/>
+        </region>
+    </spawn>
 </spawns>
+<filters>
+    <material id="only-chest">chest</material>
+</filters>
 <regions>
-    <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
-    <apply block="deny-all">
-        <region name="playable"/>
-    </apply>
+    <apply block="never" use="only-chest"/>
 </regions>
 <king>
-    <hills>
-        <hill name="Hill" capture-time="15s" points="1">
+    <hills incremental="true" show-progress="true" neutral-state="true" required="false" capture-time="7s" points="1">
+        <hill name="Hill">
             <capture>
-                <cylinder base="1101,31,-538" radius="9" height="5"/>
+                <cylinder base="1101.5,31,-538.5" radius="6.5" height="5"/>
             </capture>
             <progress>
-                <cuboid min="1093,31,-531" max="1109,31,-547"/>
+                <cylinder base="1101.5,31,-538.5" radius="6.5" height="1"/>
             </progress>
-            <captured>
-                <cuboid min="0,0,0" max="0,0,0"/>
-            </captured>
         </hill>
-        <hill name="Cave" capture-time="10s" points="1">
+        <hill name="Cave">
             <capture>
-                <cylinder base="1101,9,-538" radius="11" height="5"/>
+                <cylinder base="1101.5,9,-538.5" radius="8.5" height="5"/>
             </capture>
             <progress>
-                <cuboid min="1111,9,-549" max="1091,9,-529"/>
+                <cylinder base="1101.5,9,-538.5" radius="8.5" height="1"/>
             </progress>
-            <captured>
-                <cuboid min="1,1,1" max="1,1,1"/>
-            </captured>
         </hill>
     </hills>
 </king>
 <score>
     <limit>750</limit>
-    <king/>
 </score>
 <toolrepair>
-	<tool>stone sword</tool>
-	<tool>bow</tool>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
 </toolrepair>
 <itemremove>
-	<item>leather helmet</item>
-	<item>leather chestplate</item>
-	<item>chainmail leggings</item>
-	<item>iron boots</item>
-	<item>glass bottle</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>glass bottle</item>
 </itemremove>
-<killreward>
-	<item>golden apple</item>
-	<item amount="8">arrow</item>
-</killreward>
 <itemkeep>
-	<item>arrow</item>
-	<item>golden apple</item>
+    <item>golden apple</item>
+    <item>arrow</item>
 </itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="8" material="arrow"/>
+</kill-reward>
+<respawn auto="true"/>
 <hunger>
-	<depletion>off</depletion>
+    <depletion>off</depletion>
 </hunger>
-<timelock>on</timelock>
-<!-- include src="tutorial.xml"/ -->
-<!-- <tutorial>
-    <stage title="Control Points">
-        <message>
-            <line>This is a `930v30 Control Points`r map. To `awin`r, your team must be the first</line>
-            <line>to collect 750 points, which are earned by capturing and holding Control Points.</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="50">1054,47,-538</point>
-        </teleport>
-    </stage>
-    <stage title="Spawn">
-        <message>
-            <line>This is where you will spawn when the game starts.</line>
-            <line>There a `93 paths to choose from`r, all of which will lead you to the Control Points.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="5">1101,15,-610</point>
-        </teleport>
-    </stage>
-    <stage title="Control Point: Hill">
-        <message>
-            <line>This is the `cfirst control point`r: Hill.</line>
-            <line>This is located at the `ntop`r of the map.</line>
-        </message>
-        <teleport>
-            <point yaw="38" pitch="40">1110,38,-549</point>
-        </teleport>
-    </stage>
-    <stage title="Control Point: Cave">
-        <message>
-            <line>This is the `9second control point`r: Cave.</line>
-            <line>This is located at the `nbottom`r of the map.</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="25">1109,13,-546</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>
