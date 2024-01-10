@@ -3,6 +3,7 @@
 <name>CannonCube Redux</name>
 <version>1.0.0</version>
 <objective>Attackers have 20 minutes to destroy the Endstone Pillar, while the Defenders must prevent them from doing so.</objective>
+<phase>development</phase>
 <gamemode>ad</gamemode>
 <authors>
     <author uuid="36e46b32-80ef-4fa5-b1e2-6c777736d888"/> <!-- Elijahyap -->
