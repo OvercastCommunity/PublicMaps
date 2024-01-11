@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.01.09-1 -->
+<!-- Version 2024.01.10-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -281,13 +281,20 @@
     <variable id="buytime" scope="match" default="0"/>
     <variable id="overtime" scope="match" default="0"/>
     <score id="team_score"/>
+    <variable id="player_score" scope="player" default="0"/>
     <variable id="current_team" scope="player" default="0"/> <!-- 0: Observers, 1: team-one, 2: team-two -->
     <variable id="scoring_team" scope="match" default="0"/>
 </variables>
 <actions>
     <action id="increment-round" scope="player">
         <set var="team_score" value="team_score+1"/>
-        <message text="`aYou have scored a goal!"/>
+        <set var="player_score" value="player_score+1"/>
+        <message text=" `e⚠ `aYou have scored a goal!"/>
+        <message text=" `2You have scored `e{amount} `2goal(s) in this match.">
+            <replacements>
+                <decimal id="amount" value="player_score"/>
+            </replacements>
+        </message>
         <switch-scope outer="player" inner="match">
             <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
