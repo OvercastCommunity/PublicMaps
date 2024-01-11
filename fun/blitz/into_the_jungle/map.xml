@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>Into the Jungle</name>
-<version>1.1.7</version>
+<variant id="halloween" world="halloween" override="true">Into the Jack o' Lantern</variant>
+<version>1.2</version>
 <objective>Eliminate the opposing team in less than 6 minutes</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -9,66 +9,59 @@
     <author uuid="968a1d95-089a-47b7-8840-57eeedde6ea6" contribution="XML"/> <!-- DoctorTardi -->
 </authors>
 <contributors>
-    <contributor uuid="fe19a0fe-5961-46e1-b98e-b2b6658f8ba2" contribution="Map Testing"/> <!-- YukonAppleGeek -->
+    <contributor uuid="fe19a0fe-5961-46e1-b98e-b2b6658f8ba2" contribution="Map testing"/> <!-- YukonAppleGeek -->
+    <if variant="halloween">
+        <contributor uuid="5baee52b-19e5-4225-8a59-badd72973b22" contribution="XML help and map feedback"/> <!-- MadCreeper77 -->
+    </if>
     <contributor>All of the beta testers (Too many to list)</contributor>
 </contributors>
-<teams>
-   <team color="gold" max="20">Orange</team>
-   <team color="dark purple" max="20">Purple</team>
-</teams>
+<respawn auto="true"/>
+<time>6m</time>
 <rage/>
-<blitz>
-    <time>6m</time>
-    <lives>1</lives>
-</blitz>
+<blitz/>
+<teams>
+   <team id="orange" color="gold" max="20">Orange</team>
+   <team id="purple" color="dark purple" max="20">Purple</team>
+</teams>
 <spawns>
-    <spawn team="orange" kit="orange" yaw="0">
-        <cuboid min="-21,5,-19" max="-12,5,-10"/>
+    <spawn team="orange" kit="spawn-kit" yaw="0">
+        <region><cuboid min="-21,5,-19" max="-12,5,-10"/></region>
     </spawn>
-    <spawn team="purple" kit="purple" yaw="180">
-        <cuboid min="-21,5,72" max="-12,5,81"/>
+    <spawn team="purple" kit="spawn-kit" yaw="180">
+        <region><cuboid min="-21,5,72" max="-12,5,81"/></region>
     </spawn>
     <default yaw="0">
-        <cuboid min="-19,13,29" max="-16,13,32"/>
+        <region><cuboid min="-19,12,29" max="-16,12,32"/></region>
     </default>
 </spawns>
 <kits>
-    <kit name="spawn">
-        <item slot="0" enchantment="damage all:10" name="`9`l1-Hit kill!">diamond sword</item>
-        <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!">bow</item>
-        <item slot="2" amount="1">arrow</item>
-        <potion duration="5" amplifier="1">heal</potion>
-        <potion duration="5" amplifier="4">damage resistance</potion>
-    </kit>
-    <kit name="orange" parents="spawn">
-        <helmet color="FF7F00" locked="true">leather helmet</helmet>
-        <chestplate color="FF7F00" locked="true">leather chestplate</chestplate>
-        <leggings color="FF7F00" locked="true">leather leggings</leggings>
-        <boots color="FF7F00" locked="true">leather boots</boots>
-    </kit>
-    <kit name="purple" parents="spawn">
-        <helmet color="800080" locked="true">leather helmet</helmet>
-        <chestplate color="800080" locked="true">leather chestplate</chestplate>
-        <leggings color="800080" locked="true">leather leggings</leggings>
-        <boots color="800080" locked="true">leather boots</boots>
+    <kit id="spawn-kit">
+        <item slot="0" enchantment="damage all:10" name="`9`l1-Hit kill!" material="diamond sword" unbreakable="true"/>
+        <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!" material="bow" unbreakable="true"/>
+        <item slot="2" amount="1" material="arrow"/>
+        <helmet team-color="true" locked="true" material="leather helmet" unbreakable="true"/>
+        <chestplate team-color="true" locked="true" material="leather chestplate" unbreakable="true"/>
+        <leggings team-color="true" locked="true" material="leather leggings" unbreakable="true"/>
+        <boots team-color="true" locked="true" material="leather boots" unbreakable="true"/>
+        <game-mode>adventure</game-mode>
+        <effect duration="5" amplifier="1">heal</effect>
+        <effect duration="5" amplifier="4">damage resistance</effect>
     </kit>
 </kits>
 <regions>
-    <union name="island">
-        <cylinder name="radius-a" base="-16,0,31" radius="51" height="50"/>
-        <cylinder name="radius-b" base="-16,0,30" radius="50" height="50"/>
-    </union>
-    <apply block="deny-all">
-        <region name="island"/>
-    </apply>
+    <apply block="never"/>
 </regions>
-<playable>
-    <region name="island"/>
-</playable>
 <timelock>on</timelock>
-<killreward>
-    <item>arrow</item>
-</killreward>
+<if variant="halloween">
+    <world>
+        <timeset>18000</timeset>
+    </world>
+</if>
+<kill-rewards>
+    <kill-reward>
+        <item>arrow</item>
+    </kill-reward>
+</kill-rewards>
 <toolrepair>
     <tool>diamond sword</tool>
     <tool>bow</tool>
@@ -85,6 +78,4 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<respawn auto="true"/>
-<!-- include src="blitz-global.xml"/ -->
 </map>
