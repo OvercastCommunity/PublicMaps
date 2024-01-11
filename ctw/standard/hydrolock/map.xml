@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Hydrolock</name>
 <variant id="aerolock" world="aerolock" override="true">Aerolock</variant>
-<version>1.3</version>
+<version>1.3.1</version>
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <maxbuildheight>30</maxbuildheight>
 <if variant="aerolock">
@@ -88,30 +88,28 @@
     <apply block="never">
         <region>
             <negative id="playable-inverse">
-                <circle center="0,0" radius="60"/>
+                <circle center="0.5,0.5" radius="60.5"/>
             </negative>
         </region>
     </apply>
-    <apply enter="only-blue" block="only-blue" use="only-blue-usage">
-        <region>
-            <union>
-                <!-- Orange Room -->
-                <circle center="41.5,25.5" radius="7.5"/>
-                <!-- Pink Room -->
-                <circle center="41.5,-24.5" radius="7.5"/>
-            </union>
-        </region>
-    </apply>
-    <apply enter="only-red" block="only-red" use="only-red-usage">
-        <region>
-            <union>
-                <!-- Cyan Room -->
-                <circle center="-40.5,-24.5" radius="7.5"/>
-                <!-- Blue Room -->
-                <circle center="-40.5,25.5" radius="7.5"/>
-            </union>
-        </region>
-    </apply>
+    <union id="red-side-wool-rooms">
+        <!-- Orange Room -->
+        <circle center="41.5,25.5" radius="7.5"/>
+        <!-- Pink Room -->
+        <circle center="41.5,-24.5" radius="7.5"/>
+    </union>
+    <union id="blue-side-wool-rooms">
+        <!-- Cyan Room -->
+        <circle center="-40.5,-24.5" radius="7.5"/>
+        <!-- Blue Room -->
+        <circle center="-40.5,25.5" radius="7.5"/>
+    </union>
+    <apply block="only-blue" use="only-blue-usage" region="red-side-wool-rooms"/>
+    <apply enter="only-blue" message="You may not enter your own wool room!" region="red-side-wool-rooms"/>
+    <apply block="only-red" use="only-red-usage" region="blue-side-wool-rooms"/>
+    <apply enter="only-red" message="You may not enter your own wool room!" region="blue-side-wool-rooms"/>
+    
+
 </regions>
 <wools>
     <wool team="blue-team" color="orange" location="41.5,21,25.5">
