@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Tuscany</name>
-<version>2.4.2</version>
+<version>2.4.3</version>
 <variant id="comp" world="comp">TE</variant>
 <constant id="max">30</constant>
 <constant id="max-overfill" delete="true"/>
@@ -76,12 +76,12 @@
     </spawn>
 </spawns>
 <filters>
-    <allow id="allow-button">
+    <deny id="deny-redstone">
         <all>
             <void id="void"/>
-            <material>wood button</material>
+            <material>redstone wire</material>
         </all>
-    </allow>
+    </deny>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
     <material id="chest">chest</material>
@@ -165,8 +165,8 @@
     <apply block="deny(chest)" region="wool-rooms" message="You may not break or place chests in the wool rooms!"/>
     <apply block="deny(only-blue)" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny(only-red)" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
-    <apply block-break="allow-button" region="void-area"/>
-    <apply block="deny(void)" region="void-area" message="You may not edit the void!"/>
+    <apply block-place="deny(void)" region="void-area" message="You may not build in the void!"/>
+    <apply block-break="deny-redstone" region="void-area"/>
 </regions>
 <renewables>
     <renewable region="spawns" renew-filter="only-iron" rate="3"/>
