@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Eternal Virus</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <gamemode>koth</gamemode>
 <phase>development</phase>
 <objective>You have one chance to capture the hill. Make it worth it!</objective>
@@ -13,43 +13,35 @@
     <team id="green" color="green" max="16">Green</team>
 </teams>
 <kits>
-    <kit id="spawn">
+    <kit id="spawn-kit">
         <item slot="0" material="iron sword"/>
         <item slot="1" material="bow"/>
         <item slot="6" material="bread" amount="16"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" material="arrow" amount="16"/>
         <effect duration="8">damage resistance</effect>
-    </kit>
-    <kit id="green-kit" parents="spawn">
-        <helmet color="45b711" material="leather helmet"/>
-        <chestplate color="45b711" material="leather chestplate"/>
-        <leggings color="45b711" material="leather leggings"/>
-        <boots color="45b711" material="leather boots"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn">
-        <helmet color="0000ff" material="leather helmet"/>
-        <chestplate color="0000ff" material="leather chestplate"/>
-        <leggings color="0000ff" material="leather leggings"/>
-        <boots color="0000ff" material="leather boots"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
     </kit>
 </kits>
 <spawns>
-    <spawn team="green" kit="green-kit">
+    <spawn team="green" kit="spawn-kit">
         <regions>
-            <point yaw="-135">-49,16,44</point>
-            <point yaw="135">47,16,44</point>
+            <point yaw="-135">-48.5,16,44.5</point>
+            <point yaw="135">47.5,16,44.5</point>
         </regions>
     </spawn>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue" kit="spawn-kit">
         <regions>
-            <point yaw="45">47,16,-52</point>
-            <point yaw="-45">-48,16,51</point>
+            <point yaw="45">47.5,16,-51.5</point>
+            <point yaw="-45">-48.5,16,-51.5</point>
         </regions>
     </spawn>
     <default yaw="180">
         <region>
-            <point>-1,43,-4</point>
+            <cylinder base="-0.5,43,-2.5" height="0" radius="1"/>
         </region>
     </default>
 </spawns>
@@ -60,15 +52,14 @@
 <regions>
     <union id="spawns">
         <union id="green-spawn">
-            <cylinder base="-49,16,44" height="4" radius="5"/>
-            <cylinder base="47,16,44" height="4" radius="5"/>
+            <cylinder base="-48.5,16,44.5" height="4" radius="5"/>
+            <cylinder base="47.5,16,44.5" height="4" radius="5"/>
         </union>
         <union id="blue-spawn">
-            <cylinder base="47,16,-52" height="4" radius="5"/>
-            <cylinder base="-48,16,-51" height="4" radius="5"/>
+            <cylinder base="47.5,16,-51.5" height="4" radius="5"/>
+            <cylinder base="-48.5,16,-51.5" height="4" radius="5"/>
         </union>
     </union>
-    <everywhere/>
     <!-- Applicators -->
     <apply enter="only-green" region="green-spawn" message="You may not enter Green team's spawn!"/>
     <apply enter="only-blue" region="blue-spawn" message="You may not enter Blue team's spawn!"/>
@@ -77,10 +68,10 @@
 <control-points required="true" permanent="true" show-progress="true">
     <control-point name="Center" capture-time="5s">
         <capture>
-            <cylinder base="-1,1,-4" height="2" radius="4"/>
+            <cylinder base="-0.5,1,-3.5" height="2" radius="4"/>
         </capture>
         <progress>
-            <cuboid min="-61,-8,-57" max="62,31,-66"/>
+            <cylinder base="-0.5,1,-3.5" height="1" radius="4"/>
         </progress>
     </control-point>
 </control-points>
