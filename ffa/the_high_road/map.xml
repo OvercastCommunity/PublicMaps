@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>The High Road</name>
 <variant id="cummins" world="cummins" override="true">Cummins Turbo Diesel</variant>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Get the most kills in 8 minutes!</objective>
 <time result="score">8m</time>
 <unless variant="cummins">
@@ -150,7 +150,7 @@
         <item name="Kill Streak" material="emerald"/>
         <item name="Kill Counter" material="nether star"/>
     </kill-reward>
-    <kill-reward kit="speed=kit">
+    <kill-reward kit="speed-kit">
         <filter>
             <kill-streak count="3"/>
         </filter>
