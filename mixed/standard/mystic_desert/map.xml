@@ -1,0 +1,103 @@
+<map proto="1.4.2">
+<name>Mystic Desert</name>
+<version>1.0.6</version>
+<objective>Runners must break the enemy's sponge!</objective>
+<gamemode>dtm</gamemode>
+<gamemode>br</gamemode>
+<authors>
+    <author uuid="8de835a6-916a-4fcf-9b25-239dda454411"/> <!-- Passively -->
+</authors>
+<contributors>
+    <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="PGM conversion"/> <!-- zzuf -->
+</contributors>
+<teams>
+    <team id="gray" color="dark gray" max="7">Hunters</team>
+    <team id="orange" color="gold" max="15">Runners</team>
+</teams>
+<time result="gray">5m</time>
+<respawn auto="true"/>
+<rage/>
+<blitz/>
+<spawns>
+    <default>
+        <region yaw="90">
+            <point>10.5,46,-24.5</point>
+        </region>
+    </default>
+    <spawn team="gray" kit="gray-kit">
+        <regions yaw="90">
+            <cylinder base="-3,28,-23.5" height="0" radius="2"/>
+        </regions>
+    </spawn>
+    <spawn team="orange" kit="orange-kit">
+        <region yaw="90">
+            <point>-8.5,9,-23.5</point>
+        </region>
+    </spawn>
+</spawns>
+<kits>
+    <kit id="gray-kit">
+        <effect amplifier="4" duration="10000s">speed</effect>
+        <item material="bow" slot="0" unbreakable="true">
+            <enchantment level="20">arrow damage</enchantment>
+            <enchantment>arrow infinite</enchantment>
+        </item>
+        <item amount="16" material="cooked beef" slot="8"/>
+        <item amount="1" material="arrow" slot="7"/>
+        <helmet color="191919" material="leather helmet" unbreakable="true"/>
+        <chestplate color="191919" material="leather chestplate" unbreakable="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
+        <boots color="191919" material="leather boots" unbreakable="true"/>
+    </kit>
+    <kit id="orange-kit">
+        <item amount="16" material="cooked beef" slot="8"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true">
+            <enchantment level="1">protection environmental</enchantment>
+        </helmet>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true">
+            <enchantment level="1">protection environmental</enchantment>
+        </chestplate>
+        <leggings material="chainmail leggings" unbreakable="true">
+            <enchantment level="2">protection projectile</enchantment>
+        </leggings>
+        <boots material="leather boots" team-color="true" unbreakable="true">
+            <enchantment level="1">protection environmental</enchantment>
+        </boots>
+    </kit>
+</kits>
+<filters>
+    <team id="only-gray">gray</team>
+    <team id="only-orange">orange</team>
+</filters>
+<regions>
+    <negative id="void-area">
+        <block id="monument-region">-358,19,-21</block>
+    </negative>
+    <apply block="never" region="void-area"/>
+    <apply enter="only-orange" message="You may not drop down here!">
+        <region>
+            <union>
+                <rectangle min="-7,-4" max="-137,-43"/>
+                <rectangle min="-144,-4" max="-373,-43"/>
+                <below x="-326"/>
+            </union>
+        </region>
+    </apply>
+</regions>
+<destroyables materials="sponge" repairable="false">
+    <destroyable name="Sponge" owner="gray" region="monument-region"/>
+</destroyables>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+    <item>arrow</item>
+    <item>bow</item>
+</itemremove>
+<timelock>off</timelock>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+</map>
