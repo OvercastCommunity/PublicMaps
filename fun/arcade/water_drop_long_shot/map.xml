@@ -1,9 +1,10 @@
 <map proto="1.4.2" game="Water Drop">
 <name>Water Drop: Long Shot</name>
-<version>1.5.1</version>
+<version>1.5.2</version>
 <objective>Grab the flag and return it to your spawn!</objective>
 <created>2019-04-01</created>
 <include id="void-death"/>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Original map theme"/> <!-- StealthMedia -->
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9" contribution="Original map theme"/> <!-- KasiCrafter -->
@@ -40,7 +41,6 @@
     <depletion>off</depletion>
 </hunger>
 <kill-reward>
-    <item material="golden apple"/>
     <item material="arrow" amount="8"/>
     <item material="wood" damage="1" amount="8"/>
     <kit>
@@ -54,6 +54,7 @@
 </kill-reward>
 <filters>
     <match-started id="match-started"/>
+    <participating id="participating"/>
     <any id="placeable">
         <all>
             <any>
@@ -119,7 +120,7 @@
     <variable id="can_jump" default="0" scope="player"/>
 </variables>
 <actions>
-    <trigger scope="player" filter="return-checkpoint">
+    <trigger scope="player" filter="all(return-checkpoint, participating)">
         <action>
             <set var="can_jump" value="1"/>
             <kit force="true">
