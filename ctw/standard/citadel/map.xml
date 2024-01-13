@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- include src="tutorial.xml"/ -->
 <name>Citadel</name>
-<version>1.3.5</version>
+<version>1.3.6</version>
 <objective>Attackers must capture the wool before the time limit runs out</objective>
 <gamemode>ctw</gamemode>
 <gamemode>ad</gamemode>
@@ -19,21 +19,13 @@
     <team id="defenders" color="blue" max="14" max-overfill="16" plural="true">Defenders</team>
 </teams>
 <spawns>
-    <default>
-        <regions yaw="-90">
-            <region id="observer-spawn"/>
-        </regions>
-    </default>
+    <default region="observer-spawn" yaw="-90"/>
     <spawn team="attackers" kit="attacker" safe="true">
         <regions>
             <cylinder base="88.5,21,-47.5" radius="2" height="0"/>
         </regions>
     </spawn>
-    <spawn team="defenders" kit="defender">
-        <regions yaw="180">
-            <region id="defender-spawn"/>
-        </regions>
-    </spawn>
+    <spawn team="defenders" kit="defender" region="defender-spawn" yaw="180"/>
 </spawns>
 <wools>
     <wool team="attackers" color="blue" location="-134.5,75,-45.5">
