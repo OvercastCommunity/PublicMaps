@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Mystic Desert</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Runners must break the enemy's sponge!</objective>
 <gamemode>dtm</gamemode>
 <gamemode>br</gamemode>
@@ -16,8 +16,8 @@
 </teams>
 <time result="gray">5m</time>
 <respawn auto="true"/>
-<rage/>
 <blitz/>
+<rage/>
 <spawns>
     <default>
         <region yaw="90">
@@ -37,17 +37,18 @@
 </spawns>
 <kits>
     <kit id="gray-kit">
-        <effect amplifier="4" duration="10000s">speed</effect>
-        <item material="bow" slot="0" unbreakable="true">
+        <item slot="0" material="bow" unbreakable="true">
             <enchantment level="20">arrow damage</enchantment>
             <enchantment>arrow infinite</enchantment>
         </item>
-        <item amount="16" material="cooked beef" slot="8"/>
-        <item amount="1" material="arrow" slot="7"/>
+        <item slot="7" amount="1" material="arrow"/>
+        <item slot="8" amount="16" material="cooked beef"/>
+        <!-- uses black armor  -->
         <helmet color="191919" material="leather helmet" unbreakable="true"/>
         <chestplate color="191919" material="leather chestplate" unbreakable="true"/>
         <leggings material="chainmail leggings" unbreakable="true"/>
         <boots color="191919" material="leather boots" unbreakable="true"/>
+        <effect amplifier="4">speed</effect>
     </kit>
     <kit id="orange-kit">
         <item amount="16" material="cooked beef" slot="8"/>
@@ -70,10 +71,10 @@
     <team id="only-orange">orange</team>
 </filters>
 <regions>
-    <negative id="void-area">
-        <block id="monument-region">-358,19,-21</block>
+    <negative id="not-monument">
+        <block id="monument-block">-358,19,-21</block>
     </negative>
-    <apply block="never" region="void-area"/>
+    <apply block="never" region="not-monument"/>
     <apply enter="only-orange" message="You may not drop down here!">
         <region>
             <union>
@@ -84,8 +85,8 @@
         </region>
     </apply>
 </regions>
-<destroyables materials="sponge" repairable="false">
-    <destroyable name="Sponge" owner="gray" region="monument-region"/>
+<destroyables materials="sponge">
+    <destroyable name="Sponge" owner="gray" region="monument-block"/>
 </destroyables>
 <itemremove>
     <item>leather helmet</item>
