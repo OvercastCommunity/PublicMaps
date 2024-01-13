@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Chestnut</name> <!-- August 2020 -->
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Capture the enemy's wool and bring it back to your base!</objective>
 <time result="objectives">20m</time>
 <authors>
@@ -26,18 +26,13 @@
         </item>
         <item slot="4" unbreakable="true" material="iron spade"/>
         <item slot="5" damage="5" amount="48" material="wood"/>
+        <item slot="6" team-color="true" amount="24" material="stained glass"/>
         <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="iron leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect amplifier="255" duration="3s">resistance</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <item slot="6" damage="11" amount="24">stained glass</item>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <item slot="6" damage="14" amount="24">stained glass</item>
     </kit>
 </kits>
 <spawns>
@@ -46,12 +41,12 @@
             <cuboid min="-4.5,34,11.5" max="-5.5,34,9.5"/>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue" kit="spawn-kit">
         <region yaw="0">
             <cuboid min="-38.5,13,-34.5" max="-38.5,13,-34.5"/>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <region yaw="180">
             <cuboid min="-38.5,13,55.5" max="-38.5,13,55.5"/>
         </region>
