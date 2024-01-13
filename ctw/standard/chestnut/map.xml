@@ -172,12 +172,7 @@
     <kill-reward>
         <item material="golden apple"/>
         <item amount="12" damage="5" material="wood"/>
-    </kill-reward>
-    <kill-reward filter="only-blue">
-        <item amount="6" damage="11" material="stained glass"/>
-    </kill-reward>
-    <kill-reward filter="only-red">
-        <item amount="6" damage="14" material="stained glass"/>
+        <item amount="6" team-color="true" material="stained glass"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>16</maxbuildheight>
