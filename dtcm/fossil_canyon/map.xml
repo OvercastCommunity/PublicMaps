@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fossil Canyon</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Destroy the enemy team's monuments!</objective>
 <phase>development</phase>
 <authors>
@@ -47,13 +47,13 @@
     </kit>
 </kits>
 <filters>
-    <team id="only-blue">red-team</team>
-    <team id="only-red">blue-team</team>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
 </filters>
 <regions>
     <union id="spawns">
-        <circle id="red-spawn" center="-8,91" radius="5"/>
-        <circle id="blue-spawn" center="-66,-85" radius="5"/>
+        <circle id="blue-spawn" center="-8,91" radius="5"/>
+        <circle id="red-spawn" center="-66,-85" radius="5"/>
         <cylinder id="obs-spawn" base="22.5,117,4.5" height="oo" radius="4"/>
     </union>
     <apply region="blue-spawn" enter="only-blue" message="You may not enter the enemy's spawn!"/>
