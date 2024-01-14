@@ -1,0 +1,137 @@
+<map proto="1.4.2">
+<name>Embers 2</name>
+<version>1.2</version>
+<objective>Destroy the enemy team's monuments!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- timaeusTestified -->
+    <author uuid="0b8f95fa-0f40-4f28-9fd0-b8e243bb6800"/> <!-- Fouled -->
+    <author uuid="ec00f0bb-1c45-4876-8f11-2b033b35c7e2"/> <!-- Arigenn -->
+    <author uuid="3cce0080-9faa-48f9-82cf-64410305822a"/> <!-- ProfessorUtonium -->
+</authors>
+<teams>
+    <team id="red-team" color="red" max="20">Red</team>
+    <team id="blue-team" color="blue" max="20">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" yaw="-90">
+        <regions>
+            <cylinder base="-247.5,77,21.5" height="0" radius="2"/>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit" yaw="90">
+        <regions>
+            <cylinder base="-1.5,77,21.5" height="0" radius="2"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <cylinder base="-123.5,138,-89.5" height="0" radius="3"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" material="stone sword"/>
+        <item slot="1" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" amount="32" material="log 2"/>
+        <item slot="4" amount="64" material="stained glass" team-color="true"/>
+        <item slot="7" amount="32" material="golden carrot"/>
+        <item slot="8" amount="2" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
+        <effect duration="5" amplifier="255">damage resistance</effect>
+        <effect duration="5" amplifier="255">heal</effect>
+    </kit>
+</kits>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
+<regions>
+    <union id="spawns">
+        <circle center="-123.5,-84.5" radius="9.5"/>
+        <circle id="red-spawn" center="-1.5,21.5" radius="13.5"/>
+        <circle id="blue-spawn" center="-247.5,21.5" radius="13.5"/>
+    </union>
+    <union id="chests">
+        <block>-100,78,-18</block>
+        <block>-100,78,60</block>
+        <block>-150,78,60</block>
+        <block>-150,78,-18</block>
+    </union>
+    <apply region="blue-spawn" enter="only-blue" message="You may not enter the enemy's spawn!"/>
+    <apply region="red-spawn" enter="only-red" message="You may not enter the enemy's spawn!"/>
+    <apply region="spawns" block="never" message="You may not modify spawn areas!"/>
+    <apply region="chests" block="never" message="You may not destroy these chests!"/>
+</regions>
+<destroyables materials="obsidian">
+    <destroyable name="Front Left" owner="blue-team">
+        <region>
+            <block>-171,85,81</block>
+        </region>
+    </destroyable>
+    <destroyable name="Back Left" owner="blue-team">
+        <region>
+            <block>-188,81,44</block>
+        </region>
+    </destroyable>
+    <destroyable name="Back Right" owner="blue-team">
+        <region>
+            <block>-188,81,-2</block>
+        </region>
+    </destroyable>
+    <destroyable name="Front Right" owner="blue-team">
+        <region>
+            <block>-171,85,-39</block>
+        </region>
+    </destroyable>
+    <destroyable name="Front Left" owner="red-team">
+        <region>
+            <block>-79,85,-39</block>
+        </region>
+    </destroyable>
+    <destroyable name="Back Left" owner="red-team">
+        <region>
+            <block>-62,81,-2</block>
+        </region>
+    </destroyable>
+    <destroyable name="Back Right" owner="red-team">
+        <region>
+            <block>-62,81,44</block>
+        </region>
+    </destroyable>
+    <destroyable name="Front Right" owner="red-team">
+        <region>
+            <block>-79,85,81</block>
+        </region>
+    </destroyable>
+</destroyables>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>log 2</item>
+    <item>stained glass</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>golden carrot</item>
+    <item>golden apple</item>
+</itemremove>
+</map>
