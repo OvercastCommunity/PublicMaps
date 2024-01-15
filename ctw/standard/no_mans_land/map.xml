@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>No Man's Land</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Capture the enemy team's wools and return them safely to your victory monument.</objective>
 <authors>
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
@@ -92,7 +92,7 @@
     <apply region="blue-rooms" enter="only-blue" block="only-blue" use="only-blue-usage" message="You may not interact with your own wool room"/>
     <apply region="red-rooms" enter="only-red" block="only-red" use="only-red-usage" message="You may not interact with your own wool room"/>
 </regions>
-<wools>
+<wools craftable="false">
     <wools team="red">
         <wool id="silver-wool" color="silver" monument="silver" location="-64.5,12,-35.5"/>
         <wool id="green-wool" color="green" monument="green" location="-27.5,12,-13.5"/>
