@@ -1,9 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
-<!-- include src="blitz-global.xml"/ -->
-<!-- include src="tutorial.xml"/ -->
+<map proto="1.4.2">
 <name>Gooseberry</name>
-<version>1.0.11</version>
+<version>1.0.12</version>
 <objective>Get the most kills for your team after 3 minutes!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -17,54 +14,66 @@
     <rule>Fall damage is disabled!</rule>
 </rules>
 <teams>
-    <team color="dark purple" max="15" max-overfill="18">Purple</team>
-    <team color="dark aqua" max="15" max-overfill="18">Cyan</team>
+    <team id="purple" color="dark purple" max="15" max-overfill="18">Purple</team>
+    <team id="cyan" color="dark aqua" max="15" max-overfill="18">Cyan</team>
 </teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" enchantment="damage all:10" lore="`61 hit kill!" material="iron sword"/>
+        <item slot="1" enchantment="arrow damage:10;arrow fire:1" lore="`61 shot kill!" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <effect duration="8">heal</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="purple" kit="spawn-kit" yaw="-90">
+        <regions>
+            <cuboid min="18,16,-145" max="23,16,-142"/>
+        </regions>
+    </spawn>
+    <spawn team="cyan" kit="spawn-kit" yaw="90">
+        <regions>
+            <cuboid min="38,16,-55" max="33,16,-55"/>
+        </regions>
+    </spawn>
+    <default yaw="-90">
+        <regions>
+            <cuboid min="-40,34,-101" max="-38,34,-97"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply enter="never" message="You may not leave the main area!">
+        <region>
+            <above y="20"/>
+        </region>
+    </apply>
+    <apply block="never"/>
+</regions>
+<time>3m</time>
 <blitz>
-    <time>3m</time>
     <lives>1</lives>
 </blitz>
 <rage/>
-<kits>
-    <kit name="spawn">
-        <item slot="0" enchantment="damage all:10" lore="`61 hit kill!">iron sword</item>
-        <item slot="1" enchantment="arrow damage:10;arrow fire:1" lore="`61 shot kill!">bow</item>
-        <item slot="2" amount="1">arrow</item>
-        <potion duration="8" amplifier="1">heal</potion>
-    </kit>
-</kits>
-<regions>
-    <apply block="deny-all">
-        <rectangle min="-oo,-oo" max="oo,oo"/>
-    </apply>
-    <apply enter="deny-all" message="`cYou may not leave the main area!">
-        <cuboid min="-oo,20,-oo" max="oo,oo,oo"/>
-    </apply>
-</regions>
-<spawns>
-    <spawn team="purple" kit="spawn" yaw="-90">
-        <cuboid min="18,17,-145" max="22,17,-143"/>
-    </spawn>
-    <spawn team="cyan" kit="spawn" yaw="90">
-        <cuboid min="38,17,-55" max="32,17,-56"/>
-    </spawn>
-    <default yaw="-90">
-        <cuboid min="-40,35,-101" max="-39,35,-98"/>
-    </default>
-</spawns>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
 </toolrepair>
-<killreward>
-    <item>arrow</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
 <timelock>on</timelock>
 <respawn auto="true"/>
-<tutorial>
+<!-- <tutorial>
     <stage title="Blitz: Rage">
         <message>
             <line>This is a `915v15`r `4Rage`r map</line>
@@ -91,5 +100,5 @@
             <point yaw="44" pitch="40">36,12,-111</point>
         </teleport>
     </stage>
-</tutorial>
+</tutorial> -->
 </map>
