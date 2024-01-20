@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Flappy Bird</name>
-<version>1.0.3</version>
-<objective>Jump and avoid the pipes!</objective>
+<version>1.0.4</version>
+<objective>Jump and do not hit the pipes!</objective>
 <gamemode>arcade</gamemode>
 <game>Flappy Bird</game>
 <authors>
@@ -34,12 +34,7 @@
     </spawns>
 </spawns>
 <filters>
-    <not id="block">
-        <all>
-            <material>stained glass</material>
-            <cause>player</cause>
-        </all>
-    </not>
+    <participating id="participating"/>
     <not id="gate-1">
         <carrying><item name="1-gate">flint</item></carrying>
     </not>
@@ -209,7 +204,7 @@
     <cuboid id="pipe-18" min="-5.0,16.0,229.0" max="6.0,23.0,241.0"/>
     <cuboid id="pipe-19" min="-5.0,33.0,255.0" max="6.0,39.0,267.0"/>
     <cuboid id="pipe-20" min="-5.0,16.0,281.0" max="6.0,23.0,293.0"/>
-    <apply block="block"/>
+    <apply block="deny(participating)"/>
     <!-- Pipe Barrier -->
     <apply region="pipe-1" enter="gate-1" message="You may not go back into the pipe"/>
     <apply region="pipe-2" enter="gate-2" message="You may not go back into the pipe"/>
