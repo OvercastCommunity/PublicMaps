@@ -1,8 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
-<!-- include src="tutorial.xml"/ -->
+<map proto="1.4.2">
 <name>Escensio</name>
-<version>1.0.9</version>
+<version>1.0.10</version>
 <objective>Destroy the three enemy flags to win the match.</objective>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
@@ -14,78 +12,102 @@
     <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="XML Fixing"/> <!-- IM_A_H0B0 -->
 </contributors>
 <teams>
-    <team color="blue" max="25">Blue</team>
-    <team color="dark red" max="25">Red</team>
+    <team id="blue" color="blue" max="25">Blue</team>
+    <team id="red" color="dark red" max="25">Red</team>
 </teams>
-<filters>
-    <filter name="only-blue" parents="deny-all">
-        <allow>
-            <team>blue</team>
-        </allow>
-    </filter>
-    <filter name="only-red" parents="deny-all">
-        <allow>
-            <team>red</team>
-        </allow>
-    </filter>
-</filters>
-<regions>
-    <apply block="deny-all" message="You may not build outside of the map!">
-        <negative>
-            <rectangle min="-100,0" max="102,-100"/>
-        </negative>
-    </apply>
-    <apply block="deny-world">
-        <cuboid min="101,8,-99" max="-99,-8,-99"/>
-    </apply>
-    <apply block="deny-all" message="Don't modify the spawn!">
-        <cuboid name="red-spawn" min="91,37,-25" max="100,oo,-3"/>
-        <cuboid name="blue-spawn" min="-89,37,-75" max="-98,oo,-97"/>
-    </apply>
-    <apply enter="only-red" message="Don't enter the enemy spawn!">
-        <region name="red-spawn"/>
-    </apply>
-    <apply enter="only-blue" message="Don't enter the enemy spawn!">
-        <region name="blue-spawn"/>
-    </apply>
-</regions>
 <kits>
-    <kit name="spawn">
-        <item slot="0" enchantment="durability:1;dig speed:1">iron axe</item>
-        <item slot="1">bow</item>
-        <item slot="2">stone pickaxe</item>
-        <item slot="4" amount="32" damage="2">log</item>
-        <item slot="5">golden apple</item>
-        <item slot="3" amount="32">cooked beef</item>
-        <item slot="6">shears</item>
-        <item slot="28" amount="64">arrow</item>
-        <potion duration="5" amplifier="1">heal</potion>
-        <potion duration="5" amplifier="2">damage resistance</potion>
-    </kit>
-    <kit name="red" parents="spawn">
-        <helmet color="FF3300">leather helmet</helmet>
-        <chestplate color="FFFFFF">leather chestplate</chestplate>
-        <leggings color="000000">leather leggings</leggings>
-        <boots color="FF3300">leather boots</boots>
-    </kit>
-    <kit name="blue" parents="spawn">
-        <helmet color="0000CC">leather helmet</helmet>
-        <chestplate color="FFFFFF">leather chestplate</chestplate>
-        <leggings color="000000">leather leggings</leggings>
-        <boots color="0000CC">leather boots</boots>
+    <kit id="spawn-kit">
+        <item slot="0" enchantment="durability;dig speed" material="iron axe"/>
+        <item slot="1" material="bow"/>
+        <item slot="2" material="stone pickaxe"/>
+        <item slot="4" amount="32" damage="2" material="log"/>
+        <item slot="5" material="golden apple"/>
+        <item slot="3" amount="32" material="cooked beef"/>
+        <item slot="6" material="shears"/>
+        <item slot="28" amount="64" material="arrow"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate color="FFFFFF" material="leather chestplate"/>
+        <leggings color="000000" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
+        <effect duration="5">heal</effect>
+        <effect duration="5" amplifier="2">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="blue" yaw="270">
-        <cuboid min="-94,39,-83" max="-92,39,-88"/>
+    <spawn team="blue" kit="spawn-kit" yaw="270">
+        <regions>
+            <cuboid min="-94,39,-83" max="-91,39,-87"/>
+        </regions>
     </spawn>
-    <spawn team="red" kit="red" yaw="90">
-        <cuboid min="96,39,-11" max="94,39,-16"/>
+    <spawn team="red" kit="spawn-kit" yaw="90">
+        <regions>
+            <cuboid min="96,39,-11" max="95,39,-15"/>
+        </regions>
     </spawn>
     <default>
-        <cuboid min="-0,57,-122" max="2,57,-120"/>
+        <regions>
+            <cuboid min="-0,57,-122" max="3,57,-119"/>
+        </regions>
     </default>
 </spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <union id="spawns">
+        <cuboid id="red-spawn" min="91,37,-25" max="101,oo,-2"/>
+        <cuboid id="blue-spawn" min="-89,37,-75" max="-97,oo,-96"/>
+    </union>
+    <negative id="playable-inverse">
+        <rectangle min="-100,0" max="102,-100"/>
+    </negative>
+    <apply block="never">
+        <region>
+            <cuboid min="101,8,-99" max="-98,-7,-98"/>
+        </region>
+    </apply>
+    <apply region="red-spawn" enter="only-red" message="You may not enter the enemy's spawn!"/>
+    <apply region="blue-spawn" enter="only-blue" message="You may not enter the enemy's spawn!"/>
+    <apply region="spawns" block="never" message="You may not modify the spawn!"/>
+    <apply region="playable-inverse" block="never" message="You may not build outside of the map!"/>
+</regions>
+<destroyables completion="75%" materials="wool:11;wool:15;wool:14;wool:7;wool">
+    <destroyables owner="red">
+        <destroyable name="Right Flag">
+            <region>
+                <cuboid min="74,35,-91" max="77,49,-98"/>
+            </region>
+        </destroyable>
+        <destroyable name="Center Flag">
+            <region>
+                <cuboid min="34,47,-63" max="37,35,-70"/>
+            </region>
+        </destroyable>
+        <destroyable name="Left Flag">
+            <region>
+                <cuboid min="73,76,-46" max="72,34,-37"/>
+            </region>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="blue">
+        <destroyable name="Left Flag">
+            <region>
+                <cuboid min="-69,33,-61" max="-70,47,-52"/>
+            </region>
+        </destroyable>
+        <destroyable name="Center Flag">
+            <region>
+                <cuboid min="-34,47,-36" max="-31,35,-27"/>
+            </region>
+        </destroyable>
+        <destroyable name="Right Flag">
+            <region>
+                <cuboid min="-74,48,-8" max="-71,36,1"/>
+            </region>
+        </destroyable>
+    </destroyables>
+</destroyables>
 <toolrepair>
     <tool>iron axe</tool>
     <tool>bow</tool>
@@ -111,36 +133,18 @@
     <item>shears</item>
     <item>golden apple</item>
 </itemremove>
-<destroyables completion="75%" materials="wool:11;wool:15;wool:14;wool:7;wool">
-    <destroyable name="Right Flag" owner="red">
-        <cuboid min="74,35,-91" max="76,48,-99"/>
-    </destroyable>
-    <destroyable name="Center Flag" owner="red">
-        <cuboid min="34,47,-63" max="36,34,-71"/>
-    </destroyable>
-    <destroyable name="Left Flag" owner="red">
-        <cuboid min="73,76,-46" max="71,33,-38"/>
-    </destroyable>
-    <destroyable name="Left Flag" owner="blue">
-        <cuboid min="-69,33,-61" max="-71,46,-53"/>
-    </destroyable>
-    <destroyable name="Center Flag" owner="blue">
-        <cuboid min="-34,47,-36" max="-32,34,-28"/>
-    </destroyable>
-    <destroyable name="Right Flag" owner="blue">
-        <cuboid min="-74,48,-8" max="-72,35,-0"/>
-    </destroyable>
-</destroyables>
-<maxbuildheight>60</maxbuildheight>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <tnt>
     <instantignite>on</instantignite>
     <licensing>off</licensing>
     <friendly-defuse>off</friendly-defuse>
     <blockdamage>off</blockdamage>
 </tnt>
-<killreward>
-    <item>golden apple</item>
-</killreward>
+<maxbuildheight>60</maxbuildheight>
 <!-- <tutorial>
     <stage title="Destroy the Flag">
         <message>

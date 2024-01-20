@@ -1,104 +1,112 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>Temple Valley</name>
-<version>1.1.5</version>
-<objective>Leak the enemies core above their main Temple.</objective>
+<version>1.1.6</version>
+<objective>Leak the enemies core above their central temple.</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
 </authors>
 <teams>
-    <team color="gold" max="40">Orange</team>
-    <team color="dark purple" max="40">Purple</team>
+    <team id="orange" color="gold" max="40">Orange</team>
+    <team id="purple" color="dark purple" max="40">Purple</team>
 </teams>
 <kits>
-    <kit name="spawn">
-        <potion amplifier="4" duration="10">heal</potion>
-        <item slot="0" unbreakable="true">iron sword</item>
-        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
-        <item slot="28">arrow</item>
-        <item slot="2" unbreakable="true">diamond pickaxe</item>
-        <item slot="3" unbreakable="true">iron axe</item>
-        <item slot="4" amount="64">wood</item>
-        <item slot="31" amount="64">wood</item>
-        <item slot="22" amount="64">wood</item>
-        <item slot="5" amount="64">glass</item>
-        <item slot="6" amount="32">ladder</item>
-        <item slot="7">golden apple</item>
-        <item slot="8" amount="64">golden carrot</item>
-        <chestplate team-color="true" unbreakable="true">leather chestplate</chestplate>
-        <leggings team-color="true" unbreakable="true">leather leggings</leggings>
-        <boots team-color="true" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="31" amount="64" material="wood"/>
+        <item slot="22" amount="64" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="6" amount="32" material="ladder"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="golden carrot"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" enchantment="protection fall:2" material="leather boots"/>
+        <effect amplifier="4" duration="10">heal</effect>
     </kit>
 </kits>
 <spawns>
-    <spawn kit="spawn" team="purple" yaw="0">
-        <cylinder base="194,33,9" height="0" radius="3"/>
+    <spawn team="purple" kit="spawn-kit">
+        <regions>
+            <cylinder base="194,33,9" height="0" radius="3"/>
+        </regions>
     </spawn>
-    <spawn kit="spawn" team="orange" yaw="180">
-        <cylinder base="-136,33,141" height="0" radius="3"/>
+    <spawn team="orange" kit="spawn-kit" yaw="180">
+        <regions>
+            <cylinder base="-136,33,141" height="0" radius="3"/>
+        </regions>
     </spawn>
-    <default yaw="0">
-        <cylinder base="28.5,78,-49.5" height="0" radius="6"/>
+    <default>
+        <regions>
+            <cylinder base="28.5,78,-49.5" height="0" radius="6"/>
+        </regions>
     </default>
 </spawns>
 <filters>
-    <filter name="deny-chest-deny-tnt">
-        <deny>
-            <block>chest</block>
-            <block>tnt</block>
-        </deny>
-    </filter>
-    <filter name="deny-tnt">
-        <deny>
-            <block>tnt</block>
-        </deny>
-    </filter>
+    <deny id="deny-chest-deny-tnt">
+        <any>
+            <material>chest</material>
+            <material>tnt</material>
+        </any>
+    </deny>
+    <deny id="deny-tnt">
+        <material>tnt</material>
+    </deny>
 </filters>
 <regions>
-    <!--  Standard Spawn Protection  -->
-    <apply block="deny-all" message="You may not modify the team spawns!">
-        <rectangle max="206,0" min="178,18"/>
-        <rectangle max="-120,133" min="-148,151"/>
-    </apply>
-    <!--  Dpick room chest protection  -->
+    <union id="team-spawns">
+        <rectangle min="178,18" max="206,0"/>
+        <rectangle min="-148,151" max="-120,133"/>
+    </union>
+    <negative id="playable-inverse">
+        <rectangle min="209,11" max="-151,140"/>
+    </negative>
+    <!-- Dpick room chest protection -->
     <apply block="deny-chest-deny-tnt" message="You may not place or break chests in this region!">
-        <!--  Purple side  -->
-        <cuboid max="153,30,131" min="130,29,114"/>
-        <cuboid max="145,37,127" min="138,36,118"/>
-        <cuboid max="144,42,125" min="139,41,120"/>
-        <!--  Orange side  -->
-        <cuboid max="-72,30,37" min="-95,29,20"/>
-        <cuboid max="-80,37,33" min="-87,36,24"/>
-        <cuboid max="-81,42,31" min="-86,41,26"/>
+        <region>
+            <!-- Purple side -->
+            <cuboid min="130,29,114" max="154,31,132"/>
+            <cuboid min="138,36,118" max="146,38,128"/>
+            <cuboid min="139,41,120" max="145,43,126"/>
+            <!-- Orange side -->
+            <cuboid min="-95,29,20" max="-71,31,38"/>
+            <cuboid min="-87,36,24" max="-79,38,34"/>
+            <cuboid min="-86,41,26" max="-80,43,32"/>
+        </region>
     </apply>
-    <!--  Dpick room TNT protection  -->
+    <!-- Dpick room TNT protection -->
     <apply block="deny-tnt" message="You may not place or break chests in this region!">
-        <!--  Purple side  -->
-        <cuboid max="153,36,131" min="130,30,114"/>
-        <cuboid max="145,41,127" min="138,37,118"/>
-        <cuboid max="144,48,125" min="139,42,120"/>
-        <!--  Orange side  -->
-        <cuboid max="-72,36,37" min="-95,30,20"/>
-        <cuboid max="-80,41,33" min="-87,37,24"/>
-        <cuboid max="-81,48,31" min="-86,42,26"/>
+        <region>
+            <!-- Purple side -->
+            <cuboid min="130,30,114" max="154,37,132"/>
+            <cuboid min="138,37,118" max="146,42,128"/>
+            <cuboid min="139,42,120" max="145,49,126"/>
+            <!-- Orange side -->
+            <cuboid min="-95,30,20" max="-71,37,38"/>
+            <cuboid min="-87,37,24" max="-79,42,34"/>
+            <cuboid min="-86,42,26" max="-80,49,32"/>
+        </region>
     </apply>
-    <apply block="deny-all" message="You may not modify outside of the playing field!">
-        <negative>
-            <rectangle max="-151,140" min="209,11"/>
-        </negative>
-    </apply>
+    <!-- Standard Spawn Protection -->
+    <apply region="team-spawns" block="never" message="You may not modify the team spawns!"/>
+    <apply region="playable-inverse" block="never" message="You may not modify outside of the playing field!"/>
 </regions>
-<cores leak="5" material="obsidian">
-    <core name="Core" team="purple">
-        <cuboid max="195,71,86" min="190,66,81"/>
+<cores leak="5">
+    <core team="purple">
+        <region>
+            <cuboid min="190,66,81" max="196,72,87"/>
+        </region>
     </core>
-    <core name="Core" team="orange">
-        <cuboid max="-132,71,70" min="-137,66,65"/>
+    <core team="orange">
+        <region>
+            <cuboid min="-137,66,65" max="-131,72,71"/>
+        </region>
     </core>
 </cores>
-<killreward>
-	<item>golden apple</item>
-</killreward>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -117,5 +125,10 @@
     <item>obsidian</item>
     <item>gold block</item>
 </itemremove>
+<kill-rewards>
+    <kill-reward>
+    	<item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>84</maxbuildheight>
 </map>
