@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>CotBot TDM</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <objective>Be the team with the most kills before 7 minutes is up</objective>
 <authors>
     <author uuid="878de754-59dd-4828-9328-2bb1b848dc43" contribution="Basic map layout and XML author"/> <!-- MrM00se -->
@@ -10,43 +9,53 @@
     <author uuid="d2dfbb91-9bf7-400b-9d45-29800862a916" contribution="Moral support and minor aesthetics"/> <!-- FlavorfulGecko5 -->
 </authors>
 <teams>
-    <team color="dark red" max="12">Cot</team>
-    <team color="blue" max="12">Bot</team>
+    <team id="cot" color="dark red" max="12">Cot</team>
+    <team id="bot" color="blue" max="12">Bot</team>
 </teams>
-<score>
-    <time>7m</time>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="wood sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" amount="12" material="cooked beef"/>
+        <item slot="3" damage="16453" material="potion"/>
+        <item slot="4" damage="16453" material="potion"/>
+        <item slot="5" damage="16453" material="potion"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" enchantment="protection fall:4" team-color="true" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="cot" kit="spawn-kit" yaw="-90">
+        <regions>
+            <cuboid min="-55,12,-4" max="-60,12,3"/>
+        </regions>
+    </spawn>
+    <spawn team="bot" kit="spawn-kit" yaw="90">
+        <regions>
+            <cuboid min="55,12,2" max="62,12,-3"/>
+        </regions>
+    </spawn>
+    <default yaw="180">
+        <regions>
+            <cuboid min="-2,22,38" max="3,22,36"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="never">
+        <region>
+            <rectangle id="main-area" min="-75,21" max="75,-23"/>
+        </region>
+    </apply>
+</regions>
+<time>7m</time>
+<score>    
     <kills>1</kills>
     <deaths>1</deaths>
 </score>
-<kits>
-    <kit name="spawn">
-        <item slot="0" unbreakable="true">wood sword</item>
-        <item slot="1" unbreakable="true">bow</item>
-        <item slot="2" amount="12">cooked beef</item>
-        <item slot="3" damage="16453">potion</item>
-        <item slot="4" damage="16453">potion</item>
-        <item slot="5" damage="16453">potion</item>
-        <item slot="8" amount="16">arrow</item>
-    </kit>
-    <kit name="Cot" parents="spawn">
-        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
-        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
-        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
-        <boots color="cd0000" enchantment="protection fall:4" unbreakable="true">leather boots</boots>
-    </kit>
-    <kit name="Bot" parents="spawn">
-        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
-        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
-        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
-        <boots color="0066cc" enchantment="protection fall:4" unbreakable="true">leather boots</boots>
-    </kit>
-</kits>
-<kill-rewards>
-    <kill-reward>
-        <item damage="16453">potion</item>
-        <item amount="8">arrow</item>
-    </kill-reward>
-</kill-rewards>
 <itemremove>
     <item>potion</item>
     <item>cooked beef</item>
@@ -60,20 +69,10 @@
     <tool>wood sword</tool>
     <tool>bow</tool>
 </toolrepair>
-<regions>
-    <apply block="deny-all">
-        <rectangle name="main-area" min="-75,21" max="75,-23"/>
-    </apply>
-</regions>
-<spawns>
-    <spawn team="Cot" kit="Cot" yaw="-90">
-        <cuboid min="-55,12,-4" max="-61,12,2"/>
-    </spawn>
-    <spawn team="Bot" kit="Bot" yaw="90">
-        <cuboid min="55,12,2" max="61,12,-4"/>
-    </spawn>
-    <default yaw="180">
-        <cuboid min="-2,22,38" max="2,22,35"/>
-    </default>
-</spawns>
+<kill-rewards>
+    <kill-reward>
+        <item damage="16453" material="potion"/>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 </map>

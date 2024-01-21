@@ -1,76 +1,63 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>Zao</name>
-<version>1.2.0</version>
+<version>1.2.1</version>
 <objective>Earn points by killing players before the timer runs out!</objective>
 <authors>
-    <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/>
-    <!-- Evocal -->
+    <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- Evocal -->
 </authors>
 <teams>
-      <team color="yellow" max="24">Yellow</team>
-      <team color="dark purple" max="24">Purple</team>
+    <team id="yellow" color="yellow" max="24">Yellow</team>
+    <team id="purple" color="dark purple" max="24">Purple</team>
 </teams>
 <kits>
-    <kit name="spawn">
-        <item slot="0">stone sword</item>
-        <item slot="1" enchantment="arrow infinite:1">bow</item>
-        <item slot="2" enchantment="dig_speed:2">stone pickaxe</item>
-        <item slot="3" amount="32">sandstone</item>
-        <item slot="4">golden apple</item>
-        <item slot="28" amount="1">arrow</item>
-        <effect amplifier="4" duration="5">heal</effect>
-        <effect amplifier="1" duration="5">increase damage</effect>
+    <kit id="spawn-kit">
+        <item slot="0" material="stone sword"/>
+        <item slot="1" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" enchantment="dig_speed:2" material="stone pickaxe"/>
+        <item slot="3" amount="32" material="sandstone"/>
+        <item slot="4" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <chestplate team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
-        <potion duration="oo" amplifier="1">speed</potion>
-    </kit>
-    <kit name="yellow" parents="spawn">
-       <chestplate color="E5E533">leather chestplate</chestplate>
-       <boots color="E5E533">leather boots</boots>
-    </kit>
-    <kit name="purple" parents="spawn">
-       <chestplate color="7F3FB2">leather chestplate</chestplate>
-       <boots color="7F3FB2">leather boots</boots>
+        <boots team-color="true" material="leather boots"/>
+        <effect amplifier="4" duration="5">heal</effect>
+        <effect duration="5">increase damage</effect>
+        <effect>speed</effect>
     </kit>
 </kits>
-<filters>
-    <filter name="only-yellow">
-        <team>yellow</team>
-    </filter>
-    <filter name="only-purple">
-        <team>purple</team>
-    </filter>
-    <filter name="only-sandstone">
-        <any>
-            <block>sandstone</block>
-        </any>
-    </filter>
-</filters>
-<regions>
-    <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
-    <cylinder name="yellowspawn" base="23,20,-798" height="10" radius="15"/>
-    <cylinder name="purplespawn" base="252,20,-797" height="10" radius="15"/>
-    <apply block="deny-all" enter="only-yellow" message="You may not enter or edit the enemy team's spawn!">
-        <region name="yellowspawn"/>
-    </apply>
-    <apply block="deny-all" enter="only-purple" message="You may not enter or edit the enemy team's spawn!">
-        <region name="purplespawn"/>
-    </apply>
-    <apply block="only-sandstone" message="You may only break or place sandstone on this map!">
-        <region name="map"/>
-    </apply>
-</regions>
 <spawns>
-    <spawn team="yellow" kit="yellow" yaw="-90">
-        <cylinder base="23.5,21,-797.5" height="1" radius="1"/>
+    <spawn team="yellow" kit="spawn-kit" yaw="-90">
+        <regions>
+            <cylinder base="23.5,21,-797.5" height="1" radius="1"/>
+        </regions>
     </spawn>
-    <spawn team="purple" kit="purple" yaw="90">
-        <cylinder base="252.5,21,-797.5" height="1" radius="1"/>
+    <spawn team="purple" kit="spawn-kit" yaw="90">
+        <regions>
+            <cylinder base="252.5,21,-797.5" height="1" radius="1"/>
+        </regions>
     </spawn>
     <default yaw="180">
-        <cylinder base="137.5,61,-631.5" height="1" radius="1"/>
+        <regions>
+            <cylinder base="137.5,61,-631.5" height="1" radius="1"/>
+        </regions>
     </default>
 </spawns>
+<filters>
+    <team id="only-yellow">yellow</team>
+    <team id="only-purple">purple</team>
+    <material id="only-sandstone">sandstone</material>
+</filters>
+<regions>
+    <cylinder id="yellow-spawn" base="23,20,-798" height="10" radius="15"/>
+    <cylinder id="purple-spawn" base="252,20,-797" height="10" radius="15"/>
+    <apply region="yellow-spawn" block="never" enter="only-yellow" message="You may not enter or edit the enemy's spawn!"/>
+    <apply region="purple-spawn" block="never" enter="only-purple" message="You may not enter or edit the enemy's spawn!"/>
+    <apply block="only-sandstone" message="You may only break or place sandstone on this map!"/>
+</regions>
+<time>7m</time>
+<score>
+    <kills>1</kills>
+</score>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -84,18 +71,15 @@
     <item>sandstone</item>
     <item>golden apple</item>
 </itemremove>
-<score>
-    <time>7m</time>
-    <kills>1</kills>
-    <deaths>0</deaths>
-</score>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" material="sandstone"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>95</maxbuildheight>
 <timelock>on</timelock>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<killreward>
-    <item amount="8">sandstone</item>
-    <item>golden apple</item>
-</killreward>
 </map>

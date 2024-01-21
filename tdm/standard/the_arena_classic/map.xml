@@ -1,81 +1,78 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>The Arena: Classic</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
+<created>2012-09-22</created>
 <slug>the_arena</slug>
 <objective>Be the team with the least amount of deaths after 10 minutes.</objective>
 <authors>
     <author uuid="43b59b5d-f75c-4a5c-9146-f9d5e6cbdac4"/> <!-- Gone52 -->
 </authors>
 <teams>
-    <team color="dark red" max="40">Red</team>
-    <team color="blue" max="40">Blue</team>
+    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue" color="blue" max="40">Blue</team>
 </teams>
-<created>2012-09-22</created>
 <kits>
-    <kit name="spawn">
+    <kit id="spawn-kit">
         <clear/>
-        <item slot="0">stone sword</item>
-        <item slot="1" enchantment="arrow infinite:1">bow</item>
-        <item slot="2" amount="1">golden apple</item>
-        <item slot="28" amount="1">arrow</item>
-        <leggings unbreakable="true" enchantment="protection projectile:3">chainmail leggings</leggings>
-        <boots unbreakable="true" enchantment="protection fall:2">iron boots</boots>
-        <potion duration="oo" amplifier="1">speed</potion>
-        <potion duration="6" amplifier="1">heal</potion>
-        <potion duration="6">damage resistance</potion>
-    </kit>
-    <kit name="red" parents="spawn">
-        <helmet unbreakable="true" color="cd0000">leather helmet</helmet>
-        <chestplate unbreakable="true" color="cd0000">leather chestplate</chestplate>
-    </kit>
-    <kit name="blue" parents="spawn">
-        <helmet unbreakable="true" color="0066cc">leather helmet</helmet>
-        <chestplate unbreakable="true" color="0066cc">leather chestplate</chestplate>
+        <item slot="0" material="stone sword"/>
+        <item slot="1" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" enchantment="protection projectile:3" material="chainmail leggings"/>
+        <boots unbreakable="true" enchantment="protection fall:2" material="iron boots"/>
+        <effect>speed</effect>
+        <effect duration="6">heal</effect>
+        <effect duration="6">damage resistance</effect>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
-    <default yaw="0">
-        <cylinder base="0,46,0" radius="2" height="0"/>
+    <default>
+        <regions>
+            <cylinder base="0.5,46,0.5" radius="1.5" height="0"/>
+        </regions>
     </default>
-    <spawn team="red" kit="red" yaw="90">
-        <cuboid name="rspawn" min="102,5,5" max="93,5,-4"/>
+    <spawn team="red" kit="spawn-kit" yaw="90">
+        <regions>
+            <cuboid id="rspawn" min="102,5,5" max="94,5,-3"/>
+        </regions>
     </spawn>
-    <spawn team="blue" kit="blue" yaw="270">
-        <cuboid name="bspawn" min="-101,5,-4" max="-92,5,5"/>
+    <spawn team="blue" kit="spawn-kit" yaw="270">
+        <regions>
+            <cuboid id="bspawn" min="-101,5,-4" max="-91,5,6"/>
+        </regions>
     </spawn>
 </spawns>
 <filters>
-    <filter name="only-blue">
-        <team>blue</team>
-    </filter>
-    <filter name="only-red">
-        <team>red</team>
-    </filter>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
 </filters>
 <regions>
-    <apply enter="deny-all">
-        <union>
-            <negative>
-                <union>
-                    <rectangle name="main-area" min="-83,-62" max="84,63"/>
-                    <rectangle name="red-spawn" min="84,-30" max="104,31"/>
-                    <rectangle name="blue-spawn" min="-103,-30" max="-83,31"/>
-                </union>
-            </negative>
-            <rectangle name="blue-spawn-void1" min="-86,-25" max="-83,-4"/>
-            <rectangle name="blue-spawn-void2" min="-86,5" max="-83,26"/>
-            <rectangle name="red-spawn-void1" min="84,-25" max="87,-4"/>
-            <rectangle name="red-spawn-void2" min="84,5" max="87,26"/>
-        </union>
+    <apply enter="never">
+        <region>
+            <union>
+                <negative id="inverse">
+                    <union>
+                        <rectangle id="main-area" min="-83,-62" max="84,63"/>
+                        <rectangle id="red-spawn" min="84,-30" max="104,31"/>
+                        <rectangle id="blue-spawn" min="-103,-30" max="-83,31"/>
+                    </union>
+                </negative>
+                <rectangle id="blue-spawn-void1" min="-86,-25" max="-83,-4"/>
+                <rectangle id="blue-spawn-void2" min="-86,5" max="-83,26"/>
+                <rectangle id="red-spawn-void1" min="84,-25" max="87,-4"/>
+                <rectangle id="red-spawn-void2" min="84,5" max="87,26"/>
+            </union>
+        </region>
     </apply>
-    <apply block="deny-all">
-        <rectangle min="-oo,-oo" max="oo,oo"/>
-    </apply>
+    <apply block="never"/>
 </regions>
-<killreward>
-    <item>golden apple</item>
-</killreward>
+<time>10m</time>
+<score>
+    <kills>1</kills>
+</score>
 <toolrepair>
     <tool>bow</tool>
     <tool>stone sword</tool>
@@ -90,10 +87,12 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<score>
-    <time>10m</time>
-</score>
 </map>
