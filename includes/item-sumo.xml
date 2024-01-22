@@ -1,0 +1,283 @@
+<map proto="1.4.2">
+<!--
+█ ▀█▀ █▀▀ █▀▄▀█   █▀ █░█ █▀▄▀█ █▀█
+█ ░█░ ██▄ █░▀░█   ▄█ █▄█ █░▀░█ █▄█
+-->
+<!-- Item Sumo gamemode include file -->
+<!-- Contains two versions: score-based Item Sumo and life-based Item Sumo -->
+<!-- Created by zzuf (GitHub @zzufx) -->
+<!-- Version 2024.01.22-1 -->
+<variant id="lifesteal">Lifesteal</variant>
+<include id="void-death"/>
+<constants>
+    <constant id="item-spawn-point">0,0,0</constant>
+    <constant id="item-spawn-rate">30s</constant>
+    <constant id="initial-lives">5</constant>
+    <constant id="pulse-time">20s</constant>
+    <constant id="void-plane">-10</constant>
+</constants>
+<respawn delay="3s" auto="true"/>
+<if variant="lifesteal">
+    <include id="lifesteal"/>
+    <constant id="max-lives">7</constant>
+    <constant id="max-lives-enabled">1</constant>
+    <constant id="total-lives">99</constant>
+    <constant id="tutorial-word2">lives</constant>
+    <blitz>
+        <lives>${initial-lives}</lives>
+        <broadcastLives>true</broadcastLives>
+    </blitz>
+</if>
+<unless variant="lifesteal">
+    <game>Item Sumo</game>
+    <score>
+        <kills>1</kills>
+    </score>
+    <time>4m</time>
+</unless>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="3" unbreakable="true" material="shears"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect amplifier="255">resistance</effect>
+        <action>
+            <kit id="wool-kit"/>
+        </action>
+    </kit>
+    <kit id="wool-kit">
+        <item slot="4" amount="64" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly -->
+    </kit>
+    <give kit="wool-kit" filter="give-blocks"/>
+</kits>
+<filters>
+    <all id="base-pulse">
+        <filter id="power-up-pulse"/>
+        <participating/>
+        <alive/>
+    </all>
+    <pulse id="give-blocks" duration="1s" period="10s">
+        <after duration="5s">
+            <all>
+                <match-started/>
+                <match-running/>
+                <participating/>
+            </all>
+        </after>
+    </pulse>
+    <any id="only-wool-and-fire">
+        <material>wool</material>
+        <material>fire</material>
+    </any>
+    <pulse id="power-up-pulse" duration="1s" period="${pulse-time}">
+        <after duration="${pulse-time}">
+            <all>
+                <match-started/>
+                <match-running/>
+            </all>
+        </after>
+    </pulse>
+    <pulse id="after-pulse" duration="1s" period="${pulse-time}">
+        <after duration="1s">
+            <all>
+                <time>${pulse-time}</time>
+                <match-running/>
+            </all>
+        </after>
+    </pulse>
+    <all id="power-up-reset">
+        <variable var="next_global_powerup">3</variable>
+        <filter id="after-pulse"/>
+    </all>
+    <all id="tnt-pulse">
+        <variable var="next_global_powerup">0</variable>
+        <filter id="base-pulse"/>
+    </all>
+    <all id="snowball-pulse">
+        <variable var="next_global_powerup">1</variable>
+        <filter id="base-pulse"/>
+    </all>
+    <all id="fireball-pulse">
+        <variable var="next_global_powerup">2</variable>
+        <filter id="base-pulse"/>
+    </all>
+    <all id="tnt-message">
+        <variable var="next_global_powerup">0</variable>
+        <filter id="power-up-pulse"/>
+    </all>
+    <all id="snowball-message">
+        <variable var="next_global_powerup">1</variable>
+        <filter id="power-up-pulse"/>
+    </all>
+    <all id="fireball-message">
+        <variable var="next_global_powerup">2</variable>
+        <filter id="power-up-pulse"/>
+    </all>
+    <!-- OP items -->
+    <pulse id="op-pulse" duration="0.05s" period="${item-spawn-rate}">
+        <after duration="${item-spawn-rate}">
+            <all>
+                <match-started/>
+                <match-running/>
+            </all>
+        </after>
+    </pulse>
+    <pulse id="after-op-pulse" duration="0.05s" period="${item-spawn-rate}">
+        <after duration="1s">
+            <all>
+                <time>${item-spawn-rate}</time>
+                <match-running/>
+            </all>
+        </after>
+    </pulse>
+    <all id="op-reset">
+        <variable var="op_item">3</variable>
+        <filter id="after-op-pulse"/>
+    </all>
+</filters>
+<projectiles>
+    <projectile id="fireball-projectile" name="Fireball" projectile="Fireball" click="right" damage="10" power="4" throwable="true" cooldown="1s"/>
+</projectiles>
+<variables>
+    <variable id="next_global_powerup" default="0" scope="match"/>
+    <!--
+    0: tnt
+    1: snowball
+    2: fireball
+    -->
+    <variable id="op_item" default="0" scope="match"/>
+</variables>
+<regions>
+    <negative id="not-playable-area">
+        <region id="playable-area"/>
+    </negative>
+    <apply block-break="only-wool-and-fire" region="playable-area"/>
+    <apply block="never" region="not-playable-area" message="You may not place blocks outside of the playable area!"/>
+    <point id="item-spawn">${item-spawn-point}</point>
+</regions>
+<actions>
+    <!-- OP -->
+    <trigger scope="match" filter="after-op-pulse">
+        <action>
+            <set var="op_item" value="op_item+1"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="op-reset">
+        <action>
+            <set var="op_item" value="floor(random() * 3)"/>
+        </action>
+    </trigger>
+    <!-- -->
+    <trigger scope="match" filter="after-pulse">
+        <action>
+            <set var="next_global_powerup" value="next_global_powerup+1"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="power-up-reset">
+        <action>
+            <set var="next_global_powerup" value="0"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="tnt-pulse">
+        <action>
+            <kit>
+                <item material="tnt"/>
+            </kit>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="snowball-pulse">
+        <action>
+            <kit>
+                <item amount="5" material="snowball"/>
+            </kit>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="fireball-pulse">
+        <action>
+            <kit>
+                <item material="fireball" projectile="fireball-projectile"/>
+            </kit>
+        </action>
+    </trigger>
+    <!-- Messages -->
+    <trigger scope="match" filter="tnt-message">
+        <action>
+            <message text=" `aAll living players have received a `fTNT`a power-up!"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="snowball-message">
+        <action>
+            <message text=" `aAll living players have received a `fSnowball`a power-up!"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="fireball-message">
+        <action>
+            <message text=" `aAll living players have received a `fFireball`a power-up!"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="op-pulse">
+        <action>
+            <message text=" `6An OP item has spawned at middle!"/>
+        </action>
+    </trigger>
+</actions>
+<control-points capture-rule="exclusive" show-progress="true">
+    <control-point name="Center" capture-time="20s">
+        <capture><region id="center-region"/></capture>
+    </control-point>
+</control-points>
+<itemremove>
+    <item>wool</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>tnt</item>
+    <item>snowball</item>
+    <item>fireball</item>
+</itemremove>
+<renewables>
+    <renewable rate="1" grow="true" particles="false" sound="true" avoid-players="0">
+        <region>
+            <cylinder base="${item-spawn-point}" radius="2.5" height="4"/>
+        </region>
+        <renew-filter>
+            <material>air</material>
+        </renew-filter>
+        <replace-filter>
+            <material>wool</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<spawners>
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=0">
+        <item material="potion" damage="8267">
+            <effect duration="10s" amplifier="6">jump_boost</effect>
+        </item>
+    </spawner>
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=1">
+        <item material="wood sword" damage="58" enchantments="knockback:1"/>
+    </spawner>
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=2">
+        <item material="ender pearl"/>
+    </spawner>
+</spawners>
+<tnt>
+    <instantignite>true</instantignite>
+    <blockdamage>true</blockdamage>
+    <power>6</power>
+</tnt>
+<gamerules>
+    <doFireTick>true</doFireTick>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>fire</damage>
+    <damage>fire tick</damage>
+</disabledamage>
+</map>
