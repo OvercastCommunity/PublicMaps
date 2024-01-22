@@ -6,14 +6,15 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo and life-based Item Sumo -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.22-2 -->
+<!-- Version 2024.01.22-3 -->
 <variant id="lifesteal">Lifesteal</variant>
 <include id="void-death"/>
 <constants>
     <constant id="item-spawn-point">0,0,0</constant>
     <constant id="item-spawn-rate">30s</constant>
     <constant id="initial-lives">5</constant>
-    <constant id="pulse-time">20s</constant>
+    <constant id="global-power-up-time">20s</constant>
+    <constant id="op-power-up-time">30s</constant>
     <constant id="void-plane">-10</constant>
 </constants>
 <respawn delay="3s" auto="true"/>
@@ -61,28 +62,25 @@
     <pulse id="give-blocks" duration="1s" period="10s">
         <after duration="5s">
             <all>
-                <match-started/>
                 <match-running/>
                 <participating/>
             </all>
         </after>
     </pulse>
-    <any id="only-wool-and-fire">
+    <any id="only-some">
         <material>wool</material>
         <material>fire</material>
+        <material>tnt</material>
     </any>
-    <pulse id="power-up-pulse" duration="1s" period="${pulse-time}">
-        <after duration="${pulse-time}">
-            <all>
-                <match-started/>
-                <match-running/>
-            </all>
+    <pulse id="power-up-pulse" duration="0.5s" period="${global-power-up-time}">
+        <after duration="${global-power-up-time}">
+            <match-running/>
         </after>
     </pulse>
-    <pulse id="after-pulse" duration="1s" period="${pulse-time}">
-        <after duration="1s">
+    <pulse id="after-pulse" duration="0.5s" period="${global-power-up-time}">
+        <after duration="2s">
             <all>
-                <time>${pulse-time}</time>
+                <time>${global-power-up-time}</time>
                 <match-running/>
             </all>
         </after>
@@ -116,16 +114,13 @@
         <filter id="power-up-pulse"/>
     </all>
     <!-- OP items -->
-    <pulse id="op-pulse" duration="1s" period="${item-spawn-rate}">
+    <pulse id="op-pulse" duration="0.5s" period="${item-spawn-rate}">
         <after duration="${item-spawn-rate}">
-            <all>
-                <match-started/>
-                <match-running/>
-            </all>
+            <match-running/>
         </after>
     </pulse>
-    <pulse id="after-op-pulse" duration="1s" period="${item-spawn-rate}">
-        <after duration="1s">
+    <pulse id="after-op-pulse" duration="0.5s" period="${item-spawn-rate}">
+        <after duration="2s">
             <all>
                 <time>${item-spawn-rate}</time>
                 <match-running/>
@@ -149,18 +144,22 @@
     <negative id="not-playable-area">
         <region id="playable-area"/>
     </negative>
-    <apply block-break="only-wool-and-fire" region="playable-area"/>
+    <apply block="only-some" region="playable-area"/>
     <apply block="never" region="not-playable-area" message="You may not place blocks outside of the playable area!"/>
     <point id="item-spawn">${item-spawn-point}</point>
 </regions>
 <actions>
     <!-- OP -->
-    <trigger scope="match" filter="after-op-pulse">
-        <action>
-            <set var="op_item" value="floor(random() * 3) + 1"/>
-        </action>
+    <action id="set-random-item" scope="match">
+        <set var="op_item" value="floor(random() * 3)"/>
+    </action>
+    <trigger scope="match" action="set-random-item">
+        <filter>
+            <match-started/>
+        </filter>
     </trigger>
-    <!-- -->
+    <trigger scope="match" filter="after-op-pulse" action="set-random-item"/>
+    <!-- Global Power-Ups -->
     <trigger scope="match" filter="after-pulse">
         <action>
             <set var="next_global_powerup" value="next_global_powerup+1"/>
@@ -210,7 +209,7 @@
     </trigger>
     <trigger scope="match" filter="op-pulse">
         <action>
-            <message text=" `6OP items have spawned at middle!"/>
+            <message text=" `e⚠ `6An OP item has spawned at middle!"/>
         </action>
     </trigger>
 </actions>
@@ -243,15 +242,15 @@
     </renewable>
 </renewables>
 <spawners>
-    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=1">
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=0,op-pulse)" max-entities="1">
         <item material="potion" damage="8267">
             <effect duration="10s" amplifier="6">jump_boost</effect>
         </item>
     </spawner>
-    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=2">
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=1,op-pulse)" max-entities="1">
         <item material="wood sword" damage="59" enchantments="knockback:1"/>
     </spawner>
-    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=3">
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=2,op-pulse)" max-entities="1">
         <item material="ender pearl"/>
     </spawner>
 </spawners>
