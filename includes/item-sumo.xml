@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo and life-based Item Sumo -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.22-1 -->
+<!-- Version 2024.01.22-2 -->
 <variant id="lifesteal">Lifesteal</variant>
 <include id="void-death"/>
 <constants>
@@ -48,7 +48,7 @@
         </action>
     </kit>
     <kit id="wool-kit">
-        <item slot="4" amount="64" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly -->
+        <item slot="4" amount="64" team-color="true" material="wool" locked="true"/> <!-- amount="oo" behaves weirdly -->
     </kit>
     <give kit="wool-kit" filter="give-blocks"/>
 </kits>
@@ -116,7 +116,7 @@
         <filter id="power-up-pulse"/>
     </all>
     <!-- OP items -->
-    <pulse id="op-pulse" duration="0.05s" period="${item-spawn-rate}">
+    <pulse id="op-pulse" duration="1s" period="${item-spawn-rate}">
         <after duration="${item-spawn-rate}">
             <all>
                 <match-started/>
@@ -124,7 +124,7 @@
             </all>
         </after>
     </pulse>
-    <pulse id="after-op-pulse" duration="0.05s" period="${item-spawn-rate}">
+    <pulse id="after-op-pulse" duration="1s" period="${item-spawn-rate}">
         <after duration="1s">
             <all>
                 <time>${item-spawn-rate}</time>
@@ -132,10 +132,6 @@
             </all>
         </after>
     </pulse>
-    <all id="op-reset">
-        <variable var="op_item">3</variable>
-        <filter id="after-op-pulse"/>
-    </all>
 </filters>
 <projectiles>
     <projectile id="fireball-projectile" name="Fireball" projectile="Fireball" click="right" damage="10" power="4" throwable="true" cooldown="1s"/>
@@ -161,12 +157,7 @@
     <!-- OP -->
     <trigger scope="match" filter="after-op-pulse">
         <action>
-            <set var="op_item" value="op_item+1"/>
-        </action>
-    </trigger>
-    <trigger scope="match" filter="op-reset">
-        <action>
-            <set var="op_item" value="floor(random() * 3)"/>
+            <set var="op_item" value="floor(random() * 3) + 1"/>
         </action>
     </trigger>
     <!-- -->
@@ -219,7 +210,7 @@
     </trigger>
     <trigger scope="match" filter="op-pulse">
         <action>
-            <message text=" `6An OP item has spawned at middle!"/>
+            <message text=" `6OP items have spawned at middle!"/>
         </action>
     </trigger>
 </actions>
@@ -252,15 +243,15 @@
     </renewable>
 </renewables>
 <spawners>
-    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=0">
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=1">
         <item material="potion" damage="8267">
             <effect duration="10s" amplifier="6">jump_boost</effect>
         </item>
     </spawner>
-    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=1">
-        <item material="wood sword" damage="58" enchantments="knockback:1"/>
-    </spawner>
     <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=2">
+        <item material="wood sword" damage="59" enchantments="knockback:1"/>
+    </spawner>
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="${item-spawn-rate}" filter="op_item=3">
         <item material="ender pearl"/>
     </spawner>
 </spawners>
@@ -269,6 +260,11 @@
     <blockdamage>true</blockdamage>
     <power>6</power>
 </tnt>
+<crafting>
+    <disable>carpet</disable>
+    <disable>wood sword</disable>
+    <disable>snow block</disable>
+</crafting>
 <gamerules>
     <doFireTick>true</doFireTick>
 </gamerules>
