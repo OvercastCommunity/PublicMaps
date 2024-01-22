@@ -4,18 +4,15 @@
 █ ░█░ ██▄ █░▀░█   ▄█ █▄█ █░▀░█ █▄█
 -->
 <!-- Item Sumo gamemode include file -->
-<!-- Contains two versions: score-based Item Sumo and life-based Item Sumo -->
+<!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.22-3 -->
+<!-- Version 2024.01.22-4 -->
 <variant id="lifesteal">Lifesteal</variant>
-<include id="void-death"/>
 <constants>
     <constant id="item-spawn-point">0,0,0</constant>
-    <constant id="item-spawn-rate">30s</constant>
+    <constant id="item-spawn-rate">29.75s</constant>
     <constant id="initial-lives">5</constant>
-    <constant id="global-power-up-time">20s</constant>
-    <constant id="op-power-up-time">30s</constant>
-    <constant id="void-plane">-10</constant>
+    <constant id="global-power-up-rate">19.75s</constant>
 </constants>
 <respawn delay="3s" auto="true"/>
 <if variant="lifesteal">
@@ -72,15 +69,15 @@
         <material>fire</material>
         <material>tnt</material>
     </any>
-    <pulse id="power-up-pulse" duration="0.5s" period="${global-power-up-time}">
-        <after duration="${global-power-up-time}">
+    <pulse id="power-up-pulse" duration="0.25s" period="${global-power-up-rate}">
+        <after duration="${global-power-up-rate}">
             <match-running/>
         </after>
     </pulse>
-    <pulse id="after-pulse" duration="0.5s" period="${global-power-up-time}">
+    <pulse id="after-pulse" duration="0.25s" period="${global-power-up-rate}">
         <after duration="2s">
             <all>
-                <time>${global-power-up-time}</time>
+                <time>${global-power-up-rate}</time>
                 <match-running/>
             </all>
         </after>
@@ -114,12 +111,12 @@
         <filter id="power-up-pulse"/>
     </all>
     <!-- OP items -->
-    <pulse id="op-pulse" duration="0.5s" period="${item-spawn-rate}">
+    <pulse id="op-pulse" duration="0.25s" period="${item-spawn-rate}">
         <after duration="${item-spawn-rate}">
             <match-running/>
         </after>
     </pulse>
-    <pulse id="after-op-pulse" duration="0.5s" period="${item-spawn-rate}">
+    <pulse id="after-op-pulse" duration="0.25s" period="${item-spawn-rate}">
         <after duration="2s">
             <all>
                 <time>${item-spawn-rate}</time>
@@ -145,13 +142,13 @@
         <region id="playable-area"/>
     </negative>
     <apply block="only-some" region="playable-area"/>
-    <apply block="never" region="not-playable-area" message="You may not place blocks outside of the playable area!"/>
+    <apply block="never" region="not-playable-area"/>
     <point id="item-spawn">${item-spawn-point}</point>
 </regions>
 <actions>
     <!-- OP -->
     <action id="set-random-item" scope="match">
-        <set var="op_item" value="floor(random() * 3)"/>
+        <set var="op_item" value="floor(random() * 4)"/>
     </action>
     <trigger scope="match" action="set-random-item">
         <filter>
@@ -209,7 +206,7 @@
     </trigger>
     <trigger scope="match" filter="op-pulse">
         <action>
-            <message text=" `e⚠ `6An OP item has spawned at middle!"/>
+            <message text=" `e⚠ `6A special item has spawned at middle!"/>
         </action>
     </trigger>
 </actions>
@@ -218,16 +215,6 @@
         <capture><region id="center-region"/></capture>
     </control-point>
 </control-points>
-<itemremove>
-    <item>wool</item>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
-    <item>tnt</item>
-    <item>snowball</item>
-    <item>fireball</item>
-</itemremove>
 <renewables>
     <renewable rate="1" grow="true" particles="false" sound="true" avoid-players="0">
         <region>
@@ -248,12 +235,31 @@
         </item>
     </spawner>
     <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=1,op-pulse)" max-entities="1">
-        <item material="wood sword" damage="59" enchantments="knockback:1"/>
+        <item material="wood sword" name="`fKnockback Sword" damage="59" enchantments="knockback:1"/>
     </spawner>
     <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=2,op-pulse)" max-entities="1">
         <item material="ender pearl"/>
     </spawner>
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=3,op-pulse)" max-entities="1">
+        <item material="boat" name="`fBoat Clutcher"/>
+    </spawner>
 </spawners>
+<itemkeep>
+    <item>potion</item>
+    <item>wood sword</item>
+    <item>ender pearl</item>
+    <item>boat</item>
+</itemkeep>
+<itemremove>
+    <item>wool</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>tnt</item>
+    <item>snowball</item>
+    <item>fireball</item>
+</itemremove>
 <tnt>
     <instantignite>true</instantignite>
     <blockdamage>true</blockdamage>
