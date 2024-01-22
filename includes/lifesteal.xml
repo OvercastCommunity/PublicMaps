@@ -4,11 +4,13 @@
 <!--       \|                   -->
 <!-- Lifesteal Blitz gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.12.22-1 -->
-<game>Lifesteal</game>
+<!-- Version 2024.01.22-1 -->
+<game>Blitz: Lifesteal</game>
 <constants>
     <constant id="extra-lives">1</constant> <!-- Lives you get after a kill -->
     <constant id="total-lives">1</constant> <!-- Total lives you can get per spawn -->
+    <constant id="max-lives">1</constant> <!-- Maximum amount of lives you can have at once -->
+    <constant id="max-lives-enabled">0</constant> <!-- 0: off, 1: on -->
     <constant id="tutorial-word1">life</constant>
     <constant id="tutorial-word2">life</constant>
 </constants>
@@ -63,6 +65,8 @@
 <variables>
     <lives id="blitzlives"/>
     <variable id="extra_life" scope="player" default="0"/>
+    <variable id="max_lives" scope="player" default="${max-lives}"/>
+    <variable id="max_lives_enabled" scope="match" default="${max-lives-enabled}"/>
 </variables>
 <actions>
     <trigger filter="is-alive" scope="player">
@@ -79,9 +83,34 @@
 <kill-rewards>
     <kill-reward>
         <filter>
-            <variable var="extra_life">[0,${total-lives})</variable>
+            <any>
+                <all>
+                    <variable var="max_lives_enabled">0</variable>
+                    <variable var="extra_life">[0,${total-lives})</variable>
+                </all>
+                <all>
+                    <variable var="max_lives_enabled">1</variable>
+                    <variable var="extra_life">[0,${total-lives})</variable>
+                    <not>
+                        <variable var="blitzlives">[${max-lives},oo)</variable>
+                    </not>
+                </all>
+            </any>
         </filter>
         <kit id="add-life-kit"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <variable var="max_lives_enabled">1</variable>
+                <variable var="blitzlives">(${max-lives},oo)</variable>
+            </all>
+        </filter>
+        <kit>
+            <action>
+                <message title="" text=" `e⚠ `cYou have reached the maximum amount of lives this map allows."/>
+            </action>
+        </kit>
     </kill-reward>
 </kill-rewards>
 </map>
