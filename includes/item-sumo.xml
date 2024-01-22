@@ -6,13 +6,15 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.22-4 -->
+<!-- Version 2024.01.22-5 -->
+<include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
     <constant id="item-spawn-point">0,0,0</constant>
     <constant id="item-spawn-rate">29.75s</constant>
     <constant id="initial-lives">5</constant>
     <constant id="global-power-up-rate">19.75s</constant>
+    <constant id="void-plane">-60</constant>
 </constants>
 <respawn delay="3s" auto="true"/>
 <if variant="lifesteal">
