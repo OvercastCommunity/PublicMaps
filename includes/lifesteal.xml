@@ -4,7 +4,7 @@
 <!--       \|                   -->
 <!-- Lifesteal Blitz gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.01.22-1 -->
+<!-- Version 2024.01.22-2 -->
 <game>Blitz: Lifesteal</game>
 <constants>
     <constant id="extra-lives">1</constant> <!-- Lives you get after a kill -->
@@ -27,7 +27,7 @@
         <action>
             <set var="blitzlives" value="blitzlives+${extra-lives}"/>
             <set var="extra_life" value="extra_life+1"/>
-            <message title="" text=" `e⚠ `aYou have earned an extra life!`7 You now have `b{lives}`7 life/lives remaining.">
+            <message title="" text=" `e⚠ `aYou have earned an extra life!`7 You now have `b{lives}`7 lives remaining.">
                 <replacements>
                     <decimal id="lives" value="blitzlives"/>
                 </replacements>
@@ -103,12 +103,12 @@
         <filter>
             <all>
                 <variable var="max_lives_enabled">1</variable>
-                <variable var="blitzlives">(${max-lives},oo)</variable>
+                <variable var="blitzlives">${max-lives}</variable>
             </all>
         </filter>
         <kit>
             <action>
-                <message title="" text=" `e⚠ `cYou have reached the maximum amount of lives this map allows."/>
+                <message text=" `e⚠ `cYou have reached the maximum amount of lives this map allows."/>
             </action>
         </kit>
     </kill-reward>

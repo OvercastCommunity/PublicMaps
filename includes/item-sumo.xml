@@ -6,14 +6,14 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.22-5 -->
+<!-- Version 2024.01.23-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
     <constant id="item-spawn-point">0,0,0</constant>
     <constant id="item-spawn-rate">29.75s</constant>
-    <constant id="initial-lives">5</constant>
     <constant id="global-power-up-rate">19.75s</constant>
+    <constant id="initial-lives">5</constant>
     <constant id="void-plane">-60</constant>
 </constants>
 <respawn delay="3s" auto="true"/>
@@ -37,20 +37,25 @@
 </unless>
 <kits>
     <kit id="spawn-kit">
+        <clear/>
         <item slot="3" unbreakable="true" material="shears"/>
+        <item slot="4" amount="64" team-color="true" material="wool"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect amplifier="255">resistance</effect>
-        <action>
-            <kit id="wool-kit"/>
-        </action>
     </kit>
-    <kit id="wool-kit">
-        <item slot="4" amount="64" team-color="true" material="wool" locked="true"/> <!-- amount="oo" behaves weirdly -->
+    <!-- Global Power-Ups -->
+    <kit id="pw-tnt">
+        <item material="tnt"/>
     </kit>
-    <give kit="wool-kit" filter="give-blocks"/>
+    <kit id="pw-sb">
+        <item amount="5" material="snowball"/>
+    </kit>
+    <kit id="pw-fb">
+        <item material="fireball" projectile="fireball-projectile"/>
+    </kit>
+    <give kit="pw-tnt" filter="tnt-pulse"/>
+    <give kit="pw-sb" filter="snowball-pulse"/>
+    <give kit="pw-fb" filter="fireball-pulse"/>
 </kits>
 <filters>
     <all id="base-pulse">
@@ -58,11 +63,15 @@
         <participating/>
         <alive/>
     </all>
-    <pulse id="give-blocks" duration="1s" period="10s">
+    <pulse id="give-blocks" duration="1s" period="4s">
         <after duration="5s">
             <all>
                 <match-running/>
                 <participating/>
+                <alive/>
+                <not>
+                    <carrying ignore-metadata="true" amount="64"><item material="wool"/></carrying>
+                </not>
             </all>
         </after>
     </pulse>
@@ -72,12 +81,14 @@
         <material>tnt</material>
     </any>
     <pulse id="power-up-pulse" duration="0.25s" period="${global-power-up-rate}">
-        <after duration="${global-power-up-rate}">
-            <match-running/>
+        <after duration="0.25s">
+            <after duration="${global-power-up-rate}">
+                <match-running/>
+            </after>
         </after>
     </pulse>
     <pulse id="after-pulse" duration="0.25s" period="${global-power-up-rate}">
-        <after duration="2s">
+        <after duration="2.25s">
             <all>
                 <time>${global-power-up-rate}</time>
                 <match-running/>
@@ -114,8 +125,10 @@
     </all>
     <!-- OP items -->
     <pulse id="op-pulse" duration="0.25s" period="${item-spawn-rate}">
-        <after duration="${item-spawn-rate}">
-            <match-running/>
+        <after duration="0.25s">
+            <after duration="${item-spawn-rate}">
+                <match-running/>
+            </after>
         </after>
     </pulse>
     <pulse id="after-op-pulse" duration="0.25s" period="${item-spawn-rate}">
@@ -148,6 +161,17 @@
     <point id="item-spawn">${item-spawn-point}</point>
 </regions>
 <actions>
+    <trigger scope="player" filter="give-blocks">
+        <action>
+            <replace-item>
+                <find>wool</find>
+                <replace>air</replace>
+            </replace-item>
+            <kit>
+                <item amount="64" team-color="true" material="wool"/>
+            </kit>
+        </action>
+    </trigger>
     <!-- OP -->
     <action id="set-random-item" scope="match">
         <set var="op_item" value="floor(random() * 4)"/>
@@ -167,27 +191,6 @@
     <trigger scope="match" filter="power-up-reset">
         <action>
             <set var="next_global_powerup" value="0"/>
-        </action>
-    </trigger>
-    <trigger scope="player" filter="tnt-pulse">
-        <action>
-            <kit>
-                <item material="tnt"/>
-            </kit>
-        </action>
-    </trigger>
-    <trigger scope="player" filter="snowball-pulse">
-        <action>
-            <kit>
-                <item amount="5" material="snowball"/>
-            </kit>
-        </action>
-    </trigger>
-    <trigger scope="player" filter="fireball-pulse">
-        <action>
-            <kit>
-                <item material="fireball" projectile="fireball-projectile"/>
-            </kit>
         </action>
     </trigger>
     <!-- Messages -->
@@ -233,7 +236,7 @@
 <spawners>
     <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=0,op-pulse)" max-entities="1">
         <item material="potion" damage="8267">
-            <effect duration="10s" amplifier="6">jump_boost</effect>
+            <effect duration="10s" amplifier="5">jump_boost</effect>
         </item>
     </spawner>
     <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=1,op-pulse)" max-entities="1">
@@ -246,6 +249,17 @@
         <item material="boat" name="`fBoat Clutcher"/>
     </spawner>
 </spawners>
+<item-mods>
+    <rule>
+        <match>
+            <material>boat</material>
+        </match>
+        <modify name="`fBoat Clutcher"/>
+    </rule>
+</item-mods>
+<toolrepair>
+    <tool>shears</tool>
+</toolrepair>
 <itemkeep>
     <item>potion</item>
     <item>wood sword</item>
@@ -255,9 +269,6 @@
 <itemremove>
     <item>wool</item>
     <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
     <item>tnt</item>
     <item>snowball</item>
     <item>fireball</item>
