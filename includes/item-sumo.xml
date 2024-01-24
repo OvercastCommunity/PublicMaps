@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.24-1 -->
+<!-- Version 2024.01.24-2 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -67,19 +67,6 @@
     <give kit="pw-tnt" filter="tnt-pulse"/>
     <give kit="pw-sb" filter="snowball-pulse"/>
     <give kit="pw-fb" filter="fireball-pulse"/>
-    <kit id="wither-kit">
-        <clear effects="true" items="true" armor="false"/>
-        <health>1</health>
-        <effect>wither</effect>
-    </kit>
-    <give kit="wither-kit">
-        <filter>
-            <all>
-                <region id="center-blocks"/>
-                <grounded/>
-            </all>
-        </filter>
-    </give>
 </kits>
 <filters>
     <all id="base-pulse">
@@ -93,7 +80,7 @@
             <participating/>
             <alive/>
             <not>
-                <carrying ignore-metadata="true" amount="64">
+                <carrying ignore-metadata="true" amount="64..">
                     <item material="wool"/>
                 </carrying>
             </not>
@@ -189,7 +176,11 @@
     <apply block="only-some" region="playable-area"/>
     <apply block="never" region="not-playable-area"/>
     <point id="item-spawn">${item-spawn-point}</point>
-    <translate id="center-blocks" offset="0,-1,0"><region id="center-region"/></translate>
+    <union id="center-blocks">
+        <translate offset="0,-1,0"><region id="center-region"/></translate>
+        <translate offset="0,-2,0"><region id="center-region"/></translate>
+    </union>
+    <apply enter="never" region="center-blocks"/>
 </regions>
 <actions>
     <trigger scope="player" filter="give-blocks">
