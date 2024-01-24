@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.24-2 -->
+<!-- Version 2024.01.24-3 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -33,6 +33,7 @@
 </broadcasts>
 <respawn delay="3s" auto="true"/>
 <if variant="lifesteal">
+    <phase>development</phase>
     <include id="lifesteal"/>
     <blitz>
         <lives>${initial-lives}</lives>
@@ -50,10 +51,16 @@
     <kit id="spawn-kit" reset-ender-pearls="true">
         <clear/>
         <item slot="3" unbreakable="true" material="shears"/>
-        <item slot="4" amount="64" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly with higher ping -->
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <effect amplifier="255">resistance</effect>
+        <action>
+            <kit id="wool-kit"/>
+        </action>
     </kit>
+    <kit id="wool-kit">
+        <item slot="4" amount="64" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly with higher ping -->
+    </kit>
+    <give kit="wool-kit" filter="give-blocks"/>
     <!-- Global Power-Ups -->
     <kit id="pw-tnt">
         <item material="tnt"/>
@@ -74,18 +81,18 @@
         <participating/>
         <alive/>
     </all>
-    <after id="give-blocks" duration="5s">
-        <all>
-            <match-running/>
-            <participating/>
-            <alive/>
-            <not>
-                <carrying ignore-metadata="true" amount="64..">
-                    <item material="wool"/>
-                </carrying>
-            </not>
-        </all>
-    </after>
+    <pulse id="give-blocks" duration="1s" period="4s">
+        <after duration="5s">
+            <all>
+                <match-running/>
+                <participating/>
+                <alive/>
+                <not>
+                    <carrying ignore-metadata="true" amount="[64,oo)"><item material="wool"/></carrying>
+                </not>
+            </all>
+        </after>
+    </pulse>
     <any id="only-some">
         <material>wool</material>
         <material>fire</material>
@@ -183,17 +190,6 @@
     <apply enter="never" region="center-blocks"/>
 </regions>
 <actions>
-    <trigger scope="player" filter="give-blocks">
-        <action>
-            <replace-item>
-                <find>wool</find>
-                <replace>air</replace>
-            </replace-item>
-            <kit>
-                <item amount="64" team-color="true" material="wool"/>
-            </kit>
-        </action>
-    </trigger>
     <trigger scope="player">
         <filter>
             <carrying ignore-metadata="true"><item material="wood"/></carrying>
