@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="`d`lParkour!">
 <name>Team Parkour: Jungle</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Reach the top first!</objective>
 <created>2020-10-18</created>
 <authors>
@@ -64,7 +64,7 @@
 </filters>
 <regions>
     <cuboid id="finish-area" min="-10,32,-30" max="-8,33,-28"/>
-    <cuboid id="below-0" min="-oo,-1,-oo" max="oo,0,oo"/>
+    <below id="below-0" y="0"/>
     <point id="spawn">0,1.5,0</point>
     <apply block="never"/>
     <!-- Checkpoints to pass through -->
