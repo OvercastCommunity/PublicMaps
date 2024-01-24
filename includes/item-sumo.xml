@@ -6,23 +6,34 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.23-1 -->
+<!-- Version 2024.01.24-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
     <constant id="item-spawn-point">0,0,0</constant>
     <constant id="item-spawn-rate">29.75s</constant>
     <constant id="global-power-up-rate">19.75s</constant>
-    <constant id="initial-lives">5</constant>
-    <constant id="void-plane">-60</constant>
-</constants>
-<respawn delay="3s" auto="true"/>
-<if variant="lifesteal">
-    <include id="lifesteal"/>
-    <constant id="max-lives">7</constant>
+    <constant id="hill-capture-time">20s</constant>
+    <constant id="initial-lives">3</constant>
+    <constant id="void-plane">-64</constant>
+    <constant id="time-limit">4m</constant>
+    <!-- Lifesteal include constants -->
+    <constant id="max-lives">5</constant>
     <constant id="max-lives-enabled">1</constant>
     <constant id="total-lives">99</constant>
     <constant id="tutorial-word2">lives</constant>
+</constants>
+<broadcasts>
+    <unless variant="lifesteal">
+        <alert after="6s" every="1m10s">`3Get the most amount of `ckills`3, or `acapture the hill`3 at the center of the map to win!</alert>
+    </unless>
+    <if variant="lifesteal">
+        <alert after="6s" every="1m10s">`3Be the `flast`3 player standing, or `acapture the hill`3 at the center of the map to instantly win!</alert>
+    </if>
+</broadcasts>
+<respawn delay="3s" auto="true"/>
+<if variant="lifesteal">
+    <include id="lifesteal"/>
     <blitz>
         <lives>${initial-lives}</lives>
         <broadcastLives>true</broadcastLives>
@@ -33,13 +44,13 @@
     <score>
         <kills>1</kills>
     </score>
-    <time>4m</time>
+    <time>${time-limit}</time>
 </unless>
 <kits>
-    <kit id="spawn-kit">
+    <kit id="spawn-kit" reset-ender-pearls="true">
         <clear/>
         <item slot="3" unbreakable="true" material="shears"/>
-        <item slot="4" amount="64" team-color="true" material="wool"/>
+        <item slot="4" amount="64" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly with higher ping -->
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <effect amplifier="255">resistance</effect>
     </kit>
@@ -56,6 +67,19 @@
     <give kit="pw-tnt" filter="tnt-pulse"/>
     <give kit="pw-sb" filter="snowball-pulse"/>
     <give kit="pw-fb" filter="fireball-pulse"/>
+    <kit id="wither-kit">
+        <clear effects="true" items="true" armor="false"/>
+        <health>1</health>
+        <effect>wither</effect>
+    </kit>
+    <give kit="wither-kit">
+        <filter>
+            <all>
+                <region id="center-blocks"/>
+                <grounded/>
+            </all>
+        </filter>
+    </give>
 </kits>
 <filters>
     <all id="base-pulse">
@@ -63,18 +87,18 @@
         <participating/>
         <alive/>
     </all>
-    <pulse id="give-blocks" duration="1s" period="4s">
-        <after duration="5s">
-            <all>
-                <match-running/>
-                <participating/>
-                <alive/>
-                <not>
-                    <carrying ignore-metadata="true" amount="64"><item material="wool"/></carrying>
-                </not>
-            </all>
-        </after>
-    </pulse>
+    <after id="give-blocks" duration="5s">
+        <all>
+            <match-running/>
+            <participating/>
+            <alive/>
+            <not>
+                <carrying ignore-metadata="true" amount="64">
+                    <item material="wool"/>
+                </carrying>
+            </not>
+        </all>
+    </after>
     <any id="only-some">
         <material>wool</material>
         <material>fire</material>
@@ -139,6 +163,12 @@
             </all>
         </after>
     </pulse>
+    <!-- Other -->
+    <countdown duration="${hill-capture-time}" message="`fA player is `ccapturing`f the hill! `b{0} left">
+        <players min="1" max="1">
+            <region id="center-region"/>
+        </players>
+    </countdown>
 </filters>
 <projectiles>
     <projectile id="fireball-projectile" name="Fireball" projectile="Fireball" click="right" damage="10" power="4" throwable="true" cooldown="1s"/>
@@ -159,6 +189,7 @@
     <apply block="only-some" region="playable-area"/>
     <apply block="never" region="not-playable-area"/>
     <point id="item-spawn">${item-spawn-point}</point>
+    <translate id="center-blocks" offset="0,-1,0"><region id="center-region"/></translate>
 </regions>
 <actions>
     <trigger scope="player" filter="give-blocks">
@@ -169,6 +200,20 @@
             </replace-item>
             <kit>
                 <item amount="64" team-color="true" material="wool"/>
+            </kit>
+        </action>
+    </trigger>
+    <trigger scope="player">
+        <filter>
+            <carrying ignore-metadata="true"><item material="wood"/></carrying>
+        </filter>
+        <action>
+            <replace-item ignore-metadata="true">
+                <find>wood</find>
+                <replace>air</replace>
+            </replace-item>
+            <kit>
+                <item material="boat" name="`fBoat Clutcher" lore="`7PGM Star"/>
             </kit>
         </action>
     </trigger>
@@ -216,12 +261,12 @@
     </trigger>
 </actions>
 <control-points capture-rule="exclusive" show-progress="true">
-    <control-point name="Center" capture-time="20s">
+    <control-point name="Center" capture-time="${hill-capture-time}">
         <capture><region id="center-region"/></capture>
     </control-point>
 </control-points>
 <renewables>
-    <renewable rate="1" grow="true" particles="false" sound="true" avoid-players="0">
+    <renewable interval="10s" particles="false" sound="true" avoid-players="0">
         <region>
             <cylinder base="${item-spawn-point}" radius="2.5" height="4"/>
         </region>
@@ -235,7 +280,7 @@
 </renewables>
 <spawners>
     <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=0,op-pulse)" max-entities="1">
-        <item material="potion" damage="8267">
+        <item material="potion" damage="8267" show-other="false">
             <effect duration="10s" amplifier="5">jump_boost</effect>
         </item>
     </spawner>
@@ -246,7 +291,8 @@
         <item material="ender pearl"/>
     </spawner>
     <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=3,op-pulse)" max-entities="1">
-        <item material="boat" name="`fBoat Clutcher"/>
+        <!-- <item material="boat" name="`fBoat Clutcher"/> -->
+        <item material="wood" name="`fBoat Box" lore="`7You should not be reading this..."/>
     </spawner>
 </spawners>
 <item-mods>
@@ -254,7 +300,7 @@
         <match>
             <material>boat</material>
         </match>
-        <modify name="`fBoat Clutcher"/>
+        <modify name="`fBoat Clutcher" lore="`7PGM Star"/>
     </rule>
 </item-mods>
 <toolrepair>
@@ -272,6 +318,7 @@
     <item>tnt</item>
     <item>snowball</item>
     <item>fireball</item>
+    <item>boat</item>
 </itemremove>
 <tnt>
     <instantignite>true</instantignite>
