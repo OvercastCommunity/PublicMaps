@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.24-3 -->
+<!-- Version 2024.01.24-4 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -15,7 +15,7 @@
     <constant id="global-power-up-rate">19.75s</constant>
     <constant id="hill-capture-time">20s</constant>
     <constant id="initial-lives">3</constant>
-    <constant id="void-plane">-64</constant>
+    <constant id="void-plane">-5</constant>
     <constant id="time-limit">4m</constant>
     <!-- Lifesteal include constants -->
     <constant id="max-lives">5</constant>
