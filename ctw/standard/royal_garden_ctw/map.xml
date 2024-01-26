@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Royal Garden CTW</name>
-<version>1.6.8</version>
+<version>1.6.9</version>
 <objective>Capture the opposing team's wools and place them at your victory monuments.</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -174,6 +174,11 @@
     <item>clay ball</item>
     <item>sign</item>
     <item>beacon</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>long grass</item>
+    <item>double plant</item>
+    <item>water lily</item>
 </itemremove>
 <block-drops>
     <rule>
