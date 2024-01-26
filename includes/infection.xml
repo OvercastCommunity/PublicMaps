@@ -2,11 +2,9 @@
 <!-- Infection gamemode include file -->
 <!-- Created by Cazadorian -->
 <!-- Modified by zzuf -->
-<!-- Version 2023-11-06-1 -->
+<!-- Version 2024-01-26-1 -->
 <constants>
     <constant id="time-limit">8</constant> <!-- Time limit in minutes -->
-    <constant id="map-zombie-kit">default-zombie-kit</constant>
-    <constant id="map-human-kit">default-human-kit</constant>
     <constant id="zombie-team-name">Zombies</constant>
     <constant id="human-team-name">Humans</constant>
     <constant id="zombie-team-color">dark green</constant>
@@ -32,10 +30,10 @@
         <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" material="arrow" amount="48"/>
-        <helmet locked="true" unbreakable="true" material="chainmail helmet"/>
-        <chestplate locked="true" unbreakable="true" material="chainmail chestplate"/>
-        <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
-        <boots locked="true" unbreakable="true" material="iron boots"/>
+        <helmet unbreakable="true" material="chainmail helmet"/>
+        <chestplate unbreakable="true" material="chainmail chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" material="iron boots"/>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="default-zombie-kit">
