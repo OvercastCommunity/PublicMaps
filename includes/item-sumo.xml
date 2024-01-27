@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.24-4 -->
+<!-- Version 2024.01.27-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -25,7 +25,8 @@
 </constants>
 <broadcasts>
     <unless variant="lifesteal">
-        <alert after="6s" every="1m10s">`3Get the most amount of `ckills`3, or `acapture the hill`3 at the center of the map to win!</alert>
+        <alert after="1m6s" every="1m" filter="joined-for-20s">`3Get the most amount of `ckills`3, or `acapture the hill`3 at the center of the map to win!</alert>
+        <alert after="1m7s" every="1m" filter="joined-for-20s">`3You get `fmore`3 points based on your `ckill streak`3!</alert>
     </unless>
     <if variant="lifesteal">
         <alert after="6s" every="1m10s">`3Be the `flast`3 player standing, or `acapture the hill`3 at the center of the map to instantly win!</alert>
@@ -42,10 +43,8 @@
 </if>
 <unless variant="lifesteal">
     <game>Item Sumo</game>
-    <score>
-        <kills>1</kills>
-    </score>
     <time>${time-limit}</time>
+    <score/>
 </unless>
 <kits>
     <kit id="spawn-kit" reset-ender-pearls="true">
@@ -76,6 +75,11 @@
     <give kit="pw-fb" filter="fireball-pulse"/>
 </kits>
 <filters>
+    <after id="joined-for-20s" duration="20s">
+        <not id="just-joined">
+            <observing/>
+        </not>
+    </after>
     <all id="base-pulse">
         <filter id="power-up-pulse"/>
         <participating/>
@@ -175,6 +179,10 @@
     2: fireball
     -->
     <variable id="op_item" default="0" scope="match"/>
+    <unless variant="lifesteal">
+        <variable id="kill_streak" default="0" scope="player"/>
+        <score id="player_score"/>
+    </unless>
 </variables>
 <regions>
     <negative id="not-playable-area">
@@ -190,6 +198,23 @@
     <apply enter="never" region="center-blocks"/>
 </regions>
 <actions>
+    <unless variant="lifesteal">
+        <trigger scope="player" filter="just-joined">
+            <action>
+                <message text=" `e⚠ `3Get the most amount of `ckills`3, or `acapture the hill`3 at the center of the map to win!"/>
+                <message text=" `e⚠ `3You get `fmore`3 points based on your `ckill streak`3!"/>
+                <set var="kill_streak" value="0"/>
+            </action>
+        </trigger>
+        <trigger scope="player">
+            <filter>
+                <dead/>
+            </filter>
+            <action>
+                <set var="kill_streak" value="0"/>
+            </action>
+        </trigger>
+    </unless>
     <trigger scope="player">
         <filter>
             <carrying ignore-metadata="true"><item material="wood"/></carrying>
@@ -246,6 +271,9 @@
             <message text=" `e⚠ `6A special item has spawned at middle!"/>
         </action>
     </trigger>
+    <action id="killstreak-sound" scope="player">
+        <sound key="mob.enderdragon.growl" volume="1" pitch="0.8"/>
+    </action>
 </actions>
 <control-points capture-rule="exclusive" show-progress="true">
     <control-point name="Center" capture-time="${hill-capture-time}">
@@ -290,6 +318,102 @@
         <modify name="`fBoat Clutcher" lore="`7PGM Star"/>
     </rule>
 </item-mods>
+<kill-rewards>
+    <unless variant="lifesteal">
+        <kill-reward>
+            <victim-action>
+                <set var="kill_streak" value="0"/>
+            </victim-action>
+            <action>
+                <set var="kill_streak" value="kill_streak+1"/>
+                <set var="player_score" value="player_score+min(kill_streak,5)"/>
+                <message text=" `7`o{amount}x score multiplier!">
+                    <replacements>
+                        <decimal id="amount" value="min(kill_streak,5)"/>
+                    </replacements>
+                </message>
+            </action>
+        </kill-reward>
+    </unless>
+    <!-- Kill Streak messages from oitq.xml -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="3" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <message text=" `b`lTriple kill! `f(3 kills)"/>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="5" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <message text=" `a`lKilling Spree! `f(5 kills)"/>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="10" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <message text=" `e`lRampage! `f(10 kills)"/>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="15" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <message text=" `6`lDominating! `f(15 kills)"/>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="20" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <message text=" `c`lUnstoppable! `f(20 kills)"/>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="30" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <message text=" `4`lGODLIKE! `f(30 kills)"/>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="50" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <message text=" `0`l`kzzuf`r `f(50 kills)"/>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+</kill-rewards>
 <toolrepair>
     <tool>shears</tool>
 </toolrepair>
