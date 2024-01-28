@@ -4,7 +4,7 @@
 <!--       \|                   -->
 <!-- Lifesteal Blitz gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.01.22-2 -->
+<!-- Version 2024.01.27-1 -->
 <game>Blitz: Lifesteal</game>
 <constants>
     <constant id="extra-lives">1</constant> <!-- Lives you get after a kill -->
@@ -20,16 +20,16 @@
         <participating/>
         <match-running/>
     </all>
-    <variable id="earned-total" var="extra_life">${total-lives}</variable>
+    <variable id="earned-total" var="extra_lives">${total-lives}</variable>
 </filters>
 <kits>
     <kit id="add-life-kit">
         <action>
-            <set var="blitzlives" value="blitzlives+${extra-lives}"/>
-            <set var="extra_life" value="extra_life+1"/>
-            <message title="" text=" `e⚠ `aYou have earned an extra life!`7 You now have `b{lives}`7 lives remaining.">
+            <set var="blitz_lives" value="blitz_lives+${extra-lives}"/>
+            <set var="extra_lives" value="extra_lives+1"/>
+            <message title="" text=" `e⚠ `aYou have earned an extra life! `b`o{lives}`7`o lives remaining.">
                 <replacements>
-                    <decimal id="lives" value="blitzlives"/>
+                    <decimal id="lives" value="blitz_lives"/>
                 </replacements>
             </message>
             <sound key="fireworks.twinkle"/>
@@ -63,20 +63,26 @@
     <observing id="is-observer"/>
 </filters>
 <variables>
-    <lives id="blitzlives"/>
-    <variable id="extra_life" scope="player" default="0"/>
+    <lives id="blitz_lives"/>
+    <variable id="extra_lives" scope="player" default="0"/>
     <variable id="max_lives" scope="player" default="${max-lives}"/>
     <variable id="max_lives_enabled" scope="match" default="${max-lives-enabled}"/>
 </variables>
 <actions>
     <trigger filter="is-alive" scope="player">
         <action scope="player">
-            <set var="extra_life" value="0"/>
+            <set var="extra_lives" value="0"/>
         </action>
     </trigger>
     <trigger filter="earned-total" scope="player">
         <action scope="player">
             <message title="" text=" `e⚠ `cYou won't earn any additional lives until you respawn."/>
+            <message text="Extra: +{extra}, Total: ${total-lives}">
+                <replacements>
+                    <decimal id="current" value="blitz_lives"/>
+                    <decimal id="extra" value="extra_lives"/>
+                </replacements>
+            </message>
         </action>
     </trigger>
 </actions>
@@ -86,13 +92,13 @@
             <any>
                 <all>
                     <variable var="max_lives_enabled">0</variable>
-                    <variable var="extra_life">[0,${total-lives})</variable>
+                    <variable var="extra_lives">[0,${total-lives})</variable>
                 </all>
                 <all>
                     <variable var="max_lives_enabled">1</variable>
-                    <variable var="extra_life">[0,${total-lives})</variable>
+                    <variable var="extra_lives">[0,${total-lives})</variable>
                     <not>
-                        <variable var="blitzlives">[${max-lives},oo)</variable>
+                        <variable var="blitz_lives">[${max-lives},oo)</variable>
                     </not>
                 </all>
             </any>
@@ -103,7 +109,7 @@
         <filter>
             <all>
                 <variable var="max_lives_enabled">1</variable>
-                <variable var="blitzlives">${max-lives}</variable>
+                <variable var="blitz_lives">${max-lives}</variable>
             </all>
         </filter>
         <kit>
