@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.27-1 -->
+<!-- Version 2024.01.27-2 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -17,11 +17,6 @@
     <constant id="initial-lives">3</constant>
     <constant id="void-plane">-5</constant>
     <constant id="time-limit">4m</constant>
-    <!-- Lifesteal include constants -->
-    <constant id="max-lives">5</constant>
-    <constant id="max-lives-enabled">1</constant>
-    <constant id="total-lives">99</constant>
-    <constant id="tutorial-word2">lives</constant>
 </constants>
 <broadcasts>
     <unless variant="lifesteal">
@@ -36,6 +31,13 @@
 <if variant="lifesteal">
     <phase>development</phase>
     <include id="lifesteal"/>
+    <constants>
+        <!-- Lifesteal include constants -->
+        <constant id="max-lives">5</constant>
+        <constant id="max-lives-enabled">1</constant>
+        <constant id="total-lives">99</constant>
+        <constant id="tutorial-word2">lives</constant>
+    </constants>
     <blitz>
         <lives>${initial-lives}</lives>
         <broadcastLives>true</broadcastLives>
@@ -49,15 +51,13 @@
 <kits>
     <kit id="spawn-kit" reset-ender-pearls="true">
         <clear/>
-        <item slot="3" unbreakable="true" material="shears"/>
+        <item slot="0" amount="64" team-color="true" material="wool"/>
+        <item slot="8" unbreakable="true" material="shears"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <effect amplifier="255">resistance</effect>
-        <action>
-            <kit id="wool-kit"/>
-        </action>
     </kit>
     <kit id="wool-kit">
-        <item slot="4" amount="64" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly with higher ping -->
+        <item amount="32" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly with higher ping -->
     </kit>
     <give kit="wool-kit" filter="give-blocks"/>
     <!-- Global Power-Ups -->
@@ -70,9 +70,9 @@
     <kit id="pw-fb">
         <item material="fireball" projectile="fireball-projectile"/>
     </kit>
-    <give kit="pw-tnt" filter="tnt-pulse"/>
-    <give kit="pw-sb" filter="snowball-pulse"/>
-    <give kit="pw-fb" filter="fireball-pulse"/>
+    <give kit="pw-tnt" filter="all(base-pulse,next_global_powerup=0)"/>
+    <give kit="pw-sb" filter="all(base-pulse,next_global_powerup=1)"/>
+    <give kit="pw-fb" filter="all(base-pulse,next_global_powerup=2)"/>
 </kits>
 <filters>
     <after id="joined-for-20s" duration="20s">
@@ -85,18 +85,14 @@
         <participating/>
         <alive/>
     </all>
-    <pulse id="give-blocks" duration="1s" period="4s">
-        <after duration="5s">
-            <all>
-                <match-running/>
-                <participating/>
-                <alive/>
-                <not>
-                    <carrying ignore-metadata="true" amount="[64,oo)"><item material="wool"/></carrying>
-                </not>
-            </all>
-        </after>
-    </pulse>
+    <all id="give-blocks">
+        <match-running/>
+        <participating/>
+        <alive/>
+        <not>
+            <carrying ignore-metadata="true" amount="[32,oo)"><item material="wool"/></carrying>
+        </not>
+    </all>
     <any id="only-some">
         <material>wool</material>
         <material>fire</material>
@@ -117,34 +113,6 @@
             </all>
         </after>
     </pulse>
-    <all id="power-up-reset">
-        <variable var="next_global_powerup">3</variable>
-        <filter id="after-pulse"/>
-    </all>
-    <all id="tnt-pulse">
-        <variable var="next_global_powerup">0</variable>
-        <filter id="base-pulse"/>
-    </all>
-    <all id="snowball-pulse">
-        <variable var="next_global_powerup">1</variable>
-        <filter id="base-pulse"/>
-    </all>
-    <all id="fireball-pulse">
-        <variable var="next_global_powerup">2</variable>
-        <filter id="base-pulse"/>
-    </all>
-    <all id="tnt-message">
-        <variable var="next_global_powerup">0</variable>
-        <filter id="power-up-pulse"/>
-    </all>
-    <all id="snowball-message">
-        <variable var="next_global_powerup">1</variable>
-        <filter id="power-up-pulse"/>
-    </all>
-    <all id="fireball-message">
-        <variable var="next_global_powerup">2</variable>
-        <filter id="power-up-pulse"/>
-    </all>
     <!-- OP items -->
     <pulse id="op-pulse" duration="0.25s" period="${item-spawn-rate}">
         <after duration="0.25s">
@@ -201,14 +169,17 @@
     <unless variant="lifesteal">
         <trigger scope="player" filter="just-joined">
             <action>
+                <sound preset="alert"/>
                 <message text=" `e⚠ `3Get the most amount of `ckills`3, or `acapture the hill`3 at the center of the map to win!"/>
                 <message text=" `e⚠ `3You get `fmore`3 points based on your `ckill streak`3!"/>
-                <set var="kill_streak" value="0"/>
             </action>
         </trigger>
         <trigger scope="player">
             <filter>
-                <dead/>
+                <any>
+                    <dead/>
+                    <observing/>
+                </any>
             </filter>
             <action>
                 <set var="kill_streak" value="0"/>
@@ -245,23 +216,23 @@
             <set var="next_global_powerup" value="next_global_powerup+1"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="power-up-reset">
+    <trigger scope="match" filter="all(after-pulse,next_global_powerup=3)">
         <action>
             <set var="next_global_powerup" value="0"/>
         </action>
     </trigger>
     <!-- Messages -->
-    <trigger scope="match" filter="tnt-message">
+    <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=0)">
         <action>
             <message text=" `aAll living players have received a `fTNT`a power-up!"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="snowball-message">
+    <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=1)">
         <action>
             <message text=" `aAll living players have received a `fSnowball`a power-up!"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="fireball-message">
+    <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=2)">
         <action>
             <message text=" `aAll living players have received a `fFireball`a power-up!"/>
         </action>
@@ -321,13 +292,10 @@
 <kill-rewards>
     <unless variant="lifesteal">
         <kill-reward>
-            <victim-action>
-                <set var="kill_streak" value="0"/>
-            </victim-action>
             <action>
                 <set var="kill_streak" value="kill_streak+1"/>
                 <set var="player_score" value="player_score+min(kill_streak,5)"/>
-                <message text=" `7`o{amount}x score multiplier!">
+                <message text=" `a`l`o{amount}x`7`o score multiplier!">
                     <replacements>
                         <decimal id="amount" value="min(kill_streak,5)"/>
                     </replacements>
