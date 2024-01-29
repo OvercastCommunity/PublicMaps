@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.27-2 -->
+<!-- Version 2024.01.28-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -17,6 +17,7 @@
     <constant id="initial-lives">3</constant>
     <constant id="void-plane">-5</constant>
     <constant id="time-limit">4m</constant>
+    <constant id="hill-name">Center</constant>
 </constants>
 <broadcasts>
     <unless variant="lifesteal">
@@ -53,7 +54,8 @@
         <clear/>
         <item slot="0" amount="64" team-color="true" material="wool"/>
         <item slot="8" unbreakable="true" material="shears"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <effect amplifier="255">resistance</effect>
     </kit>
     <kit id="wool-kit">
@@ -73,8 +75,39 @@
     <give kit="pw-tnt" filter="all(base-pulse,next_global_powerup=0)"/>
     <give kit="pw-sb" filter="all(base-pulse,next_global_powerup=1)"/>
     <give kit="pw-fb" filter="all(base-pulse,next_global_powerup=2)"/>
+    <kit id="adventure-kit">
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="survival-kit">
+        <game-mode>survival</game-mode>
+    </kit>
+    <give kit="survival-kit" filter="all(playable-area,is-playing)"/>
+    <give kit="adventure-kit" filter="all(not(playable-area),is-playing)"/>
+    <unless variant="lifesteal">
+        <kit id="kill-streak-1-kit" force="true">
+            <helmet locked="true" unbreakable="true" team-color="true" material="chainmail helmet"/>
+        </kit>
+        <kit id="kill-streak-2-kit" force="true">
+            <helmet locked="true" unbreakable="true" material="iron helmet"/>
+        </kit>
+        <kit id="kill-streak-3-kit" force="true">
+            <helmet locked="true" unbreakable="true" material="gold helmet"/>
+        </kit>
+        <kit id="kill-streak-4-kit" force="true">
+            <helmet locked="true" unbreakable="true" material="diamond helmet"/>
+        </kit>
+        <kit id="kill-streak-5-kit" force="true">
+            <helmet locked="true" material="emerald block"/>
+        </kit>
+        <give kit="kill-streak-1-kit" filter="all(is-playing,kill_streak=1)"/>
+        <give kit="kill-streak-2-kit" filter="all(is-playing,kill_streak=2)"/>
+        <give kit="kill-streak-3-kit" filter="all(is-playing,kill_streak=3)"/>
+        <give kit="kill-streak-4-kit" filter="all(is-playing,kill_streak=4)"/>
+        <give kit="kill-streak-5-kit" filter="all(is-playing,kill_streak=5..)"/>
+    </unless>
 </kits>
 <filters>
+    <participating id="is-playing"/>
     <after id="joined-for-20s" duration="20s">
         <not id="just-joined">
             <observing/>
@@ -130,7 +163,7 @@
         </after>
     </pulse>
     <!-- Other -->
-    <countdown duration="${hill-capture-time}" message="`fA player is `ccapturing`f the hill! `b{0} left">
+    <countdown duration="${hill-capture-time}" message="`fA player is `ccapturing`f the ${hill-name} hill! `b{0} left">
         <players min="1" max="1">
             <region id="center-region"/>
         </players>
@@ -247,7 +280,7 @@
     </action>
 </actions>
 <control-points capture-rule="exclusive" show-progress="true">
-    <control-point name="Center" capture-time="${hill-capture-time}">
+    <control-point name="${hill-name}" capture-time="${hill-capture-time}">
         <capture><region id="center-region"/></capture>
     </control-point>
 </control-points>
@@ -394,6 +427,12 @@
 <itemremove>
     <item>wool</item>
     <item>leather helmet</item>
+    <item>chainmail helmet</item>
+    <item>iron helmet</item>
+    <item>gold helmet</item>
+    <item>diamond helmet</item>
+    <item>emerald block</item>
+    <item>leather chestplate</item>
     <item>tnt</item>
     <item>snowball</item>
     <item>fireball</item>

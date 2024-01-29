@@ -4,7 +4,7 @@
 <!--       \|                   -->
 <!-- Lifesteal Blitz gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.01.27-1 -->
+<!-- Version 2024.01.28-1 -->
 <game>Blitz: Lifesteal</game>
 <constants>
     <constant id="extra-lives">1</constant> <!-- Lives you get after a kill -->
@@ -15,9 +15,8 @@
     <constant id="tutorial-word2">life</constant>
 </constants>
 <filters>
-    <all id="is-alive">
-        <alive/>
-        <participating/>
+    <all id="is-dead">
+        <dead/>
         <match-running/>
     </all>
     <variable id="earned-total" var="extra_lives">${total-lives}</variable>
@@ -69,7 +68,7 @@
     <variable id="max_lives_enabled" scope="match" default="${max-lives-enabled}"/>
 </variables>
 <actions>
-    <trigger filter="is-alive" scope="player">
+    <trigger filter="is-dead" scope="player">
         <action scope="player">
             <set var="extra_lives" value="0"/>
         </action>
@@ -77,12 +76,6 @@
     <trigger filter="earned-total" scope="player">
         <action scope="player">
             <message title="" text=" `e⚠ `cYou won't earn any additional lives until you respawn."/>
-            <message text="Extra: +{extra}, Total: ${total-lives}">
-                <replacements>
-                    <decimal id="current" value="blitz_lives"/>
-                    <decimal id="extra" value="extra_lives"/>
-                </replacements>
-            </message>
         </action>
     </trigger>
 </actions>
