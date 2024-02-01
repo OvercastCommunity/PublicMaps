@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.01.28-1 -->
+<!-- Version 2024.02.01-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -163,7 +163,7 @@
         </after>
     </pulse>
     <!-- Other -->
-    <countdown duration="${hill-capture-time}" message="`fA player is `ccapturing`f the ${hill-name} hill! `b{0} left">
+    <countdown duration="${hill-capture-time}" message="`fA player is `ccapturing`f the `a${hill-name}`f hill! `b{0} left">
         <players min="1" max="1">
             <region id="center-region"/>
         </players>
