@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>The Fenland</name>
 <created>2013-08-01</created>
-<version>1.2.11</version>
+<version>1.2.12</version>
 <objective>Break the obsidian from the enemy team's monument.</objective>
 <authors>
     <author uuid="e5953ddf-c1fc-4405-9ac9-6939631cd185"/> <!-- McSpider -->
@@ -62,13 +62,17 @@
         <cuboid id="red-base" min="-49,7,5" max="-36,16,-4"/>
         <cuboid id="blue-base" min="50,7,-4" max="37,16,5"/>
     </union>
+    <union id="spawn-interiors">
+        <cuboid id="red-interior" min="-40,7,-4" max="-49,15,-5"/>
+        <cuboid id="blue-interior" min="41,7,5" max="50,15,-4"/>
+    </union>
     <negative id="playable-inverse">
         <cuboid id="playable" min="64,0,-38" max="-63,31,39"/>
     </negative>
     <cylinder id="observers-platform" base="0.5,19,-46.5" radius="6" height="oo"/>
-    <apply region="red-base" enter="only-red" message="You may not enter the enemy team's base!"/>
+    <apply region="red-interior" enter="only-red" message="You may not enter the enemy team's base!"/>
     <apply region="red-base" block="never" message="You may not modify the base!"/>
-    <apply region="blue-base" enter="only-blue" message="You may not enter the enemy team's base!"/>
+    <apply region="blue-interior" enter="only-blue" message="You may not enter the enemy team's base!"/>
     <apply region="blue-base" block="never" message="You may not modify the base!"/>
     <apply region="playable-inverse" block="never" message="You may not build outside the playing area!"/>
     <apply region="observers-platform" enter="never" message="Don't enter the observers spawn area!"/>
