@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.01.10-1 -->
+<!-- Version 2024.02.01-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -281,6 +281,8 @@
     <variable id="buytime" scope="match" default="0"/>
     <variable id="overtime" scope="match" default="0"/>
     <score id="team_score"/>
+    <with-team id="team_one_score" var="team_score" team="team-one"/>
+    <with-team id="team_two_score" var="team_score" team="team-two"/>
     <variable id="player_score" scope="player" default="0"/>
     <variable id="current_team" scope="player" default="0"/> <!-- 0: Observers, 1: team-one, 2: team-two -->
     <variable id="scoring_team" scope="match" default="0"/>
@@ -396,6 +398,12 @@
     <action id="message-obs-scored" scope="player">
         <message text="`5# # # # # # # # # # # #"/>
         <message text="`5# #    `6» `6`lGOAL! `6«`5    # #"/>
+        <message text="`5# #       `f{one-score}`6 `l－`r `f{two-score}`5       # #">
+            <replacements>
+                <decimal id="one-score" value="team_one_score"/>
+                <decimal id="two-score" value="team_two_score"/>
+            </replacements>
+        </message>
         <message text="`5# # # # # # # # # # # #"/>
         <sound key="fireworks.twinkle"/>
     </action>
@@ -442,14 +450,22 @@
             <replace material="air"/>
         </replace-item>
     </action>
-    <action id="deduct-point" scope="team" expose="true">
+    <action id="deduct-point-one" scope="team" expose="true">
         <!--
         This action is intended to remove points obtained through very obvious cheating (for instance, players using Blink or Fly, or Block Glitching)
         This effect can also be achieved via the "/variable set" command, but this method prints a nice and public message in chat
-        
-        To use this, you need to join the team you want to remove the point from.
         -->
-        <set var="team_score" value="team_score-1"/>
+        <set var="team_one_score" value="team_one_score-1"/>
+        <switch-scope outer="team" inner="match">
+            <message text=" `e⚠ `cA point has been deducted from one of the teams as it had been obtained illegitimately."/>
+        </switch-scope>
+    </action>
+    <action id="deduct-point-two" scope="team" expose="true">
+        <!--
+        This action is intended to remove points obtained through very obvious cheating (for instance, players using Blink or Fly, or Block Glitching)
+        This effect can also be achieved via the "/variable set" command, but this method prints a nice and public message in chat
+        -->
+        <set var="team_two_score" value="team_two_score-1"/>
         <switch-scope outer="team" inner="match">
             <message text=" `e⚠ `cA point has been deducted from one of the teams as it had been obtained illegitimately."/>
         </switch-scope>
