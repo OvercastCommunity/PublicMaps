@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.02.03-1 -->
+<!-- Version 2024.02.03-2 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -283,7 +283,6 @@
     <score id="team_score"/>
     <with-team id="team_one_score" var="team_score" team="team-one"/>
     <with-team id="team_two_score" var="team_score" team="team-two"/>
-    <variable id="second_message" scope="player" default="0"/>
     <variable id="player_score" scope="player" default="0"/>
     <variable id="current_team" scope="player" default="0"/> <!-- 0: Observers, 1: team-one, 2: team-two -->
     <variable id="scoring_team" scope="match" default="0"/>
@@ -380,7 +379,9 @@
         <message text="`5# # # # # # # # # # # # # # # #"/>
         <message text="`5# #         `6» `6`lGOAL! `6«`5         # #"/>
         <message text="`5# #    `aYour team scored!`5    # #"/>
-        <set var="second_message" value="1"/>
+        <action id="message-score-display-team-one"/>
+        <action id="message-score-display-team-two"/>
+        <message text="`5# # # # # # # # # # # # # # # #"/>
         <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
         <sound key="portal.travel" volume="0.2" pitch="2"/> <!-- OBJECTIVE_GOOD with lower volume -->
     </action>
@@ -388,29 +389,27 @@
         <message text="`5# # # # # # # # # # # # # # # #"/>
         <message text="`5# #         `6» `6`lGOAL! `6«`5         # #"/>
         <message text="`5# #    `cThe enemy scored`5    # #"/>
-        <set var="second_message" value="1"/>
+        <action id="message-score-display-team-one"/>
+        <action id="message-score-display-team-two"/>
+        <message text="`5# # # # # # # # # # # # # # # #"/>
         <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
         <sound key="mob.blaze.death" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
     </action>
-    <action id="message-display-score-team-one" scope="player">
+    <action filter="only-team-one" id="message-score-display-team-one" scope="player">
         <message text="`5# #            `f{one-score}`6 `l－`r `f{two-score}`5            # #">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
                 <decimal id="two-score" value="team_two_score"/>
             </replacements>
         </message>
-        <message text="`5# # # # # # # # # # # # # # # #"/>
-        <set var="second_message" value="0"/>
     </action>
-    <action id="message-display-score-team-two" scope="player">
+    <action filter="only-team-two" id="message-score-display-team-two" scope="player">
         <message text="`5# #            `f{two-score}`6 `l－`r `f{one-score}`5            # #">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
                 <decimal id="two-score" value="team_two_score"/>
             </replacements>
         </message>
-        <message text="`5# # # # # # # # # # # # # # # #"/>
-        <set var="second_message" value="0"/>
     </action>
     <action id="message-reset-scoring-team" scope="match">
         <set var="scoring_team" value="0"/>
@@ -429,9 +428,7 @@
         <sound key="fireworks.twinkle"/>
     </action>
     <trigger filter="team-one-own-goal" action="message-own-scored" scope="player"/>
-    <trigger filter="all(only-team-one,second_message=1)" action="message-display-score-team-one" scope="player"/>
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
-    <trigger filter="all(only-team-two,second_message=1)" action="message-display-score-team-two" scope="player"/>
     <trigger filter="team-one-enemy-goal" action="message-enemy-scored" scope="player"/>
     <trigger filter="team-two-enemy-goal" action="message-enemy-scored" scope="player"/>
     <trigger filter="cant-score-obs" action="message-obs-scored" scope="player"/>
