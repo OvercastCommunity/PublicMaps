@@ -1,6 +1,7 @@
 <map proto="1.4.2">
-<name>The End: Rage</name>
-<version>1.0.5</version>
+<name>The End</name>
+<slug>the_end_rage</slug>
+<version>1.0.6</version>
 <objective>Eliminate the enemy team within 5 minutes </objective>
 <gamemode>br</gamemode>
 <authors>
