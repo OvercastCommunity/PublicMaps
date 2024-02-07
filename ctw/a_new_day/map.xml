@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>A New Day</name>
-<version>1.0.10</version>
+<version>1.0.11</version>
 <objective>Capture the enemies wool and return it to your base.</objective>
 <authors>
     <author uuid="b5071a63-bba3-491a-909f-02db314f4319" contribution="Idea and Build and XML changes"/> <!-- dcstarwars -->
@@ -117,7 +117,7 @@
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the Blue Team's base!"/>
     <apply enter="only-blue" block="only-web" use="only-blue" region="wools-blue" message="This region is disabled!"/>
     <apply enter="only-red" block="only-web" use="only-red" region="wools-red" message="This region is disabled!"/>
-    <apply block="no-void" region="void-region" message="You may not build in the void!"/>
+    <apply block-place="no-void" region="void-region" message="You may not build in the void!"/>
 </regions>
 <renewables>
     <renewable rate="2.5" grow="false" particles="false" sound="false">
