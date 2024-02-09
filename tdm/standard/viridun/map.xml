@@ -6,8 +6,7 @@
 <version>1.6.0</version>
 <constant id="objective">Be the team with the least amount of deaths after 10 minutes</constant>
 <if variant="rage">
-    <constant id="objective">Be the team with the least amount of deaths after 8 minutes. Arrows kill in one hit!
-    </constant>
+    <constant id="objective">Be the team with the least amount of deaths after 8 minutes. Arrows kill in one hit!</constant>
 </if>
 <if variant="ffa">
     <constant id="objective">Kill the most players in 10 minutes!</constant>
