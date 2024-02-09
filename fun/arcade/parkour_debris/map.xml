@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <map proto="1.4.2" game="`d`lParkour!">
 <name>Parkour: Debris</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Reach the top first!</objective>
 <authors>
     <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- ViceTechnicolour -->
@@ -31,6 +30,7 @@
         <item slot="6" locked="true" name="`aLocation Indicator" material="wood button"/>
         <item slot="7" locked="true" name="`aLocation Indicator" material="wood button"/>
         <item slot="8" locked="true" name="`aLocation Indicator" material="wood button"/>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <regions>
