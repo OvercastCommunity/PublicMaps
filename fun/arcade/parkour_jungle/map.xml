@@ -65,7 +65,7 @@
     <cuboid id="checkpoint-1" min="3,14,-2" max="6,16,1"/>
     <cuboid id="checkpoint-2" min="-21,17,19" max="-18,19,16"/>
     <!-- Teleport locations for checkpoints -->
-    <point id="portal-check-1">4,5,14,-0,5</point>
+    <point id="portal-check-1">4.5,14,-0.5</point>
     <point id="portal-check-2">-19.5,17,17.5</point>
 </regions>
 <portals sound="false">
