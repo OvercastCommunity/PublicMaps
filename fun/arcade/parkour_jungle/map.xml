@@ -1,7 +1,7 @@
 <map proto="1.4.2" game="`d`lParkour!">
 <name>Parkour: Jungle</name>
 <variant id="team" override="true">Team Parkour: Jungle</variant>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Reach the top first!</objective>
 <if variant="default">
     <created>2019-03-30</created>
@@ -102,17 +102,17 @@
                 <all>
                     <region id="checkpoint-1"/>
                     <score>0</score>
-                    <match-started/>
+                    <match-running/>
                 </all>
                 <all>
                     <region id="checkpoint-2"/>
                     <score>1</score>
-                    <match-started/>
+                    <match-running/>
                 </all>
                 <all>
                     <region id="finish-area"/>
                     <score>2</score>
-                    <match-started/>
+                    <match-running/>
                 </all>
             </any>
         </filter>

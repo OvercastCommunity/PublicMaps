@@ -1,7 +1,7 @@
 <map proto="1.4.2" game="`d`lParkour!">
 <name>Parkour: Ice</name>
 <variant id="team" override="true">Team Parkour: Ice</variant>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Reach the top first!</objective>
 <if variant="default">
     <created>2019-04-07</created>
@@ -106,22 +106,22 @@
                 <all>
                     <region id="checkpoint-1"/>
                     <score>0</score>
-                    <match-started/>
+                    <match-running/>
                 </all>
                 <all>
                     <region id="checkpoint-2"/>
                     <score>1</score>
-                    <match-started/>
+                    <match-running/>
                 </all>
                 <all>
                     <region id="checkpoint-3"/>
                     <score>2</score>
-                    <match-started/>
+                    <match-running/>
                 </all>
                 <all>
                     <region id="finish-area"/>
                     <score>3</score>
-                    <match-started/>
+                    <match-running/>
                 </all>
             </any>
         </filter>
