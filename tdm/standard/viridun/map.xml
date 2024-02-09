@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Viridun</name>
 <variant id="rage">RAGE</variant>
@@ -42,12 +41,11 @@
     <players min="2" max="64" colors="true"/>
 </if>
 <unless variant="ffa">
-    <constant id="team-size">40</constant>
+    <if variant="default,ctf">
+        <constant id="team-size">40</constant>
+    </if>
     <if variant="rage">
         <constant id="team-size">32</constant>
-    </if>
-    <if variant="ctf">
-        <constant id="team-size">40</constant>
     </if>
     <teams>
         <team id="blue" color="blue" max="${team-size}">Blue</team>
@@ -238,12 +236,11 @@
     <apply block="not-players"/>
 </regions>
 <unless variant="ctf">
-    <constant id="time">10m</constant>
+    <if variant="default,ffa">
+        <constant id="time">10m</constant>\
+    </if>
     <if variant="rage">
         <constant id="time">8m</constant>
-    </if>
-    <if variant="ffa">
-        <constant id="time">10m</constant>
     </if>
     <time>${time}</time>
 </unless>
@@ -307,12 +304,7 @@
             <item>arrow</item>
         </kill-reward>
     </if>
-    <if variant="ffa">
-        <kill-reward>
-            <item>golden apple</item>
-        </kill-reward>
-    </if>
-    <if variant="ctf">
+    <if variant="ffa,ctf">
         <kill-reward>
             <item>golden apple</item>
         </kill-reward>
