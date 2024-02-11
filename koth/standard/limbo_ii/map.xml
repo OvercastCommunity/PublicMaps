@@ -1,27 +1,21 @@
 <map proto="1.4.2">
 <name>Limbo II</name>
-<version>1.0.13</version>
+<version>1.1</version>
 <variant id="7v7">7v7</variant>
 <unless variant="7v7">
     <include id="conquest"/>
     <constant id="score">750</constant>
     <constant id="respawn-timer">2s</constant>
-    <constant id="capture-time">5s</constant>
-    <constant id="points-per-second-sides">1</constant>
-    <constant id="points-per-second-centre">1</constant>
-    <constant id="time-multiplier">0</constant>
+    <constant id="points-per-second">1</constant>
     <constant id="team-size">16</constant>
     <constant id="max-overfill" delete="true"/>
     <constant id="damage-resistance">5s</constant>
 </unless>
 <if variant="7v7">
     <include id="conquest-comp"/>
-    <constant id="score">2000</constant>
+    <constant id="score">2500</constant>
     <constant id="respawn-timer">2s</constant>
-    <constant id="capture-time">8s</constant>
-    <constant id="points-per-second-sides">3</constant>
-    <constant id="points-per-second-centre">4</constant>
-    <constant id="time-multiplier">0.5</constant>
+    <constant id="points-per-second">3</constant>
     <constant id="team-size">7</constant>
     <constant id="max-overfill">7</constant>
     <constant id="damage-resistance">5s</constant>
@@ -70,8 +64,8 @@
     <apply block="never" use="never"/>
 </regions>
 <king>
-    <hills required="false" capture-time="${capture-time}" time-multiplier="${time-multiplier}" show-progress="true" neutral-state="true" incremental="true" permanent="false">
-        <hill name="Hill A" points="${points-per-second-sides}">
+    <hills required="false" capture-time="5s" points="${points-per-second}" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Hill A">
             <capture>
                 <cuboid min="-2,18,9" max="3,22,14"/>
             </capture>
@@ -82,7 +76,7 @@
                 <cuboid min="-2,26,9" max="3,31,14"/>
             </captured>
         </hill>
-        <hill name="Hill B" points="${points-per-second-sides}">
+        <hill name="Hill B">
             <capture>
                 <cuboid min="-2,18,-13" max="3,22,-8"/>
             </capture>
@@ -93,7 +87,7 @@
                 <cuboid min="-2,26,-13" max="3,31,-8"/>
             </captured>
         </hill>
-        <hill name="Hill C" points="${points-per-second-centre}">
+        <hill name="Hill C">
             <capture>
                 <cuboid min="-2,8,-2" max="3,12,3"/>
             </capture>
