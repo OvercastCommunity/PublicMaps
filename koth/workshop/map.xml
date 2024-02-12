@@ -1,8 +1,25 @@
 <map proto="1.4.2">
 <name>Workshop</name>
-<version>2.0.5</version>
-<objective>Control the hills to be first to 750 points!</objective>
-<edition>standard</edition>
+<version>2.0.6</version>
+<variant id="7v7">7v7</variant>
+<unless variant="7v7">
+    <include id="conquest"/>
+    <constant id="score">750</constant>
+    <constant id="team-size">16</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="points-per-second">1</constant>
+    <constant id="respawn-timer">3s</constant>
+</unless>
+<if variant="7v7">
+    <include id="conquest-comp"/>
+    <constant id="score">2500</constant>
+    <constant id="team-size">7</constant>
+    <constant id="max-overfill">7</constant>
+    <constant id="points-per-second">3</constant>
+    <constant id="respawn-timer">5s</constant>
+</if>
+<constant id="damage-resistance">4s</constant>
+<objective>Control the hills to be first to ${score} points!</objective>
 <authors>
     <author uuid="2df2bef6-6f50-4e4e-a891-048990bf1f5c"/> <!-- Blaszczak -->
     <author uuid="74948888-fdb8-4446-9340-f7688c2435cc"/> <!-- Zero_Frosty -->
@@ -11,39 +28,21 @@
     <contributor uuid="430ec559-364a-4363-ac7a-2529050440ac" contribution="XML"/> <!-- mame_BT -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="16">Blue</team>
-    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
-<kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="4" amplifier="10">resistance</effect>
-        <effect duration="4" amplifier="10">regeneration</effect>
-        <game-mode>adventure</game-mode>
-    </kit>
-</kits>
 <spawns>
     <default>
         <region yaw="-90">
             <cuboid min="-1.5,70,-3.5" max="-0.5,70,-1.5"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue" kit="base-kit">
         <region yaw="90">
             <cuboid min="37.5,8,-3.5" max="39.5,8,-1.5"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red" kit="base-kit">
         <region yaw="-90">
             <cuboid min="-38.5,8,-3.5" max="-36.5,8,-1.5"/>
         </region>
@@ -64,8 +63,8 @@
     </spawner>
 </spawners>
 <king>
-    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
-        <hill name="Point A">
+    <hills required="false" capture-time="5s" points="${points-per-second}" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Hill A">
             <capture>
                 <cuboid min="-3,13,-32" max="4,18,-25"/>
             </capture>
@@ -87,7 +86,7 @@
                 <cuboid min="-4,12,-7" max="5,16,2"/>
             </captured>
         </hill>
-        <hill name="Point B">
+        <hill name="Hill B">
             <capture>
                 <cuboid min="-3,13,20" max="4,18,27"/>
             </capture>
@@ -101,28 +100,6 @@
     </hills>
 </king>
 <score>
-    <limit>750</limit>
+    <limit>${score}</limit>
 </score>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
-<itemkeep>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<respawn delay="5s" auto="true" blackout="true"/>
 </map>
