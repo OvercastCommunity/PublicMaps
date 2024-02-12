@@ -3,6 +3,9 @@
 <version>1.3.7</version>
 <objective>Control the points and be the first to reach 750 points!</objective>
 <created>2016-01-02</created>
+<include id="conquest"/>
+<constant id="damage-resistance">9s</constant>
+<constant id="respawn-timer">2s</constant>
 <authors>
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
     <author uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c"/> <!-- ItzaMeLuigi_ -->
@@ -18,21 +21,8 @@
     <team id="red" color="dark red" max="16">Red</team>
 </teams>
 <kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="7">heal</effect>
-        <effect duration="8">speed</effect>
-        <effect duration="9" amplifier="4">damage resistance</effect>
+    <kit id="spawn-kit" parent="base-kit">
+        <effect duration="8s">speed</effect>
     </kit>
 </kits>
 <spawns>
@@ -124,29 +114,6 @@
         </region>
     </portal>
 </portals>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
-<itemkeep>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-        <item amount="8" material="arrow"/>
-    </kill-reward>
-</kill-rewards>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
