@@ -1,15 +1,28 @@
 <map proto="1.4.2">
 <name>Java II</name>
-<version>1.3.8</version> <!-- sourced from v1.3.8 competitive -->
+<version>1.4.1</version>
+<variant id="comp">TE</variant>
 <objective>Capture the enemy's two wools!</objective>
-<edition>standard</edition>
+<unless variant="comp">
+    <constant id="team-size">24</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="axe-type">iron axe</constant>
+    <constant id="respawn-timer">2s</constant>
+</unless>
+<if variant="comp">
+    <time overtime="5m" max-overtime="10m" end-overtime="1m">35m</time>
+    <constant id="team-size">8</constant>
+    <constant id="max-overfill">8</constant>
+    <constant id="axe-type">stone axe</constant>
+    <constant id="respawn-timer">6s</constant>
+</if>
 <authors>
     <author uuid="b8add1ba-8e13-4673-bc73-4e3ed524d40e"/> <!-- Blazy36 -->
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>
 <teams>
-    <team id="blue-team" color="blue" max="24">Blue</team>
-    <team id="red-team" color="dark red" max="24">Red</team>
+    <team id="blue-team" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red-team" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -22,18 +35,27 @@
         <item slot="2" unbreakable="true" material="iron pickaxe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="3" unbreakable="true" material="iron axe">
+        <item slot="3" unbreakable="true" material="${axe-type}">
             <enchantment>efficiency</enchantment>
         </item>
         <item slot="30" unbreakable="true" material="iron spade"/>
         <item slot="4" amount="64" material="wood"/>
         <item slot="31" amount="64" material="wood"/>
         <item slot="5" amount="64" material="glass"/>
-        <item slot="8" material="golden apple"/>
+        <unless variant="comp">
+            <item slot="7" material="bucket"/>
+            <item slot="8" material="golden apple"/>
+        </unless>
+        <if variant="comp">
+            <item slot="32" amount="64" material="wood"/>
+            <item slot="6" material="water bucket"/>
+            <item slot="7" material="golden apple"/>
+            <item slot="8" amount="64" material="golden carrot"/>
+        </if>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
-        <effect amplifier="255" duration="5s">resistance</effect>
+        <effect duration="5s" amplifier="255">resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -54,25 +76,25 @@
     </spawn>
 </spawns>
 <filters>
-    <not id="no-void">
-        <void/>
-    </not>
-    <not id="deny-blue-wool-rooms">
-        <any>
-            <team id="only-blue">blue-team</team>
-            <material>chest</material>
-        </any>
-    </not>
-    <not id="deny-red-wool-rooms">
-        <any>
-            <team id="only-red">red-team</team>
-            <material>chest</material>
-        </any>
-    </not>
+    <void id="void"/>
+    <material id="chest">chest</material>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
     <all id="only-iron-regen">
-        <material id="only-iron">iron block</material>
         <cause>world</cause>
+        <material id="only-iron">iron block</material>
     </all>
+    <if variant="comp">
+        <deny id="water">
+            <all>
+                <any>
+                    <material>water</material>
+                    <material>stationary water</material>
+                </any>
+                <cause>world</cause>
+            </all>
+        </deny>
+    </if>
 </filters>
 <regions>
     <union id="spawns">
@@ -126,15 +148,31 @@
         <cuboid id="mid-spawn-drop" min="121.4,12.5,197.4" max="121.6,12.5,197.6"/>
         <cuboid id="mid-spawn-activation" min="128,19,192" max="115,9,205"/>
     </union>
+    <apply use="deny(only-blue)" region="blue-wool-rooms"/>
+    <apply use="deny(only-red)" region="red-wool-rooms"/>
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the opponent's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the opponent's spawn!"/>
     <apply enter="only-blue" region="red-wool-rooms" message="You may not enter your own wool room!"/>
     <apply enter="only-red" region="blue-wool-rooms" message="You may not enter your own wool room!"/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You may not edit the spawn!"/>
-    <apply block="deny-blue-wool-rooms" use="only-red" region="blue-wool-rooms"/>
-    <apply block="deny-red-wool-rooms" use="only-blue" region="red-wool-rooms"/>
+    <apply block="deny(chest)" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
+    <apply block="deny(only-blue)" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny(only-red)" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="never" region="spawner" message="You may not destroy the spawner!"/>
-    <apply block-place="no-void" message="You may not edit the void!"/>
+    <if variant="comp">
+        <union id="non-wool-lanes">
+            <negative>
+                <union id="wool-lanes">
+                    <rectangle min="194,215" max="226,202"/>
+                    <rectangle min="49,215" max="17,202"/>
+                    <rectangle min="56,138" max="43,106"/>
+                    <rectangle min="187,138" max="200,106"/>
+                </union>
+            </negative>
+        </union>
+        <apply block="water" region="non-wool-lanes"/>
+    </if>
+    <apply block-place="deny(void)" message="You may not edit the void!"/>
 </regions>
 <renewables>
     <renewable rate="2" grow="false" particles="true" sound="true" avoid-entities="true" region="spawns" renew-filter="only-iron"/>
@@ -170,7 +208,7 @@
     <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>iron pickaxe</tool>
-    <tool>iron axe</tool>
+    <tool>${axe-type}</tool>
     <tool>iron spade</tool>
     <tool>arrow</tool>
 </toolrepair>
@@ -204,22 +242,36 @@
     </rule>
 </block-drops>
 <itemkeep>
-    <item>golden apple</item>
     <item>wood</item>
     <item>glass</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <unless variant="comp">
+        <item>golden apple</item>
+    </unless>
+    <if variant="comp">
+        <item>golden carrot</item>
+    </if>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item amount="32" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>26</maxbuildheight>
-<!-- <crafting>
-    <disable>iron trapdoor</disable>
-    <disable>minecart</disable>
-    <disable>boat</disable>
-</crafting> -->
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+<respawn delay="${respawn-timer}" auto="true"/>
+<unless variant="comp">
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+</unless>
+<if variant="comp">
+    <crafting>
+        <disable>iron trapdoor</disable>
+        <disable>minecart</disable>
+        <disable>boat</disable>
+    </crafting>
+</if>
 </map>
