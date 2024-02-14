@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>A New Day</name>
-<version>1.0.11</version>
+<version>1.0.12</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the enemies wool and return it to your base.</objective>
 <authors>
     <author uuid="b5071a63-bba3-491a-909f-02db314f4319" contribution="Idea and Build and XML changes"/> <!-- dcstarwars -->
@@ -72,9 +73,6 @@
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-</kill-reward>
 <filters>
     <team id="only-red">red</team>
     <team id="only-blue">blue</team>

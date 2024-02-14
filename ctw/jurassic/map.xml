@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Jurassic</name>
-<version>2.8.2</version>
+<version>2.8.3</version>
 <variant id="comp">TE</variant>
+<include id="gapple-kill-reward"/>
 <unless variant="comp">
     <constant id="team-size">32</constant>
     <constant id="max-overfill" delete="true"/>
@@ -247,7 +248,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="4" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

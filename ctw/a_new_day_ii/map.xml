@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>A New Day II</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the enemy's wools!</objective>
 <created>2017-11-14</created>
 <authors>
@@ -156,7 +157,6 @@
     <item>golden apple</item>
 </itemkeep>
 <kill-reward>
-    <item material="golden apple"/>
     <item amount="8" damage="1" material="wood"/>
 </kill-reward>
 <maxbuildheight>24</maxbuildheight>

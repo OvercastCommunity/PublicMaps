@@ -1,8 +1,8 @@
 <map proto="1.4.2">
 <name>Rocky Top</name>
-<variant id="comp">TE</variant>
 <version>1.3.3</version>
-<objective>Capture both of the enemy team's wools</objective>
+<variant id="comp">TE</variant>
+<include id="gapple-kill-reward"/>
 <unless variant="comp">
     <constant id="max">28</constant>
     <constant id="max-overfill" delete="true"/>
@@ -17,6 +17,7 @@
     <time overtime="5m" max-overtime="10m" end-overtime="1m">35m</time>
     <phase>development</phase>
 </if>
+<objective>Capture both of the enemy team's wools</objective>
 <authors>
     <author uuid="cef67055-9c27-4b58-a16f-278d793ff6bc"/> <!-- mrcookie_13 -->
     <author uuid="f1352a57-4fe3-4f0c-b867-56b771fc1a0f"/> <!-- teagod -->
@@ -232,7 +233,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="1" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

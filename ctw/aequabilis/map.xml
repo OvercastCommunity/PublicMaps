@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Aequabilis</name>
-<version>1.1</version>
+<version>1.1.1</version>
+<include id="gapple-kill-reward"/>
 <created>2016-06-08</created>
 <objective>Capture and place both of the enemy team's wools!</objective>
 <authors>
@@ -11,10 +12,7 @@
     <team id="orange" color="gold" max="32">Orange</team>
 </teams>
 <kits>
-    <kit id="no-damage-tick">
-        <effect amplifier="255">jump</effect>
-    </kit>
-    <kit id="spawn-kit" parents="no-damage-tick">
+    <kit id="spawn-kit">
         <clear/>
         <item slot="0" material="iron sword"/>
         <item slot="1" material="bow"/>
@@ -23,6 +21,7 @@
         <item slot="3" material="diamond axe"/>
         <item slot="4" amount="64" damage="2" material="wood"/>
         <item slot="31" amount="64" damage="2" material="wood"/>
+        <item slot="5" amount="64" team-color="true" material="stained glass"/>
         <item slot="6" material="bucket"/>
         <item slot="8" material="golden apple"/>
         <chestplate team-color="true" material="leather chestplate"/>
@@ -30,17 +29,6 @@
         <boots team-color="true" material="leather boots"/>
         <effect duration="5s" amplifier="255">damage resistance</effect>
     </kit>
-    <kit id="green-kit" parents="spawn-kit">
-        <item slot="5" amount="64" damage="5" material="stained glass"/>
-    </kit>
-    <kit id="orange-kit" parents="spawn-kit">
-        <item slot="5" amount="64" damage="1" material="stained glass"/>
-    </kit>
-    <take kit="no-damage-tick">
-        <filter>
-            <grounded/>
-        </filter>
-    </take>
 </kits>
 <spawns>
     <default>
@@ -48,13 +36,13 @@
             <cuboid min="-282.5,63,281.5" max="-276.5,64,275.5"/>
         </region>
     </default>
-    <spawn team="green" kit="green-kit">
+    <spawn team="green" kit="spawn-kit">
         <regions yaw="90">
             <cylinder base="-133,67,282" radius="0.5" height="0"/>
             <cylinder base="-133,67,275" radius="0.5" height="0"/>
         </regions>
     </spawn>
-    <spawn team="orange" kit="orange-kit">
+    <spawn team="orange" kit="spawn-kit">
         <regions yaw="-90">
             <cylinder base="-426,67,275" radius="0.5" height="0"/>
             <cylinder base="-426,67,282" radius="0.5" height="0"/>
@@ -196,16 +184,8 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="2" material="wood"/>
-    </kill-reward>
-    <kill-reward filter="only-green">
-        <item amount="16" damage="5" material="stained glass"/>
-    </kill-reward>
-    <kill-reward filter="only-orange">
-        <item amount="16" damage="1" material="stained glass"/>
-    </kill-reward>
-    <kill-reward> <!-- separate for gapple -> blocks -> arrow ordering -->
+        <item amount="16" team-color="true" material="stained glass"/>
         <item amount="16" material="arrow"/>
     </kill-reward>
 </kill-rewards>

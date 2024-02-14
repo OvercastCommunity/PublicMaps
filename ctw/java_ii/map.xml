@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Java II</name>
-<version>1.4.1</version>
+<version>1.4.2</version>
 <variant id="comp">TE</variant>
+<include id="gapple-kill-reward"/>
 <objective>Capture the enemy's two wools!</objective>
 <unless variant="comp">
     <constant id="team-size">24</constant>
@@ -256,7 +257,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

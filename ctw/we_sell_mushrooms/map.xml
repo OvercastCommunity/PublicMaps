@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>We Sell Mushrooms</name>
-<version>1.7.1</version>
+<version>1.7.2</version>
 <variant id="comp" world="comp">TE</variant>
+<include id="gapple-kill-reward"/>
 <unless variant="comp">
     <constant id="max">30</constant>
     <constant id="max-overfill" delete="true"/>
@@ -305,7 +306,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="2" material="wood"/>
         <item amount="16" material="glass"/>
         <item amount="8" material="smooth brick"/>

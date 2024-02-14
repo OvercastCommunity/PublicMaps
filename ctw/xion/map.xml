@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Xion</name>
-<version>1.2.4</version>
+<version>1.2.5</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the other team's wools to win the game!</objective>
 <created>2015-01-24</created>
 <authors>
@@ -27,21 +28,12 @@
         <item slot="4" amount="64" material="wood"/>
         <item slot="31" amount="64" material="wood"/>
         <item slot="5" amount="64" material="leaves"/>
-        <item slot="7" material="golden apple"/>
-        <item slot="8" amount="64" material="cooked beef"/>
-        <effect duration="7" amplifier="10">heal</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet color="0000ff" unbreakable="true" material="leather helmet"/>
-        <chestplate color="0000ff" unbreakable="true" material="leather chestplate">
+        <item slot="8" material="golden apple"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate">
             <enchantment level="2">projectile_protection</enchantment>
         </chestplate>
-    </kit>
-   <kit id="red-kit" parents="spawn-kit">
-        <helmet color="ff0000" unbreakable="true" material="leather helmet"/>
-        <chestplate color="ff0000" unbreakable="true" material="leather chestplate">
-            <enchantment level="2">projectile_protection</enchantment>
-        </chestplate>
+        <effect duration="7s" amplifier="255">heal</effect>
     </kit>
     <kit id="leaves" force="true">
         <item amount="16" material="leaves"/>
@@ -62,12 +54,12 @@
             <block>-34.5,31,-151.5</block>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue" kit="spawn-kit">
         <region yaw="0">
             <block>32.5,9,-84.5</block>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <region yaw="0">
             <block>-101.5,9,-218.5</block>
         </region>
@@ -281,7 +273,6 @@
 <itemremove>
     <item>wood</item>
     <item>leaves</item>
-    <item>cooked beef</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>log</item>
@@ -304,7 +295,9 @@
 <kill-reward>
     <item amount="8" material="wood"/>
     <item amount="4" material="leaves"/>
-    <item material="golden apple"/>
 </kill-reward>
 <maxbuildheight>25</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

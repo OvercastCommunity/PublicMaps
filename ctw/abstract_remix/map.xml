@@ -1,6 +1,7 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>Abstract Remix</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
+<include id="gapple-kill-reward"/>
 <phase>development</phase>
 <objective>Capture the other team's wool to win!</objective>
 <authors>
@@ -106,7 +107,6 @@
     <kill-reward>
         <item amount="4" material="sandstone"/>
         <item amount="6" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <filters>
