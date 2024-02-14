@@ -1,6 +1,7 @@
 <map proto="1.4.0">
 <name>Abstract Remix</name>
 <version>1.0.1</version>
+<phase>development</phase>
 <objective>Capture the other team's wool to win!</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--  DoomyBoy  -->
