@@ -1,10 +1,16 @@
 <map proto="1.4.2">
 <name>We Sell Mushrooms</name>
-<version>1.7</version>
+<version>1.7.1</version>
 <variant id="comp" world="comp">TE</variant>
+<unless variant="comp">
+    <constant id="max">30</constant>
+    <constant id="max-overfill" delete="true"/>
+</unless>
 <if variant="comp">
+    <constant id="max">8</constant>
+    <constant id="max-overfill">8</constant>
+    <time overtime="5m" max-overtime="10m" end-overtime="1m">35m</time>
     <phase>development</phase>
-    <time overtime="5m" max-overtime="15m" end-overtime="1m">45m</time>
 </if>
 <objective>Capture the enemy team's two wools.</objective>
 <authors>
@@ -18,14 +24,8 @@
     <contributor uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Winneror -->
 </contributors>
 <teams>
-    <unless variant="comp">
-        <team id="blue-team" color="blue" max="30">Blue</team>
-        <team id="red-team" color="dark red" max="30">Red</team>
-    </unless>
-    <if variant="comp">
-        <team id="blue-team" color="blue" max="8" max-overfill="8">Blue</team>
-        <team id="red-team" color="dark red" max="8" max-overfill="8">Red</team>
-    </if>
+    <team id="blue-team" color="blue" max="${max}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red-team" color="dark red" max="${max}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -48,6 +48,7 @@
             <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         </unless>
         <if variant="comp">
+            <item slot="6" material="water bucket"/>
             <item slot="7" material="golden apple"/>
             <item slot="8" amount="64" material="golden carrot"/>
             <item slot="9" material="mushroom soup"/>
@@ -103,6 +104,17 @@
         </any>
         <cause>world</cause>
     </all>
+    <if variant="comp">
+        <deny id="water">
+            <all>
+                <any>
+                    <material>water</material>
+                    <material>stationary water</material>
+                </any>
+                <cause>world</cause>
+            </all>
+        </deny>
+    </if>
 </filters>
 <regions>
     <union id="spawn-points">
@@ -185,6 +197,19 @@
     <apply block="deny-blue" region="blue-defends" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny-red" region="red-defends" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny-explosions" region="wool-rooms"/>
+    <if variant="comp">
+        <union id="non-wool-lanes">
+            <negative>
+                <union id="wool-lanes">
+                    <rectangle min="-329,45" max="-373,32"/>
+                    <rectangle min="-278,96" max="-265,140"/>
+                    <rectangle min="-124,-1" max="-168,-14"/>
+                    <rectangle min="-232,-65" max="-219,-109"/>
+                </union>
+            </negative>
+        </union>
+        <apply block="water" region="non-wool-lanes"/>
+    </if>
     <apply block="deny-void" region="void" message="You may not edit the void!"/>
 </regions>
 <renewables>
@@ -268,19 +293,14 @@
     </rule>
 </block-drops>
 <itemkeep>
-    <item>iron sword</item>
-    <item>bow</item>
-    <item>diamond pickaxe</item>
-    <item>diamond axe</item>
-    <item>arrow</item>
     <item>wood</item>
     <item>glass</item>
     <item>smooth brick</item>
+    <item>bucket</item>
+    <item>water bucket</item>
     <unless variant="comp">
         <item>shears</item>
         <item>golden apple</item>
-        <item>bucket</item>
-        <item>water bucket</item>
     </unless>
 </itemkeep>
 <kill-rewards>
