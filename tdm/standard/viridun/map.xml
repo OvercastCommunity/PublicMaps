@@ -1,160 +1,342 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
+<map proto="1.4.2">
 <name>Viridun</name>
-<version>1.5.5</version>
-<created>2012-09-22</created>
-<objective>Be the team with the least amount of deaths after 10 minutes.</objective>
+<variant id="rage">RAGE</variant>
+<variant id="ffa">FFA</variant>
+<variant id="ctf" world="ctf">CTF</variant>
+<version>1.6.0</version>
+<constant id="objective">Be the team with the least amount of deaths after 10 minutes</constant>
+<if variant="rage">
+    <constant id="objective">Be the team with the least amount of deaths after 8 minutes. Arrows kill in one hit!</constant>
+</if>
+<if variant="ffa">
+    <constant id="objective">Kill the most players in 10 minutes!</constant>
+</if>
+<if variant="ctf">
+    <constant id="objective">Capture the enemy flag located at the corresponding colored beacon and return it to your flag</constant>
+</if>
+<objective>${objective}</objective>
+<if variant="default">
+    <created>2012-09-22</created>
+</if>
 <authors>
     <author uuid="27cf0cdd-c294-4163-a536-18e11360cc7b" contribution="Map design and layout"/> <!-- OurLoneHero -->
 </authors>
 <contributors>
     <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Map design, aesthetic changes, and XML"/> <!-- IM_A_H0B0 -->
     <contributor uuid="97abb45c-e545-473d-9b93-e1b9b94a43ee" contribution="Design concepts and map design"/> <!-- ander301 -->
+    <if variant="rage">
+        <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Ragification"/> <!-- last_username -->
+    </if>
 </contributors>
-<teams>
-    <team color="blue" max="40">Blue</team>
-    <team color="dark red" max="40">Red</team>
-</teams>
+<rules>
+    <if variant="rage">
+        <rule>Fall damage is disabled!</rule>
+    </if>
+    <if variant="ffa">
+        <rule>Fall damage is disabled!</rule>
+    </if>
+</rules>
+<if variant="ffa">
+    <players min="2" max="64" colors="true"/>
+</if>
+<unless variant="ffa">
+    <if variant="default,ctf">
+        <constant id="team-size">40</constant>
+    </if>
+    <if variant="rage">
+        <constant id="team-size">32</constant>
+    </if>
+    <teams>
+        <team id="blue" color="blue" max="${team-size}">Blue</team>
+        <team id="red" color="dark red" max="${team-size}">Red</team>
+    </teams>
+</unless>
 <kits>
-    <kit name="spawn">
-		<clear/>
-        <item slot="0" unbreakable="true">stone sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
-        <item slot="28">arrow</item>
-        <item slot="2" damage="8229">potion</item> <!-- potion of instant health 2 -->
-        <item slot="9" damage="4" amount="64">ink sack</item>
-		<leggings unbreakable="true" enchantment="protection projectile:3">chainmail leggings</leggings>
-		<boots unbreakable="true" enchantment="protection fall:2">iron boots</boots>
-        <potion duration="7" amplifier="1">heal</potion>
-        <potion duration="7">damage resistance</potion>
+    <kit id="spawn">
+        <clear/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <unless variant="rage">
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+            <item slot="28">arrow</item>
+        </unless>
+        <if variant="default">
+            <item slot="2" damage="8229">potion</item> <!-- potion of instant health 2 -->
+            <item slot="9" damage="4" amount="64">ink sack</item>
+            <leggings unbreakable="true" enchantment="protection projectile:3">chainmail leggings</leggings>
+            <boots unbreakable="true" enchantment="protection fall:2">iron boots</boots>
+            <effect duration="7" amplifier="1">heal</effect>
+            <effect duration="7">damage resistance</effect>
+        </if>
+        <if variant="rage">
+            <item slot="0" unbreakable="true">diamond sword</item>
+            <item slot="1" unbreakable="true" enchantment="arrow damage:100" lore="`aOne-shot kill!">bow</item>
+            <item slot="2" amount="2">arrow</item>
+            <leggings unbreakable="true" team-color="true">leather leggings</leggings>
+            <boots unbreakable="true" team-color="true">leather boots</boots>
+            <effect duration="3" amplifier="5">damage resistance</effect>
+            <effect duration="oo" amplifier="1">speed</effect>
+            <effect duration="oo" amplifier="2">jump</effect>
+        </if>
+        <if variant="ffa">
+            <item slot="2" material="golden apple"/>
+            <leggings unbreakable="true" material="chainmail leggings"/>
+            <boots unbreakable="true" team-color="true" enchantment="protection fall:2;depth_strider:2" material="leather boots"/>
+            <effect duration="2.5" amplifier="10">resistance</effect>
+            <effect>speed</effect>
+        </if>
+        <if variant="ctf">
+            <item slot="2" damage="8229">potion</item> <!-- potion of instant health 2 -->
+            <leggings unbreakable="true" team-color="true">leather leggings</leggings>
+            <boots unbreakable="true" team-color="true" enchantment="protection fall:2">leather boots</boots>
+            <effect duration="10" amplifier="1">heal</effect>
+            <effect duration="20">damage resistance</effect>
+        </if>
     </kit>
-	<kit name="red" parents="spawn">
-		<helmet unbreakable="true" color="cd0000">leather helmet</helmet>
-		<chestplate unbreakable="true" color="cd0000">leather chestplate</chestplate>
-	</kit>
-	<kit name="blue" parents="spawn">
-		<helmet unbreakable="true" color="0066cc">leather helmet</helmet>
-		<chestplate unbreakable="true" color="0066cc">leather chestplate</chestplate>
-	</kit>
 </kits>
 <spawns>
-    <spawns kit="blue">
+    <spawns kit="spawn">
+    <unless variant="ffa">
         <spawn team="blue">
-            <cuboid min="23,33,-60" max="29,33,-55"/>
-            <cuboid min="24,33,-41" max="29,33,-46"/>
-            <cuboid min="-32,33,-3" max="-28,33,2"/>
-            <cuboid min="-23,79,-4" max="-18,79,2"/>
-            <cuboid min="-18,87,-5" max="-12,87,-3"/>
+            <regions>
+                <cuboid min="23,33,-60" max="29,33,-55"/>
+                <cuboid min="24,33,-41" max="29,33,-46"/>
+                <cuboid min="-32,33,-3" max="-28,33,2"/>
+                <cuboid min="-23,79,-4" max="-18,79,2"/>
+                <cuboid min="-18,87,-5" max="-12,87,-3"/>
+            </regions>
         </spawn>
         <spawn team="blue" yaw="90">
-            <cuboid min="40,37,-55" max="45,37,-58"/>
-            <cuboid min="41,64,-71" max="35,64,-77"/>
-            <cuboid min="47,72,-39" max="42,72,-44"/>
-            <cuboid min="40,52,-15" max="32,52,-27"/>
-            <cuboid min="13,60.5,13" max="14,60.5,16"/>
-            <cuboid min="-17,33,13" max="-13,33,15"/>
+            <regions>
+                <cuboid min="40,37,-55" max="45,37,-58"/>
+                <cuboid min="41,64,-71" max="35,64,-77"/>
+                <cuboid min="47,72,-39" max="42,72,-44"/>
+                <cuboid min="40,52,-15" max="32,52,-27"/>
+                <cuboid min="13,60.5,13" max="14,60.5,16"/>
+                <cuboid min="-17,33,13" max="-13,33,15"/>
+            </regions>
         </spawn>
         <spawn team="blue" yaw="180">
-            <cuboid min="-20,62,-6" max="-10,62,-2"/>
-            <cuboid min="-1,33,-4" max="3,33,3"/>
-            <cuboid min="-1,71,6" max="2,71,9"/>
-            <cuboid min="-17,87,2" max="-12,87,4"/>
+            <regions>
+                <cuboid min="-20,62,-6" max="-10,62,-2"/>
+                <cuboid min="-1,33,-4" max="3,33,3"/>
+                <cuboid min="-1,71,6" max="2,71,9"/>
+                <cuboid min="-17,87,2" max="-12,87,4"/>
+            </regions>
         </spawn>
-    </spawns>
-    <spawns kit="red">
-        <!-- red spawns -->
         <spawn team="red">
-            <cuboid min="-107,90,-21" max="-110,90,-25"/>
-            <cylinder base="-99,63,-73" radius="3" height="0"/>
-            <cuboid min="-92,37,25" max="-88,37,30"/>
+            <regions>
+                <cuboid min="-107,90,-21" max="-110,90,-25"/>
+                <cylinder base="-99,63,-73" radius="3" height="0"/>
+                <cuboid min="-92,37,25" max="-88,37,30"/>
+            </regions>
         </spawn>
         <spawn team="red" yaw="90">
-            <cylinder base="-91,76,-72" radius="1" height="0"/>
-            <cuboid min="-72,65,-27" max="-72,65,-23"/>
+            <regions>
+                <cylinder base="-91,76,-72" radius="1" height="0"/>
+                <cuboid min="-72,65,-27" max="-72,65,-23"/>
+            </regions>
         </spawn>
         <spawn team="red" yaw="180">
-            <cylinder base="-98.5,84,-72.5" radius="2" height="0"/>
-            <cuboid min="-109,79,-15" max="-102,79,-29"/>
-            <cuboid min="-86,80,-11" max="-91,80,-18"/>
-            <cuboid min="-97,76,-61" max="-101,76,-48"/>
-            <cuboid min="-88,37,48" max="-84,37,52"/>
+            <regions>
+                <cylinder base="-98.5,84,-72.5" radius="2" height="0"/>
+                <cuboid min="-109,79,-15" max="-102,79,-29"/>
+                <cuboid min="-86,80,-11" max="-91,80,-18"/>
+                <cuboid min="-97,76,-61" max="-101,76,-48"/>
+                <cuboid min="-88,37,48" max="-84,37,52"/>
+            </regions>
         </spawn>
         <spawn team="red" yaw="270">
-            <cuboid min="-142,83,-39" max="-121,83,-35"/>
-            <cuboid min="-110,65,-15" max="-103,65,-29"/>
-            <cuboid min="-98,65,-43" max="-114,65,-36"/>
+            <regions>
+                <cuboid min="-142,83,-39" max="-121,83,-35"/>
+                <cuboid min="-110,65,-15" max="-103,65,-29"/>
+                <cuboid min="-98,65,-43" max="-114,65,-36"/>
+            </regions>
         </spawn>
+    </unless>
+    <if variant="ffa">
+        <spawns safe="true" spread="true">
+            <spawn yaw="90">
+                <regions>
+                    <!-- slab spiral stairs near obs spawn -->
+                    <cuboid min="49,72,-37" max="22,72,-83"/>
+                    <!-- slab spiral stairs near obs spawn -->
+                    <cuboid min="52,64,-38" max="15,64,-81"/>
+                    <!-- red house in isolated area -->
+                    <cuboid min="-58,41,-88" max="-72,56,-100"/>
+                    <!-- red isolated area -->
+                    <cuboid min="-90,41,-90" max="-75,42,-121"/>
+                    <!-- The red castle off tower -->
+                    <cylinder base="-99,63,-73" radius="11" height="35"/>
+                    <!-- blue low diagonal bridge -->
+                    <cuboid min="25,33,-40" max="-2,33,-13"/>
+                    <!-- blue tower/cave to castle wall near obs spawn -->
+                    <cuboid min="-5,56,12" max="19,72,24"/>
+                </regions>
+            </spawn>
+            <spawn yaw="180">
+                <regions>
+                    <!-- obs spawn courtyard -->
+                    <cuboid min="44,27,4" max="70,30,-20"/>
+                    <!-- slab spiral stairs near obs spawn -->
+                    <cuboid min="24,33,-40" max="50,56,-62"/>
+                    <!-- above obs spawn, the wall -->
+                    <cuboid min="24,53,-8" max="41,52,-33"/>
+                    <!-- The blue tower -->
+                    <cylinder base="-14.5,33,-0.5" radius="20" height="76"/>
+                    <cylinder base="-14.5,33,-0.5" radius="20" height="76"/>
+                    <cylinder base="-14.5,33,-0.5" radius="20" height="76"/>
+                    <!-- The red bottom side tower -->
+                    <cylinder base="-90,37,27" radius="6" height="39"/>
+                    <!-- cave next to red bottom side tower -->
+                    <cuboid min="-69,37,55" max="-93,42,49"/>
+                    <!-- small red castle near water -->
+                    <cuboid min="-52,35,42" max="-40,46,47"/>
+                    <!-- lake perimeter -->
+                    <cuboid min="-76,17,31" max="-37,20,-3"/>
+                </regions>
+            </spawn>
+            <spawn yaw="270">
+                <regions>
+                    <!-- Low tower near mid lake -->
+                    <cylinder base="-60.5,27,-52.5" radius="7" height="14"/>
+                    <!-- The red tower in isolated area -->
+                    <cylinder base="-68,42,-116" radius="5" height="24"/>
+                    <cylinder base="-68,42,-116" radius="5" height="24"/>
+                    <!-- The red upper lake -->
+                    <cuboid min="-94,80,23" max="-133,81,-7"/>
+                    <cuboid min="-143,83,-57" max="-133,81,-7"/>
+                    <!-- The red castle -->
+                    <cuboid min="-116,65,-46" max="-84,103,-10"/>
+                    <cuboid min="-116,65,-46" max="-84,103,-10"/>
+                    <cuboid min="-116,65,-46" max="-84,103,-10"/>
+                </regions>
+            </spawn>
+        </spawns>
+        </if>
     </spawns>
-    <default yaw="90"><cylinder base="51,27,-7.5" radius="10" height="0"/></default>
+    <default yaw="90">
+        <region>
+            <cylinder base="51,27,-7.5" radius="10" height="0"/>
+        </region>
+    </default>
 </spawns>
 <filters>
-	<filter name="allow-redstone">
-		<any>
-			<!-- At least one below must return ALLOW -->
-			<all>
-				<!-- Returns ALLOW if matches world AND matches a block, denies otherwise -->
-				<any>
-					<!-- Allows if world, denies otherwise -->
-					<filter name="allow-world" />
-					<!-- Abstain if not world, ALLOW otherwise. -->
-					<filter name="deny-all" />
-					<!-- Always denies, turning the ABSTAIN into a DENY -->
-				</any>
-				<any>
-					<!-- Returns allow if it is a matching block -->
-					<block>PISTON_BASE</block>
-					<block>PISTON_EXTENSION</block>
-					<block>PISTON_MOVING_PIECE</block>
-					<block>PISTON_STICKY_BASE</block>
-					<block>AIR</block>
-					<!-- Allow the piston to extend -->
-					<block>FENCE</block>
-					<!-- Block being modified is a fence -->
-				</any>
-			</all>
-			<filter name="deny-all" />
-			<!-- If nothing says allow, DENY this -->
-		</any>
-	</filter>
+    <unless variant="ffa">
+        <team id="only-red">red</team>
+        <team id="only-blue">blue</team>
+    </unless>
+    <not id="not-players"> <!-- Should allow redstone to functiuon -->
+        <cause>player</cause>
+    </not>
 </filters>
 <regions>
-	<apply block="allow-redstone">
-		<rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
-	</apply>
+    <apply block="not-players"/>
 </regions>
-<score>
-    <time>10m</time>
-</score>
-<killreward>
-    <item damage="8229">potion</item> <!-- potion of instant health 2 -->
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="3" repeat="true"/>
-    </filter>
-    <item>exp bottle</item>
-</killreward>
+<unless variant="ctf">
+    <if variant="default,ffa">
+        <constant id="time">10m</constant>\
+    </if>
+    <if variant="rage">
+        <constant id="time">8m</constant>
+    </if>
+    <time>${time}</time>
+</unless>
+<!-- Specific gamemode map rules/functions -->
+<if variant="default">
+    <keep-potion-bottles/>
+</if>
+<if variant="rage">
+    <keep-potion-bottles/>
+    <disabledamage>
+        <damage>fall</damage>
+    </disabledamage>
+</if>
+<if variant="ffa">
+    <disabledamage>
+        <damage>fall</damage>
+    </disabledamage>
+    <broadcasts>
+        <alert after="2s">Fall damage is disabled on this map!</alert>
+    </broadcasts>
+</if>
+<if variant="ctf">
+    <flags>
+        <flag id="blue-flag" name="Blue Flag" color="blue" pickup-filter="only-red">
+            <post yaw="0" return-time="1m">38.5,65,-55.5</post>
+            <net points="1">
+                <region>
+                    <cuboid min="-102,79,-37" max="-107,83,-30"/>
+                </region>
+            </net>
+        </flag>
+        <flag id="red-flag" name="Red Flag" color="red" pickup-filter="only-blue">
+            <post yaw="180" return-time="1m">-104.5,80,-32.5</post>
+            <net points="1">
+                <region>
+                    <cuboid min="36,64,-53" max="41,66,-60"/>
+                </region>
+            </net>
+        </flag>
+    </flags>
+    <score>
+        <limit>3</limit>
+        <deaths>0</deaths>
+        <kills>0</kills>
+    </score>
+</if>
+<kill-rewards>
+    <if variant="default">
+        <kill-reward>
+            <item damage="8229">potion</item> <!-- potion of instant health 2 -->
+        </kill-reward>
+        <kill-reward>
+            <filter>
+                <kill-streak count="3" repeat="true"/>
+            </filter>
+            <item>exp bottle</item>
+        </kill-reward>
+    </if>
+    <if variant="rage">
+        <kill-reward>
+            <item>arrow</item>
+        </kill-reward>
+    </if>
+    <if variant="ffa,ctf">
+        <kill-reward>
+            <item>golden apple</item>
+        </kill-reward>
+    </if>
+</kill-rewards>
 <toolrepair>
-    <tool>stone sword</tool>
     <tool>bow</tool>
+    <unless variant="rage">
+        <tool>stone sword</tool>
+    </unless>
+    <if variant="rage">
+        <tool>diamond sword</tool>
+    </if>
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
     <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
     <item>chainmail leggings</item>
     <item>iron boots</item>
     <item>ladder</item>
     <item>glass bottle</item>
     <item>ink sack</item>
     <item>exp bottle</item>
-    <item>potion</item> <!-- Remove water bottles -->
+    <item>potion:0</item> <!-- Remove water bottles -->
 </itemremove>
 <itemkeep>
-	<item>arrow</item>
-	<item>potion</item>
+    <item>arrow</item>
+    <item>potion</item>
+    <item>golden apple</item>
 </itemkeep>
 <hunger>
-	<depletion>off</depletion>
+    <depletion>off</depletion>
 </hunger>
-<keep-potion-bottles/>
 </map>
