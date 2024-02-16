@@ -1,10 +1,10 @@
 <map proto="1.4.2">
 <name>Desert Country</name>
+<version>1.1.1</version>
 <variant id="christmas" world="christmas" override="true">Christmas Country</variant>
 <variant id="halloween" world="halloween" override="true">Spooky Country</variant>
-<version>1.1.0</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the wools located on the opposite side.</objective>
-<gamemode>ctw</gamemode>
 <if variant="default">
     <created>2016-02-10</created>
 </if>
@@ -48,66 +48,61 @@
     </contributors>
 </if>
 <teams>
-    <team id="green-team" color="green" max="20" max-overfill="25">Green</team>
-    <team id="blue-team" color="blue" max="20" max-overfill="25">Blue</team>
+    <team id="green-team" color="green" max="20">Green</team>
+    <team id="blue-team" color="blue" max="20">Blue</team>
 </teams>
-<spawns>
-    <spawn team="green-team" kit="spawn-kit">
-        <regions yaw="180">
-            <cuboid min="532,11.5,-129" max="536,12,-127"/>
-        </regions>
-    </spawn>
-    <spawn team="blue-team" kit="spawn-kit">
-        <regions>
-            <cuboid min="532,11.5,-324" max="536,12,-322"/>
-        </regions>
-    </spawn>
-    <default>
-        <regions yaw="-90">
-            <point>478,42.5,-226</point>
-        </regions>
-    </default>
-</spawns>
 <kits>
-    <kit id="spawn-kit" force="true">
+    <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="28" amount="64" material="arrow"/>
         <item slot="2" unbreakable="true" material="iron pickaxe"/>
-        <item slot="3" unbreakable="true" material="stone axe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
         <if variant="default">
             <item slot="4" amount="64" damage="3" material="wood"/>
             <item slot="5" amount="32" material="red sandstone"/>
-            <item slot="8" amount="64" material="grilled pork"/>
         </if>
         <if variant="christmas">
             <item slot="4" amount="64" damage="5" material="wood"/>
             <item slot="5" amount="32" material="snow block"/>
-            <item slot="8" amount="64" material="grilled pork"/>
         </if>
         <if variant="halloween">
             <item slot="4" amount="64" damage="1" material="wood"/>
             <item slot="5" amount="32" material="nether brick"/>
-            <item slot="8" amount="64" material="pumpkin pie"/>
         </if>
-        <item slot="7" material="golden apple"/>
-        <item slot="17" amount="64" material="arrow"/>
-        <helmet team-color="true" material="leather helmet"/>
-        <chestplate team-color="true" material="leather chestplate">
-            <enchantment>protection projectile</enchantment>
-        </chestplate>
-        <boots team-color="true" material="leather boots"/>
-        <effect amplifier="10" duration="7">damage resistance</effect>
-        <effect amplifier="10" duration="7">regeneration</effect>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="7s" amplifier="255">damage resistance</effect>
+        <effect duration="7s" amplifier="255">regeneration</effect>
     </kit>
     <kit id="wool-gear" force="true">
-        <knockback-reduction>0.1</knockback-reduction>
-        <chestplate material="chainmail chestplate">
-            <enchantment>protection projectile</enchantment>
+        <chestplate material="diamond chestplate">
+            <enchantment>protection</enchantment>
         </chestplate>
-        <effect duration="30">regeneration</effect>
+        <effect duration="30s">regeneration</effect>
     </kit>
 </kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <point>478,42.5,-226</point>
+        </region>
+    </default>
+    <spawn team="green-team" kit="spawn-kit">
+        <region yaw="180">
+            <cuboid min="532,11.5,-129" max="536,12,-127"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region>
+            <cuboid min="532,11.5,-324" max="536,12,-322"/>
+        </region>
+    </spawn>
+</spawns>
 <filters>
     <team id="only-green">green-team</team>
     <team id="only-blue">blue-team</team>
@@ -159,16 +154,6 @@
     </player>
 </filters>
 <regions>
-    <union id="spawns">
-        <union id="green-spawn">
-            <rectangle id="green-spawn-1" min="528,-131" max="540,-119"/>
-            <rectangle id="green-spawn-2" min="520,-150" max="548,-132"/>
-        </union>
-        <union id="blue-spawn">
-            <rectangle id="blue-spawn-1" min="528,-334" max="540,-322"/>
-            <rectangle id="blue-spawn-2" min="520,-321" max="548,-303"/>
-        </union>
-    </union>
     <union id="rooms">
         <!-- Blue Wool Rooms (Wools blue need to get) -->
         <union id="blue-wool-rooms">
@@ -188,8 +173,10 @@
             <rectangle min="561,-295" max="568,-157"/>
             <rectangle min="501,-296" max="508,-157"/>
             <rectangle min="495,-245" max="574,-207"/>
-            <region id="green-spawn"/>
-            <region id="blue-spawn"/>
+            <union id="spawns">
+                <cuboid id="blue-spawn" min="520,0,-335" max="549,255,-303"/>
+                <cuboid id="green-spawn" min="520,0,-149" max="549,255,-117"/>
+            </union>
         </union>
     </negative>
     <union id="iron">
@@ -242,34 +229,61 @@
         </monument>
     </wool>
 </wools>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
 <itemremove>
-    <item>wood</item>
-    <item>red sandstone</item>
-    <item>grilled pork</item>
-    <item>arrow</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
+    <item>chainmail leggings</item>
     <item>leather boots</item>
-    <item>iron sword</item>
-    <item>bow</item>
-    <item>iron pickaxe</item>
-    <item>stone axe</item>
     <if variant="christmas">
         <item>snow ball</item>
     </if>
     <if variant="halloween">
         <item>obsidian</item>
-        <item>nether brick</item>
-        <item>pumpkin pie</item>
     </if>
 </itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <if variant="default">
+                    <material>red sandstone</material>
+                </if>
+                <if variant="halloween">
+                    <material>nether brick</material>
+                </if>
+                <if variant="christmas">
+                    <material>snow block</material>
+                </if>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</block-drops>
 <itemkeep>
+    <item>wood</item>
+    <if variant="default">
+        <item>red sandstone</item>
+    </if>
+    <if variant="halloween">
+        <item>nether brick</item>
+    </if>
+    <if variant="christmas">
+        <item>snow block</item>
+    </if>
     <item>golden apple</item>
+    <item>arrow</item>
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
-        <item amount="16" material="arrow"/>
         <if variant="default">
             <item amount="16" damage="3" material="wood"/>
             <item amount="8" material="red sandstone"/>
@@ -281,10 +295,13 @@
             <item amount="16" damage="1" material="wood"/>
             <item amount="8" material="nether brick"/>
         </if>
+        <item amount="16" material="arrow"/>
     </kill-reward>
 </kill-rewards>
-<timelock>on</timelock>
 <maxbuildheight>23</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <renewables>
     <renewable rate="1.5" grow="false" particles="true" sound="true" region="iron">
         <renew-filter>
