@@ -1,7 +1,7 @@
 <map proto="1.4.2" game="`d`lParkour!">
 <name>Parkour: Ice</name>
 <variant id="team" override="true">Team Parkour: Ice</variant>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Reach the top first!</objective>
 <if variant="default">
     <created>2019-04-07</created>
@@ -55,11 +55,17 @@
     <score id="only-at-1">1</score>
     <score id="only-at-2">2</score>
     <score id="only-at-3">3</score>
+    <after id="report-issues" duration="5s">
+        <all>
+            <match-running/>
+            <participating/>
+        </all>
+    </after>
 </filters>
 <regions>
     <cuboid id="finish-area" min="-117,21,-12" max="-120,24,-15"/>
     <below id="below-0" y="0"/>
-    <point id="spawn">-115.5,1.5,9</point>
+    <point id="spawn">-115.5,1,9</point>
     <point id="obs-spawn">-120.5,34,39.5</point>
     <apply block="never"/>
     <!-- Checkpoints to pass through -->
@@ -67,9 +73,9 @@
     <cuboid id="checkpoint-2" min="-100,12,-19" max="-97,15,-16"/>
     <cuboid id="checkpoint-3" min="-117,20,-1" max="-120,23,-4"/>
     <!-- Teleport locations for checkpoints -->
-    <point id="portal-check-1">-128.5,11.5,-8.5</point>
-    <point id="portal-check-2">-98.5,12.5,-17.5</point>
-    <point id="portal-check-3">-118.5,20.5,-2.5</point>
+    <point id="portal-check-1">-128.5,11,-8.5</point>
+    <point id="portal-check-2">-98.5,12,-17.5</point>
+    <point id="portal-check-3">-118.5,20,-2.5</point>
 </regions>
 <portals sound="false">
     <portal destination="spawn" yaw="@180" region="below-0" filter="only-at-0"/>
@@ -106,22 +112,22 @@
                 <all>
                     <region id="checkpoint-1"/>
                     <score>0</score>
-                    <match-running/>
+                    <filter id="report-issues"/>
                 </all>
                 <all>
                     <region id="checkpoint-2"/>
                     <score>1</score>
-                    <match-running/>
+                    <filter id="report-issues"/>
                 </all>
                 <all>
                     <region id="checkpoint-3"/>
                     <score>2</score>
-                    <match-running/>
+                    <filter id="report-issues"/>
                 </all>
                 <all>
                     <region id="finish-area"/>
                     <score>3</score>
-                    <match-running/>
+                    <filter id="report-issues"/>
                 </all>
             </any>
         </filter>
