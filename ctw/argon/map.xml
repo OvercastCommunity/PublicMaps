@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Argon</name>
-<version>1.2.10</version>
+<version>1.2.11</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the wools from the enemy wool rooms and return them to your spawn</objective>
 <authors>
     <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->
@@ -13,6 +14,7 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
+        <clear/>
         <item slot="0" material="iron sword"/>
         <item slot="1" material="bow"/>
         <item slot="2" enchantment="durability:3;dig speed:3" material="iron pickaxe"/>
@@ -154,7 +156,6 @@
     <tool>iron pickaxe</tool>
 </toolrepair>
 <itemremove>
-    <item>golden apple</item>
     <item>step</item>
     <item>sapling:3</item>
     <item>string</item>
@@ -168,10 +169,12 @@
     <item>arrow</item>
     <item>wood</item>
 </itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <timelock>on</timelock>

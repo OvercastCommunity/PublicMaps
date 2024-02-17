@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Bamboo Valley V</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the enemy team's wools.</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
@@ -211,11 +212,12 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="3" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" damage="3" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <item-mods>
     <rule>
         <match>

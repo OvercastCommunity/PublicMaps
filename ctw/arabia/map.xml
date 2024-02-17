@@ -1,8 +1,9 @@
 <map proto="1.4.2">
 <name>Arabia</name>
+<version>1.3.1</version>
 <variant id="halloween" world="halloween" override="true">AraBOOia</variant>
 <variant id="christmas" world="christmas" override="true">AraBlizzardia</variant>
-<version>1.3</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the enemy team's wools!</objective>
 <constant id="team-2-wool-color-a">lime</constant>
 <if variant="default">
@@ -206,7 +207,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="${wood-type}" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Araxa</name>
-<version>3.0.1</version>
+<version>3.0.2</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the enemy's two wools!</objective>
 <authors>
     <author uuid="e41edd14-9b0e-4501-a0c5-7fda64d2b2f3"/> <!-- JonnyBallgame -->
@@ -23,26 +24,26 @@
 <kits>
     <kit id="spawn-kit">
         <clear/>
-        <item slot="0" material="iron sword"/>
-        <item slot="1" material="bow">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
             <enchantment>infinity</enchantment>
         </item>
         <item slot="28" material="arrow"/>
-        <item slot="2" material="diamond pickaxe"/>
-        <item slot="3" material="diamond axe"/>
-        <item slot="29" material="shears"/>
-        <item slot="30" material="stone spade">
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="diamond axe"/>
+        <item slot="29" unbreakable="true" material="shears"/>
+        <item slot="30" unbreakable="true" material="stone spade">
             <enchantment>efficiency</enchantment>
         </item>
         <item slot="4" amount="64" material="wood"/>
         <item slot="31" amount="64" material="wood"/>
         <item slot="5" amount="64" team-color="true" material="stained glass"/>
-        <item slot="6" material="bucket"/>
+        <item slot="7" material="bucket"/>
         <item slot="8" material="golden apple"/>
-        <helmet team-color="true" material="leather helmet"/>
-        <chestplate team-color="true" material="leather chestplate"/>
-        <leggings material="chainmail leggings"/>
-        <boots team-color="true" material="leather boots"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
     </kit>
 </kits>
 <spawns>
@@ -199,11 +200,6 @@
     </rule>
 </block-drops>
 <itemkeep>
-    <item>iron sword</item>
-    <item>bow</item>
-    <item>diamond pickaxe</item>
-    <item>diamond axe</item>
-    <item>stone spade</item>
     <item>shears</item>
     <item>wood</item>
     <item>stained glass</item>
@@ -213,7 +209,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" material="wood"/>
         <item amount="16" team-color="true" material="stained glass"/>
     </kill-reward>
@@ -222,73 +217,6 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<item-mods>
-    <rule>
-        <match>
-            <material>iron sword</material>
-            <material>bow</material>
-            <material>diamond pickaxe</material>
-            <material>diamond axe</material>
-            <material>shears</material>
-            <material>stone spade</material>
-            <material>leather helmet</material>
-            <material>leather chestplate</material>
-            <material>chainmail leggings</material>
-            <material>leather boots</material>
-            <material>iron helmet</material>
-            <material>iron chestplate</material>
-            <material>iron leggings</material>
-            <material>iron boots</material>
-            <material>diamond chestplate</material>
-        </match>
-        <modify unbreakable="true"/>
-    </rule>
-</item-mods>
-<crafting>
-    <!-- bulk crafting -->
-    <shaped override="false">
-        <result material="iron helmet" amount="9"/>
-        <shape>
-            <row>III</row>
-            <row>I.I</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-    <shaped override="false">
-        <result material="iron chestplate" amount="9"/>
-        <shape>
-            <row>I.I</row>
-            <row>III</row>
-            <row>III</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-    <shaped override="false">
-        <result material="iron leggings" amount="9"/>
-        <shape>
-            <row>III</row>
-            <row>I.I</row>
-            <row>I.I</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-    <shaped override="false">
-        <result material="iron boots" amount="9"/>
-        <shape>
-            <row>I.I</row>
-            <row>I.I</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-    <shaped override="false">
-        <result material="bucket" amount="9"/>
-        <shape>
-            <row>I.I</row>
-            <row>.I.</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-</crafting>
 <gamerules>
     <doFireTick>true</doFireTick>
 </gamerules>
