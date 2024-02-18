@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Soviet Mills</name>
 <variant id="halloween" world="halloween" override="true">Soviet Chills</variant>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Destroy 75% of the team's spherical monument.</objective>
 <if variant="default">
     <created>2012-09-16</created>
@@ -89,14 +89,14 @@
     </apply>
 </regions>
 <destroyables completion="75%" name="Monument" repairable="false">
-    <destroyable owner="blue" materials="smooth brick;monster eggs;wool:11">
+    <destroyable owner="blue" materials="smooth brick;wool:11">
         <region>
-            <cuboid id="blue-core" min="8,49,115" max="17,58,124"/>
+            <cuboid id="blue-monument" min="8,49,115" max="17,58,124"/>
         </region>
     </destroyable>
-    <destroyable owner="red" materials="smooth brick;monster eggs;wool:14">
+    <destroyable owner="red" materials="smooth brick;wool:14">
         <region>
-            <cuboid id="red-core" min="8,49,-156" max="17,58,-148"/>
+            <cuboid id="red-monument" min="8,49,-156" max="17,58,-147"/>
         </region>
     </destroyable>
 </destroyables>
