@@ -1,0 +1,178 @@
+<map proto="1.4.2">
+<name>Banana Split DTM</name>
+<phase>development</phase>
+<version>1.0.2</version>
+<gamemode>dtm</gamemode>
+<objective>Destroy the other team's monuments!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="Metadata"/> <!-- dinner1111 -->
+    <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="Metadata/Packaging"/> <!-- nixter1029 -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="Gameplay improvements"/> <!-- Ruediger_LP -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="12" max-overfill="16">Red</team>
+    <team id="blue-team" color="blue" max="12" max-overfill="16">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="diamond pickaxe" unbreakable="true"/>
+        <item slot="3" material="iron axe" unbreakable="true"/>
+        <item slot="4" material="wool" team-color="true" amount="64"/>
+        <item slot="5" material="wood" amount="64" damage="2"/>
+        <item slot="6" material="wood" amount="64" damage="2"/>
+        <item slot="7" material="vine" amount="32"/>
+        <item slot="8" material="diamond"/>
+        <item slot="28" material="arrow" amount="32"/>
+        <item slot="29" material="shears" unbreakable="true"/>
+        <item slot="30" material="stick" enchantment="knockback"/>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resitance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit> 
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet material="leather helmet" unbreakable="true" color="CD0000"/>
+        <chestplate material="leather chestplate" unbreakable="true" color="CD0000"/>
+        <leggings material="leather leggings" unbreakable="true" color="CD0000"/>
+        <boots material="leather boots" unbreakable="true" color="CD0000"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet material="leather helmet" unbreakable="true" color="21618C"/>
+        <chestplate material="leather chestplate" unbreakable="true" color="21618C"/>
+        <leggings material="leather leggings" unbreakable="true" color="21618C"/>
+        <boots material="leather boots" unbreakable="true" color="21618C"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red-kit">
+        <region yaw="180">
+            <cuboid min="42,2,43" max="44,2,45"/>
+        </region>
+        <region>
+            <cuboid min="44,2,-49" max="42,2,-51"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit">
+        <region>
+            <cuboid min="-42,2,-51" max="-44,2,-49"/>
+        </region>
+        <region yaw="180">
+            <cuboid min="-44,2,43" max="-42,2,45"/>
+        </region>
+    </spawn>
+    <default>
+        <region>
+            <cuboid min="2,27,48" max="-2,27,52"/>
+        </region>
+    </default>
+</spawns>
+<destroyables material="obsidian">
+    <destroyable owner="red-team" region="purple-monument" name="Purple Monument"/>
+    <destroyable owner="red-team" region="orange-monument" name="Orange Monument"/>
+    <destroyable owner="blue-team" region="lime-monument" name="Lime Monument"/>
+    <destroyable owner="blue-team" region="cyan-monument" name="Cyan Monument"/>
+</destroyables>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
+<regions>
+    <block id="purple-monument">98,4,23</block>
+    <block id="orange-monument">98,4,-30</block>
+    <block id="lime-monument">-99,4,23</block>
+    <block id="cyan-monument">-99,4,-30</block>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <union id="red-spawn">
+                <rectangle id="red-spawn-a" min="39,36" max="48,50"/>
+                <rectangle id="red-spawn-b" min="39,-43" max="47,-55"/>
+            </union>
+            <union id="blue-spawn">
+                <rectangle id="blue-spawn-a" min="-39,-43" max="-48,-55"/>
+                <rectangle id="blue-spawn-b" min="-39,38" max="-48,50"/>
+            </union>
+        </union>
+    </negative>
+    <negative id="not-build-area">
+        <rectangle id="build-area" min="-106,-55" max="105,48"/>
+    </negative>
+    <!--  applicators  -->
+    <apply block="never" region="not-build-area" message="You may not edit the void!"/>
+    <apply block="never" region="spawns" message="You may not edit spawn!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply kit="reset-resitance-kit" region="not-spawns"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>shears</item>
+    <item>wood:2</item>
+    <item>wool</item>
+    <item>vine</item>
+    <item>stick</item>
+    <item>arrow</item>
+</itemkeep>
+<itemremove>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>leather boots</item>
+    <item>leather leggings</item>
+</itemremove>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+            <material>iron sword</material>
+            <material>iron spade</material>
+            <material>diamond helmet</material>
+            <material>diamond chestplate</material>
+            <material>diamond leggings</material>
+            <material>diamond boots</material>
+            <material>diamond sword</material>
+            <material>diamond axe</material>
+            <material>diamond spade</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<maxbuildheight>38</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item material="arrow" amount="10"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>

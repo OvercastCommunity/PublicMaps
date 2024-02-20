@@ -1,0 +1,92 @@
+<map proto="1.4.2">
+<name>BlockRAGE FFA</name>
+<phase>development</phase>
+<version>1.0.3</version>
+<objective>Get the most kills in 5 minutes!</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+</authors>
+<contributors>
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+    <contributor uuid="fe19a0fe-5961-46e1-b98e-b2b6658f8ba2"/> <!-- YukonAppleGeek -->
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+    <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="gameplay improvements"/> <!-- Xerocoles -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="gameplay improvements"/> <!-- Ruediger_LP -->
+</contributors>
+<players max="40"/>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" material="bow" unbreakable="true" enchantment="arrow damage:10;damage all:10" lore="`aAll-purpose instant killing device"/>
+        <item slot="1" material="arrow" amount="2"/>
+        <effect duration="1s" amplifier="100">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+        <helmet material="leather helmet" color="DECF2A"/>
+        <chestplate material="leather chestplate" color="DECF2A"/>
+        <leggings material="leather leggings" color="DECF2A"/>
+        <boots material="leather boots" color="DECF2A"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn safe="true" kit="spawn-kit">
+        <region>
+            <cylinder base="0.5,0,0.5" radius="100" height="100"/>
+        </region>
+    </spawn>
+    <default yaw="56">
+        <region>
+            <point>-48.5,27.5,0.5</point>
+        </region>
+    </default>
+</spawns>
+<rage/>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<filters>
+    <material id="only-tnt">tnt</material>
+</filters>
+<regions>
+    <apply block="only-tnt" message="You may not edit the map!"/>
+</regions>
+<itemkeep>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemkeep>
+<item-mods>
+    <rule>
+        <match>
+            <material>tnt</material>
+        </match>
+        <modify show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </modify>
+    </rule>
+</item-mods>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>

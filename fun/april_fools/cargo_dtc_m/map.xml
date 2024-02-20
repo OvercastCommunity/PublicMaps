@@ -1,0 +1,201 @@
+<map proto="1.4.2">
+<name>Cargo DTC/M</name>
+<phase>development</phase>
+<version>1.0.2</version>
+<objective>Destroy the enemy's monuments and leak their core!</objective>
+<gamemode>dtc</gamemode>
+<gamemode>dtm</gamemode>
+<authors>
+    <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
+    <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->
+    <author uuid="f64546c7-917b-4caf-a0c9-caa120156a84"/> <!-- BrunoTheMiner -->
+    <author uuid="e82504ac-8c95-4895-9dca-222f924d697c"/> <!-- TiggyLi -->
+    <author uuid="5c934a59-fd50-48aa-99ff-c87e0468f639"/> <!-- iamramsey -->
+    <author uuid="41373965-b60a-40d5-8fad-72e61d951ea2"/> <!-- Rokosnocone -->
+</authors>
+<contributors>
+    <contributor uuid="e443c346-5250-418c-ae6e-176de3180301" contribution="Made things and stuff"/> <!-- asdjke -->
+    <contributor uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9" contribution="Minor things and stuff"/> <!-- BrettOgden -->
+    <contributor uuid="7edc5091-2aab-4bb8-b841-1c0727fc1c30" contribution="Map feedback"/> <!-- omittingbread -->
+    <contributor uuid="3d4c3318-8487-4c9f-b137-df73fa930ea9" contribution="Minor aesthetics"/> <!-- ttaylorr -->
+    <contributor uuid="91295196-9cd2-4963-b7ec-afd1a110edbe" contribution="Feedback and zen"/> <!-- PandaBattalion -->
+    <contributor uuid="a02e9415-05bc-40f8-be9f-7b1b521b6a0e" contribution="Feedback and design"/> <!-- CacklingPanda -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="gameplay improvements"/> <!-- Ruediger_LP -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="16">Red</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="diamond pickaxe" unbreakable="true"/>
+        <item slot="3" material="iron axe" enchantment="dig speed" unbreakable="true"/>
+        <item slot="4" material="wood" amount="48" damage="2"/>
+        <item slot="5" material="leaves" amount="16"/>
+        <item slot="6" material="ladder" amount="64"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="27" material="stick"/>
+        <item slot="28" material="arrow" amount="32"/>
+        <helmet locked="true" unbreakable="true">chainmail helmet</helmet>
+        <leggings locked="true" unbreakable="true">chainmail leggings</leggings>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resitance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit> 
+    <kit id="red-kit" parents="spawn-kit">
+        <chestplate material="leather chestplate" unbreakable="true" color="CD0000" enchantment="protection projectile:2"/>
+        <boots material="leather boots" unbreakable="true" color="CD0000" enchantment="protection fall"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <chestplate material="leather chestplate" unbreakable="true" color="21618C" enchantment="protection projectile:2"/>
+        <boots material="leather boots" unbreakable="true" color="21618C" enchantment="protection fall"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="blue-kit" yaw="-180">
+        <region>
+            <cylinder base="116,43.5,170" height="0" radius="1"/>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="red-kit">
+        <region>
+            <cylinder base="116,43.5,16" height="0" radius="1"/>
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <cylinder base="76,88,93" height="0" radius="3"/>
+        </region>
+    </default>
+</spawns>
+<cores material="obsidian" leak="8" name="Core" mode-changes="true">
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
+</cores>
+<destroyables material="obsidian" mode-changes="true">
+    <destroyable owner="red-team" region="purple-monument" name="Purple Monument"/>
+    <destroyable owner="red-team" region="cyan-monument" name="Cyan Monument"/>
+    <destroyable owner="blue-team" region="yellow-monument" name="Yellow Monument"/>
+    <destroyable owner="blue-team" region="orange-monument" name="Orange Monument"/>
+</destroyables>
+<modes>
+    <mode after="15m" material="gold block" name="`eGOLD BLOCK MODE"/>
+    <mode after="30m" material="packed ice" name="`bPACKED ICE MODE"/>
+</modes>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <not id="not-void">
+        <void/>
+    </not>
+    <all id="only-iron-world">
+        <material id="only-iron">iron block</material>
+        <cause>world</cause>
+    </all>
+    <material id="only-air">air</material>
+</filters>
+<regions>
+    <sphere id="blue-core" origin="116,56,135" radius="2.6"/>
+    <sphere id="red-core" origin="116,56,51" radius="2.6"/>
+    <union id="purple-monument">
+        <block>146,53,-2</block>
+        <block>146,51,-2</block>
+    </union>
+    <union id="cyan-monument">
+        <block>85,53,-2</block>
+        <block>85,51,-2</block>
+    </union>
+    <union id="yellow-monument">
+        <block>146,53,187</block>
+        <block>146,51,187</block>
+    </union>
+    <union id="orange-monument">
+        <block>85,53,187</block>
+        <block>85,51,187</block>
+    </union>
+    <union id="not-build-area">
+        <cuboid id="red-underside" min="-oo,-oo,-oo" max="oo,41,40"/>
+        <mirror id="blue-underside" region="red-underside" origin="116,44,93" normal="0,0,1"/>
+        <below y="37"/>
+    </union>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <rectangle id="red-spawn" min="113,32" max="119,11"/>
+            <rectangle id="blue-spawn" min="119,154" max="113,175"/>
+        </union>
+    </negative>
+    <union id="iron-regen">
+        <cuboid min="113,48,166" max="119,51,174"/> <!-- blue -->
+        <cuboid min="113,48,12" max="119,51,20"/> <!-- red -->
+    </union>
+    <!-- applicators -->
+    <apply block="never" region="not-build-area" message="You may not edit the void!"/>
+    <apply block-place="only-iron-world" block-break="only-iron" region="spawns" message="You may not edit spawn!"/>
+    <apply block="not-void" message="You may not edit the void!"/>
+    <apply kit="reset-resitance-kit" region="not-spawns"/>
+</regions>
+<renewables>
+    <renewable grow="true" particles="true" sound="true" avoid-players="3" region="iron-regen" renew-filter="only-iron" replace-filter="only-air"/>
+</renewables>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>leaves</item>
+    <item>ladder</item>
+    <item>wood</item>
+    <item>stick</item>
+</itemkeep>
+<itemremove>
+    <item>wood step</item>
+    <item>sapling</item>
+    <item>sign</item>
+    <item>chainmail leggings</item>
+    <item>chainmail helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>packed ice</item>
+</itemremove>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+            <material>iron sword</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<maxbuildheight>58</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item material="arrow" amount="16"/>
+        <item material="wood" amount="16" damage="2"/>
+        <item material="leaves" amount="8"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>

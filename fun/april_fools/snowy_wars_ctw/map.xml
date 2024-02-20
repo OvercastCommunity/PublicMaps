@@ -1,0 +1,186 @@
+<map proto="1.4.2">
+<name>Snowy Wars CTW</name>
+<phase>development</phase>
+<version>1.0.2</version>
+<objective>Steal the enemy's wool!</objective>
+<gamemode>ctw</gamemode>
+<authors>
+    <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
+</authors>
+<contributors>
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="gameplay improvements"/> <!-- Ruediger_LP -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="10">Red</team>
+    <team id="blue-team" color="blue" max="10">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true" enchantment="arrow infinite"/>
+        <item slot="2" material="diamond pickaxe" unbreakable="true" enchantment="dig speed"/>
+        <item slot="3" material="iron axe" unbreakable="true"/>
+        <item slot="4" material="wood" amount="64" damage="2"/>
+        <item slot="8" material="gold ingot"/>
+        <item slot="28" material="arrow"/>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resistance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit> 
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet material="leather helmet" unbreakable="true" color="CD0000"/>
+        <chestplate material="leather chestplate" unbreakable="true" color="CD0000" enchantment="protection environmental"/>
+        <leggings material="leather leggings" unbreakable="true" color="CD0000"/>
+        <boots material="leather boots" unbreakable="true" color="CD0000"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet material="leather helmet" unbreakable="true" color="21618C"/>
+        <chestplate material="leather chestplate" unbreakable="true" color="21618C" enchantment="protection environmental"/>
+        <leggings material="leather leggings" unbreakable="true" color="21618C"/>
+        <boots material="leather boots" unbreakable="true" color="21618C"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red-kit">
+        <region yaw="-45">
+            <cylinder base="-619.5,11,259.5" height="0" radius="2"/> <!-- west -->
+        </region>
+        <region yaw="45">
+            <cylinder base="-571.5,11,259.5" height="0" radius="2"/> <!-- east -->
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit">
+        <region yaw="-135">
+            <cylinder base="-619.5,11,349.5" height="0" radius="2"/> <!-- west -->
+        </region>
+        <region yaw="135">
+            <cylinder base="-571.5,11,349.5" height="0" radius="2"/> <!-- east -->
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <cuboid min="-544,13,302" max="-540,13,306"/>
+        </region>
+    </default>
+</spawns>
+<wools craftable="false">
+    <wool team="red-team" color="blue" monument="blue-wool" location="0,0,0"/>
+    <wool team="blue-team" color="red" monument="red-wool" location="0,0,0"/>
+</wools>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <all id="red-woolroom-filter">
+        <team>blue-team</team>
+        <material>web</material>
+    </all>
+    <all id="blue-woolroom-filter">
+        <team>red-team</team>
+        <material>web</material>
+    </all>
+    <not id="red-woolroom-filter-use">
+        <all>
+            <team>red-team</team>
+            <material>chest</material>
+        </all>
+    </not>
+    <not id="blue-woolroom-filter-use">
+        <all>
+            <team>blue-team</team>
+            <material>chest</material>
+        </all>
+    </not>
+</filters>
+<regions>
+    <complement id="wool-monumnets">
+        <union>
+            <cuboid min="-597,10,270" max="-594,14,273" id="blue-wool-monument"/>
+            <cuboid min="-597,10,336" max="-594,14,339" id="red-wool-monument"/>
+        </union>
+        <union>
+            <block id="blue-wool">-596,12,271</block>
+            <block id="red-wool">-596,12,337</block>
+        </union>
+    </complement>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <cylinder base="-619.5,10,259.5" height="6" radius="5"/> <!-- west red -->
+            <cylinder base="-571.5,10,259.5" height="6" radius="5"/> <!-- east red -->
+            <cylinder base="-619.5,10,349.5" height="6" radius="5"/> <!-- west blue -->
+            <cylinder base="-571.5,10,349.5" height="6" radius="5"/> <!-- east blue -->
+        </union>
+    </negative>
+    <union id="woolrooms">
+        <rectangle id="blue-woolroom" min="-601,356" max="-590,367"/> <!-- blue defends -->
+        <rectangle id="red-woolroom" min="-601,242" max="-590,253"/> <!-- red defends -->
+    </union>
+    <cuboid id="obs-spawn" min="-535,10,313" max="-549,oo,295"/>
+    <negative id="not-playingfield">
+        <rectangle min="-635,232" max="-556,377" id="playingfield"/>
+    </negative>
+    <!-- applycators -->
+    <apply block="never" region="wool-monumnets" message="You may not edit the victory monument!"/> 
+    <apply block="never" region="spawns" message="You may not edit spawn!"/>
+    <apply block-break="blue-woolroom-filter" block-place="never" region="blue-woolroom" message="You may not edit the wool room!"/>
+    <apply block-break="red-woolroom-filter" block-place="never" region="red-woolroom" message="You may not edit the wool room!"/>
+    <apply block="never" region="not-playingfield" message="You may not edit the void!"/>
+    <apply enter="never" region="obs-spawn" message="You may not enter the observer's spawn!"/>
+    <apply enter="only-blue" region="red-woolroom" message="You may not enter your own wool room!"/>
+    <apply enter="only-red" region="blue-woolroom" message="You may not enter your own wool room!"/>
+    <apply use="blue-woolroom-filter-use" region="blue-woolroom" message="You may not steal from the wool room!"/>
+    <apply use="red-woolroom-filter-use" region="red-woolroom" message="You may not steal from the wool room!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>string</item>
+    <item>leather chestplate</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>wood</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemkeep>
+<item-mods>
+    <rule>
+        <match>
+            <material>gold helmet</material>
+            <material>gold leggings</material>
+            <material>gold boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>gold chestplate</material>
+        </match>
+        <modify unbreakable="true" enchantment="protection environmental"/>
+    </rule>
+</item-mods>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>20</maxbuildheight>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item material="arrow" amount="12"/>
+        <item material="wood" damage="2" amount="12"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>

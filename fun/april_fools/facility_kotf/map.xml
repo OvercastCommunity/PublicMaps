@@ -1,0 +1,156 @@
+<map proto="1.4.2">
+<name>Facility KotF</name>
+<phase>development</phase>
+<version>1.0.2</version>
+<objective>Score 300 Points to win!</objective>
+<gamemode>kotf</gamemode>
+<authors>
+    <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design and XML Code"/> <!-- Mikeg542 -->
+</authors>
+<contributors>
+    <contributor uuid="8807d876-40f9-470f-9fcf-3eb3d146b983" contribution="Feedback"/> <!-- Skippy_Irongut -->
+    <contributor uuid="e1e9e6af-f826-44ce-b1e2-5efb4e5c5d9e" contribution="Feedback"/> <!-- Zemphon -->
+    <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Feedback"/> <!-- Tywnis -->
+    <contributor uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Feedback"/> <!-- xXFracXx -->
+	<contributor uuid="06d2c58b-0306-46e8-8853-11c540c03bb7" contribution="Support"/> <!-- PikminWarrior -->
+    <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Gameplay improvements"/> <!-- Xerocoles -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="Gameplay improvements"/> <!-- Ruediger_LP -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="16">Red</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="arrow" amount="12"/>
+        <item slot="8" material="golden apple"/>
+        <leggings material="chainmail leggings" unbreakable="true" locked="true"/>
+        <game-mode>adventure</game-mode>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resistance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit>
+    <kit id="blue-kit" parent="spawn-kit">
+        <helmet material="leather helmet" color="334CB2" unbreakable="true" locked="true"/>
+        <chestplate material="leather chestplate" color="334CB2" unbreakable="true" locked="true"/>
+        <boots material="leather boots" color="334CB2" unbreakable="true" locked="true"/>
+    </kit>
+    <kit id="red-kit" parent="spawn-kit">
+        <helmet material="leather helmet" color="993333" unbreakable="true" locked="true"/>
+        <chestplate material="leather chestplate" color="993333" unbreakable="true" locked="true"/>
+        <boots material="leather boots" color="993333" unbreakable="true" locked="true"/>
+    </kit>
+    <kit id="pickup-kit" force="true">
+        <effect duration="oo" amplifier="-3">health boost</effect>
+        <effect duration="3" amplifier="2">absorption</effect>
+    </kit>
+    <kit id="drop-kit" force="true">
+        <effect duration="1" amplifier="0">health boost</effect>
+        <effect duration="1" amplifier="10">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red-kit" yaw="90" filter="respawn-filter">
+        <region>
+            <cylinder base="-101,4,41" radius="1" height="1"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit" yaw="-90" filter="respawn-filter">
+        <region>
+            <cylinder base="-113,4,157" radius="1" height="1"/>
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <cylinder base="-77,15,99" radius="2" height="1"/>
+        </region>
+    </default>
+</spawns>
+<respawn spectate="true" delay="3.5s" auto="true">
+    <message>
+        {translate:"death.respawn.confirmed.waiting.flagDropped"}
+    </message>
+</respawn>
+<flags>
+    <flag id="flag" name="Flag" color="purple" points-rate="1" shared="true" pickup-kit="pickup-kit" drop-kit="drop-kit">
+        <post return-time="0s" respawn-time="15s">
+            <block>-78,10,99</block>
+            <block>-107,10,99</block> <!-- mid -->
+            <block>-136,10,99</block>
+        </post>
+    </flag>
+</flags>
+<score>
+    <kills>0</kills>
+    <limit>300</limit>
+</score>
+<time>12m</time>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <not id="respawn-filter">
+        <same-team>
+            <carrying-flag>flag</carrying-flag>
+        </same-team>
+    </not>
+    <all id="blue-spawn-enter-filter">
+        <team>blue-team</team>
+        <not>
+            <carrying-flag>flag</carrying-flag>
+        </not>
+    </all>
+    <all id="red-spawn-enter-filter">
+        <team>red-team</team>
+        <not>
+            <carrying-flag>flag</carrying-flag>
+        </not>
+    </all>
+</filters>
+<regions>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <rectangle id="blue-spawn" min="-117,147" max="-96,162"/>
+            <rectangle id="red-spawn" min="-117,37" max="-97,52"/>
+        </union>
+    </negative>
+    <!-- applicators -->
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+    <apply enter="blue-spawn-enter-filter" region="blue-spawn" message="You may not enter spawn!"/>
+    <apply enter="red-spawn-enter-filter" region="red-spawn" message="You may not enter spawn!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+</regions>
+<itemremove>
+    <item>banner</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>glass bottle</item>
+</itemremove>
+<itemkeep>
+    <item>bow</item>
+    <item>stone sword</item>
+    <item>iron sword</item>
+    <item>diamond sword</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>blaze rod</item>
+    <item>potion</item>
+</itemkeep>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow" amount="6"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>

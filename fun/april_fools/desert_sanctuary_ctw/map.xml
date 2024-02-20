@@ -1,0 +1,140 @@
+<map proto="1.4.2">
+<name>Desert Sanctuary CTW</name>
+<phase>development</phase>
+<version>1.0.1</version>
+<objective>Capture both of the enemy's wools!</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>
+    <!--  thestrangeboy1  -->
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/>
+    <!--  Avaleer  -->
+</authors>
+<contributors>
+    <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="gameplay improvements"/>
+    <!-- Xerocoles -->
+</contributors>
+<teams>
+    <team color="blue" id="blue-team" max="20" max-overfill="24">Blue</team>
+    <team color="red" id="red-team" max="20" max-overfill="24">Red</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="40" damage="3" material="wood"/>
+        <item slot="5" amount="20" material="glass"/>
+        <item slot="6" amount="64" material="golden carrot"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" material="bucket"/>
+        <effect duration="4" amplifier="255">resistance</effect>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <boots unbreakable="true" enchantment="protection fall">gold boots</boots>
+        <health>20</health>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="AF002A" unbreakable="true">leather helmet</helmet>
+        <leggings color="AF002A" unbreakable="true">leather leggings</leggings>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="6E6EF9" unbreakable="true">leather helmet</helmet>
+        <leggings color="6E6EF9" unbreakable="true">leather leggings</leggings>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red-kit" yaw="180">
+        <region>
+            <point>11.5,16,96.5</point>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit" yaw="0">
+        <region>
+            <point>11.5,16,-47.5</point>
+        </region>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <cylinder base="11.5,51,24.5" radius="2" height="0"/>
+        </region>
+    </default>
+</spawns>
+<filters>
+  <team id="only-blue">blue-team</team>
+  <team id="only-red">red-team</team>
+  <material id="only-cobweb">web</material>
+  <not id="no-void">
+      <void/>
+  </not>
+  <all id="reds-woolroom-filter">
+        <team>blue-team</team>
+        <material>web</material>
+    </all>
+    <all id="blues-woolroom-filter">
+        <team>red-team</team>
+        <material>web</material>
+    </all>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="-31,-33" max="54,-52"/>
+        <rectangle id="red-spawn" min="-31,82" max="54,101"/>
+    </union>
+    <union id="woolrooms">
+        <union id="blue-wrs">
+            <cuboid id="magenta-wr" min="-13,12,-33" max="-30,0,-46"/>
+            <cuboid id="cyan-wr" min="36,12,-33" max="53,0,-46"/>
+        </union>
+        <union id="red-wrs">
+            <cuboid id="orange-wr" min="36,12,82" max="53,0,95"/>
+            <cuboid id="yellow-wr" min="-13,12,82" max="-30,0,95"/>
+        </union>
+  </union>
+  <apply enter="only-blue" region="red-wrs" message="You may not enter your own wool rooms!"/>
+  <apply enter="only-red" region="blue-wrs" message="You may not enter your own wool rooms!"/>
+  <apply block="reds-woolroom-filter" region="red-wrs" message="You may not edit your own wool rooms!"/>
+  <apply block="blues-woolroom-filter" region="blue-wrs" message="You may not edit your own wool rooms!"/>
+  <apply block="never" region="spawns" message="You may not edit spawn!"/>
+  <apply block-place="no-void" region="everywhere" message="You may not edit the void!"/>
+</regions>
+<wools>
+  <wool team="blue-team" color="orange" craftable="false" location="42.5,8,87.5">
+    <monument><block>13.5,17.5,-48.5</block></monument>
+  </wool>
+  <wool team="blue-team" color="yellow" craftable="false" location="-19.5,8,87.5">
+    <monument><block>9.5,17.5,-48.5</block></monument>
+  </wool>
+  <wool team="red-team" color="magenta" craftable="false" location="-19.5,8,-38.5">
+    <monument><block>9.5,17.5,97.5</block></monument>
+  </wool>
+  <wool team="red-team" color="cyan" craftable="false" location="42.5,8,-38.5">
+    <monument><block>13.5,17.5,97.5</block></monument>
+  </wool>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>gold boots</item>
+    <item>chainmail chestplate</item>
+    <item>golden carrot</item>
+    <item>bucket</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>string</item>
+    <item>seeds</item>
+    <item>apple</item>
+    <item>sapling</item>
+</itemremove>
+<killreward>
+    <item amount="16">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<maxbuildheight>25</maxbuildheight>
+</map>

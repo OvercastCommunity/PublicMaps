@@ -1,0 +1,154 @@
+<map proto="1.4.2">
+<name>Hot Dam: Mini KotH</name>
+<phase>development</phase>
+<version>1.0.2</version>
+<objective>Score 750 points to win!</objective>
+<gamemode>koth</gamemode>
+<authors>
+    <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Spawn"/> <!-- Plastix -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="Gameplay improvements"/> <!-- Ruediger_LP -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="10">Red</team>
+    <team id="blue-team" color="blue" max="10">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="diamond pickaxe" unbreakable="true"/>
+        <item slot="3" material="iron axe" unbreakable="true"/>
+        <item slot="4" material="wood" amount="64" damage="2"/>
+        <item slot="5" material="wood" amount="64" damage="2"/>
+        <item slot="6" material="glass" amount="16"/>
+        <item slot="7" material="ladder" amount="16"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow" amount="64"/>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resistance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+        <effect duration="1.5s">damage resistance</effect>
+        <effect duration="1.5s">speed</effect>
+    </kit> 
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet material="leather helmet" unbreakable="true" color="CD0000"/>
+        <chestplate material="leather chestplate" unbreakable="true" color="CD0000" enchantment="protection projectile:2"/>
+        <leggings material="leather leggings" unbreakable="true" color="CD0000"/>
+        <boots material="leather boots" unbreakable="true" color="CD0000"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet material="leather helmet" unbreakable="true" color="21618C"/>
+        <chestplate material="leather chestplate" unbreakable="true" color="21618C" enchantment="protection projectile:2"/>
+        <leggings material="leather leggings" unbreakable="true" color="21618C"/>
+        <boots material="leather boots" unbreakable="true" color="21618C"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="blue-kit" yaw="90">
+        <region>
+            <cylinder base="-89,38,127" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="red-kit" yaw="180">
+        <region>
+            <cylinder base="-55,38,93" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <default yaw="-45">
+        <region>
+            <cylinder base="-51,19,131" radius="3" height="0"/>
+        </region>
+    </default>
+</spawns>
+<control-points incremental="true" show-progress="true" required="false" neutral-state="true" points="1">
+    <control-point name="Blue" capture-time="3s" capture="blue-hill" progress="blue-hill" initial-owner="blue-team"/>
+    <control-point name="Middle" capture-time="5s" capture="mid-hill" progress="mid-hill"/>
+    <control-point name="Red" capture-time="3s" capture="red-hill" progress="red-hill" initial-owner="red-team"/>
+</control-points>
+<score>
+    <kills>0</kills>
+    <limit>750</limit>
+</score>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <not id="not-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <union id="hills">
+        <cylinder id="blue-hill" base="-114.5,34,109.5" radius="5.01" height="5"/>
+        <cylinder id="mid-hill" base="-104.5,37,77.5" radius="5.01" height="5"/>
+        <cylinder id="red-hill" base="-72.5,34,67.5" radius="5.01" height="5"/>
+    </union>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <union id="blue-spawn">
+                <cuboid id="blue-spawn-path" min="-85,37,124" max="-102,oo,134"/>
+                <cylinder id="blue-circle" base="-89,37,127" radius="4" height="oo"/>
+            </union>
+            <union id="red-spawn">
+                <cuboid id="red-spawn-path" min="-58,37,97" max="-48,oo,80"/>
+                <cylinder id="red-circle" base="-55,37,93" radius="4" height="oo"/>
+            </union>
+        </union>
+    </negative>
+    <!-- applicators -->
+    <apply block="never" region="hills" message="You may not edit the hill!"/>
+    <apply block="never" region="spawns" message="You may not edit spawn!"/>
+    <apply block="not-void" region="everywhere" message="You may not edit the void!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>ladder</item>
+    <item>golden apple</item>
+</itemkeep>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<maxbuildheight>60</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>

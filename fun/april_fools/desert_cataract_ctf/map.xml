@@ -1,0 +1,143 @@
+<map proto="1.4.2">
+<name>Desert Cataract CTF</name>
+<phase>development</phase>
+<version>1.0.3</version>
+<gamemode>ctf</gamemode>
+<objective>Capture enemy team's flag 3 times!</objective>
+<authors>
+    <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
+    <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->
+</authors>
+<contributors>
+    <contributor uuid="cc3a70bf-2702-4bf8-81b7-4b19a748e0a2"/> <!-- Ben_The_Conquer -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="gameplay improvements"/> <!-- Ruediger_LP -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="16" max-overfill="22">Blue</team>
+    <team id="red-team" color="dark red" max="16" max-overfill="22">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true" enchantment="arrow infinite"/>
+        <item slot="2" material="diamond pickaxe" unbreakable="true" enchantment="dig speed"/>
+        <item slot="3" material="stone axe" unbreakable="true" enchantment="dig speed:2"/>
+        <item slot="4" material="sandstone" amount="64"/>
+        <item slot="5" material="wood" amount="64" damage="2"/>
+        <item slot="6" material="wood" amount="64" damage="2"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <leggings material="chainmail leggings" unbreakable="true" locked="true"/>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resistance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit> 
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet material="leather helmet" unbreakable="true" color="CD0000" locked="true"/>
+        <chestplate material="leather chestplate" unbreakable="true" color="CD0000" enchantment="protection environmental" locked="true"/>
+        <boots material="leather boots" unbreakable="true" color="CD0000" locked="true"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet material="leather helmet" unbreakable="true" color="21618C" locked="true"/>
+        <chestplate material="leather chestplate" unbreakable="true" color="21618C" enchantment="protection environmental" locked="true"/>
+        <boots material="leather boots" unbreakable="true" color="21618C" locked="true"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="blue-kit" yaw="-90">
+        <region>
+            <cylinder base="-102.5,9,0.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="red-kit" yaw="90">
+        <region>
+            <cylinder base="103.5,9,0.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <cylinder base="0.5,39,1.5" radius="2" height="0"/>
+        </region>
+    </default>
+</spawns>
+<flags>
+    <!-- red flag -->
+    <flag id="red-flag" name="Red Flag" color="red" post="red-flag-post"/>
+    <post id="red-flag-post" pickup-filter="only-red">-34,12,-1</post>
+    <net post="red-flag-post" points="1" region="red-net" capture-filter="only-red"/>
+    <!-- blue flag -->
+    <flag id="blue-flag" name="Blue Flag" color="blue" post="blue-flag-post"/>
+    <post id="blue-flag-post" pickup-filter="only-blue">34,12,-1</post>
+    <net post="blue-flag-post" points="1" region="blue-net" capture-filter="only-blue"/>
+</flags>
+<score>
+    <kills>0</kills>
+    <limit>3</limit>
+</score>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
+<regions>
+    <cuboid min="-104,8,-2" max="-101,11,1" id="blue-net"/>
+    <cuboid min="102,8,-2" max="105,11,1" id="red-net"/>
+    <union id="flag-spawns">
+        <rectangle min="33,-2" max="36,1" id="blue-flag-spawn"/>
+        <rectangle min="-35,-2" max="-32,1" id="red-flag-spawn"/>
+    </union>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <cuboid id="blue-spawn" min="-94,7,-4" max="-98,100,3"/>
+            <cuboid id="red-spawn" min="95,7,3" max="99,100,-4"/>
+        </union>
+    </negative>
+    <negative id="not-build-area">
+        <rectangle min="88,51" max="-86,-52"/>
+    </negative>
+    <!-- applicators -->
+    <apply block="never" region="flag-spawns" message="You may not edit the flag spawn!"/>
+    <apply block="never" region="spawns" message="You may not edit spawn!"/>
+    <apply block="never" region="not-build-area" message="You may not edit outside the playingfield!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>stone axe</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>wood:2</item>
+    <item>sandstone</item>
+    <item>golden apple</item>
+</itemkeep>
+<itemremove>
+    <item>banner</item>
+</itemremove>
+<maxbuildheight>28</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>
