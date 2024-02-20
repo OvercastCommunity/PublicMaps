@@ -1,0 +1,528 @@
+<map proto="1.4.2">
+<name>Golden Drought Colourado</name>
+<phase>development</phase>
+<version>1.0.2</version>
+<objective>Capture all 4 wools!</objective>
+<gamemode>ctw</gamemode>
+<created>2022-04-01</created>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<contributors>
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Beautificationalist and consultant"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="7e424329-5f61-4f8e-9b85-eaad59ae2a50" contribution="Mindless slave"/> <!-- magnussvoge -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="Gameplay improvements"/> <!-- Ruediger_LP -->
+    <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Gameplay improvements"/> <!-- Tywnis -->
+    <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Gameplay improvements"/> <!-- rockymine -->
+</contributors>
+<teams>
+    <team id="lime-team" color="green" max="20">Lime</team>
+    <team id="cyan-team" color="dark aqua" max="20">Cyan</team>
+    <team id="orange-team" color="gold" max="20">Orange</team>
+    <team id="magenta-team" color="light purple" max="20">Magenta</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" material="gold axe"/>
+        <item slot="4" amount="32" material="sandstone"/>
+        <item slot="5" amount="32" damage="2" material="wood"/>
+        <item slot="6" amount="32" material="ladder"/>
+        <item slot="7" material="bucket"/>
+        <item slot="8" material="golden apple"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resistance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="lime-team" kit="spawn-kit" region="lime-spawn-point"/>
+    <spawn team="cyan-team" kit="spawn-kit" yaw="-90" region="cyan-spawn-point"/>
+    <spawn team="orange-team" kit="spawn-kit" yaw="180" region="orange-spawn-point"/>
+    <spawn team="magenta-team" kit="spawn-kit" yaw="90" region="magenta-spawn-point"/>
+    <default yaw="45" region="obs-spawn-point"/>
+</spawns>
+<wools craftable="false">
+    <wool team="lime-team" color="white" monument="lime-team-white-wool" location="0.5,0,0.5"/>
+    <wool team="lime-team" color="orange" monument="lime-team-orange-wool" location="0.5,0,0.5"/>
+    <wool team="lime-team" color="magenta" monument="lime-team-magenta-wool" location="0.5,0,0.5"/>
+    <wool team="lime-team" color="light blue" monument="lime-team-light-blue-wool" location="0.5,0,0.5"/>
+    <wool team="cyan-team" color="yellow" monument="cyan-team-yellow-wool" location="0.5,0,0.5"/>
+    <wool team="cyan-team" color="lime" monument="cyan-team-lime-wool" location="0.5,0,0.5"/>
+    <wool team="cyan-team" color="pink" monument="cyan-team-pink-wool" location="0.5,0,0.5"/>
+    <wool team="cyan-team" color="gray" monument="cyan-team-gray-wool" location="0.5,0,0.5"/>
+    <wool team="orange-team" color="silver" monument="orange-team-silver-wool" location="0.5,0,0.5"/>
+    <wool team="orange-team" color="cyan" monument="orange-team-cyan-wool" location="0.5,0,0.5"/>
+    <wool team="orange-team" color="purple" monument="orange-team-purple-wool" location="0.5,0,0.5"/>
+    <wool team="orange-team" color="blue" monument="orange-team-blue-wool" location="0.5,0,0.5"/>
+    <wool team="magenta-team" color="brown" monument="magenta-team-brown-wool" location="0.5,0,0.5"/>
+    <wool team="magenta-team" color="green" monument="magenta-team-green-wool" location="0.5,0,0.5"/>
+    <wool team="magenta-team" color="red" monument="magenta-team-red-wool" location="0.5,0,0.5"/>
+    <wool team="magenta-team" color="black" monument="magenta-team-black-wool" location="0.5,0,0.5"/>
+</wools>
+<filters>
+    <team id="only-lime">lime-team</team>
+    <team id="only-cyan">cyan-team</team>
+    <team id="only-orange">orange-team</team>
+    <team id="only-magenta">magenta-team</team>
+    <not id="not-void">
+        <void/>
+    </not>
+    <any id="wool-sping-filter">
+        <material>wool</material>
+        <material>bedrock</material>
+    </any>
+    <any id="renew-filter">
+        <material>wool:0</material>
+        <material>wool:1</material>
+        <material>wool:2</material>
+        <material>wool:3</material>
+        <material>wool:4</material>
+        <material>wool:5</material>
+        <material>wool:6</material>
+        <material>wool:7</material>
+        <material>wool:8</material>
+        <material>wool:9</material>
+        <material>wool:10</material>
+        <material>wool:11</material>
+        <material>wool:12</material>
+        <material>wool:13</material>
+        <material>wool:14</material>
+        <material>wool:15</material>
+    </any>
+    <any id="replace-filter">
+        <material>bedrock</material>
+        <material id="only-air">air</material>
+    </any>
+    <deny id="deny-redstone">
+        <material>redstone wire</material>
+    </deny>
+</filters>
+<regions>
+    <cylinder id="lime-spawn-point" base="-103.5,17,-78.5" radius="1" height="0"/>
+    <cylinder id="cyan-spawn-point" base="-78.5,17,-103.5" radius="1" height="0"/>
+    <cylinder id="orange-spawn-point" base="104.5,17,79.5" radius="1" height="0"/>
+    <cylinder id="magenta-spawn-point" base="79.5,17,104.5" radius="1" height="0"/>
+    <cylinder id="obs-spawn-point" base="47.5,13,-46.5" radius="1" height="0"/>
+    <block id="lime-team-white-wool">-101,18,-77</block>
+    <block id="lime-team-orange-wool">-102,18,-75</block>
+    <block id="lime-team-magenta-wool">-106,18,-75</block>
+    <block id="lime-team-light-blue-wool">-107,18,-77</block>
+    <block id="cyan-team-yellow-wool">-77,18,-107</block>
+    <block id="cyan-team-lime-wool">-75,18,-106</block>
+    <block id="cyan-team-pink-wool">-75,18,-102</block>
+    <block id="cyan-team-gray-wool">-77,18,-101</block>
+    <block id="orange-team-silver-wool">101,18,77</block>
+    <block id="orange-team-cyan-wool">102,18,75</block>
+    <block id="orange-team-purple-wool">106,18,75</block>
+    <block id="orange-team-blue-wool">107,18,77</block>
+    <block id="magenta-team-brown-wool">77,18,107</block>
+    <block id="magenta-team-green-wool">75,18,106</block>
+    <block id="magenta-team-red-wool">75,18,102</block>
+    <block id="magenta-team-black-wool">77,18,101</block>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <rectangle id="lime-spawn" min="-111,-86" max="-96,-71"/>
+            <rectangle id="cyan-spawn" min="-86,-111" max="-71,-96"/>
+            <rectangle id="orange-spawn" min="97,72" max="112,87"/>
+            <rectangle id="magenta-spawn" min="72,97" max="87,112"/>
+        </union>
+    </negative>
+    <negative id="not-build-area">
+        <union id="build-area">
+            <rectangle min="-37,-37" max="38,38"/> <!-- mid -->
+        </union>
+    </negative>
+    <negative id="not-wool-regen">
+        <union id="wool-regen">
+            <rectangle min="26,-28" max="29,-25"/>
+            <rectangle min="8,-10" max="11,-7"/>
+            <rectangle min="-10,8" max="-7,11"/>
+            <rectangle min="-28,26" max="-25,29"/>
+        </union>
+    </negative>
+    <!-- applicators -->
+    <apply enter="only-lime" region="lime-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-cyan" region="cyan-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-orange" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-magenta" region="magenta-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply block="wool-sping-filter" region="wool-regen" message="You may not edit the wool spring!"/>
+    <apply block="never" region="spawns" message="You may not edit spawn!"/>
+    <apply block="not-void" region="not-build-area" message="You may not edit the void!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+    <apply block-physics="deny-redstone" region="spawns"/>
+</regions>
+<renewables>
+    <renewable interval="30s" region="wool-regen" renew-filter="renew-filter" replace-filter="replace-filter" shuffle-filter="renew-filter" avoid-players="0"/>
+    <renewable interval="40s" region="not-wool-regen" renew-filter="only-air" replace-filter="renew-filter" avoid-players="0"/>
+</renewables>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>gold axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>gold axe</item>
+    <item>arrow</item>
+    <item>sandstone</item>
+    <item>wood</item>
+    <item>ladder</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>golden apple</item>
+</itemkeep>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<crafting>
+    <disable>iron sword</disable>
+    <disable>iron axe</disable>
+    <disable>iron spade</disable>
+    <disable>shears</disable>
+    <!-- bulkcrafting -->
+    <shaped override="false">
+        <result material="iron helmet" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron chestplate" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>III</row>
+            <row>III</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="iron leggings" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="bucket" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>.I.</row>
+        </shape>
+        <ingredient symbol="I">iron block</ingredient>
+    </shaped>
+</crafting>
+<block-drops>
+    <rule wrong-tool="false">
+        <filter>
+            <material>sandstone</material>
+        </filter>
+        <drops>
+            <item chance="0" material="sandstone"/>
+        </drops>
+    </rule>
+    <rule wrong-tool="false">
+        <filter>
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <rule wrong-tool="false">
+        <filter>
+            <material>ladder</material>
+        </filter>
+        <drops>
+            <item chance="0" material="ladder"/>
+        </drops>
+    </rule>
+    <!-- wool in wool regen region -->
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:0</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="0"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:1</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="1"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:2</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="2"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:3</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="3"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:4</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="4"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:5</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="5"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:6</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="6"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:7</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="7"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:8</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="8"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:9</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="9"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:10</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="10"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:11</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="11"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:12</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="12"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:13</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="13"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:14</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="14"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <rule wrong-tool="false" region="wool-regen">
+        <filter>
+            <material>wool:15</material>
+        </filter>
+        <drops>
+            <item material="wool" damage="15"/>
+        </drops>
+        <replacement>bedrock</replacement>
+    </rule>
+    <!-- wool safty obstructor -->
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:0</material>
+        </filter>
+        <replacement>wool:1</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:1</material>
+        </filter>
+        <replacement>wool:2</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:2</material>
+        </filter>
+        <replacement>wool:3</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:3</material>
+        </filter>
+        <replacement>wool:4</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:4</material>
+        </filter>
+        <replacement>wool:5</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:5</material>
+        </filter>
+        <replacement>wool:6</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:6</material>
+        </filter>
+        <replacement>wool:7</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:7</material>
+        </filter>
+        <replacement>wool:8</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:8</material>
+        </filter>
+        <replacement>wool:9</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:9</material>
+        </filter>
+        <replacement>wool:10</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:10</material>
+        </filter>
+        <replacement>wool:11</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:11</material>
+        </filter>
+        <replacement>wool:12</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:12</material>
+        </filter>
+        <replacement>wool:13</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:13</material>
+        </filter>
+        <replacement>wool:14</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:14</material>
+        </filter>
+        <replacement>wool:15</replacement>
+    </rule>
+    <rule wrong-tool="false" region="not-wool-regen">
+        <filter>
+            <material>wool:15</material>
+        </filter>
+        <replacement>wool:0</replacement>
+    </rule>
+</block-drops>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>35</maxbuildheight>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="sandstone"/>
+        <item amount="8" damage="2" material="wood"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>
