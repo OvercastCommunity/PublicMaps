@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Azure</name>
 <variant id="christmas" world="christmas">Christmas</variant>
-<version>1.3.0</version>
+<version>1.3.1</version>
 <objective>Destroy both enemy team monuments to win!</objective>
 <gamemode>dtm</gamemode>
 <if variant="default">
@@ -60,7 +60,7 @@
         </region>
     </spawn>
     <default>
-        <region angle="-187.5,35.5,247">
+        <region angle="-187.5,35.5,247.5">
             <cylinder base="-192.5,34,247.5" radius="2" height="0"/>
         </region>
     </default>
