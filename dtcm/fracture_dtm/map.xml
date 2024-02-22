@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Fracture DTM</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Destroy the other team's monument to win</objective>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
@@ -73,6 +73,9 @@
 </spawns>
 <respawn delay="2.5s" />
 <filters>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
     <not id="deny-void">
@@ -110,72 +113,73 @@
     <block id="default-spawn">41.5,38,86.5</block>
     <union id="spawn-protection-template">
         <!-- regions taken from blue's east side of spawn -->
-        <rectangle min="1,145" max="-9,174" />
-        <rectangle min="-9,153" max="-11,174" />
-        <rectangle min="-9,154" max="-15,174" />
-        <rectangle min="-15,158" max="-29,174" />
+        <rectangle min="1,145" max="-9,174"/>
+        <rectangle min="-9,153" max="-11,174"/>
+        <rectangle min="-9,154" max="-15,174"/>
+        <rectangle min="-15,158" max="-29,174"/>
     </union>
     <negative id="playing-area">
         <union id="spawn-extension">
             <!-- extensions of spawn regions so players cant
                  half step out of spawn to get playing kit -->
-            <cuboid id="blue-east-extend" min="-1,17,144" max="-8,24,145" />
+            <cuboid id="blue-east-extend" min="-1,17,144" max="-8,24,145"/>
             <mirror id="blue-west-extend" normal="-1,0,0" origin="-28.5,0,86">
-                <region id="blue-east-extend" />
+                <region id="blue-east-extend"/>
             </mirror>
             <mirror normal="0,0,-1" origin="-28.5,0,86.5">
-                <region id="blue-east-extend" />
+                <region id="blue-east-extend"/>
             </mirror>
             <mirror normal="0,0,-1" origin="-28.5,0,86.5">
-                <region id="blue-west-extend" />
+                <region id="blue-west-extend"/>
             </mirror>
             <union id="team-spawns">
                 <union id="blue-spawn">
-                    <region id="spawn-protection-template" />
+                    <region id="spawn-protection-template"/>
                     <mirror id="spawn-protection-template-mirror" normal="-1,0,0" origin="-28.5,0,86">
-                        <region id="spawn-protection-template" />
+                        <region id="spawn-protection-template"/>
                     </mirror>
                 </union>
                 <union id="red-spawn">
                     <mirror normal="0,0,-1" origin="-28.5,0,86.5">
-                        <region id="spawn-protection-template" />
+                        <region id="spawn-protection-template"/>
                     </mirror>
                     <mirror normal="0,0,-1" origin="-28.5,0,86.5">
-                        <region id="spawn-protection-template-mirror" />
+                        <region id="spawn-protection-template-mirror"/>
                     </mirror>
                 </union>
             </union>
         </union>
     </negative>
-    <sphere id="blue-monument-close" origin="-28.5,11,137.5" radius="8" />
-    <sphere id="red-monument-close"  origin="-28.5,11,35.5" radius="8" />
+    <sphere id="blue-monument-close" origin="-28.5,11,137.5" radius="8"/>
+    <sphere id="red-monument-close" origin="-28.5,11,35.5" radius="8"/>
     <complement id="blue-monument-far">
-        <sphere origin="-28.5,11,137.5" radius="24" />
+        <sphere origin="-28.5,11,137.5" radius="24"/>
         <!-- radius has to be 0.5 larger than the close sphere
              so that the stronger haste doesn't overrule this
              one being applied for far defenders -->
-        <sphere origin="-28.5,11,137.5" radius="8.3" />
+        <sphere origin="-28.5,11,137.5" radius="8.3"/>
     </complement>
     <complement id="red-monument-far">
-        <sphere origin="-28.5,11,35.5" radius="24" />
-        <sphere origin="-28.5,11,35.5" radius="8.3" />
+        <sphere origin="-28.5,11,35.5" radius="24"/>
+        <sphere origin="-28.5,11,35.5" radius="8.3"/>
     </complement>
     <union id="spawn-pools">
-        <cylinder id="blue-west-pool" base="-52.5,0,144.5" radius="4.5" height="20" />
-        <cylinder id="blue-east-pool" base="-4.5,0,144.5" radius="4.5" height="20" />
-        <cylinder id="red-west-pool" base="-52.5,0,28.5" radius="4.5" height="20" />
-        <cylinder id="red-east-pool" base="-4.5,0,28.5" radius="4.5" height="20" />
+        <cylinder id="blue-west-pool" base="-52.5,0,144.5" radius="4.5" height="20"/>
+        <cylinder id="blue-east-pool" base="-4.5,0,144.5" radius="4.5" height="20"/>
+        <cylinder id="red-west-pool" base="-52.5,0,28.5" radius="4.5" height="20"/>
+        <cylinder id="red-east-pool" base="-4.5,0,28.5" radius="4.5" height="20"/>
     </union>
-    <above id="world-limit" y="16" />
-    <below id="bottom-layer" y="2" />
-    <apply region="playing-area" kit="playing-kit" />
-    <apply region="blue-spawn" enter="only-blue" message="You may not enter the other team's spawn" />
-    <apply region="red-spawn" enter="only-red" message="You may not enter the other team's spawn" />
-    <apply region="world-limit" block-place="deny-player-cause" message="You may not place blocks that high" />
-    <apply region="spawn-pools" block="never" message="You may not interact with that material here" />
-    <apply region="team-spawns" block="only-gold" message="You may not interact with that material here" />
-    <apply region="bottom-layer" block-break="deny-island-bottom-layer" message="You may not interact with that material here" />
-    <apply block-place="deny-void" message="You may not interact with that material here" />
+    <above id="world-limit" y="16"/>
+    <below id="bottom-layer" y="2"/>
+    <apply use="deny-beacon"/>
+    <apply region="playing-area" kit="playing-kit"/>
+    <apply region="blue-spawn" enter="only-blue" message="You may not enter the other team's spawn"/>
+    <apply region="red-spawn" enter="only-red" message="You may not enter the other team's spawn"/>
+    <apply region="world-limit" block-place="deny-player-cause" message="You may not place blocks that high"/>
+    <apply region="spawn-pools" block="never" message="You may not interact with that material here"/>
+    <apply region="team-spawns" block="only-gold" message="You may not interact with that material here"/>
+    <apply region="bottom-layer" block-break="deny-island-bottom-layer" message="You may not interact with that material here"/>
+    <apply block-place="deny-void" message="You may not interact with that material here"/>
 </regions>
 <destroyables name="Monument" materials="obsidian" completion="100%" mode-changes="true">
     <destroyable owner="blue-team">

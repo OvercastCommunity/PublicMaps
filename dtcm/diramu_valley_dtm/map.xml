@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Diramu Valley DTM</name>
 <variant id="christmas" world="christmas" override="true">Danagal Valley DTM</variant>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <gamemode>dtm</gamemode>
 <objective>Destroy both of the opposing monuments to win!</objective>
 <created>2018-01-29</created>
@@ -63,6 +63,9 @@
     </default>
 </spawns>
 <filters>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
     <not id="no-void">
@@ -76,10 +79,11 @@
             <rectangle id="red-spawn" min="-75.5,277.5" max="-107.5,265.5"/>
         </union>
     </negative>
-        <apply block-place="no-void" message="You may not place blocks in this area" region="void"/>
-        <apply block="never" message="You may not edit spawn" region="spawns"/>
-        <apply enter="only-red" message="You may not enter the enemy spawn" region="red-spawn"/>
-        <apply enter="only-blue" message="You may not enter the enemy spawn" region="blue-spawn"/>
+    <apply use="deny-beacon"/>
+    <apply block-place="no-void" message="You may not place blocks in this area" region="void"/>
+    <apply block="never" message="You may not edit spawn" region="spawns"/>
+    <apply enter="only-red" message="You may not enter the enemy spawn" region="red-spawn"/>
+    <apply enter="only-blue" message="You may not enter the enemy spawn" region="blue-spawn"/>
 </regions>
 <destroyables name="Monument" mode-changes="true" materials="obsidian" repairable="false">
     <destroyable owner="red">

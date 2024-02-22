@@ -2,7 +2,7 @@
 <name>Snowy Wars</name>
 <variant id="christmas" world="christmas">Christmas</variant>
 <variant id="halloween" world="halloween">Halloween</variant>
-<version>1.6.2</version>
+<version>1.6.3</version>
 <objective>Break the enemy's monument!</objective>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
@@ -73,6 +73,9 @@
             <material>ice</material>
         </all>
     </deny>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
 </filters>
 <regions>
     <cuboid id="blue-monument" min="-596,10,361" max="-595,12,362"/>
@@ -99,6 +102,7 @@
         <cylinder id="tower-b" base="-569.5,20,304.5" radius="5" height="3"/>
     </complement>
     <apply kit="reset-resitance-kit" region="not-spawns"/>
+    <apply use="deny-beacon"/>
     <apply enter="never"  region="obs-spawn" message="You may not enter the observers spawn area!"/>
     <apply block="no-melting"/>
     <apply block="never" region="spawns" message="You may not break or place blocks in the spawn regions!"/>

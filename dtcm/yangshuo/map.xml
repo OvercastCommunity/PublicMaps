@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Yangshuo</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Destroy both of the enemy's monuments!</objective>
 <created>2013-08-21</created>
 <maxbuildheight>112</maxbuildheight>
@@ -61,6 +61,9 @@
 <filters>
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -76,6 +79,7 @@
         </negative>
         <region id="spawns"/>
     </complement>
+    <apply use="deny-beacon"/>
     <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
     <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
     <apply block="never" message="You may not modify the spawn areas!" region="spawns"/>

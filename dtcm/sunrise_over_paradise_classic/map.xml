@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Sunrise Over Paradise: Classic</name>
-<version>1.3.5</version>
+<version>1.3.6</version>
 <slug>sunrise_over_paradise</slug>
 <phase>development</phase>
 <objective>Break the obsidian from both of the enemy team's monuments.</objective>
@@ -47,9 +47,9 @@
 <filters>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
-    <not id="no-beacon">
+    <deny id="no-beacon">
         <material>beacon</material>
-    </not>
+    </deny>
 </filters>
 <regions>
     <cuboid id="blue-mon-a" min="-46,8,-52" max="-43,4,-49"/>

@@ -60,6 +60,9 @@
     <deny id="deny-enchant">
         <material>enchantment table</material>
     </deny>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -73,6 +76,7 @@
     <negative id="map-area-inverse">
         <rectangle id="map-area" min="-183,908" max="-390,942"/>
     </negative>
+    <apply use="deny-beacon"/>
     <apply region="spawns" block="never" message="Please don't break the spawns!"/>
     <apply region="stars" block="never" message="Please don't break the stars!"/>
     <apply block="deny-enchant" message="You may not destroy the enchantment table!"/>

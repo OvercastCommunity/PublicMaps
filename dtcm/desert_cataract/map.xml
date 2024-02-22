@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Cataract</name>
-<version>1.1.15</version>
+<version>1.1.16</version>
 <objective>Destroy enemy team's obsidian monument!</objective>
 <gamemode>dtm</gamemode>
 <authors>
@@ -65,6 +65,9 @@
     <mode after="30m" material="coal block" name="`8COAL MONUMENT MODE"/>
 </modes>
 <filters>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
 </filters>
@@ -77,6 +80,7 @@
         <rectangle min="88,51" max="-87,-52"/>
     </negative>
     <!-- applicators -->
+    <apply use="deny-beacon"/>
     <apply enter="only-blue" message="You may not enter the enemy team's spawn!" region="blue-spawn"/>
     <apply enter="only-red" message="You may not enter the enemy team's spawn!"  region="red-spawn"/>
     <apply block="never" message="You may not edit this part of the map!" region="not-build-area"/>
