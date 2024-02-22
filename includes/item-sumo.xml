@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.02.01-2 -->
+<!-- Version 2024.02.22-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -105,6 +105,36 @@
         <give kit="kill-streak-3-kit" filter="all(is-playing,kill_streak=3)"/>
         <give kit="kill-streak-4-kit" filter="all(is-playing,kill_streak=4)"/>
         <give kit="kill-streak-5-kit" filter="all(is-playing,kill_streak=5..)"/>
+    </unless>
+    <unless variant="lifesteal">
+        <kit id="obs-kit">
+            <book show-other="false">
+                <title>`e`lHow to Play</title>
+                <author>zzuf</author>
+                <pages>
+                    <page>
+                        `2» `lITEM SUMO
+                        `2» gamemode`0
+                        
+                        Be the player with the
+                        most points, or capture
+                        a hill by standing on
+                        it for `6${hill-capture-time}`0 to instantly
+                        win!
+                        
+                        Kill Streaks are
+                        displayed via helmet
+                        changes, and give
+                        more points!
+                    </page>
+                </pages>
+            </book>
+        </kit>
+        <give kit="obs-kit">
+            <filter>
+                <observing/>
+            </filter>
+        </give>
     </unless>
 </kits>
 <filters>
