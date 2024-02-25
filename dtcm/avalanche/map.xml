@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Avalanche</name>
-<version>1.2.10</version>
+<version>1.2.11</version>
 <objective>Leak lava from the enemy's mountaintop core.</objective>
 <authors>
     <author uuid="74664520-5d92-4661-b207-b0434b342e8b"/> <!-- way2hot4rs -->
@@ -9,44 +9,40 @@
 </authors>
 <!-- include src="tutorial.xml"/ -->
 <teams>
-    <team id="red" color="dark red" max="32">Red</team>
-    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
 </teams>
 <kits>
-    <kit id="default">
+    <kit id="spawn-kit">
         <item slot="0" unbreakable="true" material="diamond sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="28" material="arrow" amount="64"/>
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
-        <item slot="3" unbreakable="true" enchantment="efficiency:1" material="iron axe"/>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>dig speed</enchantment>
+        </item>
         <item slot="4" material="wood" damage="1" amount="64"/>
-        <item slot="31" material="wood" damage="1" amount="64"/>
-        <item slot="22" material="wood" damage="1" amount="64"/>
-        <item slot="13" material="wood" damage="1" amount="64"/>
-        <item slot="5" material="golden carrot" amount="64"/>
         <item slot="6" material="glass" amount="64"/>
         <item slot="7" material="ladder" amount="64"/>
         <item slot="8" material="water bucket"/>
-        <effect duration="8" amplifier="2">regeneration</effect>
-        <effect duration="5" amplifier="10">heal</effect>
-        <effect duration="8" amplifier="4">resistance</effect>
+        <item slot="13" material="wood" damage="1" amount="64"/>
+        <item slot="22" material="wood" damage="1" amount="64"/>
+        <item slot="28" material="arrow" amount="64"/>
+        <item slot="31" material="wood" damage="1" amount="64"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
     </kit>
-    <kit id="red-kit" parents="default">
-        <helmet material="leather helmet" unbreakable="true" color="993333"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="993333"/>
-    </kit>
-    <kit id="blue-kit" parents="default">
-        <helmet material="leather helmet" unbreakable="true" color="334CB2"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="334CB2"/>
+    <kit id="reset-resistance-kit" force="true">
+        <effect duration="0" amplifier="0">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
-    <spawn team="red" yaw="90" kit="red-kit">
+    <spawn team="red-team" yaw="90" kit="spawn-kit">
         <region>
             <cylinder base="208,12,-5" radius="4" height="0"/>
         </region>
     </spawn>
-    <spawn team="blue" yaw="270" kit="blue-kit">
+    <spawn team="blue-team" yaw="270" kit="spawn-kit">
         <region>
             <cylinder base="-6,12,-5" radius="4" height="0"/>
         </region>
@@ -57,68 +53,57 @@
         </region>
     </default>
 </spawns>
-<filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-    <material id="only-iron">iron block</material>
-    <not id="no-player">
-        <cause>player</cause>
-    </not>
-    <all id="only-mine">
-        <cause>mine</cause>
-        <filter id="only-iron"/>
-    </all>
-</filters>
-<regions>
-    <apply enter="only-red" region="red-spawn-room" message="You can not enter enemy's spawn area."/>
-    <apply enter="only-blue" region="blue-spawn-room" message="You can not enter enemy's spawn area."/>
-    <apply block="never" region="spawn-rooms" message="You may not build outside the playing field."/>
-    <apply block-break="only-mine" block-place="no-player" region="renew-region" message="Only iron blocks can be broken in this region."/>
-    <union id="spawn-rooms">
-        <region id="red-spawn-room"/>
-        <region id="blue-spawn-room"/>
-    </union>
-    <union id="renew-region">
-        <region id="red-tunnel-b"/>
-        <region id="blue-tunnel-b"/>
-    </union>
-    <union>
-        <negative id="not-playable">
-            <cuboid min="-45,0,-58" max="248,100,49"/>
-        </negative>
-        <region id="red-tunnel-a"/>
-        <region id="blue-tunnel-a"/>
-    </union>
-    <complement id="red-tunnel-b">
-        <cuboid id="red-tunnel-a" min="167,11,-1" max="197,16,-8"/>
-        <cylinder id="red-spawn-room" base="208,11,-5" radius="14" height="5"/>
-    </complement>
-    <complement id="blue-tunnel-b">
-        <cuboid id="blue-tunnel-a" min="36,11,-8" max="6,16,-1"/>
-        <cylinder id="blue-spawn-room" base="-6, 11, -5" radius="14" height="5"/>
-    </complement>
-</regions>
-<renewables>
-    <renewable renew-filter="only-iron" region="renew-region" grow="false" rate="10"/>
-</renewables>
 <cores material="obsidian" leak="3">
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="213,55,-1" max="206,62,-8"/>
         </region>
     </core>
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="-10,62,-8" max="-3,55,-1"/>
         </region>
     </core>
 </cores>
-<kill-rewards>
-    <kill-reward>
-        <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <all id="only-iron-cause-world">
+        <material id="only-iron">iron block</material>
+        <cause>world</cause>
+    </all>
+    <all id="only-iron-and-above-12">
+        <filter id="only-iron"/>
+        <above y="12"/>
+        <cause>player</cause>
+    </all>
+</filters>
+<regions>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <union id="red-spawn">
+                <cylinder base="208,10,-5" radius="14" height="7"/>
+                <cuboid min="169,10,-1" max="197,17,-8"/>
+            </union>
+            <union id="blue-spawn">
+                <cylinder base="-6,10,-5" radius="14" height="7"/>
+                <cuboid min="34,10,-8" max="6,17,-1"/>
+            </union>
+        </union>
+    </negative>
+    <negative id="not-build-region">
+        <rectangle min="-47,-60" max="250,51"/>
+    </negative>
+    <!-- applicator -->
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply block-place="only-iron-cause-world" block-break="only-iron-and-above-12" region="spawns" message="You may not edit spawn!"/>
+    <apply block="never" region="not-build-region" message="You may not edit the void!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+</regions>
+<renewables>
+    <renewable renew-filter="only-iron" region="spawns" grow="false" rate="10"/>
+</renewables>
 <toolrepair>
     <tool>diamond sword</tool>
     <tool>bow</tool>
@@ -139,7 +124,40 @@
     <item>water bucket</item>
     <item>golden apple</item>
 </itemremove>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+            <material>iron sword</material>
+            <material>iron pickaxe</material>
+            <material>iron axe</material>
+            <material>iron spade</material>
+            <material>shears</material>
+            <material>diamond helmet</material>
+            <material>diamond chestplate</material>
+            <material>diamond leggings</material>
+            <material>diamond boots</material>
+            <material>diamond sword</material>
+            <material>diamond pickaxe</material>
+            <material>diamond axe</material>
+            <material>diamond spade</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
 <maxbuildheight>70</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <!-- <tutorial>
     <stage title="Gamemode Information">
         <message>
