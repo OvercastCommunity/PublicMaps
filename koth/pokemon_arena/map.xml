@@ -1,8 +1,21 @@
 <map proto="1.4.2">
 <name>Pokemon Arena</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
+<variant id="5v5">5v5</variant>
+<unless variant="5v5">
+    <include id="conquest"/>
+    <constant id="team-size">16</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="respawn-timer">2s</constant>
+</unless>
+<if variant="5v5">
+    <include id="conquest-comp"/>
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <constant id="respawn-timer">4s</constant>
+</if>
+<constant id="damage-resistance">4s</constant>
 <objective>Be the first team to reach 750 points!</objective>
-<edition>standard</edition>
 <authors>
     <author uuid="74948888-fdb8-4446-9340-f7688c2435cc"/> <!-- Zero_Frosty -->
 </authors>
@@ -10,37 +23,21 @@
     <contributor uuid="b8add1ba-8e13-4673-bc73-4e3ed524d40e" contribution="XML"/> <!-- Blazy -->
 </contributors>
 <teams>
-    <team id="blue-team" color="blue" max="16">Blue</team>
-    <team id="red-team" color="dark red" max="16">Red</team>
+    <team id="blue-team" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red-team" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
-<kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="4s" amplifier="255">resistance</effect>
-    </kit>
-</kits>
 <spawns>
     <default>
         <region yaw="90">
             <point>-142.5,92,-163.5</point>
         </region>
     </default>
-    <spawn team="blue-team" kit="spawn-kit">
+    <spawn team="blue-team" kit="base-kit">
         <region yaw="-90">
             <point>-283.5,18,-163.5</point>
         </region>
     </spawn>
-    <spawn team="red-team" kit="spawn-kit">
+    <spawn team="red-team" kit="base-kit">
         <region yaw="90">
             <point>-197.5,18,-163.5</point>
         </region>
@@ -49,9 +46,9 @@
 <filters>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
-    <not id="no-use">
+    <deny id="deny-use">
         <material>trap door</material>
-    </not>
+    </deny>
 </filters>
 <regions>
     <union id="north">
@@ -66,7 +63,7 @@
         <cuboid min="-243,27,-139" max="-238,29,-132"/>
         <cuboid min="-244,27,-138" max="-237,29,-133"/>
     </union>
-    <apply block="never" use="no-use"/>
+    <apply block="never" use="deny-use"/>
 </regions>
 <king>
     <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
@@ -78,28 +75,4 @@
 <score>
     <limit>750</limit>
 </score>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
-<itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>arrow</item>
-    <item>golden apple</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
-<respawn auto="true"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
