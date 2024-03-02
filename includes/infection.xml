@@ -2,13 +2,14 @@
 <!-- Infection gamemode include file -->
 <!-- Created by Cazadorian -->
 <!-- Modified by zzuf -->
-<!-- Version 2024-01-26-1 -->
+<!-- Version 2024-03-02-1 -->
 <constants>
     <constant id="time-limit">8</constant> <!-- Time limit in minutes -->
     <constant id="zombie-team-name">Zombies</constant>
     <constant id="human-team-name">Humans</constant>
     <constant id="zombie-team-color">dark green</constant>
     <constant id="human-team-color">gold</constant>
+    <constant id="disabled-damage">fall</constant>
 </constants>
 <objective>${human-team-name} must survive against the ${zombie-team-name} for ${time-limit} minutes!</objective>
 <gamemode>infection</gamemode>
@@ -85,6 +86,6 @@
     <depletion>off</depletion>
 </hunger>
 <disabledamage>
-    <damage>fall</damage>
+    <damage>${disabled-damage}</damage>
 </disabledamage>
 </map>
