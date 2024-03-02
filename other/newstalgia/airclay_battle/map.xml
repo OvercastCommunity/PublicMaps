@@ -2,6 +2,7 @@
 <map proto="1.0.0">
 <name>Airclay Battle</name>
 <version>1.0.5</version>
+<phase>development</phase>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <kits>
     <kit name="tnt-inventory">
