@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Airclay Battle</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <phase>development</phase>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <kits>
+    <kit name="spawn-protection">
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
     <kit name="tnt-inventory">
         <item slot="0">diamond sword</item>
         <item slot="1">bow</item>
@@ -36,6 +40,21 @@
     <rule>Dispensers are disabled</rule>
 </rules>
 <filters>
+    <filter name="only-red">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="only-blue">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+    <filter name="deny-dispenser">
+        <not>
+                <block>dispenser</block>
+        </not>
+    </filter>
     <filter name="deny-black-glass">
         <not>
             <block>stained glass:15</block>
@@ -52,9 +71,26 @@
     <team color="dark red" max="24">Red</team>
 </teams>
 <regions>
+    <cuboid name="red-spawn-protect" min="-42,87,3" max="-35,90,-36"/>
+    <cuboid name="blue-spawn-protect" min="12,87,3" max="19,90,-36"/>
+    <apply lend-kit="spawn-protection" filter="only-blue">
+       <region name="blue-spawn-protect"/>
+    </apply>
+    <apply lend-kit="spawn-protection" filter="only-red">
+        <region name="red-spawn-protect"/>
+    </apply>
+    <apply block-break="deny-dispenser" message="This block can not be placed or broken on this map!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block-place="deny-dispenser" message="This block can not be placed or broken on this map!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
     <apply leave="deny-all" message="Don't exit the playing field!">
         <rectangle min="-102,-4" max="102,125"/> <!-- Main area -->
         <rectangle min="-36,-16" max="13,-2"/> <!-- Area between spawn tunnels -->
+    </apply>
+    <apply block="deny-black-glass" message="This material is indestructible">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
     </apply>
     <apply block="deny-all" message="Don't edit blocks outside the playing field!">
         <negative>
@@ -70,9 +106,6 @@
             <cuboid min="13,85,23" max="18,92,30"/>
             <cuboid min="-41,85,23" max="-36,92,30"/>
         </complement>
-    </apply>
-    <apply block="deny-black-glass" message="This material is indestructible">
-        <rectangle min="-oo,-oo" max="oo,oo"/>
     </apply>
 </regions>
 <itemremove>
