@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Cyril</name>
-<version>1.3.8</version>
+<version>1.3.9</version>
 <objective>Capture the enemy team's wool!</objective>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
@@ -79,17 +79,17 @@
     </union>
     <union id="wool-rooms">
         <intersect id="blue-in-wr-region">
-            <cuboid id="red-room" min="-26,-oo,-37" max="-11,17.5,-23"/>
+            <cuboid id="red-room" min="-26,-oo,-37" max="-11,17,-23"/>
             <rectangle min="-25,-35" max="-13,-23"/>
         </intersect>
         <intersect id="red-in-wr-region">
-            <cuboid id="blue-room" min="11,-oo,24" max="27,17.5,38"/>
+            <cuboid id="blue-room" min="12,-oo,24" max="27,17,38"/>
             <rectangle min="13,24" max="26,36"/>
         </intersect>
     </union>
     <union id="wool-roof">
-        <cuboid id="blue-roof" min="11.5,17.5,38.5" max="27.5,oo,26"/>
-        <cuboid id="red-roof" min="-26.5,17.5,-37.5" max="-10.5,oo,-25"/>
+        <cuboid id="blue-roof" min="11.5,17,38.5" max="27.5,oo,24"/>
+        <cuboid id="red-roof" min="-26.5,17,-37.5" max="-10.5,oo,-23"/>
     </union>
     <complement id="void-area">
         <everywhere/>
@@ -116,7 +116,7 @@
     <apply enter="never" use="never" region="wool-roof" message="You may not go onto the roof of the wool room!"/>
     <apply enter="only-blue" use="only-blue" region="red-room" message="You may not enter your team's own wool room!"/>
     <apply enter="only-red" use="only-red" region="blue-room" message="You may not enter your team's own wool room!"/>
-    <apply block="never" region="wool-roof" message="You may not destroy roof of the wool room!"/>
+    <apply block="never" region="wool-roof" message="You may not destroy the roof of the wool room!"/>
     <apply block="never" region="spawns" message="You may not break or place blocks in the spawns!"/>
     <apply block="never" region="spawner-protection" message="You may not destroy the golden apple spawners!"/>
     <apply block="deny-blue" region="red-in-wr-region" message="You may not interfere with your team's own wool rooms!"/>
