@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Argon</name>
-<version>1.2.11</version>
+<version>1.2.12</version>
 <include id="gapple-kill-reward"/>
 <objective>Capture the wools from the enemy wool rooms and return them to your spawn</objective>
 <authors>
@@ -77,6 +77,13 @@
         <rectangle min="-270,64" max="-157,41"/>
         <rectangle min="-232,81" max="-195,-14"/>
     </union>
+    <apply block-place="no-void" message="You may not build in the void!">
+        <region>
+            <negative>
+                <region id="allow-void"/>
+            </negative>
+        </region>
+    </apply>
     <union id="woolrooms">
         <union id="purple-woolrooms">
             <circle id="lightblue" center="-106.5,115.5" radius="12.5"/>
