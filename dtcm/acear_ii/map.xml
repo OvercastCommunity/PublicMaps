@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Acear II</name>
-<version>2.3.3</version>
+<version>2.3.4</version>
 <objective>Break the enemy team's monument.</objective>
 <created>2016-04-15</created>
 <authors>
@@ -36,17 +36,17 @@
 <spawns>
     <default>
         <region yaw="90">
-            <point>43,59,0</point>
+            <cylinder base="43.5,59,0.5" height="0" radius="1"/>
         </region>
     </default>
     <spawn kit="spawn-kit" team="blue">
         <region yaw="90">
-            <cuboid min="156,50,-1" max="152,52,2"/>
+            <cuboid min="156,50,-1" max="153,50,2"/>
         </region>
     </spawn>
     <spawn kit="spawn-kit" team="red">
         <region yaw="-90">
-            <cuboid min="-69,50,-1" max="-65,52,2"/>
+            <cuboid min="-69,50,-1" max="-66,50,2"/>
         </region>
     </spawn>
 </spawns>
