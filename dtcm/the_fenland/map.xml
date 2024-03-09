@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>The Fenland</name>
 <created>2013-08-01</created>
-<version>1.2.13</version>
+<version>1.2.14</version>
 <include id="gapple-kill-reward"/>
 <objective>Break the obsidian from the enemy team's monument.</objective>
 <authors>
@@ -62,8 +62,8 @@
         <cuboid id="blue-base" min="50,7,-4" max="37,16,5"/>
     </union>
     <union id="spawn-interiors">
-        <cuboid id="red-interior" min="-40,7,-4" max="-49,15,-5"/>
-        <cuboid id="blue-interior" min="41,7,5" max="50,15,-4"/>
+        <cuboid id="red-interior" min="-40,7,-4" max="-49,14,5"/>
+        <cuboid id="blue-interior" min="41,7,5" max="50,14,-4"/>
     </union>
     <negative id="playable-inverse">
         <cuboid id="playable" min="64,0,-38" max="-63,31,39"/>
