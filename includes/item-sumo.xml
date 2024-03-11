@@ -6,19 +6,26 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.02.22-1 -->
+<!-- Version 2024.03.11-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
+    <!-- Match -->
+    <constant id="void-plane">-5</constant>
+    <constant id="time-limit">4m</constant>
+    <!-- Items -->
     <constant id="item-spawn-point">0,0,0</constant>
     <constant id="item-spawn-rate">29.75s</constant>
     <constant id="global-power-up-rate">19.75s</constant>
-    <constant id="hill-capture-time">20s</constant>
-    <constant id="initial-lives">3</constant>
-    <constant id="void-plane">-5</constant>
-    <constant id="time-limit">4m</constant>
+    <!-- Hill -->
     <constant id="hill-name">Center</constant>
+    <constant id="hill-capture-time">20s</constant>
+    <constant id="hill-capture-message">19s</constant> <!-- hill-capture-time minus 1 second -->
     <constant id="hill-points">0</constant>
+    <constant id="hill-block-on">emerald block</constant>
+    <constant id="hill-block-off">coal block</constant>
+    <!-- Lifesteal variant -->
+    <constant id="initial-lives">3</constant>
 </constants>
 <broadcasts>
     <unless variant="lifesteal">
@@ -98,7 +105,7 @@
             <helmet locked="true" unbreakable="true" material="diamond helmet"/>
         </kit>
         <kit id="kill-streak-5-kit" force="true">
-            <helmet locked="true" material="emerald block"/>
+            <helmet locked="true" material="${hill-block-on}"/>
         </kit>
         <give kit="kill-streak-1-kit" filter="all(is-playing,kill_streak=1)"/>
         <give kit="kill-streak-2-kit" filter="all(is-playing,kill_streak=2)"/>
@@ -194,16 +201,21 @@
         </after>
     </pulse>
     <!-- Other -->
-    <countdown duration="${hill-capture-time}" message="`fA player is `ccapturing`f the `a${hill-name}`f hill! `b{0} left">
+    <countdown duration="${hill-capture-message}" message="`fA player is `ccapturing`f the `a${hill-name}`f hill! `b{0} left">
         <all>
-            <players min="1" max="1">
-                <region id="center-region"/>
-            </players>
             <not>
                 <completed>default-hill</completed>
             </not>
+            <filter id="hill_disabled=0"/>
+            <after duration="1s">
+                <players min="1" max="1">
+                    <region id="center-region"/>
+                </players>
+            </after>
         </all>
     </countdown>
+    <material id="only-hill-block-on">${hill-block-on}</material>
+    <material id="only-hill-block-off">${hill-block-off}</material>
 </filters>
 <projectiles>
     <projectile id="fireball-projectile" name="Fireball" projectile="Fireball" click="right" damage="10" power="4" throwable="true" cooldown="1s"/>
@@ -220,6 +232,8 @@
         <variable id="kill_streak" default="0" scope="player"/>
         <score id="player_score"/>
     </unless>
+    <variable id="hill_disabled" default="0" scope="match"/>
+    <variable id="hill_previously_disabled" default="0" scope="match"/>
 </variables>
 <regions>
     <negative id="not-playable-area">
@@ -241,6 +255,9 @@
                 <sound preset="alert"/>
                 <message text=" `e⚠ `3Get the most amount of `ckills`3, or `acapture the hill`3 at the center of the map to win!"/>
                 <message text=" `e⚠ `3You get `fmore`3 points based on your `ckill streak`3!"/>
+                <action filter="hill_disabled=1">
+                    <message text=" `e⚠ `cHill capturing has been disabled for this match!"/>
+                </action>
             </action>
         </trigger>
         <trigger scope="player">
@@ -271,7 +288,7 @@
     </trigger>
     <!-- OP -->
     <action id="set-random-item" scope="match">
-        <set var="op_item" value="floor(random() * 4)"/>
+        <set var="op_item" value="floor(random() * 5)"/>
     </action>
     <trigger scope="match" action="set-random-item">
         <filter>
@@ -311,12 +328,28 @@
             <message text=" `e⚠ `6A special item has spawned at middle!"/>
         </action>
     </trigger>
+    <trigger scope="match" filter="hill_disabled=1">
+        <action>
+            <message text=" `e⚠ `cHill capturing has been disabled for this match!"/>
+            <fill region="center-blocks" material="${hill-block-off}" filter="only-hill-block-on"/>
+            <set var="hill_previously_disabled" value="1"/>
+            <sound key="note.bass" volume="1" pitch="0.75"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(hill_disabled=0,hill_previously_disabled=1)">
+        <action>
+            <message text=" `e⚠ `aHill capturing has been enabled for this match!"/>
+            <fill region="center-blocks" material="${hill-block-on}" filter="only-hill-block-off"/>
+            <set var="hill_previously_disabled" value="0"/>
+            <sound key="note.bass" volume="1" pitch="0.75"/>
+        </action>
+    </trigger>
     <action id="killstreak-sound" scope="player">
         <sound key="mob.enderdragon.growl" volume="1" pitch="0.8"/>
     </action>
 </actions>
 <control-points capture-rule="exclusive" show-progress="true" permanent="true" points="${hill-points}">
-    <control-point id="default-hill" name="${hill-name}" capture-time="${hill-capture-time}">
+    <control-point id="default-hill" name="${hill-name}" capture-time="${hill-capture-time}" player-filter="hill_disabled=0">
         <capture><region id="center-region"/></capture>
     </control-point>
 </control-points>
@@ -348,6 +381,9 @@
     <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=3,op-pulse)" max-entities="1">
         <!-- <item material="boat" name="`fBoat Clutcher"/> -->
         <item material="wood" name="`fBoat Box" lore="`7You should not be reading this..."/>
+    </spawner>
+    <spawner spawn-region="item-spawn" player-region="everywhere" delay="0" filter="all(op_item=4,op-pulse)" max-entities="1">
+        <item material="fishing rod" name="`fPlayer Fishing Rod" damage="64"/>
     </spawner>
 </spawners>
 <item-mods>
@@ -459,6 +495,7 @@
     <item>wood sword</item>
     <item>ender pearl</item>
     <item>boat</item>
+    <item>fishing rod</item>
 </itemkeep>
 <itemremove>
     <item>wool</item>
@@ -467,7 +504,7 @@
     <item>iron helmet</item>
     <item>gold helmet</item>
     <item>diamond helmet</item>
-    <item>emerald block</item>
+    <item>${hill-block-on}</item>
     <item>leather chestplate</item>
     <item>tnt</item>
     <item>snowball</item>
