@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.03.11-1 -->
+<!-- Version 2024.03.11-2 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -504,7 +504,7 @@
     <item>iron helmet</item>
     <item>gold helmet</item>
     <item>diamond helmet</item>
-    <item>${hill-block-on}</item>
+    <item>emerald block</item>
     <item>leather chestplate</item>
     <item>tnt</item>
     <item>snowball</item>
