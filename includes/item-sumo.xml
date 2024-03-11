@@ -105,7 +105,7 @@
             <helmet locked="true" unbreakable="true" material="diamond helmet"/>
         </kit>
         <kit id="kill-streak-5-kit" force="true">
-            <helmet locked="true" material="${hill-block-on}"/>
+            <helmet locked="true" material="emerald block"/>
         </kit>
         <give kit="kill-streak-1-kit" filter="all(is-playing,kill_streak=1)"/>
         <give kit="kill-streak-2-kit" filter="all(is-playing,kill_streak=2)"/>
