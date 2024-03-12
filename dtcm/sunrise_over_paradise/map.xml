@@ -2,6 +2,7 @@
 <name>Sunrise Over Paradise</name>
 <variant id="halloween" world="halloween" override="true">Halloween Over Paradise</variant>
 <variant id="christmas" world="christmas" override="true">Christmas Over Paradise</variant>
+<variant id="classic" world="classic">Classic</variant>
 <if variant="default">
     <slug>sunrise_over_paradise_redux</slug>
 </if>
@@ -13,32 +14,84 @@
     <constant id="season">Christmas</constant>
     <slug>christmas_over_paradise_redux</slug>
 </if>
-<version>1.3.9</version>
+<if variant="classic">
+    <slug>sunrise_over_paradise</slug>
+    <phase>development</phase>
+</if>
+<version>1.4</version>
 <objective>Destroy both of the enemy team's monuments!</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
 </authors>
 <contributors>
     <contributor uuid="e39fe3bc-b80e-46d2-81fe-d18042471989" contribution="Map feedback"/> <!-- EnarRikardz -->
-    <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b" contribution="Redux-ification"/> <!-- Jexel -->
-    <unless variant="default">
+    <unless variant="classic">
+        <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b" contribution="Redux-ification"/> <!-- Jexel -->
+    </unless>
+    <unless variant="default,classic">
         <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655" contribution="${season}-ification"/> <!-- wylt -->
         <contributor uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa" contribution="${season}-ification"/> <!-- Antnecb -->
     </unless>
 </contributors>
+<constants>
+    <unless variant="classic">
+         <constant id="max-players">24</constant>
+    </unless>
+    <if variant="classic">
+         <constant id="max-players">14</constant>
+    </if>
+</constants>
 <teams>
     <unless variant="halloween">
-        <team id="blue" color="blue" max="24">Blue</team>
-        <team id="red" color="dark red" max="24">Red</team>
+        <team id="blue" color="blue" max="${max-players}">Blue</team>
+        <team id="red" color="dark red" max="${max-players}">Red</team>
     </unless>
     <if variant="halloween">
-        <team id="red" color="gold" max="24">Orange</team>
-        <team id="blue" color="light purple" max="24">Purple</team>
+        <team id="red" color="gold" max="${max-players}">Orange</team>
+        <team id="blue" color="light purple" max="${max-players}">Purple</team>
     </if>
 </teams>
+<spawns>
+    <default>
+        <region yaw="90">
+            <unless variant="classic">
+                <cylinder base="-44.5,36,0.5" radius="1" height="0"/>
+            </unless>
+            <if variant="classic">
+                <cylinder base="-44.5,35,0.5" radius="1" height="0"/>
+            </if>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="0">
+            <unless variant="classic">
+                <cylinder base="0.5,4,-79.5" radius="1" height="0"/>
+            </unless>
+            <if variant="classic">
+                <cylinder base="0.5,3,-79.5" radius="1" height="0"/>
+            </if>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="180">
+            <unless variant="classic">
+                <cylinder base="0.5,4,80.5" radius="1" height="0"/>
+            </unless>
+            <if variant="classic">
+                <cylinder base="0.5,3,80.5" radius="1" height="0"/>
+            </if>
+        </region>
+    </spawn>
+</spawns>
 <kits>
     <kit id="spawn-resistance">
-        <effect duration="10s" amplifier="255">damage resistance</effect>
+        <unless variant="classic">
+            <effect duration="10s" amplifier="255">damage resistance</effect>
+        </unless>
+        <if variant="classic">
+            <effect duration="5" amplifier="1">heal</effect>
+            <effect duration="10" amplifier="2">damage resistance</effect>
+        </if>
     </kit>
     <kit id="spawn-kit" parents="spawn-resistance">
         <clear/>
@@ -51,16 +104,33 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="4" amount="64" team-color="true" material="stained clay"/>
-        <item slot="5" amount="16" team-color="true" lore="Immune to TNT" material="stained glass"/>
+        <unless variant="classic">
+            <item slot="4" amount="64" team-color="true" material="stained clay"/>
+            <item slot="5" amount="16" team-color="true" lore="Immune to TNT" material="stained glass"/>
+        </unless>
+        <if variant="classic">
+            <item slot="4" amount="64" material="wood"/>
+            <item slot="5" amount="32" material="glass"/>
+        </if>
         <item slot="30" unbreakable="true" material="iron spade"/>
         <item slot="6" amount="32" material="ladder"/>
-        <item slot="8" material="golden apple"/>
+        <unless variant="classic">
+            <item slot="8" material="golden apple"/>
+        </unless>
+        <if variant="classic">
+            <item slot="8" amount="32" material="cooked fish"/>
+        </if>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="6">blast_protection</enchantment>
-        </leggings>
+        <unless variant="classic">
+            <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+            <leggings unbreakable="true" material="chainmail leggings">
+                <enchantment level="6">blast_protection</enchantment>
+            </leggings>
+        </unless>
+        <if variant="classic">
+            <chestplate unbreakable="true" team-color="true" enchantment="protection projectile:2" material="leather chestplate"/>
+            <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        </if>
         <boots unbreakable="true" material="iron boots"/>
     </kit>
     <take kit="spawn-resistance">
@@ -69,23 +139,6 @@
         </filter>
     </take>
 </kits>
-<spawns>
-    <default>
-        <region yaw="90">
-            <cylinder base="-44.5,36,0.5" radius="1" height="0"/>
-        </region>
-    </default>
-    <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
-            <cylinder base="0.5,4,-79.5" radius="1" height="0"/>
-        </region>
-    </spawn>
-    <spawn team="red" kit="spawn-kit">
-        <region yaw="180">
-            <cylinder base="0.5,4,80.5" radius="1" height="0"/>
-        </region>
-    </spawn>
-</spawns>
 <filters>
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
@@ -130,20 +183,39 @@
     </deny>
 </filters>
 <regions>
-    <cylinder id="blue-mon-a" base="-44.5,7,-50.5" radius="0.5" height="2"/>
-    <cylinder id="blue-mon-b" base="45.5,7,-50.5" radius="0.5" height="2"/>
-    <cylinder id="red-mon-a" base="45.5,7,51.5" radius="0.5" height="2"/>
-    <cylinder id="red-mon-b" base="-44.5,7,51.5" radius="0.5" height="2"/>
-    <union id="no-spawn-island">
-        <circle center="0.5,-79.5" radius="10.5"/>
-        <circle center="0.5,80.5"  radius="10.5"/>
-    </union>
-    <above id="above-21" y="21"/>
-    <apply use="no-beacon"/>
-    <apply block="only-tnt" region="above-21" message="You may only place TNT at this height!"/>
-    <apply block="never" region="no-spawn-island" message="You may not modify the spawn island!"/>
-    <apply block="tnt-immune"/>
-    <apply block="deny-void" message="You may not build in the void!"/> <!-- uses block 36 -->
+    <unless variant="classic">
+        <cylinder id="blue-mon-a" base="-44.5,7,-50.5" radius="0.5" height="2"/>
+        <cylinder id="blue-mon-b" base="45.5,7,-50.5" radius="0.5" height="2"/>
+        <cylinder id="red-mon-a" base="45.5,7,51.5" radius="0.5" height="2"/>
+        <cylinder id="red-mon-b" base="-44.5,7,51.5" radius="0.5" height="2"/>
+        <union id="no-spawn-island">
+            <circle center="0.5,-79.5" radius="10.5"/>
+            <circle center="0.5,80.5"  radius="10.5"/>
+        </union>
+        <above id="above-21" y="21"/>
+        <apply use="no-beacon"/>
+        <apply block="only-tnt" region="above-21" message="You may only place TNT at this height!"/>
+        <apply block="never" region="no-spawn-island" message="You may not modify the spawn island!"/>
+        <apply block="tnt-immune"/>
+        <apply block="deny-void" message="You may not build in the void!"/> <!-- uses block 36 -->
+    </unless>
+    <if variant="classic">
+        <cuboid id="blue-mon-a" min="-46,8,-52" max="-43,4,-49"/>
+        <cuboid id="blue-mon-b" min="44,8,-52" max="47,4,-49"/>
+        <cuboid id="red-mon-a" min="44,8,50" max="47,4,53"/>
+        <cuboid id="red-mon-b" min="-46,8,50" max="-43,4,53"/>
+        <union id="no-spawn-island">
+            <circle center="0.5,-79.5" radius="10.5"/>
+            <circle center="0.5,80.5" radius="10.5"/>
+        </union>
+        <negative id="no-playable">
+            <circle id="playable" center="0.5,0.5" radius="101"/>
+        </negative>
+        <apply block="never" region="no-spawn-island" message="You may not modify the spawn island!"/>
+        <apply block="never" region="no-playable" message="You may not build outside the playable region!"/>
+        <apply use="no-beacon"/>
+        <apply block="always" region="playable"/>
+    </if>
 </regions>
 <destroyables completion="100%" materials="obsidian" mode-changes="true" repairable="false">
     <destroyable name="Monument A" owner="blue" region="blue-mon-a"/>
@@ -152,9 +224,16 @@
     <destroyable name="Monument B" owner="red" region="red-mon-b"/>
 </destroyables>
 <modes>
-    <mode after="20m" name="`bBEACON MONUMENT MODE" material="beacon"/>
-    <mode after="40m" name="`8COAL MONUMENT MODE" material="coal block"/>
-    <mode after="60m" name="`7TERRACOTTA MONUMENT MODE" material="stained clay:15"/>
+    <unless variant="classic">
+        <mode after="20m" name="`bBEACON MONUMENT MODE" material="beacon"/>
+        <mode after="40m" name="`8COAL MONUMENT MODE" material="coal block"/>
+        <mode after="60m" name="`7TERRACOTTA MONUMENT MODE" material="stained clay:15"/>
+    </unless>
+    <if variant="classic">
+        <mode after="20m" material="beacon"/>
+        <mode after="30m" material="coal block"/>
+        <mode after="45m" material="stained clay:15"/>
+    </if>
 </modes>
 <toolrepair>
     <tool>stone sword</tool>
@@ -174,6 +253,7 @@
     <item>beacon</item>
     <item>string</item>
     <item>seeds</item>
+    <item>cooked fish</item>
     <if variant="halloween">
         <item>nether stalk</item>
     </if>
@@ -205,32 +285,53 @@
     <item>golden apple</item>
 </itemkeep>
 <kill-rewards>
-    <kill-reward>
+    <unless variant="classic">
+        <kill-reward>
+            <item material="golden apple"/>
+            <item amount="8" material="ladder"/>
+            <item amount="16" team-color="true" material="stained clay"/>
+            <item amount="4" team-color="true" lore="Immune to TNT" material="stained glass"/>
+        </kill-reward>
+        <kill-reward>
+            <filter>
+                <kill-streak count="3" repeat="true"/>
+            </filter>
+            <item amount="1" name="Power TNT" lore="TNT slightly more powerful..." material="tnt">
+                <enchantment level="2">power</enchantment>
+            </item>
+        </kill-reward>
+    </unless>
+    <if variant="classic">
         <item material="golden apple"/>
-        <item amount="8" material="ladder"/>
-        <item amount="16" team-color="true" material="stained clay"/>
-        <item amount="4" team-color="true" lore="Immune to TNT" material="stained glass"/>
-    </kill-reward>
-    <kill-reward>
-        <filter>
-            <kill-streak count="3" repeat="true"/>
-        </filter>
-        <item amount="1" name="Power TNT" lore="TNT slightly more powerful..." material="tnt">
-            <enchantment level="2">power</enchantment>
-        </item>
-    </kill-reward>
+        <item material="wood" amount="12"/>
+    </if>
 </kill-rewards>
 <tnt>
     <instantignite>true</instantignite>
     <licensing>false</licensing>
     <friendly-defuse>false</friendly-defuse>
     <fuse>1.7s</fuse>
-    <power>7</power>
+    <unless variant="classic">
+        <power>7</power>
+    </unless>
+    <if variant="classic">
+        <power>5.5</power>
+    </if>
 </tnt>
 <disabledamage>
-    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+    <unless variant="classic">
+        <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+    </unless>
+    <if variant="classic">
+        <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+    </if>
 </disabledamage>
-<maxbuildheight>22</maxbuildheight>
+<unless variant="classic">
+    <maxbuildheight>22</maxbuildheight>
+</unless>
+<if variant="classic">
+    <maxbuildheight>20</maxbuildheight>
+</if>
 <unless variant="halloween">
     <timelock>off</timelock>
 </unless>
@@ -239,7 +340,9 @@
         <timeset>18000</timeset>
     </world>
 </if>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+<unless variant="classic">
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+</unless>
 </map>
