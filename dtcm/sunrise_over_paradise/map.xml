@@ -302,8 +302,10 @@
         </kill-reward>
     </unless>
     <if variant="classic">
-        <item material="golden apple"/>
-        <item material="wood" amount="12"/>
+        <kill-reward>
+            <item material="golden apple"/>
+            <item material="wood" amount="12"/>
+        </kill-reward>
     </if>
 </kill-rewards>
 <tnt>
