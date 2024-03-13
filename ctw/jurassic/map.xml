@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Jurassic</name>
-<version>2.8.3</version>
+<version>2.8.4</version>
 <variant id="comp">TE</variant>
 <include id="gapple-kill-reward"/>
 <unless variant="comp">
@@ -62,7 +62,11 @@
         </if>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <unless variant="comp">
+                <enchantment>depth_strider</enchantment>
+            </unless>
+        </boots>
         <effect duration="6s" amplifier="255">resistance</effect>
     </kit>
 </kits>
@@ -92,17 +96,15 @@
         <material id="only-iron">iron block</material>
         <cause>world</cause>
     </all>
-    <if variant="comp">
-        <deny id="water">
-            <all>
-                <any>
-                    <material>water</material>
-                    <material>stationary water</material>
-                </any>
-                <cause>world</cause>
-            </all>
-        </deny>
-    </if>
+    <deny id="deny-water-flow">
+        <all>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+            <cause>world</cause>
+        </all>
+    </deny>
 </filters>
 <regions>
     <union id="bridges">
@@ -156,6 +158,9 @@
     <apply block="never" region="spawners" message="You may not destroy the spawners!"/>
     <apply block="never" region="bridges" message="You may not edit the bridge!"/>
     <apply block-place="never" region="not-buildable" message="You may not edit the void!"/>
+    <unless variant="comp">
+        <apply block="deny-water-flow" region="wool-rooms"/>
+    </unless>
     <if variant="comp">
         <union id="non-wool-lanes">
             <negative>
@@ -167,7 +172,7 @@
                 </union>
             </negative>
         </union>
-        <apply block="water" region="non-wool-lanes"/>
+        <apply block="deny-water-flow" region="non-wool-lanes"/>
     </if>
     <apply block="always" region="buildable"/>
     <apply block-place="deny(void)" message="You may not edit the void!"/>
@@ -258,6 +263,16 @@
     <hunger>
         <depletion>off</depletion>
     </hunger>
+    <item-mods>
+        <rule>
+            <match>
+                <material>iron boots</material>
+            </match>
+            <modify>
+                <enchantment>depth_strider</enchantment>
+            </modify>
+        </rule>
+    </item-mods>
 </unless>
 <if variant="comp">
     <crafting>
