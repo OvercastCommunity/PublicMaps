@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>We Sell Mushrooms</name>
-<version>1.7.2</version>
+<version>1.7.3</version>
 <variant id="comp" world="comp">TE</variant>
 <include id="gapple-kill-reward"/>
 <unless variant="comp">
@@ -44,7 +44,7 @@
         <item slot="32" amount="16" material="smooth brick"/>
         <unless variant="comp">
             <item slot="30" unbreakable="true" material="shears"/>
-            <item slot="6" material="bucket"/>
+            <item slot="7" material="bucket"/>
             <item slot="8" material="golden apple"/>
             <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         </unless>
@@ -56,7 +56,11 @@
         </if>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <unless variant="comp">
+                <enchantment>depth_strider</enchantment>
+            </unless>
+        </boots>
         <unless variant="comp">
             <kit id="speed">
                 <effect>speed</effect>
@@ -105,17 +109,15 @@
         </any>
         <cause>world</cause>
     </all>
-    <if variant="comp">
-        <deny id="water">
-            <all>
-                <any>
-                    <material>water</material>
-                    <material>stationary water</material>
-                </any>
-                <cause>world</cause>
-            </all>
-        </deny>
-    </if>
+    <deny id="deny-water-flow">
+        <all>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+            <cause>world</cause>
+        </all>
+    </deny>
 </filters>
 <regions>
     <union id="spawn-points">
@@ -198,6 +200,9 @@
     <apply block="deny-blue" region="blue-defends" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny-red" region="red-defends" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny-explosions" region="wool-rooms"/>
+    <unless variant="comp">
+        <apply block="deny-water-flow" region="wool-rooms"/>
+    </unless>
     <if variant="comp">
         <union id="non-wool-lanes">
             <negative>
@@ -209,7 +214,7 @@
                 </union>
             </negative>
         </union>
-        <apply block="water" region="non-wool-lanes"/>
+        <apply block="deny-water-flow" region="non-wool-lanes"/>
     </if>
     <apply block="deny-void" region="void" message="You may not edit the void!"/>
 </regions>
@@ -319,6 +324,16 @@
     <hunger>
         <depletion>off</depletion>
     </hunger>
+    <item-mods>
+        <rule>
+            <match>
+                <material>iron boots</material>
+            </match>
+            <modify>
+                <enchantment>depth_strider</enchantment>
+            </modify>
+        </rule>
+    </item-mods>
 </unless>
 <if variant="comp">
     <crafting>
