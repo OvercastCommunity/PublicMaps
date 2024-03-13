@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Rocky Top</name>
-<version>1.3.3</version>
+<version>1.3.4</version>
 <variant id="comp">TE</variant>
 <include id="gapple-kill-reward"/>
 <unless variant="comp">
@@ -50,7 +50,7 @@
         <item slot="31" amount="64" damage="1" material="wood"/>
         <item slot="5" amount="64" material="glass"/>
         <unless variant="comp">
-            <item slot="7" material="bucket"/>
+            <item slot="7" material="water bucket"/>
             <item slot="8" material="golden apple"/>
         </unless>
         <if variant="comp">
@@ -62,7 +62,11 @@
         <item slot="9" amount="32" material="spruce wood stairs"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <unless variant="comp">
+                <enchantment>depth_strider</enchantment>
+            </unless>
+        </boots>
         <effect amplifier="255" duration="5s">resistance</effect>
     </kit>
 </kits>
@@ -93,17 +97,15 @@
         <material id="only-iron">iron block</material>
     </all>
     <material id="only-stained-glass">stained glass</material>
-    <if variant="comp">
-        <deny id="water">
-            <all>
-                <any>
-                    <material>water</material>
-                    <material>stationary water</material>
-                </any>
-                <cause>world</cause>
-            </all>
-        </deny>
-    </if>
+    <deny id="deny-water-flow">
+        <all>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+            <cause>world</cause>
+        </all>
+    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -130,6 +132,9 @@
     <apply block="deny(only-blue)" region="blue-def-red-obj" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny(only-red)" region="red-def-blue-obj" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny(void)" block-physics="deny(void)" message="You may not modify the void area!"/>
+    <unless variant="comp">
+        <apply block="deny-water-flow" region="wool-rooms"/>
+    </unless>
     <if variant="comp">
         <negative id="non-wool-lanes">
             <union id="wool-lanes">
@@ -139,7 +144,7 @@
                 <rectangle min="-134,148" max="-152,177"/>
             </union>
         </negative>
-        <apply block="water" region="non-wool-lanes"/>
+        <apply block="deny-water-flow" region="non-wool-lanes"/>
     </if>
 </regions>
 <renewables>
@@ -246,5 +251,15 @@
     <hunger>
         <depletion>off</depletion>
     </hunger>
+    <item-mods>
+        <rule>
+            <match>
+                <material>iron boots</material>
+            </match>
+            <modify>
+                <enchantment>depth_strider</enchantment>
+            </modify>
+        </rule>
+    </item-mods>
 </unless>
 </map>
