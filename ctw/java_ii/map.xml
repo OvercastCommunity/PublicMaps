@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Java II</name>
-<version>1.4.2</version>
+<version>1.4.3</version>
 <variant id="comp">TE</variant>
 <include id="gapple-kill-reward"/>
 <objective>Capture the enemy's two wools!</objective>
@@ -56,7 +56,11 @@
         </if>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <unless variant="comp">
+                <enchantment>depth_strider</enchantment>
+            </unless>
+        </boots>
         <effect duration="5s" amplifier="255">resistance</effect>
     </kit>
 </kits>
@@ -86,17 +90,15 @@
         <cause>world</cause>
         <material id="only-iron">iron block</material>
     </all>
-    <if variant="comp">
-        <deny id="water">
-            <all>
-                <any>
-                    <material>water</material>
-                    <material>stationary water</material>
-                </any>
-                <cause>world</cause>
-            </all>
-        </deny>
-    </if>
+    <deny id="deny-water-flow">
+        <all>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+            <cause>world</cause>
+        </all>
+    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -161,6 +163,9 @@
     <apply block="deny(only-blue)" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny(only-red)" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="never" region="spawner" message="You may not destroy the spawner!"/>
+    <unless variant="comp">
+        <apply block="deny-water-flow" region="wool-rooms"/>
+    </unless>
     <if variant="comp">
         <union id="non-wool-lanes">
             <negative>
@@ -172,7 +177,7 @@
                 </union>
             </negative>
         </union>
-        <apply block="water" region="non-wool-lanes"/>
+        <apply block="deny-water-flow" region="non-wool-lanes"/>
     </if>
     <apply block-place="deny(void)" message="You may not edit the void!"/>
 </regions>
@@ -267,6 +272,16 @@
     <hunger>
         <depletion>off</depletion>
     </hunger>
+    <item-mods>
+        <rule>
+            <match>
+                <material>iron boots</material>
+            </match>
+            <modify>
+                <enchantment>depth_strider</enchantment>
+            </modify>
+        </rule>
+    </item-mods>
 </unless>
 <if variant="comp">
     <crafting>
