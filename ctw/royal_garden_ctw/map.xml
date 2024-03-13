@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Royal Garden CTW</name>
-<version>1.6.9</version>
+<version>1.6.10</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the opposing team's wools and place them at your victory monuments.</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -77,6 +78,15 @@
     </after>
     <material id="only-iron">iron block</material>
     <material id="only-air">air</material>
+    <deny id="deny-water-flow">
+        <all>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+            <cause>world</cause>
+        </all>
+    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -122,10 +132,11 @@
     <apply block="deny-in-wr" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
     <apply block="deny-blue" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny-red" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny-water-flow" region="wool-rooms"/>
     <apply block="add-water-lane" region="water-lanes"/>
     <apply block="deny-void" region="non-bridge" message="You may not build in the void!"/>
 </regions>
-<wools craftable="false">
+<wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
     <wool team="blue" color="orange" location="68,23,-36">
         <monument>
             <block>-143,18,23</block>
@@ -206,11 +217,12 @@
     <item>ladder</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="24" damage="2" material="wood"/>
-    <item amount="12" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="24" damage="2" material="wood"/>
+        <item amount="12" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>45</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
