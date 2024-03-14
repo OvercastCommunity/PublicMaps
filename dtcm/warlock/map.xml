@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Warlock</name>
-<version>1.3.12</version>
+<version>1.3.13</version>
 <objective>Break the obsidian from the enemy team's monument!</objective>
 <gamemode>dtm</gamemode>
 <created>2012-08-29</created>
@@ -61,7 +61,7 @@
 <regions>
     <cuboid id="red-spawn-point" min="40,6,-30" max="44,6,-34"/>
     <cuboid id="blue-spawn-point" min="40,6,31" max="44,6,35"/>
-    <point id="obs-spawn-point">133.5,22,0.5</point>
+    <cylinder id="obs-spawn-point" base="133.5,21,0.5" height="0" radius="1.5"/>
     <cuboid id="red-monument" min="77,1,-36" max="78,3,-37"/>
     <cuboid id="blue-monument" min="77,1,37" max="78,3,38"/>
     <union id="spawns">
