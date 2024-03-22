@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.04.10-1 -->
+<!-- Version 2024.03.22-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -13,7 +13,10 @@
     <!-- Match -->
     <constant id="score-limit">5</constant>
     <constant id="mercy-limit">-1</constant>
+    <constant id="pre-round-enabled">1</constant>
     <constant id="pre-round-time">5s</constant>
+    <constant id="arrow-check-enabled">1</constant>
+    <constant id="overtime-default">0</constant>
     <!-- Misc. -->
     <constant id="main-kit">spawn-kit</constant> <!-- If using a custom name, requires a clear-[your kit name] action - can throw an error, but the map will still load -->
     <constant id="max-health">20</constant>
@@ -52,7 +55,7 @@
         <action id="clear-${main-kit}"/>
         <action>
             <kit id="${main-kit}"/>
-            <kit id="arrow-kit"/>
+            <action id="arrow-action"/>
             <kit id="heal-kit"/>
         </action>
         <action id="remove-extra-armor"/>
@@ -213,6 +216,7 @@
     <after id="cage-time" message="`a» `fNext round begins in {0} `a«" duration="${pre-round-time}">
         <all>
             <filter id="round-0"/>
+            <variable var="pre_round">1</variable>
             <match-running/>
         </all>
     </after>
@@ -222,14 +226,17 @@
         </not>
         <participating/>
         <alive/>
+        <variable var="arrow_check">1</variable>
     </all>
     <all id="1-arrow">
         <carrying ignore-metadata="true"><item material="arrow"/></carrying>
         <participating/>
+        <variable var="arrow_check">1</variable>
     </all>
     <all id="more-than-1-arrow">
         <carrying ignore-metadata="true" amount="(1,oo)"><item material="arrow"/></carrying>
         <participating/>
+        <variable var="arrow_check">1</variable>
     </all>
     <after id="arrow-regen" duration="3.5s" filter="no-arrows"/>
     <not id="no-absorption">
@@ -283,7 +290,7 @@
     <variable id="can_score" scope="match" default="1"/>
     <variable id="round_status" scope="match" default="2"/>
     <variable id="buytime" scope="match" default="0"/>
-    <variable id="overtime" scope="match" default="0"/>
+    <variable id="overtime" scope="match" default="${overtime-default}"/>
     <score id="team_score"/>
     <with-team id="team_one_score" var="team_score" team="team-one"/>
     <with-team id="team_two_score" var="team_score" team="team-two"/>
@@ -291,6 +298,8 @@
     <variable id="current_team" scope="player" default="0"/> <!-- 0: Observers, 1: team-one, 2: team-two -->
     <variable id="scoring_team" scope="match" default="0"/>
     <timelimit id="time_limit"/>
+    <variable id="pre_round" scope="match" default="${pre-round-enabled}"/>
+    <variable id="arrow_check" scope="match" default="${arrow-check-enabled}"/>
 </variables>
 <actions>
     <action id="increment-round" scope="player">
@@ -305,9 +314,12 @@
         <switch-scope outer="player" inner="match">
             <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
-            <set var="buytime" value="1"/>
+            <action id="set-buytime"/>
             <kill-entities filter="remove-entities"/>
         </switch-scope>
+    </action>
+    <action id="set-buytime" scope="match" filter="pre_round=1">
+        <set var="buytime" value="1"/>
     </action>
     <action id="create-cages" scope="match">
         <fill region="cages" material="stained glass"/>
@@ -316,8 +328,7 @@
         <fill region="cages" material="air"/>
         <set var="can_score" value="1"/>
         <set var="buytime" value="0"/>
-        <message title="`aGo!" fade-in="0.1" stay="0.5" fade-out="0.1"/>
-        <sound key="note.pling" volume="1" pitch="1.59"/> <!-- Used as SOUND_MATCH_START in PGM -->
+        <action id="go-message"/>
     </action>
     <action id="reset-counter" scope="match">
         <set var="round_status" value="0"/>
@@ -339,6 +350,9 @@
         <message text=" `e⚠ `aYou got an arrow!"/>
         <sound key="random.pop" pitch="0.8"/>
     </action>
+    <action id="arrow-action" scope="player" filter="arrow_check=1">
+        <kit id="arrow-kit"/>
+    </action>
     <action id="remove-extra-armor" scope="player">
         <replace-item ignore-metadata="true">
             <find material="leather chestplate"/>
@@ -356,8 +370,9 @@
     <trigger filter="arrow-regen" action="give-arrow" scope="player"/>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
-    <trigger filter="all(can_score=0,not(ended))" action="create-cages" scope="match"/>
-    <trigger filter="cage-time" action="remove-cages" scope="match"/>
+    <trigger filter="all(can_score=0,not(ended),pre_round=1)" action="create-cages" scope="match"/>
+    <trigger filter="all(cage-time,pre_round=1)" action="remove-cages" scope="match"/>
+    <trigger filter="all(after-round-1,pre_round=0,not(ended))" action="remove-cages" scope="match"/>
     <trigger filter="after-round-1" action="reset-counter" scope="match"/>
     <trigger filter="more-than-1-arrow" action="remove-arrow" scope="player"/>
     <trigger filter="no-arrows" action="no-arrows-message" scope="player"/>
@@ -387,7 +402,7 @@
         <action id="message-score-display-team-one"/>
         <action id="message-score-display-team-two"/>
         <message text="`5# # # # # # # # # # # # # # # #"/>
-        <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
+        <action id="goal-title"/>
         <sound key="portal.travel" volume="0.2" pitch="2"/> <!-- OBJECTIVE_GOOD with lower volume -->
     </action>
     <action id="message-enemy-scored" scope="player">
@@ -397,7 +412,7 @@
         <action id="message-score-display-team-one"/>
         <action id="message-score-display-team-two"/>
         <message text="`5# # # # # # # # # # # # # # # #"/>
-        <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
+        <action id="goal-title"/>
         <sound key="mob.blaze.death" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
     </action>
     <action filter="only-team-one" id="message-score-display-team-one" scope="player">
@@ -415,6 +430,13 @@
                 <decimal id="two-score" value="team_two_score"/>
             </replacements>
         </message>
+    </action>
+    <action id="goal-title" scope="player" filter="pre_round=1">
+        <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
+    </action>
+    <action id="go-message" scope="match" filter="pre_round=1">
+        <message title="`aGo!" fade-in="0.1" stay="0.5" fade-out="0.1"/>
+        <sound key="note.pling" volume="1" pitch="1.59"/> <!-- Used as SOUND_MATCH_START in PGM -->
     </action>
     <action id="message-reset-scoring-team" scope="match">
         <set var="scoring_team" value="0"/>
