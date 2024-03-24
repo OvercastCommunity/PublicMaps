@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Rallypoint Delta</name>
-<version>1.0.0</version>
+<version>1.0.1</version>
 <objective>Bring flags back to your base to earn the most points!</objective>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>
@@ -82,11 +83,11 @@
 <filters>
     <team id="only-purple">purple-team</team>
     <team id="only-orange">orange-team</team>
-    
+
     <random id="chance-1">[0.00, 0.33]</random>
     <random id="chance-2">(0.33, 0.66]</random>
     <random id="chance-3">(0.66, 1.00]</random>
-    
+
     <all id="purple-chance-1">
         <filter id="only-purple"/>
         <filter id="chance-1"/>
@@ -111,7 +112,7 @@
         <filter id="only-orange"/>
         <filter id="chance-3"/>
     </all>
-    
+
     <any id="block-whitelist">
         <material>wood</material>
         <material>stained glass:7</material>
@@ -169,7 +170,7 @@
     </union>
     <sphere id="purple-return" origin="-790.5,34,3.5" radius="20"/>
     <sphere id="orange-return" origin="-790.5,34,-204.5" radius="20"/>
-    
+
     <apply block="deny-void"/>
     <apply region="post-pads" block="never"/>
     <apply block="block-whitelist"/>
@@ -177,14 +178,14 @@
 <score>
     <limit>7500</limit>
 </score>
-<flags beam="false">
+<flags beam="false" show-sidebar="false">
     <post id="purple-inner-pad" owner="purple-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-orange" yaw="180"><region id="purple-inner"/></post>
     <post id="purple-outer-pad" owner="purple-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-orange" yaw="180"><region id="purple-outer"/></post>
     <post id="purple-upper-pad" owner="purple-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-orange" yaw="180"><region id="purple-upper"/></post>
     <post id="orange-inner-pad" owner="orange-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-purple" yaw="0"><region id="orange-inner"/></post>
     <post id="orange-outer-pad" owner="orange-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-purple" yaw="0"><region id="orange-outer"/></post>
     <post id="orange-upper-pad" owner="orange-team" points-rate="1" recover-time="8s" respawn-time="3s" pickup-filter="only-purple" yaw="0"><region id="orange-upper"/></post>
-    
+
     <flag id="middle-east-minor-1" shared="true"><post recover-time="12s" respawn-time="3s">-672,35,-102</post></flag>
     <flag id="middle-east-minor-2" shared="true"><post recover-time="12s" respawn-time="3s">-672,35,-101</post></flag>
     <flag id="middle-east-minor-3" shared="true"><post recover-time="12s" respawn-time="3s">-672,35,-100</post></flag>
@@ -194,7 +195,7 @@
     <flag id="middle-east-minor-7" shared="true"><post recover-time="12s" respawn-time="3s">-674,35,-101</post></flag>
     <flag id="middle-east-minor-8" shared="true"><post recover-time="12s" respawn-time="3s">-674,35,-100</post></flag>
     <flag id="middle-east-manjor-1" shared="true"><post recover-time="12s" respawn-time="3s">-673,35,-101</post></flag>
-    
+
     <flag id="middle-center-major-1" shared="true"><post recover-time="12s" respawn-time="3s">-792,37,-102</post></flag>
     <flag id="middle-center-major-2" shared="true"><post recover-time="12s" respawn-time="3s">-791,37,-102</post></flag>
     <flag id="middle-center-major-3" shared="true"><post recover-time="12s" respawn-time="3s">-790,37,-102</post></flag>
@@ -202,7 +203,7 @@
     <flag id="middle-center-major-5" shared="true"><post recover-time="12s" respawn-time="3s">-791,37,-100</post></flag>
     <flag id="middle-center-major-6" shared="true"><post recover-time="12s" respawn-time="3s">-790,37,-100</post></flag>
     <flag id="middle-center-super-1" shared="true"><post recover-time="12s" respawn-time="3s">-791,37,-101</post></flag>
-    
+
     <flag id="middle-west-minor-1" shared="true"><post recover-time="12s" respawn-time="3s">-910,35,-100</post></flag>
     <flag id="middle-west-minor-2" shared="true"><post recover-time="12s" respawn-time="3s">-910,35,-101</post></flag>
     <flag id="middle-west-minor-3" shared="true"><post recover-time="12s" respawn-time="3s">-910,35,-102</post></flag>
@@ -212,11 +213,11 @@
     <flag id="middle-west-minor-7" shared="true"><post recover-time="12s" respawn-time="3s">-908,35,-101</post></flag>
     <flag id="middle-west-minor-8" shared="true"><post recover-time="12s" respawn-time="3s">-908,35,-102</post></flag>
     <flag id="middle-west-manjor-1" shared="true"><post recover-time="12s" respawn-time="3s">-909,35,-102</post></flag>
-    
+
     <net region="purple-return" owner="purple-team" post="purple-inner-pad" capture-filter="purple-chance-1"/>
     <net region="purple-return" owner="purple-team" post="purple-outer-pad" capture-filter="purple-chance-2"/>
     <net region="purple-return" owner="purple-team" post="purple-upper-pad" capture-filter="purple-chance-3"/>
-    
+
     <net region="orange-return" owner="orange-team" post="orange-inner-pad" capture-filter="orange-chance-1"/>
     <net region="orange-return" owner="orange-team" post="orange-outer-pad" capture-filter="orange-chance-2"/>
     <net region="orange-return" owner="orange-team" post="orange-upper-pad" capture-filter="orange-chance-3"/>
