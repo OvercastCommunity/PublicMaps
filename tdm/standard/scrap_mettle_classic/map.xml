@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Scrap Mettle: Classic</name>
-<version>1.4.9</version>
+<version>1.4.10</version>
 <slug>scrap_mettle</slug>
 <phase>development</phase>
 <objective>Score points by killing the other team and entering your team's goal on the other side.</objective>
@@ -33,16 +33,8 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit" yaw="180">
-        <regions>
-            <cuboid min="5,14,237" max="45,14,243"/>
-        </regions>
-    </spawn>
-    <spawn team="red" kit="spawn-kit">
-        <regions>
-            <cuboid min="5,14,-47" max="45,14,-42"/>
-        </regions>
-    </spawn>
+    <spawn team="blue" kit="spawn-kit" yaw="180" region="blue-spawn"/>
+    <spawn team="red" kit="spawn-kit" region="red-spawn"/>
     <default yaw="90">
         <regions>
             <cylinder base="25,26,97.5" radius="5" height="0"/>
@@ -54,6 +46,8 @@
     <team id="only-red">red</team>
 </filters>
 <regions>
+    <cuboid id="blue-spawn" min="5,14,237" max="45,14,243"/>
+    <cuboid id="red-spawn" min="5,14,-47" max="45,14,-42"/>
     <union id="doors">
         <union id="blue-doors">
             <cuboid id="blue-right-trench-protect" min="8,10,135" max="14,14,141"/>
@@ -69,21 +63,21 @@
         </union>
     </union>
     <union id="goals">
-        <cuboid id="blue-score-protect" min="16,8,-36" max="34,13,-32"/>
+        <cuboid id="blue-score-protect" min="16,8,-36" max="33,13,-33"/>
         <cuboid id="red-score-protect" min="16,8,228" max="34,13,232"/>
     </union>
     <union id="zones">
         <union id="blue-zones">
-            <cuboid id="blue-score-zone-left" min="16,8,-36" max="23,11,-34"/>
-            <cuboid id="blue-score-zone-right" min="27,8,-36" max="33,11,-34"/>
-            <cuboid id="blue-score-zone-center" min="23,8,-36" max="27,11,-34"/>
-            <cuboid id="blue-score-zone" min="16,8,-36" max="34,10,-34"/>
+            <cuboid id="blue-score-zone-left" min="16,8,-36" max="23,9,-34"/>
+            <cuboid id="blue-score-zone-right" min="27,8,-36" max="33,9,-34"/>
+            <cuboid id="blue-score-zone-center" min="23,8,-36" max="27,9,-34"/>
+            <cuboid id="blue-score-zone" min="16,8,-36" max="34,9,-34"/>
         </union>
         <union id="red-zones">
-            <cuboid id="red-score-zone-left" min="27,8,230.5" max="35,11,232"/>
-            <cuboid id="red-score-zone-right" min="16,8,230.5" max="23,11,232"/>
-            <cuboid id="red-score-zone-center" min="23,8,230.5" max="27,11,232"/>
-            <cuboid id="red-score-zone" min="16,8,230" max="34,10,232"/>
+            <cuboid id="red-score-zone-left" min="27,8,230.5" max="35,9,232"/>
+            <cuboid id="red-score-zone-right" min="16,8,230.5" max="23,9,232"/>
+            <cuboid id="red-score-zone-center" min="23,8,230.5" max="27,9,232"/>
+            <cuboid id="red-score-zone" min="16,8,230" max="34,9,232"/>
         </union>
     </union>
     <rectangle id="playable" min="-11,-56" max="61,251"/>
@@ -106,8 +100,8 @@
 </score>
 <portals>
     <!-- portals from score zones to bases -->
-    <portal y="7" z="281" region="blue-score-zone" filter="only-blue"/>
-    <portal y="7" z="-281" region="red-score-zone" filter="only-red"/>
+    <portal destination="blue-spawn" region="blue-score-zone" filter="only-blue"/>
+    <portal destination="red-spawn" region="red-score-zone" filter="only-red"/>
     <!-- portals from one side to the other through emergency exits -->
     <portal x="-64">
         <region>
