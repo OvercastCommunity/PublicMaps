@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Badlands</name>
-<version>2.4</version>
+<version>2.4.1</version>
 <variant id="5v5" world="5v5">5v5</variant>
 <variant id="7v7">7v7</variant>
 <unless variant="5v5">
