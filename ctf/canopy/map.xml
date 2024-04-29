@@ -1,0 +1,268 @@
+<map proto="1.4.2">
+<name>Canopy</name>
+<variant id="hybrid">Hybrid</variant>
+<version>0.2.10</version>
+<constant id="flag-points">1</constant>
+<if variant="hybrid">
+    <constant id="flag-points">150</constant>
+    <phase>development</phase>
+</if>
+<gamemode>ctf</gamemode>
+<gamemode>rage</gamemode>
+<if variant="default">
+    <objective>Capture the enemy's flag as many times as possible in 15 minutes to win!</objective>
+</if>
+<if variant="hybrid">
+    <objective>Capture the enemy's flag and kill enemies to score, first to 450 points wins!</objective>
+</if>
+<if variant="default">
+    <time result="score" overtime="1m" max-overtime="2m">15m</time>
+</if>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor contribution="Inspiration">NOVA 2</contributor>
+</contributors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+    <if variant="hybrid">
+        <rule>Kills are worth 1 point, a flag capture is worth 150.</rule>
+    </if>
+</rules>
+<if variant="default">
+    <score>
+        <mercy>3</mercy>
+    </score>
+</if>
+<if variant="hybrid">
+    <score>
+        <limit>450</limit>
+        <kills>1</kills>
+    </score>
+</if>
+<teams>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="red" color="dark red" max="16">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" name="`aDagger" unbreakable="true" material="stone sword">
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="1" name="`bInstagib" unbreakable="true" material="bow">
+            <enchantment>power</enchantment>
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="2" amount="12" material="vine"/>
+        <item slot="8" amount="6" material="arrow"/>
+        <helmet team-color="true" locked="true" material="stained clay"/>
+        <chestplate unbreakable="true" locked="true" material="iron chestplate"/>
+        <leggings color="191919" unbreakable="true" locked="true" material="leather leggings"/>
+        <boots color="191919" unbreakable="true" locked="true" material="leather boots">
+            <enchantment level="2">depth_strider</enchantment>
+        </boots>
+        <effect>speed</effect>
+        <effect duration="3s" amplifier="255">regeneration</effect>
+        <effect duration="3s" amplifier="255">damage resistance</effect>
+        <max-health>6</max-health>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="0">
+            <point>66,58,0</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-29.5,16,-3.5</point>
+            <point yaw="-90">-30.5,16,-3.5</point>
+            <point yaw="-180">-30.5,16,-4.5</point>
+            <point>-30.5,16,-2.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <regions>
+            <point yaw="90">161.5,16,4.5</point>
+            <point yaw="90">162.5,16,4.5</point>
+            <point yaw="180">162.5,16,3.5</point>
+            <point>162.5,16,5.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<filters>
+    <deny id="only-blue">
+        <team>red</team>
+    </deny>
+    <deny id="only-red">
+        <team>blue</team>
+    </deny>
+    <not id="no-flag">
+        <any>
+            <carrying-flag>blue-flag</carrying-flag>
+            <carrying-flag>red-flag</carrying-flag>
+        </any>
+    </not>
+    <all id="blue-no-flag">
+        <team>blue</team>
+        <not>
+            <carrying-flag>red-flag</carrying-flag>
+        </not>
+    </all>
+    <all id="red-no-flag">
+        <team>red</team>
+        <not>
+            <carrying-flag>blue-flag</carrying-flag>
+        </not>
+    </all>
+    <not id="no-beacon">
+        <material>beacon</material>
+    </not>
+    <any id="only-plants">
+        <material>vine</material>
+        <material>long grass</material>
+        <material>double plant</material>
+    </any>
+    <deny id="deny-physics">
+        <material>portal</material>
+    </deny>
+</filters>
+<regions>
+    <!-- Portal regions -->
+    <union id="portals">
+        <cuboid id="north-portal-below" min="63,19,-48" max="69,23,-50"/>
+        <translate id="north-portal-above" region="north-portal-below" offset="0,39,-3"/>
+        <mirror id="south-portal-below" region="north-portal-below" origin="66,0,0.5" normal="0,0,1"/>
+        <translate id="south-portal-above" region="south-portal-below" offset="0,39,3"/>
+    </union>
+    <!-- Terrain height limit -->
+    <apply leave="never" message="You may not go this high in the terrain!">
+        <region>
+            <below y="80"/>
+        </region>
+    </apply>
+    <!-- mountain to circle platform -->
+    <apply velocity="10, 2.5, 0" filter="blue-no-flag">
+        <region>
+            <cuboid id="b-5" min="-16,32,13" max="-14,34,16"/>
+        </region>
+    </apply>
+    <apply velocity="-10, 2.5, 0" filter="red-no-flag">
+        <region>
+            <cuboid id="r-5" min="146,32,-12" max="148,34,-15"/>
+        </region>
+    </apply>
+    <!-- ground to circle platform, center -->
+    <apply velocity="2.5, 2, 0" filter="blue-no-flag">
+        <region>
+            <cuboid id="b-1" min="-5,19,2" max="-3,21,-1"/>
+        </region>
+    </apply>
+    <apply velocity="-2.5, 2, 0" filter="red-no-flag">
+        <region>
+            <mirror id="r-1" region="b-1" origin="66,0,0.5" normal="1,0,0"/>
+        </region>
+    </apply>
+    <!-- ground to circle platform, side -->
+    <apply velocity="0, 2.15, -3.65" filter="blue-no-flag">
+        <region>
+            <cuboid id="b-3" min="23,19,35" max="26,21,33"/>
+        </region>
+    </apply>
+    <apply velocity="0, 2.15, 3.65" filter="red-no-flag">
+        <region>
+            <cuboid id="r-3" min="106,19,-34" max="109,21,-32"/>
+        </region>
+    </apply>
+    <!-- ground to circle platform, diagonal -->
+    <apply velocity="-2.5, 2, 2.5" filter="blue-no-flag">
+        <region>
+            <cuboid id="b-4" min="48,21,-24" max="45,22,-21"/>
+        </region>
+    </apply>
+    <apply velocity="2.5, 2, -2.5" filter="red-no-flag">
+        <region>
+            <cuboid id="r-4" min="84,21,25" max="87,22,22"/>
+        </region>
+    </apply>
+    <!-- circle platform to bridge -->
+    <apply velocity="5, 3, 0" filter="blue-no-flag">
+        <region>
+            <translate id="b-2" region="b-1" offset="41,11,0"/>
+        </region>
+    </apply>
+    <apply velocity="-5, 3, 0" filter="red-no-flag">
+        <region>
+            <mirror id="r-2" region="b-2" origin="66,0,0.5" normal="1,0,0"/>
+        </region>
+    </apply>
+    <!-- spawn tunnels -->
+    <mirror id="red-base-first-rotation" region="blue-base" origin="66,0,0.5" normal="1,0,1"/>
+    <apply block="never">
+        <region>
+            <union>
+                <union id="blue-base">
+                    <cuboid min="-33,0,-14" max="-28,23,17"/>
+                    <cuboid min="-28,0,-6" max="-15,23,-1"/>
+                </union>
+                <mirror id="red-base-final-rotation" region="red-base-first-rotation" origin="66,0,0.5" normal="1,0,-1"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="only-plants" use="no-beacon" block-physics="deny-physics"/>
+</regions>
+<portals bidirectional="true" yaw="180">
+    <portal x="0" y="39" z="-4" region="north-portal-below"/>
+    <portal x="0" y="39" z="4" region="south-portal-below"/>
+</portals>
+<flags>
+    <flag id="red-flag" name="Red Flag" owner="red" color="red" pickup-filter="only-blue">
+        <post>156,38,5</post>
+    </flag>
+    <net points="${flag-points}" flag="red-flag" return="blue-flag">
+        <region>
+            <cylinder base="-24, 38, -4" radius="3" height="2"/>
+        </region>
+    </net>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" color="blue" pickup-filter="only-red">
+        <post>-25,38,-5</post>
+    </flag>
+    <net points="${flag-points}" flag="blue-flag" return="red-flag">
+        <region>
+            <cylinder base="156, 38, 5" radius="3" height="2"/>
+        </region>
+    </net>
+</flags>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>stained clay</item>
+    <item>seeds</item>
+    <item>vine</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="6">arrow</item>
+    </kill-reward>
+</kill-rewards>
+<disabledamage>
+    <damage enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<disabledamage>
+    <damage>contact</damage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<rage/>
+</map>

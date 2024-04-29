@@ -1,0 +1,160 @@
+<map proto="1.4.2">
+<name>Directrix CTW</name>
+<phase>development</phase>
+<version>1.0.3</version>
+<gamemode>ctw</gamemode>
+<objective>Capture the enemy's wool to win!</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor contribution="Inspiration">NOVA 2</contributor>
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="Gameplay improvements"/> <!-- Ruediger_LP -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="12">Red</team>
+    <team id="blue-team" color="blue" max="12">Blue</team>
+</teams>
+<kits>
+    <kit id="nv-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parent="nv-kit">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="stone pickaxe" unbreakable="true"/>
+        <item slot="3" material="stone axe" unbreakable="true"/>
+        <item slot="4" material="wood" damage="1" amount="24"/>
+        <item slot="5" material="stained clay" team-color="true" amount="24"/>
+        <item slot="28" material="arrow" amount="20"/>
+        <item slot="30" material="stone spade" unbreakable="true"/>
+        <effect duration="oo" amplifier="100">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resitance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit>
+    <kit id="blue-kit" parent="spawn-kit">
+        <helmet material="leather helmet" color="334CB2" unbreakable="true"/>
+        <chestplate material="leather chestplate" color="334CB2" unbreakable="true"/>
+        <leggings material="leather leggings" color="334CB2" unbreakable="true"/>
+        <boots material="leather boots" color="334CB2" unbreakable="true"/>
+    </kit>
+    <kit id="red-kit" parent="spawn-kit">
+        <helmet material="leather helmet" color="993333" unbreakable="true"/>
+        <chestplate material="leather chestplate" color="993333" unbreakable="true"/>
+        <leggings material="leather leggings" color="993333" unbreakable="true"/>
+        <boots material="leather boots" color="993333" unbreakable="true"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="blue-kit" region="blue-spawn-point"/>
+    <spawn team="red-team" kit="red-kit" region="red-spawn-point" yaw="180"/>
+    <default kit="nv-kit" yaw="90" pitch="-5">
+        <region>
+            <point>40.5,23,61.5</point>
+        </region>
+    </default>
+</spawns>
+<respawn delay="3.5s"/>
+<wools craftable="false">
+    <wool team="red-team" color="blue" monument="blue-wool" location="-8.5,20.5,-16.5"/>
+    <wool team="blue-team" color="red" monument="red-wool" location="-8.5,20.5,139.5"/>
+</wools>
+<time>15m</time>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <all id="red-woolroom-filter">
+        <team>blue-team</team>
+        <filter id="woolrooms-filter"/>
+    </all>
+    <all id="blue-woolroom-filter">
+        <team>red-team</team>
+        <filter id="woolrooms-filter"/>
+    </all>
+    <not id="woolrooms-filter">
+        <any>
+            <material>chest</material>
+            <material>beacon</material>
+            <material>iron block</material>
+        </any>
+    </not>
+    <not id="red-woolroom-filter-use">
+        <all>
+            <team>red-team</team>
+            <material>chest</material>
+        </all>
+    </not>
+    <not id="blue-woolroom-filter-use">
+        <all>
+            <team>blue-team</team>
+            <material>chest</material>
+        </all>
+    </not>
+</filters>
+<regions>
+    <cylinder id="red-spawn-point" base="-8.5,12,108.5" height="0" radius="5"/>
+    <cylinder id="blue-spawn-point" base="-8.5,12,14.5" height="0" radius="5"/>
+    <block id="blue-wool">-9,13,108</block>
+    <block id="red-wool">-9,13,14</block>
+    <union id="woolrooms">
+        <cuboid id="blue-woolroom" min="-12,18,-19" max="-5,25,-14"/> <!-- blue defends -->
+        <cuboid id="red-woolroom" min="-12,18,137" max="-5,25,142"/> <!-- red defends -->
+    </union>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <cylinder id="red-spawn" base="-8.5,11,108.5" height="5" radius="5"/>
+            <cylinder id="blue-spawn" base="-8.5,11,14.5" height="5" radius="5"/>
+        </union>
+    </negative>
+    <!-- applicators -->
+    <apply block-break="blue-woolroom-filter" block-place="never" region="blue-woolroom" message="You may not edit the wool room!"/>
+    <apply block-break="red-woolroom-filter" block-place="never" region="red-woolroom" message="You may not edit the wool room!"/>
+    <apply block="never" region="spawns" message="You may not edit spawn!"/>
+    <apply enter="only-blue" region="red-woolroom" message="You may not enter your own wool room!"/>
+    <apply enter="only-red" region="blue-woolroom" message="You may not enter your own wool room!"/>
+    <apply use="blue-woolroom-filter-use" region="blue-woolroom" message="You may not steal from the wool room!"/>
+    <apply use="red-woolroom-filter-use" region="red-woolroom" message="You may not steal from the wool room!"/>
+    <apply kit="reset-resitance-kit" region="not-spawns"/>
+</regions>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>stone pickaxe</item>
+    <item>stone axe</item>
+    <item>stone spade</item>
+    <item>stained clay</item>
+    <item>wood</item>
+    <item>arrow</item>
+</itemkeep>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>string</item>
+</itemremove>
+<rules>
+    <rule>Fall damage is disabled.</rule>
+    <rule>Hunger is Disabled.</rule>
+</rules>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>33</maxbuildheight>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+        <item material="arrow" amount="16"/>
+        <item material="wood" damage="1" amount="16"/>
+        <item material="stained clay" team-color="true" amount="8"/>
+    </kill-reward>
+</kill-rewards>
+<!-- <maptags>
+    <maptag>#aprilfools</maptag>
+</maptags> -->
+</map>

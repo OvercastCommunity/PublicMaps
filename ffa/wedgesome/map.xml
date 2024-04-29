@@ -1,0 +1,183 @@
+<map proto="1.4.2">
+<name>Wedgesome</name>
+<version>1.2.2</version>
+<objective>FFA: Kill as many players as you can before the 10 minutes are up!</objective>
+<gamemode>ffa</gamemode>
+<phase>development</phase>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<players min="2" max="80" colors="true"/>
+<time>10m</time>
+<score>
+    <kills>1</kills>
+</score>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<broadcasts>
+    <alert after="2s">Fall damage is disabled on this map! You can also double jump!</alert>
+</broadcasts>
+<spawns safe="true" spread="true">
+    <default kit="default-kit">
+        <region>
+            <point>0.5,127,1.5</point>
+        </region>
+    </default>
+    <spawn kit="spawn-kit">
+        <region angle="0.5,55,0.5">
+            <cylinder base="80.5,46,63.5" radius="300" height="14"/>
+        </region>
+    </spawn>
+</spawns>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" name="`cHealth Kit `7lvl. 2" damage="16421" material="potion"/>
+        <item slot="3" name="`cHealth Kit `7lvl. 2" damage="16421" material="potion"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect>speed</effect>
+        <effect duration="6" amplifier="10">heal</effect>
+        <effect duration="6" amplifier="10">damage resistance</effect>
+        <double-jump recharge-before-landing="true"/>
+        <!--
+        ### Deprecated ###
+        Awaiting @YukonAppleGeek to fix beds so they spawn kits are actually applied.
+        <item slot="17" name="`9Sleeping Bag" lore="`7Place this down to set your new spawn!|`7If another person breaks it,|`7you can no longer spawn there.">bed</item>
+        -->
+    </kit>
+</kits>
+<filters>
+    <any id="allow-break">
+        <material>leaves</material>
+        <material>crops</material>
+        <material>carrot</material>
+        <material>potato</material>
+        <material>sugar cane block</material>
+        <material>melon stem</material>
+        <material>melon block</material>
+        <material>long grass</material>
+        <material>red rose</material>
+        <material>yellow flower</material>
+        <material>double plant</material>
+        <material>bed block</material>
+        <material>thin glass</material>
+        <material>vine</material>
+        <material>monster eggs</material>
+        <material>beacon</material>
+        <material>emerald block</material>
+        <material>step:0</material>
+    </any>
+    <any id="allow-place">
+        <material>bed block</material>
+        <material>tnt</material>
+        <material>vine</material>
+        <material>monster eggs</material>
+        <material>beacon</material>
+        <material>emerald block</material>
+        <material>step:0</material>
+    </any>
+    <deny id="not-some">
+        <any>
+            <material>workbench</material>
+            <material>furnace</material>
+            <material>burning furnace</material>
+            <material>fence</material>
+        </any>
+    </deny>
+</filters>
+<regions>
+    <apply block-break="allow-break" block-place="allow-place" use="not-some"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <!-- Weapons -->
+    <item>iron sword</item>
+    <item>blaze rod</item>
+    <item>stick</item>
+    <item>tnt</item>
+    <item>diamond pickaxe</item>
+    <item>ender pearl</item>
+    <item>wood sword</item>
+    <!-- Armor -->
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond boots</item>
+    <item>chainmail helmet</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>gold boots</item>
+    <item>iron leggings</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <!-- Other -->
+    <item>glass bottle</item>
+    <item>golden carrot</item>
+    <item>bread</item>
+    <item>saddle</item>
+    <item>apple</item>
+    <item>diamond barding</item>
+    <item>gold barding</item>
+    <item>leather</item>
+    <item>raw beef</item>
+    <item>feather</item>
+    <item>beacon</item>
+    <item>emerald block</item>
+    <item>emerald</item>
+    <item>monster egg</item>
+    <!-- Breakable -->
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>double plant</item>
+    <item>bed</item>
+    <item>monster eggs</item>
+    <item>vine</item>
+    <item>step</item>
+    <item>carrot item</item>
+    <item>potato item</item>
+    <item>melon</item>
+    <item>melon seeds</item>
+    <item>poisonous potato</item>
+    <item>sugar cane</item>
+    <item>wheat</item>
+    <item>potion</item>
+    <item>arrow</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item name="`cHealth Kit `7lvl. 2" damage="16421" material="potion"/>
+    </kill-reward>
+</kill-rewards>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

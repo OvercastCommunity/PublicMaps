@@ -1,0 +1,339 @@
+<map proto="1.4.2">
+<name>Directrix: 2 Flags</name>
+<variant id="halloween" world="halloween" override="true">DirecTricks: 2 Flags</variant>
+<version>1.2.1</version>
+<gamemode>ctf</gamemode>
+<gamemode>rage</gamemode>
+<if variant="default">
+    <created>2021-12-06</created>
+    <constant id="blue-team-color">blue</constant>
+    <constant id="blue-team-name">Blue</constant>
+    <constant id="blue-team-flagcolor">blue</constant>
+    <constant id="red-team-color">dark red</constant>
+    <constant id="red-team-name">Red</constant>
+    <constant id="red-team-flagcolor">red</constant>
+</if>
+<if variant="halloween">
+    <created>2022-09-10</created>
+    <constant id="blue-team-color">dark purple</constant>
+    <constant id="blue-team-name">Purple</constant>
+    <constant id="blue-team-flagcolor">purple</constant>
+    <constant id="red-team-color">gold</constant>
+    <constant id="red-team-name">Orange</constant>
+    <constant id="red-team-flagcolor">orange</constant>
+</if>
+<objective>Capture the enemy's flag as many times as possible in 16 minutes to win!</objective>
+<time result="score" overtime="1m" max-overtime="3m">16m</time>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="6863869b-4b8c-4445-b778-a8e016775ae4" contribution="Redux edit + 2 flag adaptation"/> <!-- Cazadorian -->
+    <contributor uuid="bb2c7f64-5aa1-452c-a6da-515862f033cb" contribution="Redux edit + 2 flag adaptation"/> <!-- Witmoos -->
+    <if variant="halloween">
+        <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Original Halloween-ification"/> <!-- Xerorca -->
+    </if>
+    <contributor contribution="Inspiration">NOVA 2</contributor>
+</contributors>
+<broadcasts>
+    <alert after="1s">An additional lane in the clouds will spawn after 8 minutes!</alert>
+    <alert after="8m">An additional lane has spawned in the clouds!</alert>
+    <alert after="15m">If the match ends in a tie, the game will enter overtime!</alert>
+</broadcasts>
+<rules>
+    <rule>Fall damage is disabled.</rule>
+</rules>
+<teams>
+    <team id="blue" color="${blue-team-color}" max="18">${blue-team-name}</team>
+    <team id="red" color="${red-team-color}" max="18">${red-team-name}</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" name="`aDagger" unbreakable="true" material="stone sword">
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="1" name="`bInstagib" unbreakable="true" material="bow">
+            <enchantment>power</enchantment>
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="8" amount="3" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" locked="true" material="leather helmet"/>
+        <chestplate unbreakable="true" color="191919" material="leather chestplate"/>
+        <leggings unbreakable="true" color="191919" material="leather leggings"/>
+        <boots unbreakable="true" color="191919" attributes="generic.maxHealth:base:-0.7" material="leather boots"/>
+        <effect duration="3s" amplifier="255">damage resistance</effect>
+        <effect duration="3s">absorption</effect>
+        <effect>speed</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="90" pitch="-5">
+            <point>40.5,23,61.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region>
+            <cuboid min="-4,12,-6" max="-13,12,1"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="180">
+            <cuboid min="-4,12,122" max="-13,12,129"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <deny id="no-beacon">
+        <material>beacon</material>
+    </deny>
+</filters>
+<regions>
+    <!-- Top level jump pads -->
+    <apply velocity="0, 0.8, -3">
+        <region>
+            <cuboid id="r-1" min="9,21,119" max="12,23,117"/>
+            <translate region="r-1" offset="-38,0,0"/>
+            <translate region="r-1" offset="0,0,-97"/>
+        </region>
+    </apply>
+    <apply velocity="0, 0.8, 3">
+        <region>
+            <cuboid id="r-2" min="-26,21,101" max="-29,23,103"/>
+            <translate region="r-2" offset="0,0,-97"/>
+            <translate region="r-2" offset="38,0,-97"/>
+        </region>
+    </apply>
+    <!-- To center sides jump pads -->
+    <apply velocity="-6.7, 1.8, 0">
+        <region>
+            <cuboid id="n-1" min="-25,12,63" max="-28,14,60"/>
+        </region>
+    </apply>
+    <apply velocity="6.7, 1.8, 0">
+        <region>
+            <cuboid id="n-2" min="8,12,60" max="11,14,63"/>
+        </region>
+    </apply>
+    <!-- To top center jump pads -->
+    <apply velocity="10, 2.2, 0">
+        <region>
+            <cuboid id="n-3" min="-51,23,60" max="-48,25,63"/>
+        </region>
+    </apply>
+    <apply velocity="-10, 2.2, 0">
+        <region>
+            <cuboid id="n-4" min="34,23,63" max="32,25,60"/>
+        </region>
+    </apply>
+    <!-- High angle jump pads -->
+    <apply velocity="0, 1.5, 1.7">
+        <region>
+            <cuboid id="r-3" min="7,12,111" max="4,14,113"/>
+            <translate region="r-3" offset="-28,0,0"/>
+        </region>
+    </apply>
+    <apply velocity="0, 1.5, -1.7">
+        <region>
+            <translate region="r-3" offset="0,0,-101"/>
+            <translate region="r-3" offset="-28,0,-101"/>
+        </region>
+    </apply>
+    <!-- Next to high angle jump pads -->
+    <apply velocity="-0.3, 1.1, 3.6">
+        <region>
+            <cuboid id="r-6" min="-37,15,102" max="-34,17,104"/>
+        </region>
+    </apply>
+    <apply velocity="0.3, 1.1, -3.6">
+        <region>
+            <translate region="r-6" offset="54,0,-83"/>
+        </region>
+    </apply>
+    <!-- Up to the tower jump pads -->
+    <apply velocity="0, 1.7, 0">
+        <region>
+            <cuboid id="r-7" min="39,15,20" max="40,16,22"/>
+            <translate region="r-7" offset="-96,0,81"/>
+        </region>
+    </apply>
+    <!-- Tower side to side jump pads -->
+    <apply velocity="0, 2, 9">
+        <region>
+            <cuboid id="r-8" min="40,15,28" max="37,17,30"/>
+        </region>
+    </apply>
+    <apply velocity="0, 2, -9">
+        <region>
+            <translate region="r-8" offset="-94,0,65"/>
+        </region>
+    </apply>
+    <!-- Side island to side jump pads -->
+    <apply velocity="0, 1.5, -7">
+        <region>
+            <cuboid id="r-9" min="37,21,91" max="40,23,89"/>
+        </region>
+    </apply>
+    <apply velocity="0, 1.5, 7">
+        <region>
+            <translate region="r-9" offset="-94,0,-57"/>
+        </region>
+    </apply>
+    <!-- Side island to base jump pads -->
+    <apply velocity="-3.1, 1.3, 0">
+        <region>
+            <cuboid id="r-10" min="35,21,126" max="33,23,123"/>
+        </region>
+    </apply>
+    <apply velocity="3.1, 1.3, 0">
+        <region>
+            <translate region="r-10" offset="-85,0,-126"/>
+        </region>
+    </apply>
+    <!-- Second island to side island jump pads -->
+    <apply velocity="3.5, 1, 0">
+        <region>
+            <cuboid id="r-11" min="15,21,95" max="17,23,98"/>
+        </region>
+    </apply>
+    <apply velocity="-3.5, 1, 0">
+        <region>
+            <translate region="r-11" offset="-49,0,-70"/>
+        </region>
+    </apply>
+    <!-- Redux jump pads -->
+    <union id="jump-pads">
+        <union id="red-redux-jump-pads">
+            <cuboid id="red-to-rocket-flag" min="-40,21,125" max="-42,23,122"/>
+            <cuboid id="red-rocket-flag" min="-54,28,103" max="-56,30,104"/>
+            <cuboid id="red-to-cloud" min="-32,28,158" max="-30,30,161"/>
+            <cuboid id="red-away-rocket-flag" min="-50,24,131" max="-48,26,134"/>
+            <cuboid id="red-spawn-jump" min="-7.5,12,139.5" max="-9.5,14,141.5"/>
+            <cuboid id="red-to-platform" min="34,29,145" max="32,31,142"/>
+        </union>
+        <union id="blue-redux-jump-pads">
+            <cuboid id="blue-to-rocket-flag" min="24,21,-2" max="25,23,1"/>
+            <cuboid id="blue-rocket-flag" min="37,28,19" max="39,30,18"/>
+            <cuboid id="blue-to-cloud" min="15,28,-35" max="14,30,-38"/>
+            <cuboid id="blue-away-rocket-flag" min="33,24,-8" max="32,26,-11"/>
+            <cuboid id="blue-spawn-jump" min="-7.5,12,-18.5" max="-9.5,14,-16.5"/>
+            <cuboid id="blue-to-platform" min="-51,29,-22" max="-50,31,-19"/>
+        </union>
+    </union>
+    <apply velocity="@-2,1,0" region="red-to-rocket-flag"/>
+    <apply velocity="@0,1,5" region="red-rocket-flag"/>
+    <apply velocity="@3,1.8,0" region="red-to-cloud"/>
+    <apply velocity="@1.5,1,0" region="red-away-rocket-flag"/>
+    <apply velocity="@0,1.8,0" region="red-spawn-jump"/>
+    <apply velocity="@-2.6,1,0" region="red-to-platform"/>
+    <apply velocity="@2,1,0" region="blue-to-rocket-flag"/>
+    <apply velocity="@0,1,-5" region="blue-rocket-flag"/>
+    <apply velocity="@-3,1.8,0" region="blue-to-cloud"/>
+    <apply velocity="@-1.5,1,0" region="blue-away-rocket-flag"/>
+    <apply velocity="@0,1.8,0" region="blue-spawn-jump"/>
+    <apply velocity="@2.6,1,0" region="blue-to-platform"/>
+    <!-- Monuments for lanes -->
+    <union id="lanes">
+        <union id="smooth-stone">
+            <cuboid id="red-east-stone" min="-5,31,85" max="-6,33,101"/>
+            <cuboid id="red-west-stone" min="-11,31,85" max="-12,33,101"/>
+            <cuboid id="blue-east-stone" min="-5,31,22" max="-6,33,38"/>
+            <cuboid id="blue-west-stone" min="-11,31,22" max="-12,33,38"/>
+        </union>
+        <union id="glass">
+            <cuboid id="red-glass" min="-6,31,85" max="-11,33,101"/>
+            <cuboid id="blue-glass" min="-6,31,38" max="-11,33,22"/>
+        </union>
+    </union>
+    <!-- no beacons for you -->
+    <apply block="never" use="no-beacon"/>
+</regions>
+<!-- Additional lane that unlocks -->
+<structures>
+    <structure id="clouds-lane" region="lanes"/>
+    <dynamic structure="clouds-lane">
+        <trigger>
+            <after duration="10" message="Additional clouds appearing in {0}">
+                <time>7m50s</time>
+            </after>
+        </trigger>
+    </dynamic>
+</structures>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="blue-west-flag" name="Chicago" carry-message="Bring the Flag to the net above spawn!" owner="blue" color="${blue-team-flagcolor}" pickup-filter="only-red">
+        <post recover-time="25s" respawn-time="10s" yaw="0">-56.5,30,-24.5</post>
+    </flag>
+    <net points="1" flag="blue-west-flag">
+        <region>
+            <cylinder base="-8.5,22,127.5" radius="2" height="2"/>
+        </region>
+    </net>
+    <flag id="blue-east-flag" name="Midway" carry-message="Bring the Flag to the net above spawn!" owner="blue" color="${blue-team-flagcolor}" pickup-filter="only-red">
+        <post recover-time="25s" respawn-time="10s" yaw="90">40.5,33,-29.5</post>
+    </flag>
+    <net points="1" flag="blue-east-flag">
+        <region>
+            <cylinder base="-8.5,22,127.5" radius="2" height="2"/>
+        </region>
+    </net>
+    <flag id="red-east-flag" name="Chicago" carry-message="Bring the Flag to the net above spawn!" owner="red" color="${red-team-flagcolor}" pickup-filter="only-blue">
+        <post recover-time="25s" respawn-time="10s" yaw="180">39.5,30,147.5</post>
+    </flag>
+    <net points="1" flag="red-east-flag">
+        <region>
+            <cylinder base="-8.5,22,-4.5" radius="2" height="2"/>
+        </region>
+    </net>
+    <flag id="red-west-flag" name="Midway" carry-message="Bring the Flag to the net above spawn!" owner="red" color="${red-team-flagcolor}" pickup-filter="only-blue">
+        <post recover-time="25s" respawn-time="10s" yaw="-90">-57.5,33,152.5</post>
+    </flag>
+    <net points="1" flag="red-west-flag">
+        <region>
+            <cylinder base="-8.5,22,-4.5" radius="2" height="2"/>
+        </region>
+    </net>
+</flags>
+<score>
+    <mercy>4</mercy>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="3" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<respawn delay="2.5s"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<if variant="default">
+    <world>
+        <timeset>18000</timeset>
+    </world>
+</if>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>contact</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<rage/>
+</map>

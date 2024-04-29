@@ -1,0 +1,83 @@
+<map proto="1.4.2">
+<name>The City</name>
+<version>1.0.2</version>
+<objective>Get the most kills before time runs out!</objective>
+<authors>
+    <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<players min="2" max="48" colors="true"/>
+<time>10m</time>
+<score>
+    <kills>1</kills>
+</score>
+<kits>
+    <kit id="obs">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="players">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" enchantment="protection fall:2" material="leather boots"/>
+        <effect duration="2.5" amplifier="10">resistance</effect>
+    </kit>
+</kits>
+<spawns safe="true" spread="true" angle="-91,12,-11">
+    <spawn kit="players" region="spawn"/>
+    <default kit="obs" yaw="180" region="obs-spawn"/>
+</spawns>
+<filters>
+    <not id="deny-use">
+        <any>
+            <material>beacon</material>
+            <material>hopper</material>
+            <material>chest</material>
+            <material>workbench</material>
+            <material>furnace</material>
+            <material>burning furnace</material>
+        </any>
+    </not>
+    <material id="only-tnt">tnt</material>
+    <material id="only-glass">glass</material>
+</filters>
+<regions>
+    <apply block-place="only-tnt" block-break="only-glass" use="deny-use"/>
+    <cuboid id="obs-spawn" min="-91,69,-14" max="-88,69,-10"/>
+    <cuboid id="spawn" min="8,4,-59" max="-191,21,68"/>
+    <block id="portal-a" location="-126.5,8,4.5"/>
+    <block id="portal-b" location="-55.5,8,4.5"/>
+</regions>
+<portals y="7" yaw="360" sound="false" bidirectional="true" smooth="true">
+    <portal x="7" region="portal-a"/>
+    <portal x="-7" region="portal-b"/>
+</portals>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>    
+    </kill-reward>
+</kill-rewards>
+<disabledamage>
+    <damage>suffocation</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

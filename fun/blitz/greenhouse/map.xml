@@ -1,0 +1,120 @@
+<map proto="1.4.2">
+<name>Greenhouse</name>
+<version>1.1.5</version>
+<objective>Capture the enemy team's wool or eliminate the other team.</objective>
+<phase>development</phase>
+<edition>standard</edition>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="968a1d95-089a-47b7-8840-57eeedde6ea6" contribution="Map Feedback"/> <!-- DoctorTardi -->
+    <contributor uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9" contribution="Map and Feedback"/> <!-- BrettOgden -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="20">Blue</team>
+    <team id="red" color="dark red" max="20">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" material="stone sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="2" amount="16" material="cooked chicken"/>
+        <item slot="3" amount="16" material="leaves"/>
+        <item slot="8" amount="8" material="arrow"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn-kit" yaw="-90">
+        <regions>
+            <cylinder base="-178,27,0" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" yaw="90">
+        <regions>
+            <cylinder base="-18,27,0" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <cylinder base="-98,27,0" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <any id="only-break">
+        <material id="only-leaves">leaves</material>
+        <material>red rose</material>
+        <material>yellow flower</material>
+        <material>long grass</material>
+    </any>
+</filters>
+<regions>
+    <apply enter="only-blue" use="only-blue" message="You may not interact with the enemy's wool room!">
+        <region>
+            <cuboid min="-52,27,-3" max="-45,28,4"/>
+            <block>-52.5,27,0.5</block>
+        </region>
+    </apply>
+    <apply enter="only-red" use="only-red" message="You may not interact with the enemy's wool room!">
+        <region>
+            <cuboid min="-144,27,4" max="-151,28,-3"/>
+            <block>-144.5,27,0.5</block>
+        </region>
+    </apply>
+    <apply block-place="only-leaves" block-break="only-break"/>
+</regions>
+<time result="objectives" overtime="1m" max-overtime="3m">10m</time>
+<blitz>
+    <lives>5</lives>
+</blitz>
+<wools wool-proximity-metric="none">
+    <wool team="red" color="blue" location="-144.5,27,0.5">
+        <monument>
+            <block>-15,28,0</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="red" location="-52.5,27,0.5">
+        <monument>
+            <block>-183,28,-0</block>
+        </monument>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wool</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>seeds</item>
+    <item>leaves</item>
+    <item>long grass</item>
+    <item>cooked chicken</item>
+    <item>apple</item>
+    <item>sapling</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+    	<item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<gamerules>
+    <doDaylightCycle>true</doDaylightCycle>
+</gamerules>
+<respawn auto="true"/>
+<timelock>on</timelock>
+</map>

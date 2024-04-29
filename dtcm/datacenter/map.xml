@@ -1,0 +1,159 @@
+<map proto="1.4.2">
+<name>DATAcenter</name>
+<version>1.3.1</version>
+<objective>Destroy 60% of the enemy's battle ship!</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+    <team id="yellow" color="yellow" max="12" max-overfill="15">Yellow</team>
+    <team id="red" color="dark red" max="12" max-overfill="15">Red</team>
+</teams>
+<kits>
+    <kit id="obs">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="teams" parents="obs">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="31" amount="64" material="wood"/>
+        <item slot="22" amount="64" material="wood"/>
+        <item slot="5" amount="64" material="tnt"/>
+        <item slot="6" material="bucket"/>
+        <item slot="33" material="bucket"/>
+        <item slot="24" amount="8" material="fence gate"/>
+        <item slot="15" amount="8" material="trap door"/>
+        <item slot="7" amount="16" material="wood step"/>
+        <item slot="8" amount="8" material="redstone"/>
+        <item slot="34" amount="8" material="fence"/>
+        <item slot="35" amount="8" material="ladder"/>
+        <item slot="25" amount="4" material="diode"/>
+        <item slot="26" amount="16" material="stone button"/>
+        <item slot="16" amount="16" material="lever"/>
+        <item slot="17" amount="16" material="stone plate"/>
+        <item slot="29" unbreakable="true" name="`6TNT Defuser" lore="`7Right click to defuse team griefer's TNT|`7Does not work in `9water`7.|`7Use `a/report `7to alert the staff!" material="shears"/>
+        <item slot="28" material="arrow"/>
+        <item slot="9" amount="8" damage="9" name="`aHull Repair Block" lore="`7Place this over your ship to repair it!" material="stained clay"/>
+        <helmet team-color="true" material="stained clay"/>
+        <chestplate unbreakable="true" enchantment="protection explosions:4;water worker:3" material="chainmail chestplate"/>
+        <effect>fast digging</effect>
+        <effect>water breathing</effect>
+        <effect>heal</effect>
+        <effect>damage resistance</effect>
+    </kit>
+    <kit id="velocity" force="true">
+        <effect duration="5" amplifier="255">heal</effect>
+        <effect duration="5" amplifier="255">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="yellow" kit="teams">
+        <regions>
+            <cuboid min="-27,52,-102" max="-17,52,-104"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="teams" yaw="180">
+        <regions>
+            <cuboid min="-28,52,44" max="-18,52,42"/>
+        </regions>
+    </spawn>
+    <default kit="obs" yaw="-90" pitch="-20">
+        <regions>
+            <point>-61.5,76,-29.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-yellow">yellow</team>
+    <team id="only-red">red</team>
+    <deny id="deny-fire">
+        <material>fire</material>
+    </deny>
+</filters>
+<regions>
+    <union id="spawns">
+        <cuboid id="yellow-spawn" min="-11,50,-106" max="-33,oo,-98"/>
+        <cuboid id="red-spawn" min="-34,50,46" max="-12,oo,38"/>
+    </union>
+    <negative id="outside-ships">
+        <union id="ships">
+            <cuboid id="red-ship" min="-49,0,8" max="1,42,-8"/>
+            <cuboid id="yellow-ship" min="-46,0,-52" max="4,42,-68"/>
+        </union>
+    </negative>
+    <union id="velocity-pads">
+        <cuboid id="yellow-pad" min="-12,53,-100" max="-33,56,-98"/> <!-- +z -->
+        <cuboid id="red-pad" min="-33,53,40" max="-13,56,38"/> <!-- -z -->
+    </union>
+    <!-- Applied -->
+    <apply region="yellow-pad" velocity="@0,2,12" kit="velocity"/>
+    <apply region="red-pad" velocity="@0,2,-12" kit="velocity"/>
+    <apply region="yellow-spawn" enter="only-yellow" message="You may not enter the enemy's spawn area!"/>
+    <apply region="red-spawn" enter="only-red" message="You may not enter the enemy's spawn area!"/>
+    <apply region="ships" block-place="deny-fire" message="You may not burn down the ship!"/>
+    <apply region="outside-ships" block="never" message="You may not edit outside the main area!"/>
+</regions>
+<destroyables name="Ship" show-progress="true" completion="60%" repairable="true">
+    <destroyable region="yellow-ship" owner="yellow" materials="stained clay:4;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;71:10;71:0;71:4;71:2;71:8;71:3;71:6;lever:3;lever:11;lever:4;lever:12;trap door:9;trap door:13;redstone wire;gold block;stone button"/>
+    <destroyable region="red-ship" owner="red" materials="stained clay:14;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;71:10;71:0;71:4;71:2;71:8;71:3;71:6;lever:3;lever:11;lever:4;lever:12;trap door:8;trap door:12;redstone wire;gold block;stone button"/>
+</destroyables>
+<itemremove>
+    <item>stone sword</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>bow</item>
+    <item>flint and steel</item>
+    <item>arrow</item>
+    <item>step</item>
+    <item>chainmail chestplate</item>
+    <item>shears</item>
+    <item>rails</item>
+    <item>ladder</item>
+    <item>gold block</item>
+    <item>obsidian</item>
+    <item>stained clay</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>stone plate</item>
+    <item>diode</item>
+    <item>lever</item>
+    <item>iron door</item>
+    <item>fence</item>
+    <item>wood</item>
+    <item>tnt</item>
+    <item>stone button</item>
+    <item>redstone</item>
+    <item>ladder</item>
+    <item>log</item>
+    <item>wood step</item>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>trap door</item>
+    <item>fence gate</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="wood"/>
+        <item amount="16" material="tnt"/>
+        <item amount="8" damage="9" name="`aHull Repair Block" lore="`7Place this over your ship to repair it!" material="stained clay"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<respawn auto="true"/>
+</map>

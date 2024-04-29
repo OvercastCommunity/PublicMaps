@@ -1,0 +1,239 @@
+<map proto="1.4.2">
+<name>BungEE Coordé</name>
+<version>1.2.3</version>
+<objective>Leak the other team's core and capture their 2 wools.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team id="green" color="green" max="12">Green</team>
+    <team id="cyan" color="dark aqua" max="12">Cyan</team>
+</teams>
+<kits>
+    <kit id="spawn-kit" parents="observers">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="3" enchantment="dig speed;silk touch" material="stone axe"/>
+        <item slot="4" amount="6" material="log"/>
+        <item slot="5" enchantment="dig speed:3;silk touch" unbreakable="true" material="shears"/>
+        <item slot="28" amount="32" material="arrow"/>
+        <boots unbreakable="true" material="iron boots"/>
+        <helmet material="glass"/>
+        <chestplate unbreakable="true" team-color="true" attributes="generic.maxHealth:base:0.40" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <effect duration="4" amplifier="5">damage resistance</effect>
+        <effect duration="3" amplifier="10">heal</effect>
+    </kit>
+    <kit id="observers">
+        <effect>night vision</effect>
+    </kit>
+</kits>
+<spawns>
+    <default kit="observers">
+        <regions>
+            <cylinder base="-16.5,60,165.5" radius="1" height="0"/>
+        </regions>
+    </default>
+    <spawns kit="spawn-kit">
+        <spawn team="green" yaw="90">
+            <regions>
+                <cylinder id="green-spawn-1" base="-103,17,116" radius="1" height="0"/>
+            </regions>
+        </spawn>
+        <spawn team="green" yaw="180">
+            <regions>
+                <cylinder id="green-spawn-2" base="-66,17,79" radius="1" height="0"/>
+            </regions>
+        </spawn>
+        <spawn team="cyan" yaw="-90">
+            <regions>
+                <cylinder id="cyan-spawn-1" base="70,17,215" radius="1" height="0"/>
+            </regions>
+        </spawn>
+        <spawn team="cyan">
+            <regions>
+                <cylinder id="cyan-spawn-2" base="33,17,252" radius="1" height="0"/>
+            </regions>
+        </spawn>
+    </spawns>
+</spawns>
+<filters>
+    <any id="break-some">
+        <material>leaves</material>
+        <material>log</material>
+        <material>wood</material>
+        <material>obsidian</material>
+        <material>gold block</material>
+        <material>glass</material>
+        <material>workbench</material>
+        <material>wood step</material>
+        <material>ladder</material>
+        <material>sapling</material>
+        <material>wood button</material>
+        <material>wood plate</material>
+        <material>trap door</material>
+        <material>tnt</material>
+        <material>lava</material>
+        <material>stationary lava</material>
+    </any>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+    <any id="only-cyan-w">
+        <allow>
+            <team id="only-cyan">cyan</team>
+        </allow>
+        <deny>
+            <any>
+                <material>chest</material>
+                <material>ladder</material>
+                <material>quartz block</material>
+                <material>quartz stairs</material>
+                <material>step</material>
+                <material>stained clay</material>
+                <material>redstone block</material>
+                <material>thin glass</material>
+            </any>
+        </deny>
+    </any>
+    <any id="only-green-w">
+        <allow>
+            <team id="only-green">green</team>
+        </allow>
+        <deny>
+            <any>
+                <material>chest</material>
+                <material>ladder</material>
+                <material>quartz block</material>
+                <material>quartz stairs</material>
+                <material>step</material>
+                <material>stained clay</material>
+                <material>redstone block</material>
+                <material>thin glass</material>
+            </any>
+        </deny>
+    </any>
+</filters>
+<regions>
+    <complement id="all">
+        <circle id="center" center="-17,166" radius="4"/>
+        <union id="spawn-areas">
+            <union id="green-spawn-areas">
+                <rectangle id="green-spawn-area-1" min="-107.5,122.5" max="-100.5,110.5"/>
+                <rectangle id="green-spawn-area-2" min="-72.5,75.5" max="-59.5,82.5"/>
+            </union>
+            <union id="cyan-spawn-areas">
+                <rectangle id="cyan-spawn-area-1" min="73.5,209.5" max="66.5,222.5"/>
+                <rectangle id="cyan-spawn-area-2" min="39.5,256.5" max="25.5,249.5"/>
+            </union>
+        </union>
+        <union id="core-areas">
+            <cylinder base="-66.5,13,116" radius="9" height="9"/>
+            <cylinder base="32.5,13,215.5" radius="9" height="9"/>
+        </union>
+    </complement>
+    <union id="green-wool-rooms"> <!-- Green get into -->
+        <rectangle id="magenta-room" min="27,175" max="36,181"/>
+        <rectangle id="purple-room" min="-2,210" max="-8,219"/>
+    </union>
+    <union id="cyan-wool-rooms"> <!-- Cyan get into -->
+        <rectangle id="yellow-room" min="-62,156" max="-71,150"/>
+        <rectangle id="orange-room" min="-33,121" max="-27,112"/>
+    </union>
+    <!-- Applied -->
+    <apply region="green-wool-rooms" enter="only-green" message="You may not enter `aGreen`c's wool room!"/>
+    <apply region="cyan-wool-rooms" enter="only-cyan" message="You may not enter `3Cyan`c's wool room!"/>
+    <apply region="green-wool-rooms" block="only-green-w" use="only-green"/>
+    <apply region="cyan-wool-rooms" block="only-cyan-w" use="only-cyan"/>
+    <apply region="spawn-areas" block="never"/>
+    <apply block="always">
+        <region>
+            <region id="center"/>
+            <region id="core-areas"/>
+        </region>
+    </apply>
+    <apply region="all" block="break-some" message="This block is disabled on this map!"/>
+    <apply use="deny-beacon"/>
+</regions>
+<cores material="obsidian" leak="2">
+    <core team="green">
+        <region>
+            <cuboid id="green-core" min="-66,16,115" max="-68,19,117"/>
+        </region>
+    </core>
+    <core team="cyan">
+        <region>
+            <cuboid id="cyan-core" min="33,19,216" max="31,16,214"/>
+        </region>
+    </core>
+</cores>
+<wools>
+    <wools team="green">
+        <wool color="magenta" location="32.0,12,178.5">
+            <monument>
+                <block>-104,18,119</block>
+            </monument>
+        </wool>
+        <wool color="purple" location="-4.5,12,215.0">
+            <monument>
+                <block>-64,18,79</block>
+            </monument>
+        </wool>
+    </wools>
+    <wools team="cyan">
+        <wool color="orange" location="-29.5,12,117.0">
+            <monument>
+                <block>29,18,252</block>
+            </monument>
+        </wool>
+        <wool color="yellow" location="-66.0,12,153.5">
+            <monument>
+                <block>69,18,212</block>
+            </monument>
+        </wool>
+    </wools>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>shears</item>
+    <item>leather chestplate</item>
+    <item>stone axe</item>
+    <item>iron boots</item>
+    <item>arrow</item>
+    <item>leather</item>
+    <item>raw beef</item>
+    <item>stone pickaxe</item>
+    <item>string</item>
+    <item>leather leggings</item>
+    <item>glass</item>
+    <item>gold plate</item>
+    <item>quartz block</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="iron block"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>on</blockdamage>
+    <yield>100</yield>
+</tnt>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<timelock>on</timelock>
+<maxbuildheight>92</maxbuildheight>
+</map>

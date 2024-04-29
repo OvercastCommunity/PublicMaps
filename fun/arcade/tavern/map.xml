@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Tavern</name>
+<version>1.0.2</version>
+<objective>PvP your way through the levels, the first person to make it to the end wins</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- Brumei aka _IQ -->
+</authors>
+<kits>
+    <kit name="all" potion-particles="false">
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">speed</potion>
+    </kit>
+    <kit name="spawn" parents="all" potion-particles="false">
+        <potion duration="3" amplifier="10">damage resistance</potion>
+        <helmet locked="true" damage="-3000">diamond helmet</helmet>
+        <chestplate locked="true" damage="-3000">diamond chestplate</chestplate>
+        <leggings locked="true" damage="-3000">diamond leggings</leggings>
+        <boots locked="true" damage="-3000">diamond boots</boots>
+        <item slot="0" damage="-3000">diamond sword</item>
+    </kit>
+    <kit name="buffs" parents="all" force="true" potion-particles="false">
+        <clear/>
+        <potion duration="0.5" amplifier="100">heal</potion>
+    </kit>
+    <kit name="kit-diamond" parents="buffs" force="true">
+        <clear/>
+        <helmet locked="true" damage="-3000">diamond helmet</helmet>
+        <chestplate locked="true" damage="-3000">diamond chestplate</chestplate>
+        <leggings locked="true" damage="-3000">diamond leggings</leggings>
+        <boots locked="true" damage="-3000">diamond boots</boots>
+        <item slot="0" damage="-3000">diamond sword</item>
+    </kit>
+    <kit name="kit-iron" parents="buffs" force="true">
+        <clear/>
+        <helmet locked="true" damage="-3000">iron helmet</helmet>
+        <chestplate locked="true" damage="-3000">iron chestplate</chestplate>
+        <leggings locked="true" damage="-3000">iron leggings</leggings>
+        <boots locked="true" damage="-3000">diamond boots</boots>
+        <item slot="0" damage="-3000">iron sword</item>
+    </kit>
+    <kit name="kit-gold" parents="buffs" force="true">
+        <clear/>
+        <helmet locked="true" damage="-3000">gold helmet</helmet>
+        <chestplate locked="true" damage="-3000">gold chestplate</chestplate>
+        <leggings locked="true" damage="-3000">gold leggings</leggings>
+        <boots locked="true" damage="-3000">iron boots</boots>
+        <item slot="0" damage="-3000">stone sword</item>
+    </kit>
+    <kit name="kit-leather" parents="buffs" force="true">
+        <clear/>
+        <helmet locked="true" damage="-3000">leather helmet</helmet>
+        <chestplate locked="true" damage="-3000">leather chestplate</chestplate>
+        <leggings locked="true" damage="-3000">leather leggings</leggings>
+        <boots locked="true" damage="-3000">gold boots</boots>
+        <item slot="0" damage="-3000">wood sword</item>
+    </kit>
+    <kit name="kit-final" parents="buffs" force="true">
+        <clear/>
+        <potion duration="oo" amplifier="5">health boost</potion>
+        <helmet locked="true" damage="-3000">diamond helmet</helmet>
+        <chestplate locked="true" damage="-3000">diamond chestplate</chestplate>
+        <leggings locked="true" damage="-3000">diamond leggings</leggings>
+        <boots locked="true" damage="-3000">diamond boots</boots>
+        <item slot="0" damage="-3000" attributes="generic.attackDamage:add:8">diamond sword</item>
+    </kit>
+</kits>
+<spawns safe="true">
+    <spawn kit="spawn">
+        <regions angle="0.5,4,-260.5">
+            <region name="team-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="all">
+        <regions yaw="-65">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<players show-name-tags="false" max="15"/>
+<killreward>
+    <item name="`bDiamond Key" enchantment="luck">diamond</item>
+</killreward>
+<filters>
+    <filter name="has-key">
+        <carrying>
+            <item name="`bDiamond Key" enchantment="luck">diamond</item>
+        </carrying>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <point name="obs-spawn">-5,19,-263</point>
+    <cylinder name="team-spawn" base="0.5,2,-260.5" radius="8" height="1"/>
+    <union name="gates">
+        <cuboid name="first-gate" min="-2,2,-270" max="3,5,-271"/>
+        <translate name="second-gate" region="first-gate"  offset="0,0,-23"/>
+        <translate name="third-gate"  region="second-gate" offset="0,0,-23"/>
+        <translate name="fourth-gate" region="third-gate"  offset="0,0,-23"/>
+    </union>
+    <translate name="win-gate"    region="fourth-gate" offset="0,0,-23"/>
+    <cuboid name="win-area" min="3,2,-363" max="-2,4,-367"/>
+    <apply block="deny-all" region="all"/>
+
+    <apply kit="kit-iron"    region="first-gate"  filter="has-key"/>
+    <apply kit="kit-gold"    region="second-gate" filter="has-key"/>
+    <apply kit="kit-leather" region="third-gate"  filter="has-key"/>
+    <apply kit="kit-final"   region="fourth-gate" filter="has-key"/>
+
+    <apply region="first-gate"  enter="has-key" message="`7Requires a `bdiamond `7to enter"/>
+    <apply region="second-gate" enter="has-key" message="`7Requires a `bdiamond `7to enter"/>
+    <apply region="third-gate"  enter="has-key" message="`7Requires a `bdiamond `7to enter"/>
+    <apply region="fourth-gate" enter="has-key" message="`7Requires a `bdiamond `7to enter"/>
+
+    <apply region="win-gate" enter="has-key" message="`7Requires a `bdiamond `7to win"/>
+</regions>
+<score>
+    <limit>10</limit>
+    <time>5m</time>
+    <box points="1" region="third-gate"/>
+    <box points="3" region="fourth-gate"/>
+</score>
+<king>
+    <hills capture-time="10s" points="10" capture-rule="lead">
+        <hill id="winner" name="Winner" capture-region="win-area"/>
+    </hills>
+</king>
+<portals>
+    <portal region="gates" z="-4"/>
+    <portal region="win-gate" x="@1.5" y="@3" z="@-365.5" yaw="@10"/>
+</portals>
+<!-- this doesn't work
+<proximity-alarms>
+    <proximity-alarm flare-radius="0.5">
+        <region>
+            <region name="win-area"/>
+        </region>
+        <detect><filter parents="allow-all"/></detect>
+    </proximity-alarm>
+</proximity-alarms>
+-->
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>diamond sword</item>
+    <item>iron sword</item>
+    <item>stone sword</item>
+    <item>wood sword</item>
+    <item>diamond helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>diamond</item>
+</itemremove>
+</map>

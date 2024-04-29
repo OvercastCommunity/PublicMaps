@@ -1,0 +1,177 @@
+<map proto="1.4.2">
+<name>Lost World CTF</name>
+<version>1.0.3</version>
+<gamemode>ctf</gamemode>
+<gamemode>rage</gamemode>
+<rage/>
+<objective>Secure the most flag captures in 15 minutes to win!</objective>
+<time result="score" overtime="1m" max-overtime="2m">15m</time>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<contributors>
+    <contributor contribution="Original game">Gameflot</contributor>
+    <contributor uuid="2a3b7317-ad79-4cfb-90f0-cfa3d52d51ae" contribution="Feedback and building"/> <!-- IMPaused -->
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Feedback and building"/> <!-- moo88888888 -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="20">Blue</team>
+    <team id="red" color="dark red" max="20">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="pickup-kit" force="true">
+        <double-jump enabled="false"/>
+    </kit>
+    <kit id="drop-kit" parents="default-kit" force="true">
+        <double-jump power="3.5" recharge-time="4s" recharge-before-landing="true"/>
+    </kit>
+    <kit id="spawn-kit" parents="drop-kit">
+        <clear/>
+        <item slot="0" name="`a`lDagger" unbreakable="true" material="iron sword">
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="1" name="`a`lInstagib" unbreakable="true" material="bow">
+            <enchantment>power</enchantment>
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="2" amount="4" material="arrow"/>
+        <leggings unbreakable="true" locked="true" attributes="generic.maxHealth:add:-14" material="iron leggings"/>
+        <effect duration="3" amplifier="5">damage resistance</effect>
+        <effect duration="3">absorption</effect>
+        <effect>speed</effect>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet unbreakable="true" locked="true" color="334CB2" material="leather helmet"/>
+        <chestplate unbreakable="true" locked="true" color="334CB2" material="leather chestplate"/>
+        <boots unbreakable="true" locked="true" color="334CB2" material="leather boots"/>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet unbreakable="true" locked="true" color="993333" material="leather helmet"/>
+        <chestplate unbreakable="true" locked="true" color="993333" material="leather chestplate"/>
+        <boots unbreakable="true" locked="true" color="993333" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="45">
+            <point>0.5,102,7.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="blue-kit">
+        <regions>
+            <point yaw="90">7.5,33,-32.5</point>
+            <point yaw="-65">-46.5,24,-69.5</point>
+            <point yaw="0">41.5,28,-55.5</point>
+            <point yaw="30">46.5,33,-74.5</point>
+            <point yaw="-15">-30.5,24,-43.5</point>
+            <point yaw="90">0.5,24,-32.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions>
+            <point yaw="-90">-6.5,33,47.5</point>
+            <point yaw="-5">66.5,28,24.5</point>
+            <point yaw="90">39.5,37,54.5</point>
+            <point yaw="-140">21.5,30,73.5</point>
+            <point yaw="180">-11.5,24,74.5</point>
+            <point yaw="-115">-62.5,35,39.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <any id="only-some">
+        <material>stained glass:8</material>
+        <material>piston base:6</material>
+        <material>glass</material>
+        <material>thin glass</material>
+        <material>tnt</material>
+    </any>
+    <not id="no-use">
+        <any>
+            <material>anvil</material>
+            <material>dispenser</material>
+            <material>beacon</material>
+        </any>
+    </not>
+</filters>
+<regions>
+    <apply block="only-some" use="no-use"/>
+</regions>
+<flags pickup-kit="pickup-kit" drop-kit="drop-kit" flag-proximity-metric="none" net-proximity-metric="none">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          color="blue"
+          pickup-filter="only-red">
+        <post yaw="-90">-6.5,28,-72.5</post>
+        <net points="1">
+            <region>
+                <cuboid min="-24,28,54" max="-31,30,58"/>
+            </region>
+        </net>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red"
+          color="red"
+          pickup-filter="only-blue">
+        <post yaw="90">-28.5,28,56.5</post>
+        <net points="1">
+            <region>
+                <cuboid min="-4,28,-70" max="-11,30,-75"/>
+            </region>
+        </net>
+    </flag>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>stained glass</item>
+    <item>item frame</item>
+    <item>redstone block</item>
+    <item>piston base</item>
+    <item>thin glass</item>
+    <item>glass</item>
+    <item>stained clay</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item amount="6" material="arrow"/>
+</kill-reward>
+<disabledamage>
+    <damage enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>on</blockdamage>
+    <fuse>1s</fuse>
+    <power>5</power>
+</tnt>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
