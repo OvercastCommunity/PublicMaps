@@ -1,0 +1,408 @@
+<map proto="1.4.2">
+<name>Directrix</name>
+<variant id="halloween" world="halloween" override="true">DirecTricks</variant>
+<variant id="christmas" world="christmas" override="true">DirectriXmas</variant>
+<variant id="classic" world="classic">Classic</variant>
+<variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
+<variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
+<unless variant="king_ranch,king_ranch_og">
+    <version>1.1.5</version>
+</unless>
+<if variant="king_ranch,king_ranch_og">
+    <version>2.0.4</version>
+</if>
+<gamemode>ctf</gamemode>
+<gamemode>rage</gamemode>
+<if variant="default">
+    <created>2021-12-06</created>
+    <slug>directredux</slug>
+</if>
+<if variant="classic">
+    <slug>directrix</slug>
+</if>
+<if variant="halloween">
+    <created>2022-09-10</created>
+</if>
+<if variant="christmas">
+    <created>2022-11-28</created>
+</if>
+<unless variant="classic,king_ranch_king_ranch_og">
+    <constant id="time-limit">16</constant>
+    <constant id="max-overtime">3m</constant>
+    <constant id="team-1-flag-base">-8.5,22,-17.5</constant>
+    <constant id="team-2-flag-base">-8.5,22,140.5</constant>
+</unless>
+<if variant="classic,king_ranch,king_ranch_og">
+    <constant id="time-limit">12</constant>
+    <constant id="max-overtime">2m</constant>
+    <constant id="team-1-flag-base">-8.5,22,-16.5</constant>
+    <constant id="team-2-flag-base">-8.5,22,139.5</constant>
+    <phase>development</phase>
+</if>
+<objective>Capture the enemy's flag as many times as possible in ${time-limit} minutes to win!</objective>
+<time result="score" overtime="1m" max-overtime="${max-overtime}">${time-limit}m</time>
+<authors>
+    <unless variant="king_ranch,king_ranch_og">
+        <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    </unless>
+    <if variant="king_ranch,king_ranch_og">
+        <author uuid="57c4813e-ecc2-4aee-9479-8d58991d1a0c"/> <!-- CincoDeMayo -->
+        <author uuid="556fd070-7c92-4742-a061-c352b30728f8"/> <!-- PhantomOrion -->
+        <author uuid="76b4cc36-f899-4c42-8ad5-f9ba48ffd4c4"/> <!-- slayersource -->
+    </if>
+</authors>
+<contributors>
+    <unless variant="king_ranch,king_ranch_og">
+        <unless variant="classic">
+            <contributor uuid="6863869b-4b8c-4445-b778-a8e016775ae4" contribution="Redux edit"/> <!-- Cazadorian -->
+            <contributor uuid="bb2c7f64-5aa1-452c-a6da-515862f033cb" contribution="Redux edit"/> <!-- Witmoos -->
+        </unless>
+        <if variant="halloween">
+            <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Original Halloween-ification"/> <!-- Xerorca -->
+        </if>
+        <if variant="christmas">
+            <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Original Christmas-ification"/> <!-- Xerorca -->
+        </if>
+        <contributor contribution="Inspiration">NOVA 2</contributor>
+    </unless>
+    <if variant="king_ranch,king_ranch_og">
+        <contributor uuid="c657a674-09cb-4d42-adff-c00e2d92743e"/> <!-- Inharu -->
+        <contributor uuid="bd133f12-724a-4ca9-af7b-f808810aa835"/> <!-- ref -->
+        <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
+        <contributor uuid="510cf71c-0f8a-44b6-87c2-b1ed9c197040"/> <!-- fleuor -->
+        <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Original author of Directrix"/> <!-- ElectroidFilms -->
+    </if>
+</contributors>
+<rules>
+    <rule>Fall damage is disabled.</rule>
+</rules>
+<unless variant="classic,king_ranch,king_ranch_og">
+    <broadcasts>
+        <alert after="1s">An additional lane in the clouds will spawn after 8 minutes!</alert>
+        <alert after="8m">An additional lane has spawned in the clouds!</alert>
+        <alert after="15m">If the match ends in a tie, the game will enter overtime!</alert>
+    </broadcasts>
+</unless>
+<constants>
+    <unless variant="halloween">
+        <constant id="team-1-color">blue</constant>
+        <constant id="team-1-name">Blue</constant>
+        <constant id="team-1-flag-name">Blue</constant>
+        <constant id="team-1-flag-color">blue</constant>
+        <constant id="team-2-color">dark red</constant>
+        <constant id="team-2-name">Red</constant>
+        <constant id="team-2-flag-name">Red</constant>
+        <constant id="team-2-flag-color">red</constant>
+    </unless>
+    <if variant="halloween">
+        <constant id="team-1-color">dark purple</constant>
+        <constant id="team-1-name">Purple</constant>
+        <constant id="team-1-flag-name">Purple</constant>
+        <constant id="team-1-flag-color">purple</constant>
+        <constant id="team-2-color">gold</constant>
+        <constant id="team-2-name">Orange</constant>
+        <constant id="team-2-flag-name">Orange</constant>
+        <constant id="team-2-flag-color">orange</constant>
+    </if>
+    <if variant="christmas,king_ranch_og">
+        <constant id="team-2-color">green</constant>
+        <constant id="team-2-name">Green</constant>
+        <constant id="team-2-flag-name">Green</constant>
+        <constant id="team-2-flag-color">lime</constant>
+    </if>
+    <if variant="king_ranch_og">
+        <constant id="team-1-color">blue</constant>
+        <constant id="team-1-name">Buckeyes</constant>
+        <constant id="team-1-flag-name">Blue</constant>
+        <constant id="team-1-flag-color">blue</constant>
+        <constant id="team-2-name">Buckos</constant>
+    </if>
+</constants>
+<teams>
+    <team id="team-1" color="${team-1-color}" max="13">${team-1-name}</team>
+    <team id="team-2" color="${team-2-color}" max="13">${team-2-name}</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" name="`aDagger" unbreakable="true" material="stone sword">
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="1" name="`bInstagib" unbreakable="true" material="bow">
+            <enchantment>power</enchantment>
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="8" amount="3" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" locked="true" material="leather helmet"/>
+        <chestplate unbreakable="true" color="191919" locked="true" material="leather chestplate"/>
+        <leggings unbreakable="true" color="191919" locked="true" material="leather leggings"/>
+        <boots unbreakable="true" color="191919" locked="true" attributes="generic.maxHealth:base:-0.7" material="leather boots"/>
+        <effect duration="3s" amplifier="255">damage resistance</effect>
+        <effect duration="3s">absorption</effect>
+        <effect>speed</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="90" pitch="-5">
+            <point>40.5,23,61.5</point>
+        </region>
+    </default>
+    <spawn team="team-1" kit="spawn-kit">
+        <region>
+            <cuboid min="-5,12,0" max="-12,12,5"/>
+        </region>
+    </spawn>
+    <spawn team="team-2" kit="spawn-kit">
+        <region yaw="180">
+            <cuboid min="-5,12,118" max="-12,12,123"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-team-1">team-1</team>
+    <team id="only-team-2">team-2</team>
+    <material id="beacon">beacon</material>
+</filters>
+<regions>
+    <!-- Top level jump pads -->
+    <apply velocity="0, 0.8, -3">
+        <region>
+            <cuboid id="r-1" min="9,21,119" max="12,23,117"/>
+            <translate region="r-1" offset="-38,0,0"/>
+            <translate region="r-1" offset="0,0,-97"/>
+        </region>
+    </apply>
+    <apply velocity="0, 0.8, 3">
+        <region>
+            <cuboid id="r-2" min="-26,21,101" max="-29,23,103"/>
+            <translate region="r-2" offset="0,0,-97"/>
+            <translate region="r-2" offset="38,0,-97"/>
+        </region>
+    </apply>
+    <!-- To center sides jump pads -->
+    <apply velocity="-6.7, 1.8, 0">
+        <region>
+            <cuboid id="n-1" min="-25,12,63" max="-28,14,60"/>
+        </region>
+    </apply>
+    <apply velocity="6.7, 1.8, 0">
+        <region>
+            <cuboid id="n-2" min="8,12,60" max="11,14,63"/>
+        </region>
+    </apply>
+    <!-- To top center jump pads -->
+    <apply velocity="10, 2.2, 0">
+        <region>
+            <cuboid id="n-3" min="-51,23,60" max="-48,25,63"/>
+        </region>
+    </apply>
+    <apply velocity="-10, 2.2, 0">
+        <region>
+            <cuboid id="n-4" min="34,23,63" max="32,25,60"/>
+        </region>
+    </apply>
+    <!-- High angle jump pads -->
+    <apply velocity="0, 1.5, 1.7">
+        <region>
+            <cuboid id="r-3" min="7,12,111" max="4,14,113"/>
+            <translate region="r-3" offset="-28,0,0"/>
+        </region>
+    </apply>
+    <apply velocity="0, 1.5, -1.7">
+        <region>
+            <translate region="r-3" offset="0,0,-101"/>
+            <translate region="r-3" offset="-28,0,-101"/>
+        </region>
+    </apply>
+    <!-- "Chicago-midway" jump pads -->
+    <apply velocity="0, 0.8, 3.7">
+        <region>
+            <cuboid id="r-4" min="-7,12,129" max="-10,14,131"/>
+        </region>
+    </apply>
+    <apply velocity="0, 0.8, -3.7">
+        <region>
+            <mirror region="r-4" origin="-8.5,0,61.5" normal="0,0,-1"/>
+        </region>
+    </apply>
+    <!-- To above the flag jump pads -->
+    <apply velocity="0, 2.3, -0.7">
+        <region>
+            <cuboid id="r-5" min="-7,11,152" max="-10,14,155"/>
+        </region>
+    </apply>
+    <apply velocity="0, 2.3, 0.7">
+        <region>
+            <mirror region="r-5" origin="-8.5,0,61.5" normal="0,0,-1" id="b-5"/>
+        </region>
+    </apply>
+    <!-- Next to high angle jump pads -->
+    <apply velocity="-0.3, 1.1, 3.6">
+        <region>
+            <cuboid id="r-6" min="-37,15,102" max="-34,17,104"/>
+        </region>
+    </apply>
+    <apply velocity="0.3, 1.1, -3.6">
+        <region>
+            <translate region="r-6" offset="54,0,-83"/>
+        </region>
+    </apply>
+    <!-- Up to the tower jump pads -->
+    <apply velocity="0, 1.7, 0">
+        <region>
+            <cuboid id="r-7" min="39,15,20" max="40,16,22"/>
+            <translate region="r-7" offset="-96,0,81"/>
+        </region>
+    </apply>
+    <!-- Tower side to side jump pads -->
+    <apply velocity="0, 2, 9">
+        <region>
+            <cuboid id="r-8" min="40,15,28" max="37,17,30"/>
+        </region>
+    </apply>
+    <apply velocity="0, 2, -9">
+        <region>
+            <translate region="r-8" offset="-94,0,65"/>
+        </region>
+    </apply>
+    <!-- Side island to side jump pads -->
+    <apply velocity="0, 1.5, -7">
+        <region>
+            <cuboid id="r-9" min="37,21,91" max="40,23,89"/>
+        </region>
+    </apply>
+    <apply velocity="0, 1.5, 7">
+        <region>
+            <translate region="r-9" offset="-94,0,-57"/>
+        </region>
+    </apply>
+    <!-- Side island to base jump pads -->
+    <apply velocity="-3.1, 1.3, 0">
+        <region>
+            <cuboid id="r-10" min="35,21,126" max="33,23,123"/>
+        </region>
+    </apply>
+    <apply velocity="3.1, 1.3, 0">
+        <region>
+            <translate region="r-10" offset="-85,0,-126"/>
+        </region>
+    </apply>
+    <!-- Second island to side island jump pads -->
+    <apply velocity="3.5, 1, 0">
+        <region>
+            <cuboid id="r-11" min="15,21,95" max="17,23,98"/>
+        </region>
+    </apply>
+    <apply velocity="-3.5, 1, 0">
+        <region>
+            <translate region="r-11" offset="-49,0,-70"/>
+        </region>
+    </apply>
+    <unless variant="classic,king_ranch,king_ranch_og">
+        <!-- Redux jump pads -->
+        <union id="jump-pads">
+            <union id="team-1-redux-jump-pads">
+                <cuboid id="team-1-to-platform" min="-51,29,-22" max="-50,31,-19"/>
+                <cuboid id="team-1-rocket-to-lower" min="36,28,22" max="35,30,20"/>
+            </union>
+            <union id="team-2-redux-jump-pads">
+                <cuboid id="team-2-rocket-to-lower" min="-53,28,101" max="-52,30,103"/>
+                <cuboid id="team-2-to-platform" min="34,29,145" max="32,31,142"/>
+            </union>
+        </union>
+        <apply velocity="@-30,2,-1" region="team-1-rocket-to-lower"/>
+        <apply velocity="@30,2,1" region="team-2-rocket-to-lower"/>
+        <apply velocity="@2.6,1,0" region="team-1-to-platform"/>
+        <apply velocity="@-2.6,1,0" region="team-2-to-platform"/>
+        <!-- Regions for lane structures -->
+        <union id="lanes">
+            <union id="smooth-stone">
+                <cuboid id="team-1-east-stone" min="-5,31,22" max="-6,33,38"/>
+                <cuboid id="team-1-west-stone" min="-11,31,22" max="-12,33,38"/>
+                <cuboid id="team-2-east-stone" min="-5,31,85" max="-6,33,101"/>
+                <cuboid id="team-2-west-stone" min="-11,31,85" max="-12,33,101"/>
+            </union>
+            <union id="glass">
+                <cuboid id="team-2-glass" min="-6,31,38" max="-11,33,22"/>
+                <cuboid id="team-1-glass" min="-6,31,85" max="-11,33,101"/>
+            </union>
+        </union>
+    </unless>
+    <!-- no beacons for you -->
+    <apply block="never" use="deny(beacon)"/>
+</regions>
+<unless variant="classic,king_ranch,king_ranch_og">
+    <structures>
+        <structure id="clouds-lane" region="lanes"/>
+        <dynamic structure="clouds-lane">
+            <trigger>
+                <after duration="10" message="Additional clouds appearing in {0}">
+                    <time>7m50s</time>
+                </after>
+            </trigger>
+        </dynamic>
+    </structures>
+</unless>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="team-1-flag" name="${team-1-flag-name} Flag" owner="team-1" color="${team-1-flag-color}" pickup-filter="only-team-2">
+        <post recover-time="15s" respawn-time="10s" yaw="0">${team-1-flag-base}</post>
+    </flag>
+    <net points="1" flag="team-1-flag" return="team-2-flag">
+        <region>
+            <cylinder base="${team-2-flag-base}" radius="2" height="2"/>
+        </region>
+    </net>
+    <flag id="team-2-flag" name="${team-2-flag-name} Flag" owner="team-2" color="${team-2-flag-color}" pickup-filter="only-team-1">
+        <post recover-time="15s" respawn-time="10s" yaw="-180">${team-2-flag-base}</post>
+    </flag>
+    <net points="1" flag="team-2-flag" return="team-1-flag">
+        <region>
+            <cylinder base="${team-1-flag-base}" radius="2" height="2"/>
+        </region>
+    </net>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="3" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<respawn delay="2.5s"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<unless variant="halloween,king_ranch,king_ranch_og">
+    <world>
+        <timeset>18000</timeset>
+    </world>
+</unless>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>contact</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<rage/>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+</map>
