@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Country</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <variant id="christmas" world="christmas" override="true">Christmas Country</variant>
 <variant id="halloween" world="halloween" override="true">Spooky Country</variant>
 <include id="gapple-kill-reward"/>
@@ -140,6 +140,7 @@
             <filter id="yellow-wool-room"/>
         </all>
     </player>
+    <participating id="participating"/>
 </filters>
 <variables>
     <variable id="entered_wool_room" scope="player" default="0"/>
@@ -215,10 +216,10 @@
     <action id="exited-wool-room" scope="player">
         <set var="entered_wool_room" value="0"/>
     </action>
-    <trigger filter="purple-wool-room" action="entered-purple" scope="player"/>
-    <trigger filter="red-wool-room" action="entered-red" scope="player"/>
-    <trigger filter="orange-wool-room" action="entered-orange" scope="player"/>
-    <trigger filter="yellow-wool-room" action="entered-yellow" scope="player"/>
+    <trigger filter="all(purple-wool-room, participating)" action="entered-purple" scope="player"/>
+    <trigger filter="all(red-wool-room, participating)" action="entered-red" scope="player"/>
+    <trigger filter="all(orange-wool-room, participating)" action="entered-orange" scope="player"/>
+    <trigger filter="all(yellow-wool-room, participating)" action="entered-yellow" scope="player"/>
     <!-- Set the variable to 0 if a player is not in a wool room -->
     <trigger filter="not(any(purple-wool-room, red-wool-room, orange-wool-room, yellow-wool-room))" action="exited-wool-room" scope="player"/>
 </actions>
