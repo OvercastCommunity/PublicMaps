@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Atromix</name>
-<version>1.6.8</version>
+<version>1.6.9</version>
 <objective>Destroy the enemy team's front and back monuments!</objective>
 <gamemode>dtm</gamemode>
 <authors>
@@ -58,11 +58,11 @@
     <spawn team="orange-team" kit="spawn-kit" region="orange-spawn-point-2" yaw="-135"/>
     <default region="obs-spawn-point" yaw="0"/>
 </spawns>
-<destroyables mode-changes="true" completion="100%">
-    <destroyable owner="red-team" region="red-back-monument" name="Back Monument" materials="obsidian" show-progress="false"/>
-    <destroyable owner="red-team" region="red-front-monument" name="Front Monument" materials="beacon;emerald block" show-progress="true"/>
-     <destroyable owner="orange-team" region="orange-back-monument" name="Back Monument" materials="obsidian" show-progress="false"/>
-    <destroyable owner="orange-team" region="orange-front-monument" name="Front Monument" materials="beacon;emerald block" show-progress="true"/>
+<destroyables completion="100%">
+    <destroyable owner="red-team" region="red-back-monument" name="Back Monument" materials="obsidian" show-progress="false" mode-changes="true"/>
+    <destroyable owner="red-team" region="red-front-monument" name="Front Monument" materials="beacon;emerald block" show-progress="true" mode-changes="false"/>
+    <destroyable owner="orange-team" region="orange-back-monument" name="Back Monument" materials="obsidian" show-progress="false" mode-changes="true"/>
+    <destroyable owner="orange-team" region="orange-front-monument" name="Front Monument" materials="beacon;emerald block" show-progress="true" mode-changes="false"/>
 </destroyables>
 <modes>
     <mode after="30m" material="beacon" name="`bBEACON MONUMENT MODE"/>
@@ -80,11 +80,11 @@
     </deny>
 </filters>
 <regions>
-    <cylinder id="red-spawn-point-1" base="66,8,573" radius="3" height="0"/>
-    <cylinder id="red-spawn-point-2" base="66,8,647" radius="3" height="0"/>
-    <cylinder id="orange-spawn-point-1" base="-65,8,573" radius="3" height="0"/>
-    <cylinder id="orange-spawn-point-2" base="-65,8,647" radius="3" height="0"/>
-    <cylinder id="obs-spawn-point" base="0,48,610" radius="2" height="0"/>
+    <cylinder id="red-spawn-point-1" base="66.5,8,573.5" radius="3" height="0"/>
+    <cylinder id="red-spawn-point-2" base="66.5,8,647.5" radius="3" height="0"/>
+    <cylinder id="orange-spawn-point-1" base="-65.5,8,573.5" radius="3" height="0"/>
+    <cylinder id="orange-spawn-point-2" base="-65.5,8,647.5" radius="3" height="0"/>
+    <cylinder id="obs-spawn-point" base="0.5,48,610.5" radius="1" height="0"/>
     <cuboid id="red-back-monument" min="79,16,609" max="81,14,611"/>
     <cuboid id="red-front-monument" min="24,16,608" max="28,13,612"/>
     <cuboid id="orange-back-monument" min="-79,16,609" max="-81,14,611"/>
@@ -110,7 +110,7 @@
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="only-orange" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
     <apply block="never" region="spawns" message="You may not edit spawn"/>
-    <apply block="not-void" region="not-build-region" message="You may not edit the void!"/>
+    <apply block-place="not-void" region="not-build-region" message="You may not build in the void!"/>
     <apply use="deny-beacon"/>
 </regions>
 <itemkeep>
