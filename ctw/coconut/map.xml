@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Coconut</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Capture the enemy team's wool.</objective>
 <edition>standard</edition>
 <authors>
@@ -188,6 +188,7 @@
     <item>sugar_cane</item>
     <item>water_lily</item>
     <item>ink_sack</item>
+    <item>obsidian</item>
 </itemremove>
 <block-drops>
     <rule>
