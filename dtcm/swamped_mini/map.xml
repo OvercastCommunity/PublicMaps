@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Swamped Mini</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Leak the enemy's core above their large tree.</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall map design"/> <!-- Mikeg542 -->
@@ -67,6 +67,11 @@
         </region>
     </core>
 </cores>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
 <itemremove>
     <item>iron axe</item>
     <item>iron sword</item>
