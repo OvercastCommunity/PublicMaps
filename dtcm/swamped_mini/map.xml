@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Swamped Mini</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Leak the enemy's core above their large tree.</objective>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall map design"/> <!-- Mikeg542 -->
@@ -58,12 +58,12 @@
 <cores material="obsidian" leak="4">
     <core team="orange">
         <region>
-            <cuboid min="2,38,-72" max="-3,46,-77"/>
+            <cuboid min="3,38,-71" max="-4,45,-78"/>
         </region>
     </core>
     <core team="purple">
         <region>
-            <cuboid min="5,38,103" max="0,46,98"/>
+            <cuboid min="6,38,104" max="-1,45,97"/>
         </region>
     </core>
 </cores>
