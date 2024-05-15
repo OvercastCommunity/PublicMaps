@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Country</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <variant id="christmas" world="christmas" override="true">Christmas Country</variant>
 <variant id="halloween" world="halloween" override="true">Spooky Country</variant>
 <include id="gapple-kill-reward"/>
@@ -225,22 +225,22 @@
 </actions>
 <portals observers="never">
     <!-- Void players who cross the wool room barriers -->
-    <portal y="-20" region="purple-wool-room">
+    <portal y="@-12" region="purple-wool-room">
         <filter>
             <variable var="entered_wool_room">2</variable>
         </filter>
     </portal>
-    <portal y="-20" region="red-wool-room">
+    <portal y="@-12" region="red-wool-room">
         <filter>
             <variable var="entered_wool_room">1</variable>
         </filter>
     </portal>
-    <portal y="-20" region="orange-wool-room">
+    <portal y="@-12" region="orange-wool-room">
         <filter>
             <variable var="entered_wool_room">4</variable>
         </filter>
     </portal>
-    <portal y="-20" region="yellow-wool-room">
+    <portal y="@-12" region="yellow-wool-room">
         <filter>
             <variable var="entered_wool_room">3</variable>
         </filter>
