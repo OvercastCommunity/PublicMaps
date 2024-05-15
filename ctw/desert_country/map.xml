@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Country</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <variant id="christmas" world="christmas" override="true">Christmas Country</variant>
 <variant id="halloween" world="halloween" override="true">Spooky Country</variant>
 <include id="gapple-kill-reward"/>
@@ -223,7 +223,7 @@
     <!-- Set the variable to 0 if a player is not in a wool room -->
     <trigger filter="not(any(purple-wool-room, red-wool-room, orange-wool-room, yellow-wool-room))" action="exited-wool-room" scope="player"/>
 </actions>
-<portals>
+<portals observers="never">
     <!-- Void players who cross the wool room barriers -->
     <portal y="-20" region="purple-wool-room">
         <filter>
