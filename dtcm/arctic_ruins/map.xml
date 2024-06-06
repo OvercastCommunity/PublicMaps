@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Arctic Ruins</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Destroy the opposing team's monument!</objective>
 <time result="objectives">20m</time>
 <authors>
@@ -81,7 +81,7 @@
     <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter the opponent's spawn!"/>
     <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter the opponent's spawn!"/>
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
-    <apply block="never" region="spawner" message="Yoy may not destroy the spawner!"/>
+    <apply block="never" region="spawner" message="You may not destroy the spawner!"/>
     <apply block-place="no-void" region="void" message="You may not edit the void!"/>
 </regions>
 <destroyables name="Monument" materials="gold block" mode-changes="true" completion="100%" show-progress="true">
