@@ -148,8 +148,8 @@
     <apply enter="only-red" region="blues-woolrooms" message="You may not enter your team's own wool rooms!"/>
     <apply block="blues-woolrooms-filter" region="blues-woolrooms" message="You may not edit the wool rooms!"/>
     <apply block="reds-woolrooms-filter" region="reds-woolrooms" message="You may not edit the wool rooms!"/>
-    <apply use="only-red" region="blues-woolrooms" message="Yoy may not interact with this block!"/>
-    <apply use="only-blue" region="reds-woolrooms" message="Yoy may not interact with this block!"/>
+    <apply use="only-red" region="blues-woolrooms" message="You may not interact with this block!"/>
+    <apply use="only-blue" region="reds-woolrooms" message="You may not interact with this block!"/>
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
     <apply block="never" region="spawners" message="You may not break the spawners!"/>
     <apply block="never" region="wool-monuments"/>
