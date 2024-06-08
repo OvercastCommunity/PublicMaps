@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Full Salvo</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
