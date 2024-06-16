@@ -83,7 +83,6 @@
         <time>10m</time>
         <team id="only-attackers">attackers-team</team>
     </all>
-    <team id="only-defenders">defenders-team</team>
 </filters>
 <regions>
     <negative id="void">
