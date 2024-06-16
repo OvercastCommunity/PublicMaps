@@ -1,8 +1,13 @@
 <map proto="1.4.2">
 <name>Larnia</name>
-<version>1.5.6</version>
+<version>1.6</version>
 <objective>Capture or defend the green flag!</objective>
+<time result="defenders-team">15m</time>
+<include id="conquest"/>
+<constant id="respawn-timer">3s</constant>
+<constant id="damage-resistance">8s</constant>
 <gamemode>ad</gamemode>
+<gamemode>ctf</gamemode>
 <authors>
     <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
@@ -11,58 +16,59 @@
     <tip after="5s" every="95s">`2The Green Beacon`r is where `2The Green Flag`r is located.</tip>
     <tip after="12s" every="95s">`4The Red Beacon`r is the net for `4The Attackers`r to `6capture that flag`r.</tip>
     <tip after="19s" every="95s">To win `2The Defenders`r have to prevent 3 flag captures`r for 15 minutes.</tip>
-    <tip after="26s" every="95s">`2Defend Time`r is a countdown until `2The Defenders win`r, nothing else.</tip>
     <alert after="10m">`4The Attackers Spawn`r has moved up!</alert>
 </broadcasts>
 <teams>
-    <team id="attackers-team" color="dark red" max="17" max-overfill="19" plural="true">Attackers</team>
-    <team id="defenders-team" color="dark green" max="17" max-overfill="19" plural="true">Defenders</team>
+    <team id="attackers-team" color="dark red" max="17" plural="true">Attackers</team>
+    <team id="defenders-team" color="dark green" max="17" plural="true">Defenders</team>
 </teams>
 <kits>
-    <kit id="spawn" force="true">
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" amount="32" material="baked potato"/>
-        <item slot="7" amount="28" material="arrow"/>
-        <item slot="8" amount="2" material="golden apple"/>
-        <helmet unbreakable="true" enchantment="protection projectile" material="chainmail helmet"/>
-        <chestplate unbreakable="true" material="chainmail chestplate"/>
-        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
-        <boots unbreakable="true" enchantment="depth strider" material="chainmail boots"/>
-        <effect duration="8" amplifier="25">damage resistance</effect>
-        <effect duration="30">speed</effect>
+    <kit id="spawn-kit" parent="base-kit">
+        <item amount="2" material="golden apple"/>
+        <item amount="28" material="arrow"/>
+        <action>
+            <replace-item ignore-metadata="true">
+                <find material="chainmail leggings"/>
+                <replace unbreakable="true" enchantment="projectile_protection" material="chainmail leggings"/>
+            </replace-item>
+            <replace-item ignore-metadata="true">
+                <find material="iron boots"/>
+                <replace unbreakable="true" enchantment="depth_strider" material="iron boots"/>
+            </replace-item>
+        </action>
+        <effect duration="30s">speed</effect>
     </kit>
-    <kit id="attackers-kit" parents="spawn">
-        <item slot="6" amount="2" material="glass"/>
-        <effect duration="1" amplifier="3">strength</effect>
+    <kit id="attackers-kit" parent="spawn-kit">
+        <item slot="3" amount="2" material="glass"/>
+        <effect duration="1s" amplifier="3">strength</effect>
     </kit>
-    <kit id="defenders-kit" parents="spawn">
-        <item slot="6" amount="6" material="glass"/>
-        <effect duration="2" amplifier="3">strength</effect>
+    <kit id="defenders-kit" parent="spawn-kit">
+        <item slot="3" amount="6" material="glass"/>
+        <effect duration="2s" amplifier="3">strength</effect>
     </kit>
     <kit id="slowness" force="true">
-        <effect amplifier="2" duration="oo">slowness</effect>
+        <effect amplifier="2">slowness</effect>
     </kit>
     <kit id="slowness-rm" force="true">
-        <effect amplifier="3" duration="1">slowness</effect>
+        <effect duration="0s" amplifier="0">slowness</effect>
     </kit>
 </kits>
 <spawns>
+    <default>
+        <region yaw="180">
+            <point>327.5,77,-167.5</point>
+        </region>
+    </default>
     <spawn team="attackers-team" kit="attackers-kit">
-        <regions yaw="180">
+        <region yaw="180">
             <point>263.5,13,-126.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="defenders-team" kit="defenders-kit">
-        <regions yaw="180">
+        <region yaw="180">
             <point>359.5,30,-129.5</point>
-        </regions>
+        </region>
     </spawn>
-    <default>
-        <regions yaw="180">
-            <point>327.5,77,-167.5</point>
-        </regions>
-    </default>
 </spawns>
 <filters>
     <any id="only-glass">
@@ -73,12 +79,11 @@
     <not id="no-void">
         <void/>
     </not>
-    <team id="only-attackers">attackers-team</team>
-    <team id="only-defenders">defenders-team</team>
-    <all id="attackers10m">
+    <all id="attackers-10m">
         <time>10m</time>
-        <team>attackers-team</team>
+        <team id="only-attackers">attackers-team</team>
     </all>
+    <team id="only-defenders">defenders-team</team>
 </filters>
 <regions>
     <negative id="void">
@@ -97,42 +102,28 @@
     <apply region="flag-area" block="never" message="You may not modify or block the flag room area!"/>
     <apply block="only-glass" message="You may only break or place glass!"/>
 </regions>
-<control-points incremental="true" show-progress="true" required="false" capture-time="894s">
-    <control-point name="Defend Time" permanent="true" capture-filter="only-defenders" player-filter="only-defenders">
-        <capture>
-            <cylinder base="315,0,-180" radius="100" height="50"/>
-        </capture>
-    </control-point>
-</control-points>
 <flags>
     <post id="red-flag-post" respawn-time="15s" recover-time="15s" pickup-filter="only-attackers" yaw="-90">376.5,17.5,-209.5</post>
     <flag id="green-flag" carry-message="Take the Flag to `4Red Beacon" pickup-kit="slowness" drop-kit="slowness-rm" name="Green Flag" color="green" post="red-flag-post"/>
     <net post="red-flag-post" points="1" region="red-net" capture-filter="only-attackers"/>
 </flags>
-<score>
+<score scoreboard-filter="only-attackers">
     <limit>3</limit>
 </score>
-<time result="defenders-team">15m</time>
 <portals>
-    <portal x="@299" y="@17" z="@-170" filter="attackers10m">
+    <portal x="@299" y="@17" z="@-170" filter="attackers-10m">
         <region>
             <cuboid min="262,13,-128" max="265,14,-125"/>
         </region>
     </portal>
 </portals>
-<itemremove>
-    <item>baked potato</item>
-    <item>arrow</item>
+<itemkeep>
     <item>glass</item>
-    <item>leather leggings</item>
-    <item>chainmail helmet</item>
-    <item>leather boots</item>
-    <item>chainmail chestplate</item>
+</itemkeep>
+<itemremove>
     <item>chest</item>
-    <item>golden apple</item>
     <item>long grass</item>
     <item>red rose</item>
-    <item>chainmail boots</item>
     <item>seeds</item>
 </itemremove>
 <toolrepair>
@@ -141,12 +132,8 @@
 </toolrepair>
 <kill-rewards>
     <kill-reward>
-        <item amount="6" material="arrow"/>
         <item amount="2" material="glass"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>39</maxbuildheight>
-<timelock>on</timelock>
-<respawn auto="false" delay="3s"/>
 </map>
