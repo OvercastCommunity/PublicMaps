@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Base KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.11.22-1 -->
+<!-- Version 2024.06.16-1 -->
 <include id="conquest"/>
 <constant id="respawn-timer">2s</constant>
 <constant id="score">200</constant>
@@ -9,6 +9,9 @@
 <constant id="announce-post-pickup">false</constant>
 <gamemode>kotf</gamemode>
 <kits>
+    <kit id="base-kit-compass" parent="base-kit">
+        <item slot="3" material="compass"/>
+    </kit>
     <kit id="flag-kit-no-slowness" force="true">
         <action>
             <replace-item>
@@ -47,9 +50,18 @@
         <filter id="flag-carrier"/>
     </deny>
 </filters>
+<compass show-distance="true">
+    <player filter="flag-carrier" show-player="true" name="Flag Carrier"/>
+</compass>
 <score>
     <limit>${score}</limit>
 </score>
+<toolrepair>
+    <tool>compass</tool>
+</toolrepair>
+<itemkeep>
+    <item>compass</item>
+</itemkeep>
 <respawn spectate="true">
     <message>
         {"translate":"death.respawn.confirmed.waiting.flagDropped"}
