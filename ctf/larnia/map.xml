@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Larnia</name>
-<version>1.6</version>
+<version>1.6.1</version>
 <objective>Capture or defend the green flag!</objective>
 <time result="defenders-team">15m</time>
 <include id="conquest"/>
@@ -37,6 +37,7 @@
             </replace-item>
         </action>
         <effect duration="30s">speed</effect>
+        <game-mode>survival</game-mode>
     </kit>
     <kit id="attackers-kit" parent="spawn-kit">
         <item slot="3" amount="2" material="glass"/>
@@ -59,9 +60,14 @@
             <point>327.5,77,-167.5</point>
         </region>
     </default>
-    <spawn team="attackers-team" kit="attackers-kit">
+    <spawn team="attackers-team" kit="attackers-kit" filter="before-10m">
         <region yaw="180">
             <point>263.5,13,-126.5</point>
+        </region>
+    </spawn>
+    <spawn team="attackers-team" kit="attackers-kit" filter="after-10m">
+        <region yaw="180">
+            <point>299.5,17,-170.5</point>
         </region>
     </spawn>
     <spawn team="defenders-team" kit="defenders-kit">
@@ -79,10 +85,10 @@
     <not id="no-void">
         <void/>
     </not>
-    <all id="attackers-10m">
-        <time>10m</time>
-        <team id="only-attackers">attackers-team</team>
-    </all>
+    <not id="before-10m">
+        <time id="after-10m">30s</time>
+    </not>
+    <team id="only-attackers">attackers-team</team>
 </filters>
 <regions>
     <negative id="void">
@@ -109,13 +115,6 @@
 <score scoreboard-filter="only-attackers">
     <limit>3</limit>
 </score>
-<portals>
-    <portal x="@299" y="@17" z="@-170" filter="attackers-10m">
-        <region>
-            <cuboid min="262,13,-128" max="265,14,-125"/>
-        </region>
-    </portal>
-</portals>
 <itemkeep>
     <item>glass</item>
 </itemkeep>
