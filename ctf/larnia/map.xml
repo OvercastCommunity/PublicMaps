@@ -86,7 +86,7 @@
         <void/>
     </not>
     <not id="before-10m">
-        <time id="after-10m">30s</time>
+        <time id="after-10m">10m</time>
     </not>
     <team id="only-attackers">attackers-team</team>
 </filters>
