@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.4.0">
 <name>King's Conquest: Rooted Frontier</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <include id="kings-conquest"/>
 <constants>
     <constant id="team-size">24</constant>
@@ -13,7 +13,7 @@
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>
 <spawns>
-    <default yaw="-90">
+    <default yaw="-90" kit="obs-kit">
         <regions>
             <cylinder base="-61.5,38,0.5" radius="1" height="0"/>
         </regions>

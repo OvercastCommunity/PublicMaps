@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.4.0">
 <name>King's Conquest: Easterly Meadows</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <include id="kings-conquest"/>
 <constants>
     <constant id="team-size">24</constant>
@@ -13,7 +13,7 @@
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerorca -->
 </authors>
 <spawns>
-    <default yaw="-180">
+    <default yaw="-180" kit="obs-kit">
         <regions>
             <cylinder base="6.5,64.5,84.5" radius="1" height="0"/>
         </regions>

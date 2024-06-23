@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.4.0">
 <name>King's Conquest: Proelium</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <include id="kings-conquest"/>
 <constants>
     <constant id="team-size">24</constant>
@@ -20,7 +20,7 @@
     <contributor uuid="c1ea235d-4224-46e4-ba4a-638838f6d039" contribution="House design inspiration"/> <!-- Daffy_Duck01 -->
 </contributors>
 <spawns>
-    <default yaw="90">
+    <default yaw="90" kit="obs-kit">
         <regions>
             <cylinder base="-119,44,-145" radius="1" height="0"/>
         </regions>
