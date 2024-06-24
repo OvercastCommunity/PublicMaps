@@ -2,7 +2,7 @@
 <name>Embers 1</name>
 <version>1.2</version>
 <objective>Destroy the enemy team's monuments!</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- timaeusTestified -->
 </authors>

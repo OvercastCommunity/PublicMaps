@@ -2,7 +2,7 @@
 <name>Circus CTW</name>
 <version>1.2.6</version>
 <objective>Capture the wools before the other team does!</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="cf1b2da8-3718-45a9-8836-bb70b0628773"/> <!-- Andruew -->
     <author uuid="2fb11a11-1a1d-4b31-a7ba-2707a9ca9906"/> <!-- elego123 -->

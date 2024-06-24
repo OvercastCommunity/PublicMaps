@@ -8,7 +8,7 @@
 <if variant="comp">
     <constant id="max">8</constant>
     <constant id="max-overfill">8</constant>
-    <phase>development</phase>
+    <phase>staging</phase>
     <time overtime="5m" max-overtime="15m" end-overtime="1m">45m</time>
 </if>
 <objective>Capture the enemy's two wools!</objective>

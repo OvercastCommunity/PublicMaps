@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Cargo DTC/M</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.2</version>
 <objective>Destroy the enemy's monuments and leak their core!</objective>
 <gamemode>dtc</gamemode>

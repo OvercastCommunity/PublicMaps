@@ -3,7 +3,7 @@
 <version>1.1.8</version>
 <objective>Escape from the Juggernaut!</objective>
 <gamemode>arcade</gamemode>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>

@@ -11,7 +11,7 @@
     <constant id="max">8</constant>
     <constant id="max-overfill">8</constant>
     <time overtime="5m" max-overtime="10m" end-overtime="1m">35m</time>
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <objective>Capture the enemy team's two wools.</objective>
 <authors>

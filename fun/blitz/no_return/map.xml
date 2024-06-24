@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>No Return</name>
 <variant id="creeper" override="true">Creeper Return</variant>
-<phase>development</phase>
+<phase>staging</phase>
 <version>2.1.7</version>
 <objective>Eliminate the other team.</objective>
 <gamemode>blitz</gamemode>

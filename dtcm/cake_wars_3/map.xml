@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Cake Wars 3</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.3</version>
 <objective>Capture the wool under enemy spawn or eliminate the other team.</objective>
 <gamemode>blitz</gamemode>

@@ -3,7 +3,7 @@
 <name>Paladins</name>
 <version>1.0</version>
 <objective>Kill everyone!</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>

@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Frostbite</name>
 <version>2.2.3</version>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Destroy the enemy team's monuments!</objective>
 <authors>
     <author uuid="f391227e-626f-4076-a389-95e2b922d167"/> <!-- Haribo98 (ParaPenguin) -->

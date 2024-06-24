@@ -3,7 +3,7 @@
 <name>Intercept</name>
 <version>0.1.5</version>
 <objective>Destroy the enemy's emerald monument before the timer runs out</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->

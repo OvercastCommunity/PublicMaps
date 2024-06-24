@@ -2,7 +2,7 @@
 <name>Golden Drought CTF</name>
 <version>1.4.4</version>
 <objective>Capture the flags from the enemy flag rooms and place them on your flag monument while defending your own flags.</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>

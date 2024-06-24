@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.2" game="Water Drop">
 <name>Water Drop: Sunrise Over Paradise</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.2.3</version>
 <objective>Get to the bottom 3 times to win!</objective>
 <created>2019-04-01</created>

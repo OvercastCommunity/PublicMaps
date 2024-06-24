@@ -3,7 +3,7 @@
 <variant id="halloween" world="halloween" override="true">Haunted Rings</variant>
 <!-- <variant id="tournament" world="tournament">TE</variant> -->
 <version>1.8.2</version>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Capture both wools from the enemy's wool rooms and return them to your victory monument</objective>
 <if variant="halloween">
     <created>2013-10-24</created>

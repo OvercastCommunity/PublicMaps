@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Brisked</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.14</version>
 <objective>Collect the most points in 10 minutes!</objective>
 <created>2015-03-14</created>

@@ -2,7 +2,7 @@
 <name>From the Archives: Royal Garden CTW</name>
 <version>1.0.2</version>
 <objective>Capture the opposing team's wool and place it at your victory monument.</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
     <author uuid="fb820bf4-5157-4d7b-8cca-e8ec759b87cd"/> <!-- Vetches -->

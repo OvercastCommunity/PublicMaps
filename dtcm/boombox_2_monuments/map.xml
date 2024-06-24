@@ -2,7 +2,7 @@
 <map proto="1.3.3">
 <name>BoomBox: 2 Monuments</name>
 <version>1.0.4</version>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Destroy the other team's Endstone Pillar before they destroy yours!</objective>
 <authors>
     <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->

@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="Wool Run">
 <name>Crazy's Wool Run</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.3</version>
 <objective>Be the last man standing</objective>
 <gamemode>arcade</gamemode>

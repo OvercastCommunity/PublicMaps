@@ -2,7 +2,7 @@
 <name>The Hill: Classic</name>
 <version>1.1.7</version>
 <slug>the_hill</slug>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Capture and hold the hills.</objective>
 <authors>
     <author uuid="374988d6-4569-444e-885a-409c2f55e310" contribution="Map Creator"/> <!-- Articray -->

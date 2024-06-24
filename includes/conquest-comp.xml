@@ -3,7 +3,7 @@
 <!-- Created by mameBT -->
 <!-- Version 2023.09.11-1 -->
 <include id="gapple-kill-reward"/>
-<phase>development</phase> <!-- prevent competitive conquest from sponsoring -->
+<phase>staging</phase> <!-- prevent competitive conquest from sponsoring -->
 <kits>
     <kit id="base-kit">
         <clear/>

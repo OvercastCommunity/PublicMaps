@@ -2,7 +2,7 @@
 <name>6 Sided</name>
 <version>1.0.7</version>
 <edition>standard</edition>
-<phase>development</phase>
+<phase>staging</phase>
 <gamemode>kotf</gamemode>
 <objective>Hold the flag for 200 seconds to win!</objective>
 <authors>

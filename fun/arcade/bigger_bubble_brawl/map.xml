@@ -2,7 +2,7 @@
 <name>Bigger Bubble Brawl</name>
 <version>1.0.3</version>
 <gamemode>arcade</gamemode>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Knock all opponents out of the water!</objective>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->

@@ -2,7 +2,7 @@
 <name>University</name>
 <version>1.0.1</version>
 <objective>Have the most kills after 5 minutes</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/>
     <!--  Yoyo  -->

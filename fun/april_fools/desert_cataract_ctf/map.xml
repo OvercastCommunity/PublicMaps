@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Desert Cataract CTF</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.3</version>
 <gamemode>ctf</gamemode>
 <objective>Capture enemy team's flag 3 times!</objective>

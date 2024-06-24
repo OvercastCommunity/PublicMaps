@@ -15,7 +15,7 @@
     <constant id="max-overfill">8</constant>
     <constant id="axe-type">iron axe</constant>
     <constant id="respawn-timer">7s</constant>
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <objective>Capture the enemy's two wools!</objective>
 <authors>

@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Rift II</name>
 <version>1.1.4</version>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Destroy both of the enemy's monuments made up of packed ice and stained glass.</objective>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->

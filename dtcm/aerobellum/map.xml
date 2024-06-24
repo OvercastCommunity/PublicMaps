@@ -17,7 +17,7 @@
     <slug>aerobellum_redux</slug>
 </if>
 <if variant="classic">
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <teams>
     <team id="red" color="dark red" max="24">Red</team>

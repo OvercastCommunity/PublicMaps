@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Directrix CTW</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.3</version>
 <gamemode>ctw</gamemode>
 <objective>Capture the enemy's wool to win!</objective>

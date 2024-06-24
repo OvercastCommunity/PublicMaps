@@ -16,7 +16,7 @@
 </if>
 <if variant="classic">
     <slug>sunrise_over_paradise</slug>
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <version>1.4</version>
 <objective>Destroy both of the enemy team's monuments!</objective>

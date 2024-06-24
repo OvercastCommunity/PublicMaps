@@ -433,7 +433,7 @@
 <if variant="classic">
     <version>0.55.3</version>
     <slug>boombox</slug>
-    <phase>development</phase>
+    <phase>staging</phase>
     <objective>Attackers have 20 minutes to destroy the Ice Pillar, while the Defenders try to hold them back.</objective>
     <authors>
         <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->

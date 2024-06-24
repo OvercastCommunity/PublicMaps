@@ -10,7 +10,7 @@
     </authors>
 </unless>
 <if variant="cummins">
-    <phase>development</phase>
+    <phase>staging</phase>
     <authors>
         <author uuid="57c4813e-ecc2-4aee-9479-8d58991d1a0c"/> <!-- CincoDeMayo -->
         <author uuid="556fd070-7c92-4742-a061-c352b30728f8"/> <!-- PhantomOrion -->

@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Fairy Tales</name>
 <version>1.0.7</version>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Take the enemy's flag located on the enemy's side and place it at the top of your tree.</objective>
 <authors>
     <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/>

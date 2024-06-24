@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Senex 2</name>
 <version>2.3.0</version>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Destroy the enemy team's monuments!</objective>
 <authors>
     <author uuid="44df6b20-168f-4389-b7ac-434518207c2f"/> <!-- ParaPenguin -->

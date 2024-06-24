@@ -5,7 +5,7 @@
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <maxbuildheight>30</maxbuildheight>
 <if variant="aerolock">
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->

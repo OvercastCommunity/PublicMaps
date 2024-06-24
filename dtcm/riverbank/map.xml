@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Riverbank</name> 
 <version>1.0.3</version> 
-<phase>development</phase>
+<phase>staging</phase>
 <objective>To win destroy both of the enemy team's monuments.</objective>
 <created>2014-10-19</created>
 <authors>

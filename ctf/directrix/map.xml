@@ -37,7 +37,7 @@
     <constant id="max-overtime">2m</constant>
     <constant id="team-1-flag-base">-8.5,22,-16.5</constant>
     <constant id="team-2-flag-base">-8.5,22,139.5</constant>
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <objective>Capture the enemy's flag as many times as possible in ${time-limit} minutes to win!</objective>
 <time result="score" overtime="1m" max-overtime="${max-overtime}">${time-limit}m</time>

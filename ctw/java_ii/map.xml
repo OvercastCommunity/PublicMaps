@@ -16,7 +16,7 @@
     <constant id="max-overfill">8</constant>
     <constant id="axe-type">stone axe</constant>
     <constant id="respawn-timer">6s</constant>
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <authors>
     <author uuid="b8add1ba-8e13-4673-bc73-4e3ed524d40e"/> <!-- Blazy36 -->

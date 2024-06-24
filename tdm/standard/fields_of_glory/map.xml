@@ -3,7 +3,7 @@
 <version>1.0.5</version>
 <gamemode>tdm</gamemode>
 <gamemode>scorebox</gamemode>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Be the team with the most kills in 10 minutes!</objective>
 <authors>
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->

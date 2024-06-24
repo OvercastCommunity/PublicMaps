@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Foolirium</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.3</version>
 <objective>Capture both flags and leak the core!</objective>
 <gamemode>ctf</gamemode>

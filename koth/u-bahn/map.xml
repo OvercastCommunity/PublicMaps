@@ -4,7 +4,7 @@
 <objective>Be the first team to reach 1250 points by controlling hills and killing the enemy!</objective>
 <gamemode>koth</gamemode>
 <gamemode>tdm</gamemode>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="135737b8-7f2b-4f90-aa37-ec395c7c6a9b"/> <!-- lumaaaaaaa -->
     <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- Vicei -->

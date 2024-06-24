@@ -5,7 +5,7 @@
 <constant id="flag-points">1</constant>
 <if variant="hybrid">
     <constant id="flag-points">150</constant>
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>

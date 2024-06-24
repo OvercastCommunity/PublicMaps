@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.3.5">
 <name>Limbo II CTF</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.3</version>
 <objective>Capture the opponent's flag!</objective>
 <authors>

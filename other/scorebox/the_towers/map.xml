@@ -4,7 +4,7 @@
 <created>2013-04-02</created>
 <objective>Score 10 points to win.</objective>
 <gamemode>scorebox</gamemode>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="f48faa1f-aab2-44d5-94d2-8b0404f3a227"/> <!-- Quijx -->
 </authors>

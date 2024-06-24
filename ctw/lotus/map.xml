@@ -15,7 +15,7 @@ s<version>1.3.6</version>
     <constant id="respawn-timer">7s</constant>
     <constant id="max-build-height">26</constant>
     <time overtime="5m" max-overtime="10m" end-overtime="1m">35m</time>
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <objective>Capture the enemy's two wools!</objective>
 <authors>

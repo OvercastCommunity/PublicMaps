@@ -40,7 +40,7 @@
 </broadcasts>
 <respawn delay="3s" auto="true"/>
 <if variant="lifesteal">
-    <phase>development</phase>
+    <phase>staging</phase>
     <include id="lifesteal"/>
     <constants>
         <!-- Lifesteal include constants -->

@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Whiteout</name>
 <version>1.0.4</version>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Have the most kills after 10 minutes to win.</objective>
 <authors>
     <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->

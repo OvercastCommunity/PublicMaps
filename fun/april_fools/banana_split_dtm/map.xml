@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Banana Split DTM</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.2</version>
 <gamemode>dtm</gamemode>
 <objective>Destroy the other team's monuments!</objective>

@@ -4,7 +4,7 @@
 <version>1.0.2</version>
 <gamemode>arcade</gamemode>
 <objective>Complete two laps before everyone else!</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames !-->
 </authors>

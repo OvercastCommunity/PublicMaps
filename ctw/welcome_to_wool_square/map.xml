@@ -3,7 +3,7 @@
 <name>Welcome to Wool Square</name>
 <version>3.1.9</version>
 <objective>Capture all three enemy wools and place them on your monument!</objective>
-<phase>development</phase>
+<phase>staging</phase>
 <authors>
     <author uuid="b0b3c5d5-e9bd-4984-bc07-1bd552d4b042"/> <!-- Beebou -->
 </authors>

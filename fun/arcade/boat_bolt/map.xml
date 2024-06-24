@@ -10,7 +10,7 @@
 </contributors>
 <gamemode>ad</gamemode>
 <gamemode>arcade</gamemode>
-<phase>development</phase>
+<phase>staging</phase>
 <broadcasts>
     <tip filter="only-boaters" after="0s">`aThe glass wall will dissappear in 5 seconds!</tip>
     <tip filter="only-defenders" after="0s">`aYou can move in 5 seconds!</tip>

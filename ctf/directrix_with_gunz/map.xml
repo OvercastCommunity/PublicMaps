@@ -3,7 +3,7 @@
 <version>0.2.2</version>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
-<phase>development</phase>
+<phase>staging</phase>
 <objective>Capture the enemy's flag 3 times to win!</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->

@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>NextGen KotH</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.3</version>
 <objective>Score 2000 points to win!</objective>
 <gamemode>koth</gamemode>

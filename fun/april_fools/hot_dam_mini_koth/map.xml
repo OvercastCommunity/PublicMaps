@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Hot Dam: Mini KotH</name>
-<phase>development</phase>
+<phase>staging</phase>
 <version>1.0.2</version>
 <objective>Score 750 points to win!</objective>
 <gamemode>koth</gamemode>

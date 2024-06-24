@@ -6,7 +6,7 @@
 <constant id="respawn-timer">3s</constant>
 <constant id="damage-resistance">4s</constant>
 <if variant="classic">
-    <phase>development</phase>
+    <phase>staging</phase>
 </if>
 <objective>Control the hills to be the first to ${score} points!</objective>
 <authors>
