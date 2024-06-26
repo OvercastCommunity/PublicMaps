@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Moonshine</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Score 6 points to win!</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
@@ -13,17 +13,14 @@
     <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="Initial XML framework"/> <!-- Ruediger_LP -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="5" max-owerfill="5">Blue</team>
-    <team id="red" color="dark red" max="5" max-owerfill="5">Red</team>
+    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
+    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-resistance">
-        <effect amplifier="255">damage resistance</effect>
-    </kit>
-    <kit id="spawn-kit" parents="default-kit,spawn-resistance" force="true">
+    <kit id="spawn-kit" parents="default-kit" force="true">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
@@ -35,17 +32,18 @@
             <enchantment level="3">projectile_protection</enchantment>
         </leggings>
         <boots unbreakable="true" material="iron boots"/>
+        <effect duration="6s" amplifier="255">damage resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
-    <kit id="waiting-kit" parents="default-kit,spawn-resistance" force="true">
+    <kit id="waiting-kit" parents="default-kit" force="true">
         <clear/>
         <effect duration="1s" amplifier="20">regeneration</effect>
         <effect duration="0s">absorption</effect>
+        <effect duration="0s">damage resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
     <give kit="waiting-kit" filter="round-pending"/>
     <give kit="spawn-kit" filter="round-start"/>
-    <take kit="spawn-resistance" filter="not-spawns"/>
 </kits>
 <spawns>
     <default kit="default-kit">
@@ -152,18 +150,15 @@
         <variable var="round_over">1</variable>
     </all>
     <!-- Other misc map filters -->
-    <all id="not-spawns">
-        <participating/>
-        <not>
-            <region id="spawns"/>
-        </not>
-    </all>
     <any id="items-and-arrows">
         <entity>dropped item</entity>
         <entity>arrow</entity>
     </any>
 </filters>
 <variables>
+    <score id="team_score"/>
+    <with-team id="blue_team_score" var="team_score" team="blue"/>
+    <with-team id="red_team_score" var="team_score" team="red"/>
     <variable id="round_over" scope="player" default="0"/>
 </variables>
 <actions>
@@ -175,6 +170,11 @@
     <message id="red-score" text="`4Red`f has won the round!"/>
     <trigger filter="score-blue" trigger="blue-score" scope="match"/>
     <trigger filter="score-red" trigger="red-score" scope="match"/>
+    <!-- Increment score -->
+    <set id="increment-blue" var="blue_team_score" value="blue_team_score+1" scope="match"/>
+    <set id="increment-red" var="red_team_score" value="red_team_score+1" scope="match"/>
+    <trigger filter="score-blue" trigger="increment-blue" scope="match"/>
+    <trigger filter="score-red" trigger="increment-red" scope="match"/>
     <!-- Set a player-scoped variable when a round is over. -->
     <set id="set-round-over" var="round_over" value="1" scope="player"/>
     <trigger filter="round-over" trigger="set-round-over" scope="player"/>
@@ -204,11 +204,11 @@
     <apply block="never" use="never"/>
 </regions>
 <!-- The two control points below decide who wins a round. If a team captures the hill, they win the round with the first control point, however if they eliminate the enemy team they win the round with the second control point. -->
-<control-points show-effects="false" show-messages="false" decay-rate="1.2" contested-rate="0" recovery-rate="1" owned-decay-rate="19" capture-time="19s" show-progress="true" neutral-state="true" points="1" required="false">
+<control-points show-effects="false" show-messages="false" decay-rate="1.2" contested-rate="0" recovery-rate="1" owned-decay-rate="19" capture-time="19s" show-progress="true" neutral-state="true" points="0" required="false">
     <!-- The filter on this point prevents a team from capturing both the main hill and the full control point so they don't manage to score twice. -->
     <control-point id="hill" name="Hill" capture="hill-region" progress="hill-region" player-filter="playing-field-occupied-by-both-teams"/>
 </control-points>
-<control-points show="false" decay-rate="0.1" recovery-rate="1" owned-decay-rate="0.5" capture-time="0.5s" show-progress="true" neutral-state="true" points="1" required="false">
+<control-points show="false" decay-rate="0.1" recovery-rate="1" owned-decay-rate="0.5" capture-time="0.5s" show-progress="true" neutral-state="true" points="0" required="false">
     <control-point id="full-control-point" name="Full Control" capture="outside-waiting-box" player-filter="round-in-progress"/>
 </control-points>
 <score>
