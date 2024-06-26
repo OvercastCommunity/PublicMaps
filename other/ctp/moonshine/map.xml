@@ -1,7 +1,10 @@
 <map proto="1.4.2">
 <name>Moonshine</name>
-<version>1.2.4</version>
+<version>1.2.5</version>
 <objective>Score 6 points to win!</objective>
+<include id="conquest-comp"/>
+<constant id="damage-resistance">6s</constant>
+<constant id="respawn-timer">1s</constant>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerorca -->
@@ -20,21 +23,7 @@
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit" parents="default-kit" force="true">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="10" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="3">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="6s" amplifier="255">damage resistance</effect>
-        <game-mode>adventure</game-mode>
-    </kit>
+    <kit id="spawn-kit" parents="default-kit,base-kit" force="true"/>
     <kit id="waiting-kit" parents="default-kit" force="true">
         <clear/>
         <effect duration="1s" amplifier="20">regeneration</effect>
@@ -184,10 +173,6 @@
 </actions>
 <regions>
     <cuboid id="hill-region" min="-7,7,-6" max="7,11,8"/>
-    <union id="spawns">
-        <cylinder id="blue-spawn-tower" base="-48.5,0,4.5" radius="6.5" height="oo"/>
-        <cylinder id="red-spawn-tower" base="48.5,0,4.5" radius="6.5" height="oo"/>
-    </union>
     <complement id="outside-waiting-box">
         <everywhere/>
         <union id="blue-waiting-box">
@@ -199,8 +184,6 @@
             <cuboid min="54,38,2" max="43,42,7"/>
         </union>
     </complement>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
     <apply block="never" use="never"/>
 </regions>
 <!-- The two control points below decide who wins a round. If a team captures the hill, they win the round with the first control point, however if they eliminate the enemy team they win the round with the second control point. -->
@@ -241,28 +224,5 @@
         <item material="golden apple"/>
     </spawner>
 </spawners>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
-<itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>arrow</item>
-    <item>golden apple</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="5" material="arrow"/>
-</kill-reward>
-<respawn delay="1s" auto="true" spectate="true" message="You will respawn when the round is over!"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+<respawn spectate="true" message="You will respawn when the round is over!"/>
 </map>
