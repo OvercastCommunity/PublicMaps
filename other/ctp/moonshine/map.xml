@@ -170,7 +170,7 @@
     <message id="red-score" text="`4Red`f has won the round!"/>
     <trigger filter="score-blue" trigger="blue-score" scope="match"/>
     <trigger filter="score-red" trigger="red-score" scope="match"/>
-    <!-- Increment score -->
+    <!-- Increment score on round completion. -->
     <set id="increment-blue" var="blue_team_score" value="blue_team_score+1" scope="match"/>
     <set id="increment-red" var="red_team_score" value="red_team_score+1" scope="match"/>
     <trigger filter="score-blue" trigger="increment-blue" scope="match"/>
