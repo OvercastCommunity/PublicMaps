@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Oculo</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -42,12 +42,12 @@
 <regions>
     <apply velocity="@0,2.8,0.3">
         <region>
-            <cuboid min="510,30,448" max="513,32,336"/>
+            <cuboid min="510,30,445" max="512,32,448"/>
         </region>
     </apply>
     <apply velocity="@0,2.8,-0.3">
         <region>
-            <cuboid min="512,30,543" max="511,32,541"/>
+            <cuboid min="510,30,540" max="512,32,543"/>
         </region>
     </apply>
     <apply block="never"/>
