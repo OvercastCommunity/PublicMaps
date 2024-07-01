@@ -1,7 +1,6 @@
 <map proto="1.4.2">
 <gamemode>arcade</gamemode>
 <game>Laps</game>
-<phase>staging</phase>
 <respawn auto="true" delay="0s"/>
 <!-- Race gamemode include file -->
 <!-- Modified by zzuf - Original classes taken from the race.xml file from the Overcast Network -->
