@@ -8,7 +8,7 @@
        \/       \//_____/     \/          \/            \/    |__|           \/     \/
 -->
 <!-- Created by mitchiii, based on the King's Conquest maps by Chicky -->
-<!-- Version 2024-06-22 -->
+<!-- Version 2024-07-06 -->
 <objective>Kill the enemy team's King to win!</objective>
 <gamemode>arcade</gamemode>
 <game>Kill the King</game>
@@ -265,18 +265,10 @@
                 <page>
                     `5» `lKING'S CONQUEST`0
 
-                    Kill the enemy kingdom's
-                    `6King `0to win the match.
-                    The `6King `0is located by
-                    the flag beam and your
-                    compass.
+                    Kill the enemy kingdom's `6King `0to win the match. The `6King `0is located by the flag beam and compass.
 
-                    Each `6King `0has a
-                    maximum of `c100 HP
-                    `0which is shown on the
-                    scoreboard. Damaging
-                    the `6King `0reduces
-                    their `cHP `0by `c1`0.
+                    Each `6King `0has a maximum of `c100 HP
+                    `0shown on the scoreboard. Damaging the `6King `0reduces their `cHP `0by `c1`0.
                 </page>
             </pages>
         </book>
