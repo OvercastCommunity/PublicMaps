@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-07-06 -->
+<!-- Version 2024-07-06.1 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -101,7 +101,7 @@
     <apply block="never"/>
 </regions>
 <portals>
-    <portal forward="all(participating, round-begin, round_deathmatch=1..)" destination="center" sound="false"/>
+    <portal forward="all(participating, round-running, round_deathmatch=1..)" destination="center" sound="false"/>
 </portals>
 <variables scope="match" default="0">
     <variable id="min_tmp_tnt"/>
@@ -210,10 +210,10 @@
             </switch-scope>
             <set var="round" value="round+1"/>
             <set var="round_state" value="2"/>
+            <action id="pick-next-tnt"/>
             <action filter="players=..5">
                 <set var="round_deathmatch" value="round_deathmatch+1"/>
             </action>
-            <action id="pick-next-tnt"/>
             <action id="distribute-tnt-kits"/>
             <action id="round-begin-message"/>
         </action>
