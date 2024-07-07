@@ -2,7 +2,7 @@
 <name>Chocolate Diamonds</name>
 <variant id="christmas" world="christmas" override="true">Snowy Diamonds</variant>
 <variant id="halloween" world="halloween" override="true">SpOOky Diamonds</variant>
-<version>2.2.0</version>
+<version>2.2.1</version>
 <objective>Capture the enemy's flag 3 times!</objective>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- kroest -->
@@ -60,7 +60,7 @@
             <enchantment level="2">efficiency</enchantment>
         </item>
         <item slot="4" amount="48" damage="${kit-wood-dmg-value}" material="wood"/>
-        <item slot="5" amount="24" team-color="true" material="stained clay"/> 
+        <item slot="5" amount="24" team-color="true" material="stained clay"/>
         <item slot="7" amount="16" material="arrow"/>
         <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
@@ -141,10 +141,13 @@
         <cuboid id="green-net" min="-2,29,-57" max="2,33,-60"/>
         <cuboid id="red-net" min="2,29,60" max="-2,33,63"/>
     </union>
-    <union id="flag-platforms">
-        <rectangle id="green-platform" min="-2,-57" max="2,-60"/>
-        <rectangle id="red-platform" min="2,60" max="-2,63"/>
-    </union>
+    <intersect id="flag-platforms">
+        <below y="30"/>
+        <union>
+            <rectangle id="green-platform" min="-2,-57" max="2,-60"/>
+            <rectangle id="red-platform" min="2,60" max="-2,63"/>
+        </union>
+    </intersect>
     <cuboid id="spawner" min="-1,25,-1" max="1,29,2"/>
     <complement id="void">
         <everywhere/>
@@ -153,8 +156,9 @@
     <apply block-break="deny-beacon" use="deny-beacon"/>
     <apply enter="only-green" region="green-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply block="only-red" region="green-platform" message="You may not modify your flag platform!"/>
-    <apply block="only-green" region="red-platform" message="You may not modify your flag platform!"/>
+    <apply block="never" region="flag-platforms" message="You may not modify the flag platform!"/>
+    <apply block-place="only-red" region="green-platform" message="You may not modify the flag platform!"/>
+    <apply block-place="only-green" region="red-platform" message="You may not modify the flag platform!"/>
     <apply block="never" region="spawns" message="You may not modify the spawn areas!"/>
     <unless variant="christmas">
         <apply block="never" region="spawner" message="You may not interfere with the arrow spawner!"/>
