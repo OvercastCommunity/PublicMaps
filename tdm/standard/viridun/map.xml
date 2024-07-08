@@ -3,7 +3,7 @@
 <variant id="rage">RAGE</variant>
 <variant id="ffa">FFA</variant>
 <variant id="ctf" world="ctf">CTF</variant>
-<version>1.6.0</version>
+<version>1.6.1</version>
 <constant id="objective">Be the team with the least amount of deaths after 10 minutes</constant>
 <if variant="rage">
     <constant id="objective">Be the team with the least amount of deaths after 8 minutes. Arrows kill in one hit!</constant>
@@ -29,10 +29,7 @@
     </if>
 </contributors>
 <rules>
-    <if variant="rage">
-        <rule>Fall damage is disabled!</rule>
-    </if>
-    <if variant="ffa">
+    <if variant="rage,ffa">
         <rule>Fall damage is disabled!</rule>
     </if>
 </rules>
@@ -236,7 +233,7 @@
 </regions>
 <unless variant="ctf">
     <if variant="default,ffa">
-        <constant id="time">10m</constant>\
+        <constant id="time">10m</constant>
     </if>
     <if variant="rage">
         <constant id="time">8m</constant>
@@ -244,16 +241,13 @@
     <time>${time}</time>
 </unless>
 <!-- Specific gamemode map rules/functions -->
-<if variant="default">
+<unless variant="ctf">
     <keep-potion-bottles/>
-</if>
-<if variant="rage">
-    <keep-potion-bottles/>
-    <disabledamage>
-        <damage>fall</damage>
-    </disabledamage>
-</if>
-<if variant="ffa">
+    <score>
+        <kills>1</kills>
+    </score>
+</unless>
+<if variant="rage,ffa">
     <disabledamage>
         <damage>fall</damage>
     </disabledamage>
@@ -282,8 +276,6 @@
     </flags>
     <score>
         <limit>3</limit>
-        <deaths>0</deaths>
-        <kills>0</kills>
     </score>
 </if>
 <kill-rewards>
