@@ -1,0 +1,571 @@
+<?xml version="1.0"?>
+<map proto="1.4.2">
+<name>Hoodoo</name>
+<version>1.1</version>
+<objective>Invaders must destroy the beacon before time runs out!</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- Cubist -->
+    <author uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="PGM Adaptation"/> <!-- CoWinkKeyDinkInc -->
+</authors>
+<created>2013-08-09</created>
+<phase>development</phase>
+<gamemode>ad</gamemode>
+<teams>
+    <team color="yellow" max="10" plural="true" id="invaders">Invaders</team>
+    <team color="blue" max="10" plural="true" id="defenders">Defenders</team>
+</teams>
+<rules>
+    <rule>Invaders cannot drop, store, or swap the items they spawn with.</rule>
+    <rule>Invaders can steal items from the defenders and stash them in ender chests.</rule>
+    <rule>Ender chests are cleared when you leave the match.</rule>
+    <rule>Beavers always have antiknockback.</rule>
+    <rule>Elephants have antiknockback when holding their axe.</rule>
+    <rule>Defenders wearing the diamond armor have antiknockback.</rule>
+</rules>
+<broadcasts>
+    <tip after="1s">`bLets do that Hoodo you do</tip> <!-- light blue -->
+    <tip after="2s">`6The sun sets...</tip> <!-- orange -->
+    <alert after="3s">The `9Defenders`r have been released!</alert>
+    <alert after="10s" every="3m">`eInvaders`r recieve `aemeralds`r every minute. They can be used to buy classes!</alert>
+    <tip after="18s">`b60`r Seconds until the `eInvaders`r are released</tip>
+    <tip after="48s">`b30`r Seconds until the `eInvaders`r are released</tip>
+    <tip after="58s">`b20`r Seconds until the `eInvaders`r are released</tip>
+    <tip after="68s">`b10`r Seconds until the `eInvaders`r are released</tip>
+    <!-- 75 seconds after the defenders have been released -->
+    <alert after="78s">The `eInvaders`r have been released!</alert>
+</broadcasts>
+<spawns>
+    <spawn team="invaders" yaw="0" region="invaders-class-spawn"/>
+    <spawn team="defenders" yaw="180">
+        <region>
+            <!-- primary spawn point, initial spawn point in regions -->
+            <point>31.5,44.5,284.5</point>
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <cylinder base="110.5,56,174.5" radius="7" height="1"/>
+        </region>
+    </default>
+</spawns>
+<world>
+    <!-- Set map 3s back to accomodiate starting defender countdown -->
+    <!-- Original time: 11200 -->
+    <timeset>11140</timeset>
+    <timelock>off</timelock>
+</world>
+<gamerules>
+    <doTileDrops>false</doTileDrops>
+    <doMobSpawning>true</doMobSpawning>
+    <mobGriefing>true</mobGriefing>
+    <!-- Must be enabled even though <timelock> is off, please fix!! -->
+    <doDaylightCycle>true</doDaylightCycle>
+</gamerules>
+<!-- delete enderchest contents when a player leaves or switches teams -->
+<enderchest fallback="DELETE"/>
+<!-- 20 minute countdown starts when invaders are released -->
+<time result="defenders">1278s</time>
+<destroyables completion="100%" materials="beacon">
+    <destroyable name="Beacon" owner="defenders">
+        <region>
+            <cuboid min="32,34,241" max="31,35,240"/>
+        </region>
+    </destroyable>
+</destroyables>
+<proximity-alarms>
+    <!-- TODO Make the fireworks more obnoxious somehow if possible -->
+    <proximity-alarm message="Invader detected near the Beacon!" flare-radius="8">
+        <region>
+            <cylinder base="32.5,32,241.5" radius="8" height="7"/>
+        </region>
+        <detect>
+            <team>invaders</team>
+        </detect>
+        <notify>
+            <team>defenders</team>
+        </notify>
+    </proximity-alarm>
+</proximity-alarms>
+<!-- use Actions & Triggers module for "classes", as there is a leveling system -->
+<!-- RABBIT   - 0
+     EAGLE    - 1
+     BEAVER   - 2
+     WOLF     - 3
+     ELEPHANT - 5
+-->
+<kits>
+    <kit id="rabbit" reset-ender-pearls="true">
+        <item slot="0" unbreakable="true" material="gold axe" name="Rabbit Ear" lore="Strong against wood, weak against flesh">
+            <enchantment level="10">efficiency</enchantment>
+            <attribute operation="base" amount="2">generic.attackDamage</attribute>
+            <!-- unbreaking x -->
+        </item>
+        <!-- TODO document stairs being double step, slabs being step -->
+        <item slot="1" amount="16" damage="2">wood step</item>
+        <item slot="2" amount="24">torch</item>
+        <item slot="3" amount="16">carrot item</item>
+        <helmet unbreakable="true" color="FFAA99">leather helmet</helmet>
+        <chestplate unbreakable="true" color="FFAA99">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="FFAA99">leather leggings</leggings>
+        <boots locked="true" unbreakable="true" color="FFAA99" enchantment="feather_falling:4">leather boots</boots>
+        <effect duration="oo" amplifier="3">speed</effect>
+        <effect duration="oo" amplifier="4">jump_boost</effect>
+        <max-health>12</max-health>
+        <!-- if <clear/> is inserted in kit, it will delete the emeralds in <itemkeep>, is this intended behaviour? -->
+        <!-- itemkeep stuff is applied after the kit is applied, after all -->
+    </kit>
+    <kit id="eagle" reset-ender-pearls="true">
+        <item slot="0" material="arrow"/>
+        <item slot="1" material="bow" name="Phoenix Talon">
+            <enchantment>infinity</enchantment>
+            <enchantment>punch</enchantment>
+            <enchantment level="2">power</enchantment>
+        </item>
+        <item slot="2" amount="48">ladder</item>
+        <item slot="3" amount="24">torch</item>
+        <item slot="4" amount="16">cooked fish</item>
+        <!-- two ghast spawn eggs -->
+        <item slot="5" amount="2" damage="56" name="Hatch Chicks">monster egg</item>
+        <helmet unbreakable="true" color="FFFF80">leather helmet</helmet>
+        <chestplate unbreakable="true" color="FFFF80" enchantment="projectile_protection:6">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="FFFF80">leather leggings</leggings>
+        <boots unbreakable="true" color="FFFF80">leather boots</boots>
+        <effect duration="oo">night vision</effect>
+        <!-- fall damage disabled using filters and variables -->
+        <max-health>16</max-health>
+    </kit>
+    <kit id="beaver" reset-ender-pearls="true">
+        <item slot="0" unbreakable="true">diamond axe</item>
+        <item slot="1" unbreakable="true">diamond pickaxe</item>
+        <item slot="2" unbreakable="true">diamond spade</item>
+        <item slot="3">flint and steel</item>
+        <item slot="4" amount="16">apple</item>
+        <item slot="5" amount="32" material="potion" damage="16389"/> <!-- instant health -->
+        <item slot="6" material="potion" damage="14" name="Invisibeaver" lore="Remember to take your armor off">
+            <effect duration="20s">invisibility</effect>
+        </item>
+        <item slot="7">water bucket</item>
+        <item slot="8" amount="16">stone button</item>
+
+        <item slot="9" amount="64">netherrack</item>
+        <item slot="10" amount="64">brick</item>
+        <item slot="11" amount="16">diode</item>  <!-- redstone repeater -->
+        <item slot="12" amount="64">glass</item>
+        <item slot="13" amount="64">glowstone</item>
+        <item slot="14" amount="64" damage="0">step</item>  <!-- smooth stone slab -->
+        <item slot="16" amount="16" damage="15">ink sack</item>  <!-- bonemeal -->
+        <item slot="17" amount="4">dirt</item>
+        <item slot="18" amount="4" damage="3">sapling</item>
+        <item slot="19" amount="64">ladder</item>
+        <item slot="20" amount="16">redstone</item>
+        <item slot="21" amount="64">redstone torch on</item>
+        <item slot="22" amount="64" damage="1">log</item>
+        <item slot="33">water bucket</item>
+        <item slot="34">water bucket</item>
+        <item slot="35">water bucket</item>
+        <helmet unbreakable="true" color="CC6600" material="leather helmet">
+            <enchantment level="3">respiration</enchantment>
+            <enchantment>aqua_affinity</enchantment>
+        </helmet>
+        <chestplate unbreakable="true" color="CC6600" attributes="generic.knockbackResistance:add:1.0">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="CC6600">leather leggings</leggings>
+        <boots unbreakable="true" color="CC6600">leather boots</boots>
+        <effect duration="oo" amplifier="4">haste</effect>
+        <effect duration="oo" amplifier="1">weakness</effect>
+        <effect duration="oo" amplifier="1">regeneration</effect>
+        <max-health>20</max-health>
+    </kit>
+    <kit id="wolf" reset-ender-pearls="true">
+        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:10" name="Snaggle Fang" lore="43% sharper than a diamond sword" material="diamond sword"/>
+        <item slot="1" amount="24">sand</item>
+        <item slot="2" amount="24">torch</item>
+        <item slot="3" amount="8">cooked chicken</item>
+        <item slot="4" amount="1">ender pearl</item>
+        <item slot="5" material="potion" damage="3" name="Lick your wounds">
+            <effect duration="40s">regeneration</effect>
+            <effect duration="40s">saturation</effect>
+        </item>
+        <helmet unbreakable="true" color="6677AA">leather helmet</helmet>
+        <chestplate unbreakable="true" color="6677AA">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="6677AA">leather leggings</leggings>
+        <boots unbreakable="true" color="6677AA" enchantment="feather_falling:3">leather boots</boots>
+        <effect duration="oo" amplifier="1">speed</effect>
+        <effect duration="oo" amplifier="1">hunger</effect>
+        <effect duration="oo" amplifier="1">haste</effect>
+        <effect duration="oo" amplifier="4">slow digging</effect>
+        <effect duration="oo" amplifier="2">jump_boost</effect>
+        <max-health>40</max-health>
+        <!-- needed to fill hearts -->
+        <effect duration="5">instant_health</effect>
+    </kit>
+    <kit id="elephant" reset-ender-pearls="true">
+        <item slot="0" unbreakable="true" name="Forged Tusk" lore="Hold to prevent knockback" material="iron axe">
+            <attribute operation="add" amount="1">generic.knockbackResistance</attribute>
+            <attribute operation="add" amount="7">generic.attackDamage</attribute>
+            <!-- 1.7 game says -0.02 speed but the speed is clearly slower than 2%. I give up. It's going to be -10% -->
+            <attribute operation="multiply" amount="-0.1">generic.movementSpeed</attribute>
+            <enchantment level="2">knockback</enchantment>
+            <!-- unbreaking 2 -->
+        </item>
+        <item slot="1">flint and steel</item>
+        <item slot="2" amount="64">tnt</item>
+        <item slot="3" amount="64">tnt</item>
+        <item slot="4" amount="24">baked potato</item>
+        <item slot="5" amount="8">redstone torch on</item>
+        <item slot="6" amount="24">torch</item>
+        <item slot="7" material="potion" damage="3">
+            <effect duration="30s">fire resistance</effect>
+        </item>
+        <helmet unbreakable="true" color="1E1B1B">leather helmet</helmet>
+        <chestplate unbreakable="true" color="1E1B1B" enchantment="blast_protection:6">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="1E1B1B">leather leggings</leggings>
+        <boots unbreakable="true" color="1E1B1B">leather boots</boots>
+        <effect duration="oo">slowness</effect>
+        <effect duration="oo" amplifier="1">regeneration</effect>
+        <max-health>100</max-health>
+        <effect duration="5">instant_health</effect>
+    </kit>
+</kits>
+<actions>
+    <!-- apply kits when invaders walk into the class select portals -->
+    <!-- is_eagle variable used to disable fall damage for Eagle class -->
+    <action id="switch-rabbit" scope="player">
+        <kit id="rabbit"/>
+        <set var="is_eagle" value="0"/>
+    </action>
+    <take-payment id="buy-eagle" currency="emerald" price="1" success-action="switch-eagle" fail-action="too-poor"/>
+    <take-payment id="buy-beaver" currency="emerald" price="2" success-action="switch-beaver" fail-action="too-poor"/>
+    <take-payment id="buy-wolf" currency="emerald" price="3" success-action="switch-wolf" fail-action="too-poor"/>
+    <take-payment id="buy-elephant" currency="emerald" price="5" success-action="switch-elephant" fail-action="too-poor"/>
+    <action id="switch-eagle" scope="player">
+        <kit id="eagle"/>
+        <set var="is_eagle" value="1"/>
+    </action>
+    <action id="switch-beaver" scope="player">
+        <kit id="beaver"/>
+        <set var="is_eagle" value="0"/>
+    </action>
+    <action id="switch-wolf" scope="player">
+        <kit id="wolf"/>
+        <set var="is_eagle" value="0"/>
+    </action>
+    <action id="switch-elephant" scope="player">
+        <kit id="elephant"/>
+        <set var="is_eagle" value="0"/>
+    </action>
+    <message id="too-poor"><text>You can't afford this!</text></message>
+    <!-- player variables are preserved even when they switch teams -->
+    <action id="is-defender" scope="player">
+        <set var="is_eagle" value="0"/>
+    </action>
+    <take-payment id="buy-invader-shortcut" currency="emerald" price="5" success-action="enable-invader-shortcut" fail-action="too-poor"/>
+    <action id="enable-invader-shortcut" scope="player">
+        <switch-scope outer="player" inner="team">
+            <!-- TODO Add a special character to add playername to text in PGM -->
+            <message text="`e`lInvader shortcut has been unlocked!"/>
+            <sound preset="OBJECTIVE_GOOD"/>
+            <set var="shortcut_enabled" value="1"/>
+        </switch-scope>
+    </action>
+    <trigger filter="apply-starting-class" action="switch-rabbit" scope="player"/>
+    <trigger filter="redeem-rabbit" action="switch-rabbit" scope="player"/>
+    <trigger filter="eagle-portal" action="buy-eagle" scope="player"/>
+    <trigger filter="beaver-portal" action="buy-beaver" scope="player"/>
+    <trigger filter="wolf-portal" action="buy-wolf" scope="player"/>
+    <trigger filter="elephant-portal" action="buy-elephant" scope="player"/>
+    <trigger filter="redeem-invader-shortcut" action="buy-invader-shortcut" scope="player"/>
+    <trigger filter="only-defenders" action="is-defender" scope="player"/>
+
+    <!-- give invaders an emerald every minute -->
+    <action id="emerald-team" scope="team">
+        <switch-scope outer="team" inner="player">
+            <!-- force makes it give an emerald when a player already has one -->
+            <message text="`aReceived 1 emerald!"/>
+            <kit force="true">
+                <item>emerald</item>
+            </kit>
+        </switch-scope>
+    </action>
+    <trigger filter="emerald-every-minute" action="emerald-team" scope="team"/>
+    <trigger filter="emerald-every-minute-2" action="emerald-team" scope="team"/>
+</actions>
+<variables>
+    <!-- tracks if the invader shortcut has been redeemed -->
+    <variable id="shortcut_enabled" scope="team" default="0"/>
+    <!-- Used to disable fall damage for Eagles -->
+    <variable id="is_eagle" scope="player" default="0"/>
+</variables>
+<filters>
+    <team id="only-defenders">defenders</team>
+    <team id="only-invaders">invaders</team>
+    <time id="defenders-released">3s</time>
+    <not id="before-invaders-released">
+        <time id="invaders-released">78s</time>
+    </not>
+    <!-- teleport invaders to initial starting spawn until 78 seconds into the match -->
+    <all id="dynamic-portal-invaders">
+        <team>invaders</team>
+        <filter id="before-invaders-released"/>
+        <region id="class-room"/>
+    </all>
+    <!-- teleport defenders to initial starting spawn until 78 seconds into the match -->
+    <all id="dynamic-portal-defenders">
+        <team>defenders</team>
+        <filter id="before-invaders-released"/>
+        <region id="defenders-portal-entrance"/>
+    </all>
+    <all id="apply-starting-class">
+        <region id="class-room"/>
+        <filter id="before-invaders-released"/>
+    </all>
+    <all id="redeem-rabbit">
+        <region id="rabbit-portal"/>
+    </all>
+    <all id="redeem-eagle">
+        <region id="eagle-portal"/>
+        <!-- Required to prevent teleporting the player if they can't buy it -->
+        <!-- Use items unique to each class -->
+        <carrying>
+            <item>cooked fish</item>
+        </carrying>
+    </all>
+    <all id="redeem-beaver">
+        <region id="beaver-portal"/>
+        <carrying>
+            <item>apple</item>
+        </carrying>
+    </all>
+    <all id="redeem-wolf">
+        <region id="wolf-portal"/>
+        <carrying>
+            <item>cooked chicken</item>
+        </carrying>
+    </all>
+    <all id="redeem-elephant">
+        <region id="elephant-portal"/>
+        <carrying>
+            <item>baked potato</item>
+        </carrying>
+    </all>
+    <all id="redeem-invader-shortcut">
+        <region id="invaders-shortcut-exit"/>
+        <team>invaders</team>
+        <variable var="shortcut_enabled">0</variable>
+    </all>
+    <all id="enter-invader-shortcut">
+        <team>invaders</team>
+        <variable var="shortcut_enabled">1</variable>
+    </all>
+    <all id="emerald-every-minute">
+        <filter id="invaders-released"/>
+        <team>invaders</team>
+        <pulse period="61s" duration="1s">
+            <match-running/>
+        </pulse>
+    </all>
+    <!-- two emeralds every minute 10 minutes into the match -->
+    <all id="emerald-every-minute-2">
+        <time>678s</time>
+        <team>invaders</team>
+        <pulse period="61s" duration="1s">
+            <match-running/>
+        </pulse>
+    </all>
+    <all id="no-break">
+        <not>
+            <material>ender chest</material>
+        </not>
+    </all>
+</filters>
+<portals>
+    <portal forward="redeem-rabbit" destination="invaders-game-spawn" yaw="@-90"/>
+    <portal forward="redeem-eagle" destination="invaders-game-spawn" yaw="@-90"/>
+    <portal forward="redeem-beaver" destination="invaders-game-spawn" yaw="@-90"/>
+    <portal forward="redeem-wolf" destination="invaders-game-spawn" yaw="@-90"/>
+    <portal forward="redeem-elephant" destination="invaders-game-spawn" yaw="@-90"/>
+
+    <!-- dynamic portal to teleport invaders to initial spawn point, region applies rabbit kit -->
+    <portal forward="dynamic-portal-invaders" destination="invaders-game-spawn" yaw="@-90"/>
+    <!-- dynamic portal to teleport defenders to initial spawn point -->
+    <portal forward="dynamic-portal-defenders" destination="defenders-starting-spawn" yaw="@90"/>
+
+    <!-- North Defender Jumper -->
+    <portal filter="only-defenders" y="6.7">
+        <region><cuboid min="26,35.5,190" max="27,35.5,189"/></region>
+    </portal>
+    <!-- South Defender Jumper -->
+    <portal filter="only-defenders" y="6.7">
+        <region><cuboid min="45,35.5,205" max="44,35.6,204"/></region>
+    </portal>
+    <!-- North Defender Dropper -->
+    <portal filter="only-defenders" y="-6">
+        <region><cuboid min="25,41,180" max="24,40,190"/></region>
+    </portal>
+    <!-- South Defender Dropper -->
+    <portal filter="only-defenders" y="-6">
+        <region><cuboid min="44,41,206" max="45,40,207"/></region>
+    </portal>
+    <!-- Defender Shortcut -->
+    <portal filter="only-defenders" x="@6.5" y="@35.2" z="@114.5">
+        <region><cuboid min="3.7,35,190" max="3,36,189"/></region>
+    </portal>
+    <!-- iron doors portal (Defenders don't open the door they just teleport through it) -->
+    <!-- North Entrance -->
+    <portal z="2" bidirectional="true" filter="only-defenders">
+        <region><cuboid min="28,29,184" max="27,29.5,185"/></region>
+    </portal>
+    <!-- South Entrance -->
+    <portal z="-2" bidirectional="true" filter="only-defenders">
+        <region><cuboid min="27,29,195" max="28,29.5,194"/></region>
+    </portal>
+    <!-- West Entrance -->
+    <portal x="2" bidirectional="true" filter="only-defenders">
+        <region><cuboid min="39,29,202" max="40,29.5,204"/></region>
+    </portal>
+    <!-- East Entrance -->
+    <portal x="-2" bidirectional="true" filter="only-defenders">
+        <region><cuboid min="50,29,204" max="49,29.5,202"/></region>
+    </portal>
+    <!-- Invader Shortcut -->
+    <portal x="@34.5" y="@60" z="@113.5" yaw="@-90" filter="enter-invader-shortcut">
+        <region><cuboid min="20,25,20" max="19,27,21"/></region>
+    </portal>
+</portals>
+<regions>
+    <point id="defenders-starting-spawn">62.5,49.5,115.5</point>
+    <point id="invaders-class-spawn">53.5,27.5,3.5</point>
+    <cuboid id="invaders-game-spawn" min="6,27.5,21" max="1,27.5,27"/>
+    <cuboid id="invaders-spawn-area" min="11,25,16" max="-5,31,31"/>
+    <rectangle id="defenders-spawn-protect" min="65,261" max="1,289"/>
+    <rectangle id="invaders-spawn-protect" min="1,67" max="65,1"/>
+    <cuboid id="invaders-fence" min="8,27,20" max="7,29,27"/>
+    <cuboid id="defenders-fence" min="57,49,112" max="58,51,119"/>
+    <translate id="invaders-offset" offset="-1,0,0" region="invaders-fence"/>
+    <translate id="defenders-offset" offset="-1,0,0" region="defenders-fence"/>
+
+    <cuboid id="defenders-initial-area" min="57,51,113" max="71,54,108"/>
+    <cuboid id="defenders-spawn-area" min="25,44,271" max="36,50,291"/>
+
+    <cylinder id="class-room" base="54.5,25,8.5" radius="10" height="13"/>
+    <cuboid id="rabbit-portal" min="55,29,18" max="54,31,17"/>
+    <cuboid id="eagle-portal" min="59,29,17" max="58,31,16"/>
+    <cuboid id="beaver-portal" min="45,28,13" max="46,30,12"/>
+    <cuboid id="wolf-portal" min="51,28,17" max="50,30,16"/>
+    <cuboid id="elephant-portal" min="62,28,11" max="61,30,12"/>
+
+    <cuboid id="invaders-shortcut-exit" min="34,60,114" max="35,62,113"/>
+    <cylinder id="invaders-shortcut-exit-area" base="34.5,59,113.5" radius="5" height="4"/>
+    <cuboid id="defenders-portal-entrance" min="31,44,284" max="32,46,285"/>
+    <union id="defender-shortcut">
+        <cuboid min="3.7,35,190" max="3,44,189"/>
+        <cuboid min="5,42,190" max="4,44,189"/>
+    </union>
+    <union id="defenders-area">
+        <cuboid id="defenders-base" min="100,0,262" max="-100,80,300"/>
+    </union>
+    <negative id="playable-inv">
+        <rectangle id="playable" min="65,288" max="1,1"/>
+    </negative>
+    <apply block="defenders-released" region="defenders-initial-area"/>
+    <apply block="never" region="defenders-spawn-area"/>
+    <apply block="never" region="invaders-spawn-area"/>
+    <apply block="never" region="invaders-shortcut-exit-area"/>
+    <apply enter="only-defenders" region="defender-shortcut" message="Only Defenders can access this shortcut!"/>
+    <apply enter="only-defenders" region="defenders-spawn-protect" message="BACK OFF, SPAWNCAMPER!"/>
+    <apply enter="only-invaders" region="invaders-spawn-protect" message="BACK OFF, SPAWNCAMPER!"/>
+    <apply block="never" region="class-room"/>
+    <apply block="never" region="defender-shortcut"/>
+    <apply block="no-break" region="playable" early-warning="true" message="You cannot break Ender Chests!"/>
+    <apply block="never" region="playable-inv"/>
+</regions>
+<structures>
+    <!-- Copies slabs onto the fences, removing them from the map -->
+    <structure id="invader-structure" air="true" clear="false" region="invaders-offset"/>
+    <structure id="defender-structure" air="true" clear="false" region="defenders-offset"/>
+    <dynamic structure="invader-structure" offset="1,0,0" trigger="invaders-released"/>
+    <dynamic structure="defender-structure" offset="1,0,0" trigger="defenders-released"/>
+</structures>
+<!-- Bow and arrow spawners are located at 200,138,-369 -->
+<!-- An emerald spawner is located at 194,102,-370 but doesn't work for some reason -->
+<!-- doMobSpawning must be enabled for natrual mob spawning -->
+<mobs>
+    <filter>
+        <always/>
+    </filter>
+</mobs>
+<damage>
+    <deny>
+        <!-- Disable fall damage to all eagle players -->
+        <all>
+            <variable var="is_eagle">1</variable>
+            <cause>fall</cause>
+        </all>
+    </deny>
+</damage>
+<!-- no EXP leveling system currently, use emeralds for levels -->
+<!-- TODO add EXP leveling to PGM -->
+<itemkeep>
+    <item>emerald</item>
+</itemkeep>
+<itemremove>
+    <!-- A spawner on the observer island will spawn books forever -->
+    <item>book</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>gold axe</item>
+    <item>wood step</item>
+    <item>torch</item>
+    <item>carrot item</item>
+    <item>ladder</item>
+    <item>cooked fish</item>
+    <item>monster egg</item>
+    <item>diamond axe</item>
+    <item>diamond pickaxe</item>
+    <item>diamond spade</item>
+    <item>flint and steel</item>
+    <item>apple</item>
+    <item>potion</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>stone button</item>
+    <item>netherrack</item>
+    <item>brick</item>
+    <item>diode</item>
+    <item>glass</item>
+    <item>glowstone</item>
+    <item>step</item>
+    <item>ink sack</item>
+    <item>dirt</item>
+    <item>sapling</item>
+    <item>redstone</item>
+    <item>redstone torch on</item>
+    <item>log</item>
+    <item>diamond sword</item>
+    <item>sand</item>
+    <item>cooked chicken</item>
+    <item>ender pearl</item>
+    <item>tnt</item>
+    <item>baked potato</item>
+</itemremove>
+<!--
+    TODO use Actions & Triggers to display lore stuff when the invaders
+    gradually move closer to the beacon.
+    Blue sounds played a sheep sound. Red plays growling sound.
+    [Blue] ♥️ The Beacon calls to you ♥️
+    [Blue] ♥️ You are jonesing for the beacon so bad right now ♥️
+    [Blue] ♥️ The beacon was RIGHT THERE, and you let it go... nice one ♥️
+    [Blue] ♥️ You begin to accept your new life without the beacon ♥️
+    [Blue] ♥️ Beacon? What's a beacon? ♥️
+    [Red] ♥️ Your blood runs hot with the fire of the beacon ♥️
+    [Red] ♥️ The distant beacon calls to you ♥️
+    [Red] ♥️ Your heart quickens as the beacon grows closer ♥️
+    [Red] ♥️ The glorious energy of the beacon consumes you ♥️
+
+    Levels go faster when attackers are closer to the beacon, "the heart beats faster"
+
+    https://www.youtube.com/watch?v=sDrQfuTEYpQ
+    https://www.youtube.com/watch?v=hVbfEyS8XTo (1.1 version)
+-->
+</map>
