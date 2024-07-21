@@ -23,8 +23,7 @@
     <rule>Defenders wearing the diamond armor have antiknockback.</rule>
 </rules>
 <broadcasts>
-    <tip after="1s">`bLets do that Hoodoo you do</tip> <!-- light blue -->
-    <tip after="2s">`6The sun sets...</tip> <!-- orange -->
+    <!-- Introductory lore is displayed as an Action -->
     <alert after="3s">The `9Defenders`r have been released!</alert>
     <alert after="10s" every="3m">`eInvaders`r recieve `aemeralds`r every minute. They can be used to buy classes!</alert>
     <tip after="18s">`b60`r Seconds until the `eInvaders`r are released</tip>
@@ -36,9 +35,9 @@
 </broadcasts>
 <spawns>
     <spawn team="invaders" yaw="0" region="invaders-class-spawn"/>
-    <spawn team="defenders" yaw="180">
+    <spawn team="defenders" yaw="180" kit="defender-kit">
         <region>
-            <!-- primary spawn point, initial spawn point in regions -->
+            <!-- Primary spawn point, initial spawn point in regions -->
             <point>31.5,44.5,284.5</point>
         </region>
     </spawn>
@@ -225,6 +224,27 @@
         <max-health>100</max-health>
         <effect duration="5">instant_health</effect>
     </kit>
+    <kit id="defender-kit" reset-ender-pearls="true">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <!-- other defender bows around the map have punch, knockback, power, etc -->
+            <enchantment level="1">infinity</enchantment>
+        </item>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" unbreakable="true" material="iron spade"/>
+        <item slot="5" material="log" damage="1" amount="64"/>
+        <item slot="6" material="nether brick" amount="16"/>
+        <item slot="7" material="vine" amount="32"/>
+        <item slot="8" material="cooked rabbit" amount="64"/>
+        <!-- the only food resources given to defenders is primarily cake and a small amount of carrots :\ -->
+        <item slot="26" material="carrot item" amount="9"/>
+        <item slot="28" material="arrow"/>
+        <item slot="35" material="cake" amount="5"/>
+        <helmet material="chainmail helmet"/>
+        <chestplate material="chainmail chestplate"/>
+        <leggings material="chainmail leggings"/>
+    </kit>
 </kits>
 <actions>
     <!-- apply kits when invaders walk into the class select portals -->
@@ -288,6 +308,12 @@
     </action>
     <trigger filter="emerald-every-minute" action="emerald-team" scope="team"/>
     <trigger filter="emerald-every-minute-2" action="emerald-team" scope="team"/>
+
+    <!-- Done here to remove the annoying "[TIP]" prefix/sound effect and add colour -->
+    <message id="display-lore-1" text="`bLets do that Hoodoo you do"/>
+    <message id="display-lore-2" text="`6The sun sets..."/>
+    <trigger filter="beginning-lore-1" action="display-lore-1" scope="match"/>
+    <trigger filter="beginning-lore-2" action="display-lore-2" scope="match"/>
 </actions>
 <variables>
     <!-- tracks if the invader shortcut has been redeemed -->
@@ -298,6 +324,8 @@
 <filters>
     <team id="only-defenders">defenders</team>
     <team id="only-invaders">invaders</team>
+    <time id="beginning-lore-1">1s</time>
+    <time id="beginning-lore-2">2s</time>
     <time id="defenders-released">3s</time>
     <not id="before-invaders-released">
         <time id="invaders-released">78s</time>
@@ -548,6 +576,19 @@
     <item>ender pearl</item>
     <item>tnt</item>
     <item>baked potato</item>
+    <item>iron sword</item>
+    <item>iron pickaxe</item>
+    <item>iron spade</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>nether brick</item>
+    <item>vine</item>
+    <item>cooked rabbit</item>
+    <item>carrot item</item>
+    <item>cake</item>
 </itemremove>
 <!--
     TODO use Actions & Triggers to display lore stuff when the invaders
@@ -564,6 +605,26 @@
     [Red] ♥️ The glorious energy of the beacon consumes you ♥️
 
     Levels go faster when attackers are closer to the beacon, "the heart beats faster"
+
+    Defender Kits
+    =============
+    FIELD SUPPLIES (The first thing you see outside the initial spawn)
+    [Wood Sword (Knockback II), Infinity Flame Bow (24 durability), Arrows, Wood Pickaxe, Wood Axe, Wood Shovel (Efficiency X), Torches, Carrots]
+    [TNT, Flint & Steel, Nether Bricks, Stonebrick Monster Eggs, Cobwebs]
+    [Iron Helmet, Iron Sword, Arrow, Iron Leggings, Bow (Power I, Infinity, Knockback II]
+
+    SPAWN CHESTS
+    [Golden Sword (knockback I), Bow (Punch I, Infinity), arrow, iron pickaxe, iron axe, iron shovel]
+    [Nether Bricks, Vine, TNT, Flint & Steel, Torches, Cake]
+    [TNT, Nether Bricks, Flint & Steel, Spruce Logs, Shears, Iron Bars, Cobwebs, Stonebrick Monster Egg,
+    Diamond Pickaxe (Efficiency X) Diamond Axe (Efficiency X) Diamond Shovel (Efficiency X), Diamond Helmet, Diamond Chestplate (Knockback Resistance), Diamond Leggings, Ender Pearls, Fireresistance Potion, Anvils]
+
+    ARMORY
+    [Iron Sword, Bow (Power I, Infinity, Knockback II), Arrow, Iron Pickaxe, Iron Axe, Iron Shovel]
+    [Spruce Log, Redstone, TNT, Flint & Steel, Torches, Cake]
+    [Piston, Sticky Piston, Dispenser, Repeater, Pressure plate, Lever, Tripwire, String, Hopper, Iron door,
+    Stonebrick Monster Egg, Iron Bars, Cobwebs]
+    [Iron Chestplate, Leggings, and Helmet in dispensers]
 
     https://www.youtube.com/watch?v=sDrQfuTEYpQ
     https://www.youtube.com/watch?v=hVbfEyS8XTo (1.1 version)
