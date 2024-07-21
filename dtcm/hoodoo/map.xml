@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Hoodoo</name>
-<version>1.1</version>
+<version>1.1.2</version>
 <objective>Invaders must destroy the beacon before time runs out!</objective>
 <authors>
     <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- Cubist -->
@@ -23,7 +23,7 @@
     <rule>Defenders wearing the diamond armor have antiknockback.</rule>
 </rules>
 <broadcasts>
-    <tip after="1s">`bLets do that Hoodo you do</tip> <!-- light blue -->
+    <tip after="1s">`bLets do that Hoodoo you do</tip> <!-- light blue -->
     <tip after="2s">`6The sun sets...</tip> <!-- orange -->
     <alert after="3s">The `9Defenders`r have been released!</alert>
     <alert after="10s" every="3m">`eInvaders`r recieve `aemeralds`r every minute. They can be used to buy classes!</alert>
@@ -509,7 +509,7 @@
 </itemkeep>
 <itemremove>
     <!-- A spawner on the observer island will spawn books forever -->
-    <item>book</item>
+    <item>written book</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>leather leggings</item>
