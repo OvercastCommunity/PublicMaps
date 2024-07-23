@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Boom: Best of 3</name>
-<version>1.0.2</version>
+<version>1.1.0</version>
 <objective>Destroy enemy gold orbs with TNT, win the best of 3 matches.</objective>
+<gamemode>dtm</gamemode>
 <authors>
     <author uuid="25961a08-c90c-4abd-b136-dad90e89c2eb"/> <!-- Anxuiz -->
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
@@ -27,6 +28,8 @@
         <item slot="5" amount="64">glass</item>
         <item slot="8" damage="8229">potion</item> <!-- instant health 2 -->
         <chestplate unbreakable="true" enchantment="protection explosions:5">iron chestplate</chestplate>
+        <effect duration="2">instant_health</effect>
+        <clear/>
     </kit>
     <kit id="blue" parents="spawn">
         <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
@@ -142,20 +145,20 @@
         <!-- win in two rounds, or win in three rounds -->
         <all>
             <all id="blue-monuments-1">
-                <objective>blue-orb-a</objective>
-                <objective>blue-orb-b</objective>
+                <completed>blue-orb-a</completed>
+                <completed>blue-orb-b</completed>
             </all>
             <all id="blue-monuments-2">
-                <objective>blue-orb-a2</objective>
-                <objective>blue-orb-b2</objective>
+                <completed>blue-orb-a2</completed>
+                <completed>blue-orb-b2</completed>
             </all>
             <filter id="only-red"/>
         </all>
         <all>
             <filter id="blue-monuments-2"/>
             <all id="blue-monuments-3">
-                <objective>blue-orb-a3</objective>
-                <objective>blue-orb-b3</objective>
+                <completed>blue-orb-a3</completed>
+                <completed>blue-orb-b3</completed>
             </all>
             <filter id="only-red"/>
         </all>
@@ -166,20 +169,20 @@
         </all>
         <all>
             <all id="red-monuments-1">
-                <objective>red-orb-a</objective>
-                <objective>red-orb-b</objective>
+                <completed>red-orb-a</completed>
+                <completed>red-orb-b</completed>
             </all>
             <all id="red-monuments-2">
-                <objective>red-orb-a2</objective>
-                <objective>red-orb-b2</objective>
+                <completed>red-orb-a2</completed>
+                <completed>red-orb-b2</completed>
             </all>
             <filter id="only-blue"/>
         </all>
         <all>
             <filter id="red-monuments-2"/>
             <all id="red-monuments-3">
-                <objective>red-orb-a3</objective>
-                <objective>red-orb-b3</objective>
+                <completed>red-orb-a3</completed>
+                <completed>red-orb-b3</completed>
             </all>
             <filter id="only-blue"/>
         </all>
@@ -190,48 +193,54 @@
         </all>
     </any>
     <!-- filter for activating and disabling the portals to move players to the next round -->
-    <!-- TODO: Rework this to be used with the after filter, which requires new logic to make
-    new players (with /join) spawn in the correct round -->
-    <all id="round-1-end-red">
-        <any id="round-1-end">
-            <filter id="red-monuments-1"/>
-            <filter id="blue-monuments-1"/>
-        </any>
-        <!-- stops the portal from taking players from first to second spawn -->
-        <!-- first monuments are complete, the second and third ones ARE NOT COMPLETE -->
-        <not id="no-second-or-third"> <!-- allow -->
-            <all> <!-- deny -->
-                <any id="round-2-end"> <!-- deny -->
-                    <filter id="red-monuments-2"/>
-                    <filter id="blue-monuments-2"/>
-                </any>
-                <any id="round-3-end">
-                    <filter id="red-monuments-3"/>
-                    <filter id="blue-monuments-3"/>
-                </any>
-            </all>
-        </not>
-        <region id="stage-1"/>
-        <filter id="only-red"/>
-    </all>
-    <all id="round-1-end-blue">
-        <filter id="round-1-end"/>
-        <filter id="no-second-or-third"/>
-        <region id="stage-1"/>
-        <filter id="only-blue"/>
-    </all>
-    <all id="round-2-end-red">
-        <filter id="round-1-end"/>
-        <filter id="round-2-end"/>
-        <region id="stage-1-and-2"/>
-        <filter id="only-red"/>
-    </all>
-    <all id="round-2-end-blue">
-        <filter id="round-1-end"/>
-        <filter id="round-2-end"/>
-        <region id="stage-1-and-2"/>
-        <filter id="only-blue"/>
-    </all>
+    <after duration="5s" message="Round 2 beginning in {0}" id="round-1-end-red">
+        <all>
+            <any id="round-1-end">
+                <filter id="red-monuments-1"/>
+                <filter id="blue-monuments-1"/>
+            </any>
+            <!-- stops the portal from taking players from first to second spawn -->
+            <!-- first monuments are complete, the second and third ones ARE NOT COMPLETE -->
+            <not id="no-second-or-third"> <!-- allow -->
+                <all> <!-- deny -->
+                    <any id="round-2-end"> <!-- deny -->
+                        <filter id="red-monuments-2"/>
+                        <filter id="blue-monuments-2"/>
+                    </any>
+                    <any id="round-3-end">
+                        <filter id="red-monuments-3"/>
+                        <filter id="blue-monuments-3"/>
+                    </any>
+                </all>
+            </not>
+            <region id="stage-1"/>
+            <filter id="only-red"/>
+        </all>
+    </after>
+    <after duration="5s" message="Round 2 beginning in {0}" id="round-1-end-blue">
+        <all>
+            <filter id="round-1-end"/>
+            <filter id="no-second-or-third"/>
+            <region id="stage-1"/>
+            <filter id="only-blue"/>
+        </all>
+    </after>
+    <after duration="5s" message="Round 2 beginning in {0}" id="round-2-end-red">
+        <all>
+            <filter id="round-1-end"/>
+            <filter id="round-2-end"/>
+            <region id="stage-1-and-2"/>
+            <filter id="only-red"/>
+        </all>
+    </after>
+    <after duration="5s" message="Round 3 beginning in {0}" id="round-2-end-blue">
+        <all>
+            <filter id="round-1-end"/>
+            <filter id="round-2-end"/>
+            <region id="stage-1-and-2"/>
+            <filter id="only-blue"/>
+        </all>
+    </after>
     <!-- for spawns -->
     <not id="not-round-1-end">
         <filter id="round-1-end"/>
@@ -247,6 +256,28 @@
         <filter id="round-2-end"/>
     </all>
 </filters>
+<actions>
+    <!-- resets the entire inventory at the beginning of the round -->
+    <action id="reapply-red-kit" scope="player">
+        <switch-scope outer="player" inner="team">
+            <switch-scope outer="team" inner="player">
+                <kit id="red"/>
+            </switch-scope>
+        </switch-scope>
+    </action>
+    <!-- it sees the filter only responding to MatchPlayer for some reason -->
+    <trigger filter="round-1-end-red" action="reapply-red-kit" scope="player"/>
+    <trigger filter="round-2-end-red" action="reapply-red-kit" scope="player"/>
+    <action id="reapply-blue-kit" scope="player">
+        <switch-scope outer="player" inner="team">
+            <switch-scope outer="team" inner="player">
+                <kit id="blue"/>
+            </switch-scope>
+        </switch-scope>
+    </action>
+    <trigger filter="round-1-end-blue" action="reapply-blue-kit" scope="player"/>
+    <trigger filter="round-1-end-blue" action="reapply-blue-kit" scope="player"/>
+</actions>
 <regions>
     <!-- regions are offset by +64 and +128 blocks X -->
     <union id="monuments">
@@ -375,6 +406,45 @@
     <portal forward="round-1-end-blue" yaw="@0" destination="blue-south-spawn-2"/>
     <portal forward="round-2-end-red" yaw="@0" destination="red-south-spawn-3"/>
     <portal forward="round-2-end-blue" yaw="@0" destination="blue-south-spawn-3"/>
+
+    <!-- teleports players trying to blast over the barrier towards the next round -->
+    <!-- the after filter already covers players trying to goto the previous round -->
+    <portal yaw="@0" destination="red-south-spawn">
+        <forward>
+            <all>
+                <filter id="not-round-1-end"/>
+                <region id="stage-2"/>
+                <filter id="only-red"/>
+            </all>
+        </forward>
+    </portal>
+    <portal yaw="@0" destination="red-south-spawn-2">
+        <forward>
+            <all>
+                <filter id="not-round-2-end"/>
+                <region id="stage-3"/>
+                <filter id="only-red"/>
+            </all>
+        </forward>
+    </portal>
+    <portal yaw="@0" destination="blue-south-spawn">
+        <forward>
+            <all>
+                <filter id="not-round-1-end"/>
+                <region id="stage-2"/>
+                <filter id="only-blue"/>
+            </all>
+        </forward>
+    </portal>
+    <portal yaw="@0" destination="blue-south-spawn-2">
+        <forward>
+            <all>
+                <filter id="not-round-2-end"/>
+                <region id="stage-3"/>
+                <filter id="only-blue"/>
+            </all>
+        </forward>
+    </portal>
 </portals>
 <destroyables completion="90%" repairable="false">
     <destroyables materials="gold block;wool:11;beacon" owner="blue-team">
@@ -388,7 +458,7 @@
         <destroyable name="Orb B3" id="blue-orb-b3" required="true" region="monument-blue-b3"/>
     </destroyables>
     <destroyables materials="gold block;wool:14;beacon" owner="red-team">
-        <destroyable name="Orb A" id="red-orb-a" required="false" region="monument-red-a"/> 
+        <destroyable name="Orb A" id="red-orb-a" required="false" region="monument-red-a"/>
         <destroyable name="Orb B" id="red-orb-b" required="false" region="monument-red-b"/>
         <destroyable name="Orb A2" id="red-orb-a2" required="false" region="monument-red-a2"/>
         <destroyable name="Orb B2" id="red-orb-b2" required="false" region="monument-red-b2"/>
@@ -399,8 +469,7 @@
 <!-- completes the game -->
 <control-points capture-rule="lead">
     <!-- 3-rounds-filter determines which players can control the point, anyone (losers) who don't match the filter can't affect it -->
-    <control-point capture-time="1s" required="true" player-filter="3-rounds-filter" visual-materials="never" owner-points="1"
-                   show-info="false" show-sidebar="false">
+    <control-point capture-time="1s" required="true" player-filter="3-rounds-filter" visual-materials="never" owner-points="1" show="false">
         <capture><cuboid min="-200,-200,-200" max="200,200,200"/></capture>
         <progress><cuboid min="-200,-200,-200" max="200,200,200"/></progress>
         <captured><cuboid min="-200,-200,-200" max="200,200,200"/></captured>
