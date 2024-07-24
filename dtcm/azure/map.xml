@@ -1,9 +1,9 @@
 <map proto="1.4.2">
 <name>Azure</name>
 <variant id="christmas" world="christmas">Christmas</variant>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Destroy both enemy team monuments to win!</objective>
-<gamemode>dtm</gamemode>
+<include id="gapple-kill-reward"/>
 <if variant="default">
     <created>2018-04-21</created>
 </if>
@@ -179,7 +179,6 @@
 </hunger>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="16" material="wood"/>
         <item amount="8" material="glass"/>
     </kill-reward>
