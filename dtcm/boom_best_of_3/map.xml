@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Boom: Best of 3</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Destroy enemy gold orbs with TNT, win the best of 3 matches.</objective>
 <gamemode>dtm</gamemode>
 <authors>
@@ -225,7 +225,7 @@
             <filter id="only-blue"/>
         </all>
     </after>
-    <after duration="5s" message="Round 2 beginning in {0}" id="round-2-end-red">
+    <after duration="5s" message="Round 3 beginning in {0}" id="round-2-end-red">
         <all>
             <filter id="round-1-end"/>
             <filter id="round-2-end"/>
@@ -241,6 +241,9 @@
             <filter id="only-blue"/>
         </all>
     </after>
+    <after duration="5s" id="round-2-scoreboard" filter="round-1-end"/>
+    <after duration="5s" id="round-3-scoreboard" filter="round-2-end"/>
+
     <!-- for spawns -->
     <not id="not-round-1-end">
         <filter id="round-1-end"/>
@@ -256,7 +259,53 @@
         <filter id="round-2-end"/>
     </all>
 </filters>
+<variables>
+    <score id="team_score"/>
+    <variable id="round" scope="match" default="1"/>
+</variables>
 <actions>
+    <trigger scope="player" filter="red-monuments-1">
+        <action>
+            <set var="team_score" value="team_score+1"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="red-monuments-2">
+        <action>
+            <set var="team_score" value="team_score+1"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="red-monuments-3">
+        <action>
+            <set var="team_score" value="team_score+1"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="blue-monuments-1">
+        <action>
+            <set var="team_score" value="team_score+1"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="blue-monuments-2">
+        <action>
+            <set var="team_score" value="team_score+1"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="blue-monuments-3">
+        <action>
+            <set var="team_score" value="team_score+1"/>
+        </action>
+    </trigger>
+
+    <trigger scope="match" filter="round-2-scoreboard">
+        <action>
+            <set var="round" value="2"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="round-3-scoreboard">
+        <action>
+            <set var="round" value="3"/>
+        </action>
+    </trigger>
+
     <!-- resets the entire inventory at the beginning of the round -->
     <action id="reapply-red-kit" scope="player">
         <switch-scope outer="player" inner="team">
@@ -276,7 +325,7 @@
         </switch-scope>
     </action>
     <trigger filter="round-1-end-blue" action="reapply-blue-kit" scope="player"/>
-    <trigger filter="round-1-end-blue" action="reapply-blue-kit" scope="player"/>
+    <trigger filter="round-2-end-blue" action="reapply-blue-kit" scope="player"/>
 </actions>
 <regions>
     <!-- regions are offset by +64 and +128 blocks X -->
@@ -319,7 +368,7 @@
     <apply block-break="only-tnt-damage-2" region="red-round-2" message="Orbs may only be damaged with TNT."/>
     <apply block-break="only-tnt-damage-3" region="blue-round-3" message="Orbs may only be damaged with TNT."/>
     <apply block-break="only-tnt-damage-3" region="red-round-3" message="Orbs may only be damaged with TNT."/>
-    <!-- TODO: make spawn nicer, deal with yaw stuff -->
+
     <cuboid id="og-blue-spawn" min="-19.5,10,-5.5" max="-19.5,10,6.5"/>
     <translate id="blue-spawn-2" offset="64,0,0" region="og-blue-spawn"/>
     <translate id="blue-spawn-3" offset="128,0,0" region="og-blue-spawn"/>
@@ -402,14 +451,14 @@
 <portals>
     <!-- portal region is described inside the filter -->
     <!-- 0 is south, 180 is north -->
-    <portal forward="round-1-end-red" yaw="@0" destination="red-south-spawn-2"/>
-    <portal forward="round-1-end-blue" yaw="@0" destination="blue-south-spawn-2"/>
-    <portal forward="round-2-end-red" yaw="@0" destination="red-south-spawn-3"/>
-    <portal forward="round-2-end-blue" yaw="@0" destination="blue-south-spawn-3"/>
+    <portal forward="round-1-end-red" yaw="@0" observers="never" destination="red-south-spawn-2"/>
+    <portal forward="round-1-end-blue" yaw="@0" observers="never" destination="blue-south-spawn-2"/>
+    <portal forward="round-2-end-red" yaw="@0" observers="never" destination="red-south-spawn-3"/>
+    <portal forward="round-2-end-blue" yaw="@0" observers="never" destination="blue-south-spawn-3"/>
 
     <!-- teleports players trying to blast over the barrier towards the next round -->
     <!-- the after filter already covers players trying to goto the previous round -->
-    <portal yaw="@0" destination="red-south-spawn">
+    <portal yaw="@0" observers="never" destination="red-south-spawn">
         <forward>
             <all>
                 <filter id="not-round-1-end"/>
@@ -418,7 +467,7 @@
             </all>
         </forward>
     </portal>
-    <portal yaw="@0" destination="red-south-spawn-2">
+    <portal yaw="@0" observers="never" destination="red-south-spawn-2">
         <forward>
             <all>
                 <filter id="not-round-2-end"/>
@@ -427,7 +476,7 @@
             </all>
         </forward>
     </portal>
-    <portal yaw="@0" destination="blue-south-spawn">
+    <portal yaw="@0" observers="never" destination="blue-south-spawn">
         <forward>
             <all>
                 <filter id="not-round-1-end"/>
@@ -436,7 +485,7 @@
             </all>
         </forward>
     </portal>
-    <portal yaw="@0" destination="blue-south-spawn-2">
+    <portal yaw="@0" observers="never" destination="blue-south-spawn-2">
         <forward>
             <all>
                 <filter id="not-round-2-end"/>
@@ -446,39 +495,28 @@
         </forward>
     </portal>
 </portals>
-<destroyables completion="90%" repairable="false">
+<destroyables completion="90%" repairable="false" required="false">
     <destroyables materials="gold block;wool:11;beacon" owner="blue-team">
-        <destroyable name="Orb A" id="blue-orb-a" required="false" region="monument-blue-a"/>
-        <destroyable name="Orb B" id="blue-orb-b" required="false" region="monument-blue-b"/>
-        <destroyable name="Orb A2" id="blue-orb-a2" required="false" region="monument-blue-a2"/>
-        <destroyable name="Orb B2" id="blue-orb-b2" required="false" region="monument-blue-b2"/>
-        <!-- winner is determined by final round if the third round starts -->
-        <!-- the required attribute doesn't actually end the game -->
-        <destroyable name="Orb A3" id="blue-orb-a3" required="true" region="monument-blue-a3"/>
-        <destroyable name="Orb B3" id="blue-orb-b3" required="true" region="monument-blue-b3"/>
+        <!-- TODO get scoreboard-filter working -->
+        <destroyable name="Orb A" id="blue-orb-a" scoreboard-filter="round=1" region="monument-blue-a"/>
+        <destroyable name="Orb B" id="blue-orb-b" scoreboard-filter="round=1" region="monument-blue-b"/>
+        <destroyable name="Orb A2" id="blue-orb-a2" scoreboard-filter="round=2" region="monument-blue-a2"/>
+        <destroyable name="Orb B2" id="blue-orb-b2" scoreboard-filter="round=2" region="monument-blue-b2"/>
+        <destroyable name="Orb A3" id="blue-orb-a3" scoreboard-filter="round=3" region="monument-blue-a3"/>
+        <destroyable name="Orb B3" id="blue-orb-b3" scoreboard-filter="round=3" region="monument-blue-b3"/>
     </destroyables>
     <destroyables materials="gold block;wool:14;beacon" owner="red-team">
-        <destroyable name="Orb A" id="red-orb-a" required="false" region="monument-red-a"/>
-        <destroyable name="Orb B" id="red-orb-b" required="false" region="monument-red-b"/>
-        <destroyable name="Orb A2" id="red-orb-a2" required="false" region="monument-red-a2"/>
-        <destroyable name="Orb B2" id="red-orb-b2" required="false" region="monument-red-b2"/>
-        <destroyable name="Orb A3" id="red-orb-a3" required="true" region="monument-red-a3"/>
-        <destroyable name="Orb B3" id="red-orb-b3" required="true" region="monument-red-b3"/>
+        <destroyable name="Orb A" id="red-orb-a" scoreboard-filter="round=1" region="monument-red-a"/>
+        <destroyable name="Orb B" id="red-orb-b" scoreboard-filter="round=1" region="monument-red-b"/>
+        <destroyable name="Orb A2" id="red-orb-a2" scoreboard-filter="round=2" region="monument-red-a2"/>
+        <destroyable name="Orb B2" id="red-orb-b2" scoreboard-filter="round=2" region="monument-red-b2"/>
+        <destroyable name="Orb A3" id="red-orb-a3" scoreboard-filter="round=3" region="monument-red-a3"/>
+        <destroyable name="Orb B3" id="red-orb-b3" scoreboard-filter="round=3" region="monument-red-b3"/>
     </destroyables>
 </destroyables>
-<!-- completes the game -->
-<control-points capture-rule="lead">
-    <!-- 3-rounds-filter determines which players can control the point, anyone (losers) who don't match the filter can't affect it -->
-    <control-point capture-time="1s" required="true" player-filter="3-rounds-filter" visual-materials="never" owner-points="1" show="false">
-        <capture><cuboid min="-200,-200,-200" max="200,200,200"/></capture>
-        <progress><cuboid min="-200,-200,-200" max="200,200,200"/></progress>
-        <captured><cuboid min="-200,-200,-200" max="200,200,200"/></captured>
-    </control-point>
-</control-points>
-<!-- score is prioritized higher than objective completion -->
-<!-- TODO: add a show attribute to score when added -->
+<!-- Uses Actions & Triggers to give score -->
 <score>
-    <limit>1</limit>
+    <limit>2</limit>
 </score>
 <killreward>
     <item amount="20">arrow</item>
