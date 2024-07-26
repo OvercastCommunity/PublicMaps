@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Boom: Best of 3</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Destroy enemy gold orbs with TNT, win the best of 3 matches.</objective>
 <gamemode>dtm</gamemode>
 <authors>
@@ -13,6 +13,11 @@
 <contributors>
     <contributor uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="Made Best of 3 XML"/> <!-- CoWinkKeyDinkInc -->
 </contributors>
+<constants>
+    <!-- Declared just readability purposes-->
+    <constant id="running">0</constant>
+    <constant id="finished">1</constant>
+</constants>
 <teams>
     <team id="blue-team" color="blue" max="16">Blue</team>
     <team id="red-team" color="dark red" max="16">Red</team>
@@ -27,62 +32,56 @@
         <item slot="4" amount="64" damage="2">wood</item>
         <item slot="5" amount="64">glass</item>
         <item slot="8" damage="8229">potion</item> <!-- instant health 2 -->
+        <helmet unbreakable="true" team-color="true" >leather helmet</helmet>
         <chestplate unbreakable="true" enchantment="protection explosions:5">iron chestplate</chestplate>
+        <leggings unbreakable="true" team-color="true" >leather leggings</leggings>
+        <boots unbreakable="true" team-color="true" enchantment="protection fall:1">leather boots</boots>
         <effect duration="2">instant_health</effect>
+        <game-mode>survival</game-mode>
         <clear/>
-    </kit>
-    <kit id="blue" parents="spawn">
-        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
-        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
-        <boots color="0066cc" unbreakable="true" enchantment="protection fall:1">leather boots</boots>
-    </kit>
-    <kit id="red" parents="spawn">
-        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
-        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
-        <boots color="cd0000" unbreakable="true" enchantment="protection fall:1">leather boots</boots>
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue-team" kit="blue" filter="not-round-1-end">
-        <regions>
-            <!-- south -->
-            <region yaw="0" id="blue-south-spawn"/>
-            <!-- north -->
-            <region yaw="180" id="blue-north-spawn"/>
-        </regions>
-    </spawn>
-    <!-- spawn for second round -->
-    <spawn team="blue-team" kit="blue" filter="not-round-2-end">
-        <regions>
-            <region yaw="0" id="blue-south-spawn-2"/>
-            <region yaw="180" id="blue-north-spawn-2"/>
-        </regions>
-    </spawn>
-    <!-- spawn for third round -->
-    <spawn team="blue-team" kit="blue" filter="not-round-3-end">
-        <regions>
-            <region yaw="0" id="blue-south-spawn-3"/>
-            <region yaw="180" id="blue-north-spawn-3"/>
-        </regions>
-    </spawn>
-    <spawn team="red-team" kit="red" filter="not-round-1-end">
-        <regions>
-            <region yaw="180" id="red-north-spawn"/>
-            <region yaw="0" id="red-south-spawn"/>
-        </regions>
-    </spawn>
-    <spawn team="red-team" kit="red" filter="not-round-2-end">
-        <regions>
-            <region yaw="180" id="red-north-spawn-2"/>
-            <region yaw="0" id="red-south-spawn-2"/>
-        </regions>
-    </spawn>
-    <spawn team="red-team" kit="red" filter="not-round-3-end">
-        <regions>
-            <region yaw="180" id="red-north-spawn-3"/>
-            <region yaw="0" id="red-south-spawn-3"/>
-        </regions>
-    </spawn>
+    <spawns team="blue-team" kit="spawn" filter="phase=${running}">
+        <spawn filter="round=1">
+            <regions>
+                <region yaw="0" id="blue-south-spawn"/>
+                <region yaw="180" id="blue-north-spawn"/>
+            </regions>
+        </spawn>
+        <spawn filter="round=2">
+            <regions>
+                <region yaw="0" id="blue-south-spawn-2"/>
+                <region yaw="180" id="blue-north-spawn-2"/>
+            </regions>
+        </spawn>
+        <spawn filter="round=3">
+            <regions>
+                <region yaw="0" id="blue-south-spawn-3"/>
+                <region yaw="180" id="blue-north-spawn-3"/>
+            </regions>
+        </spawn>
+    </spawns>
+    <spawns team="red-team" kit="spawn" filter="phase=${running}">
+        <spawn filter="round=1">
+            <regions>
+                <region yaw="0" id="red-south-spawn"/>
+                <region yaw="180" id="red-north-spawn"/>
+            </regions>
+        </spawn>
+        <spawn filter="round=2">
+            <regions>
+                <region yaw="0" id="red-south-spawn-2"/>
+                <region yaw="180" id="red-north-spawn-2"/>
+            </regions>
+        </spawn>
+        <spawn filter="round=3">
+            <regions>
+                <region yaw="0" id="red-south-spawn-3"/>
+                <region yaw="180" id="red-north-spawn-3"/>
+            </regions>
+        </spawn>
+    </spawns>
     <default>
         <regions>
             <cylinder base="0.5,27,-84.5" radius="1" height="0"/>
@@ -96,290 +95,119 @@
     <deny id="no-void">
         <void/>
     </deny>
+    <alive id="alive"/>
     <not id="no-beacons-anvils">
         <any>
             <material>anvil</material>
             <material>beacon</material>
         </any>
     </not>
-    <!-- only allow gold, wool, and beacon to be broken by tnt -->
-    <!-- disables breaking after the objective is completed -->
-    <any id="only-tnt-damage-1">
-        <not id="monument-materials">
+    <any id="only-tnt-damage">
+        <!-- only allow gold, wool, and beacon to be broken by tnt -->
+        <not>
             <any>
                 <material>gold block</material>
                 <material>wool</material>
                 <material>beacon</material>
             </any>
         </not>
-        <!--
-        <filter id="allow-world"/>
-        -->
-        <all>
-            <cause>explosion</cause>
-            <not>
-                <filter id="round-1-end"/>
-            </not>
-        </all>
+        <cause>explosion</cause>
     </any>
-    <any id="only-tnt-damage-2">
-        <filter id="monument-materials"/>
-        <all>
-            <cause>explosion</cause>
-            <not>
-                <filter id="round-2-end"/>
-            </not>
-        </all>
-    </any>
-    <!-- incase some freak accident happens where both final pairs are destroyed at the end -->
-    <any id="only-tnt-damage-3">
-        <filter id="monument-materials"/>
-        <all>
-            <cause>explosion</cause>
-            <not>
-                <filter id="round-3-end"/>
-            </not>
-        </all>
-    </any>
-    <any id="3-rounds-filter">
-        <!-- win in two rounds, or win in three rounds -->
-        <all>
-            <all id="blue-monuments-1">
-                <completed>blue-orb-a</completed>
-                <completed>blue-orb-b</completed>
-            </all>
-            <all id="blue-monuments-2">
-                <completed>blue-orb-a2</completed>
-                <completed>blue-orb-b2</completed>
-            </all>
-            <filter id="only-red"/>
-        </all>
-        <all>
-            <filter id="blue-monuments-2"/>
-            <all id="blue-monuments-3">
-                <completed>blue-orb-a3</completed>
-                <completed>blue-orb-b3</completed>
-            </all>
-            <filter id="only-red"/>
-        </all>
-        <all>
-            <filter id="blue-monuments-1"/>
-            <filter id="blue-monuments-3"/>
-            <filter id="only-red"/>
-        </all>
-        <all>
-            <all id="red-monuments-1">
-                <completed>red-orb-a</completed>
-                <completed>red-orb-b</completed>
-            </all>
-            <all id="red-monuments-2">
-                <completed>red-orb-a2</completed>
-                <completed>red-orb-b2</completed>
-            </all>
-            <filter id="only-blue"/>
-        </all>
-        <all>
-            <filter id="red-monuments-2"/>
-            <all id="red-monuments-3">
-                <completed>red-orb-a3</completed>
-                <completed>red-orb-b3</completed>
-            </all>
-            <filter id="only-blue"/>
-        </all>
-        <all>
-            <filter id="red-monuments-1"/>
-            <filter id="red-monuments-3"/>
-            <filter id="only-blue"/>
-        </all>
-    </any>
-    <!-- filter for activating and disabling the portals to move players to the next round -->
-    <after duration="5s" message="Round 2 beginning in {0}" id="round-1-end-red">
-        <all>
-            <any id="round-1-end">
-                <filter id="red-monuments-1"/>
-                <filter id="blue-monuments-1"/>
-            </any>
-            <!-- stops the portal from taking players from first to second spawn -->
-            <!-- first monuments are complete, the second and third ones ARE NOT COMPLETE -->
-            <not id="no-second-or-third"> <!-- allow -->
-                <all> <!-- deny -->
-                    <any id="round-2-end"> <!-- deny -->
-                        <filter id="red-monuments-2"/>
-                        <filter id="blue-monuments-2"/>
-                    </any>
-                    <any id="round-3-end">
-                        <filter id="red-monuments-3"/>
-                        <filter id="blue-monuments-3"/>
-                    </any>
-                </all>
-            </not>
-            <region id="stage-1"/>
-            <filter id="only-red"/>
-        </all>
-    </after>
-    <after duration="5s" message="Round 2 beginning in {0}" id="round-1-end-blue">
-        <all>
-            <filter id="round-1-end"/>
-            <filter id="no-second-or-third"/>
-            <region id="stage-1"/>
-            <filter id="only-blue"/>
-        </all>
-    </after>
-    <after duration="5s" message="Round 3 beginning in {0}" id="round-2-end-red">
-        <all>
-            <filter id="round-1-end"/>
-            <filter id="round-2-end"/>
-            <region id="stage-1-and-2"/>
-            <filter id="only-red"/>
-        </all>
-    </after>
-    <after duration="5s" message="Round 3 beginning in {0}" id="round-2-end-blue">
-        <all>
-            <filter id="round-1-end"/>
-            <filter id="round-2-end"/>
-            <region id="stage-1-and-2"/>
-            <filter id="only-blue"/>
-        </all>
-    </after>
-    <after duration="5s" id="round-2-scoreboard" filter="round-1-end"/>
-    <after duration="5s" id="round-3-scoreboard" filter="round-2-end"/>
+    <all id="blue-monuments-1">
+        <completed>blue-orb-a</completed>
+        <completed>blue-orb-b</completed>
+    </all>
+    <all id="blue-monuments-2">
+        <completed>blue-orb-a2</completed>
+        <completed>blue-orb-b2</completed>
+    </all>
+    <all id="blue-monuments-3">
+        <completed>blue-orb-a3</completed>
+        <completed>blue-orb-b3</completed>
+    </all>
+    <all id="red-monuments-1">
+        <completed>red-orb-a</completed>
+        <completed>red-orb-b</completed>
+    </all>
+    <all id="red-monuments-2">
+        <completed>red-orb-a2</completed>
+        <completed>red-orb-b2</completed>
+    </all>
+    <all id="red-monuments-3">
+        <completed>red-orb-a3</completed>
+        <completed>red-orb-b3</completed>
+    </all>
 
-    <!-- for spawns -->
-    <not id="not-round-1-end">
-        <filter id="round-1-end"/>
-    </not>
-    <all id="not-round-2-end">
-        <filter id="round-1-end"/>
-        <not>
-            <filter id="round-2-end"/>
-        </not>
-    </all>
-    <all id="not-round-3-end">
-        <filter id="round-1-end"/>
-        <filter id="round-2-end"/>
-    </all>
+    <after duration="5s" message="Round 2 beginning in {0}" id="round-2-begin" filter="all(round=1,phase=${finished})"/>
+    <after duration="5s" message="Round 3 beginning in {0}" id="round-3-begin" filter="all(round=2,phase=${finished})"/>
 </filters>
 <variables>
     <score id="team_score"/>
+    <!-- ${running} or ${finished}, used only as a constant -->
+    <variable id="phase" scope="match" default="${running}"/>
     <variable id="round" scope="match" default="1"/>
 </variables>
 <actions>
-    <trigger scope="player" filter="red-monuments-1">
-        <action>
-            <set var="team_score" value="team_score+1"/>
-        </action>
-    </trigger>
-    <trigger scope="player" filter="red-monuments-2">
-        <action>
-            <set var="team_score" value="team_score+1"/>
-        </action>
-    </trigger>
-    <trigger scope="player" filter="red-monuments-3">
-        <action>
-            <set var="team_score" value="team_score+1"/>
-        </action>
-    </trigger>
-    <trigger scope="player" filter="blue-monuments-1">
-        <action>
-            <set var="team_score" value="team_score+1"/>
-        </action>
-    </trigger>
-    <trigger scope="player" filter="blue-monuments-2">
-        <action>
-            <set var="team_score" value="team_score+1"/>
-        </action>
-    </trigger>
-    <trigger scope="player" filter="blue-monuments-3">
-        <action>
-            <set var="team_score" value="team_score+1"/>
-        </action>
-    </trigger>
-
-    <trigger scope="match" filter="round-2-scoreboard">
-        <action>
-            <set var="round" value="2"/>
-        </action>
-    </trigger>
-    <trigger scope="match" filter="round-3-scoreboard">
-        <action>
-            <set var="round" value="3"/>
-        </action>
-    </trigger>
-
-    <!-- resets the entire inventory at the beginning of the round -->
-    <action id="reapply-red-kit" scope="player">
-        <switch-scope outer="player" inner="team">
-            <switch-scope outer="team" inner="player">
-                <kit id="red"/>
+    <action id="win-round" scope="team">
+        <set var="team_score" value="team_score+1"/>
+        <!-- If match isn't over, prepare for next round -->
+        <action filter="team_score=0..1">
+            <set var="phase" value="${finished}"/>
+            <switch-scope inner="match">
+                <switch-scope inner="player" filter="alive">
+                    <kit>
+                        <clear/>
+                        <game-mode>creative</game-mode>
+                    </kit>
+                </switch-scope>
+                <message title="`6Round ended!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
             </switch-scope>
+        </action>
+    </action>
+
+    <action id="move-next-round" scope="match">
+        <!-- If we set the round first, for a moment, state would read as "next_round & finished" -->
+        <!-- We don't want filters to be able to react to that, so set to invalid -1 first, then correct it -->
+        <set var="phase" value="-1"/>
+        <set var="round" value="round+1"/>
+        <set var="phase" value="${running}"/>
+        <switch-scope inner="player" filter="alive">
+            <kit id="spawn"/>
         </switch-scope>
     </action>
-    <!-- it sees the filter only responding to MatchPlayer for some reason -->
-    <trigger filter="round-1-end-red" action="reapply-red-kit" scope="player"/>
-    <trigger filter="round-2-end-red" action="reapply-red-kit" scope="player"/>
-    <action id="reapply-blue-kit" scope="player">
-        <switch-scope outer="player" inner="team">
-            <switch-scope outer="team" inner="player">
-                <kit id="blue"/>
-            </switch-scope>
-        </switch-scope>
-    </action>
-    <trigger filter="round-1-end-blue" action="reapply-blue-kit" scope="player"/>
-    <trigger filter="round-2-end-blue" action="reapply-blue-kit" scope="player"/>
+
+    <trigger scope="team" action="win-round" filter="all(red-monuments-1,round=1,phase=${running},only-blue)"/>
+    <trigger scope="team" action="win-round" filter="all(blue-monuments-1,round=1,phase=${running},only-red)"/>
+    <trigger scope="team" action="win-round" filter="all(red-monuments-2,round=2,phase=${running},only-blue)"/>
+    <trigger scope="team" action="win-round" filter="all(blue-monuments-2,round=2,phase=${running},only-red)"/>
+    <trigger scope="team" action="win-round" filter="all(red-monuments-3,round=3,phase=${running},only-blue)"/>
+    <trigger scope="team" action="win-round" filter="all(blue-monuments-3,round=3,phase=${running},only-red)"/>
+
+    <trigger scope="match" action="move-next-round" filter="any(round-2-begin,round-3-begin)"/>
 </actions>
 <regions>
     <!-- regions are offset by +64 and +128 blocks X -->
     <union id="monuments">
-        <union id="round-1">
-            <union id="blue-round-1">
-                <cuboid id="monument-blue-a" min="-13,17,33" max="-10,20,36"/>
-                <cuboid id="monument-blue-b" min="-13,17,-35" max="-10,20,-32"/>
-            </union>
-            <union id="red-round-1">
-                <cuboid id="monument-red-a" min="11,17,-35" max="14,20,-32"/>
-                <cuboid id="monument-red-b" min="11,17,33" max="14,20,36"/>
-            </union>
-        </union>
-        <union id="round-2">
-            <union id="blue-round-2">
-                <translate id="monument-blue-a2" offset="64,0,0" region="monument-blue-a"/>
-                <translate id="monument-blue-b2" offset="64,0,0" region="monument-blue-b"/>
-            </union>
-            <union id="red-round-2">
-                <translate id="monument-red-a2" offset="64,0,0" region="monument-red-a"/>
-                <translate id="monument-red-b2" offset="64,0,0" region="monument-red-b"/>
-            </union>
-        </union>
-        <union id="round-3">
-            <union id="blue-round-3">
-                <translate id="monument-blue-a3" offset="128,0,0" region="monument-blue-a"/>
-                <translate id="monument-blue-b3" offset="128,0,0" region="monument-blue-b"/>
-            </union>
-            <union id="red-round-3">
-                <translate id="monument-red-a3" offset="128,0,0" region="monument-red-a"/>
-                <translate id="monument-red-b3" offset="128,0,0" region="monument-red-b"/>
-            </union>
-        </union>
-    </union>
-    <!-- when the red orbs are blown up, the blue ones can no longer be broken -->
-    <apply block-break="only-tnt-damage-1" region="blue-round-1" message="Orbs may only be damaged with TNT."/>
-    <apply block-break="only-tnt-damage-1" region="red-round-1" message="Orbs may only be damaged with TNT."/>
-    <apply block-break="only-tnt-damage-2" region="blue-round-2" message="Orbs may only be damaged with TNT."/>
-    <apply block-break="only-tnt-damage-2" region="red-round-2" message="Orbs may only be damaged with TNT."/>
-    <apply block-break="only-tnt-damage-3" region="blue-round-3" message="Orbs may only be damaged with TNT."/>
-    <apply block-break="only-tnt-damage-3" region="red-round-3" message="Orbs may only be damaged with TNT."/>
+        <cuboid id="monument-blue-a" min="-13,17,33" max="-10,20,36"/>
+        <cuboid id="monument-blue-b" min="-13,17,-35" max="-10,20,-32"/>
+        <cuboid id="monument-red-a" min="11,17,-35" max="14,20,-32"/>
+        <cuboid id="monument-red-b" min="11,17,33" max="14,20,36"/>
 
-    <cuboid id="og-blue-spawn" min="-19.5,10,-5.5" max="-19.5,10,6.5"/>
-    <translate id="blue-spawn-2" offset="64,0,0" region="og-blue-spawn"/>
-    <translate id="blue-spawn-3" offset="128,0,0" region="og-blue-spawn"/>
-    <cuboid id="og-red-spawn" min="20.5,10,6.5" max="20.5,10,-5.5"/>
-    <translate id="red-spawn-2" offset="64,0,0" region="og-red-spawn"/>
-    <translate id="red-spawn-3" offset="128,0,0" region="og-red-spawn"/>
-    <union id="stage-1-and-2">
-        <cuboid id="stage-1" min="28,0,-69" max="-28,30,70"/>
-        <translate id="stage-2" offset="64,0,0" region="stage-1"/>
+        <translate id="monument-blue-a2" offset="64,0,0" region="monument-blue-a"/>
+        <translate id="monument-blue-b2" offset="64,0,0" region="monument-blue-b"/>
+        <translate id="monument-red-a2" offset="64,0,0" region="monument-red-a"/>
+        <translate id="monument-red-b2" offset="64,0,0" region="monument-red-b"/>
+
+        <translate id="monument-blue-a3" offset="128,0,0" region="monument-blue-a"/>
+        <translate id="monument-blue-b3" offset="128,0,0" region="monument-blue-b"/>
+        <translate id="monument-red-a3" offset="128,0,0" region="monument-red-a"/>
+        <translate id="monument-red-b3" offset="128,0,0" region="monument-red-b"/>
     </union>
+
+    <cuboid id="stage-1" min="30,0,-70" max="-30,30,71"/>
+    <translate id="stage-2" offset="64,0,0" region="stage-1"/>
     <translate id="stage-3" offset="128,0,0" region="stage-1"/>
+
     <union id="bases">
         <union id="blue-bases">
             <cuboid id="blue-base" min="-28,0,-13" max="-16,17,14"/>
@@ -392,7 +220,7 @@
             <translate id="red-base-3" offset="128,0,0" region="red-base"/>
         </union>
     </union>
-    <apply block="never" region="bases" message="You may not modify the base!"/>
+
     <union id="all-blue-base">
         <region id="blue-bases"/>
         <!-- ladder regions to prevent people from going in through the top -->
@@ -417,8 +245,6 @@
             <translate offset="128,0,0" region="red-right-ladders"/>
         </union>
     </union>
-    <apply enter="only-blue" region="all-blue-base" message="You may not enter Blue Team's base."/>
-    <apply enter="only-red" region="all-red-base" message="You may not enter Red Team's base."/>
     <union id="tnt-platforms">
         <rectangle id="south-tnt-platform" min="-6,-58" max="7,-47"/>
         <translate offset="64,0,0" region="south-tnt-platform"/>
@@ -427,9 +253,7 @@
         <translate offset="64,0,0" region="north-tnt-platform"/>
         <translate offset="128,0,0" region="north-tnt-platform"/>
     </union>
-    <apply block-break="only-sandstone-stairs" block-place="never" region="tnt-platforms" message="You may not modify the TNT spawning area."/>
-    <apply block="no-void" message="You may not build in the void!" region="everywhere"/>
-    <apply use="no-beacons-anvils" message="You may not use beacons or anvils on this map." region="everywhere"/>
+
     <!-- yaw=0 -->
     <point id="blue-south-spawn">-19.5,10,-5.5</point>
     <translate id="blue-south-spawn-2" offset="64,0,0" region="blue-south-spawn"/>
@@ -446,72 +270,47 @@
     <point id="red-south-spawn">20.5,10,-5.5</point>
     <translate id="red-south-spawn-2" offset="64,0,0" region="red-south-spawn"/>
     <translate id="red-south-spawn-3" offset="128,0,0" region="red-south-spawn"/>
+
+    <!-- Enforce map modification happens only at the right phase & stage -->
+    <apply block="deny(not(phase=${running}))" message="Cannot modify the map between rounds" />
+    <apply region="stage-1" block="deny(not(round=1))" message="You may not modify other round areas"/>
+    <apply region="stage-2" block="deny(not(round=2))" message="You may not modify other round areas"/>
+    <apply region="stage-3" block="deny(not(round=3))" message="You may not modify other round areas"/>
+
+    <apply region="all-blue-base" enter="only-blue" message="You may not enter Blue Team's base."/>
+    <apply region="all-red-base" enter="only-red" message="You may not enter Red Team's base."/>
+    <apply region="tnt-platforms" block-break="only-sandstone-stairs" block-place="never" message="You may not modify the TNT spawning area."/>
+    <apply region="monuments" block-break="only-tnt-damage" message="Orbs may only be damaged with TNT"/>
+    <apply region="bases" block="never" message="You may not modify the base!"/>
+    <apply use="no-beacons-anvils" message="You may not use beacons or anvils on this map."/>
+    <apply block="no-void" message="You may not build in the void!"/>
 </regions>
 <maxbuildheight>22</maxbuildheight>
 <portals>
-    <!-- portal region is described inside the filter -->
-    <!-- 0 is south, 180 is north -->
-    <portal forward="round-1-end-red" yaw="@0" observers="never" destination="red-south-spawn-2"/>
-    <portal forward="round-1-end-blue" yaw="@0" observers="never" destination="blue-south-spawn-2"/>
-    <portal forward="round-2-end-red" yaw="@0" observers="never" destination="red-south-spawn-3"/>
-    <portal forward="round-2-end-blue" yaw="@0" observers="never" destination="blue-south-spawn-3"/>
-
-    <!-- teleports players trying to blast over the barrier towards the next round -->
-    <!-- the after filter already covers players trying to goto the previous round -->
-    <portal yaw="@0" observers="never" destination="red-south-spawn">
-        <forward>
-            <all>
-                <filter id="not-round-1-end"/>
-                <region id="stage-2"/>
-                <filter id="only-red"/>
-            </all>
-        </forward>
-    </portal>
-    <portal yaw="@0" observers="never" destination="red-south-spawn-2">
-        <forward>
-            <all>
-                <filter id="not-round-2-end"/>
-                <region id="stage-3"/>
-                <filter id="only-red"/>
-            </all>
-        </forward>
-    </portal>
-    <portal yaw="@0" observers="never" destination="blue-south-spawn">
-        <forward>
-            <all>
-                <filter id="not-round-1-end"/>
-                <region id="stage-2"/>
-                <filter id="only-blue"/>
-            </all>
-        </forward>
-    </portal>
-    <portal yaw="@0" observers="never" destination="blue-south-spawn-2">
-        <forward>
-            <all>
-                <filter id="not-round-2-end"/>
-                <region id="stage-3"/>
-                <filter id="only-blue"/>
-            </all>
-        </forward>
-    </portal>
+    <!-- Teleport players in the incorrect stage to the right one -->
+    <portal yaw="@0" observers="never" destination="red-south-spawn" forward="all(round=1,any(stage-2,stage-3),only-red)"/>
+    <portal yaw="@0" observers="never" destination="blue-south-spawn" forward="all(round=1,any(stage-2,stage-3),only-blue)"/>
+    <portal yaw="@0" observers="never" destination="red-south-spawn-2" forward="all(round=2,any(stage-1,stage-3),only-red)"/>
+    <portal yaw="@0" observers="never" destination="blue-south-spawn-2" forward="all(round=2,any(stage-1,stage-3),only-blue)"/>
+    <portal yaw="@0" observers="never" destination="red-south-spawn-3" forward="all(round=3,any(stage-1,stage-2),only-red)"/>
+    <portal yaw="@0" observers="never" destination="blue-south-spawn-3" forward="all(round=3,any(stage-1,stage-2),only-blue)"/>
 </portals>
 <destroyables completion="90%" repairable="false" required="false">
     <destroyables materials="gold block;wool:11;beacon" owner="blue-team">
-        <!-- TODO get scoreboard-filter working -->
         <destroyable name="Orb A" id="blue-orb-a" scoreboard-filter="round=1" region="monument-blue-a"/>
         <destroyable name="Orb B" id="blue-orb-b" scoreboard-filter="round=1" region="monument-blue-b"/>
-        <destroyable name="Orb A2" id="blue-orb-a2" scoreboard-filter="round=2" region="monument-blue-a2"/>
-        <destroyable name="Orb B2" id="blue-orb-b2" scoreboard-filter="round=2" region="monument-blue-b2"/>
-        <destroyable name="Orb A3" id="blue-orb-a3" scoreboard-filter="round=3" region="monument-blue-a3"/>
-        <destroyable name="Orb B3" id="blue-orb-b3" scoreboard-filter="round=3" region="monument-blue-b3"/>
+        <destroyable name="Orb A" id="blue-orb-a2" scoreboard-filter="round=2" region="monument-blue-a2"/>
+        <destroyable name="Orb B" id="blue-orb-b2" scoreboard-filter="round=2" region="monument-blue-b2"/>
+        <destroyable name="Orb A" id="blue-orb-a3" scoreboard-filter="round=3" region="monument-blue-a3"/>
+        <destroyable name="Orb B" id="blue-orb-b3" scoreboard-filter="round=3" region="monument-blue-b3"/>
     </destroyables>
     <destroyables materials="gold block;wool:14;beacon" owner="red-team">
         <destroyable name="Orb A" id="red-orb-a" scoreboard-filter="round=1" region="monument-red-a"/>
         <destroyable name="Orb B" id="red-orb-b" scoreboard-filter="round=1" region="monument-red-b"/>
-        <destroyable name="Orb A2" id="red-orb-a2" scoreboard-filter="round=2" region="monument-red-a2"/>
-        <destroyable name="Orb B2" id="red-orb-b2" scoreboard-filter="round=2" region="monument-red-b2"/>
-        <destroyable name="Orb A3" id="red-orb-a3" scoreboard-filter="round=3" region="monument-red-a3"/>
-        <destroyable name="Orb B3" id="red-orb-b3" scoreboard-filter="round=3" region="monument-red-b3"/>
+        <destroyable name="Orb A" id="red-orb-a2" scoreboard-filter="round=2" region="monument-red-a2"/>
+        <destroyable name="Orb B" id="red-orb-b2" scoreboard-filter="round=2" region="monument-red-b2"/>
+        <destroyable name="Orb A" id="red-orb-a3" scoreboard-filter="round=3" region="monument-red-a3"/>
+        <destroyable name="Orb B" id="red-orb-b3" scoreboard-filter="round=3" region="monument-red-b3"/>
     </destroyables>
 </destroyables>
 <!-- Uses Actions & Triggers to give score -->
