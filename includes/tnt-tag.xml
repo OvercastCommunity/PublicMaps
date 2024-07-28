@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-07-06.1 -->
+<!-- Version 2024-07-28 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -59,7 +59,7 @@
     <player filter="is_tnt=0" show-player="true"/>
 </compass>
 <filters>
-    <match-running id="match-running"/>
+    <time id="match-running">0.05s</time>
     <participating id="participating"/>
     <after id="round-starting" duration="1s" filter="round_state=0"/>
     <after id="round-begin" duration="3s" filter="round_state=1" message="The next round begins in {0}"/>
@@ -240,7 +240,7 @@
             <set var="tnt_fuse" value="tnt_fuse - 1"/>
             <set var="tmp" value="abs(tnt_fuse % 2)"/>
             <action filter="tmp=0">
-                <sound key="random.fizz" volume="0.5"/>
+                <sound key="random.fizz" volume="0.3"/>
                 <switch-scope inner="player" filter="all(is_tnt=1, participating)">
                     <kit id="tnt-flash-kit"/>
                 </switch-scope>
@@ -264,20 +264,6 @@
         <sound key="mob.creeper.say" volume="0.5" pitch="1.5"/>
         <message text="`cYou have been tagged!"/>
     </action>
-    <!-- catch cases where tnt person may spawn without a kit -->
-    <trigger scope="player" action="tnt-kit">
-        <filter>
-            <all>
-                <variable var="is_tnt">1</variable>
-                <filter id="participating"/>
-                <not>
-                    <wearing ignore-durability="true" ignore-metadata="true" ignore-enchantments="true">
-                        <item material="leather boots"/>
-                    </wearing>
-                </not>
-            </all>
-        </filter>
-    </trigger>
 </actions>
 <damage attacker-action="become-hider" victim-action="become-tnt">
     <deny>
