@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>BoomBox</name>
-<variant id="classic" world="classic">Classic</variant> <!-- Extremely cursed merging -->
+<variant id="classic" world="classic" slug="boombox">Classic</variant> <!-- Extremely cursed merging -->
 <unless variant="classic">
     <version>1.1.2</version>
     <slug>boombox_redux</slug>

@@ -1,7 +1,6 @@
 <map proto="1.4.2">
 <name>Rush Wars Tournament 2: Attack of the Defenders</name>
 <version>1.1.10</version>
-<slug>rush_wars_tournament_2_attack_of_the_defenders</slug>
 <objective>Runners must break the monument at the end of the map without getting killed by the defenders!</objective>
 <created>2016-06-01</created>
 <gamemode>ad</gamemode>

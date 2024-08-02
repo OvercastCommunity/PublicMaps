@@ -1,7 +1,6 @@
 <map proto="1.4.2">
 <name>Pixel Run</name>
 <version>1.0.2</version>
-<slug>pixel_run</slug>
 <objective>Runners must get from one side of the map to the other without getting killed by the Defenders.</objective>
 <gamemode>ad</gamemode>
 <authors>

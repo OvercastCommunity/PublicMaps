@@ -1,7 +1,6 @@
 <map proto="1.4.2" game="`f`lRush">
 <name>Rainbow Road</name>
 <version>1.0.2</version>
-<slug>rainbow_road</slug>
 <objective>Runners must run to the end of the track and destroy the sponge monument without getting killed by the defenders.</objective>
 <time result="defenders-team">3m</time>
 <gamemode>ad</gamemode>

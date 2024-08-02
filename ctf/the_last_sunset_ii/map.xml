@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>The Last Sunset II</name>
-<variant id="halloween" world="halloween" override="true">A SpOOky Sunset II</variant>
+<variant id="halloween" world="halloween" override="true" slug="a_spooky_sunset">A SpOOky Sunset II</variant>
 <if variant="halloween">
     <slug>a_spooky_sunset</slug> <!-- original name -->
 </if>

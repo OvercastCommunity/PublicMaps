@@ -2,7 +2,7 @@
 <name>Directrix</name>
 <variant id="halloween" world="halloween" override="true">DirecTricks</variant>
 <variant id="christmas" world="christmas" override="true">DirectriXmas</variant>
-<variant id="classic" world="classic">Classic</variant>
+<variant id="classic" world="classic" slug="directrix">Classic</variant>
 <variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
 <variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
 <unless variant="king_ranch,king_ranch_og">

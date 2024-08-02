@@ -1,7 +1,6 @@
 <map proto="1.4.2" game="`eProgress">
 <name>Block Runner: World of Sports</name>
 <version>1.0.0</version>
-<slug>block_runner_world_of_sports</slug>
 <include id="void-death"/>
 <include id="block-runner"/> <!-- Required by all Block Runner maps -->
 <authors>

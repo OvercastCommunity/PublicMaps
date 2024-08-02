@@ -1,7 +1,6 @@
 <map proto="1.4.2" game="Rush">
 <name>Sugar Cane Valley</name>
 <version>1.1.4</version>
-<slug>sugar_cane_valley</slug>
 <objective>Make it to the end and destroy the Defender's monument!</objective>
 <gamemode>ad</gamemode>
 <gamemode>blitz</gamemode>

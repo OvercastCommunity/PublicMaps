@@ -1,8 +1,8 @@
 <map proto="1.4.2">
 <name>Sunrise Over Paradise</name>
-<variant id="halloween" world="halloween" override="true">Halloween Over Paradise</variant>
-<variant id="christmas" world="christmas" override="true">Christmas Over Paradise</variant>
-<variant id="classic" world="classic">Classic</variant>
+<variant id="halloween" world="halloween" override="true" slug="halloween_over_paradise_redux">Halloween Over Paradise</variant>
+<variant id="christmas" world="christmas" override="true" slug="christmas_over_paradise_redux">Christmas Over Paradise</variant>
+<variant id="classic" world="classic" slug="sunrise_over_paradise">Classic</variant>
 <if variant="default">
     <slug>sunrise_over_paradise_redux</slug>
 </if>
