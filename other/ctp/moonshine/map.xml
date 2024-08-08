@@ -148,7 +148,7 @@
     <score id="team_score"/>
     <with-team id="blue_team_score" var="team_score" team="blue"/>
     <with-team id="red_team_score" var="team_score" team="red"/>
-    <variable id="round_over" scope="player" default="0"/>
+    <variable id="round_over" default="0" scope="player"/>
 </variables>
 <actions>
     <!-- Clear dropped items and shot arrows when a round is over. -->
@@ -197,8 +197,8 @@
 <score>
     <limit>6</limit>
 </score>
-<!-- These portals teleport players to the waiting box at the end of a round, and then to the spawn point once the waiting box filter is valid. -->
 <portals sound="false" observers="never">
+    <!-- These portals teleport players to the waiting box at the end of a round, and then to the spawn point once the waiting box filter is valid. -->
     <portal forward="round-pending" filter="only-blue" destination="blue-pending-spawn" yaw="@-90"/>
     <portal forward="round-pending" filter="only-red" destination="red-pending-spawn" yaw="@90"/>
     <portal forward="round-start" filter="only-blue" destination="blue-spawn" yaw="@-90"/>
