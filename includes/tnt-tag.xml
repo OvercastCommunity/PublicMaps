@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-07-28 -->
+<!-- Version 2024-08-10 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -28,7 +28,12 @@
         <item slot="7" material="tnt" locked="true"/>
         <item slot="8" material="tnt" locked="true"/>
         <effect amplifier="10">damage resistance</effect>
-        <effect>speed</effect>
+        <effect amplifier="2">speed</effect>
+        <action filter="round=5..">
+            <kit force="true">
+                <effect amplifier="3">speed</effect>
+            </kit>
+        </action>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="tnt-flash-kit" force="true">
@@ -49,6 +54,12 @@
         <effect amplifier="50">instant damage</effect>
     </kit>
     <kit id="hider-kit">
+        <effect>speed</effect>
+        <action filter="round=5..">
+            <kit force="true">
+                <effect amplifier="2">speed</effect>
+            </kit>
+        </action>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="clear-kit">
@@ -147,9 +158,14 @@
             <action id="pick-player"/>
         </action>
     </action>
-    <action id="distribute-tnt-kits" scope="match">
-        <switch-scope inner="player" filter="all(is_tnt=1, participating)">
-            <kit id="tnt-kit"/>
+    <action id="distribute-kits" scope="match">
+        <switch-scope inner="player" filter="participating">
+            <action filter="is_tnt=0">
+                <kit id="hider-kit"/>
+            </action>
+            <action filter="is_tnt=1">
+                <kit id="tnt-kit"/>
+            </action>
         </switch-scope>
     </action>
     <action id="round-begin-message" scope="match">
@@ -176,11 +192,7 @@
             </message>
         </action>
         <action filter="tnt_players=1">
-            <message text="`e» The TNT has been released to `c{num} `eplayer!">
-                <replacements>
-                    <decimal id="num" value="tnt_players"/>
-                </replacements>
-            </message>
+            <message text="`e» The TNT has been released to `c1 `eplayer!"/>
         </action>
         <switch-scope inner="player" filter="participating">
             <message text=" "/>
@@ -214,11 +226,11 @@
             <action filter="players=..5">
                 <set var="round_deathmatch" value="round_deathmatch+1"/>
             </action>
-            <action id="distribute-tnt-kits"/>
+            <action id="distribute-kits"/>
             <action id="round-begin-message"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="round-end">
+    <trigger scope="match" filter="all(match-running, round-end)">
         <action>
             <set var="round_state" value="0"/>
             <switch-scope inner="player" filter="all(is_tnt=1, participating)">
@@ -234,7 +246,7 @@
     </trigger>
     <trigger scope="match">
         <filter>
-            <pulse period="0.5s" duration="0.25s" filter="all(start-tnt-fuse, not(round-end))"/>
+            <pulse period="0.5s" duration="0.25s" filter="all(match-running, start-tnt-fuse, not(round-end))"/>
         </filter>
         <action>
             <set var="tnt_fuse" value="tnt_fuse - 1"/>
@@ -261,7 +273,10 @@
     <action id="become-tnt" scope="player" filter="all(victim-is-hider, round-running)">
         <set var="is_tnt" value="1"/>
         <kit id="tnt-kit"/>
-        <sound key="mob.creeper.say" volume="0.5" pitch="1.5"/>
+        <sound key="mob.creeper.say" volume="1" pitch="1.5"/>
+        <switch-scope inner="match">
+            <sound key="fireworks.twinkle" volume="0.8" pitch=".9"/>
+        </switch-scope>
         <message text="`cYou have been tagged!"/>
     </action>
 </actions>
