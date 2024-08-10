@@ -6,10 +6,10 @@
 <variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
 <variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
 <unless variant="king_ranch,king_ranch_og">
-    <version>1.1.5</version>
+    <version>1.1.6</version>
 </unless>
 <if variant="king_ranch,king_ranch_og">
-    <version>2.0.4</version>
+    <version>2.0.5</version>
 </if>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
@@ -139,9 +139,10 @@
         <helmet unbreakable="true" team-color="true" locked="true" material="leather helmet"/>
         <chestplate unbreakable="true" color="191919" locked="true" material="leather chestplate"/>
         <leggings unbreakable="true" color="191919" locked="true" material="leather leggings"/>
-        <boots unbreakable="true" color="191919" locked="true" attributes="generic.maxHealth:base:-0.7" material="leather boots"/>
+        <boots unbreakable="true" color="191919" locked="true" material="leather boots"/>
         <effect duration="3s" amplifier="255">damage resistance</effect>
         <effect duration="3s">absorption</effect>
+        <max-health>6</max-health>
         <effect>speed</effect>
         <game-mode>adventure</game-mode>
     </kit>
