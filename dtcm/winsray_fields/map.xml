@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Winsray Fields</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
+<include id="gapple-kill-reward"/>
 <gamemode>dtc</gamemode>
 <gamemode>dtm</gamemode>
 <objective>Destroy the opposing team's monument and core!</objective>
@@ -151,15 +152,10 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
@@ -173,7 +169,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="24" damage="1" material="wood"/>
         <item amount="12" material="glass"/>
     </kill-reward>
