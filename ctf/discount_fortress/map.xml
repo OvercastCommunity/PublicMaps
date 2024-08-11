@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Discount Fortress</name>
-<version>1.2.6</version>
+<version>1.2.7</version>
 <variant id="7v7">7v7</variant>
+<constant id="override-itemkeep">true</constant>
 <constant id="damage-resistance">5s</constant>
 <unless variant="7v7">
     <constant id="respawn-timer">3s</constant>
@@ -146,13 +147,13 @@
     <item>cactus</item>
 </itemremove>
 <itemkeep>
-    <!--
-    FIXME: reimplement
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>shears</item>
     <unless variant="7v7">
         <item>golden apple</item>
         <item>arrow</item>
     </unless>
-    -->
     <item>leaves</item>
 </itemkeep>
 <maxbuildheight>15</maxbuildheight>

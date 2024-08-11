@@ -1,8 +1,9 @@
 <map proto="1.4.2">
 <!-- Base conquest (competitive) kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.09.11-1 -->
+<!-- Version 2024.08.11-1 -->
 <include id="gapple-kill-reward"/>
+<constant id="override-itemkeep" fallback="true">false</constant>
 <phase>staging</phase> <!-- prevent competitive conquest from sponsoring -->
 <kits>
     <kit id="base-kit">
@@ -36,10 +37,12 @@
     <item>banner</item>
 </itemremove>
 <itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>golden apple</item>
-    <item>arrow</item>
+    <unless constant="override-itemkeep" constant-value="true">
+        <item>stone sword</item>
+        <item>bow</item>
+        <item>golden apple</item>
+        <item>arrow</item>
+    </unless>
 </itemkeep>
 <kill-rewards>
     <kill-reward>
