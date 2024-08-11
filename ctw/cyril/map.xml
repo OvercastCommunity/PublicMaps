@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Cyril</name>
-<version>1.3.10</version>
+<version>1.3.11</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the enemy team's wool!</objective>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
@@ -217,7 +218,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="24" damage="1" material="wood"/>
         <item amount="12" damage="7" material="stained glass"/>
     </kill-reward>
