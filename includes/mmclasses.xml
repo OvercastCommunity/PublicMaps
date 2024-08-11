@@ -1,9 +1,9 @@
 <map proto="1.4.2">
 <!-- Monster Mash gamemode include file -->
 <!-- Modified by zzuf - Original mmclasses.xml file by the Overcast Network -->
-<!-- Version 2023.10.24-1 -->
+<!-- Version 2024.08.10-1 -->
 <game>Monster Mash</game>
-<constants> <!-- Default values - Can be overriden by an individual map's code -->
+<constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
     <constant id="time-limit">5m</constant>
     <constant id="starting-lives">1</constant>
     <constant id="map-objective">Be the last monster standing to win!</constant>

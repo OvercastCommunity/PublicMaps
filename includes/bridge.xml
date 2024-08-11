@@ -2,11 +2,11 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.05.16-1 -->
+<!-- Version 2024.08.10-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
-<constants> <!-- Default values - Can be overriden by an individual map's code -->
+<constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
     <!-- Map -->
     <constant id="map-origin">0.5,0,0.5</constant>
     <constant id="void-plane">-5</constant>
