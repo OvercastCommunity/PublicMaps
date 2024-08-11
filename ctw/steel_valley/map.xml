@@ -1,14 +1,27 @@
 <map proto="1.4.2">
 <name>Steel Valley</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
+<variant id="comp">TE</variant>
+<include id="gapple-kill-reward"/>
+<unless variant="comp">
+    <constant id="team-size">26</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="axe-type">iron axe</constant>
+</unless>
+<if variant="comp">
+    <time overtime="5m" max-overtime="10m" end-overtime="1m">35m</time>
+    <constant id="team-size">8</constant>
+    <constant id="max-overfill">8</constant>
+    <constant id="axe-type">stone axe</constant>
+    <phase>staging</phase>
+</if>
 <objective>Capture the enemy's two wools!</objective>
-<edition>standard</edition>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -21,19 +34,34 @@
         <item slot="2" unbreakable="true" material="iron pickaxe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="3" unbreakable="true" material="iron axe">
+        <item slot="3" unbreakable="true" material="${axe-type}">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="4" unbreakable="true" material="iron spade">
-            <enchantment>efficiency</enchantment>
+        <item slot="30" unbreakable="true" material="iron spade">
+            <if variant="comp">
+                <enchantment>efficiency</enchantment>
+            </if>
         </item>
-        <item slot="5" amount="64" damage="3" material="wood"/>
-        <item slot="32" amount="64" damage="3" material="wood"/>
-        <item slot="6" amount="64" material="glass"/>
-        <item slot="8" material="golden apple"/>
+        <item slot="4" amount="64" damage="3" material="wood"/>
+        <item slot="31" amount="64" damage="3" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <unless variant="comp">
+            <item slot="7" material="bucket"/>
+            <item slot="8" material="golden apple"/>
+        </unless>
+        <if variant="comp">
+            <item slot="32" amount="64" damage="3" material="wood"/>
+            <item slot="6" material="water bucket"/>
+            <item slot="7" material="golden apple"/>
+            <item slot="8" amount="64" material="golden carrot"/>
+        </if>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <boots unbreakable="true" team-color="true" material="leather boots">
+            <unless variant="comp">
+                <enchantment>depth_strider</enchantment>
+            </unless>
+        </boots>
         <effect duration="6s" amplifier="255">resistance</effect>
     </kit>
 </kits>
@@ -76,6 +104,15 @@
     <not id="no-void">
         <void/>
     </not>
+    <deny id="deny-water-flow">
+        <all>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+            <cause>world</cause>
+        </all>
+    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -140,12 +177,32 @@
     <apply block="never" region="piston-chests" message="You may not destroy the piston chests!"/>
     <apply block="blue-in-wr" use="only-blue" region="red-wool-rooms"/>
     <apply block="red-in-wr" use="only-red" region="blue-wool-rooms"/>
+    <unless variant="comp">
+        <apply block="deny-water-flow" region="wool-rooms"/>
+    </unless>
+    <if variant="comp">
+        <union id="non-wool-lanes">
+            <negative>
+                <union id="wool-lanes">
+                    <rectangle min="-46,48" max="-76,60"/>
+                    <rectangle min="-17,48" max="18,60"/>
+                    <rectangle min="18,34" max="6,60"/>
+                    <rectangle min="9,51" max="21,63"/>
+                    <rectangle min="-36,-89" max="-6,-77"/>
+                    <rectangle min="-65,-77" max="-100,-89"/>
+                    <rectangle min="-88,-63" max="-100,-89"/>
+                    <rectangle min="-91,-80" max="-103,-92"/>
+                </union>
+            </negative>
+        </union>
+        <apply block="deny-water-flow" region="non-wool-lanes"/>
+    </if>
     <apply block-place="no-void" message="You may not edit the void!"/>
 </regions>
 <renewables>
     <renewable region="spawns" renew-filter="only-iron"/>
 </renewables>
-<wools craftable="false">
+<wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
     <wool team="blue" color="lime" location="-408.5,16,-25.5">
         <monument>
             <block>-469.5,17,119.5</block>
@@ -171,7 +228,7 @@
     <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>iron pickaxe</tool>
-    <tool>iron axe</tool>
+    <tool>${axe-type}</tool>
     <tool>iron spade</tool>
     <tool>arrow</tool>
 </toolrepair>
@@ -194,15 +251,10 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
@@ -210,17 +262,44 @@
     </rule>
 </block-drops>
 <itemkeep>
-    <item>golden apple</item>
     <item>wood</item>
     <item>glass</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <unless variant="comp">
+        <item>golden apple</item>
+    </unless>
+    <if variant="comp">
+        <item>golden carrot</item>
+    </if>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="3" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" damage="3" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>28</maxbuildheight>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+<unless variant="comp">
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+    <item-mods>
+        <rule>
+            <match>
+                <material>iron boots</material>
+            </match>
+            <modify>
+                <enchantment>depth_strider</enchantment>
+            </modify>
+        </rule>
+    </item-mods>
+</unless>
+<if variant="comp">
+    <crafting>
+        <disable>iron trapdoor</disable>
+        <disable>minecart</disable>
+        <disable>boat</disable>
+    </crafting>
+</if>
 </map>
