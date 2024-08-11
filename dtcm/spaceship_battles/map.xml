@@ -1,9 +1,10 @@
 <map proto="1.4.2">
 <name>Spaceship Battles</name>
+<include id="gapple-kill-reward"/>
 <variant id="halloween" world="halloween">Halloween</variant>
 <variant id="blitz" world="blitz">Blitz</variant>
 <!-- <variant id="tournament" world="tournament">TE</variant> -->
-<version>1.3.0</version>
+<version>1.3.1</version>
 <objective>Leak lava from the enemy's obsidian core and destroy both of their antennas.</objective>
 <if variant="default">
     <created>2012-02-26</created>
@@ -250,7 +251,6 @@
 </if>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <unless variant="blitz">
             <item amount="16" material="arrow"/>
         </unless>
