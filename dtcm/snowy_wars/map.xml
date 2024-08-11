@@ -1,8 +1,9 @@
 <map proto="1.4.2">
 <name>Snowy Wars</name>
+<version>1.6.5</version>
+<include id="gapple-kill-reward"/>
 <variant id="christmas" world="christmas">Christmas</variant>
 <variant id="halloween" world="halloween">Halloween</variant>
-<version>1.6.4</version>
 <objective>Break the enemy's monument!</objective>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
@@ -159,18 +160,13 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
         </drops>
     </rule>
 </block-drops>
@@ -178,7 +174,6 @@
     <kill-reward>
         <item amount="16" damage="2" material="wood"/>
         <item amount="8" material="glass"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <item-mods>
