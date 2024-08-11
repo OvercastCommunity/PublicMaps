@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Tanker TNT</name>
-<version>1.3.6</version>
+<version>1.3.7</version>
+<include id="gapple-kill-reward"/>
 <created>2014-01-16</created>
 <objective>Leak lava from the enemy's obsidian cores.</objective>
 <authors>
@@ -34,26 +35,16 @@
         <item slot="15" amount="16" material="fence"/>
         <item slot="16" amount="16" material="step"/>
         <item slot="17" amount="32" material="redstone"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="iron leggings">
             <enchantment level="2">blast_protection</enchantment>
             <enchantment>projectile_protection</enchantment>
         </leggings>
-        <effect duration="10">heal</effect>
-        <effect duration="15">damage resistance</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="63D1F4" material="leather helmet"/>
-        <chestplate unbreakable="true" color="63D1F4" material="leather chestplate"/>
-        <boots unbreakable="true" color="63D1F4" material="leather boots">
+        <boots unbreakable="true" team-color="true" material="leather boots">
             <enchantment level="2">feather_falling</enchantment>
         </boots>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="cd0000" material="leather helmet"/>
-        <chestplate unbreakable="true" color="cd0000" material="leather chestplate"/>
-        <boots unbreakable="true" color="cd0000" material="leather boots">
-            <enchantment level="2">feather_falling</enchantment>
-        </boots>
+        <effect duration="15s">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -62,12 +53,12 @@
             <cylinder base="2013,87,-1967" radius="1.5" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
-        <region yaw="0">
+    <spawn team="blue" kit="spawn-kit">
+        <region>
             <cylinder base="2018.5,21,-2062.5" radius="1.5" height="0"/>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <region yaw="180">
             <cylinder base="2007.5,21,-1871.5" radius="1.5" height="0"/>
         </region>
@@ -153,34 +144,15 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+                <material>redstone wire</material>
+                <material>log</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>redstone wire</material>
-        </filter>
-        <drops>
-            <item chance="0" material="redstone"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>log</material>
-        </filter>
-        <drops>
-            <item chance="0" material="log"/>
         </drops>
     </rule>
 </block-drops>
@@ -190,12 +162,13 @@
     <item>golden apple</item>
     <item>redstone</item>
 </itemkeep>
-<kill-reward>
-    <item amount="16" damage="2" material="wood"/>
-    <item amount="8" material="glass"/>
-    <item material="golden apple"/>
-    <item amount="16" material="redstone"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" damage="2" material="wood"/>
+        <item amount="8" material="glass"/>
+        <item amount="16" material="redstone"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>62</maxbuildheight>
 <item-mods>
     <rule>
