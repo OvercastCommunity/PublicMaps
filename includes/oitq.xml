@@ -8,15 +8,14 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2023.12.10-2 -->
-<constants>
+<!-- Version 2024.08.10-1 -->
+<constants fallback="true">
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
     <constant id="extra-kit">default-extra-kit</constant> <!-- For small additions to the base kit, useful if you just want to add stuff to the default one -->
-    <constant id="game-title">One in the Quiver</constant> <!-- Gamemode title - Modify if your map combines other gamemodes with OITQ -->
     <constant id="classes-amount">3</constant> <!-- Amount of classes the map has -->
 </constants>
-<game>${game-title}</game>
+<game>One in the Quiver</game>
 <modifybowprojectile pickup-filter="never"/>
 <rage/>
 <time result="score">${time-limit}m</time>
