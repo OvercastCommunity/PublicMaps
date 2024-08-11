@@ -1,5 +1,6 @@
 <map proto="1.4.2">
 <name>Sunrise Over Paradise</name>
+<include id="gapple-kill-reward"/>
 <variant id="halloween" world="halloween" override="true" slug="halloween_over_paradise_redux">Halloween Over Paradise</variant>
 <variant id="christmas" world="christmas" override="true" slug="christmas_over_paradise_redux">Christmas Over Paradise</variant>
 <variant id="classic" world="classic" slug="sunrise_over_paradise">Classic</variant>
@@ -15,7 +16,7 @@
 <if variant="classic">
     <phase>staging</phase>
 </if>
-<version>1.4</version>
+<version>1.4.1</version>
 <objective>Destroy both of the enemy team's monuments!</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
@@ -284,7 +285,6 @@
 <kill-rewards>
     <unless variant="classic">
         <kill-reward>
-            <item material="golden apple"/>
             <item amount="8" material="ladder"/>
             <item amount="16" team-color="true" material="stained clay"/>
             <item amount="4" team-color="true" lore="Immune to TNT" material="stained glass"/>
@@ -300,7 +300,6 @@
     </unless>
     <if variant="classic">
         <kill-reward>
-            <item material="golden apple"/>
             <item material="wood" amount="12"/>
         </kill-reward>
     </if>
