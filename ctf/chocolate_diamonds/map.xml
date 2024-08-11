@@ -2,8 +2,9 @@
 <name>Chocolate Diamonds</name>
 <variant id="christmas" world="christmas" override="true">Snowy Diamonds</variant>
 <variant id="halloween" world="halloween" override="true">SpOOky Diamonds</variant>
-<version>2.2.1</version>
+<version>2.2.2</version>
 <objective>Capture the enemy's flag 3 times!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- kroest -->
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Map and XML changes"/> <!-- ogel / GoldenOre -->
@@ -216,7 +217,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="16" damage="${kit-wood-dmg-value}" material="wood"/>
         <item amount="8" team-color="true" material="stained clay"/>
         <item amount="4" material="arrow"/>
