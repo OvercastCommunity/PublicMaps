@@ -1,6 +1,9 @@
 <map proto="1.4.2">
 <name>Quadrival</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
+<constant id="damage-resistance">3s</constant>
+<constant id="respawn-timer">2s</constant>
+<include id="conquest"/>
 <created>2018-06-25</created>
 <objective>Capture hills to earn points. Be the first team to 2500 points to win!</objective>
 <authors>
@@ -21,21 +24,13 @@
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit" parents="default-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings locked="true" unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots locked="true" unbreakable="true" material="iron boots"/>
-        <effect duration="3" amplifier="255">heal</effect>
-        <effect duration="3" amplifier="255">damage resistance</effect>
-        <game-mode>adventure</game-mode>
+    <kit id="spawn-kit" parents="default-kit,base-kit">
+        <action>
+            <replace-item ignore-metadata="true">
+                <find material="chainmail leggings"/>
+                <replace unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
+            </replace-item>
+        </action>
     </kit>
     <kit id="4-kills-kit" force="true">
         <helmet locked="true" unbreakable="true" material="iron helmet"/>
@@ -181,31 +176,15 @@
 <score>
     <limit>2500</limit>
 </score>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
 <itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
     <item>iron helmet</item>
     <item>iron leggings</item>
     <item>chainmail chestplate</item>
 </itemremove>
-<itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>arrow</item>
-    <item>golden apple</item>
-</itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
-        <item amount="8" material="arrow"/>
         <kit force="true">
-            <effect duration="3">speed</effect>
+            <effect duration="3s">speed</effect>
         </kit>
     </kill-reward>
     <kill-reward filter="4-kills" kit="4-kills-kit"/>
@@ -216,7 +195,4 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
