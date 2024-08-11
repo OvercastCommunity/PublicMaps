@@ -1,9 +1,11 @@
 <map proto="1.4.2">
 <!-- Arrow cooldown/regen include file -->
 <!-- Created by Pugzy, Pablete1234 -->
-<!-- Version 2023.07.29-1 -->
-<constant id="arrow-count">4</constant>
-<constant id="lock-arrows">true</constant>
+<!-- Version 2024.08.10-1 -->
+<constants fallback="true">
+    <constant id="arrow-count">4</constant>
+    <constant id="lock-arrows">true</constant>
+</constants>
 <kits>
     <kit id="arrow-kit" deduct-items="false">
         <item slot="8" material="arrow"/>

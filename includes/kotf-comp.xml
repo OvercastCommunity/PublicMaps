@@ -1,12 +1,14 @@
 <map proto="1.4.2">
 <!-- Base competitive KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.06.16-1 -->
+<!-- Version 2024.08.10-1 -->
 <include id="conquest-comp"/>
-<constant id="respawn-timer">2s</constant>
-<constant id="score">200</constant>
-<constant id="flag-respawn-timer">23s</constant>
-<constant id="announce-post-pickup">false</constant>
+<constants fallback="true">
+    <constant id="respawn-timer">2s</constant>
+    <constant id="score">200</constant>
+    <constant id="flag-respawn-timer">23s</constant>
+    <constant id="announce-post-pickup">false</constant>
+</constants>
 <gamemode>kotf</gamemode>
 <kits>
     <kit id="base-kit-compass" parent="base-kit">

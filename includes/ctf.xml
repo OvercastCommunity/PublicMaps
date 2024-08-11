@@ -1,13 +1,15 @@
 <map proto="1.4.2">
 <!-- Base CTF include file -->
 <!-- Created by mameBT -->
-<!-- Version 2023.12.20-1 -->
+<!-- Version 2024.08.10-1 -->
 <include id="conquest"/>
 <time result="score" overtime="1m" max-overtime="3m">12m</time>
-<constant id="flag-recover-time">12s</constant>
-<constant id="flag-respawn-time">10s</constant>
-<constant id="flag-kit-definition">flag-kit</constant>
-<constant id="reset-kit-definition">reset-kit</constant>
+<constants fallback="true">
+    <constant id="flag-recover-time">12s</constant>
+    <constant id="flag-respawn-time">10s</constant>
+    <constant id="flag-kit-definition">flag-kit</constant>
+    <constant id="reset-kit-definition">reset-kit</constant>
+</constants>
 <kits>
     <kit id="flag-kit" force="true">
         <effect>slowness</effect>
