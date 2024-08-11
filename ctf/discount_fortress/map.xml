@@ -139,30 +139,27 @@
     </unless>
 </score>
 <toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
     <tool>shears</tool>
 </toolrepair>
 <itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
     <item>sapling</item>
     <item>cactus</item>
 </itemremove>
 <itemkeep>
+    <!--
+    FIXME: reimplement
     <unless variant="7v7">
         <item>golden apple</item>
         <item>arrow</item>
     </unless>
+    -->
     <item>leaves</item>
 </itemkeep>
+<maxbuildheight>15</maxbuildheight>
 <kill-rewards>
     <kill-reward>
         <item amount="${arrow-kill-reward-additional}" material="arrow"/>
         <item amount="6" material="leaves"/>
     </kill-reward>
 </kill-rewards>
-<maxbuildheight>15</maxbuildheight>
 </map>
