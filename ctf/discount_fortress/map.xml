@@ -1,55 +1,73 @@
 <map proto="1.4.2">
 <name>Discount Fortress</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
+<variant id="7v7">7v7</variant>
+<constant id="damage-resistance">5s</constant>
+<unless variant="7v7">
+    <constant id="respawn-timer">3s</constant>
+    <include id="conquest"/>
+    <constant id="pickup-kit">flag-pickup</constant>
+    <constant id="drop-kit">flag-drop</constant>
+    <constant id="max">20</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="arrow-kill-reward-additional">4</constant>
+</unless>
+<if variant="7v7">
+    <constant id="respawn-timer">6s</constant>
+    <include id="conquest-comp"/>
+    <constant id="pickup-kit" delete="true"/>
+    <constant id="drop-kit" delete="true"/>
+    <constant id="max">7</constant>
+    <constant id="max-overfill">7</constant>
+    <constant id="arrow-kill-reward-additional">2</constant>
+</if>
 <objective>Capture the enemy team's flag as many times as possible within 12 minutes!</objective>
 <time result="score" overtime="1m" max-overtime="2m">12m</time>
 <broadcasts>
-    <alert after="1s" every="6m" count="2">A mercy limit of 3 flag captures is active!</alert>
-    <alert after="3s" every="6m" count="2">A team that gains a 3 capture lead will automatically win!</alert>
+    <unless variant="7v7">
+        <alert after="1s" every="6m" count="2">A mercy limit of 3 flag captures is active!</alert>
+        <alert after="3s" every="6m" count="2">A team that gains a 3 capture lead will automatically win!</alert>
+    </unless>
 </broadcasts>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
-    <author uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Winnerizor -->
+    <author uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Gayquil -->
 </authors>
 <contributors>
     <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
     <contributor uuid="d71152ca-187d-43c4-9901-ba001606c655"/> <!-- wylt -->
     <contributor uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa"/> <!-- Antnecb -->
-    <contributor uuid="eb1f6661-e01f-4062-b2ae-cd01a9dc4b92"/> <!-- latiku3 -->
+    <contributor uuid="eb1f6661-e01f-4062-b2ae-cd01a9dc4b92"/> <!-- susou -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="20">Blue</team>
-    <team id="red" color="dark red" max="20">Red</team>
+    <team id="blue" color="blue" max="${max}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red" color="dark red" max="${max}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" unbreakable="true" material="shears"/>
-        <item slot="3" amount="12" material="leaves"/>
-        <item slot="7" material="golden apple"/>
-        <item slot="8" amount="20" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="5" amplifier="255">heal</effect>
-        <effect duration="5" amplifier="255">damage resistance</effect>
+    <kit id="spawn-kit" parent="base-kit">
+        <item amount="20" material="arrow"/>
+        <item slot="3" unbreakable="true" material="shears"/>
+        <item slot="4" amount="12" material="leaves"/>
+        <action>
+            <replace-item ignore-metadata="true">
+                <find material="chainmail leggings"/>
+                <replace unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
+            </replace-item>
+        </action>
     </kit>
-    <kit id="flag-pickup" force="true">
-        <effect>slowness</effect>
-    </kit>
-    <kit id="flag-drop" force="true">
-        <effect duration="0">slowness</effect>
-    </kit>
+    <unless variant="7v7">
+        <kit id="flag-pickup" force="true">
+            <effect>slowness</effect>
+        </kit>
+        <kit id="flag-drop" force="true">
+            <effect duration="0">slowness</effect>
+        </kit>
+    </unless>
 </kits>
 <spawns>
     <default>
-        <region yaw="0">
+        <region>
             <point>14.5,26.5,-413.5</point>
         </region>
     </default>
@@ -59,7 +77,7 @@
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>-19.0,1,-442.0</point>
         </region>
     </spawn>
@@ -71,7 +89,6 @@
         <material>leaves</material>
         <material>glass</material>
     </any>
-    <time id="flag-respawns">0</time>
 </filters>
 <regions>
     <union id="flag-nets">
@@ -99,25 +116,27 @@
           name="Blue Flag"
           owner="blue"
           color="blue"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-drop">
+          pickup-kit="${pickup-kit}"
+          drop-kit="${drop-kit}">
         <post pickup-filter="only-red" recover-time="20s" respawn-time="15s">-15.5,10,-311.5</post>
     </flag>
     <flag id="red-flag"
           name="Red Flag"
           owner="red"
           color="red"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-drop">
+          pickup-kit="${pickup-kit}"
+          drop-kit="${drop-kit}">
         <post pickup-filter="only-blue" recover-time="20s" respawn-time="15s">14.5,10,-429.5</post>
     </flag>
     <flags points="1">
-        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
-        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+        <net region="blue-net" flag="red-flag"/>
+        <net region="red-net" flag="blue-flag"/>
     </flags>
 </flags>
 <score>
-    <mercy>3</mercy>
+    <unless variant="7v7">
+        <mercy>3</mercy>
+    </unless>
 </score>
 <toolrepair>
     <tool>stone sword</tool>
@@ -133,18 +152,17 @@
     <item>cactus</item>
 </itemremove>
 <itemkeep>
-    <item>golden apple</item>
-    <item>arrow</item>
+    <unless variant="7v7">
+        <item>golden apple</item>
+        <item>arrow</item>
+    </unless>
     <item>leaves</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="10" material="arrow"/>
-    <item amount="6" material="leaves"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="${arrow-kill-reward-additional}" material="arrow"/>
+        <item amount="6" material="leaves"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>15</maxbuildheight>
-<respawn delay="3s"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
