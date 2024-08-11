@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Long Shot</name>
-<version>1.5.6</version>
+<version>1.5.7</version>
+<include id="gapple-kill-reward"/>
 <objective>Take the enemy flag at the end of your lane back to your beacon!</objective>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- StealthMedia -->
@@ -156,9 +157,6 @@
     <item>tnt</item>
 </itemkeep>
 <kill-rewards>
-    <kill-reward>
-        <item>golden apple</item>
-    </kill-reward>
     <kill-reward>
         <item amount="4" team-color="true" material="stained clay"/>
     </kill-reward>
