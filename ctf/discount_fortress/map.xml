@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Discount Fortress</name>
-<version>1.2.7</version>
+<version>1.2.8</version>
 <variant id="7v7">7v7</variant>
 <constant id="override-itemkeep">true</constant>
 <constant id="damage-resistance">5s</constant>
@@ -56,6 +56,7 @@
                 <replace unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
             </replace-item>
         </action>
+        <game-mode>survival</game-mode>
     </kit>
     <unless variant="7v7">
         <kit id="flag-pickup" force="true">
