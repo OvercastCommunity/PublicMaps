@@ -2,7 +2,10 @@
 <name>Wooly Woods</name>
 <variant id="halloween" world="halloween" override="true">Witchy Woods</variant>
 <variant id="rage">RAGE</variant>
-<version>1.2.0</version>
+<unless variant="rage">
+    <include id="gapple-kill-reward"/>
+</unless>
+<version>1.2.1</version>
 <objective>Be the team with the most kills after 10 minutes!</objective>
 <if variant="default">
     <created>2012-12-14</created>
@@ -119,11 +122,6 @@
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <maxbuildheight>55</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
