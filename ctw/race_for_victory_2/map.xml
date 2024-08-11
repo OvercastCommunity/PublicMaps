@@ -1,8 +1,9 @@
 <map proto="1.4.2">
 <name>Race for Victory 2</name>
-<version>1.3.4</version>
-<objective>Take the enemy's wools located to either side of the enemy's base and place them in your victory monuments.</objective>
+<version>1.3.5</version>
 <include id="lava-buckets"/>
+<include id="gapple-kill-reward"/>
+<objective>Take the enemy's wools located to either side of the enemy's base and place them in your victory monuments.</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
     <author uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Map design"/> <!-- IM_A_H0B0 -->
@@ -190,7 +191,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="2" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>
