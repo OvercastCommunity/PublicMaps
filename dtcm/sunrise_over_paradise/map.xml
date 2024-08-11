@@ -8,14 +8,11 @@
 </if>
 <if variant="halloween">
     <constant id="season">Halloween</constant>
-    <slug>halloween_over_paradise_redux</slug>
 </if>
 <if variant="christmas">
     <constant id="season">Christmas</constant>
-    <slug>christmas_over_paradise_redux</slug>
 </if>
 <if variant="classic">
-    <slug>sunrise_over_paradise</slug>
     <phase>staging</phase>
 </if>
 <version>1.4</version>

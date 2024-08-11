@@ -432,7 +432,6 @@
 </unless>
 <if variant="classic">
     <version>0.55.3</version>
-    <slug>boombox</slug>
     <phase>staging</phase>
     <objective>Attackers have 20 minutes to destroy the Ice Pillar, while the Defenders try to hold them back.</objective>
     <authors>

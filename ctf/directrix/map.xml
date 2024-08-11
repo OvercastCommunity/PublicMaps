@@ -17,9 +17,6 @@
     <created>2021-12-06</created>
     <slug>directredux</slug>
 </if>
-<if variant="classic">
-    <slug>directrix</slug>
-</if>
 <if variant="halloween">
     <created>2022-09-10</created>
 </if>

@@ -1,9 +1,6 @@
 <map proto="1.4.2">
 <name>The Last Sunset II</name>
-<variant id="halloween" world="halloween" override="true" slug="a_spooky_sunset">A SpOOky Sunset II</variant>
-<if variant="halloween">
-    <slug>a_spooky_sunset</slug> <!-- original name -->
-</if>
+<variant id="halloween" world="halloween" override="true" slug="a_spooky_sunset">A SpOOky Sunset II</variant> <!-- slug for original name -->
 <version>1.1.6</version>
 <objective>Capture each enemy flag two times!</objective>
 <authors>
