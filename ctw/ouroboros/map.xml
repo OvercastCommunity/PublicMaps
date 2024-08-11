@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Ouroboros</name>
-<version>6.4.6</version>
+<version>6.4.7</version>
+<include id="gapple-kill-reward"/>
 <objective>Capture the other team's wools to win the game!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -33,8 +34,11 @@
         <item slot="4" unbreakable="true" material="iron spade"/>
         <item slot="31" unbreakable="true" material="flint and steel"/>
         <item slot="5" amount="48" damage="2" material="wood"/>
+        <item slot="6" amount="16" team-color="true" material="stained clay"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="64" material="cooked beef"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings">
             <enchantment>projectile_protection</enchantment>
         </leggings>
@@ -44,26 +48,6 @@
         <effect duration="3">heal</effect>
         <effect duration="3" amplifier="2">damage resistance</effect>
     </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <item slot="6" amount="16" damage="11" material="stained clay"/>
-        <helmet unbreakable="true" color="0066cc" material="leather helmet"/>
-        <chestplate unbreakable="true" color="0066cc" material="leather chestplate"/>
-    </kit>
-    <kit id="purple-kit" parents="spawn-kit">
-        <item slot="6" amount="16" damage="10" material="stained clay"/>
-        <helmet unbreakable="true" color="551a8b" material="leather helmet"/>
-        <chestplate unbreakable="true" color="551a8b" material="leather chestplate"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <item slot="6" amount="16" damage="14" material="stained clay"/>
-        <helmet unbreakable="true" color="cd0000" material="leather helmet"/>
-        <chestplate unbreakable="true" color="cd0000" material="leather chestplate"/>
-    </kit>
-    <kit id="yellow-kit" parents="spawn-kit">
-        <item slot="6" amount="16" damage="4" material="stained clay"/>
-        <helmet unbreakable="true" color="ffff00" material="leather helmet"/>
-        <chestplate unbreakable="true" color="ffff00" material="leather chestplate"/>
-    </kit>
 </kits>
 <spawns>
     <default>
@@ -71,22 +55,22 @@
             <cylinder base="0.5,11,0.5" radius="2" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue" kit="spawn-kit">
         <region yaw="-90">
             <point>-8.5,4,-69.5</point>
         </region>
     </spawn>
-    <spawn team="purple" kit="purple-kit">
+    <spawn team="purple" kit="spawn-kit">
         <region yaw="90">
             <point>9.5,4,70.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <region yaw="180">
             <point>-69.5,4,9.5</point>
         </region>
     </spawn>
-    <spawn team="yellow" kit="yellow-kit">
+    <spawn team="yellow" kit="spawn-kit">
         <region>
             <point>70.5,4,-8.5</point>
         </region>
@@ -319,20 +303,8 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="12" damage="2" material="wood"/>
-    </kill-reward>
-    <kill-reward filter="only-blue">
-        <item amount="4" damage="11" material="stained clay"/>
-    </kill-reward>
-    <kill-reward filter="only-purple">
-        <item amount="4" damage="10" material="stained clay"/>
-    </kill-reward>
-    <kill-reward filter="only-red">
-        <item amount="4" damage="14" material="stained clay"/>
-    </kill-reward>
-    <kill-reward filter="only-yellow">
-        <item amount="4" damage="4" material="stained clay"/>
+        <item amount="4" team-color="true" material="stained clay"/>
     </kill-reward>
 </kill-rewards>
 <!-- include src="tutorial.xml"/ -->
