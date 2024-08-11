@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Fractal Descent</name>
-<version>1.2.6</version>
+<version>1.2.7</version>
+<include id="gapple-kill-reward"/>
 <objective>Leak lava from the enemy's obsidian core and destroy their two endstone monuments.</objective>
 <created>2013-12-24</created>
 <authors>
@@ -16,6 +17,7 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
+        <clear/>
         <item slot="0" unbreakable="true" material="diamond sword"/>
         <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
         <item slot="28" material="arrow"/>
@@ -137,14 +139,10 @@
     <item>arrow</item>
     <item>golden carrot</item>
     <item>wood</item>
-    <item>golden apple</item>
     <item>chainmail chestplate</item>
     <item>leather boots</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
-<timelock>on</timelock>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
 </map>
