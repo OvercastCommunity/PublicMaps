@@ -1,21 +1,38 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>King's Conquest: Easterly Meadows</name>
-<version>1.1.1</version>
-<include id="kings-conquest"/>
+<version>1.2.0</version>
 <constants>
     <constant id="team-size">24</constant>
-    <constant id="team-one-spawn">114,14,10</constant>
-    <constant id="team-one-yaw">90</constant>
-    <constant id="team-two-spawn">-102,14,10</constant>
-    <constant id="team-two-yaw">-90</constant>
+    <constant id="team-one-spawn-a">114,14,10</constant>
+    <constant id="team-one-yaw-a">90</constant>
+    <constant id="team-two-spawn-a">-102,14,10</constant>
+    <constant id="team-two-yaw-a">-90</constant>
+    <constant id="team-one-spawn-b">81.5,12,-0.5</constant>
+    <constant id="team-one-yaw-b">35</constant>
+    <constant id="team-two-spawn-b">-86.5,12,-0.5</constant>
+    <constant id="team-two-yaw-b">-35</constant>
+    <constant id="team-one-spawn-c">42.5,9,11.5</constant>
+    <constant id="team-one-yaw-c">126</constant>
+    <constant id="team-two-spawn-c">-29.5,9,11.5</constant>
+    <constant id="team-two-yaw-c">-126</constant>
+    <constant id="king-race-start">31,64,102</constant>
+    <constant id="king-race-end">-19.5,61,111.5</constant>
+    <constant id="king-race-start-yaw">90</constant>
+    <constant id="world-border-center">6.5,11.5</constant>
+    <constant id="world-border-start-size">200</constant>
+    <constant id="world-border-end-size">25</constant>
 </constants>
+<include id="kings-conquest"/>
+<world-borders center="${world-border-center}" buffer="1">
+    <world-border size="275" when="always"/>
+</world-borders>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerorca -->
 </authors>
 <spawns>
-    <default yaw="-180" kit="obs-kit">
+    <default yaw="0" kit="obs-kit">
         <regions>
-            <cylinder base="6.5,64.5,84.5" radius="1" height="0"/>
+            <cylinder base="6.5,65,18.5" radius="1" height="0"/>
         </regions>
     </default>
 </spawns>
