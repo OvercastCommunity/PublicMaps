@@ -778,22 +778,24 @@
             </switch-scope>
         </action>
     </trigger>
-    <trigger filter="world-border-announce" scope="match">
-        <action>
-            <message text=" "/>
-            <message text="`6» » » `e`lThe world border has appeared `6« « «"/>
-            <message text="`bIt will start shrinking in `e30 seconds`b."/>
-            <message text=" "/>
-        </action>
-    </trigger>
-    <trigger filter="world-border-start" scope="match">
-        <action>
-            <message text=" "/>
-            <message text="`6» » » `e`lThe world border is shrinking `6« « «"/>
-            <message text="`bYou will no longer be able to respawn once all spawn locations are outside of the border."/>
-            <message text=" "/>
-        </action>
-    </trigger>
+    <unless constant="world-border-center" constant-comparison="defined delete">
+        <trigger filter="world-border-announce" scope="match">
+            <action>
+                <message text=" "/>
+                <message text="`6» » » `e`lThe world border has appeared `6« « «"/>
+                <message text="`bIt will start shrinking in `e30 seconds`b."/>
+                <message text=" "/>
+            </action>
+        </trigger>
+        <trigger filter="world-border-start" scope="match">
+            <action>
+                <message text=" "/>
+                <message text="`6» » » `e`lThe world border is shrinking `6« « «"/>
+                <message text="`bYou will no longer be able to respawn once all spawn locations are outside of the border."/>
+                <message text=" "/>
+            </action>
+        </trigger>
+    </unless>
     <trigger scope="player" filter="super-dead">
         <action>
             <message text=" "/>
@@ -892,7 +894,7 @@
             </switch-scope>
         </action>
     </trigger>
-    <trigger filter="all(match_phase=1, is_king=1)" scope="player">
+    <trigger filter="all(match_phase=1, is_king=1, participating)" scope="player">
         <action>
             <sound preset="CUSTOM"/>
             <message text=" "/>
@@ -1038,6 +1040,7 @@
     <item>sandstone stairs</item>
     <item>skull item</item>
     <item>smooth brick</item>
+    <item>smooth stairs</item>
     <item>stained clay</item>
     <item>step</item>
     <item>stone</item>
