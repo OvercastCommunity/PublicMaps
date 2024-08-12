@@ -8,124 +8,220 @@
        \/       \//_____/     \/          \/            \/    |__|           \/     \/
 -->
 <!-- Created by mitchiii, based on the King's Conquest maps by Chicky -->
-<!-- Version 2024-07-06 -->
-<objective>Kill the enemy team's King to win!</objective>
+<!-- Version 2024-08-12 -->
+<objective>Kill the enemy team's ${king-noun} to win!</objective>
 <gamemode>arcade</gamemode>
-<game>Kill the King</game>
-<respawn auto="true" delay="5s"/>
+<game>Kill the ${king-noun}</game>
+<respawns auto="true">
+    <respawn delay="0s" filter="match_phase=0"/>
+    <respawn delay="5s" filter="match_phase=1" spectate="true" message=" "/>
+</respawns>
 <time result="score">15m</time>
-<constants>
+<constants fallback="true">
+    <constant id="king-noun">King</constant>
     <constant id="team-size">16</constant>
-    <constant id="team-one-name">Blue</constant>
-    <constant id="team-one-color">blue</constant>
-    <constant id="team-one-flag-color">blue</constant>
-    <constant id="team-one-text-color-symbol">`9</constant>
-    <constant id="team-one-spawn">0.5,0,0.5</constant>
-    <constant id="team-one-yaw">-90</constant>
-    <constant id="team-one-pitch">0</constant>
+    <constant id="team-one-name">Blue</constant> <!-- display name -->
+    <constant id="team-one-color">blue</constant> <!-- text formatting color name -->
+    <constant id="team-one-flag-color">blue</constant> <!-- dye color name -->
+    <constant id="team-one-text-color-symbol">`9</constant> <!-- text formatting symbol ID -->
     <constant id="team-two-name">Red</constant>
     <constant id="team-two-color">dark red</constant>
     <constant id="team-two-flag-color">red</constant>
     <constant id="team-two-text-color-symbol">`4</constant>
-    <constant id="team-two-spawn">0.5,0,0.5</constant>
-    <constant id="team-two-yaw">90</constant>
-    <constant id="team-two-pitch">0</constant>
-    <constant id="sudden-death-hp">5</constant>
+    <constant id="world-border-end-size">25</constant>
+    <!--
+        Each King's Conquest map must define the following constants in their map.xml:
+
+        [Spawns]
+        <constant id="team-one-spawn-a">0,64,0</constant>
+        <constant id="team-one-yaw-a">90</constant>
+        <constant id="team-two-spawn-a">0,64,0</constant>
+        <constant id="team-two-yaw-a">-90</constant>
+
+        Spawn A is also where the team colored crown flag is located for each team.
+        Banner design: https://www.planetminecraft.com/banner/crown-312250/
+
+        <constant id="team-one-spawn-b">0,64,0</constant>
+        <constant id="team-one-yaw-b">90</constant>
+        <constant id="team-two-spawn-b">0,64,0</constant>
+        <constant id="team-two-yaw-b">-90</constant>
+
+        <constant id="team-one-spawn-c">0,64,0</constant>
+        <constant id="team-one-yaw-c">90</constant>
+        <constant id="team-two-spawn-c">0,64,0</constant>
+        <constant id="team-two-yaw-c">-90</constant>
+
+        B and C spawns will be used as alternate spawn locations when the world
+        border shrinks over the previous spawn point.
+
+        Note: can be disabled with delete="true" attribute but not recommended.
+
+        [King Race]
+        <constant id="king-race-start">0,64,0</constant>
+        <constant id="king-race-end">0,64,0</constant>
+        <constant id="king-race-start-yaw">0</constant>
+
+        This is the start/end points of the pre-match race to decide which player
+        becomes king. The end point should have a banner with a crown design.
+
+        Note: can be disabled with delete="true" attribute but not recommended. Will
+        fallback to randomly selecting a king.
+
+        [World Border]
+        <constant id="world-border-center">0.5,0.5</constant>
+        <constant id="world-border-start-size">150</constant>
+        <constant id="world-border-end-size">25</constant>
+
+        The world border will gradually shrink to 25x25 blocks (unless
+        world-border-end-size is overwritten) starting at 8 minutes. The intention
+        is that the world border will gradually put your spawn points out of bounds,
+        moving the spawns closer to the middle, and eventually preventing respawns.
+
+        Note: can be disabled with delete="true" attribute but not recommended. Will
+        fallback to preventing respawns at 12 minutes.
+    -->
 </constants>
+<include id="countdown"/>
+<include id="void-death"/>
 <teams>
-    <team id="team-one" color="${team-one-color}" max="${team-size}" min="1">${team-one-name} King</team>
-    <team id="team-two" color="${team-two-color}" max="${team-size}" min="1">${team-two-name} King</team>
+    <team id="team-one" color="${team-one-color}" max="${team-size}" min="1">${team-one-name} ${king-noun}</team>
+    <team id="team-two" color="${team-two-color}" max="${team-size}" min="1">${team-two-name} ${king-noun}</team>
 </teams>
-<spawns>
-    <spawn team="team-one" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn-point"/>
-    <spawn team="team-two" yaw="${team-two-yaw}" pitch="${team-two-pitch}" region="team-two-spawn-point"/>
+<spawns sequential="true" safe="true">
+    <unless constant="king-race-start" constant-comparison="defined delete">
+        <spawn yaw="${king-race-start-yaw}" kit="race-kit" filter="match_phase=0">
+            <region>
+                <block location="${king-race-start}"/>
+            </region>
+        </spawn>
+    </unless>
+    <spawn team="team-one" yaw="${team-one-yaw-a}" filter="all(match_phase=1, not(sudden-death))">
+        <regions>
+            <region id="team-one-spawn-point"/>
+            <unless constant="team-one-spawn-b" constant-comparison="defined delete">
+                <block location="${team-one-spawn-b}"/>
+            </unless>
+            <unless constant="team-one-spawn-c" constant-comparison="defined delete">
+                <block location="${team-one-spawn-c}"/>
+            </unless>
+        </regions>
+    </spawn>
+    <spawn team="team-two" yaw="${team-two-yaw-a}" filter="all(match_phase=1, not(sudden-death))">
+        <regions>
+            <region id="team-two-spawn-point"/>
+            <unless constant="team-one-spawn-b" constant-comparison="defined delete">
+                <block location="${team-two-spawn-b}"/>
+            </unless>
+            <unless constant="team-one-spawn-c" constant-comparison="defined delete">
+                <block location="${team-two-spawn-c}"/>
+            </unless>
+        </regions>
+    </spawn>
 </spawns>
-<blitz filter="sudden-death" join-filter="not-sudden-death">
-    <lives>1</lives>
-    <broadcastLives>false</broadcastLives>
-</blitz>
 <kits>
-    <kit id="main-kit" force="true">
+    <kit id="race-kit" force="true">
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="race-kit-spectating" force="true">
+        <game-mode>spectator</game-mode>
+    </kit>
+    <kit id="main-kit" force="true" filter="match_phase=1">
         <clear/>
+        <game-mode>survival</game-mode>
         <effect duration="3" amplifier="5">strength</effect>
         <effect duration="3" amplifier="5">resistance</effect>
         <item slot="7" material="compass"/>
-        <action filter="switch-to-team-one">
-            <set var="switch_to_team" value="0"/>
+        <action filter="only-knight">
             <kit>
-                <team-switch team="team-one"/>
+                <item slot="0" material="iron sword" unbreakable="true" prevent-sharing="true"/>
+                <item slot="1" material="bow" unbreakable="true" prevent-sharing="true"/>
+                <item slot="2" material="stone axe" unbreakable="true" prevent-sharing="true"/>
+                <item slot="3" material="wood" amount="12"/>
+                <item slot="4" material="ladder" amount="24"/>
+                <item slot="5" material="arrow" amount="16"/>
+                <item slot="8" material="golden apple" amount="2"/>
+                <helmet material="iron helmet" unbreakable="true" locked="true"/>
+                <chestplate material="chainmail chestplate" unbreakable="true" locked="true"/>
+                <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
+                <boots material="iron boots" unbreakable="true" locked="true"/>
             </kit>
         </action>
-        <action filter="switch-to-team-two">
-            <set var="switch_to_team" value="0"/>
+        <action filter="only-gladiator">
             <kit>
-                <team-switch team="team-two"/>
+                <item slot="0" material="diamond sword" unbreakable="true" prevent-sharing="true"/>
+                <item slot="1" material="stone axe" unbreakable="true" prevent-sharing="true"/>
+                <item slot="2" material="wood" amount="12"/>
+                <item slot="3" material="ladder" amount="24"/>
+                <item slot="8" material="golden apple" amount="2"/>
+                <helmet material="iron helmet" unbreakable="true" locked="true"/>
+                <chestplate material="diamond chestplate" unbreakable="true" locked="true"/>
+                <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
+                <boots material="diamond boots" unbreakable="true" locked="true"/>
+                <walk-speed>0.8</walk-speed>
+            </kit>
+        </action>
+        <action filter="only-crossbowman">
+            <kit>
+                <item slot="0" material="wood sword" unbreakable="true" prevent-sharing="true"/>
+                <item slot="1" material="bow" unbreakable="true" prevent-sharing="true">
+                    <enchantment level="2">arrow damage</enchantment>
+                    <enchantment>arrow infinite</enchantment>
+                </item>
+                <item slot="2" material="stone axe" unbreakable="true" prevent-sharing="true"/>
+                <item slot="3" material="wood" amount="12"/>
+                <item slot="4" material="ladder" amount="24"/>
+                <item slot="8" material="golden apple" amount="2"/>
+                <item slot="28" material="arrow" amount="1"/>
+                <helmet material="chainmail helmet" unbreakable="true" locked="true"/>
+                <chestplate material="chainmail chestplate" unbreakable="true" locked="true">
+                    <enchantment level="2">protection projectile</enchantment>
+                </chestplate>
+                <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
+                <boots material="leather boots" unbreakable="true" team-color="true" locked="true"/>
+            </kit>
+        </action>
+        <action filter="only-mason">
+            <kit>
+                <item slot="0" material="stone sword" unbreakable="true" prevent-sharing="true"/>
+                <item slot="1" material="bow" unbreakable="true" prevent-sharing="true"/>
+                <item slot="2" material="iron axe" unbreakable="true" prevent-sharing="true">
+                    <enchantment>efficiency</enchantment>
+                </item>
+                <item slot="29" material="iron spade" unbreakable="true" prevent-sharing="true">
+                    <enchantment>efficiency</enchantment>
+                </item>
+                <item slot="3" material="wood" amount="64"/>
+                <item slot="4" material="glass" amount="32"/>
+                <item slot="5" material="ladder" amount="48"/>
+                <item slot="6" material="arrow" amount="16"/>
+                <item slot="8" material="golden apple" amount="2"/>
+                <helmet material="chainmail helmet" unbreakable="true" locked="true"/>
+                <chestplate material="leather chestplate" unbreakable="true" team-color="true" locked="true"/>
+                <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
+                <boots material="iron boots" unbreakable="true" locked="true"/>
+            </kit>
+        </action>
+        <action filter="only-scout">
+            <kit>
+                <item slot="0" material="stone sword" unbreakable="true" prevent-sharing="true"/>
+                <item slot="1" material="bow" unbreakable="true" prevent-sharing="true"/>
+                <item slot="2" material="stone axe" unbreakable="true" prevent-sharing="true"/>
+                <item slot="3" material="wood" amount="12"/>
+                <item slot="4" material="ladder" amount="48"/>
+                <item slot="5" material="egg" amount="8"/>
+                <item slot="6" material="arrow" amount="16"/>
+                <item slot="8" material="golden apple" amount="2"/>
+                <helmet material="iron helmet" unbreakable="true" locked="true"/>
+                <chestplate material="leather chestplate" unbreakable="true" team-color="true" locked="true"/>
+                <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
+                <boots material="leather boots" unbreakable="true" team-color="true" locked="true"/>
+                <double-jump recharge-time="8s"/>
+                <walk-speed>1.2</walk-speed>
             </kit>
         </action>
     </kit>
-    <kit id="king-armor-kit" force="true">
-        <chestplate material="gold chestplate" locked="true" damage="1000">
-            <enchantment>thorns</enchantment>
-        </chestplate>
-        <leggings material="gold leggings" locked="true" damage="1000">
-            <enchantment>thorns</enchantment>
-        </leggings>
-        <boots material="gold boots" locked="true" damage="1000">
-            <enchantment>thorns</enchantment>
-        </boots>
-        <action filter="king-health-90">
-            <kit>
-                <max-health>18</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-80">
-            <kit>
-                <max-health>16</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-70">
-            <kit>
-                <max-health>14</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-60">
-            <kit>
-                <max-health>12</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-50">
-            <kit>
-                <max-health>10</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-40">
-            <kit>
-                <max-health>8</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-30">
-            <kit>
-                <max-health>6</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-20">
-            <kit>
-                <max-health>4</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-10">
-            <kit>
-                <max-health>2</max-health>
-            </kit>
-        </action>
-        <action filter="king-health-00">
-            <kit force="true">
-                <max-health>1</max-health>
-                <effect amplifier="1000" duration="0s">resistance</effect>
-            </kit>
-        </action>
-    </kit>
-    <kit id="king-kit" force="true" parents="main-kit, king-armor-kit">
+    <kit id="king-kit" force="true" parents="main-kit, king-health-visual" filter="not(wearing-king-armor)">
+        <!-- this kit is filtered as we don't want to reapply the items (i.e., duped gapples) when the king drops the flag -->
         <item slot="0" material="gold sword" unbreakable="true" prevent-sharing="true">
             <enchantment level="2">sharpness</enchantment>
         </item>
@@ -134,28 +230,84 @@
             <enchantment>arrow infinite</enchantment>
         </item>
         <item slot="2" material="gold axe" unbreakable="true" prevent-sharing="true"/>
-        <item slot="3" material="wood" amount="16"/>
+        <item slot="3" material="wood" amount="12"/>
         <item slot="4" material="ladder" amount="16"/>
-        <item slot="8" material="potion" name="`r`6King's Berserking Warhorn" lore="`r`5Inspires fleeting strength across your kingdom." consumable="king-berserking-consumable" prevent-sharing="true">
+        <item slot="8" material="potion" name="`r`6${king-noun}'s Berserking Warhorn" lore="`r`5Inspires fleeting strength across your kingdom." consumable="consumable-king-berserking" prevent-sharing="true">
             <effect>regeneration</effect>
         </item>
         <item slot="28" material="arrow"/>
+        <chestplate material="gold chestplate" unbreakable="true" locked="true" enchantments="unbreaking"/>
+        <leggings material="gold leggings" unbreakable="true" locked="true" enchantments="unbreaking"/>
+        <boots material="gold boots" unbreakable="true" locked="true" enchantments="unbreaking"/>
         <effect amplifier="100">resistance</effect>
         <knockback-reduction>0.25</knockback-reduction>
         <walk-speed>0.9</walk-speed>
     </kit>
+    <kit id="king-health-visual" force="true">
+        <foodlevel>16</foodlevel>
+        <action filter="king-health-90">
+            <kit force="true">
+                <health>17</health>
+            </kit>
+        </action>
+        <action filter="king-health-80">
+            <kit force="true">
+                <health>15</health>
+            </kit>
+        </action>
+        <action filter="king-health-70">
+            <kit force="true">
+                <health>13</health>
+            </kit>
+        </action>
+        <action filter="king-health-60">
+            <kit force="true">
+                <health>11</health>
+            </kit>
+        </action>
+        <action filter="king-health-50">
+            <kit force="true">
+                <health>9</health>
+            </kit>
+        </action>
+        <action filter="king-health-40">
+            <kit force="true">
+                <health>7</health>
+            </kit>
+        </action>
+        <action filter="king-health-30">
+            <kit force="true">
+                <health>5</health>
+            </kit>
+        </action>
+        <action filter="king-health-20">
+            <kit force="true">
+                <health>3</health>
+            </kit>
+        </action>
+        <action filter="king-health-10">
+            <kit force="true">
+                <health>2</health>
+            </kit>
+        </action>
+        <action filter="king-health-00">
+            <kit force="true">
+                <health>1</health>
+                <effect amplifier="1000" duration="0s">resistance</effect>
+            </kit>
+        </action>
+    </kit>
     <kit id="king-berserking-kit">
         <effect duration="6" amplifier="2">strength</effect>
         <effect duration="10" amplifier="2">speed</effect>
-        <effect duration="3" amplifier="2">regeneration</effect>
         <action>
             <switch-scope inner="team">
-                <set var="king_health_recovery_amount" value="king_health_recovery_amount+6"/>
+                <set var="king_health_recovery_amount" value="king_health_recovery_amount+10"/>
                 <action filter="show-debug-message">
-                    <message text="`7» `bKing recovery increased by 6 (beserking)"/>
+                    <message text="`7» `bKing recovery increased by 10 (beserking)"/>
                 </action>
                 <switch-scope inner="player">
-                    <action filter="not-king">
+                    <action filter="is_king=0">
                         <kit>
                             <effect duration="4">strength</effect>
                             <effect duration="10">speed</effect>
@@ -171,19 +323,19 @@
                 <switch-scope inner="match">
                     <set var="warcry" value="floor(random() * 5)"/>
                     <action filter="warcry=0">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} King`r&#x003E;: Lay waste to their kingdom!"/>
+                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Lay waste to their kingdom!"/>
                     </action>
                     <action filter="warcry=1">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} King`r&#x003E;: Leave nothing but ruins in your wake!"/>
+                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Leave nothing but ruins in your wake!"/>
                     </action>
                     <action filter="warcry=2">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} King`r&#x003E;: Conquer their kingdom with fury!"/>
+                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Conquer their kingdom with fury!"/>
                     </action>
                     <action filter="warcry=3">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} King`r&#x003E;: Wreak havoc upon their ranks!"/>
+                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Wreak havoc upon their ranks!"/>
                     </action>
                     <action filter="warcry=4">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} King`r&#x003E;: Devastate their stronghold!"/>
+                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Devastate their stronghold!"/>
                     </action>
                 </switch-scope>
             </action>
@@ -191,70 +343,22 @@
                 <switch-scope inner="match">
                     <set var="warcry" value="floor(random() * 5)"/>
                     <action filter="warcry=0">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} King`r&#x003E;: Lay waste to their kingdom!"/>
+                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Lay waste to their kingdom!"/>
                     </action>
                     <action filter="warcry=1">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} King`r&#x003E;: Leave nothing but ruins in your wake!"/>
+                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Leave nothing but ruins in your wake!"/>
                     </action>
                     <action filter="warcry=2">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} King`r&#x003E;: Conquer their kingdom with fury!"/>
+                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Conquer their kingdom with fury!"/>
                     </action>
                     <action filter="warcry=3">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} King`r&#x003E;: Wreak havoc upon their ranks!"/>
+                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Wreak havoc upon their ranks!"/>
                     </action>
                     <action filter="warcry=4">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} King`r&#x003E;: Devastate their stronghold!"/>
+                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Devastate their stronghold!"/>
                     </action>
                 </switch-scope>
             </action>
-        </action>
-    </kit>
-    <kit id="king-gapple-kit">
-        <effect duration="2" amplifier="4">regeneration</effect>
-        <action>
-            <switch-scope inner="team">
-                <set var="king_health_recovery_amount" value="king_health_recovery_amount+3"/>
-                <action filter="show-debug-message">
-                    <message text="`7» `bKing recovery increased by 3 (gapple)"/>
-                </action>
-            </switch-scope>
-        </action>
-    </kit>
-    <kit id="delayed-consumable-items-kit">
-        <action filter="only-knight">
-            <kit>
-                <item material="wood" amount="16"/>
-                <item material="ladder" amount="16"/>
-                <item material="arrow" amount="16"/>
-            </kit>
-        </action>
-        <action filter="only-gladiator">
-            <kit>
-                <item material="wood" amount="16"/>
-                <item material="ladder" amount="16"/>
-            </kit>
-        </action>
-        <action filter="only-crossbowman">
-            <kit>
-                <item material="wood" amount="16"/>
-                <item material="ladder" amount="16"/>
-            </kit>
-        </action>
-        <action filter="only-mason">
-            <kit>
-                <item material="wood" amount="64"/>
-                <item material="wood" amount="64"/>
-                <item material="glass" amount="32"/>
-                <item material="ladder" amount="48"/>
-                <item material="arrow" amount="16"/>
-            </kit>
-        </action>
-        <action filter="only-scout">
-            <kit>
-                <item material="wood" amount="16"/>
-                <item material="ladder" amount="16"/>
-                <item material="arrow" amount="16"/>
-            </kit>
         </action>
     </kit>
     <kit id="obs-kit">
@@ -265,99 +369,41 @@
                 <page>
                     `5» `lKING'S CONQUEST`0
 
-                    Kill the enemy kingdom's `6King `0to win the match. The `6King `0is located by the flag beam and compass.
+                    Kill the enemy kingdom's `6${king-noun} `0to win the match. The `6${king-noun} `0is located by the flag beam and compass.
 
-                    Each `6King `0has a maximum of `c100 HP
-                    `0shown on the scoreboard. Damaging the `6King `0reduces their `cHP `0by `c1`0.
+                    Each `6${king-noun} `0has a maximum of `c100 HP `0shown on the scoreboard. Damaging the `6${king-noun} `0reduces their `cHP `0by `c1`0.
                 </page>
             </pages>
         </book>
     </kit>
 </kits>
 <consumables>
-    <consumable id="king-berserking-consumable" action="king-berserking-kit" on="eat"/>
-    <consumable id="king-gapple-consumable" action="king-gapple-kit" on="eat"/>
+    <consumable id="consumable-king-berserking" action="king-berserking-kit" on="eat"/>
+    <consumable id="consumable-king-gapple" action="king-gapple" on="eat"/>
 </consumables>
+<projectiles>
+    <projectile id="projectile-flame" name="fireball" throwable="true" projectile="SmallFireball" damage="0"/>
+    <projectile id="projectile-web" name="web" throwable="true" projectile="FallingBlock" material="web" velocity="2"/>
+</projectiles>
 <compass show-distance="true">
     <player filter="team-one-king" holder-filter="only-team-two" show-player="true"/>
     <player filter="team-two-king" holder-filter="only-team-one" show-player="true"/>
 </compass>
 <classes family="king" sticky="false">
     <class name="Knight" icon="iron sword" default="true" description="Attack from both close and afar">
-        <kit parents="main-kit">
-            <item slot="0" material="iron sword" unbreakable="true" prevent-sharing="true"/>
-            <item slot="1" material="bow" unbreakable="true" prevent-sharing="true"/>
-            <item slot="2" material="stone axe" unbreakable="true" prevent-sharing="true"/>
-            <item slot="8" material="golden apple" amount="2"/>
-            <helmet material="iron helmet" unbreakable="true" locked="true"/>
-            <chestplate material="chainmail chestplate" unbreakable="true" locked="true"/>
-            <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
-            <boots material="iron boots" unbreakable="true" locked="true"/>
-        </kit>
+        <kit parents="main-kit"/>
     </class>
     <class name="Gladiator" icon="diamond sword" description="Heavy armour and close combat">
-        <kit parents="main-kit">
-            <item slot="0" material="diamond sword" unbreakable="true" prevent-sharing="true"/>
-            <item slot="2" material="stone axe" unbreakable="true" prevent-sharing="true"/>
-            <item slot="8" material="golden apple" amount="2"/>
-            <helmet material="iron helmet" unbreakable="true" locked="true"/>
-            <chestplate material="diamond chestplate" unbreakable="true" locked="true"/>
-            <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
-            <boots material="diamond boots" unbreakable="true" locked="true"/>
-            <walk-speed>0.8</walk-speed>
-        </kit>
+        <kit parents="main-kit"/>
     </class>
     <class name="Crossbowman" icon="bow" description="Long ranged attacker">
-        <kit parents="main-kit">
-            <item slot="0" material="wood sword" unbreakable="true" prevent-sharing="true"/>
-            <item slot="1" material="bow" unbreakable="true" prevent-sharing="true">
-                <enchantment level="2">arrow damage</enchantment>
-                <enchantment>arrow infinite</enchantment>
-            </item>
-            <item slot="2" material="stone axe" unbreakable="true" prevent-sharing="true"/>
-            <item slot="8" material="golden apple" amount="2"/>
-            <item slot="28" material="arrow" amount="1"/>
-            <helmet material="chainmail helmet" unbreakable="true" locked="true"/>
-            <chestplate material="chainmail chestplate" unbreakable="true" locked="true">
-                <enchantment level="2">protection projectile</enchantment>
-            </chestplate>
-            <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
-            <boots material="leather boots" unbreakable="true" team-color="true" locked="true"/>
-        </kit>
+        <kit parents="main-kit"/>
     </class>
     <class name="Mason" icon="iron axe" description="Tools and blocks to create aiding structures">
-        <kit parents="main-kit">
-            <item slot="0" material="stone sword" unbreakable="true" prevent-sharing="true"/>
-            <item slot="1" material="bow" unbreakable="true" prevent-sharing="true"/>
-            <item slot="2" material="iron axe" unbreakable="true" prevent-sharing="true">
-                <enchantment>efficiency</enchantment>
-            </item>
-            <item slot="29" material="iron spade" unbreakable="true" prevent-sharing="true">
-                <enchantment>efficiency</enchantment>
-            </item>
-            <item slot="8" material="golden apple" amount="2"/>
-            <helmet material="chainmail helmet" unbreakable="true" locked="true"/>
-            <chestplate material="leather chestplate" unbreakable="true" team-color="true" locked="true"/>
-            <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
-            <boots material="iron boots" unbreakable="true" locked="true"/>
-        </kit>
+        <kit parents="main-kit"/>
     </class>
     <class name="Scout" icon="feather" description="Navigate around quickly">
-        <kit parents="main-kit">
-            <item slot="0" material="stone sword" unbreakable="true" prevent-sharing="true"/>
-            <item slot="1" material="bow" unbreakable="true" prevent-sharing="true"/>
-            <item slot="2" material="stone axe" unbreakable="true" prevent-sharing="true"/>
-            <item slot="3" material="wood" amount="16"/>
-            <item slot="4" material="ladder" amount="16"/>
-            <item slot="6" material="arrow" amount="16"/>
-            <item slot="8" material="golden apple" amount="2"/>
-            <helmet material="iron helmet" unbreakable="true" locked="true"/>
-            <chestplate material="leather chestplate" unbreakable="true" team-color="true" locked="true"/>
-            <leggings material="leather leggings" unbreakable="true" team-color="true" locked="true"/>
-            <boots material="leather boots" unbreakable="true" team-color="true" locked="true"/>
-            <double-jump recharge-time="8s"/>
-            <walk-speed>1.2</walk-speed>
-        </kit>
+        <kit parents="main-kit"/>
     </class>
 </classes>
 <kill-rewards>
@@ -372,6 +418,12 @@
     <kill-reward>
         <filter>
             <kill-streak count="2" repeat="true"/>
+        </filter>
+        <item material="magma cream" name="`rFireball" amount="2" projectile="projectile-flame"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="3" repeat="true"/>
         </filter>
         <item material="tnt" amount="2"/>
     </kill-reward>
@@ -396,7 +448,8 @@
         <item material="golden apple"/>
     </kill-reward>
     <kill-reward filter="only-scout">
-        <item material="snow ball" amount="8"/>
+        <item material="egg" amount="8"/>
+        <item material="snow ball" name="`rThrowable Web" amount="3" projectile="projectile-web"/>
         <item material="arrow" amount="4"/>
         <item material="golden apple"/>
         <kit>
@@ -404,9 +457,9 @@
             <effect duration="3s">regeneration</effect>
         </kit>
     </kill-reward>
-    <kill-reward filter="only-king">
+    <kill-reward filter="is_king=1">
         <item material="arrow" amount="8"/>
-        <item material="golden apple" consumable="king-gapple-consumable" prevent-sharing="true"/>
+        <item material="golden apple" consumable="consumable-king-gapple" prevent-sharing="true"/>
     </kill-reward>
     <kill-reward>
         <filter>
@@ -420,40 +473,65 @@
                 </not>
             </all>
         </filter>
-        <item material="potion" name="`r`6King's Berserking Warhorn" lore="`r`5Inspires fleeting strength across your kingdom." consumable="king-berserking-consumable" prevent-sharing="true">
+        <item material="potion" name="`r`6${king-noun}'s Berserking Warhorn" lore="`r`5Inspires fleeting strength across your kingdom." consumable="consumable-king-berserking" prevent-sharing="true">
             <effect>regeneration</effect>
         </item>
     </kill-reward>
 </kill-rewards>
 <filters>
+    <match-started id="match-started"/>
+    <match-running id="match-running"/>
+    <participating id="participating"/>
+    <observing id="observing"/>
+    <alive id="alive"/>
+    <after id="super-dead" duration="5.1s" filter="all(participating, not(alive))"/>
+    <after id="king-race-timeout" message="A ${king-noun} will be randomly crowned in {0}" duration="30s" filter="all(match-started, match_phase=0, not(all(team_one_has_king=1, team_two_has_king=1)))"/>
+    <unless constant="king-race-start" constant-comparison="defined delete">
+        <after id="conquest-started" duration="3s">
+            <all id="countdown-start">
+                <variable var="team_one_has_king">1</variable>
+                <variable var="team_two_has_king">1</variable>
+            </all>
+        </after>
+    </unless>
+    <if constant="king-race-start" constant-comparison="defined delete">
+        <all id="conquest-started">
+            <variable var="team_one_has_king">1</variable>
+            <variable var="team_two_has_king">1</variable>
+        </all>
+        <all id="countdown-start">
+            <never/>
+        </all>
+    </if>
+    <after id="conquest-action-delay" duration="3s" filter="match_phase=1"/>
     <deny id="deny-void">
         <void/>
     </deny>
     <team id="only-team-one">team-one</team>
     <team id="only-team-two">team-two</team>
-    <all id="switch-to-team-one">
-        <filter id="team-switch-enabled"/>
-        <variable var="switch_to_team">1</variable>
-    </all>
-    <all id="switch-to-team-two">
-        <filter id="team-switch-enabled"/>
-        <variable var="switch_to_team">2</variable>
-    </all>
-    <not id="not-sudden-death">
-        <after id="sudden-death" duration="30s" message="Sudden Death in {0}">
-           <time>9m30s</time>
-        </after>
-    </not>
-    <observing id="observing"/>
-    <time id="initial-action-delay">3s</time>
-    <match-started id="match-started"/>
-    <after id="delayed-alive" duration="0.01s">
-        <alive/>
+    <after id="sudden-death" duration="30s" message="Sudden death begins in {0}">
+        <all>
+            <after duration="11m30s" filter="all(match-running, match_phase=1)"/>
+            <unless constant="world-border-center" constant-comparison="defined delete">
+                <never/>
+            </unless>
+        </all>
     </after>
+    <unless constant="world-border-center" constant-comparison="defined delete">
+        <after id="world-border-start" duration="30s" message="The world border will start shrinking in {0}">
+            <after id="world-border-announce" duration="7m30s" filter="all(match-running, match_phase=1)"/>
+        </after>
+    </unless>
     <not id="not-king">
         <any id="only-king">
-            <carrying-flag id="team-one-king">team-one-king-banner</carrying-flag>
-            <carrying-flag id="team-two-king">team-two-king-banner</carrying-flag>
+            <all id="team-one-king">
+                <variable var="is_king">1</variable>
+                <filter id="only-team-one"/>
+            </all>
+            <all id="team-two-king">
+                <variable var="is_king">1</variable>
+                <filter id="only-team-two"/>
+            </all>
         </any>
     </not>
     <all id="only-knight">
@@ -476,45 +554,40 @@
         <class>Scout</class>
         <filter id="not-king"/>
     </all>
+    <wearing id="wearing-king-armor" ignore-metadata="true" ignore-enchantments="true">
+        <item material="gold chestplate"/>
+    </wearing>
+    <all id="king-not-holding-flag">
+        <filter id="conquest-action-delay"/>
+        <filter id="only-king"/>
+        <not>
+            <any>
+                <all>
+                    <filter id="only-team-one"/>
+                    <carrying-flag>team-one-king-banner</carrying-flag>
+                </all>
+                <all>
+                    <filter id="only-team-two"/>
+                    <carrying-flag>team-two-king-banner</carrying-flag>
+                </all>
+            </any>
+        </not>
+    </all>
     <all id="king-has-died">
-        <filter id="initial-action-delay"/>
+        <filter id="conquest-action-delay"/>
         <any>
-            <all>
+            <all id="team-one-king-has-died">
                 <filter id="only-team-one"/>
-                <not id="team-one-king-has-died">
-                    <flag-carried>team-one-king-banner</flag-carried>
-                </not>
+                <filter id="only-king"/>
+                <dead/>
             </all>
-            <all>
+            <all id="team-two-king-has-died">
                 <filter id="only-team-two"/>
-                <not id="team-two-king-has-died">
-                    <flag-carried>team-two-king-banner</flag-carried>
-                </not>
+                <filter id="only-king"/>
+                <dead/>
             </all>
         </any>
     </all>
-    <pulse id="reduce-king-health" period="0.1s" duration="0.05s">
-        <all>
-            <filter id="only-king"/>
-            <filter id="initial-action-delay"/>
-            <not>
-                <any id="king-has-armor">
-                    <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
-                        <item material="gold chestplate"/>
-                    </wearing>
-                    <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
-                        <item material="gold leggings"/>
-                    </wearing>
-                    <wearing ignore-durability="true" ignore-enchantments="true" ignore-metadata="true">
-                        <item material="gold boots"/>
-                    </wearing>
-                </any>
-            </not>
-            <not>
-                <score>0</score>
-            </not>
-        </all>
-    </pulse>
     <pulse id="recover-king-health" period="0.35s" duration="0.1s">
         <all>
             <score>[1,99]</score>
@@ -537,78 +610,239 @@
     <score id="king-health-40">(30,40]</score>
     <score id="king-health-30">(20,30]</score>
     <score id="king-health-20">(10,20]</score>
-    <score id="king-health-10">(2,10]</score>
-    <score id="king-health-00">[-oo,2]</score>
-    <score id="king-dead">0</score>
-    <score id="king-health-above-sudden-death-amount">[${sudden-death-hp}, oo)</score>
+    <score id="king-health-10">(1,10]</score>
+    <score id="king-health-00">[-oo,1]</score>
+    <score id="king-dead">[-oo,0]</score>
     <all id="allow-conquest-capture">
-        <filter id="initial-action-delay"/>
+        <filter id="conquest-action-delay"/>
         <any>
             <all>
                 <filter id="only-team-one"/>
-                <filter id="team-two-king-has-died"/>
+                <variable var="team_two_has_king">0</variable>
             </all>
             <all>
                 <filter id="only-team-two"/>
-                <filter id="team-one-king-has-died"/>
+                <variable var="team_one_has_king">0</variable>
             </all>
         </any>
     </all>
-    <variable id="show-death-info-message" var="shown_death_info_message">0</variable>
     <variable id="show-debug-message" var="debug">1</variable>
-    <variable id="team-switch-enabled" var="enable_team_switch">1</variable>
+    <deny id="deny-spawn-blocks">
+        <blocks region="spawn-protection">
+            <not>
+                <material>air</material>
+            </not>
+        </blocks>
+    </deny>
 </filters>
 <regions>
-    <point id="team-one-spawn-point">${team-one-spawn}</point>
-    <point id="team-two-spawn-point">${team-two-spawn}</point>
-    <apply block-place="deny-void" message="This block may not be modified!"/>
+    <union id="initial-spawn-points">
+        <block id="team-one-spawn-point" location="${team-one-spawn-a}"/>
+        <block id="team-two-spawn-point" location="${team-two-spawn-a}"/>
+    </union>
+    <union id="spawn-protection">
+        <sphere id="team-one-spawn-a-prot" origin="${team-one-spawn-a}" radius="2"/>
+        <sphere id="team-two-spawn-a-prot" origin="${team-two-spawn-a}" radius="2"/>
+        <unless constant="team-one-spawn-b" constant-comparison="defined delete">
+            <sphere id="team-one-spawn-b-prot" origin="${team-one-spawn-b}" radius="2"/>
+            <sphere id="team-two-spawn-b-prot" origin="${team-two-spawn-b}" radius="2"/>
+        </unless>
+        <unless constant="team-one-spawn-c" constant-comparison="defined delete">
+            <sphere id="team-one-spawn-c-prot" origin="${team-one-spawn-c}" radius="2"/>
+            <sphere id="team-two-spawn-c-prot" origin="${team-two-spawn-c}" radius="2"/>
+        </unless>
+    </union>
+    <unless constant="king-race-start" constant-comparison="defined delete">
+        <cylinder id="king-race-end" base="${king-race-end}" radius="1" height="3"/>
+    </unless>
+    <apply block="never" region="spawn-protection" message="You may not modify this spawn"/>
+    <apply block-place="deny-void" message="You may not modify the void"/>
 </regions>
-<flags show="false" pickup-kit="king-kit" drop-filter="never" carry-message="You are the King - Stay alive as long as possible!" show-messages="false">
-    <flag id="team-one-king-banner" name="${team-one-name} King's Reign" color="${team-one-flag-color}">
-        <post respawn-filter="never" respawn-time="oo" pickup-filter="only-team-one">${team-one-spawn}</post>
+<flags show="false" pickup-kit="king-kit" drop-filter="not(spawn-protection)" carry-message="You are the ${king-noun} - Stay alive as long as possible!" show-messages="true">
+    <flag id="team-one-king-banner" name="${team-one-name} ${king-noun}'s Reign" color="${team-one-flag-color}" pickup-filter="all(match-running, match_phase=1, is_king=1, only-team-one)">
+        <post recover-time="oo">${team-one-spawn-a}</post>
     </flag>
-    <flag id="team-two-king-banner" name="${team-two-name} King's Reign" color="${team-two-flag-color}">
-        <post respawn-filter="never" respawn-time="oo" pickup-filter="only-team-two">${team-two-spawn}</post>
+    <flag id="team-two-king-banner" name="${team-two-name} ${king-noun}'s Reign" color="${team-two-flag-color}" pickup-filter="all(match-running, match_phase=1, is_king=1, only-team-two)">
+        <post recover-time="oo">${team-two-spawn-a}</post>
     </flag>
 </flags>
-<score/>
 <control-points>
-    <control-point id="conquest" name="King's Conquest" capture-time="0.5s" permanent="true" capture="everywhere" player-filter="allow-conquest-capture" required="true" scoreboard-filter="never"/>
+    <control-point id="conquest" name="${king-noun}'s Conquest" capture-time="0.5s" permanent="true" capture="everywhere" player-filter="allow-conquest-capture" required="true" scoreboard-filter="never"/>
 </control-points>
-<variables>
-    <variable id="debug" scope="match" default="0"/>
-    <variable id="enable_team_switch" scope="match" default="0"/>
-    <variable id="switch_to_team" scope="player" default="0"/>
-    <variable id="shown_death_info_message" scope="player" default="0"/>
-    <variable id="warcry" scope="match" default="0"/>
-    <variable id="king_health_recovery_amount" scope="team" default="0"/>
+<score>
+    <unless constant="king-race-start" constant-comparison="defined delete">
+        <box region="king-race-end" points="100" filter="team_has_king=0"/>
+    </unless>
+</score>
+<variables scope="match" default="0">
+    <variable id="debug" default="0"/>
+    <variable id="match_phase"/>
+    <variable id="border_stage"/>
+    <variable id="warcry"/>
+    <variable id="king_health_recovery_amount" scope="team"/>
+    <variable id="king_chance" scope="player"/>
+    <variable id="king_chance_min"/>
+    <variable id="is_king" scope="player"/>
+    <variable id="team_has_king" scope="team"/>
+    <with-team id="team_one_has_king" var="team_has_king" team="team-one"/>
+    <with-team id="team_two_has_king" var="team_has_king" team="team-two"/>
+    <player-location id="x" component="x"/>
+    <player-location id="y" component="y"/>
+    <player-location id="z" component="z"/>
     <score id="king_health"/>
 </variables>
 <actions>
-    <trigger filter="delayed-alive" scope="player">
+    <trigger filter="match-started" scope="match">
         <action>
-            <kit id="delayed-consumable-items-kit"/>
+            <fill region="initial-spawn-points" material="air"/>
+            <if constant="king-race-start" constant-comparison="defined delete">
+                <switch-scope inner="team" filter="team_has_king=0">
+                    <action id="crown-random-king"/>
+                </switch-scope>
+            </if>
         </action>
     </trigger>
-    <trigger filter="always" scope="team">
-        <action>
+    <action id="crown-king" scope="player" filter="all(participating, match_phase=0, team_has_king=0)">
+        <switch-scope inner="team">
             <set var="king_health" value="100"/>
-            <action filter="show-debug-message">
-                <message text="`7» `eKing health set to 100"/>
+            <set var="team_has_king" value="1"/>
+            <switch-scope inner="player">
+                <set var="is_king" value="0"/>
+                <set var="king_chance" value="99"/>
+            </switch-scope>
+        </switch-scope>
+        <set var="is_king" value="1"/>
+        <set var="king_chance" value="99"/>
+        <unless constant="king-race-start" constant-comparison="defined delete">
+            <action filter="only-team-one">
+                <switch-scope inner="match">
+                    <message text="`bThe ${team-one-text-color-symbol}${team-one-name} ${king-noun} `bhas been crowned!"/>
+                </switch-scope>
             </action>
-        </action>
-    </trigger>
-    <trigger filter="reduce-king-health" scope="player">
-        <action>
-            <action filter="only-king">
-                <kit id="king-armor-kit"/>
+            <action filter="only-team-two">
+                <switch-scope inner="match" filter="only-team-two">
+                    <message text="`bThe ${team-two-text-color-symbol}${team-two-name} ${king-noun} `bhas been crowned!"/>
+                </switch-scope>
             </action>
             <switch-scope inner="team">
-                <set var="king_health" value="king_health-1"/>
-                <action filter="show-debug-message">
-                    <message text="`7» `eKing health reduced by 1"/>
+                <sound preset="OBJECTIVE_GOOD"/>
+                <action filter="not(all(team_one_has_king=1, team_two_has_king=1))">
+                    <message text="`7`oThe Conquest will begin once the other team crowns their ${king-noun}."/>
                 </action>
+                <switch-scope inner="player">
+                    <action filter="match-started">
+                        <kit id="race-kit-spectating"/>
+                    </action>
+                </switch-scope>
             </switch-scope>
+            <message text=" "/>
+            <message text="`6» » » `e`lYou are the ${king-noun} `6« « «"/>
+            <message text=" "/>
+        </unless>
+    </action>
+    <action id="crown-random-king" scope="team">
+        <set var="king_chance_min" value="99"/>
+        <switch-scope inner="player" filter="participating">
+            <set var="king_chance" value="random()"/>
+        </switch-scope>
+        <switch-scope inner="player" filter="participating">
+            <set var="king_chance_min" value="min(king_chance, king_chance_min)"/>
+        </switch-scope>
+        <switch-scope inner="player" filter="participating">
+            <set var="is_king" value="0"/>
+            <set var="king_chance" value="king_chance - king_chance_min"/>
+            <action filter="king_chance=0">
+                <action id="crown-king"/>
+            </action>
+        </switch-scope>
+    </action>
+    <unless constant="king-race-start" constant-comparison="defined delete">
+        <trigger filter="match-started" scope="match">
+            <action>
+                <message text="`bThe first player from each team to reach the `e`lCrown Flag `bwill become ${king-noun}."/>
+            </action>
+        </trigger>
+        <trigger filter="all(team_has_king=0, king-race-end)" scope="player" action="crown-king"/>
+        <trigger filter="all(team_has_king=0, king-race-timeout)" scope="team" action="crown-random-king"/>
+        <trigger filter="all(team_one_has_king=1, team_two_has_king=1)" scope="match">
+            <action>
+                <message text="`b${king-noun}s for each kingdom have been crowned. `4The Conquest `bwill begin in `e3 seconds`b."/>
+            </action>
+        </trigger>
+    </unless>
+    <trigger filter="conquest-started" scope="match">
+        <action>
+            <set var="match_phase" value="1"/>
+            <switch-scope inner="player" filter="participating">
+                <kit id="main-kit"/>
+            </switch-scope>
+        </action>
+    </trigger>
+    <unless constant="world-border-center" constant-comparison="defined delete">
+        <trigger filter="world-border-announce" scope="match">
+            <action>
+                <message text=" "/>
+                <message text="`6» » » `e`lThe world border has appeared `6« « «"/>
+                <message text="`bIt will start shrinking in `e30 seconds`b."/>
+                <message text=" "/>
+            </action>
+        </trigger>
+        <trigger filter="world-border-start" scope="match">
+            <action>
+                <message text=" "/>
+                <message text="`6» » » `e`lThe world border is shrinking `6« « «"/>
+                <message text="`bYou will no longer be able to respawn once all spawn locations are outside of the border."/>
+                <message text=" "/>
+            </action>
+        </trigger>
+    </unless>
+    <trigger scope="player" filter="super-dead">
+        <action>
+            <message text=" "/>
+            <message text="`6» » » `c`lYou can no longer respawn `6« « «"/>
+            <message text=" "/>
+        </action>
+    </trigger>
+    <trigger scope="player">
+        <filter>
+            <all>
+                <below y="-5"/>
+                <filter id="super-dead"/>
+            </all>
+        </filter>
+        <action>
+            <teleport x="x" y="-2" z="z"/>
+            <kit force="true">
+                <fly flying="true"/>
+            </kit>
+        </action>
+    </trigger>
+    <trigger filter="king-has-died" scope="player">
+        <action>
+            <set var="team_has_king" value="0"/>
+        </action>
+    </trigger>
+    <!-- kills the king when they get negative health through non contact damage -->
+    <trigger filter="all(is_king=1, king-dead, alive)" scope="player">
+        <action>
+            <kit>
+                <clear effects="true"/>
+                <effect amplifier="50">instant damage</effect>
+            </kit>
+        </action>
+    </trigger>
+    <trigger scope="player">
+        <filter>
+            <pulse duration="1s" period="2s" filter="all(match-running, participating, alive, king-not-holding-flag)"/>
+        </filter>
+        <action>
+            <kit>
+                <effect duration="2s">wither</effect>
+            </kit>
+            <set var="king_health" value="king_health-1"/>
+            <kit id="king-health-visual"/>
+            <sound preset="ALERT"/>
+            <message text="`4» » » `cPick up the crown banner to restore your health `4« « «"/>
         </action>
     </trigger>
     <trigger filter="recover-king-health-exception-health-capped" scope="team">
@@ -627,98 +861,95 @@
                 <message text="`7» `eKing health increased by 1"/>
                 <message text="`7» `bKing recovery reduced by 1"/>
             </action>
-            <switch-scope filter="only-king" inner="player">
-                <kit id="king-armor-kit"/>
+            <switch-scope filter="is_king=1" inner="player">
+                <kit id="king-health-visual"/>
             </switch-scope>
         </action>
     </trigger>
-    <trigger filter="king-has-died" scope="team">
+    <trigger filter="king-has-died" scope="player">
         <action>
-            <set var="king_health" value="0"/>
-            <action filter="show-debug-message">
-                <message text="`7» `eKing health set to 0 (death)"/>
-            </action>
+            <switch-scope inner="team">
+                <set var="king_health" value="0"/>
+                <action filter="show-debug-message">
+                    <message text="`7» `eKing health set to 0 (death)"/>
+                </action>
+            </switch-scope>
         </action>
     </trigger>
     <trigger filter="sudden-death" scope="match">
         <action>
             <sound preset="OBJECTIVE_MODE"/>
             <message text=" "/>
-            <message text="`6» `c`lSUDDEN DEATH"/>
-            <message text="`6» `bKing health has been reduced to ${sudden-death-hp} HP!"/>
-            <message text="`6» `6Blitz `bhas been enabled!"/>
+            <message text="`6» » » `c`lSUDDEN DEATH `6« « «" title="`6» » » `c`lSUDDEN DEATH `6« « «"/>
+            <switch-scope filter="all(not(is_king=1), participating, alive)" inner="player">
+                <message text="`cYou can no longer respawn!" subtitle="`cYou can no longer respawn!"/>
+            </switch-scope>
+            <switch-scope filter="all(is_king=1, participating, alive)" inner="player">
+                <kit id="king-health-visual"/>
+                <message text="`cYou can no longer regenerate health!" subtitle="`cYou can no longer regenerate health!"/>
+            </switch-scope>
             <message text=" "/>
             <switch-scope inner="team">
-                <action filter="king-health-above-sudden-death-amount">
-                    <set var="king_health" value="${sudden-death-hp}"/>
-                </action>
                 <set var="king_health_recovery_amount" value="0"/>
-            </switch-scope>
-            <switch-scope filter="only-king" inner="player">
-                <kit id="king-armor-kit"/>
             </switch-scope>
         </action>
     </trigger>
-    <trigger filter="only-king" scope="player">
+    <trigger filter="all(match_phase=1, is_king=1, participating)" scope="player">
         <action>
             <sound preset="CUSTOM"/>
             <message text=" "/>
-            <message text="`6» `e`lYOU ARE THE KING"/>
-            <message text="`6» `bStay alive as long as possible!"/>
+            <message text="`6» » » `e`lYou are the ${king-noun} `6« « «"/>
+            <message text="`bStay alive as long as possible!"/>
             <message text=" "/>
         </action>
     </trigger>
-    <trigger filter="king-dead" scope="team">
+    <trigger filter="all(match_phase=1, king-dead)" scope="team">
         <action>
             <switch-scope inner="match">
                 <sound preset="OBJECTIVE_FIREWORKS_TWINKLE"/>
                 <message text=" "/>
-                <action filter="team-one-king-has-died">
-                    <message text="`6» » » ${team-one-text-color-symbol}${team-one-name} King Eliminated! `6« « «"/>
+                <action filter="team_one_has_king=0">
+                    <message text="`6» » » ${team-one-text-color-symbol}${team-one-name} ${king-noun} Eliminated! `6« « «"/>
                 </action>
-                <action filter="team-two-king-has-died">
-                    <message text="`6» » » ${team-two-text-color-symbol}${team-two-name} King Eliminated! `6« « «"/>
+                <action filter="team_two_has_king=0">
+                    <message text="`6» » » ${team-two-text-color-symbol}${team-two-name} ${king-noun} Eliminated! `6« « «"/>
                 </action>
                 <message text=" "/>
             </switch-scope>
         </action>
     </trigger>
-    <trigger scope="player">
-        <filter>
-            <all>
-                <filter id="team-switch-enabled"/>
-                <after duration="0.5s">
-                    <dead/>
-                </after>
-            </all>
-        </filter>
-        <action>
-            <action filter="show-death-info-message">
-                <message text=" "/>
-                <message text="`7`l[`9`lTip`7`l] `bOn-death team switching as been enabled for this match."/>
-                <message text="`7`l[`9`lTip`7`l] `bEach time you die you will be switched to the other team."/>
-                <message text=" "/>
-                <set var="shown_death_info_message" value="1"/>
+    <action id="king-gapple" scope="player">
+        <switch-scope inner="team">
+            <set var="king_health_recovery_amount" value="king_health_recovery_amount+4"/>
+            <action filter="show-debug-message">
+                <message text="`7» `bKing recovery increased by 4 (gapple)"/>
             </action>
-            <action filter="only-team-one">
-                <set var="switch_to_team" value="2"/>
-                <message text="`rYou switched to ${team-two-name}"/>
-            </action>
-            <action filter="only-team-two">
-                <set var="switch_to_team" value="1"/>
-                <message text="`rYou switched to ${team-one-name}"/>
-            </action>
-        </action>
-    </trigger>
-    <action id="team-switching-on" scope="match" expose="true">
-        <set var="enable_team_switch" value="1"/>
-        <message text="`6» `bTeam switching upon death has been `a`lenabled`r`b!"/>
+        </switch-scope>
     </action>
-    <action id="team-switching-off" scope="match" expose="true">
-        <set var="enable_team_switch" value="0"/>
-        <message text="`6» `bTeam switching upon death has been `c`ldisabled`r`b!"/>
+    <action id="victim-action" scope="player" filter="all(is_king=1, king_health=1..)">
+        <set var="king_health" value="king_health-1"/>
+        <kit id="king-health-visual"/>
     </action>
 </actions>
+<damage victim-action="victim-action">
+    <deny>
+        <any>
+            <variable var="match_phase">0</variable>
+        </any>
+    </deny>
+</damage>
+<unless constant="king-race-start" constant-comparison="defined delete">
+    <portals sound="false">
+        <portal forward="all(only-team-one, conquest-started)" destination="team-one-spawn-point" yaw="@${team-one-yaw-a}" pitch="@0"/>
+        <portal forward="all(only-team-two, conquest-started)" destination="team-two-spawn-point" yaw="@${team-two-yaw-a}" pitch="@0"/>
+    </portals>
+</unless>
+<unless constant="world-border-center" constant-comparison="defined delete">
+    <world-borders center="${world-border-center}" buffer="1">
+        <world-border size="${world-border-start-size}" after="7m30s"/>
+        <world-border size="${world-border-end-size}" after="8m" duration="7m"/>
+    </world-borders>
+</unless>
 <tnt>
     <instantignite>on</instantignite>
 </tnt>
@@ -785,6 +1016,7 @@
     <item>diamond block</item>
     <item>dispenser</item>
     <item>dropper</item>
+    <item>egg</item>
     <item>emerald block</item>
     <item>furnace</item>
     <item>gold block</item>
@@ -793,6 +1025,7 @@
     <item>iron fence</item>
     <item>iron block</item>
     <item>iron door</item>
+    <item>magma cream</item>
     <item>mossy cobblestone</item>
     <item>nether brick</item>
     <item>nether brick stairs</item>
@@ -807,9 +1040,12 @@
     <item>sandstone stairs</item>
     <item>skull item</item>
     <item>smooth brick</item>
+    <item>smooth stairs</item>
     <item>stained clay</item>
     <item>step</item>
     <item>stone</item>
+    <item>string</item>
+    <item>web</item>
 </itemremove>
 <itemkeep>
     <item>torch</item>
