@@ -41,10 +41,6 @@
         Spawn A is also where the team colored crown flag is located for each team.
         Banner design: https://www.planetminecraft.com/banner/crown-312250/
 
-        You can optionally define b and c spawns (i.e., 'team-one-spawn-b') etc
-        which will be used as alternate spawns when the world border shrinks over
-        the previous spawn point.
-
         <constant id="team-one-spawn-b">0,64,0</constant>
         <constant id="team-one-yaw-b">90</constant>
         <constant id="team-two-spawn-b">0,64,0</constant>
@@ -55,6 +51,11 @@
         <constant id="team-two-spawn-c">0,64,0</constant>
         <constant id="team-two-yaw-c">-90</constant>
 
+        B and C spawns will be used as alternate spawn locations when the world
+        border shrinks over the previous spawn point.
+
+        Note: can be disabled with delete="true" attribute but not recommended.
+
         [King Race]
         <constant id="king-race-start">0,64,0</constant>
         <constant id="king-race-end">0,64,0</constant>
@@ -62,19 +63,22 @@
 
         This is the start/end points of the pre-match race to decide which player
         becomes king. The end point should have a banner with a crown design.
-        If this is left undefined a random player will be chosen to be king.
+
+        Note: can be disabled with delete="true" attribute but not recommended. Will
+        fallback to randomly selecting a king.
 
         [World Border]
         <constant id="world-border-center">0.5,0.5</constant>
         <constant id="world-border-start-size">150</constant>
+        <constant id="world-border-end-size">25</constant>
 
         The world border will gradually shrink to 25x25 blocks (unless
-        world-border-end-size is overridden) starting at 8 minutes. The intention
+        world-border-end-size is overwritten) starting at 8 minutes. The intention
         is that the world border will gradually put your spawn points out of bounds,
         moving the spawns closer to the middle, and eventually preventing respawns.
 
-        If no world border is set then an alternate sudden death will be
-        enabled at 12 minutes to prevent respawns.
+        Note: can be disabled with delete="true" attribute but not recommended. Will
+        fallback to preventing respawns at 12 minutes.
     -->
 </constants>
 <include id="countdown"/>
@@ -84,33 +88,33 @@
     <team id="team-two" color="${team-two-color}" max="${team-size}" min="1">${team-two-name} ${king-noun}</team>
 </teams>
 <spawns sequential="true" safe="true">
-    <if constant="king-race-start" constant-comparison="defined value">
+    <unless constant="king-race-start" constant-comparison="defined delete">
         <spawn yaw="${king-race-start-yaw}" kit="race-kit" filter="match_phase=0">
             <region>
                 <block location="${king-race-start}"/>
             </region>
         </spawn>
-    </if>
+    </unless>
     <spawn team="team-one" yaw="${team-one-yaw-a}" filter="all(match_phase=1, not(sudden-death))">
         <regions>
             <region id="team-one-spawn-point"/>
-            <if constant="team-one-spawn-b" constant-comparison="defined value">
+            <unless constant="team-one-spawn-b" constant-comparison="defined delete">
                 <block location="${team-one-spawn-b}"/>
-            </if>
-            <if constant="team-one-spawn-c" constant-comparison="defined value">
+            </unless>
+            <unless constant="team-one-spawn-c" constant-comparison="defined delete">
                 <block location="${team-one-spawn-c}"/>
-            </if>
+            </unless>
         </regions>
     </spawn>
     <spawn team="team-two" yaw="${team-two-yaw-a}" filter="all(match_phase=1, not(sudden-death))">
         <regions>
             <region id="team-two-spawn-point"/>
-            <if constant="team-one-spawn-b" constant-comparison="defined value">
+            <unless constant="team-one-spawn-b" constant-comparison="defined delete">
                 <block location="${team-two-spawn-b}"/>
-            </if>
-            <if constant="team-one-spawn-c" constant-comparison="defined value">
+            </unless>
+            <unless constant="team-one-spawn-c" constant-comparison="defined delete">
                 <block location="${team-two-spawn-c}"/>
-            </if>
+            </unless>
         </regions>
     </spawn>
 </spawns>
@@ -357,16 +361,6 @@
             </action>
         </action>
     </kit>
-    <kit id="king-gapple-kit">
-        <action>
-            <switch-scope inner="team">
-                <set var="king_health_recovery_amount" value="king_health_recovery_amount+4"/>
-                <action filter="show-debug-message">
-                    <message text="`7» `bKing recovery increased by 4 (gapple)"/>
-                </action>
-            </switch-scope>
-        </action>
-    </kit>
     <kit id="obs-kit">
         <book show-other="false">
             <title>`e`lHow to Play</title>
@@ -385,7 +379,7 @@
 </kits>
 <consumables>
     <consumable id="consumable-king-berserking" action="king-berserking-kit" on="eat"/>
-    <consumable id="consumable-king-gapple" action="king-gapple-kit" on="eat"/>
+    <consumable id="consumable-king-gapple" action="king-gapple" on="eat"/>
 </consumables>
 <projectiles>
     <projectile id="projectile-flame" name="fireball" throwable="true" projectile="SmallFireball" damage="0"/>
@@ -490,16 +484,17 @@
     <participating id="participating"/>
     <observing id="observing"/>
     <alive id="alive"/>
+    <after id="super-dead" duration="5.1s" filter="all(participating, not(alive))"/>
     <after id="king-race-timeout" message="A ${king-noun} will be randomly crowned in {0}" duration="30s" filter="all(match-started, match_phase=0, not(all(team_one_has_king=1, team_two_has_king=1)))"/>
-    <if constant="king-race-start" constant-comparison="defined value">
+    <unless constant="king-race-start" constant-comparison="defined delete">
         <after id="conquest-started" duration="3s">
             <all id="countdown-start">
                 <variable var="team_one_has_king">1</variable>
                 <variable var="team_two_has_king">1</variable>
             </all>
         </after>
-    </if>
-    <unless constant="king-race-start" constant-comparison="defined value">
+    </unless>
+    <if constant="king-race-start" constant-comparison="defined delete">
         <all id="conquest-started">
             <variable var="team_one_has_king">1</variable>
             <variable var="team_two_has_king">1</variable>
@@ -507,7 +502,7 @@
         <all id="countdown-start">
             <never/>
         </all>
-    </unless>
+    </if>
     <after id="conquest-action-delay" duration="3s" filter="match_phase=1"/>
     <deny id="deny-void">
         <void/>
@@ -517,16 +512,16 @@
     <after id="sudden-death" duration="30s" message="Sudden death begins in {0}">
         <all>
             <after duration="11m30s" filter="all(match-running, match_phase=1)"/>
-            <if constant="world-border-center" constant-comparison="defined value">
+            <unless constant="world-border-center" constant-comparison="defined delete">
                 <never/>
-            </if>
+            </unless>
         </all>
     </after>
-    <if constant="world-border-center" constant-comparison="defined value">
+    <unless constant="world-border-center" constant-comparison="defined delete">
         <after id="world-border-start" duration="30s" message="The world border will start shrinking in {0}">
             <after id="world-border-announce" duration="7m30s" filter="all(match-running, match_phase=1)"/>
         </after>
-    </if>
+    </unless>
     <not id="not-king">
         <any id="only-king">
             <all id="team-one-king">
@@ -648,18 +643,18 @@
     <union id="spawn-protection">
         <sphere id="team-one-spawn-a-prot" origin="${team-one-spawn-a}" radius="2"/>
         <sphere id="team-two-spawn-a-prot" origin="${team-two-spawn-a}" radius="2"/>
-        <if constant="team-one-spawn-b" constant-comparison="defined value">
+        <unless constant="team-one-spawn-b" constant-comparison="defined delete">
             <sphere id="team-one-spawn-b-prot" origin="${team-one-spawn-b}" radius="2"/>
             <sphere id="team-two-spawn-b-prot" origin="${team-two-spawn-b}" radius="2"/>
-        </if>
-        <if constant="team-one-spawn-c" constant-comparison="defined value">
+        </unless>
+        <unless constant="team-one-spawn-c" constant-comparison="defined delete">
             <sphere id="team-one-spawn-c-prot" origin="${team-one-spawn-c}" radius="2"/>
             <sphere id="team-two-spawn-c-prot" origin="${team-two-spawn-c}" radius="2"/>
-        </if>
+        </unless>
     </union>
-    <if constant="king-race-start" constant-comparison="defined value">
+    <unless constant="king-race-start" constant-comparison="defined delete">
         <cylinder id="king-race-end" base="${king-race-end}" radius="1" height="3"/>
-    </if>
+    </unless>
     <apply block="never" region="spawn-protection" message="You may not modify this spawn"/>
     <apply block-place="deny-void" message="You may not modify the void"/>
 </regions>
@@ -675,9 +670,9 @@
     <control-point id="conquest" name="${king-noun}'s Conquest" capture-time="0.5s" permanent="true" capture="everywhere" player-filter="allow-conquest-capture" required="true" scoreboard-filter="never"/>
 </control-points>
 <score>
-    <if constant="king-race-start" constant-comparison="defined value">
+    <unless constant="king-race-start" constant-comparison="defined delete">
         <box region="king-race-end" points="100" filter="team_has_king=0"/>
-    </if>
+    </unless>
 </score>
 <variables scope="match" default="0">
     <variable id="debug" default="0"/>
@@ -691,24 +686,34 @@
     <variable id="team_has_king" scope="team"/>
     <with-team id="team_one_has_king" var="team_has_king" team="team-one"/>
     <with-team id="team_two_has_king" var="team_has_king" team="team-two"/>
+    <player-location id="x" component="x"/>
+    <player-location id="y" component="y"/>
+    <player-location id="z" component="z"/>
     <score id="king_health"/>
 </variables>
 <actions>
     <trigger filter="match-started" scope="match">
         <action>
             <fill region="initial-spawn-points" material="air"/>
-            <switch-scope inner="player">
-                <set var="king_chance" value="random()"/>
-            </switch-scope>
-            <unless constant="king-race-start" constant-comparison="defined value">
+            <if constant="king-race-start" constant-comparison="defined delete">
                 <switch-scope inner="team" filter="team_has_king=0">
                     <action id="crown-random-king"/>
                 </switch-scope>
-            </unless>
+            </if>
         </action>
     </trigger>
     <action id="crown-king" scope="player" filter="all(participating, match_phase=0, team_has_king=0)">
-        <if constant="king-race-start" constant-comparison="defined value">
+        <switch-scope inner="team">
+            <set var="king_health" value="100"/>
+            <set var="team_has_king" value="1"/>
+            <switch-scope inner="player">
+                <set var="is_king" value="0"/>
+                <set var="king_chance" value="99"/>
+            </switch-scope>
+        </switch-scope>
+        <set var="is_king" value="1"/>
+        <set var="king_chance" value="99"/>
+        <unless constant="king-race-start" constant-comparison="defined delete">
             <action filter="only-team-one">
                 <switch-scope inner="match">
                     <message text="`bThe ${team-one-text-color-symbol}${team-one-name} ${king-noun} `bhas been crowned!"/>
@@ -733,20 +738,13 @@
             <message text=" "/>
             <message text="`6» » » `e`lYou are the ${king-noun} `6« « «"/>
             <message text=" "/>
-        </if>
-        <switch-scope inner="team">
-            <set var="king_health" value="100"/>
-            <set var="team_has_king" value="1"/>
-            <switch-scope inner="player">
-                <set var="is_king" value="0"/>
-                <set var="king_chance" value="99"/>
-            </switch-scope>
-        </switch-scope>
-        <set var="is_king" value="1"/>
-        <set var="king_chance" value="99"/>
+        </unless>
     </action>
     <action id="crown-random-king" scope="team">
         <set var="king_chance_min" value="99"/>
+        <switch-scope inner="player" filter="participating">
+            <set var="king_chance" value="random()"/>
+        </switch-scope>
         <switch-scope inner="player" filter="participating">
             <set var="king_chance_min" value="min(king_chance, king_chance_min)"/>
         </switch-scope>
@@ -758,7 +756,7 @@
             </action>
         </switch-scope>
     </action>
-    <if constant="king-race-start" constant-comparison="defined value">
+    <unless constant="king-race-start" constant-comparison="defined delete">
         <trigger filter="match-started" scope="match">
             <action>
                 <message text="`bThe first player from each team to reach the `e`lCrown Flag `bwill become ${king-noun}."/>
@@ -771,17 +769,20 @@
                 <message text="`b${king-noun}s for each kingdom have been crowned. `4The Conquest `bwill begin in `e3 seconds`b."/>
             </action>
         </trigger>
-    </if>
+    </unless>
     <trigger filter="conquest-started" scope="match">
         <action>
             <set var="match_phase" value="1"/>
+            <switch-scope inner="player" filter="participating">
+                <kit id="main-kit"/>
+            </switch-scope>
         </action>
     </trigger>
     <trigger filter="world-border-announce" scope="match">
         <action>
             <message text=" "/>
             <message text="`6» » » `e`lThe world border has appeared `6« « «"/>
-            <message text="`bIt will start shrinking in `a30 seconds`b."/>
+            <message text="`bIt will start shrinking in `e30 seconds`b."/>
             <message text=" "/>
         </action>
     </trigger>
@@ -793,12 +794,25 @@
             <message text=" "/>
         </action>
     </trigger>
+    <trigger scope="player" filter="super-dead">
+        <action>
+            <message text=" "/>
+            <message text="`6» » » `c`lYou can no longer respawn `6« « «"/>
+            <message text=" "/>
+        </action>
+    </trigger>
     <trigger scope="player">
         <filter>
-            <after duration="5.1s" filter="not(alive)"/>
+            <all>
+                <below y="-5"/>
+                <filter id="super-dead"/>
+            </all>
         </filter>
         <action>
-            <message text="You may no longer respawn"/>
+            <teleport x="x" y="-2" z="z"/>
+            <kit force="true">
+                <fly flying="true"/>
+            </kit>
         </action>
     </trigger>
     <trigger filter="king-has-died" scope="player">
@@ -902,6 +916,14 @@
             </switch-scope>
         </action>
     </trigger>
+    <action id="king-gapple" scope="player">
+        <switch-scope inner="team">
+            <set var="king_health_recovery_amount" value="king_health_recovery_amount+4"/>
+            <action filter="show-debug-message">
+                <message text="`7» `bKing recovery increased by 4 (gapple)"/>
+            </action>
+        </switch-scope>
+    </action>
     <action id="victim-action" scope="player" filter="all(is_king=1, king_health=1..)">
         <set var="king_health" value="king_health-1"/>
         <kit id="king-health-visual"/>
@@ -914,18 +936,18 @@
         </any>
     </deny>
 </damage>
-<if constant="king-race-start" constant-comparison="defined value">
+<unless constant="king-race-start" constant-comparison="defined delete">
     <portals sound="false">
         <portal forward="all(only-team-one, conquest-started)" destination="team-one-spawn-point" yaw="@${team-one-yaw-a}" pitch="@0"/>
         <portal forward="all(only-team-two, conquest-started)" destination="team-two-spawn-point" yaw="@${team-two-yaw-a}" pitch="@0"/>
     </portals>
-</if>
-<if constant="world-border-center" constant-comparison="defined value">
+</unless>
+<unless constant="world-border-center" constant-comparison="defined delete">
     <world-borders center="${world-border-center}" buffer="1">
         <world-border size="${world-border-start-size}" after="7m30s"/>
         <world-border size="${world-border-end-size}" after="8m" duration="7m"/>
     </world-borders>
-</if>
+</unless>
 <tnt>
     <instantignite>on</instantignite>
 </tnt>
