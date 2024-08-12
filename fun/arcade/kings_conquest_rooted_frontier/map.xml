@@ -1,14 +1,18 @@
-<map proto="1.4.0">
+<map proto="1.4.2">
 <name>King's Conquest: Rooted Frontier</name>
-<version>1.1.1</version>
-<include id="kings-conquest"/>
+<version>1.2.0</version>
 <constants>
-    <constant id="team-size">24</constant>
-    <constant id="team-one-spawn">-8.5,18,-73.5</constant>
-    <constant id="team-one-yaw">0</constant>
-    <constant id="team-two-spawn">-8.5,18,74.5</constant>
-    <constant id="team-two-yaw">180</constant>
+    <constant id="team-size-a">24</constant>
+    <constant id="team-one-spawn-a">-8.5,18,-73.5</constant>
+    <constant id="team-one-yaw-a">0</constant>
+    <constant id="team-two-spawn-a">-8.5,18,74.5</constant>
+    <constant id="team-two-yaw-a">180</constant>
+    <constant id="team-one-spawn-b" delete="true"/>
+    <constant id="team-one-spawn-c" delete="true"/>
+    <constant id="king-race-start" delete="true"/>
+    <constant id="world-border-center" delete="true"/>
 </constants>
+<include id="kings-conquest"/>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>
