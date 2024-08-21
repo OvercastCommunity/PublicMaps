@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="Water Drop">
 <name>Water Drop: Long Shot</name>
-<version>1.5.2</version>
+<version>1.5.3</version>
 <objective>Grab the flag and return it to your spawn!</objective>
 <created>2019-04-01</created>
 <include id="void-death"/>
@@ -30,7 +30,7 @@
         <item slot="2" material="water bucket" name="`a`lWater-Drop Area!" prevent-sharing="true"/>
         <item slot="3" material="water bucket" name="`a`lWater-Drop Area!" prevent-sharing="true"/>
         <item slot="4" material="water bucket" name="`a`lWater-Drop Area!" prevent-sharing="true"/>
-        <item slot="8" material="arrow" amount="16"/>
+        <item slot="8" material="arrow" amount="24"/>
         <chestplate material="leather chestplate" locked="true" unbreakable="true" team-color="true">
             <enchantment>protection projectile</enchantment>
         </chestplate>
@@ -42,7 +42,7 @@
 </hunger>
 <kill-reward>
     <item material="arrow" amount="8"/>
-    <item material="wood" damage="1" amount="8"/>
+    <item material="wood" damage="2" amount="8"/>
     <kit>
         <action>
             <replace-item ignore-metadata="true">
@@ -54,6 +54,7 @@
 </kill-reward>
 <filters>
     <match-started id="match-started"/>
+    <match-running id="match-running"/>
     <participating id="participating"/>
     <any id="placeable">
         <all>
@@ -66,7 +67,7 @@
             </not>
         </all>
         <all>
-            <material>wood:2</material>
+            <material>wood</material>
             <not>
                 <void/>
             </not>
@@ -120,8 +121,9 @@
     <variable id="can_jump" default="0" scope="player"/>
 </variables>
 <actions>
-    <trigger scope="player" filter="all(return-checkpoint, participating)">
+    <trigger scope="player" filter="all(can_jump=0, match-running, return-checkpoint, participating)">
         <action>
+            <sound preset="SCORE"/>
             <set var="can_jump" value="1"/>
             <kit force="true">
                 <chestplate material="gold chestplate" locked="true" unbreakable="true">
