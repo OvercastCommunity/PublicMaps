@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-08-10 -->
+<!-- Version 2024-08-24 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -223,7 +223,7 @@
             <set var="round" value="round+1"/>
             <set var="round_state" value="2"/>
             <action id="pick-next-tnt"/>
-            <action filter="players=..5">
+            <action filter="players=..8">
                 <set var="round_deathmatch" value="round_deathmatch+1"/>
             </action>
             <action id="distribute-kits"/>
