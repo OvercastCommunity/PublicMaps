@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Freeze Tag gamemode include file -->
 <!-- Created by mitchiii -->
-<!-- Version 2024-08-24 -->
+<!-- Version 2024-08-24.1 -->
 <objective>Taggers must freeze all Runners before time runs out!</objective>
 <game>Freeze Tag</game>
 <include id="void-death"/>
@@ -11,7 +11,7 @@
 <score/>
 <time result="runners">5m</time>
 <teams>
-    <team id="taggers" color="blue" max="3">Taggers</team>
+    <team id="taggers" color="blue" max="4">Taggers</team>
     <team id="runners" color="green" max="12" plural="true">Runners</team>
 </teams>
 <kits>
@@ -32,7 +32,7 @@
     </kit>
     <kit id="runners-frozen-kit" force="true">
         <effect amplifier="-20">jump boost</effect>
-        <effect amplifier="20">slowness</effect>
+        <effect amplifier="15">slowness</effect>
         <item slot="0" material="ice" locked="true"/>
         <item slot="1" material="ice" locked="true"/>
         <item slot="2" material="ice" locked="true"/>
