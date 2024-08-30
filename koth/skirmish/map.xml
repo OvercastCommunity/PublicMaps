@@ -1,0 +1,172 @@
+<map proto="1.4.2">
+<name>Skirmish</name>
+<version>1.1.0</version>
+<objective>Conquer all the points and eliminate your foes.</objective>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="XML assistance"/> <!-- mitchiii -->
+</contributors>
+<teams>
+     <team id="red-team" color="dark red" min="2" max="7">Red</team>
+     <team id="blue-team" color="blue" min="2" max="7">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red-team" kit="spawn" region="red-spawn" yaw="-45" filter="only-first-spawn"/>
+    <spawn team="blue-team" kit="spawn" region="blue-spawn" yaw="-135" filter="only-first-spawn"/>
+    <spawn kit="spawn" region="forest-spawn" yaw="-135" filter="owns-forest"/>
+    <spawn kit="spawn" region="village-spawn" yaw="-90" filter="owns-village"/>
+    <spawn kit="spawn" region="ruins-spawn" yaw="-45" filter="owns-ruins"/>
+    <default region="obs-spawn" yaw="90"/>
+</spawns>
+<respawn delay="5s" auto="true" spectate="true"/>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="golden apple" amount="2"/>
+        <item slot="8" material="arrow" amount="32"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+        <leggings material="leather leggings" team-color="true" unbreakable="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true"/>
+        <effect duration="5" amplifier="1">heal</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<kill-reward>
+    <item material="arrow" amount="16"/>
+</kill-reward>
+<filters>
+    <not id="only-first-spawn">
+        <time>15s</time>
+    </not>
+    <alive id="alive"/>
+    <match-running id="match-running"/>
+    <observing id="observing"/>
+    <captured id="owns-forest">forest</captured>
+    <captured id="owns-village">village</captured>
+    <captured id="owns-ruins">ruins</captured>
+    <time id="judgement-time-short">3m</time>
+    <time id="judgement-time-shorter">6m</time>
+    <time id="judgement-time-shortest">8m</time>
+    <any id="allowed-to-win">
+        <all>
+            <team id="only-red">red-team</team>
+            <any>
+                <after duration="45s" filter="all(match-running, red-owns-all, not(judgement-time-short))" message="`4Red`r wins in {0}"/>
+                <after duration="25s" filter="all(red-owns-all, judgement-time-short, not(judgement-time-shorter))" message="`4Red`r wins in {0}"/>
+                <after duration="10s" filter="all(red-owns-all, judgement-time-shorter, not(judgement-time-shortest))" message="`4Red`r wins in {0}"/>
+                <after duration="3s" filter="all(red-owns-all, judgement-time-shortest)" message="`4Red`r wins in {0}"/>
+                <all>
+                    <all id="red-owns-all">
+                        <captured team="red-team">forest</captured>
+                        <captured team="red-team">village</captured>
+                        <captured team="red-team">ruins</captured>
+                    </all>
+                    <not>
+                        <players min="1" filter="all(only-blue, alive)"/>
+                    </not>
+                </all>
+            </any>
+        </all>
+        <all>
+            <team id="only-blue">blue-team</team>
+            <any>
+                <after duration="45s" filter="all(match-running, blue-owns-all, not(judgement-time-short))" message="`9Blue`r wins in {0}"/>
+                <after duration="25s" filter="all(blue-owns-all, judgement-time-short, not(judgement-time-shorter))" message="`9Blue`r wins in {0}"/>
+                <after duration="10s" filter="all(blue-owns-all, judgement-time-shorter, not(judgement-time-shortest))" message="`9Blue`r wins in {0}"/>
+                <after duration="3s" filter="all(red-owns-all, judgement-time-shortest)" message="`9Blue`r wins in {0}"/>
+                <all>
+                    <all id="blue-owns-all">
+                        <captured team="blue-team">forest</captured>
+                        <captured team="blue-team">village</captured>
+                        <captured team="blue-team">ruins</captured>
+                    </all>
+                    <not>
+                        <players min="1" filter="all(only-red, alive)"/>
+                    </not>
+                </all>
+            </any>
+        </all>
+    </any>
+</filters>
+<regions>
+    <block id="obs-spawn">56,13,0</block>
+    <block id="red-spawn">-24,10,46</block>
+    <block id="blue-spawn">-24,10,-45</block>
+    <block id="forest-spawn">10,9,-22</block>
+    <block id="village-spawn">9,9,23</block>
+    <block id="ruins-spawn">-56,10,0</block>
+    <cylinder id="forest-capture" base="26.5,0,-41.5" radius="6" height="40"/>
+    <cylinder id="village-capture" base="26.5,0,42.5" radius="6" height="40"/>
+    <cylinder id="ruins-capture" base="-38.5,0,0.5" radius="6" height="40"/>
+    <cylinder id="forest-progress" base="26.5,0,-41.5" radius="13" height="40"/>
+    <cylinder id="village-progress" base="26.5,0,42.5" radius="13" height="40"/>
+    <cylinder id="ruins-progress" base="-38.5,0,0.5" radius="13" height="40"/>
+    <apply block="never"/>
+</regions>
+<control-points capture-rule="lead" incremental="true" show-progress="true" capture-time="4s">
+    <control-point id="forest" name="Forest" capture="forest-capture" progress="forest-progress"/>
+    <control-point id="village" name="Village" capture="village-capture" progress="village-progress"/>
+    <control-point id="ruins" name="Ruins" capture="ruins-capture" progress="ruins-progress"/>
+    <control-point id="win" name="Judgement" capture="everywhere" capture-time="0s" player-filter="allowed-to-win" scoreboard-filter="any(red-owns-all, blue-owns-all)"/>
+</control-points>
+<actions>
+    <trigger scope="match" filter="any(red-owns-all, blue-owns-all)">
+        <action>
+            <sound key="ambient.weather.thunder"/>
+            <message text=" "/>
+            <action filter="red-owns-all">
+                <message text="`6» » » `4`lRed's judgement `6« « «"/>
+                <switch-scope inner="player" filter="only-red">
+                    <message text="`bEliminate `9Blue `bor prevent `9Blue `bfrom capturing a point to win."/>
+                </switch-scope>
+                <switch-scope inner="player" filter="only-blue">
+                    <message text="`bYou have no points under your team's control and will no longer respawn."/>
+                    <message text="`bCapture a point quickly to allow your team to respawn."/>
+                </switch-scope>
+                <switch-scope inner="player" filter="observing">
+                    <message text="`4Red `bmust eliminate or prevent `9Blue `bfrom capturing one of the points before the timer runs out to win."/>
+                </switch-scope>
+            </action>
+            <action filter="blue-owns-all">
+                <message text="`6» » » `9`lBlue's judgement `6« « «"/>
+                <switch-scope inner="player" filter="only-blue">
+                    <message text="`bEliminate `4Red `bor prevent `4Red `bfrom capturing a point to win."/>
+                </switch-scope>
+                <switch-scope inner="player" filter="only-red">
+                    <message text="`bYou have no points under your team's control and will no longer respawn."/>
+                    <message text="`bCapture a point quickly to allow your team to respawn."/>
+                </switch-scope>
+                <switch-scope inner="player" filter="observing">
+                    <message text="`9Blue `bmust eliminate or prevent `4Red `bfrom capturing one of the points before the timer runs out to win."/>
+                </switch-scope>
+            </action>
+            <message text=" "/>
+        </action>
+    </trigger>
+</actions>
+<broadcasts>
+    <tip after="10s">Your spawn is determined by the points your team controls</tip>
+    <tip after="40s">When your team does not control any points you can no longer respawn</tip>
+</broadcasts>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
