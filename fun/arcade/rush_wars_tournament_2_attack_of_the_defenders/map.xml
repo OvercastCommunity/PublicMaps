@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Rush Wars Tournament 2: Attack of the Defenders</name>
-<version>1.1.10</version>
+<version>1.1.11</version>
 <objective>Runners must break the monument at the end of the map without getting killed by the defenders!</objective>
 <created>2016-06-01</created>
 <gamemode>ad</gamemode>
@@ -55,7 +55,7 @@
         <chestplate color="FFFFFF" material="leather chestplate"/>
         <leggings color="FFFFFF" material="leather leggings"/>
         <boots color="FFFFFF" enchantment="depth strider:3" material="leather boots"/>
-        <item slot="1" unbreakable="true" enchantment="ARROW_INFINITE" material="bow"/>
+        <item slot="1" unbreakable="true" enchantment="ARROW_INFINITE" material="bow" locked="true"/>
         <item slot="28" amount="1">arrow</item>
         <effect amplifier="5">speed</effect>
     </kit>
