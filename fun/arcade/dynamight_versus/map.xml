@@ -1,0 +1,109 @@
+<map proto="1.4.2">
+<name>Dynamight Versus</name>
+<objective>Survive the TNT onslaught</objective>
+<version>2.1.0</version>
+<authors>
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
+    <author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- Bleanny -->
+</authors>
+<blitz/>
+<time>3m</time>
+<teams>
+    <team id="green-team" color="dark green" max="8">Green</team>
+    <team id="red-team" color="red" max="8">Red</team>
+</teams>
+<spawns>
+    <spawn team="red-team" kit="kit">
+        <regions yaw="0">
+            <point>356.5,31,-115.5</point>
+        </regions>
+    </spawn>
+    <spawn team="green-team" kit="kit">
+        <regions yaw="-180">
+            <point>356.5,31,-74.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point>356.5,37,-118.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="kit">
+        <item slot="0" material="bow" unbreakable="true">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="1" material="snow ball" amount="16"/>
+        <item slot="9" material="arrow" locked="true"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true" locked="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true" locked="true"/>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<modifybowprojectile>
+    <projectile>TNTPrimed</projectile>
+</modifybowprojectile>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<regions>
+    <below id="fallReg" y="35"/>
+    <apply block="never">
+        <region>
+            <above y="34"/>
+        </region>
+    </apply>
+    <above id="green-side" z="-95"/>
+    <below id="red-side" z="-95"/>
+    <apply block="deny-red-explosion" region="red-side"/>
+    <apply block="deny-green-explosion" region="green-side"/>
+</regions>
+<filters>
+    <deny id="deny-red-explosion">
+        <all>
+            <cause>explosion</cause>
+            <team>red-team</team>
+        </all>
+    </deny>
+    <deny id="deny-green-explosion">
+        <all>
+            <cause>explosion</cause>
+            <team>green-team</team>
+        </all>
+    </deny>
+</filters>
+<damage>
+    <deny>
+        <cause>explosion</cause>
+    </deny>
+</damage>
+<falling-blocks>
+    <rule delay="3">
+        <filter>
+            <all>
+                <not>
+                    <material>air</material>
+                </not>
+                <region id="fallReg"/>
+            </all>
+        </filter>
+    </rule>
+</falling-blocks>
+<itemremove>
+    <item>stone</item>
+    <item>spruce wood stairs</item>
+    <item>step</item>
+    <item>stained clay</item>
+    <item>smooth stairs</item>
+    <item>wood</item>
+    <item>bow</item>
+    <item>snow ball</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>
