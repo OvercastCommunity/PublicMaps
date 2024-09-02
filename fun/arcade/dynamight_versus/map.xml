@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Dynamight Versus</name>
 <objective>Survive the TNT onslaught</objective>
-<version>2.1.0</version>
+<version>2.1.1</version>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
     <author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- Bleanny -->
@@ -60,6 +60,11 @@
     <apply block="deny-green-explosion" region="green-side"/>
 </regions>
 <filters>
+    <match-running id="match-running"/>
+    <all id="falling-blocks">
+        <cuboid min="315,9,-136" max="398,-50,-50"/>
+        <entity>falling block</entity>
+    </all>
     <deny id="deny-red-explosion">
         <all>
             <cause>explosion</cause>
@@ -90,6 +95,16 @@
         </filter>
     </rule>
 </falling-blocks>
+<actions>
+    <trigger scope="match">
+        <filter>
+            <pulse duration="0.25s" period="0.5s" filter="match-running"/>
+        </filter>
+        <action>
+            <kill-entities filter="falling-blocks"/>
+        </action>
+    </trigger>
+</actions>
 <itemremove>
     <item>stone</item>
     <item>spruce wood stairs</item>
