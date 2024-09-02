@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Japan</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
+<include id="gapple-kill-reward"/>
 <objective>Bring the enemy's wool back to your own side.</objective>
 <authors>
     <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- ViceWatercolour -->
@@ -139,11 +140,12 @@
     <item>glass</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="16" damage="5" material="wood"/>
-    <item amount="12" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" damage="5" material="wood"/>
+        <item amount="12" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>30</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
