@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>PixelMix</name>
-<variant id="halloween" world="halloween" override="true">PixelMissing</variant>
 <version>2.3.1</version>
+<variant id="halloween" world="halloween" override="true">PixelMissing</variant>
+<include id="gapple-kill-reward"/>
 <objective>Take the enemy's wool located at two sides of the enemy's base and place it in your victory monument.</objective>
 <if variant="halloween">
     <created>2015-10-28</created>
@@ -39,9 +40,7 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
-        <item slot="30" unbreakable="true" material="iron spade">
-            <enchantment>efficiency</enchantment>
-        </item>
+        <item slot="30" unbreakable="true" material="iron spade"/>
         <item slot="4" amount="64" damage="2" material="wood"/>
         <item slot="31" amount="64" damage="2" material="wood"/>
         <item slot="5" amount="64" damage="10" material="stained clay"/>
@@ -50,7 +49,7 @@
         <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots team-color="true" unbreakable="true" material="leather boots"/>
-        <effect duration="7" amplifier="10">damage resistance</effect>
+        <effect duration="7s" amplifier="255">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -213,18 +212,13 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
+            <any>
+                <material>wood</material>
+                <material>stained clay</material>
+            </any>
         </filter>
         <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>stained clay</material>
-        </filter>
-        <drops>
-            <item chance="0" material="stained clay"/>
+            <item chance="0" material="glass"/>
         </drops>
     </rule>
     <rule>
@@ -279,7 +273,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="2" material="wood"/>
         <item amount="16" damage="10" material="stained clay"/>
     </kill-reward>
