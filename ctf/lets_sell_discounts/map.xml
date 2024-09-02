@@ -1,9 +1,22 @@
 <map proto="1.4.2">
 <name>Let's Sell Discounts</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
+<variant id="5v5">5v5</variant>
+<unless variant="5v5">
+    <constant id="team-size">12</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="respawn-timer">3.14s</constant>
+    <time result="score" overtime="1m" max-overtime="2m">12m</time>
+</unless>
+<if variant="5v5">
+    <phase>development</phase>
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <constant id="respawn-timer">5s</constant>
+    <time result="score" overtime="2m" max-overtime="6m">12m</time>
+</if>
+<include id="gapple-kill-reward"/>
 <objective>Capture the enemy team's flag</objective>
-<time result="score" overtime="1m" max-overtime="2m">12m</time>
-<edition>standard</edition>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
     <author uuid="d563101f-4e74-4f14-8707-b8f32c54902b"/> <!-- Winnerizor -->
@@ -13,8 +26,8 @@
     <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b"/> <!-- jexel -->
 </contributors>
 <teams>
-    <team id="red-team" color="dark red" max="12">Red</team>
-    <team id="blue-team" color="blue" max="12">Blue</team>
+    <team id="red-team" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
+    <team id="blue-team" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -25,8 +38,10 @@
             <enchantment>efficiency</enchantment>
         </item>
         <item slot="3" material="golden apple"/>
+        <item slot="4" amount="32" team-color="true" material="stained clay"/>
+        <item slot="5" amount="8" team-color="true" material="stained glass"/>
         <item slot="28" amount="12" material="arrow"/>
-         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="iron leggings">
             <enchantment level="3">projectile_protection</enchantment>
@@ -35,14 +50,6 @@
             <enchantment level="2">feather_falling</enchantment>
         </boots>
         <effect duration="4s">instant_health</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <item slot="4" amount="32" damage="11" material="stained clay"/>
-        <item slot="5" amount="8" damage="11" material="stained glass"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <item slot="4" amount="32" damage="14" material="stained clay"/>
-        <item slot="5" amount="8" damage="14" material="stained glass"/>
     </kit>
     <kit id="flag-pickup">
         <effect>slowness</effect>
@@ -55,12 +62,12 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="red-team" kit="red-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="-135">
             <cuboid min="16,13,154" max="19,14,151"/>
         </region>
     </spawn>
-    <spawn team="blue-team" kit="blue-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="45">
             <cuboid min="112,13,58" max="109,14,61"/>
         </region>
@@ -111,12 +118,16 @@
         <union id="red-net">
             <cylinder base="35.5,4,135.5" radius="2.5" height="4"/>
             <cylinder base="34.5,4,134.5" radius="2.5" height="4"/>
-            <cylinder base="17.5,13,152.5" radius="2" height="4"/>
+            <unless variant="5v5">
+                <cylinder base="17.5,13,152.5" radius="2" height="4"/>
+            </unless>
         </union>
         <union id="blue-net">
             <cylinder base="92.5,4,76.5" radius="2.5" height="4"/>
             <cylinder base="93.5,4,77.5" radius="2.5" height="4"/>
-            <cylinder base="110.5,13,59.5" radius="2" height="4"/>
+            <unless variant="5v5">
+                <cylinder base="110.5,13,59.5" radius="2" height="4"/>
+            </unless>
         </union>
     </union>
     <union id="spawns">
@@ -209,29 +220,12 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
+        <item amount="8" team-color="true" material="stained clay"/>
+        <item amount="4" team-color="true" material="stained glass"/>
         <item amount="5" material="arrow"/>
     </kill-reward>
-    <kill-reward>
-        <filter>
-            <all>
-                <team>red-team</team>
-            </all>
-        </filter>
-        <item amount="8" damage="14" material="stained clay"/>
-        <item amount="4" damage="14" material="stained glass"/>
-    </kill-reward>
-    <kill-reward>
-        <filter>
-            <all>
-                <team>blue-team</team>
-            </all>
-        </filter>
-        <item amount="8" damage="11" material="stained clay"/>
-        <item amount="4" damage="11" material="stained glass"/>
-    </kill-reward>
 </kill-rewards>
-<respawn delay="3.14s"/>
+<respawn delay="${respawn-timer}"/>
 <maxbuildheight>22</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
