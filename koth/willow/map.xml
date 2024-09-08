@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Willow</name>
-<version>1.1.8</version>
+<version>1.1.9</version>
 <variant id="5v5">5v5</variant>
 <constant id="respawn-timer">3s</constant>
 <constant id="damage-resistance">2s</constant>
@@ -62,18 +62,14 @@
             <block>-19,17,110</block>
         </union>
     </regions>
-    <filters>
-        <match-started id="match-started"/>
-    </filters>
     <actions>
-        <trigger scope="match" filter="not(match-started)">
+        <trigger scope="match" filter="always">
             <action>
                 <fill region="spawners" material="stained glass:15"/>
             </action>
         </trigger>
     </actions>
     <spawners>
-        <!-- todo: investigate weird particle colours -->
         <spawner id="blue-regen" delay="2s">
             <potion duration="4s" amplifier="2">
                 <effect>regeneration</effect>
