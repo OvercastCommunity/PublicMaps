@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Boletum</name>
 <slug>boletum_remix</slug>
-<version>1.2</version>
+<version>1.2.1</version>
 <variant id="classic" world="classic" slug="boletum">Classic</variant>
 <include id="gapple-kill-reward"/>
 <objective>Leak the enemy's obsidian core and defend your own.</objective>
@@ -47,17 +47,17 @@
 <spawns>
     <default>
         <region yaw="180">
-            <point>-103.5,51.5,-7.5</point>
+            <point>-103.5,51,-7.5</point>
         </region>
     </default>
     <spawn team="green" kit="spawn-kit">
         <region yaw="-90">
-            <point>-232.5,18.5,-7.5</point>
+            <point>-232.5,18,-7.5</point>
         </region>
     </spawn>
     <spawn team="orange" kit="spawn-kit">
         <region yaw="90">
-            <point>23.5,18.5,-7.5</point>
+            <point>23.5,18,-7.5</point>
         </region>
     </spawn>
 </spawns>
