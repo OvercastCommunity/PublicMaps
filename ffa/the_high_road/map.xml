@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>The High Road</name>
 <variant id="cummins" world="cummins" override="true">Cummins Turbo Diesel</variant>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Get the most kills in 8 minutes!</objective>
 <time result="score">8m</time>
 <unless variant="cummins">
@@ -161,7 +161,9 @@
         </filter>
     </kill-reward>
 </kill-rewards>
-<timelock>off</timelock>
+<if variant="default">
+    <timelock>off</timelock>
+</if>
 <hunger>
     <depletion>off</depletion>
 </hunger>
