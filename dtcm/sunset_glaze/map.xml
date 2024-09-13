@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Sunset Glaze</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
+<include id="gapple-kill-reward"/>
 <objective>Leak the enemy's gold core!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
@@ -27,8 +28,7 @@
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" color="4C4C4C" material="leather leggings"/>
         <boots unbreakable="true" material="iron boots"/>
-        <effect duration="3" amplifier="255">regeneration</effect>
-        <effect duration="4" amplifier="255">damage resistance</effect>
+        <effect duration="4s" amplifier="255">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -117,11 +117,12 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" damage="1" material="wood"/>
-    <item amount="4" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" damage="1" material="wood"/>
+        <item amount="4" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>18</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
