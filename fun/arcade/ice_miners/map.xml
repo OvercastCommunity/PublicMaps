@@ -2,14 +2,14 @@
 <name>Ice Miners</name>
 <objective>Collect all the gold you can as you make your way down the tunnel!</objective>
 <gamemode>arcade</gamemode>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
 </authors>
 <broadcasts>
     <tip after="1m" every="30s">The scorebox is at the bottom of the map!</tip>
 </broadcasts>
-<players max="8" min="4" max-overfill="8" show-name-tags="false"/>
+<players max="8" max-overfill="8" show-name-tags="false"/>
 <timelock>on</timelock>
 <time>3m</time>
 <spawns>
