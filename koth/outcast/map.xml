@@ -1,29 +1,27 @@
 <map proto="1.4.2">
 <name>OutCast</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <variant id="5v5">5v5</variant>
+<constant id="damage-resistance">4s</constant>
 <unless variant="default">
-    <include id="conquest-comp"/>
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
     <constant id="respawn-timer">4s</constant>
+    <include id="conquest-comp"/>
 </unless>
 <if variant="default">
-    <include id="conquest"/>
+    <constant id="team-size">8</constant>
+    <constant id="max-overfill" delete="true"/>
     <constant id="respawn-timer">3s</constant>
+    <include id="conquest"/>
 </if>
-<constant id="damage-resistance">4s</constant>
 <objective>Be the first team to reach 750 points!</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
 <teams>
-    <unless variant="default">
-        <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
-        <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
-    </unless>
-    <if variant="default">
-        <team id="blue" color="blue" max="8">Blue</team>
-        <team id="red" color="dark red" max="8">Red</team>
-    </if>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <spawns>
     <default>
