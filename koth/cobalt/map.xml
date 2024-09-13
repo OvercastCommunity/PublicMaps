@@ -1,21 +1,33 @@
 <map proto="1.4.2">
 <name>Cobalt</name>
-<version>3.0</version>
+<version>3.0.1</version>
 <variant id="5v5">5v5</variant>
-<include id="conquest-comp"/>
-<if variant="default">
+<variant id="7v7">7v7</variant>
+<constant id="damage-resistance">4s</constant>
+<if variant="7v7">
     <constant id="score">2500</constant>
     <constant id="respawn-timer">5s</constant>
     <constant id="points-per-second">3</constant>
     <constant id="team-size">7</constant>
+    <constant id="max-overfill">7</constant>
 </if>
-<if variant="5v5">
+<unless variant="7v7">
     <constant id="score">750</constant>
     <constant id="respawn-timer">3s</constant>
     <constant id="points-per-second">1</constant>
+</unless>
+<if variant="5v5">
     <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
 </if>
-<constant id="damage-resistance">4s</constant>
+<unless variant="5v5,7v7">
+    <constant id="team-size">12</constant>
+    <constant id="max-overfill" delete="true"/>
+    <include id="conquest"/>
+</unless>
+<if variant="5v5,7v7">
+    <include id="conquest-comp"/>
+</if>
 <objective>Reach ${score} points before the opposing team!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
@@ -25,8 +37,8 @@
     <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="v3.0 update"/> <!-- Strangey -->
 </contributors>
 <teams> <!-- This is the colorblind blue vs red edit -->
-    <team id="blue" color="blue" max="${team-size}" max-overfill="${team-size}">Blue</team>
-    <team id="red" color="dark red" max="${team-size}" max-overfill="${team-size}">Red</team>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">
