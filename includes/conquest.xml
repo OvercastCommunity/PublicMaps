@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <!-- Base conquest kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.08.11-1 -->
+<!-- Version 2024.09.12-1 -->
 <include id="gapple-kill-reward"/>
 <constant id="override-itemkeep" fallback="true">false</constant>
 <kits>
@@ -32,14 +32,14 @@
     <item>iron boots</item>
     <item>banner</item>
 </itemremove>
-<itemkeep>
-    <unless constant="override-itemkeep" constant-value="true">
+<unless constant="override-itemkeep" constant-value="true">
+    <itemkeep>
         <item>stone sword</item>
         <item>bow</item>
         <item>golden apple</item>
         <item>arrow</item>
-    </unless>
-</itemkeep>
+    </itemkeep>
+</unless>
 <kill-rewards>
     <kill-reward>
         <item amount="6" material="arrow"/>
