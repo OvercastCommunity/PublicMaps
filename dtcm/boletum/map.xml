@@ -1,7 +1,9 @@
 <map proto="1.4.2">
 <name>Boletum</name>
-<slug>boletum_remix</slug>
-<version>1.2.1</version>
+<unless variant="classic">
+    <slug>boletum_remix</slug>
+</unless>
+<version>1.2.2</version>
 <variant id="classic" world="classic" slug="boletum">Classic</variant>
 <include id="gapple-kill-reward"/>
 <objective>Leak the enemy's obsidian core and defend your own.</objective>
