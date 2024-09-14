@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Athirk</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
@@ -70,14 +70,15 @@
     </deny>
 </filters>
 <regions>
-    <negative id="not-spawns">
+    <complement id="not-spawns">
+        <everywhere/>
         <union id="spawns">
             <rectangle min="254,-90" max="274,-64"/>
             <rectangle min="288,-66" max="274,-88"/>
             <rectangle min="515,-64" max="495,-91"/>
             <rectangle min="481,-88" max="495,-66"/>
         </union>
-    </negative>
+    </complement>
     <complement id="void-regions">
         <everywhere/>
         <rectangle min="412,-129" max="357,-26"/>
