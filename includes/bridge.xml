@@ -29,7 +29,7 @@
     <constant id="team-two-spawn">0.5,0,0.5</constant>
     <constant id="team-two-yaw">90</constant>
     <constant id="team-two-pitch">0</constant>
-    <if max-server-version="1.8">
+    <if max-server-version="1.8.8">
         <constant id="item-pickup-sound">random.pop</constant>
         <constant id="objective-good-sound">portal.travel</constant>
         <constant id="objective-bad-sound">mob.blaze.death</constant>
