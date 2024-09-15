@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.08.10-1 -->
+<!-- Version 2024.09.15-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants fallback="true">
@@ -68,7 +68,7 @@
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <effect amplifier="255">resistance</effect>
     </kit>
-    <kit id="wool-kit">
+    <kit id="wool-kit" force="true">
         <item amount="32" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly with higher ping -->
     </kit>
     <give kit="wool-kit" filter="give-blocks"/>
