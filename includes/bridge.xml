@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.09.01-1 -->
+<!-- Version 2024.09.15-1 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -29,6 +29,20 @@
     <constant id="team-two-spawn">0.5,0,0.5</constant>
     <constant id="team-two-yaw">90</constant>
     <constant id="team-two-pitch">0</constant>
+    <if max-server-version="1.8">
+        <constant id="item-pickup-sound">random.pop</constant>
+        <constant id="objective-good-sound">portal.travel</constant>
+        <constant id="objective-bad-sound">mob.blaze.death</constant>
+        <constant id="round-start-sound">note.pling</constant>
+        <constant id="firework-twinkle-sound">fireworks.twinkle</constant>
+    </if>
+    <if min-server-version="1.13">
+        <constant id="item-pickup-sound">entity.item.pickup</constant>
+        <constant id="objective-good-sound">block.portal.travel</constant>
+        <constant id="objective-bad-sound">entity.blaze.death</constant>
+        <constant id="round-start-sound">block.note_block.pling</constant>
+        <constant id="firework-twinkle-sound">entity.firework_rocket.twinkle</constant>
+    </if>
 </constants>
 <broadcasts>
     <alert after="10m" filter="overtime-disabled">`7If neither team has won by then, the match will end in `c`l5 minutes`7!</alert>
@@ -352,7 +366,7 @@
     <action id="give-arrow" scope="player">
         <kit id="arrow-kit"/>
         <message text=" `e⚠ `aYou got an arrow!"/>
-        <sound key="random.pop" pitch="0.8"/>
+        <sound key="${item-pickup-sound}" pitch="0.8"/>
     </action>
     <action id="arrow-action" scope="player" filter="arrow_check=1">
         <kit id="arrow-kit"/>
@@ -407,7 +421,7 @@
         <action id="message-score-display-team-two"/>
         <message text="`5# # # # # # # # # # # # # # # #"/>
         <action id="goal-title"/>
-        <sound key="portal.travel" volume="0.2" pitch="2"/> <!-- OBJECTIVE_GOOD with lower volume -->
+        <sound key="${objective-good-sound}" volume="0.2" pitch="2"/> <!-- OBJECTIVE_GOOD with lower volume -->
     </action>
     <action id="message-enemy-scored" scope="player">
         <message text="`5# # # # # # # # # # # # # # # #"/>
@@ -417,7 +431,7 @@
         <action id="message-score-display-team-two"/>
         <message text="`5# # # # # # # # # # # # # # # #"/>
         <action id="goal-title"/>
-        <sound key="mob.blaze.death" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
+        <sound key="${objective-bad-sound}" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
     </action>
     <action filter="only-team-one" id="message-score-display-team-one" scope="player">
         <message text="`5# #            `f{one-score}`6 `l－`r `f{two-score}`5            # #">
@@ -440,7 +454,7 @@
     </action>
     <action id="go-message" scope="match" filter="pre_round=1">
         <message title="`aGo!" fade-in="0.1" stay="0.5" fade-out="0.1"/>
-        <sound key="note.pling" volume="1" pitch="1.59"/> <!-- Used as SOUND_MATCH_START in PGM -->
+        <sound key="${round-start-sound}" volume="1" pitch="1.59"/> <!-- Used as SOUND_MATCH_START in PGM -->
     </action>
     <action id="message-reset-scoring-team" scope="match">
         <set var="scoring_team" value="0"/>
@@ -456,7 +470,7 @@
             </replacements>
         </message>
         <message text="`5# # # # # # # # # # # #"/>
-        <sound key="fireworks.twinkle"/>
+        <sound key="${firework-twinkle-sound}"/>
     </action>
     <trigger filter="team-one-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
