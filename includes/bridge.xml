@@ -36,7 +36,7 @@
         <constant id="round-start-sound">note.pling</constant>
         <constant id="firework-twinkle-sound">fireworks.twinkle</constant>
     </if>
-    <if min-server-version="1.13">
+    <if min-server-version="1.21">
         <constant id="item-pickup-sound">entity.item.pickup</constant>
         <constant id="objective-good-sound">block.portal.travel</constant>
         <constant id="objective-bad-sound">entity.blaze.death</constant>
