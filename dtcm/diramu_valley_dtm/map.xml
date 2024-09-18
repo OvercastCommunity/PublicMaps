@@ -1,8 +1,8 @@
 <map proto="1.4.2">
 <name>Diramu Valley DTM</name>
-<variant id="christmas" world="christmas" override="true">Danagal Valley DTM</variant>
 <version>1.1.2</version>
-<gamemode>dtm</gamemode>
+<include id="gapple-kill-reward"/>
+<variant id="christmas" world="christmas" override="true">Danagal Valley DTM</variant>
 <objective>Destroy both of the opposing monuments to win!</objective>
 <created>2018-01-29</created>
 <authors>
@@ -140,9 +140,4 @@
         <tool>stone spade</tool>
     </if>
 </toolrepair>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 </map>
