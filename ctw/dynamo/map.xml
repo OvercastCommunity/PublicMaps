@@ -1,7 +1,8 @@
 <map proto="1.4.2">
 <name>Dynamo</name>
+<version>1.6.1</version>
+<include id="gapple-kill-reward"/>
 <variant id="halloween" world="halloween" override="true">DynaboOo</variant>
-<version>1.6.0</version>
 <objective>Grab the wool from the enemy's wool room and place it on your victory monument.</objective>
 <authors>
     <author uuid="6968cbde-c2b7-479c-a8da-f33f109f013b" contribution="Map design and XML"/> <!-- Brottweiler -->
@@ -178,7 +179,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="12" material="smooth brick"/>
         <item amount="6" damage="1" material="wood"/>
     </kill-reward>
