@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Arctic Ruins</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
+<include id="gapple-kill-reward"/>
 <objective>Destroy the opposing team's monument!</objective>
 <time result="objectives">20m</time>
 <authors>
@@ -144,7 +145,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="12" damage="1" material="wood"/>
         <item amount="6" material="glass"/>
         <item amount="8" material="arrow"/>
