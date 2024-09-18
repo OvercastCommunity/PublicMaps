@@ -7,13 +7,14 @@
 <!-- ╚═══════╝ -->
 <!-- Bridge Swap gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.09.16-1 -->
+<!-- Version 2024.09.18-1 -->
 <include id="bridge"/>
 <game>Bridge Swap</game>
 <constants fallback="true">
     <constant id="team-one-block">wool:14</constant>
     <constant id="team-two-block">wool:11</constant>
-    <!-- Bridge include -->
+</constants>
+<constants> <!-- Bridge include - No fallback here -->
     <constant id="score-limit">4</constant>
     <constant id="show-tutorial">0</constant>
 </constants>
@@ -43,7 +44,7 @@
 </kits>
 <filters>
     <!-- <all id="team-one-controlling-point"/> -->
-    <!-- <all id="team-two-controlling-point"/> -->
+    <!-- <all id="team-two-controlling-point"/>  -->
     <all id="team-one-own-point">
         <filter id="team-one-controlling-point"/>
         <filter id="only-team-one"/>
