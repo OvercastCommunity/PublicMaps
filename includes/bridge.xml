@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.09.21-1 -->
+<!-- Version 2024.09.21-2 -->
 <gamemode>bridge</gamemode>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -19,7 +19,7 @@
     <constant id="overtime-default">0</constant>
     <!-- Misc. -->
     <constant id="main-kit">spawn-kit</constant> <!-- If using a custom name, requires a clear-[your kit name] action - can throw an error, but the map will still load -->
-    <constant id="default-armor">1</constant>
+    <constant id="armor-kit">default-armor-kit</constant>
     <constant id="max-health">20</constant>
     <constant id="show-tutorial">1</constant>
     <constant id="natural-regeneration">false</constant>
@@ -67,7 +67,7 @@
         <max-health>${max-health}</max-health>
         <health>${max-health}</health>
     </kit>
-    <kit id="armor-kit">
+    <kit id="default-armor-kit">
         <chestplate material="leather chestplate" team-color="true" unbreakable="true" locked="true"/>
         <leggings material="leather leggings" team-color="true" unbreakable="true" locked="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true" locked="true"/>
@@ -134,7 +134,7 @@
     <give kit="map-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
-    <give kit="armor-kit" filter="all(not-on-buytime-after,default_armor=1)"/>
+    <give kit="${armor-kit}" filter="not-on-buytime-after"/>
     <give kit="remove-effects-kit" filter="not-on-buytime"/>
 </kits>
 <filters>
@@ -304,7 +304,6 @@
     <variable id="pre_round" scope="match" default="${pre-round-enabled}"/>
     <variable id="arrow_check" scope="match" default="${arrow-check-enabled}"/>
     <variable id="show_tutorial" scope="match" default="${show-tutorial}"/>
-    <variable id="default_armor" scope="match" default="${default-armor}"/>
 </variables>
 <actions>
     <action id="increment-round" scope="player">
