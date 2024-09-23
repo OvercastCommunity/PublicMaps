@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-08-24 -->
+<!-- Version 2024-09-23 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -29,9 +29,10 @@
         <item slot="8" material="tnt" locked="true"/>
         <effect amplifier="10">damage resistance</effect>
         <effect amplifier="2">speed</effect>
-        <action filter="round=5..">
+        <action filter="round_deathmatch=1..">
             <kit force="true">
                 <effect amplifier="3">speed</effect>
+                <walk-speed>1.1</walk-speed>
             </kit>
         </action>
         <game-mode>adventure</game-mode>
@@ -55,15 +56,17 @@
     </kit>
     <kit id="hider-kit">
         <effect>speed</effect>
-        <action filter="round=5..">
+        <action filter="round_deathmatch=1..">
             <kit force="true">
                 <effect amplifier="2">speed</effect>
+                <walk-speed>1</walk-speed>
             </kit>
         </action>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="clear-kit">
         <clear effects="true"/>
+        <walk-speed>1</walk-speed>
     </kit>
 </kits>
 <compass show-distance="true">
@@ -99,7 +102,7 @@
     <any id="start-tnt-fuse">
         <after duration="40s" filter="round-lg-begin"/>
         <after duration="20s" filter="round-md-begin"/>
-        <after duration="10s" filter="round-sm-begin"/>
+        <after duration="12s" filter="round-sm-begin"/>
     </any>
     <attacker id="attacker-is-tnt">
         <variable id="is-tnt" var="is_tnt">1</variable>
@@ -223,11 +226,17 @@
             <set var="round" value="round+1"/>
             <set var="round_state" value="2"/>
             <action id="pick-next-tnt"/>
-            <action filter="players=..8">
-                <set var="round_deathmatch" value="round_deathmatch+1"/>
-            </action>
             <action id="distribute-kits"/>
             <action id="round-begin-message"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(match-running, round_deathmatch=1)">
+        <action>
+            <message text=" "/>
+            <message text="`d» `lDeathmatch will begin next round!"/>
+            <message text="`e» Players will be teleported to the arena center each round of deathmatch."/>
+            <message text=" "/>
+            <sound preset="OBJECTIVE_GOOD"/>
         </action>
     </trigger>
     <trigger scope="match" filter="all(match-running, round-end)">
@@ -237,6 +246,9 @@
                 <kit id="tnt-kill"/>
             </switch-scope>
             <sound key="random.explode"/>
+            <action filter="players=..8">
+                <set var="round_deathmatch" value="round_deathmatch+1"/>
+            </action>
         </action>
     </trigger>
     <trigger scope="match" filter="start-tnt-fuse">
