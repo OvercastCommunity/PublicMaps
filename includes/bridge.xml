@@ -2,11 +2,12 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.09.21-2 -->
-<gamemode>bridge</gamemode>
+<!-- Version 2024.09.23-1 -->
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
+    <!-- Gamemode -->
+    <constant id="gamemode">bridge</constant>
     <!-- Map -->
     <constant id="map-origin">0.5,0,0.5</constant>
     <constant id="void-plane">-5</constant>
@@ -609,6 +610,7 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
+<gamemode>${gamemode}</gamemode>
 <!-- can't use consumable nor prevent-sharing on item-mods at the moment -->
 <!-- <item-mods>
     <rule>
