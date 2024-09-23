@@ -1,0 +1,69 @@
+<map proto="1.4.2">
+<!-- [#####|#####] -->
+<!-- Flag Football (Overcast) gamemode include file -->
+<!-- Created by zzuf, include-ified by mameBT -->
+<!-- Version 2024.09.23-1 -->
+<constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
+    <!-- Gamemode -->
+    <constant id="gamemode">ffb</constant>
+    <!-- Map -->
+    <constant id="map-origin">0.5,0,0.5</constant>
+    <constant id="void-plane">-64</constant>
+    <!-- Match -->
+    <constant id="score-limit">3</constant>
+    <constant id="mercy-limit">-1</constant>
+    <constant id="pre-round-enabled">0</constant>
+    <constant id="pre-round-time">0.05s</constant>
+    <constant id="arrow-check-enabled">0</constant>
+    <constant id="overtime-default">1</constant>
+    <!-- Misc. -->
+    <constant id="main-kit">ffb-kit</constant> <!-- If using a custom name, requires a clear-[your kit name] action - can throw an error, but the map will still load -->
+    <constant id="armor-kit">default-armor-kit</constant>
+    <constant id="max-health">20</constant>
+    <constant id="show-tutorial">0</constant>
+    <constant id="natural-regeneration">true</constant>
+    <!-- Teams (placeholders) -->
+    <constant id="team-one-spawn">0.5,0,0.5</constant>
+    <constant id="team-one-yaw">-90</constant>
+    <constant id="team-one-pitch">0</constant>
+    <constant id="team-two-spawn">0.5,0,0.5</constant>
+    <constant id="team-two-yaw">90</constant>
+    <constant id="team-two-pitch">0</constant>
+</constants>
+<include id="bridge"/> <!-- Temporary(?) hard dependency on Overcast's Bridge include -->
+<kits>
+    <kit id="ffb-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" amount="4" material="leaves" name="`6Body Block"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment>projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+    </kit>
+</kits>
+<actions>
+    <action id="clear-ffb-kit" scope="player">
+        <replace-item ignore-metadata="true">
+            <find material="stone sword"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item>
+            <find material="bow" unbreakable="true"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="leaves"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="arrow"/>
+            <replace material="air"/>
+        </replace-item>
+    </action>
+</actions>
+</map>
