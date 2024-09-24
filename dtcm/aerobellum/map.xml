@@ -1,8 +1,9 @@
 <map proto="1.4.2">
 <name>Aerobellum</name>
-<variant id="classic" world="classic">Classic</variant>
 <version>1.2.7</version>
+<variant id="classic" world="classic">Classic</variant>
 <objective>Leak lava from the enemy team's engine to win the match!</objective>
+<include id="gapple-kill-reward"/>
 <maxbuildheight>50</maxbuildheight>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
@@ -70,6 +71,7 @@
         <knockback-reduction>1</knockback-reduction>
     </kit>
     <kit id="spawn-kit">
+        <clear/>
         <unless variant="classic">
             <item slot="0" unbreakable="true" material="iron sword"/>
             <item slot="1" enchantment="arrow_infinite:1" unbreakable="true" material="bow"/>
@@ -80,7 +82,6 @@
             <item slot="31" damage="1" amount="64" material="wood"/>
             <item slot="22" damage="1" amount="64" material="wood"/>
             <item slot="13" damage="1" amount="64" material="wood"/>
-            <item slot="8" amount="64" material="grilled pork"/>
         </unless>
         <if variant="classic">
             <item slot="0" material="iron sword"/>
@@ -89,11 +90,11 @@
             <item slot="2" material="diamond pickaxe"/>
             <item slot="3" material="iron axe"/>
             <item slot="4" damage="1" amount="64" material="log"/>
-            <item slot="8" amount="32" material="grilled pork"/>
         </if>
         <item slot="5" amount="64" material="ladder"/>
         <item slot="6" material="water bucket"/>
         <item slot="7" lore="More tnt can be found in your ship!" amount="32" material="tnt"/>
+        <item slot="8" material="golden apple"/>
         <helmet team-color="true" material="leather helmet"/>
         <chestplate enchantment="protection explosions:4" material="chainmail chestplate"/>
         <leggings team-color="true" material="leather leggings"/>
@@ -179,7 +180,6 @@
     <item>obsidian</item>
     <item>log</item>
     <item>wood</item>
-    <item>grilled pork</item>
     <item>ladder</item>
     <item>iron barding</item>
     <item>flower pot item</item>
@@ -227,4 +227,10 @@
         <doFireTick>false</doFireTick>
     </gamerules>
 </unless>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
