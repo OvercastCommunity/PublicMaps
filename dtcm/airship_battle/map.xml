@@ -1,7 +1,7 @@
 <map proto="1.4.2">
 <name>Airship Battle</name>
+<version>1.3.2</version>
 <variant id="christmas" world="christmas">Christmas</variant>
-<version>1.3.1</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <unless variant="christmas">
     <created>2011-12-05</created>
@@ -11,6 +11,7 @@
     <created>2022-12-08</created>
     <constant id="wood-damage">1</constant>
 </if>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="30e27366-0b14-4076-8f55-0819ece49ce3"/> <!-- Dewtroid -->
 </authors>
@@ -99,7 +100,6 @@
 </crafting>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="${wood-damage}" material="wood"/>
         <item amount="16" material="arrow"/>
     </kill-reward>
@@ -147,7 +147,7 @@
         </regions>
     </default>
 </spawns>
-<cores material="obsidian" leak="10">
+<cores material="obsidian" leak="10" mode-changes="true">
     <core team="blue-team">
         <region>
             <cuboid min="13,85,23" max="18,92,30"/>
@@ -159,6 +159,10 @@
         </region>
     </core>
 </cores>
+<modes>
+    <mode after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode after="20m" material="glass" name="`fGLASS CORE MODE"/>
+</modes>
 <maxbuildheight>125</maxbuildheight>
 <if variant="christmas">
     <gamerules>
