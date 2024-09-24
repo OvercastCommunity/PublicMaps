@@ -1,11 +1,10 @@
 <map proto="1.4.2">
 <name>Mushdoom</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Destroy the opposing team's monument and leak their core!</objective>
 <created>2019-02-12</created>
 <edition>standard</edition>
-<gamemode>dtc</gamemode>
-<gamemode>dtm</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b"/> <!-- _3Each -->
 </authors>
@@ -29,6 +28,7 @@
         <item slot="30" unbreakable="true" material="diamond spade"/>
         <item slot="4" amount="64" damage="1" material="wood"/>
         <item slot="31" amount="64" damage="1" material="wood"/>
+        <item slot="5" amount="64" team-color="true" material="stained glass"/>
         <item slot="6" amount="32" material="ladder"/>
         <item slot="7" material="water bucket"/>
         <item slot="8" material="golden apple"/>
@@ -40,12 +40,6 @@
         <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect duration="5s" amplifier="255">damage resistance</effect>
     </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <item slot="5" amount="64" damage="11" material="stained glass"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <item slot="5" amount="64" damage="14" material="stained glass"/>
-    </kit>
 </kits>
 <spawns>
     <default>
@@ -53,12 +47,12 @@
             <point>99.5,43,223</point>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue" kit="spawn-kit">
         <region yaw="0">
             <point>36.5,8,158.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <region yaw="180">
             <point>36.5,8,286.5</point>
         </region>
@@ -164,20 +158,14 @@
     <item>wood</item>
     <item>stained glass</item>
     <item>ladder</item>
-    <item>water bucket</item>
     <item>bucket</item>
+    <item>water bucket</item>
     <item>golden apple</item>
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="1" material="wood"/>
-    </kill-reward>
-    <kill-reward filter="only-blue">
-        <item amount="16" damage="11" material="stained glass"/>
-    </kill-reward>
-    <kill-reward filter="only-red">
-        <item amount="16" damage="14" material="stained glass"/>
+        <item amount="16" team-color="true" material="stained glass"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>36</maxbuildheight>
