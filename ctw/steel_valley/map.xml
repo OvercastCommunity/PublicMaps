@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Steel Valley</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <variant id="comp">TE</variant>
 <include id="gapple-kill-reward"/>
 <unless variant="comp">
@@ -238,15 +238,18 @@
     <item>leather boots</item>
     <item>string</item>
     <item>sapling</item>
-    <item>31</item>
-    <item>37</item>
-    <item>38</item>
-    <item>338</item>
+    <item>long grass</item>
+    <item>yellow flower</item>
+    <item>red flower</item>
+    <item>sugar cane</item>
     <item>apple</item>
     <item>flint</item>
     <item>redstone</item>
     <item>redstone torch on</item>
     <item>seeds</item>
+    <unless variant="comp">
+        <item>boat</item>
+    </unless>
 </itemremove>
 <block-drops>
     <rule>
