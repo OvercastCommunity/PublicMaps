@@ -1,0 +1,121 @@
+<map proto="1.4.2">
+<name>Factori</name>
+<version>1.4.0</version>
+<include id="conquest"/>
+<variant id="domination">Domination</variant>
+<constant id="respawn-timer">3s</constant>
+<constant id="damage-resistance">3s</constant>
+<unless variant="domination">
+    <constant id="points-per-second">1</constant>
+    <constant id="score">750</constant>
+    <objective>Be the first team to reach 750 points!</objective>
+</unless>
+<if variant="domination">
+    <constant id="points-per-second">0</constant>
+    <constant id="score">400</constant>
+    <objective>Be the first team to reach 400 points!</objective>
+</if>
+<authors>
+    <author uuid="0b8f95fa-0f40-4f28-9fd0-b8e243bb6800"/> <!-- Fouled -->
+    <author uuid="53f0b566-4ae5-48d7-ac86-5a6f7a38bd3a"/> <!-- Xuph -->
+</authors>
+<contributors>
+    <contributor uuid="3a64dcf4-5d71-4664-80bf-4e5c54e41b86" contribution="Replicated latest update"/> <!-- Zaquez -->
+    <contributor uuid="2910d3c7-41b7-44f4-b0d3-ad055f5fcd2a" contribution="Replicated latest update"/> <!-- Sharkskill -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="8">Blue</team>
+    <team id="red" color="dark red" max="8">Red</team>
+</teams>
+<spawns>
+    <default>
+        <region yaw="180">
+            <point>-43.5,29,6.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="base-kit">
+        <region yaw="0">
+            <point>-11.5,9.5,-59.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="base-kit">
+        <region yaw="180">
+            <point>-75.5,9.5,-3.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <apply block="never"/>
+    <material id="only-wool">wool</material>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="${points-per-second}" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false" visual-materials="only-wool">
+        <hill name="Hill A" id="Hill A">
+            <capture>
+                <cuboid min="-57,10,-54" max="-52,12,-49"/>
+            </capture>
+            <progress>
+                <cylinder base="-54.5,9,-51.5" radius="3" height="1"/>
+            </progress>
+            <captured>
+                <cuboid min="-52,29,-52" max="-57,23,-51"/>
+            </captured>
+        </hill>
+        <hill name="Middle" id="Middle">
+            <capture>
+                <cuboid min="-47,5,-35" max="-40,8,-28"/>
+            </capture>
+            <progress>
+                <cuboid min="-47,5,-35" max="-40,8,-28"/>
+            </progress>
+            <captured>
+                <cuboid min="-50,3,-25" max="-37,13,-38"/>
+            </captured>
+        </hill>
+        <hill name="Hill B" id="Hill B">
+            <capture>
+                <cuboid min="-30,10,-9" max="-35,12,-14"/>
+            </capture>
+            <progress>
+                <cylinder base="-32.5,9,-11.5" radius="3" height="1"/>
+            </progress>
+            <captured>
+                <cuboid min="-35,29,-11" max="-30,23,-12"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<if variant="domination">
+    <filters>
+        <any id="gain-1-point-per-second">
+            <all>
+                <captured>Hill A</captured>
+                <any>
+                    <captured>Hill B</captured>
+                    <captured>Middle</captured>
+                </any>
+            </all>
+            <all>
+                <captured>Middle</captured>
+                <captured>Hill B</captured>
+            </all>
+        </any>
+        <all id="gain-2-points-per-second">
+            <objective>Hill A</objective>
+            <objective>Hill B</objective>
+            <objective>Middle</objective>
+        </all>
+    </filters>
+    <control-points neutral-state="true" show-progress="true">
+        <control-point id="first-point" owned-decay-rate="1" required="false" show="false" points="1" name="1 Point" capture-time="0s" capture="everywhere" player-filter="gain-1-point-per-second"/>
+        <control-point id="second-point" owned-decay-rate="1" required="false" show="false" points="1" name="2 Point" capture-time="0s" capture="everywhere" player-filter="gain-2-points-per-second"/>
+    </control-points>
+</if>
+<score>
+    <limit>${score}</limit>
+</score>
+</map>
