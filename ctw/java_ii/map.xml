@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Java II</name>
-<version>1.4.3</version>
+<version>1.4.4</version>
 <variant id="comp">TE</variant>
 <include id="gapple-kill-reward"/>
 <objective>Capture the enemy's two wools!</objective>
@@ -225,10 +225,10 @@
     <item>leather boots</item>
     <item>string</item>
     <item>sapling</item>
-    <item>31</item>
-    <item>37</item>
-    <item>38</item>
-    <item>338</item>
+    <item>long grass</item>
+    <item>yellow flower</item>
+    <item>red flower</item>
+    <item>sugar cane</item>
     <item>apple</item>
     <item>flint</item>
     <item>redstone</item>

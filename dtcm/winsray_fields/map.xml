@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Winsray Fields</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <include id="gapple-kill-reward"/>
 <gamemode>dtc</gamemode>
 <gamemode>dtm</gamemode>
@@ -142,7 +142,7 @@
     <item>leather chestplate</item>
     <item>iron leggings</item>
     <item>leather boots</item>
-    <item>31</item>
+    <item>long grass</item>
     <item>seeds</item>
     <item>sapling</item>
     <item>obsidian</item>
