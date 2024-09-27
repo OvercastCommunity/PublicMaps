@@ -119,8 +119,9 @@
     </hills>
     <if variant="domination,domination_5v5">
         <hills neutral-state="true" show-progress="true" show="false" points="1" capture-time="0s" owned-decay-rate="1" capture="everywhere">
-            <hill name="1 Hill Controlled" player-filter="gain-1-point-per-second"/>
-            <hill name="2 Hills Controlled" player-filter="gain-2-points-per-second"/>
+            <!-- Preferably this would not decay if the team that captured the points is empty -->
+            <hill name="2 Hills Controlled" player-filter="gain-1-point-per-second"/>
+            <hill name="All Hills Controlled" player-filter="gain-2-points-per-second"/>
         </hills>
     </if>
 </king>
