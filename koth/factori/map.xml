@@ -1,20 +1,31 @@
 <map proto="1.4.2">
 <name>Factori</name>
-<version>1.4.0</version>
-<include id="conquest"/>
+<version>1.4</version>
+<variant id="5v5">5v5</variant>
 <variant id="domination">Domination</variant>
-<constant id="respawn-timer">3s</constant>
-<constant id="damage-resistance">3s</constant>
-<unless variant="domination">
-    <constant id="points-per-second">1</constant>
-    <constant id="score">750</constant>
-    <objective>Be the first team to reach 750 points!</objective>
+<variant id="domination_5v5">Domination 5v5</variant>
+<constant id="damage-resistance">4s</constant>
+<unless variant="5v5,domination_5v5">
+    <constant id="team-size">8</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="respawn-timer">3s</constant>
+    <include id="conquest"/>
 </unless>
-<if variant="domination">
-    <constant id="points-per-second">0</constant>
-    <constant id="score">400</constant>
-    <objective>Be the first team to reach 400 points!</objective>
+<if variant="5v5,domination_5v5">
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <constant id="respawn-timer">5s</constant>
+    <include id="conquest-comp"/>
 </if>
+<unless variant="domination,domination_5v5">
+    <constant id="score">750</constant>
+    <constant id="points-per-second">1</constant>
+</unless>
+<if variant="domination,domination_5v5">
+    <constant id="score">400</constant>
+    <constant id="points-per-second">0</constant>
+</if>
+<objective>Be the first team to reach ${score} points!</objective>
 <authors>
     <author uuid="0b8f95fa-0f40-4f28-9fd0-b8e243bb6800"/> <!-- Fouled -->
     <author uuid="53f0b566-4ae5-48d7-ac86-5a6f7a38bd3a"/> <!-- Xuph -->
@@ -24,8 +35,8 @@
     <contributor uuid="2910d3c7-41b7-44f4-b0d3-ad055f5fcd2a" contribution="Replicated latest update"/> <!-- Sharkskill -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="8">Blue</team>
-    <team id="red" color="dark red" max="8">Red</team>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <spawns>
     <default>
@@ -45,16 +56,34 @@
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
+    <material id="only-wool">wool</material>
+    <if variant="domination,domination_5v5">
+        <any id="gain-1-point-per-second">
+            <all>
+                <captured>hill-a</captured>
+                <any>
+                    <captured>hill-b</captured>
+                    <captured>middle</captured>
+                </any>
+            </all>
+            <all>
+                <captured>middle</captured>
+                <captured>hill-b</captured>
+            </all>
+        </any>
+        <all id="gain-2-points-per-second">
+            <objective>hill-a</objective>
+            <objective>hill-b</objective>
+            <objective>middle</objective>
+        </all>
+    </if>
 </filters>
 <regions>
-    <apply block="never"/>
-    <material id="only-wool">wool</material>
+    <apply block="never" use="never"/>
 </regions>
 <king>
     <hills required="false" capture-time="5s" points="${points-per-second}" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false" visual-materials="only-wool">
-        <hill name="Hill A" id="Hill A">
+        <hill name="Hill A" id="hill-a">
             <capture>
                 <cuboid min="-57,10,-54" max="-52,12,-49"/>
             </capture>
@@ -65,7 +94,7 @@
                 <cuboid min="-52,29,-52" max="-57,23,-51"/>
             </captured>
         </hill>
-        <hill name="Middle" id="Middle">
+        <hill name="Middle" id="middle">
             <capture>
                 <cuboid min="-47,5,-35" max="-40,8,-28"/>
             </capture>
@@ -76,7 +105,7 @@
                 <cuboid min="-50,3,-25" max="-37,13,-38"/>
             </captured>
         </hill>
-        <hill name="Hill B" id="Hill B">
+        <hill name="Hill B" id="hill-b">
             <capture>
                 <cuboid min="-30,10,-9" max="-35,12,-14"/>
             </capture>
@@ -88,33 +117,13 @@
             </captured>
         </hill>
     </hills>
+    <if variant="domination,domination_5v5">
+        <hills neutral-state="true" show-progress="true" show="false" points="1" capture-time="0s" owned-decay-rate="1" capture="everywhere">
+            <hill name="1 Hill Controlled" player-filter="gain-1-point-per-second"/>
+            <hill name="2 Hills Controlled" player-filter="gain-2-points-per-second"/>
+        </hills>
+    </if>
 </king>
-<if variant="domination">
-    <filters>
-        <any id="gain-1-point-per-second">
-            <all>
-                <captured>Hill A</captured>
-                <any>
-                    <captured>Hill B</captured>
-                    <captured>Middle</captured>
-                </any>
-            </all>
-            <all>
-                <captured>Middle</captured>
-                <captured>Hill B</captured>
-            </all>
-        </any>
-        <all id="gain-2-points-per-second">
-            <objective>Hill A</objective>
-            <objective>Hill B</objective>
-            <objective>Middle</objective>
-        </all>
-    </filters>
-    <control-points neutral-state="true" show-progress="true">
-        <control-point id="first-point" owned-decay-rate="1" required="false" show="false" points="1" name="1 Point" capture-time="0s" capture="everywhere" player-filter="gain-1-point-per-second"/>
-        <control-point id="second-point" owned-decay-rate="1" required="false" show="false" points="1" name="2 Point" capture-time="0s" capture="everywhere" player-filter="gain-2-points-per-second"/>
-    </control-points>
-</if>
 <score>
     <limit>${score}</limit>
 </score>
