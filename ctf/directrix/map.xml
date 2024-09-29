@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Directrix</name>
 <variant id="halloween" world="halloween" override="true">DirecTricks</variant>
 <variant id="christmas" world="christmas" override="true">DirectriXmas</variant>
@@ -6,10 +6,10 @@
 <variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
 <variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
 <unless variant="king_ranch,king_ranch_og">
-    <version>1.1.6</version>
+    <version>1.1.7</version>
 </unless>
 <if variant="king_ranch,king_ranch_og">
-    <version>2.0.5</version>
+    <version>2.0.6</version>
 </if>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
@@ -346,7 +346,7 @@
         </dynamic>
     </structures>
 </unless>
-<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+<flags flag-proximity-metric="none" net-proximity-metric="closest player">
     <flag id="team-1-flag" name="${team-1-flag-name} Flag" owner="team-1" color="${team-1-flag-color}" pickup-filter="only-team-2">
         <post recover-time="15s" respawn-time="10s" yaw="0">${team-1-flag-base}</post>
     </flag>
