@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Directrix with Gunz</name>
-<version>0.2.2</version>
+<version>0.2.3</version>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
 <phase>staging</phase>
@@ -146,7 +146,7 @@
     <!-- no beacons for you -->
     <apply block="never" use="deny(beacon)"/>
 </regions>
-<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+<flags flag-proximity-metric="none" net-proximity-metric="closest player">
     <flag id="team-1-flag" name="Blue Flag" owner="team-1" color="blue" pickup-filter="only-team-2">
         <post recover-time="15s" respawn-time="10s" yaw="0">-8.5,22,-16.5</post>
     </flag>
