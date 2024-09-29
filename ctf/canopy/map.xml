@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Canopy</name>
+<version>0.2.12</version>
 <variant id="hybrid">Hybrid</variant>
-<version>0.2.11</version>
 <constant id="flag-points">1</constant>
 <if variant="hybrid">
     <constant id="flag-points">150</constant>
@@ -210,7 +210,7 @@
     <portal x="0" y="39" z="-4" region="north-portal-below"/>
     <portal x="0" y="39" z="4" region="south-portal-below"/>
 </portals>
-<flags>
+<flags flag-proximity-metric="none" net-proximity-metric="closest player">
     <flag id="red-flag" name="Red Flag" owner="red" color="red" pickup-filter="only-blue">
         <post>156,38,5</post>
     </flag>
