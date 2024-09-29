@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Lost World CTF</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
 <rage/>
@@ -105,7 +105,7 @@
 <regions>
     <apply block="only-some" use="no-use"/>
 </regions>
-<flags pickup-kit="pickup-kit" drop-kit="drop-kit" flag-proximity-metric="none" net-proximity-metric="none">
+<flags pickup-kit="pickup-kit" drop-kit="drop-kit" flag-proximity-metric="none" net-proximity-metric="closest player">
     <flag id="blue-flag"
           name="Blue Flag"
           owner="blue"
