@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Directrix: 2 Flags</name>
+<version>1.2.2</version>
 <variant id="halloween" world="halloween" override="true">DirecTricks: 2 Flags</variant>
-<version>1.2.1</version>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
 <if variant="default">
@@ -266,7 +266,7 @@
         </trigger>
     </dynamic>
 </structures>
-<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+<flags flag-proximity-metric="none" net-proximity-metric="closest player">
     <flag id="blue-west-flag" name="Chicago" carry-message="Bring the Flag to the net above spawn!" owner="blue" color="${blue-team-flagcolor}" pickup-filter="only-red">
         <post recover-time="25s" respawn-time="10s" yaw="0">-56.5,30,-24.5</post>
     </flag>
