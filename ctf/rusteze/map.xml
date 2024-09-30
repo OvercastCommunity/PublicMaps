@@ -1,68 +1,65 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Rusteze</name>
-<version>1.2</version>
+<version>1.2.1</version>
 <variant id="5v5">5v5</variant>
+<objective>Capture the opponent's flag as many times as possible in 12 minutes!</objective>
+<time result="score" overtime="1m" max-overtime="3m">12m</time>
+<constant id="damage-resistance">4s</constant>
+<constant id="respawn-timer">3s</constant>
 <unless variant="5v5">
-    <include id="ctf"/>
+    <constant id="team-size">10</constant>
+    <constant id="max-overfill" delete="true"/>
+    <include id="conquest"/>
     <score>
         <mercy>5</mercy>
     </score>
 </unless>
 <if variant="5v5">
-    <include id="ctf-comp"/>
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <include id="conquest-comp"/>
+    <score/>
 </if>
-<constants>
-    <constant id="team-1">blue</constant>
-    <constant id="team-1-id">blue-team</constant>
-    <constant id="team-1-name">Blue</constant>
-    <constant id="team-1-flag-color">blue</constant>
-    <constant id="team-2">red</constant>
-    <constant id="team-2-id">red-team</constant>
-    <constant id="team-2-name">Red</constant>
-    <constant id="team-2-flag-color">red</constant>
-    <constant id="respawn-timer">2s</constant>
-    <constant id="damage-resistance">4s</constant>
-    <constant id="flag-recover-time">15s</constant>
-</constants>
-<objective>Capture the opponent's flag as many times as possible in 12 minutes!</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>
 <teams>
-    <unless variant="5v5">
-        <team id="${team-1-id}" color="blue" max="10">${team-1-name}</team>
-        <team id="${team-2-id}" color="dark red" max="10">${team-2-name}</team>
-    </unless>
-    <if variant="5v5">
-        <team id="${team-1-id}" color="blue" max="5" max-overfill="5">${team-1-name}</team>
-        <team id="${team-2-id}" color="dark red" max="5" max-overfill="5">${team-2-name}</team>
-    </if>
+    <team id="blue-team" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red-team" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
+<kits>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0s" amplifier="0">slowness</effect>
+    </kit>
+</kits>
 <spawns>
     <default>
         <region yaw="90">
             <cuboid min="202.5,48,-108.5" max="201.5,48,-112.5"/>
         </region>
     </default>
-    <spawn team="${team-1-id}" kit="base-kit">
-        <region yaw="0">
+    <spawn team="blue-team" kit="base-kit">
+        <region>
             <cuboid min="141.5,52.5,-148.5" max="139.5,52.5,-146.5"/>
         </region>
     </spawn>
-    <spawn team="${team-2-id}" kit="base-kit">
+    <spawn team="red-team" kit="base-kit">
         <region yaw="180">
             <cuboid min="167.5,52.5,-74.5" max="169.5,52.5,-72.5"/>
         </region>
     </spawn>
 </spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
 <regions>
     <union id="flag-nets">
-        <cylinder id="${team-1}-net" base="173.5,11,-145.5" radius="0.5" height="2"/>
-        <cylinder id="${team-2}-net" base="135.5,11,-75.5" radius="0.5" height="2"/>
-    </union>
-    <union id="flag-posts">
-        <block id="${team-1}-post">173,11,-146</block>
-        <block id="${team-2}-post">135,11,-76</block>
+        <cylinder id="blue-net" base="173.5,11,-145.5" radius="0.5" height="2"/>
+        <cylinder id="red-net" base="135.5,11,-75.5" radius="0.5" height="2"/>
     </union>
     <union id="spawner-stuff">
         <union id="gapple-spawner-stuff">
@@ -78,8 +75,30 @@
             <cuboid id="blue-arrow-spawn-activation" min="152.1,8,-127.1" max="156.9,11,-131.9"/>
         </union>
     </union>
-    <apply use="never" block="never"/>
+    <apply block="never" use="never"/>
 </regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue-team"
+          color="blue"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="10s">173.5,11,-145.5</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red-team"
+          color="red"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="10s">135.5,11,-75.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag"/>
+        <net region="red-net" flag="blue-flag"/>
+    </flags>
+</flags>
 <spawners>
     <spawner id="gapple-spawner" spawn-region="gapple-spawn-drop" player-region="gapple-spawn-activation" delay="9s">
         <item material="golden apple"/>
