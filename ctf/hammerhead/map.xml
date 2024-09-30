@@ -1,20 +1,22 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hammerhead</name>
-<version>1.5</version>
-<include id="ctf-comp"/>
-<constants>
-    <constant id="team-1">green</constant>
-    <constant id="team-1-id">green-team</constant>
-    <constant id="team-1-name">Green</constant>
-    <constant id="team-1-flag-color">lime</constant>
-    <constant id="team-2">purple</constant>
-    <constant id="team-2-id">purple-team</constant>
-    <constant id="team-2-name">Purple</constant>
-    <constant id="team-2-flag-color">purple</constant>
-    <constant id="respawn-timer">8s</constant>
-    <constant id="damage-resistance">3s</constant>
-</constants>
+<version>1.5.1</version>
+<variant id="5v5">5v5</variant>
 <objective>Capture the opponent's flag as many times as possible before the timer ends!</objective>
+<time result="score" overtime="1m" max-overtime="3m">12m</time>
+<constant id="damage-resistance">3s</constant>
+<unless variant="5v5">
+    <constant id="team-size">12</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="respawn-timer">4s</constant>
+    <include id="conquest"/>
+</unless>
+<if variant="5v5">
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <constant id="respawn-timer">8s</constant>
+    <include id="conquest-comp"/>
+</if>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>
@@ -22,27 +24,37 @@
     <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </contributors>
 <teams>
-    <team id="${team-1-id}" color="green" max="5" max-overfill="5">${team-1-name}</team>
-    <team id="${team-2-id}" color="dark purple" max="5" max-overfill="5">${team-2-name}</team>
+    <team id="green-team" color="green" max="${max}" max-overfill="${max-overfill}">Purple</team>
+    <team id="purple-team" color="dark purple" max="${max}" max-overfill="${max-overfill}">Purple</team>
 </teams>
+<kits>
+    <kit id="flag-kit" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="reset-kit" force="true">
+        <effect duration="0s" amplifier="0">slowness</effect>
+    </kit>
+</kits>
 <spawns>
     <default>
         <region yaw="45">
             <cuboid min="-108.5,20.25,139.5" max="-109.5,20.25,140.5"/>
         </region>
     </default>
-    <spawn team="${team-1-id}" kit="base-kit">
+    <spawn team="green-team" kit="base-kit">
         <region yaw="0">
             <point>-140.5,11.25,109.5</point>
         </region>
     </spawn>
-    <spawn team="${team-2-id}" kit="base-kit">
+    <spawn team="purple-team" kit="base-kit">
         <region yaw="90">
             <point>-78.5,11.25,171.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
+    <team id="only-green">green-team</team>
+    <team id="only-purple">purple-team</team>
     <after id="open-shark-pit" duration="60s" message="`eShark pit opens in {0}">
         <time>7m</time>
     </after>
@@ -50,16 +62,53 @@
 </filters>
 <regions>
     <union id="flag-nets">
-        <cuboid id="${team-1}-net" min="-153,14,131" max="-152,16,132"/>
-        <cuboid id="${team-2}-net" min="-100,14,184" max="-101,16,183"/>
+        <cuboid id="green-net" min="-153,14,131" max="-152,16,132"/>
+        <cuboid id="purple-net" min="-100,14,184" max="-101,16,183"/>
     </union>
-    <union id="flag-posts">
-        <block id="${team-1}-post">-153,14,131</block>
-        <block id="${team-2}-post">-101,14,183</block>
+    <union id="spawner-stuff">
+        <union id="gapple-spawner-stuff">
+            <cuboid id="gapple-spawn-drop" min="-128.4,12.5,159.4" max="-128.6,12.5,159.6"/>
+            <cuboid id="gapple-spawn-activation" min="-125,11,156" max="-132,14,163"/>
+        </union>
+        <union id="arrow-spawner-stuff">
+            <cuboid id="arrow-spawn-drop" min="-148.4,12.5,179.4" max="-148.6,12.5,179.6"/>
+            <cuboid id="arrow-spawn-activation" min="-151,13,182" max="-146,16,177"/>
+        </union>
     </union>
     <cuboid id="shark-pit" min="-144,8,175" max="-133,9,164"/>
     <apply block="never" use="never"/>
 </regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="green-flag"
+          name="Green Flag"
+          owner="green-team"
+          color="lime"
+          pickup-kit="flag-kit"
+          drop-kit="reset-kit">
+        <post pickup-filter="only-purple" recover-time="12s" respawn-time="10s">-152.5,14,131.5</post>
+    </flag>
+    <flag id="purple-flag"
+          name="Purple Flag"
+          owner="purple-team"
+          color="purple"
+          pickup-kit="flag-kit"
+          drop-kit="reset-kit">
+        <post pickup-filter="only-green" recover-time="12s" respawn-time="10s">-100.5,14,183.5</post>
+    </flag>
+    <flags points="1">
+        <net region="green-net" flag="purple-flag"/>
+        <net region="purple-net" flag="green-flag"/>
+    </flags>
+</flags>
+<score/>
+<spawners>
+    <spawner id="gapple-spawner" spawn-region="gapple-spawn-drop" player-region="gapple-spawn-activation" delay="8s">
+        <item material="golden apple"/>
+    </spawner>
+    <spawner id="arrow-spawner" spawn-region="arrow-spawn-drop" player-region="arrow-spawn-activation" delay="2s">
+        <item material="arrow"/>
+    </spawner>
+</spawners>
 <actions>
     <trigger scope="match" filter="open-shark-pit">
         <action>
@@ -67,24 +116,4 @@
         </action>
     </trigger>
 </actions>
-<spawners>
-    <spawner id="gapple-spawner" delay="8s">
-        <spawn-region>
-            <cuboid min="-128.4,12.5,159.4" max="-128.6,12.5,159.6"/>
-        </spawn-region>
-        <player-region>
-            <cuboid min="-125,11,156" max="-132,14,163"/>
-        </player-region>
-        <item material="golden apple"/>
-    </spawner>
-    <spawner id="arrow-spawner" delay="2s">
-        <spawn-region>
-            <cuboid min="-148.4,12.5,179.4" max="-148.6,12.5,179.6"/>
-        </spawn-region>
-        <player-region>
-            <cuboid min="-151,13,182" max="-146,16,177"/>
-        </player-region>
-        <item material="arrow"/>
-    </spawner>
-</spawners>
 </map>
