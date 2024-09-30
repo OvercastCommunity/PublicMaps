@@ -7,7 +7,7 @@
     <constant id="team-size">8</constant>
     <constant id="max-overfill" delete="true"/>
     <constant id="respawn-timer">3s</constant>
-    <include id="conquest-comp"/>
+    <include id="conquest"/>
     <score>
         <mercy>3</mercy>
     </score>
