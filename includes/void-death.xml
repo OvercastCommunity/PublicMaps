@@ -1,5 +1,5 @@
-<map proto="1.4.2">
-<!-- version 1.0.8 -->
+<map> <!-- minimun proto 1.4.0 -->
+<!-- version 2024.09.30-1 -->
 <constants fallback="true"> <!-- Default values. Each of them be modified by authors on their maps if needed. -->
     <constant id="void-plane">-5</constant> <!-- Y level to apply include effects -->
     <constant id="affect-obs">never</constant> <!-- Will observers also get teleported to their spawn on contact with the region? -->
