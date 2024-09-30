@@ -1,34 +1,48 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Space Race: 1969</name>
-<version>1.1</version>
-<include id="ctf-comp"/>
-<constants>
-    <constant id="team-1">blue</constant>
-    <constant id="team-1-id">blue-team</constant>
-    <constant id="team-1-name">Blue</constant>
-    <constant id="team-1-flag-color">blue</constant>
-    <constant id="team-2">red</constant>
-    <constant id="team-2-id">red-team</constant>
-    <constant id="team-2-name">Red</constant>
-    <constant id="team-2-flag-color">red</constant>
+<version>1.1.1</version>
+<variant id="5v5" override="true">Space Race: 1969 5v5</variant>
+<constant id="damage-resistance">0s</constant>
+<unless variant="5v5">
+    <constant id="team-size">8</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="respawn-timer">3s</constant>
+    <include id="conquest-comp"/>
+    <score>
+        <mercy>3</mercy>
+    </score>
+</unless>
+<if variant="5v5">
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
     <constant id="respawn-timer">5s</constant>
-    <constant id="damage-resistance">0s</constant>
-</constants>
+    <include id="conquest-comp"/>
+    <score/>
+</if>
 <objective>Capture the enemy's flag.</objective>
+<time result="score" overtime="1m" max-overtime="3m">12m</time>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
 </authors>
 <teams>
-    <team id="${team-1-id}" color="blue" max="5" max-overfill="5">${team-1-name}</team>
-    <team id="${team-2-id}" color="dark red" max="5" max-overfill="5">${team-2-name}</team>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
     <kit id="spawn-kit" parents="default-kit,base-kit"/>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0s" amplifier="0">slowness</effect>
+    </kit>
 </kits>
 <filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
     <not id="spawn-1">
         <time>2m</time>
     </not>
@@ -53,86 +67,105 @@
     <all id="spawn-5">
         <time>8m</time>
         <not>
-            <time id="spawn-6">10m</time>
+            <time>10m</time>
         </not>
+    </all>
+    <all id="spawn-6">
+        <time>10m</time>
     </all>
 </filters>
 <spawns>
     <default kit="default-kit">
-        <region yaw="0">
+        <region>
             <point>64.5,18,25.5</point>
         </region>
     </default>
-    <spawn team="${team-1-id}" filter="spawn-1" kit="spawn-kit">
+    <spawn team="blue" filter="spawn-1" kit="spawn-kit">
         <region yaw="90">
             <block>76.5,8,-12.5</block>
         </region>
     </spawn>
-    <spawn team="${team-1-id}" filter="spawn-2" kit="spawn-kit">
+    <spawn team="blue" filter="spawn-2" kit="spawn-kit">
         <region yaw="90">
             <block>76.5,56,-12.5</block>
         </region>
     </spawn>
-    <spawn team="${team-1-id}" filter="spawn-3" kit="spawn-kit">
+    <spawn team="blue" filter="spawn-3" kit="spawn-kit">
         <region yaw="90">
             <block>76.5,96,-12.5</block>
         </region>
     </spawn>
-    <spawn team="${team-1-id}" filter="spawn-4" kit="spawn-kit">
+    <spawn team="blue" filter="spawn-4" kit="spawn-kit">
         <region yaw="90">
             <block>76.5,136,-12.5</block>
         </region>
     </spawn>
-    <spawn team="${team-1-id}" filter="spawn-5" kit="spawn-kit">
+    <spawn team="blue" filter="spawn-5" kit="spawn-kit">
         <region yaw="90">
             <block>76.5,176,-12.5</block>
         </region>
     </spawn>
-    <spawn team="${team-1-id}" filter="spawn-6" kit="spawn-kit">
+    <spawn team="blue" filter="spawn-6" kit="spawn-kit">
         <region yaw="90">
             <block>76.5,216,-12.5</block>
         </region>
     </spawn>
-    <spawn team="${team-2-id}" filter="spawn-1" kit="spawn-kit">
+    <spawn team="red" filter="spawn-1" kit="spawn-kit">
         <region yaw="-90">
             <block>52.5,8,63.5</block>
         </region>
     </spawn>
-    <spawn team="${team-2-id}" filter="spawn-2" kit="spawn-kit">
+    <spawn team="red" filter="spawn-2" kit="spawn-kit">
         <region yaw="-90">
             <block>52.5,56,63.5</block>
         </region>
     </spawn>
-    <spawn team="${team-2-id}" filter="spawn-3" kit="spawn-kit">
+    <spawn team="red" filter="spawn-3" kit="spawn-kit">
         <region yaw="-90">
             <block>52.5,96,63.5</block>
         </region>
     </spawn>
-    <spawn team="${team-2-id}" filter="spawn-4" kit="spawn-kit">
+    <spawn team="red" filter="spawn-4" kit="spawn-kit">
         <region yaw="-90">
             <block>52.5,136,63.5</block>
         </region>
     </spawn>
-    <spawn team="${team-2-id}" filter="spawn-5" kit="spawn-kit">
+    <spawn team="red" filter="spawn-5" kit="spawn-kit">
         <region yaw="-90">
             <block>52.5,176,63.5</block>
         </region>
     </spawn>
-    <spawn team="${team-2-id}" filter="spawn-6" kit="spawn-kit">
+    <spawn team="red" filter="spawn-6" kit="spawn-kit">
         <region yaw="-90">
             <block>52.5,216,63.5</block>
         </region>
     </spawn>
 </spawns>
 <regions>
-    <union id="flag-nets">
-        <cylinder id="${team-1}-net" base="56.5,13,-2.5" radius="0.5" height="2"/>
-        <cylinder id="${team-2}-net" base="72.5,13,53.5" radius="0.5" height="2"/>
-    </union>
-    <union id="flag-posts">
-        <block id="${team-1}-post">56.5,13,-2.5</block>
-        <block id="${team-2}-post">72.5,13,53.5</block>
-    </union>
+    <cylinder id="blue-net" base="56.5,13,-2.5" radius="0.5" height="2"/>
+    <cylinder id="red-net" base="72.5,13,53.5" radius="0.5" height="2"/>
     <apply block="never" use="never"/>
 </regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          color="blue"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-red" recover-time="12s" respawn-time="10s">56.5,13,-2.5</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red"
+          color="red"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-blue" recover-time="12s" respawn-time="10s">72.5,13,53.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag"/>
+        <net region="red-net" flag="blue-flag"/>
+    </flags>
+</flags>
 </map>
