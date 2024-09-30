@@ -24,8 +24,8 @@
     <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </contributors>
 <teams>
-    <team id="green-team" color="green" max="${max}" max-overfill="${max-overfill}">Purple</team>
-    <team id="purple-team" color="dark purple" max="${max}" max-overfill="${max-overfill}">Purple</team>
+    <team id="green-team" color="green" max="${team-size}" max-overfill="${max-overfill}">Purple</team>
+    <team id="purple-team" color="dark purple" max="${team-size}" max-overfill="${max-overfill}">Purple</team>
 </teams>
 <kits>
     <kit id="flag-kit" force="true">
