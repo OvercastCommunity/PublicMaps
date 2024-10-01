@@ -42,7 +42,7 @@
 <spawns>
     <default>
         <region yaw="90">
-            <cylinder base="66.5,56,72.5" radius="2" height="0"/>
+            <cylinder base="66.5,57,72.5" radius="2" height="0"/>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
