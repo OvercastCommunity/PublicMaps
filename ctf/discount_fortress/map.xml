@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Discount Fortress</name>
-<version>1.2.8</version>
+<version>1.2.9</version>
 <variant id="7v7">7v7</variant>
 <constant id="override-itemkeep">true</constant>
 <constant id="damage-resistance">5s</constant>
@@ -101,7 +101,7 @@
         <rectangle id="blue-spawn" min="28,-295" max="8,-317"/>
         <rectangle id="red-spawn" min="-29,-446" max="-9,-424"/>
     </union>
-    <negative id="void">
+    <negative id="void-region">
         <union id="playable-region">
             <rectangle min="-36,-418" max="35,-323"/>
             <rectangle min="6,-418" max="29,-434"/>
@@ -111,7 +111,7 @@
     <apply block="never" region="spawns" message="You may not modify the spawns!"/>
     <apply block="never" region="flag-nets" message="You may not place blocks around the flag!"/>
     <apply block="playable-blocks" region="playable-region" message="You may only break or place leaves and glass!"/>
-    <apply block="never" region="void" message="You may not build in the void!"/>
+    <apply block="never" region="void-region" message="You may not build in the void!"/>
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <flag id="blue-flag"

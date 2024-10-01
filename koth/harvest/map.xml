@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Harvest</name>
 <version>1.2.3</version>
 <constant id="damage-resistance">3s</constant>
