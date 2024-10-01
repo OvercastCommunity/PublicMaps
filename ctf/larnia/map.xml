@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Larnia</name>
-<version>1.6.1</version>
+<version>1.6.2</version>
 <objective>Capture or defend the green flag!</objective>
 <time result="defenders-team">15m</time>
 <include id="conquest"/>
