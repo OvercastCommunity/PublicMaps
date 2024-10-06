@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Aequabilis</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <include id="gapple-kill-reward"/>
 <created>2016-06-08</created>
 <objective>Capture and place both of the enemy team's wools!</objective>
@@ -33,7 +33,7 @@
 <spawns>
     <default>
         <region yaw="90">
-            <cuboid min="-282.5,63,281.5" max="-276.5,64,275.5"/>
+            <cuboid min="-282.5,63,281.5" max="-276.5,63,275.5"/>
         </region>
     </default>
     <spawn team="green" kit="spawn-kit">
