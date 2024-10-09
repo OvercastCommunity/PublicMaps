@@ -7,7 +7,7 @@
 <!-- ╚═══════╝ -->
 <!-- Bridge Swap gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.09.18-1 -->
+<!-- Version 2024.10.09-1 -->
 <include id="bridge"/>
 <game>Bridge Swap</game>
 <constants fallback="true">
@@ -117,7 +117,7 @@
         </switch-scope>
     </action>
     <action id="platform-sfx-bad-t1" scope="player" filter="only-team-one">
-        <sound key="mob.wither.hurt" volume="0.4"/>
+        <sound key="mob.wither.hurt" volume="0.1"/>
         <!-- <message text=" `9Team 2`f has damaged `4Team 1 Platform`r"/> -->
     </action>
     <action id="platform-sfx-good-t2-check" scope="player">
@@ -140,7 +140,7 @@
         </switch-scope>
     </action>
     <action id="platform-sfx-bad-t2" scope="player" filter="only-team-two">
-        <sound key="mob.wither.hurt" volume="0.4"/>
+        <sound key="mob.wither.hurt" volume="0.1"/>
         <!-- <message text=" `4Team 1`f has damaged `9Team 2 Platform`r"/> -->
     </action>
 </actions>
