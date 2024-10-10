@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Directrix: 2 Flags</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <variant id="halloween" world="halloween" override="true">DirecTricks: 2 Flags</variant>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
@@ -23,7 +23,7 @@
     <constant id="red-team-flagcolor">orange</constant>
 </if>
 <objective>Capture the enemy's flag as many times as possible in 16 minutes to win!</objective>
-<time result="score" overtime="1m" max-overtime="3m">16m</time>
+<time overtime="1m" max-overtime="3m">16m</time>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </authors>

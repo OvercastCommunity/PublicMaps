@@ -1,11 +1,11 @@
 <map proto="1.5.0">
 <name>Lost World CTF</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
 <rage/>
 <objective>Secure the most flag captures in 15 minutes to win!</objective>
-<time result="score" overtime="1m" max-overtime="2m">15m</time>
+<time overtime="1m" max-overtime="2m">15m</time>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </authors>

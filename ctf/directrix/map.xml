@@ -5,12 +5,7 @@
 <variant id="classic" world="classic" slug="directrix">Classic</variant>
 <variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
 <variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
-<unless variant="king_ranch,king_ranch_og">
-    <version>1.1.7</version>
-</unless>
-<if variant="king_ranch,king_ranch_og">
-    <version>2.0.6</version>
-</if>
+<version>2.0.7</version>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
 <if variant="default">
@@ -37,7 +32,7 @@
     <phase>staging</phase>
 </if>
 <objective>Capture the enemy's flag as many times as possible in ${time-limit} minutes to win!</objective>
-<time result="score" overtime="1m" max-overtime="${max-overtime}">${time-limit}m</time>
+<time overtime="1m" max-overtime="${max-overtime}">${time-limit}m</time>
 <authors>
     <unless variant="king_ranch,king_ranch_og">
         <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->

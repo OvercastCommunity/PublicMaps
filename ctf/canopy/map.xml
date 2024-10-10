@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Canopy</name>
-<version>0.2.12</version>
+<version>0.2.13</version>
 <variant id="hybrid">Hybrid</variant>
 <constant id="flag-points">1</constant>
 <if variant="hybrid">
@@ -16,7 +16,7 @@
     <objective>Capture the enemy's flag and kill enemies to score, first to 450 points wins!</objective>
 </if>
 <if variant="default">
-    <time result="score" overtime="1m" max-overtime="2m">15m</time>
+    <time overtime="1m" max-overtime="2m">15m</time>
 </if>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
