@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <!--
  ____  __.__                       _________                                              __
 |    |/ _|__| ____    ____  ______ \_   ___ \  ____   ____   ________ __   ____   _______/  |_
@@ -8,7 +8,7 @@
        \/       \//_____/     \/          \/            \/    |__|           \/     \/
 -->
 <!-- Created by mitchiii, based on the King's Conquest maps by Chicky -->
-<!-- Version 2024-08-12 -->
+<!-- Version 2024-10-11 -->
 <objective>Kill the enemy team's ${king-noun} to win!</objective>
 <gamemode>arcade</gamemode>
 <game>Kill the ${king-noun}</game>
@@ -29,6 +29,15 @@
     <constant id="team-two-flag-color">red</constant>
     <constant id="team-two-text-color-symbol">`4</constant>
     <constant id="world-border-end-size">25</constant>
+    <!--
+      When multiple spawns are defined:
+      sudden-death-timer-start = ((480 * a) / (b - c)) + 330
+
+      a = the shortest distance in blocks between final spawn location and the world border at its starting distance
+      b = world-border-start-size
+      c = world-border-end-size
+    -->
+    <constant id="sudden-death-timer-start">600</constant>
     <!--
         Each King's Conquest map must define the following constants in their map.xml:
 
@@ -319,46 +328,45 @@
                     <sound key="mob.enderdragon.growl" volume="0.5" pitch="0.8"/>
                 </switch-scope>
             </switch-scope>
-            <action filter="only-team-one">
-                <switch-scope inner="match">
-                    <set var="warcry" value="floor(random() * 5)"/>
-                    <action filter="warcry=0">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Lay waste to their kingdom!"/>
-                    </action>
-                    <action filter="warcry=1">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Leave nothing but ruins in your wake!"/>
-                    </action>
-                    <action filter="warcry=2">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Conquer their kingdom with fury!"/>
-                    </action>
-                    <action filter="warcry=3">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Wreak havoc upon their ranks!"/>
-                    </action>
-                    <action filter="warcry=4">
-                        <message text="&#x003C;${team-one-text-color-symbol}${team-one-name} ${king-noun}`r&#x003E;: Devastate their stronghold!"/>
-                    </action>
-                </switch-scope>
-            </action>
-            <action filter="only-team-two">
-                <switch-scope inner="match">
-                    <set var="warcry" value="floor(random() * 5)"/>
-                    <action filter="warcry=0">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Lay waste to their kingdom!"/>
-                    </action>
-                    <action filter="warcry=1">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Leave nothing but ruins in your wake!"/>
-                    </action>
-                    <action filter="warcry=2">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Conquer their kingdom with fury!"/>
-                    </action>
-                    <action filter="warcry=3">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Wreak havoc upon their ranks!"/>
-                    </action>
-                    <action filter="warcry=4">
-                        <message text="&#x003C;${team-two-text-color-symbol}${team-two-name} ${king-noun}`r&#x003E;: Devastate their stronghold!"/>
-                    </action>
-                </switch-scope>
-            </action>
+            <set var="last_warcry" value="1"/>
+            <switch-scope inner="match">
+                <set var="warcry" value="floor(random() * 5)"/>
+                <action filter="warcry=0">
+                    <message text="&#x003C;{p1}&#x003E;: Lay waste to their kingdom!">
+                        <replacements>
+                            <player id="p1" var="last_warcry"/>
+                        </replacements>
+                    </message>
+                </action>
+                <action filter="warcry=1">
+                    <message text="&#x003C;{p1}&#x003E;: Leave nothing but ruins in your wake!">
+                        <replacements>
+                            <player id="p1" var="last_warcry"/>
+                        </replacements>
+                    </message>
+                </action>
+                <action filter="warcry=2">
+                    <message text="&#x003C;{p1}&#x003E;: Conquer their kingdom with fury!">
+                        <replacements>
+                            <player id="p1" var="last_warcry"/>
+                        </replacements>
+                    </message>
+                </action>
+                <action filter="warcry=3">
+                    <message text="&#x003C;{p1}&#x003E;: Wreak havoc upon their ranks!">
+                        <replacements>
+                            <player id="p1" var="last_warcry"/>
+                        </replacements>
+                    </message>
+                </action>
+                <action filter="warcry=4">
+                    <message text="&#x003C;{p1}&#x003E;: Devastate their stronghold!">
+                        <replacements>
+                            <player id="p1" var="last_warcry"/>
+                        </replacements>
+                    </message>
+                </action>
+            </switch-scope>
         </action>
     </kit>
     <kit id="obs-kit">
@@ -479,11 +487,6 @@
     </kill-reward>
 </kill-rewards>
 <filters>
-    <match-started id="match-started"/>
-    <match-running id="match-running"/>
-    <participating id="participating"/>
-    <observing id="observing"/>
-    <alive id="alive"/>
     <after id="super-dead" duration="5.1s" filter="all(participating, not(alive))"/>
     <after id="king-race-timeout" message="A ${king-noun} will be randomly crowned in {0}" duration="30s" filter="all(match-started, match_phase=0, not(all(team_one_has_king=1, team_two_has_king=1)))"/>
     <unless constant="king-race-start" constant-comparison="defined delete">
@@ -510,18 +513,11 @@
     <team id="only-team-one">team-one</team>
     <team id="only-team-two">team-two</team>
     <after id="sudden-death" duration="30s" message="Sudden death begins in {0}">
-        <all>
-            <after duration="11m30s" filter="all(match-running, match_phase=1)"/>
-            <unless constant="world-border-center" constant-comparison="defined delete">
-                <never/>
-            </unless>
-        </all>
+        <after duration="${sudden-death-timer-start}" filter="match-running"/>
     </after>
-    <unless constant="world-border-center" constant-comparison="defined delete">
-        <after id="world-border-start" duration="30s" message="The world border will start shrinking in {0}">
-            <after id="world-border-announce" duration="7m30s" filter="all(match-running, match_phase=1)"/>
-        </after>
-    </unless>
+    <after id="world-border-start" duration="30s" message="The world border will start shrinking in {0}">
+        <after id="world-border-announce" duration="6m" filter="match-running"/>
+    </after>
     <not id="not-king">
         <any id="only-king">
             <all id="team-one-king">
@@ -671,7 +667,7 @@
 </control-points>
 <score>
     <unless constant="king-race-start" constant-comparison="defined delete">
-        <box region="king-race-end" points="100" filter="team_has_king=0"/>
+        <box region="king-race-end" points="100" filter="team_has_king=0" silent="true"/>
     </unless>
 </score>
 <variables scope="match" default="0">
@@ -686,6 +682,9 @@
     <variable id="team_has_king" scope="team"/>
     <with-team id="team_one_has_king" var="team_has_king" team="team-one"/>
     <with-team id="team_two_has_king" var="team_has_king" team="team-two"/>
+    <variable id="team_one_king" scope="player" exclusive="1"/>
+    <variable id="team_two_king" scope="player" exclusive="1"/>
+    <variable id="last_warcry" scope="player" exclusive="1"/>
     <player-location id="x" component="x"/>
     <player-location id="y" component="y"/>
     <player-location id="z" component="z"/>
@@ -713,17 +712,27 @@
         </switch-scope>
         <set var="is_king" value="1"/>
         <set var="king_chance" value="99"/>
+        <action filter="only-team-one">
+            <set var="team_one_king" value="1"/>
+            <switch-scope inner="match">
+                <message text="{p1} `bhas been crowned ${king-noun} of the ${team-one-text-color-symbol}${team-one-name} Kingdom`b!">
+                    <replacements>
+                        <player id="p1" var="team_one_king"/>
+                    </replacements>
+                </message>
+            </switch-scope>
+        </action>
+        <action filter="only-team-two">
+            <set var="team_two_king" value="1"/>
+            <switch-scope inner="match">
+                <message text="{p1} `bhas been crowned ${king-noun} of the ${team-two-text-color-symbol}${team-two-name} Kingdom`b!">
+                    <replacements>
+                        <player id="p1" var="team_two_king"/>
+                    </replacements>
+                </message>
+            </switch-scope>
+        </action>
         <unless constant="king-race-start" constant-comparison="defined delete">
-            <action filter="only-team-one">
-                <switch-scope inner="match">
-                    <message text="`bThe ${team-one-text-color-symbol}${team-one-name} ${king-noun} `bhas been crowned!"/>
-                </switch-scope>
-            </action>
-            <action filter="only-team-two">
-                <switch-scope inner="match" filter="only-team-two">
-                    <message text="`bThe ${team-two-text-color-symbol}${team-two-name} ${king-noun} `bhas been crowned!"/>
-                </switch-scope>
-            </action>
             <switch-scope inner="team">
                 <sound preset="OBJECTIVE_GOOD"/>
                 <action filter="not(all(team_one_has_king=1, team_two_has_king=1))">
@@ -766,7 +775,7 @@
         <trigger filter="all(team_has_king=0, king-race-timeout)" scope="team" action="crown-random-king"/>
         <trigger filter="all(team_one_has_king=1, team_two_has_king=1)" scope="match">
             <action>
-                <message text="`b${king-noun}s for each kingdom have been crowned. `4The Conquest `bwill begin in `e3 seconds`b."/>
+                <message text="`7`o${king-noun}s for each kingdom have been crowned. The Conquest will begin in 3 seconds."/>
             </action>
         </trigger>
     </unless>
@@ -778,24 +787,14 @@
             </switch-scope>
         </action>
     </trigger>
-    <unless constant="world-border-center" constant-comparison="defined delete">
-        <trigger filter="world-border-announce" scope="match">
-            <action>
-                <message text=" "/>
-                <message text="`6» » » `e`lThe world border has appeared `6« « «"/>
-                <message text="`bIt will start shrinking in `e30 seconds`b."/>
-                <message text=" "/>
-            </action>
-        </trigger>
-        <trigger filter="world-border-start" scope="match">
-            <action>
-                <message text=" "/>
-                <message text="`6» » » `e`lThe world border is shrinking `6« « «"/>
-                <message text="`bYou will no longer be able to respawn once all spawn locations are outside of the border."/>
-                <message text=" "/>
-            </action>
-        </trigger>
-    </unless>
+    <trigger filter="world-border-start" scope="match">
+        <action>
+            <message text=" "/>
+            <message text="`6» » » `c`lThe world border is shrinking `6« « «"/>
+            <message text="`bYou will no longer be able to respawn once all spawn locations are outside of the border."/>
+            <message text=" "/>
+        </action>
+    </trigger>
     <trigger scope="player" filter="super-dead">
         <action>
             <message text=" "/>
@@ -810,7 +809,7 @@
                 <filter id="super-dead"/>
             </all>
         </filter>
-        <action>
+        <action untrigger-filter="never">
             <teleport x="x" y="-2" z="z"/>
             <kit force="true">
                 <fly flying="true"/>
@@ -824,7 +823,7 @@
     </trigger>
     <!-- kills the king when they get negative health through non contact damage -->
     <trigger filter="all(is_king=1, king-dead, alive)" scope="player">
-        <action>
+        <action untrigger-filter="never">
             <kit>
                 <clear effects="true"/>
                 <effect amplifier="50">instant damage</effect>
@@ -878,7 +877,7 @@
     </trigger>
     <trigger filter="sudden-death" scope="match">
         <action>
-            <sound preset="OBJECTIVE_MODE"/>
+            <sound key="ambient.weather.thunder"/>
             <message text=" "/>
             <message text="`6» » » `c`lSUDDEN DEATH `6« « «" title="`6» » » `c`lSUDDEN DEATH `6« « «"/>
             <switch-scope filter="all(not(is_king=1), participating, alive)" inner="player">
@@ -909,10 +908,18 @@
                 <sound preset="OBJECTIVE_FIREWORKS_TWINKLE"/>
                 <message text=" "/>
                 <action filter="team_one_has_king=0">
-                    <message text="`6» » » ${team-one-text-color-symbol}${team-one-name} ${king-noun} Eliminated! `6« « «"/>
+                    <message text="`6» » » ${team-one-text-color-symbol}${king-noun} {p1} `chas been eliminated! `6« « «">
+                        <replacements>
+                            <player id="p1" var="team_one_king" style="color"/>
+                        </replacements>
+                    </message>
                 </action>
                 <action filter="team_two_has_king=0">
-                    <message text="`6» » » ${team-two-text-color-symbol}${team-two-name} ${king-noun} Eliminated! `6« « «"/>
+                    <message text="`6» » » ${team-two-text-color-symbol}${king-noun} {p1} `chas been eliminated! `6« « «">
+                        <replacements>
+                            <player id="p1" var="team_two_king" style="color"/>
+                        </replacements>
+                    </message>
                 </action>
                 <message text=" "/>
             </switch-scope>
@@ -933,9 +940,12 @@
 </actions>
 <damage victim-action="victim-action">
     <deny>
-        <any>
+        <all>
             <variable var="match_phase">0</variable>
-        </any>
+            <not>
+                <below y="0"/>
+            </not>
+        </all>
     </deny>
 </damage>
 <unless constant="king-race-start" constant-comparison="defined delete">
@@ -946,8 +956,8 @@
 </unless>
 <unless constant="world-border-center" constant-comparison="defined delete">
     <world-borders center="${world-border-center}" buffer="1">
-        <world-border size="${world-border-start-size}" after="7m30s"/>
-        <world-border size="${world-border-end-size}" after="8m" duration="7m"/>
+        <world-border size="${world-border-start-size}" after="6m"/>
+        <world-border size="${world-border-end-size}" after="6m30s" duration="4m"/>
     </world-borders>
 </unless>
 <tnt>
