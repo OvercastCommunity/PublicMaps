@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>King's Conquest: Easterly Meadows</name>
-<version>1.2.0</version>
+<version>1.2.1</version>
 <constants>
     <constant id="team-size">24</constant>
     <constant id="team-one-spawn-a">114,14,10</constant>
@@ -19,13 +19,11 @@
     <constant id="king-race-end">-19.5,61,111.5</constant>
     <constant id="king-race-start-yaw">90</constant>
     <constant id="world-border-center">6.5,11.5</constant>
-    <constant id="world-border-start-size">200</constant>
+    <constant id="world-border-start-size">275</constant>
     <constant id="world-border-end-size">25</constant>
+    <constant id="sudden-death-timer-start">557</constant>
 </constants>
 <include id="kings-conquest"/>
-<world-borders center="${world-border-center}" buffer="1">
-    <world-border size="275" when="always"/>
-</world-borders>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerorca -->
 </authors>

@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>King's Conquest: Proelium</name>
-<version>1.2.0</version>
+<version>1.2.1</version>
 <constants>
     <constant id="team-size">24</constant>
     <constant id="team-one-spawn-a">3.5,21,-55.5</constant>
