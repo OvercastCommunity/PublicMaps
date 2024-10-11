@@ -1,8 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-09-23 -->
+<!-- Version 2024-10-10 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -73,8 +73,7 @@
     <player filter="is_tnt=0" show-player="true"/>
 </compass>
 <filters>
-    <time id="match-running">0.05s</time>
-    <participating id="participating"/>
+    <time id="delayed">0.05s</time>
     <after id="round-starting" duration="1s" filter="round_state=0"/>
     <after id="round-begin" duration="3s" filter="round_state=1" message="The next round begins in {0}"/>
     <variable id="countdown-start" var="round_state">1</variable>
@@ -128,6 +127,8 @@
     <variable id="round"/>
     <variable id="round_deathmatch"/>
     <variable id="round_state" default="2"/>
+    <variable id="last_attacker" scope="player" exclusive="1"/>
+    <variable id="last_victim" scope="player" exclusive="1"/>
     <!--
     0: idle
     1: starting
@@ -144,7 +145,7 @@
         <set var="tmp" value="tnt_players"/>
         <action id="pick-player"/>
     </action>
-    <action id="pick-player" scope="match">
+    <action id="pick-player" scope="match" untrigger-filter="never">
         <set var="min_tmp_tnt" value="99"/>
         <switch-scope inner="player" filter="participating">
             <set var="min_tmp_tnt" value="min(tmp_tnt, min_tmp_tnt)"/>
@@ -208,17 +209,17 @@
         </switch-scope>
         <message text=" "/>
     </action>
-    <trigger scope="match" filter="all(round-starting, match-running)">
+    <trigger scope="match" filter="all(round-starting, delayed)">
         <action>
             <set var="round_state" value="1"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="all(round-begin, match-running)">
+    <trigger scope="match" filter="all(round-begin, delayed)">
         <action>
             <set var="round_state" value="2"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="all(round-running, match-running)">
+    <trigger scope="match" filter="all(round-running, delayed)">
         <action>
             <switch-scope inner="player" filter="participating">
                 <set var="tmp_tnt" value="random()"/>
@@ -230,7 +231,10 @@
             <action id="round-begin-message"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="all(match-running, round_deathmatch=1)">
+    <trigger scope="match">
+        <filter>
+            <after duration="1s" filter="all(delayed, round_deathmatch=1, match-running)"/>
+        </filter>
         <action>
             <message text=" "/>
             <message text="`d» `lDeathmatch will begin next round!"/>
@@ -239,7 +243,7 @@
             <sound preset="OBJECTIVE_GOOD"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="all(match-running, round-end)">
+    <trigger scope="match" filter="all(delayed, round-end)">
         <action>
             <set var="round_state" value="0"/>
             <switch-scope inner="player" filter="all(is_tnt=1, participating)">
@@ -258,7 +262,7 @@
     </trigger>
     <trigger scope="match">
         <filter>
-            <pulse period="0.5s" duration="0.25s" filter="all(match-running, start-tnt-fuse, not(round-end))"/>
+            <pulse period="0.5s" duration="0.25s" filter="all(delayed, start-tnt-fuse, not(round-end))"/>
         </filter>
         <action>
             <set var="tnt_fuse" value="tnt_fuse - 1"/>
@@ -277,19 +281,43 @@
         </action>
     </trigger>
     <action id="become-hider" scope="player" filter="all(attacker-is-tnt, victim-is-hider, round-running)">
+        <set var="last_attacker" value="1"/>
         <set var="is_tnt" value="0"/>
         <kit id="clear-kit"/>
         <kit id="hider-kit"/>
-        <message text="`aYou tagged another player!"/>
     </action>
     <action id="become-tnt" scope="player" filter="all(victim-is-hider, round-running)">
+        <set var="last_victim" value="1"/>
         <set var="is_tnt" value="1"/>
         <kit id="tnt-kit"/>
         <sound key="mob.creeper.say" volume="1" pitch="1.5"/>
         <switch-scope inner="match">
             <sound key="fireworks.twinkle" volume="0.8" pitch=".9"/>
+            <switch-scope inner="player">
+                <action filter="not(any(last_attacker=1, last_victim=1))">
+                    <message text="{p1} tagged {p2}">
+                        <replacements>
+                            <player id="p1" var="last_attacker"/>
+                            <player id="p2" var="last_victim"/>
+                        </replacements>
+                    </message>
+                </action>
+                <action filter="last_attacker=1">
+                    <message text="`aYou tagged {p1}">
+                        <replacements>
+                            <player id="p1" var="last_victim"/>
+                        </replacements>
+                    </message>
+                </action>
+                <action filter="last_victim=1">
+                    <message text="{p1} `ctagged you">
+                        <replacements>
+                            <player id="p1" var="last_attacker"/>
+                        </replacements>
+                    </message>
+                </action>
+            </switch-scope>
         </switch-scope>
-        <message text="`cYou have been tagged!"/>
     </action>
 </actions>
 <damage attacker-action="become-hider" victim-action="become-tnt">
