@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.3.0">
+<map proto="1.5.0">
 <name>Zero Gravity</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Knock all of your enemies into the void before time runs out.</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -14,54 +13,50 @@
     <rule>Fall damage is disabled!</rule>
 </rules>
 <teams>
-   <team color="dark aqua" max="12">Cyan</team>
-   <team color="green" max="12">Lime</team>
+   <team id="cyan" color="dark aqua" max="12">Cyan</team>
+   <team id="lime" color="green" max="12">Lime</team>
 </teams>
-<blitz>
-    <time>3m</time>        
-    <lives>1</lives>      
-</blitz>
-<spawns>
-    <spawn team="cyan" kit="cyan" yaw="-45">
-        <cylinder base="-24,24,-26" radius="2" height="2"/>
-    </spawn>
-    <spawn team="lime" kit="lime" yaw="135">
-        <cylinder base="24,24,26" radius="2" height="2"/>
-    </spawn>
-    <default yaw="-135" kit="all">
-        <cylinder base="0,61,-2" radius="2" height="2"/>
-    </default>
-</spawns>
 <kits>
-    <kit name="all">
-        <potion duration="oo" amplifier="1">night vision</potion>
-        <potion duration="oo" amplifier="5">jump</potion>
-        <potion duration="oo" amplifier="1">speed</potion>
+    <kit id="effects" force="true">
+        <effect>night vision</effect>
+        <effect amplifier="5">jump</effect>
+        <effect>speed</effect>
     </kit>
-    <kit name="spawn" parents="all">
-        <item slot="0" enchantment="knockback:15" name="`8One-Hit Kill">iron sword</item>
-        <item slot="1" enchantment="arrow knockback:15" name="`8One-Shot Kill">bow</item>
-        <item slot="2">arrow</item>
-        <boots enchantment="protection fall:10">diamond boots</boots>
-    </kit>
-    <kit name="cyan" parents="spawn">
-        <helmet color="4C99B2">leather helmet</helmet>
-        <chestplate color="4C99B2">leather chestplate</chestplate>
-        <leggings color="4C99B2">leather leggings</leggings>
-    </kit>
-    <kit name="lime" parents="spawn">
-        <helmet color="7FCC19">leather helmet</helmet>
-        <chestplate color="7FCC19">leather chestplate</chestplate>
-        <leggings color="7FCC19">leather leggings</leggings>
+    <kit id="spawn-kit" parents="effects">
+        <item slot="0" enchantment="knockback:15" name="`8One-Hit Kill" material="iron sword"/>
+        <item slot="1" enchantment="arrow knockback:15" name="`8One-Shot Kill" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots enchantment="protection fall:10" material="diamond boots"/>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
-<timelock>on</timelock>
-<killreward>
-    <item amount="1">arrow</item>
-</killreward>
-<disabledamage>
-    <damage>fall</damage>
-</disabledamage>
+<spawns>
+    <spawn team="cyan" kit="spawn-kit" yaw="-45">
+        <regions>
+            <cylinder base="-24,24,-26" radius="2" height="2"/>
+        </regions>
+    </spawn>
+    <spawn team="lime" kit="spawn-kit" yaw="135">
+        <regions>
+            <cylinder base="24,24,26" radius="2" height="2"/>
+        </regions>
+    </spawn>
+    <default yaw="-135" kit="effects">
+        <regions>
+            <cylinder base="0,61,-2" radius="2" height="2"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<time>3m</time>
+<blitz>
+    <lives>1</lives>
+</blitz>
 <tnt>
     <instantignite>on</instantignite>
     <licensing>off</licensing>
@@ -69,6 +64,13 @@
     <blockdamage>off</blockdamage>
     <yield>50</yield>
 </tnt>
+<portals>
+    <portal y="@-100">
+        <region>
+            <cuboid min="-oo,9,-oo" max="oo,10,oo"/>
+        </region>
+    </portal>
+</portals>
 <itemremove>
     <item>diamond boots</item>
     <item>leather helmet</item>
@@ -79,18 +81,13 @@
     <tool>iron sword</tool>
     <tool>bow</tool>
 </toolrepair>
-    <regions>
-        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
-        <apply block="deny-all">
-            <region name="playable"/>
-        </apply>
-    </regions>
-<portals>
-    <portal y="@-100">
-        <cuboid min="-oo,9,-oo" max="oo,10,oo"/>
-    </portal>
-</portals>
-<playable>
-    <region name="playable"/>
-</playable>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<timelock>on</timelock>
 </map>
