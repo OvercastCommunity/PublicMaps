@@ -2,7 +2,7 @@
 <name>Chocolate Diamonds</name>
 <variant id="christmas" world="christmas" override="true">Snowy Diamonds</variant>
 <variant id="halloween" world="halloween" override="true">SpOOky Diamonds</variant>
-<version>2.2.2</version>
+<version>2.2.3</version>
 <objective>Capture the enemy's flag 3 times!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -150,6 +150,8 @@
         </union>
     </intersect>
     <cuboid id="spawner" min="-1,25,-1" max="1,29,2"/>
+    <sphere id="spawner-detect" origin="-0,26,0.5" radius="5"/>
+    <point id="spawner-location">-0,26.5,0.5</point>
     <complement id="void">
         <everywhere/>
         <rectangle min="-52,89" max="52,-89"/>
@@ -222,6 +224,13 @@
         <item amount="4" material="arrow"/>
     </kill-reward>
 </kill-rewards>
+<unless variant="christmas">
+    <spawners>
+        <spawner spawn-region="spawner-location" player-region="spawner-detect" max-entities="12" delay="1s">
+            <item material="arrow"/>
+        </spawner>
+    </spawners>
+</unless>
 <maxbuildheight>36</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
