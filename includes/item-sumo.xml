@@ -6,10 +6,10 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.09.15-1 -->
+<!-- Version 2024.10.14-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
-<constants fallback="true">
+<constants>
     <!-- Match -->
     <constant id="void-plane">-5</constant>
     <constant id="time-limit">4m</constant>
@@ -40,7 +40,7 @@
 </broadcasts>
 <respawn delay="3s" auto="true"/>
 <if variant="lifesteal">
-    <phase>staging</phase>
+    <phase>development</phase>
     <include id="lifesteal"/>
     <constants>
         <!-- Lifesteal include constants -->
@@ -236,6 +236,7 @@
     </unless>
     <variable id="hill_disabled" default="0" scope="match"/>
     <variable id="hill_previously_disabled" default="0" scope="match"/>
+    <variable id="killstreaker" scope="player" exclusive="1"/> <!-- from oitq.xml -->
 </variables>
 <regions>
     <negative id="not-playable-area">
@@ -417,7 +418,14 @@
         </filter>
         <kit>
             <action>
-                <message text=" `b`lTriple kill! `f(3 kills)"/>
+                <set var="killstreaker" value="1"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7got a `b`lTriple kill`7! `f(3 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
@@ -428,18 +436,48 @@
         </filter>
         <kit>
             <action>
-                <message text=" `a`lKilling Spree! `f(5 kills)"/>
+                <set var="killstreaker" value="1"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is on a `a`lKilling Spree`7! `f(5 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="10" repeat="false"/>
+            <kill-streak count="8" repeat="false"/>
         </filter>
         <kit>
             <action>
-                <message text=" `e`lRampage! `f(10 kills)"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is on a `e`lRampage`7! `f(8 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="12" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is `6`lDominating`7! `f(12 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
@@ -450,18 +488,30 @@
         </filter>
         <kit>
             <action>
-                <message text=" `6`lDominating! `f(15 kills)"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is `c`lUnstoppable`7! `f(15 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="20" repeat="false"/>
+            <kill-streak count="22" repeat="false"/>
         </filter>
         <kit>
             <action>
-                <message text=" `c`lUnstoppable! `f(20 kills)"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is `4`lGODLIKE`7! `f(22 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
@@ -472,18 +522,13 @@
         </filter>
         <kit>
             <action>
-                <message text=" `4`lGODLIKE! `f(30 kills)"/>
-                <action id="killstreak-sound"/>
-            </action>
-        </kit>
-    </kill-reward>
-    <kill-reward>
-        <filter>
-            <kill-streak count="50" repeat="false"/>
-        </filter>
-        <kit>
-            <action>
-                <message text=" `0`l`kzzuf`r `f(50 kills)"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is `0`l`kzzuf`r `f(30 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
