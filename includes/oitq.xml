@@ -8,7 +8,7 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.08.10-1 -->
+<!-- Version 2024.10.14-1 -->
 <constants fallback="true">
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
@@ -83,6 +83,18 @@
             <effect duration="oo" ambient="true">speed</effect>
         </kit>
     </class>
+    <class name="Fisker" description="Wooden sword! Fishing rod! No bow!" longdescription="Wooden sword! Fishing rod! No bow!" icon="fishing rod">
+        <kit parents="${base-kit}">
+            <item slot="0" unbreakable="true" name="`c`lSharpened `rStick" lore="`8Multiple Hit Kill" material="wood sword"/>
+            <item slot="1" name="`a`lKool Stik Global Elite" material="fishing rod" damage="24"/>
+        </kit>
+    </class>
+    <class name="Phoenix" description="Blaze rod! Strength! No bow!" longdescription="Blaze rod! Strength! No bow!" icon="blaze rod">
+        <kit parents="${base-kit}">
+            <item slot="0" name="`6`lFire `rStick" lore="`8Multiple Hit Kill" material="blaze rod" enchantment="fire aspect:1"/>
+            <effect duration="oo" ambient="true">strength</effect>
+        </kit>
+    </class>
 </classes>
 <filters>
     <deny id="deny-players">
@@ -98,6 +110,9 @@
         <sound key="mob.enderdragon.growl" volume="1" pitch="0.8"/>
     </action>
 </actions>
+<variables>
+    <variable id="killstreaker" scope="player" exclusive="1"/>
+</variables>
 <kill-rewards>
     <kill-reward>
         <filter>
@@ -111,7 +126,14 @@
         </filter>
         <kit>
             <action>
-                <message text=" `b`lTriple kill! `f(3 kills)"/>
+                <set var="killstreaker" value="1"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7got a `b`lTriple kill`7! `f(3 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
@@ -122,18 +144,48 @@
         </filter>
         <kit>
             <action>
-                <message text=" `a`lKilling Spree! `f(5 kills)"/>
+                <set var="killstreaker" value="1"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is on a `a`lKilling Spree`7! `f(5 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="10" repeat="false"/>
+            <kill-streak count="8" repeat="false"/>
         </filter>
         <kit>
             <action>
-                <message text=" `e`lRampage! `f(10 kills)"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is on a `e`lRampage`7! `f(8 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
+                <action id="killstreak-sound"/>
+            </action>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="12" repeat="false"/>
+        </filter>
+        <kit>
+            <action>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is `6`lDominating`7! `f(12 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
@@ -144,18 +196,30 @@
         </filter>
         <kit>
             <action>
-                <message text=" `6`lDominating! `f(15 kills)"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is `c`lUnstoppable`7! `f(15 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="20" repeat="false"/>
+            <kill-streak count="22" repeat="false"/>
         </filter>
         <kit>
             <action>
-                <message text=" `c`lUnstoppable! `f(20 kills)"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is `4`lGODLIKE`7! `f(22 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
@@ -166,18 +230,13 @@
         </filter>
         <kit>
             <action>
-                <message text=" `4`lGODLIKE! `f(30 kills)"/>
-                <action id="killstreak-sound"/>
-            </action>
-        </kit>
-    </kill-reward>
-    <kill-reward>
-        <filter>
-            <kill-streak count="50" repeat="false"/>
-        </filter>
-        <kit>
-            <action>
-                <message text=" `0`l`kzzuf`r `f(50 kills)"/>
+                <switch-scope outer="player" inner="match">
+                    <message text=" `l» {player} `7is `0`l`kzzuf`r `f(30 kills)">
+                        <replacements>
+                            <player id="player" var="killstreaker"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
                 <action id="killstreak-sound"/>
             </action>
         </kit>
@@ -191,6 +250,8 @@
     <item>arrow</item>
     <item>bone</item>
     <item>rotten flesh</item>
+    <item>fishing rod</item>
+    <item>blaze rod</item>
 </itemremove>
 <disabledamage>
     <damage>fall</damage>
