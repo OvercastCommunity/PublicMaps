@@ -1,6 +1,6 @@
 <map proto="1.4.2">
 <name>Antiquis</name>
-<version>1.2.9</version>
+<version>1.2.10</version>
 <include id="gapple-kill-reward"/>
 <objective>Destroy the enemy's obsidian monument!</objective>
 <authors>
@@ -178,6 +178,32 @@
         <ingredient>iron pickaxe</ingredient>
     </shapeless>
 </crafting>
+<item-mods> <!-- lessen confusion -->
+    <rule>
+        <match>
+            <material>wood pickaxe</material>
+        </match>
+        <modify lore="`rCombine with 2 `4Infused Shards `rto upgrade!"/>
+    </rule>
+    <rule>
+        <match>
+            <material>stone pickaxe</material>
+        </match>
+        <modify lore="`rCombine with 4 `4Infused Shards|`ror 1 `4Infused Plate `rto upgrade!"/>
+    </rule>
+    <rule>
+        <match>
+            <material>iron pickaxe</material>
+        </match>
+        <modify lore="`rCombine with 8 `4Infused Shards|`ror 2 `4Infused Plates `rto upgrade!"/>
+    </rule>
+    <rule>
+        <match>
+            <material>iron plate</material>
+        </match>
+        <modify lore="`rCan be crafted back|`rinto 4 `4Infused Shards`r!"/>
+    </rule>
+</item-mods>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
