@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <!-- Freeze Tag gamemode include file -->
 <!-- Created by mitchiii -->
-<!-- Version 2024-08-24.1 -->
+<!-- Version 2024-10-19 -->
 <objective>Taggers must freeze all Runners before time runs out!</objective>
 <game>Freeze Tag</game>
 <include id="void-death"/>
@@ -11,7 +11,7 @@
 <score/>
 <time result="runners">5m</time>
 <teams>
-    <team id="taggers" color="blue" max="4">Taggers</team>
+    <team id="taggers" color="blue" max="3">Taggers</team>
     <team id="runners" color="green" max="12" plural="true">Runners</team>
 </teams>
 <kits>
@@ -32,17 +32,17 @@
     </kit>
     <kit id="runners-frozen-kit" force="true">
         <effect amplifier="-20">jump boost</effect>
-        <effect amplifier="15">slowness</effect>
+        <effect amplifier="3">slowness</effect>
         <item slot="0" material="ice" locked="true"/>
         <item slot="1" material="ice" locked="true"/>
         <item slot="2" material="ice" locked="true"/>
-        <item slot="3" material="ice" locked="true"/>
-        <firework slot="4" power="3">
+        <firework slot="3" power="3">
             <explosion type="burst" flicker="true" trail="true">
                 <color>287697</color>
             </explosion>
         </firework>
-        <item slot="5" material="ice" locked="true"/>
+        <item slot="4" material="ice" locked="true"/>
+        <item slot="5" material="snow ball" amount="3" locked="true"/>
         <item slot="6" material="ice" locked="true"/>
         <item slot="7" material="ice" locked="true"/>
         <item slot="8" material="ice" locked="true"/>
@@ -50,7 +50,12 @@
         <chestplate material="leather chestplate" color="6699D8" locked="true" unbreakable="true"/>
         <leggings material="leather leggings" color="6699D8" locked="true" unbreakable="true"/>
         <boots material="leather boots" color="6699D8" locked="true" unbreakable="true"/>
+        <action>
+            <set var="frozen_at_x" value="floor(player.x) + .5"/>
+            <set var="frozen_at_z" value="floor(player.z) + .5"/>
+        </action>
     </kit>
+    <give kit="runners-frozen-kit" filter="all(is_frozen=1, in-void)"/>
 </kits>
 <spawns>
     <spawn team="taggers" region="spawn-region" kit="taggers-kit" filter="release-taggers"/>
@@ -59,8 +64,8 @@
 </spawns>
 <respawn delay="0s" auto="true"/>
 <compass show-distance="true">
-    <player filter="is_frozen=0" holder-filter="only-tagger" show-player="true"/>
-    <player filter="is_frozen=1" holder-filter="only-runner" show-player="true" name="Unfreeze"/>
+    <player filter="all(only-runner, is_frozen=0)" holder-filter="only-tagger" show-player="true"/>
+    <player filter="all(only-runner, is_frozen=1)" holder-filter="only-runner" show-player="true" name="Unfreeze"/>
 </compass>
 <broadcasts>
     <tip after="15s" every="1m30s" filter="only-runner">Punch frozen runners to un-freeze them!</tip>
@@ -83,24 +88,29 @@
     <attacker id="attacker-is-unfrozen-runner">
         <filter id="unfrozen-runner"/>
     </attacker>
-    <victim id="victim-is-unfrozen-runner">
-        <all id="unfrozen-runner">
-            <filter id="only-runner"/>
-            <not>
+    <attacker id="attacker-is-frozen-runner">
+        <filter id="frozen-runner"/>
+    </attacker>
+    <any id="victim-is-runner">
+        <victim id="victim-is-unfrozen-runner">
+            <all id="unfrozen-runner">
+                <filter id="only-runner"/>
+                <not>
+                    <filter id="is-frozen"/>
+                </not>
+            </all>
+        </victim>
+        <victim id="victim-is-frozen-runner">
+            <all id="frozen-runner">
+                <filter id="only-runner"/>
                 <filter id="is-frozen"/>
-            </not>
-        </all>
-    </victim>
-    <victim id="victim-is-frozen-runner">
-        <all id="frozen-runner">
-            <filter id="only-runner"/>
-            <filter id="is-frozen"/>
-        </all>
-    </victim>
-    <after id="release-taggers" duration="5s" filter="match-running" message="Taggers will be released in {0}"/>
+            </all>
+        </victim>
+    </any>
+    <after id="release-taggers" duration="7s" filter="match-running" message="Taggers will be released in {0}"/>
     <all id="countdown-start">
         <filter id="only-tagger"/>
-        <time>2s</time>
+        <time>5s</time>
     </all>
 </filters>
 <regions>
@@ -120,9 +130,8 @@
     <variable id="frozen_at_z" scope="player"/>
     <variable id="moved_from_x" scope="player"/>
     <variable id="moved_from_z" scope="player"/>
-    <player-location id="x" component="x"/>
-    <player-location id="y" component="y"/>
-    <player-location id="z" component="z"/>
+    <variable id="last_attacker" scope="player" exclusive="1"/>
+    <variable id="last_victim" scope="player" exclusive="1"/>
 </variables>
 <actions>
     <trigger scope="player">
@@ -130,21 +139,29 @@
             <after duration="12s">
                 <all>
                     <filter id="frozen-runner"/>
-                    <not>
-                        <carrying ignore-metadata="true">
-                            <item material="firework"/>
-                        </carrying>
-                    </not>
+                    <any>
+                        <not>
+                            <carrying ignore-metadata="true">
+                                <item material="firework"/>
+                            </carrying>
+                        </not>
+                        <not>
+                            <carrying ignore-metadata="true">
+                                <item material="snow ball"/>
+                            </carrying>
+                        </not>
+                    </any>
                 </all>
             </after>
         </filter>
         <action>
             <kit>
-                <firework slot="4" power="3">
+                <firework slot="3" power="3">
                     <explosion type="burst" flicker="true" trail="true">
                         <color>287697</color>
                     </explosion>
                 </firework>
+                <item slot="5" material="snow ball" amount="3"/>
             </kit>
         </action>
     </trigger>
@@ -169,22 +186,19 @@
         </action>
     </trigger>
     <action id="has-frozen-moved" scope="player">
-        <set var="moved_from_x" value="frozen_at_x - x"/>
-        <set var="moved_from_z" value="frozen_at_z - z"/>
+        <set var="moved_from_x" value="frozen_at_x - player.x"/>
+        <set var="moved_from_z" value="frozen_at_z - player.z"/>
     </action>
     <trigger scope="player">
         <filter>
             <pulse period="0.2s" duration="0.1s" filter="all(in-match, frozen-runner, not(any(moved_from_x=0, moved_from_z=0)))"/>
         </filter>
         <action>
-            <teleport x="frozen_at_x" y="y" z="frozen_at_z"/>
+            <teleport x="frozen_at_x" y="player.y" z="frozen_at_z"/>
         </action>
     </trigger>
     <action id="attacker-action" scope="player">
-        <action filter="all(attacker-is-tagger, victim-is-unfrozen-runner)">
-        </action>
-        <action filter="all(attacker-is-unfrozen-runner, victim-is-frozen-runner)">
-        </action>
+        <set var="last_attacker" value="1"/>
     </action>
     <action id="victim-action" scope="player">
         <action filter="not(in-void)">
@@ -193,23 +207,35 @@
             </kit>
         </action>
         <action filter="all(attacker-is-tagger, victim-is-unfrozen-runner)">
+            <set var="last_victim" value="1"/>
             <set var="is_frozen" value="1"/>
-            <set var="frozen_at_x" value="floor(x) + .5"/>
-            <set var="frozen_at_z" value="floor(z) + .5"/>
             <set var="taggers_score" value="taggers_score + 1"/>
             <set var="runners_score" value="runners_score - 1"/>
             <kit id="runners-frozen-kit"/>
             <switch-scope inner="match">
                 <sound key="mob.zombie.remedy" volume="0.5" pitch="1.5"/>
+                <message text="{p1} `7froze {p2}">
+                    <replacements>
+                        <player id="p1" var="last_attacker" style="color"/>
+                        <player id="p2" var="last_victim" style="color"/>
+                    </replacements>
+                </message>
             </switch-scope>
         </action>
         <action filter="all(attacker-is-unfrozen-runner, victim-is-frozen-runner)">
+            <set var="last_victim" value="1"/>
             <set var="is_frozen" value="0"/>
             <set var="taggers_score" value="taggers_score - 1"/>
             <set var="runners_score" value="runners_score + 1"/>
             <kit id="runners-kit"/>
             <switch-scope inner="match">
                 <sound key="dig.glass"/>
+                <message text="{p1} `7unfroze {p2}">
+                    <replacements>
+                        <player id="p1" var="last_attacker" style="color"/>
+                        <player id="p2" var="last_victim" style="color"/>
+                    </replacements>
+                </message>
             </switch-scope>
         </action>
     </action>
@@ -255,12 +281,22 @@
                 <filter id="attacker-is-unfrozen-runner"/>
                 <filter id="victim-is-unfrozen-runner"/>
             </all>
-            <attacker>
-                <filter id="frozen-runner"/>
-            </attacker>
+            <all>
+                <filter id="attacker-is-frozen-runner"/>
+                <any>
+                    <filter id="victim-is-runner"/>
+                    <all>
+                        <filter id="victim-is-tagger"/>
+                        <cause>melee</cause>
+                    </all>
+                </any>
+            </all>
         </any>
     </deny>
 </damage>
+<portals>
+    <portal forward="all(is_frozen=1, in-void)" destination="spawn-region"/>
+</portals>
 <friendlyfire>on</friendlyfire>
 <hunger>
     <depletion>off</depletion>
@@ -272,5 +308,7 @@
     <item>leather leggings</item>
     <item>leather boots</item>
     <item>compass</item>
+    <item>snow ball</item>
+    <item>firework</item>
 </itemremove>
 </map>
