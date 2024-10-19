@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-10-11 -->
+<!-- Version 2024-10-19 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -293,24 +293,24 @@
         <sound key="mob.creeper.say" volume="1" pitch="1.5"/>
         <switch-scope inner="match">
             <sound key="fireworks.twinkle" volume="0.8" pitch=".9"/>
-            <message text="{p1} tagged {p2}">
+            <message text="{p1} `7tagged {p2}">
                 <replacements>
-                    <player id="p1" var="last_attacker"/>
-                    <player id="p2" var="last_victim"/>
+                    <player id="p1" var="last_attacker" style="color"/>
+                    <player id="p2" var="last_victim" style="color"/>
                 </replacements>
             </message>
             <switch-scope inner="player">
                 <action filter="last_attacker=1">
                     <message actionbar="`aYou tagged {p1}">
                         <replacements>
-                            <player id="p1" var="last_victim"/>
+                            <player id="p1" var="last_victim" style="color"/>
                         </replacements>
                     </message>
                 </action>
                 <action filter="last_victim=1">
                     <message actionbar="{p1} `ctagged you">
                         <replacements>
-                            <player id="p1" var="last_attacker"/>
+                            <player id="p1" var="last_attacker" style="color"/>
                         </replacements>
                     </message>
                 </action>
