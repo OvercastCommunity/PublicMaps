@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-10-19 -->
+<!-- Version 2024-10-26 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -32,10 +32,11 @@
         <action filter="round_deathmatch=1..">
             <kit force="true">
                 <effect amplifier="3">speed</effect>
-                <walk-speed>1.1</walk-speed>
+                <walk-speed>1.2</walk-speed>
             </kit>
         </action>
         <game-mode>adventure</game-mode>
+        <health>20</health>
     </kit>
     <kit id="tnt-flash-kit" force="true">
         <helmet material="snow block" name="`rTNT" locked="true"/>
@@ -63,6 +64,7 @@
             </kit>
         </action>
         <game-mode>adventure</game-mode>
+        <health>20</health>
     </kit>
     <kit id="clear-kit">
         <clear effects="true"/>
@@ -81,19 +83,19 @@
     <any id="round-end">
         <after id="round-sm-end" duration="15s" message="TNT explodes in {0}">
             <all id="round-sm-begin">
-                <variable var="players">1..5</variable>
+                <variable var="players">1..8</variable>
                 <variable var="round_state">2</variable>
             </all>
         </after>
         <after id="round-md-end" duration="25s" message="TNT explodes in {0}">
             <all id="round-md-begin">
-                <variable var="players">6..25</variable>
+                <variable var="players">9..32</variable>
                 <variable var="round_state">2</variable>
             </all>
         </after>
         <after id="round-lg-end" duration="45s" message="TNT explodes in {0}">
             <all id="round-lg-begin">
-                <variable var="players">26..</variable>
+                <variable var="players">33..</variable>
                 <variable var="round_state">2</variable>
             </all>
         </after>
@@ -141,7 +143,7 @@
         <switch-scope inner="player" filter="participating">
             <set var="players" value="players+1"/>
         </switch-scope>
-        <set var="tnt_players" value="max(floor(players^0.6), 1)"/>
+        <set var="tnt_players" value="max(floor(players^0.65), 1)"/>
         <set var="tmp" value="tnt_players"/>
         <action id="pick-player"/>
     </action>
@@ -250,7 +252,7 @@
                 <kit id="tnt-kill"/>
             </switch-scope>
             <sound key="random.explode"/>
-            <action filter="players=..8">
+            <action filter="players=..12">
                 <set var="round_deathmatch" value="round_deathmatch+1"/>
             </action>
         </action>
@@ -292,7 +294,7 @@
         <kit id="tnt-kit"/>
         <sound key="mob.creeper.say" volume="1" pitch="1.5"/>
         <switch-scope inner="match">
-            <sound key="fireworks.twinkle" volume="0.8" pitch=".9"/>
+            <sound key="fireworks.twinkle" volume="0.4" pitch=".9"/>
             <message text="{p1} `7tagged {p2}">
                 <replacements>
                     <player id="p1" var="last_attacker" style="color"/>
