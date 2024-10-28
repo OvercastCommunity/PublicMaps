@@ -1,108 +1,55 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Promenade</name>
-<version>1.1.5</version>
-<objective>Hold the flag for 120 seconds to win!</objective>
+<version>1.1.6</version>
+<objective>Hold the flag for ${score} seconds to win!</objective>
+<constant id="damage-resistance">4s</constant>
+<constant id="respawn-timer">3.5s</constant>
+<constant id="score">120</constant>
+<constant id="flag-respawn-timer">8s</constant>
+<include id="kotf"/>
 <authors>
-	<author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
+    <author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
 </authors>
-<respawn spectate="true" delay="3.5s" auto="true">
-    <message>
-        {"translate":"death.respawn.confirmed.waiting.flagDropped"}
-    </message>
-</respawn>
-<gamemode>kotf</gamemode>
 <teams>
     <team id="blue" color="blue" max="5">Blue</team>
     <team id="red" color="dark red" max="5">Red</team>
 </teams>
-<spawns>
-    <default yaw="180" kit="obs">
-        <regions>
-            <cylinder base="-255.5,16.5,365.5" radius="1" height="0"/>
-        </regions>
-    </default>
-    <spawn team="blue" kit="blue-spawn" yaw="-90">
-        <regions>
-            <point>-243.5,5,369.5</point>
-        </regions>
-    </spawn>
-    <spawn team="red" kit="red-spawn" yaw="90">
-        <regions>
-            <point>-267.5,5,369.5</point>
-        </regions>
-    </spawn>
-    <filter>
-        <not>
-            <same-team>
-                <carrying-flag>flag</carrying-flag>
-            </same-team>
-        </not>
-    </filter>
-</spawns>
 <kits>
-    <kit id="spawn">
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="8" amount="12" material="arrow"/>
-        <chestplate unbreakable="true" material="chainmail chestplate"/>
-		<effect duration="4" amplifier="4">heal</effect>
-		<effect duration="4" amplifier="4">damage resistance</effect>
-    </kit>
-    <kit id="red-spawn" parents="spawn">
-        <helmet color="AF002A" unbreakable="true" material="leather helmet"/>
-        <leggings color="AF002A" unbreakable="true" material="leather leggings"/>
-        <boots color="AF002A" unbreakable="true" enchantment="protection fall:2" material="leather boots"/>
-    </kit>
-    <kit id="blue-spawn" parents="spawn">
-        <helmet color="6E6EF9" unbreakable="true" material="leather helmet"/>
-        <leggings color="6E6EF9" unbreakable="true" material="leather leggings"/>
-        <boots color="6E6EF9" unbreakable="true" enchantment="protection fall:2" material="leather boots"/>
-    </kit>
-    <kit id="obs">
+    <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="flag-kit" force="true">
-        <potion duration="oo" amplifier="-3">health boost</potion>
-		<potion>slowness</potion>
-        <potion duration="3" amplifier="2">absorption</potion>
-    </kit>
-    <kit id="reset-health" force="true">
-        <potion duration="1" amplifier="0">health boost</potion>
-        <potion duration="1" amplifier="10">regeneration</potion>
-    </kit>
+    <kit id="spawn-kit" parents="default-kit,base-kit"/>
 </kits>
-<itemremove>
-    <item>leather helmet</item>
-    <item>chainmail chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
-    <item>stone sword</item>
-    <item>banner</item>
-    <item>bow</item>
-    <item>arrow</item>
-    <item>golden apple</item>
-</itemremove>
-<score>
-    <limit>120</limit>
-</score>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="180">
+            <cylinder base="-255.5,16.5,365.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-243.5,5,369.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="90">
+            <point>-267.5,5,369.5</point>
+        </region>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never" block-physics="never" use="never"/>
+</regions>
 <flags>
-    <flag id="flag" name="Flag" points-rate="1" shared="true" pickup-kit="flag-kit" drop-kit="reset-health">
-        <post return-time="0s" respawn-time="8s">
-            <block>-255.5,12,383.5</block>
-        </post>
+    <flag id="flag"
+          name="Flag"
+          shared="true"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health"
+          flag-proximity-metric="none"
+          show-respawn-on-pickup="${announce-post-pickup}">
+        <post return-time="0s" respawn-time="${flag-respawn-timer}">-255.5,12,383.5</post>
     </flag>
 </flags>
-<regions>
-    <apply block="never"/>
-</regions>
-<timelock>on</timelock>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-        <item amount="6" material="arrow"/>
-    </kill-reward>
-</kill-rewards>
 </map>
