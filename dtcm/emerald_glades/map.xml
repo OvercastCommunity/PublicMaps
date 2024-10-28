@@ -1,9 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Emerald Glades</name>
-<version>1.3.4</version>
+<version>1.3.5</version>
 <objective>Destroy the other team's monument!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii -->
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>
 <teams>
     <team id="blue-team" color="blue" max="6">Blue</team>
@@ -55,9 +56,6 @@
 <filters>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
-    <not id="deny-void">
-        <void/>
-    </not>
     <all id="gold-but-not-from-monument">
         <material>gold block</material>
         <not>
@@ -84,7 +82,7 @@
     <apply region="blue-spawns" enter="only-blue" message="You may not enter the enemy spawn!"/>
     <apply region="red-spawns" enter="only-red" message="You may not enter the enemy spawn!"/>
     <apply region="team-spawns" block="never" message="You may not modify the spawn area!"/>
-    <apply region="restricted-void" block-place="deny-void"/>
+    <apply region="restricted-void" block-place="not(void)"/>
 </regions>
 <maxbuildheight>18</maxbuildheight>
 <damage>
@@ -132,7 +130,7 @@
         <match>
             <material>bow</material>
         </match>
-        <modify unbreakable="true" />
+        <modify unbreakable="true"/>
     </rule>
 </item-mods>
 <toolrepair>
