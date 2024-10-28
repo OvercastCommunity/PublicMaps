@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Chestnut</name> <!-- August 2020 -->
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Capture the enemy's wool and bring it back to your base!</objective>
+<include id="gapple-kill-reward"/>
 <time result="objectives">20m</time>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
@@ -170,7 +171,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="12" damage="5" material="wood"/>
         <item amount="6" team-color="true" material="stained glass"/>
     </kill-reward>
