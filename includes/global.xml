@@ -1,6 +1,6 @@
 <map>
 <if has-variant="halloween">
-    <if variant="default">
+    <if variant="halloween">
         <phase>staging</phase>
     </if>
 </if>
