@@ -1,168 +1,171 @@
-<?xml version="1.0"?>
-<map proto="1.3.6">
+<map proto="1.5.0" internal="true" game="Progress">
 <name>Tavern</name>
-<version>1.0.2</version>
+<version>1.1.0</version>
 <objective>PvP your way through the levels, the first person to make it to the end wins</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- Brumei aka _IQ -->
 </authors>
+<time>5m</time>
+<score>
+    <limit>5</limit>
+</score>
+<players show-name-tags="false" min="8" max="24"/>
+<spawns safe="true">
+    <spawn region="player-spawn" angle="0.5,4,-260.5" kit="stage-1"/>
+    <default region="obs-spawn" yaw="-65" kit="obs"/>
+</spawns>
+<respawn auto="true" delay="1s"/>
 <kits>
-    <kit name="all" potion-particles="false">
-        <potion duration="oo">night vision</potion>
-        <potion duration="oo">speed</potion>
+    <kit id="obs">
+        <effect>night vision</effect>
     </kit>
-    <kit name="spawn" parents="all" potion-particles="false">
-        <potion duration="3" amplifier="10">damage resistance</potion>
-        <helmet locked="true" damage="-3000">diamond helmet</helmet>
-        <chestplate locked="true" damage="-3000">diamond chestplate</chestplate>
-        <leggings locked="true" damage="-3000">diamond leggings</leggings>
-        <boots locked="true" damage="-3000">diamond boots</boots>
-        <item slot="0" damage="-3000">diamond sword</item>
+    <kit id="main">
+        <clear effects="true"/>
+        <effect>night vision</effect>
+        <effect>speed</effect>
+        <game-mode>adventure</game-mode>
     </kit>
-    <kit name="buffs" parents="all" force="true" potion-particles="false">
-        <clear/>
-        <potion duration="0.5" amplifier="100">heal</potion>
+    <kit id="regen" parent="main" force="true">
+        <effect duration="0.5" amplifier="100">instant health</effect>
     </kit>
-    <kit name="kit-diamond" parents="buffs" force="true">
-        <clear/>
-        <helmet locked="true" damage="-3000">diamond helmet</helmet>
-        <chestplate locked="true" damage="-3000">diamond chestplate</chestplate>
-        <leggings locked="true" damage="-3000">diamond leggings</leggings>
-        <boots locked="true" damage="-3000">diamond boots</boots>
-        <item slot="0" damage="-3000">diamond sword</item>
+    <kit id="stage-1" parent="main">
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <helmet material="leather helmet" unbreakable="true"/>
+        <chestplate material="leather chestplate" unbreakable="true"/>
+        <effect duration="3" amplifier="10">damage resistance</effect>
+        <action>
+            <set var="score" value="0"/>
+        </action>
     </kit>
-    <kit name="kit-iron" parents="buffs" force="true">
-        <clear/>
-        <helmet locked="true" damage="-3000">iron helmet</helmet>
-        <chestplate locked="true" damage="-3000">iron chestplate</chestplate>
-        <leggings locked="true" damage="-3000">iron leggings</leggings>
-        <boots locked="true" damage="-3000">diamond boots</boots>
-        <item slot="0" damage="-3000">iron sword</item>
+    <kit id="stage-2" parent="regen" force="true">
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <helmet material="iron helmet" unbreakable="true"/>
+        <chestplate material="iron chestplate" unbreakable="true"/>
+        <leggings material="iron leggings" unbreakable="true"/>
+        <boots material="iron boots" unbreakable="true"/>
     </kit>
-    <kit name="kit-gold" parents="buffs" force="true">
-        <clear/>
-        <helmet locked="true" damage="-3000">gold helmet</helmet>
-        <chestplate locked="true" damage="-3000">gold chestplate</chestplate>
-        <leggings locked="true" damage="-3000">gold leggings</leggings>
-        <boots locked="true" damage="-3000">iron boots</boots>
-        <item slot="0" damage="-3000">stone sword</item>
+    <kit id="stage-3" parent="regen" force="true">
+        <item slot="0" material="gold sword" unbreakable="true"/>
+        <helmet material="gold helmet" unbreakable="true"/>
+        <chestplate material="gold chestplate" unbreakable="true"/>
+        <leggings material="gold leggings" unbreakable="true"/>
+        <boots material="gold boots" unbreakable="true"/>
     </kit>
-    <kit name="kit-leather" parents="buffs" force="true">
-        <clear/>
-        <helmet locked="true" damage="-3000">leather helmet</helmet>
-        <chestplate locked="true" damage="-3000">leather chestplate</chestplate>
-        <leggings locked="true" damage="-3000">leather leggings</leggings>
-        <boots locked="true" damage="-3000">gold boots</boots>
-        <item slot="0" damage="-3000">wood sword</item>
+    <kit id="stage-4" parent="regen" force="true">
+        <item slot="0" material="wood sword" unbreakable="true"/>
+        <helmet material="leather helmet" unbreakable="true"/>
+        <chestplate material="leather chestplate" unbreakable="true"/>
+        <leggings material="leather leggings" unbreakable="true"/>
+        <boots material="leather boots" unbreakable="true"/>
     </kit>
-    <kit name="kit-final" parents="buffs" force="true">
-        <clear/>
-        <potion duration="oo" amplifier="5">health boost</potion>
-        <helmet locked="true" damage="-3000">diamond helmet</helmet>
-        <chestplate locked="true" damage="-3000">diamond chestplate</chestplate>
-        <leggings locked="true" damage="-3000">diamond leggings</leggings>
-        <boots locked="true" damage="-3000">diamond boots</boots>
-        <item slot="0" damage="-3000" attributes="generic.attackDamage:add:8">diamond sword</item>
+    <kit id="stage-5" parent="regen" force="true">
+        <item slot="0" material="diamond sword" unbreakable="true"/>
+        <helmet material="diamond helmet" unbreakable="true"/>
+        <chestplate material="diamond chestplate" unbreakable="true"/>
+        <leggings material="diamond leggings" unbreakable="true"/>
+        <boots material="diamond boots" unbreakable="true"/>
     </kit>
 </kits>
-<spawns safe="true">
-    <spawn kit="spawn">
-        <regions angle="0.5,4,-260.5">
-            <region name="team-spawn"/>
-        </regions>
-    </spawn>
-    <default kit="all">
-        <regions yaw="-65">
-            <region name="obs-spawn"/>
-        </regions>
-    </default>
-</spawns>
-<players show-name-tags="false" max="15"/>
-<killreward>
-    <item name="`bDiamond Key" enchantment="luck">diamond</item>
-</killreward>
+<kill-rewards>
+    <kill-reward filter="not(has-key)">
+        <item material="diamond" name="`bDiamond Key" enchantment="luck"/>
+        <kit>
+            <effect duration="6" amplifier="3">regeneration</effect>
+        </kit>
+    </kill-reward>
+</kill-rewards>
 <filters>
-    <filter name="has-key">
-        <carrying>
-            <item name="`bDiamond Key" enchantment="luck">diamond</item>
-        </carrying>
-    </filter>
+    <carrying id="has-key">
+        <item material="diamond" name="`bDiamond Key" enchantment="luck"/>
+    </carrying>
 </filters>
 <regions>
-    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
-    <point name="obs-spawn">-5,19,-263</point>
-    <cylinder name="team-spawn" base="0.5,2,-260.5" radius="8" height="1"/>
-    <union name="gates">
-        <cuboid name="first-gate" min="-2,2,-270" max="3,5,-271"/>
-        <translate name="second-gate" region="first-gate"  offset="0,0,-23"/>
-        <translate name="third-gate"  region="second-gate" offset="0,0,-23"/>
-        <translate name="fourth-gate" region="third-gate"  offset="0,0,-23"/>
+    <point id="obs-spawn">-5,19,-263</point>
+    <cylinder id="player-spawn" base="0.5,2,-260.5" radius="8" height="1"/>
+    <union id="gates">
+        <cuboid id="stage-1-gate" min="-2,2,-270" max="3,5,-271"/>
+        <translate id="stage-2-gate" region="stage-1-gate" offset="0,0,-23"/>
+        <translate id="stage-3-gate" region="stage-2-gate" offset="0,0,-23"/>
+        <translate id="stage-4-gate" region="stage-3-gate" offset="0,0,-23"/>
+        <translate id="stage-5-gate" region="stage-4-gate" offset="0,0,-23"/>
     </union>
-    <translate name="win-gate"    region="fourth-gate" offset="0,0,-23"/>
-    <cuboid name="win-area" min="3,2,-363" max="-2,4,-367"/>
-    <apply block="deny-all" region="all"/>
-
-    <apply kit="kit-iron"    region="first-gate"  filter="has-key"/>
-    <apply kit="kit-gold"    region="second-gate" filter="has-key"/>
-    <apply kit="kit-leather" region="third-gate"  filter="has-key"/>
-    <apply kit="kit-final"   region="fourth-gate" filter="has-key"/>
-
-    <apply region="first-gate"  enter="has-key" message="`7Requires a `bdiamond `7to enter"/>
-    <apply region="second-gate" enter="has-key" message="`7Requires a `bdiamond `7to enter"/>
-    <apply region="third-gate"  enter="has-key" message="`7Requires a `bdiamond `7to enter"/>
-    <apply region="fourth-gate" enter="has-key" message="`7Requires a `bdiamond `7to enter"/>
-
-    <apply region="win-gate" enter="has-key" message="`7Requires a `bdiamond `7to win"/>
+    <apply block="never"/>
 </regions>
-<score>
-    <limit>10</limit>
-    <time>5m</time>
-    <box points="1" region="third-gate"/>
-    <box points="3" region="fourth-gate"/>
-</score>
-<king>
-    <hills capture-time="10s" points="10" capture-rule="lead">
-        <hill id="winner" name="Winner" capture-region="win-area"/>
-    </hills>
-</king>
-<portals>
-    <portal region="gates" z="-4"/>
-    <portal region="win-gate" x="@1.5" y="@3" z="@-365.5" yaw="@10"/>
-</portals>
-<!-- this doesn't work
-<proximity-alarms>
-    <proximity-alarm flare-radius="0.5">
-        <region>
-            <region name="win-area"/>
-        </region>
-        <detect><filter parents="allow-all"/></detect>
-    </proximity-alarm>
-</proximity-alarms>
--->
+<variables>
+    <score id="score"/>
+    <variable id="last_scorer" scope="player" exclusive="1"/>
+</variables>
+<actions>
+    <trigger scope="player" filter="gates">
+        <action>
+            <take-payment success-action="success" fail-action="fail">
+                <payment price="1">
+                    <item material="diamond" name="`bDiamond Key" enchantment="luck"/>
+                </payment>
+            </take-payment>
+        </action>
+    </trigger>
+    <action id="success" scope="player">
+        <sound preset="SCORE"/>
+        <set var="score" value="score + 1"/>
+        <set var="last_scorer" value="1"/>
+        <switch-scope inner="match">
+            <message text="{ translate: 'scorebox.scored', with: ['{p1}', { translate: 'misc.point', with: [{text: '1', color: 'dark_aqua'}] }, '{p1}'] }">
+                <replacements>
+                    <player id="p1" var="last_scorer" style="color"/>
+                </replacements>
+            </message>
+        </switch-scope>
+        <action filter="score=1">
+            <kit id="stage-2"/>
+        </action>
+        <action filter="score=2">
+            <kit id="stage-3"/>
+        </action>
+        <action filter="score=3">
+            <kit id="stage-4"/>
+        </action>
+        <action filter="score=4">
+            <kit id="stage-5"/>
+        </action>
+        <action filter="not(score=5)">
+            <teleport x="player.x" y="player.y" z="player.z - 4"/>
+        </action>
+    </action>
+    <action id="fail" scope="player">
+        <message actionbar="`cDo you not have the key to progress"/>
+    </action>
+</actions>
 <hunger>
     <depletion>off</depletion>
 </hunger>
 <itemremove>
+    <item>diamond</item>
     <item>diamond sword</item>
-    <item>iron sword</item>
-    <item>stone sword</item>
-    <item>wood sword</item>
     <item>diamond helmet</item>
     <item>diamond chestplate</item>
     <item>diamond leggings</item>
     <item>diamond boots</item>
+    <item>iron sword</item>
     <item>iron helmet</item>
     <item>iron chestplate</item>
     <item>iron leggings</item>
     <item>iron boots</item>
+    <item>gold sword</item>
     <item>gold helmet</item>
     <item>gold chestplate</item>
     <item>gold leggings</item>
     <item>gold boots</item>
+    <item>stone sword</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>wood sword</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>leather leggings</item>
-    <item>diamond</item>
+    <item>leather boots</item>
 </itemremove>
 </map>
