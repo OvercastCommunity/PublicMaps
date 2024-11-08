@@ -1,15 +1,15 @@
 <map proto="1.5.0">
 <!-- Freeze Tag gamemode include file -->
 <!-- Created by mitchiii -->
-<!-- Version 2024-10-19 -->
-<objective>Taggers must freeze all Runners before time runs out!</objective>
+<!-- Version 2024-11-08 -->
+<objective>Taggers must freeze at least half of all Runners before time runs out!</objective>
 <game>Freeze Tag</game>
 <include id="void-death"/>
 <include id="countdown"/>
 <constant id="countdown-scope">team</constant>
 <phase>staging</phase>
 <score/>
-<time result="runners">5m</time>
+<time>5m</time>
 <teams>
     <team id="taggers" color="blue" max="3">Taggers</team>
     <team id="runners" color="green" max="12" plural="true">Runners</team>
@@ -51,8 +51,8 @@
         <leggings material="leather leggings" color="6699D8" locked="true" unbreakable="true"/>
         <boots material="leather boots" color="6699D8" locked="true" unbreakable="true"/>
         <action>
-            <set var="frozen_at_x" value="floor(player.x) + .5"/>
-            <set var="frozen_at_z" value="floor(player.z) + .5"/>
+            <set var="frozen_at_x" value="player.x"/>
+            <set var="frozen_at_z" value="player.z"/>
         </action>
     </kit>
     <give kit="runners-frozen-kit" filter="all(is_frozen=1, in-void)"/>
@@ -191,7 +191,7 @@
     </action>
     <trigger scope="player">
         <filter>
-            <pulse period="0.2s" duration="0.1s" filter="all(in-match, frozen-runner, not(any(moved_from_x=0, moved_from_z=0)))"/>
+            <pulse period="0.2s" duration="0.1s" filter="all(in-match, frozen-runner, not(any(moved_from_x=0, moved_from_z=0)), not(in-void))"/>
         </filter>
         <action>
             <teleport x="frozen_at_x" y="player.y" z="frozen_at_z"/>
@@ -213,7 +213,9 @@
             <set var="runners_score" value="runners_score - 1"/>
             <kit id="runners-frozen-kit"/>
             <switch-scope inner="match">
-                <sound key="mob.zombie.remedy" volume="0.5" pitch="1.5"/>
+                <action filter="participating">
+                    <sound key="mob.zombie.remedy" volume="0.5" pitch="1.5"/>
+                </action>
                 <message text="{p1} `7froze {p2}">
                     <replacements>
                         <player id="p1" var="last_attacker" style="color"/>
@@ -229,7 +231,9 @@
             <set var="runners_score" value="runners_score + 1"/>
             <kit id="runners-kit"/>
             <switch-scope inner="match">
-                <sound key="dig.glass"/>
+                <action filter="participating">
+                    <sound key="dig.glass" volume="0.5"/>
+                </action>
                 <message text="{p1} `7unfroze {p2}">
                     <replacements>
                         <player id="p1" var="last_attacker" style="color"/>
@@ -276,6 +280,9 @@
             <all>
                 <filter id="attacker-is-tagger"/>
                 <filter id="victim-is-frozen-runner"/>
+                <not>
+                    <cause>void</cause>
+                </not>
             </all>
             <all>
                 <filter id="attacker-is-unfrozen-runner"/>
@@ -294,9 +301,6 @@
         </any>
     </deny>
 </damage>
-<portals>
-    <portal forward="all(is_frozen=1, in-void)" destination="spawn-region"/>
-</portals>
 <friendlyfire>on</friendlyfire>
 <hunger>
     <depletion>off</depletion>
