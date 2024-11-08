@@ -1,6 +1,14 @@
 <map proto="1.5.0">
 <name>Diramu Valley DTM</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
+<constants>
+    <constant id="eff.modes-preset">every-5m</constant>
+    <constant id="eff.team-1">blue</constant>
+    <constant id="eff.team-2">red</constant>
+    <constant id="eff.t1-m1-region">red-monument</constant>
+    <constant id="eff.t2-m1-region">blue-monument</constant>
+</constants>
+<include id="efficiency-variables"/>
 <include id="gapple-kill-reward"/>
 <variant id="christmas" world="christmas" override="true">Danagal Valley DTM</variant>
 <objective>Destroy the enemy monument to win!</objective>
@@ -30,7 +38,7 @@
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
         <item slot="3" unbreakable="true" material="stone axe"/>
         <item slot="4" unbreakable="true" material="stone spade"/>
-        <item slot="5" amount="48" damage="5" material="wood"/>
+        <item slot="5" amount="48" damage="1" material="wood"/>
         <item slot="7" amount="12" material="vine"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
@@ -76,6 +84,8 @@
             <rectangle id="red-spawn" min="-75.5,277.5" max="-107.5,265.5"/>
         </union>
     </negative>
+    <cuboid id="red-monument" min="-92,23,231" size="1,2,1"/>
+    <cuboid id="blue-monument" min="-92,23,173" size="1,2,1"/>
     <apply use="deny-beacon"/>
     <apply block-place="no-void" message="You may not place blocks in this area" region="void-reg"/>
     <apply block="never" message="You may not edit spawn" region="spawns"/>
@@ -83,26 +93,13 @@
     <apply enter="only-blue" message="You may not enter the enemy spawn" region="blue-spawn"/>
 </regions>
 <destroyables name="Monument" mode-changes="true" materials="obsidian" repairable="false">
-    <destroyable owner="red">
-        <region>
-            <cuboid min="-92.5,22,230.5" max="-90.5,25,232.5"/>
-        </region>
-    </destroyable>
-    <destroyable owner="blue">
-        <region>
-            <cuboid min="-92.5,22,172.5" max="-90.5,25,174.5"/>
-        </region>
-    </destroyable>
+    <destroyable owner="red" region="red-monument"/>
+    <destroyable owner="blue" region="blue-monument"/>
 </destroyables>
-<modes>
-    <mode after="15m" material="beacon" name="`bBeacon `0Monument `6Mode"/>
-    <mode after="20m" material="gold block" name="`6Gold `0Monument `6Mode"/>
-    <mode after="30m" material="coal block" name="`0Coal `0Monument `6Mode"/>
-</modes>
 <maxbuildheight>36</maxbuildheight>
 <itemremove>
     <item>obsidian</item>
-    <item>wood:5</item>
+    <item>wood</item>
     <item>string</item>
     <item>glowstone dust</item>
     <item>apple</item>
