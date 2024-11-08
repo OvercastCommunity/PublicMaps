@@ -1,9 +1,17 @@
 <map proto="1.4.0">
 <name>Agrostid</name>
-<version>3.0.1</version>
+<variant id="christmas" world="christmas" override="true">Agrochion</variant>
+<version>3.0.2</version>
 <objective>Capture both wools!</objective>
 <gamemode>ctw</gamemode>
-<created>2015-04-26</created> <!-- 2.0.0 edit 2024-10-03 -->
+<if variant="default">
+    <created>2015-04-26</created> <!-- 2.0.0 edit 2024-10-03 -->
+</if>
+<if variant="christmas">
+    <created>2024-08-15</created>
+</if>
+<include id="gapple-kill-reward"/>
+<include id="iron-bulkcrafting"/>
 <phase>development</phase>
 <authors>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
@@ -201,10 +209,6 @@
 <item-mods>
     <rule>
         <match>
-            <material>iron helmet</material>
-            <material>iron chestplate</material>
-            <material>iron leggings</material>
-            <material>iron boots</material>
             <material>iron sword</material>
             <material>iron pickaxe</material>
             <material>iron axe</material>
@@ -216,58 +220,12 @@
         <modify unbreakable="true"/>
     </rule>
 </item-mods>
-<crafting>
-    <!-- bulkcrafting -->
-    <shaped override="false">
-        <result material="iron helmet" amount="9"/>
-        <shape>
-            <row>III</row>
-            <row>I.I</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-    <shaped override="false">
-        <result material="iron chestplate" amount="9"/>
-        <shape>
-            <row>I.I</row>
-            <row>III</row>
-            <row>III</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-    <shaped override="false">
-        <result material="iron leggings" amount="9"/>
-        <shape>
-            <row>III</row>
-            <row>I.I</row>
-            <row>I.I</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-    <shaped override="false">
-        <result material="iron boots" amount="9"/>
-        <shape>
-            <row>I.I</row>
-            <row>I.I</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-    <shaped override="false">
-        <result material="bucket" amount="9"/>
-        <shape>
-            <row>I.I</row>
-            <row>.I.</row>
-        </shape>
-        <ingredient symbol="I">iron block</ingredient>
-    </shaped>
-</crafting>
 <hunger>
     <depletion>off</depletion>
 </hunger>
 <maxbuildheight>23</maxbuildheight>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="wood" amount="48"/>
     </kill-reward>
 </kill-rewards>
