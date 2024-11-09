@@ -1,6 +1,6 @@
 <map proto="1.4.2" game="Water Drop">
 <name>Water Drop: Long Shot</name>
-<version>1.5.3</version>
+<version>1.5.4</version>
 <objective>Grab the flag and return it to your spawn!</objective>
 <created>2019-04-01</created>
 <include id="void-death"/>
@@ -30,7 +30,7 @@
         <item slot="2" material="water bucket" name="`a`lWater-Drop Area!" prevent-sharing="true"/>
         <item slot="3" material="water bucket" name="`a`lWater-Drop Area!" prevent-sharing="true"/>
         <item slot="4" material="water bucket" name="`a`lWater-Drop Area!" prevent-sharing="true"/>
-        <item slot="8" material="arrow" amount="24"/>
+        <item slot="8" material="arrow" amount="6"/>
         <chestplate material="leather chestplate" locked="true" unbreakable="true" team-color="true">
             <enchantment>protection projectile</enchantment>
         </chestplate>
@@ -41,7 +41,7 @@
     <depletion>off</depletion>
 </hunger>
 <kill-reward>
-    <item material="arrow" amount="8"/>
+    <item material="arrow" amount="2"/>
     <item material="wood" damage="2" amount="8"/>
     <kit>
         <action>
@@ -56,6 +56,7 @@
     <match-started id="match-started"/>
     <match-running id="match-running"/>
     <participating id="participating"/>
+    <grounded id="grounded"/>
     <any id="placeable">
         <all>
             <any>
@@ -74,6 +75,9 @@
         </all>
         <material id="only-fire">fire</material>
     </any>
+    <offset id="air-underneath" vector="~0,~-0.5,~0">
+        <material>air</material>
+    </offset>
 </filters>
 <regions>
     <union id="spawns">
@@ -117,6 +121,7 @@
 <score>
     <limit>1</limit>
 </score>
+<time>7m</time>
 <variables>
     <variable id="can_jump" default="0" scope="player"/>
 </variables>
@@ -137,16 +142,11 @@
     </trigger>
     <trigger scope="player">
         <filter>
-            <pulse period="0.1s" duration="0.05s">
-                <all>
-                    <variable var="can_jump">1</variable>
-                    <grounded/>
-                </all>
-            </pulse>
+            <pulse period="0.1s" duration="0.05s" filter="all(can_jump=1, match-running)"/>
         </filter>
-        <action>
+        <action filter="all(grounded, not(air-underneath))">
             <kit>
-                <effect amplifier="16" duration="1s">jump</effect>
+                <effect amplifier="16" duration="2s">jump</effect>
             </kit>
         </action>
     </trigger>
