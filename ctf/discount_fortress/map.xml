@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Discount Fortress</name>
-<version>1.2.9</version>
+<version>1.2.10</version>
 <variant id="7v7">7v7</variant>
 <constant id="override-itemkeep">true</constant>
 <constant id="damage-resistance">5s</constant>
@@ -91,6 +91,9 @@
         <material>leaves</material>
         <material>glass</material>
     </any>
+    <deny id="deny-cacti">
+        <material>cactus</material>
+    </deny>
 </filters>
 <regions>
     <union id="flag-nets">
@@ -112,6 +115,7 @@
     <apply block="never" region="flag-nets" message="You may not place blocks around the flag!"/>
     <apply block="playable-blocks" region="playable-region" message="You may only break or place leaves and glass!"/>
     <apply block="never" region="void-region" message="You may not build in the void!"/>
+    <apply block-physics="deny-cacti"/>
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <flag id="blue-flag"
