@@ -12,7 +12,7 @@
 </variables>
 <filters>
     <holding id="holding-gap" ignore-metadata="true">
-      <item>golden apple</item>
+        <item>golden apple</item>
     </holding>
     <pulse id="pulse-give-gap" duration="0.05s" period="0.1s" filter="all(not(holding-gap),missing_gaps=1..)"/>
 </filters>
@@ -30,7 +30,7 @@
         <action>
             <set var="missing_gaps" value="missing_gaps+1"/>
             <action filter="not(holding-gap)">
-              <action id="give-gap"/>
+                <action id="give-gap"/>
             </action>
         </action>
     </kill-reward>
