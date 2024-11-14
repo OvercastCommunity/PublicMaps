@@ -1,0 +1,285 @@
+<map proto="1.5.0" game="Plunge">
+<name>Plunge: Cavern</name>
+<version>1.1.0</version>
+<objective>Fall into the void to score and survive!</objective>
+<include id="countdown"/>
+<variant id="rose" override="true" world="rose">Plunge: Rose Cord</variant>
+<authors>
+    <if variant="default">
+        <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- PepsiDog -->
+    </if>
+    <if variant="rose">
+        <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
+    </if>
+</authors>
+<players max="8" colors="true"/>
+<time>1h</time>
+<score/>
+<blitz lives="1">
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<spawns spread="true">
+    <spawn region="player-spawn" kit="spawn-kit"/>
+    <default region="obs-spawn" kit="night-vision"/>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <game-mode>adventure</game-mode>
+        <effect>night vision</effect>
+        <max-health>2</max-health>
+        <item slot="0" amount="4" material="snow ball"/>
+        <item slot="6" amount="2" material="ice" projectile="freeze" name="`bFreeze Ray"/>
+        <item slot="7" amount="1" material="blaze rod" projectile="blind" name="`6Blinding Light"/>
+        <item slot="8" amount="2" material="ink sack" damage="2" projectile="nausea" name="`5Stink Bomb"/>
+    </kit>
+    <kit id="night-vision">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="fall-success" force="true">
+        <item material="snow ball" amount="2"/>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward filter="every-kill">
+        <item material="ice" projectile="freeze" name="`bFreeze Ray"/>
+    </kill-reward>
+    <kill-reward filter="every-2nd-kill">
+        <item material="blaze rod" projectile="blind" name="`6Blinding Light"/>
+    </kill-reward>
+    <kill-reward filter="every-3rd-kill">
+        <item material="ink sack" damage="2" projectile="nausea" name="`5Stink Bomb"/>
+    </kill-reward>
+</kill-rewards>
+<projectiles>
+    <projectile id="freeze" name="Freeze Ray" projectile="Snowball" potion="slowness:60:10"/>
+    <projectile id="blind" name="Blinding Light" projectile="Snowball" potion="blindness:100:1"/>
+    <projectile id="nausea" name="Stink Bomb" projectile="Snowball" potion="nausea:200:3"/>
+</projectiles>
+<regions>
+    <point id="obs-spawn">0.5,66,0.5</point>
+    <cuboid id="player-spawn" min="-6,66,-6" max="7,67,7"/>
+    <cuboid id="player-box" min="-8,65,-8" max="9,72,9"/>
+    <cuboid id="score-box" min="-7,0,-7" max="8,4,8"/>
+    <cuboid id="spawn-platform" min="-8,167,9" max="9,163,-8"/>
+    <cuboid id="platform-easy-1" min="-7,131,-7" max="8,132,8"/>
+    <translate id="platform-easy-2" region="platform-easy-1" offset="0,1,0"/>
+    <translate id="platform-easy-3" region="platform-easy-2" offset="0,1,0"/>
+    <translate id="platform-easy-4" region="platform-easy-3" offset="0,1,0"/>
+    <translate id="platform-easy-5" region="platform-easy-4" offset="0,1,0"/>
+    <translate id="platform-easy-6" region="platform-easy-5" offset="0,1,0"/>
+    <translate id="platform-easy-7" region="platform-easy-6" offset="0,1,0"/>
+    <translate id="platform-easy-8" region="platform-easy-7" offset="0,1,0"/>
+    <translate id="platform-easy-9" region="platform-easy-8" offset="0,1,0"/>
+    <translate id="platform-easy-10" region="platform-easy-9" offset="0,1,0"/>
+    <translate id="platform-intermediate-1" region="platform-easy-10" offset="0,1,0"/>
+    <translate id="platform-intermediate-2" region="platform-intermediate-1" offset="0,1,0"/>
+    <translate id="platform-intermediate-3" region="platform-intermediate-2" offset="0,1,0"/>
+    <translate id="platform-intermediate-4" region="platform-intermediate-3" offset="0,1,0"/>
+    <translate id="platform-intermediate-5" region="platform-intermediate-4" offset="0,1,0"/>
+    <translate id="platform-intermediate-6" region="platform-intermediate-5" offset="0,1,0"/>
+    <translate id="platform-intermediate-7" region="platform-intermediate-6" offset="0,1,0"/>
+    <translate id="platform-intermediate-8" region="platform-intermediate-7" offset="0,1,0"/>
+    <translate id="platform-intermediate-9" region="platform-intermediate-8" offset="0,1,0"/>
+    <translate id="platform-intermediate-10" region="platform-intermediate-9" offset="0,1,0"/>
+    <translate id="platform-hard-1" region="platform-intermediate-10" offset="0,1,0"/>
+    <translate id="platform-hard-2" region="platform-hard-1" offset="0,1,0"/>
+    <translate id="platform-hard-3" region="platform-hard-2" offset="0,1,0"/>
+    <translate id="platform-hard-4" region="platform-hard-3" offset="0,1,0"/>
+    <translate id="platform-hard-5" region="platform-hard-4" offset="0,1,0"/>
+    <apply block="never"/>
+</regions>
+<filters>
+    <all id="countdown-start">
+        <match-running/>
+        <variable var="state">${state-countdown}</variable>
+    </all>
+    <kill-streak id="every-kill" count="1" repeat="true"/>
+    <kill-streak id="every-2nd-kill" count="2" repeat="true"/>
+    <kill-streak id="every-3rd-kill" count="3" repeat="true"/>
+    <after duration="8s" filter="all(match-running, any(state=${state-idle}, state=${state-countdown}), round=${easy})" message="Dropping in {0}"/>
+    <after duration="5s" filter="all(match-running, any(state=${state-idle}, state=${state-countdown}), round=${intermediate})" message="Dropping in {0}"/>
+    <after duration="3s" filter="all(match-running, any(state=${state-idle}, state=${state-countdown}), round=${hard})" message="Dropping in {0}"/>
+</filters>
+<portals>
+    <portal region="score-box" destination="player-spawn" sound="false"/>
+</portals>
+<structures clear="true" air="true">
+    <structure id="structure-easy-1" region="platform-easy-1"/>
+    <structure id="structure-easy-2" region="platform-easy-2"/>
+    <structure id="structure-easy-3" region="platform-easy-3"/>
+    <structure id="structure-easy-4" region="platform-easy-4"/>
+    <structure id="structure-easy-5" region="platform-easy-5"/>
+    <structure id="structure-easy-6" region="platform-easy-6"/>
+    <structure id="structure-easy-7" region="platform-easy-7"/>
+    <structure id="structure-easy-8" region="platform-easy-8"/>
+    <structure id="structure-easy-9" region="platform-easy-9"/>
+    <structure id="structure-easy-10" region="platform-easy-10"/>
+    <structure id="structure-intermediate-1" region="platform-intermediate-1"/>
+    <structure id="structure-intermediate-2" region="platform-intermediate-2"/>
+    <structure id="structure-intermediate-3" region="platform-intermediate-3"/>
+    <structure id="structure-intermediate-4" region="platform-intermediate-4"/>
+    <structure id="structure-intermediate-5" region="platform-intermediate-5"/>
+    <structure id="structure-intermediate-6" region="platform-intermediate-6"/>
+    <structure id="structure-intermediate-7" region="platform-intermediate-7"/>
+    <structure id="structure-intermediate-8" region="platform-intermediate-8"/>
+    <structure id="structure-intermediate-9" region="platform-intermediate-9"/>
+    <structure id="structure-intermediate-10" region="platform-intermediate-10"/>
+    <structure id="structure-hard-1" region="platform-hard-1"/>
+    <structure id="structure-hard-2" region="platform-hard-2"/>
+    <structure id="structure-hard-3" region="platform-hard-3"/>
+    <structure id="structure-hard-4" region="platform-hard-4"/>
+    <structure id="structure-hard-5" region="platform-hard-5"/>
+</structures>
+<constants>
+    <constant id="state-idle">0</constant>
+    <constant id="state-countdown">1</constant>
+    <constant id="state-drop">2</constant>
+    <constant id="easy">0..5</constant>
+    <constant id="intermediate">6..10</constant>
+    <constant id="hard">11..</constant>
+    <constant id="max_rounds">13</constant>
+</constants>
+<variables scope="match">
+    <variable id="i"/>
+    <variable id="calc"/>
+    <variable id="target"/>
+    <variable id="state"/>
+    <variable id="round" default="1"/>
+    <array id="platform" size="13"/>
+    <score id="score"/>
+</variables>
+<actions>
+    <trigger scope="match" filter="match-started">
+        <action>
+            <action id="randomise-platforms" scope="match">
+                <set var="i" value="0"/>
+                <repeat times="10">
+                    <set var="platform" index="i" value="random()"/>
+                    <set var="i" value="i + 1"/>
+                </repeat>
+            </action>
+            <action id="pick-next-platform"/>
+            <action id="paste-platform"/>
+            <set var="timelimit" value="-1"/>
+        </action>
+    </trigger>
+    <trigger scope="match">
+        <filter>
+            <any>
+                <after duration="5s" filter="all(match-running, state=${state-idle}, round=${easy})"/>
+                <after duration="2s" filter="all(match-running, state=${state-idle}, round=${intermediate})"/>
+                <filter id="all(match-running, state=${state-idle}, round=${hard})"/>
+            </any>
+        </filter>
+        <action>
+            <set var="state" value="${state-countdown}"/>
+        </action>
+    </trigger>
+    <trigger scope="match">
+        <filter>
+            <after duration="3s" filter="all(match-running, state=${state-countdown})"/>
+        </filter>
+        <action>
+            <switch-scope inner="player">
+                <teleport x="player.x" y="player.y - 2" z="player.z"/>
+            </switch-scope>
+        </action>
+    </trigger>
+    <trigger scope="match">
+        <filter>
+            <after duration="6s" filter="all(match-running, state=${state-countdown})"/>
+        </filter>
+        <action>
+            <set var="state" value="${state-idle}"/>
+            <set var="round" value="round + 1"/>
+            <action id="pick-next-platform">
+                <set var="i" value="0"/>
+                <set var="target" value="0"/>
+                <repeat times="10">
+                    <set var="calc" value="platform[target] - platform[i]"/>
+                    <action filter="calc=0..">
+                        <set var="target" value="i"/>
+                    </action>
+                    <set var="i" value="i + 1"/>
+                </repeat>
+                <set var="platform" index="target" value="9"/>
+                <set var="target" value="target + 1"/>
+            </action>
+            <action id="paste-platform">
+                <action filter="round=${easy}">
+                    <action filter="target=1"><paste-structure structure="structure-easy-1" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=2"><paste-structure structure="structure-easy-2" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=3"><paste-structure structure="structure-easy-3" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=4"><paste-structure structure="structure-easy-4" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=5"><paste-structure structure="structure-easy-5" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=6"><paste-structure structure="structure-easy-6" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=7"><paste-structure structure="structure-easy-7" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=8"><paste-structure structure="structure-easy-8" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=9"><paste-structure structure="structure-easy-9" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=10"><paste-structure structure="structure-easy-10" x="-6" y="3" z="-6"/></action>
+                    <message text="`eRound {0} `7(`aEasy`7) `edropping in `c8 seconds`e!">
+                        <replacements>
+                            <decimal id="0" value="round"/>
+                        </replacements>
+                    </message>
+                </action>
+                <action filter="round=${intermediate}">
+                    <action filter="target=1"><paste-structure structure="structure-intermediate-1" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=2"><paste-structure structure="structure-intermediate-2" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=3"><paste-structure structure="structure-intermediate-3" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=4"><paste-structure structure="structure-intermediate-4" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=5"><paste-structure structure="structure-intermediate-5" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=6"><paste-structure structure="structure-intermediate-6" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=7"><paste-structure structure="structure-intermediate-7" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=8"><paste-structure structure="structure-intermediate-8" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=9"><paste-structure structure="structure-intermediate-9" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=10"><paste-structure structure="structure-intermediate-10" x="-6" y="3" z="-6"/></action>
+                    <message text="`eRound {0} `7(`dIntermediate`7) `edropping in `c5 seconds`e!">
+                        <replacements>
+                            <decimal id="0" value="round"/>
+                        </replacements>
+                    </message>
+                </action>
+                <action filter="round=${hard}">
+                    <action filter="target=1..2"><paste-structure structure="structure-hard-1" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=3..4"><paste-structure structure="structure-hard-2" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=5..6"><paste-structure structure="structure-hard-3" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=7..8"><paste-structure structure="structure-hard-4" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=9..10"><paste-structure structure="structure-hard-5" x="-6" y="3" z="-6"/></action>
+                    <message text="`eRound {0} `7(`4Hard`7) `edropping in `c3 seconds`e!">
+                        <replacements>
+                            <decimal id="0" value="round"/>
+                        </replacements>
+                    </message>
+                </action>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(match-running, score-box)">
+        <action>
+            <set var="score" value="score + 1"/>
+            <sound preset="SCORE"/>
+            <kit id="fall-success"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="round=${max_rounds}">
+        <action>
+            <set var="timelimit" value="0"/>
+        </action>
+    </trigger>
+</actions>
+<itemremove>
+    <item>snow ball</item>
+    <item>ice</item>
+    <item>blaze rod</item>
+    <item>ink sack</item>
+    <item>leather chestplate</item>
+    <item>stick</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>entity attack</damage>
+</disabledamage>
+</map>
