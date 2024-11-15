@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
 <map proto="1.3.0">
 <name>2D</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <objective>Capture the enemy wool and place it at your spawn!</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -12,7 +11,7 @@
 </contributors>
 <rules>
     <rule>Spawn killing is allowed!</rule>
-	<rule>Fall damage is disabled!</rule>
+    <rule>Fall damage is disabled!</rule>
 </rules>
 <teams>
     <team max="8" color="dark red">Red</team>
@@ -129,16 +128,16 @@
     </default>
 </spawns>
 <filters>
-	<filter name="only-red" parents="deny-all">
-		<allow>
+    <filter name="only-red" parents="deny-all">
+        <allow>
             <team>red</team>
         </allow>
-	</filter>
-	<filter name="only-blue" parents="deny-all">
-		<allow>
+    </filter>
+    <filter name="only-blue" parents="deny-all">
+        <allow>
             <team>blue</team>
         </allow>
-	</filter>
+    </filter>
     <filter name="hack" parents="deny-all">
         <allow>
             <block>web</block>
@@ -186,14 +185,17 @@
     <apply block-break="only-red" block-place="deny-all">
         <region name="blue-webs"/>
     </apply>
+    <apply leave="deny-all">
+        <below y="42"/> <!-- anachronistic to proto 1.3 -->
+    </apply>
 </regions>
 <wools>
-   <wool team="blue" color="red">                  
+    <wool team="blue" color="red">
         <block>-2,11,-2</block>
-   </wool>
-   <wool team="red" color="blue">
+    </wool>
+    <wool team="red" color="blue">
         <block>-199,11,-2</block>
-   </wool>
+    </wool>
 </wools>
 <itemremove>
     <item>stone sword</item>
