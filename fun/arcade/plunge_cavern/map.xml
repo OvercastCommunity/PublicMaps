@@ -1,15 +1,19 @@
 <map proto="1.5.0" game="Plunge">
 <name>Plunge: Cavern</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Fall into the void to score and survive!</objective>
 <include id="countdown"/>
 <variant id="rose" override="true" world="rose">Plunge: Rose Cord</variant>
+<variant id="reactor" override="true" world="reactor">Plunge: Reactor</variant>
 <authors>
     <if variant="default">
         <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- PepsiDog -->
     </if>
     <if variant="rose">
         <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
+    </if>
+    <if variant="reactor">
+        <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
     </if>
 </authors>
 <players max="8" colors="true"/>
@@ -180,6 +184,7 @@
             <after duration="3s" filter="all(match-running, state=${state-countdown})"/>
         </filter>
         <action>
+            <set var="state" value="${state-drop}"/>
             <switch-scope inner="player">
                 <teleport x="player.x" y="player.y - 2" z="player.z"/>
             </switch-scope>
@@ -187,7 +192,7 @@
     </trigger>
     <trigger scope="match">
         <filter>
-            <after duration="6s" filter="all(match-running, state=${state-countdown})"/>
+            <after duration="3s" filter="all(match-running, state=${state-drop})"/>
         </filter>
         <action>
             <set var="state" value="${state-idle}"/>
@@ -258,8 +263,24 @@
     <trigger scope="player" filter="all(match-running, score-box)">
         <action>
             <set var="score" value="score + 1"/>
-            <sound preset="SCORE"/>
             <kit id="fall-success"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(match-running, player-box)">
+        <action filter="score=1..">
+            <sound preset="SCORE"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="round=${intermediate}">
+        <action>
+            <action id="randomise-platforms"/>
+            <sound preset="OBJECTIVE_GOOD"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="round=${hard}">
+        <action>
+            <action id="randomise-platforms"/>
+            <sound preset="OBJECTIVE_GOOD"/>
         </action>
     </trigger>
     <trigger scope="match" filter="round=${max_rounds}">
@@ -268,6 +289,54 @@
         </action>
     </trigger>
 </actions>
+<if variant="reactor">
+    <created>2024-11-15</created>
+    <regions>
+        <union id="redstone">
+            <block id="s1" location="5,0,11"/>
+            <block id="s2" location="0,0,11"/>
+            <block id="s3" location="-5,0,11"/>
+            <block id="w1" location="-11,0,5"/>
+            <block id="w2" location="-11,0,0"/>
+            <block id="w3" location="-11,0,-5"/>
+            <block id="n1" location="-5,0,-11"/>
+            <block id="n2" location="0,0,-11"/>
+            <block id="n3" location="5,0,-11"/>
+            <block id="e1" location="11,0,-5"/>
+            <block id="e2" location="11,0,0"/>
+            <block id="e3" location="11,0,5"/>
+        </union>
+    </regions>
+    <actions>
+        <trigger scope="match" filter="state=${state-drop}">
+            <action>
+                <action filter="target=1..2">
+                    <fill region="s1" material="redstone block"/>
+                    <fill region="e1" material="redstone block"/>
+                </action>
+                <action filter="target=3..4">
+                    <fill region="e3" material="redstone block"/>
+                    <fill region="w3" material="redstone block"/>
+                    <fill region="n2" material="redstone block"/>
+                </action>
+                <action filter="target=5..6">
+                    <fill region="w1" material="redstone block"/>
+                    <fill region="n1" material="redstone block"/>
+                </action>
+                <action filter="target=7..8">
+                    <fill region="w2" material="redstone block"/>
+                    <fill region="s3" material="redstone block"/>
+                </action>
+                <action filter="target=9..10">
+                    <fill region="s2" material="redstone block"/>
+                    <fill region="n3" material="redstone block"/>
+                    <fill region="e2" material="redstone block"/>
+                </action>
+                <fill region="redstone" material="stained clay:14"/>
+            </action>
+        </trigger>
+    </actions>
+</if>
 <itemremove>
     <item>snow ball</item>
     <item>ice</item>
