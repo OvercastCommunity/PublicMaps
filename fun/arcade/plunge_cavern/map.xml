@@ -1,6 +1,6 @@
 <map proto="1.5.0" game="Plunge">
 <name>Plunge: Cavern</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Fall into the void to score and survive!</objective>
 <include id="countdown"/>
 <variant id="rose" override="true" world="rose">Plunge: Rose Cord</variant>
@@ -141,7 +141,7 @@
     <constant id="easy">0..5</constant>
     <constant id="intermediate">6..10</constant>
     <constant id="hard">11..</constant>
-    <constant id="max_rounds">13</constant>
+    <constant id="max_rounds">14</constant>
 </constants>
 <variables scope="match">
     <variable id="i"/>
@@ -210,7 +210,7 @@
                 <set var="platform" index="target" value="9"/>
                 <set var="target" value="target + 1"/>
             </action>
-            <action id="paste-platform">
+            <action id="paste-platform" filter="not(round=${max_rounds}..)">
                 <action filter="round=${easy}">
                     <action filter="target=1"><paste-structure structure="structure-easy-1" x="-6" y="3" z="-6"/></action>
                     <action filter="target=2"><paste-structure structure="structure-easy-2" x="-6" y="3" z="-6"/></action>
@@ -239,7 +239,7 @@
                     <action filter="target=8"><paste-structure structure="structure-intermediate-8" x="-6" y="3" z="-6"/></action>
                     <action filter="target=9"><paste-structure structure="structure-intermediate-9" x="-6" y="3" z="-6"/></action>
                     <action filter="target=10"><paste-structure structure="structure-intermediate-10" x="-6" y="3" z="-6"/></action>
-                    <message text="`eRound {0} `7(`dIntermediate`7) `edropping in `c5 seconds`e!">
+                    <message text="`eRound {0} `7(`6Intermediate`7) `edropping in `c5 seconds`e!">
                         <replacements>
                             <decimal id="0" value="round"/>
                         </replacements>
@@ -308,7 +308,10 @@
         </union>
     </regions>
     <actions>
-        <trigger scope="match" filter="state=${state-drop}">
+        <trigger scope="match">
+            <filter>
+                <after duration="1s" filter="state=${state-countdown}"/>
+            </filter>
             <action>
                 <action filter="target=1..2">
                     <fill region="s1" material="redstone block"/>
