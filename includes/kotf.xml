@@ -1,7 +1,7 @@
 <map> <!-- minimum proto 1.4.0 -->
 <!-- Base KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.10.28-1 -->
+<!-- Version 2024.11.16-1 -->
 <include id="conquest"/>
 <constants fallback="true">
     <constant id="respawn-timer">2s</constant>
@@ -41,7 +41,7 @@
             <switch-scope inner="match">
                 <switch-scope inner="player" filter="alive">
                     <kit>
-                        <effect duration="2s" amplifier="10">regeneration</effect>
+                        <effect duration="4s" amplifier="3">regeneration</effect>
                     </kit>
                 </switch-scope>
             </switch-scope>
