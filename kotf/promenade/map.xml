@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Promenade</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Hold the flag for ${score} seconds to win!</objective>
 <constant id="damage-resistance">4s</constant>
 <constant id="respawn-timer">3.5s</constant>
@@ -26,12 +26,12 @@
             <cylinder base="-255.5,16.5,365.5" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue" kit="spawn-kit" filter="has-flag">
         <region yaw="-90">
             <point>-243.5,5,369.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red" kit="spawn-kit" filter="has-flag">
         <region yaw="90">
             <point>-267.5,5,369.5</point>
         </region>
