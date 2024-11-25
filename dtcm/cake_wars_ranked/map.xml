@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <map proto="1.4.2">
 <name>Cake Wars Ranked</name>
-<version>3.1</version>
+<version>3.1.1</version>
 <objective>Leak lava from the enemy's gold core below the cakeline.</objective>
+<edition>ranked</edition>
+<phase>development</phase>
 <authors>
     <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
     <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
