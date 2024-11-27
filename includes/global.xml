@@ -1,257 +1,28 @@
 <map>
-    <!-- Selectively prevent seasonal variants from sponsoring -->
-    <if has-variant="halloween">
-        <if variant="halloween">
-            <phase>staging</phase>
-        </if>
+<!-- Selectively prevent seasonal variants from sponsoring -->
+<if has-variant="halloween">
+    <if variant="halloween">
+        <phase>staging</phase>
     </if>
-    <if has-variant="christmas">
-        <if variant="christmas">
-            <phase>staging</phase>
-        </if>
+</if>
+<if has-variant="christmas">
+    <if variant="christmas">
+        <phase>staging</phase>
     </if>
+</if>
 
-    <!-- Add maxbuildheight variable to pre-proto 1.5 maps -->
-    <variables>
-        <maxbuildheight id="maxbuildheight"/>
-    </variables>
+<!-- Add maxbuildheight variable to pre-proto 1.5 maps -->
+<variables>
+    <maxbuildheight id="maxbuildheight"/>
+</variables>
 
-    <!-- Modern only changes (from OCN global include) -->
-    <if min-server-version="1.21.1">
-        <!-- Increase default attack speed -->
-        <spawns>
-            <player-kit>
-                <attribute operation="multiply" amount="4.001">attack_speed</attribute>
-            </player-kit>
-        </spawns>
-
-        <!-- Modify speed, durability, protection, etc. of axes and armour -->
-        <item-mods>
-            <rule>
-                <match>
-                    <material>wood axe</material>
-                </match>
-                <modify>
-                    <attribute amount="2">attack_damage</attribute>
-                    <attribute amount="-2.5">attack_speed</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>gold axe</material>
-                </match>
-                <modify>
-                    <attribute amount="2">attack_damage</attribute>
-                    <attribute amount="-2.5">attack_speed</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>stone axe</material>
-                </match>
-                <modify>
-                    <attribute amount="3">attack_damage</attribute>
-                    <attribute amount="-2.5">attack_speed</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>iron axe</material>
-                </match>
-                <modify>
-                    <attribute amount="4">attack_damage</attribute>
-                    <attribute amount="-2.5">attack_speed</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>diamond axe</material>
-                </match>
-                <modify>
-                    <attribute amount="5">attack_damage</attribute>
-                    <attribute amount="-2.5">attack_speed</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>leather boots</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="1">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>leather leggings</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="2">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>leather chestplate</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="3">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>leather helmet</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="1">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>gold boots</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="1">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>gold leggings</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="3">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>gold chestplate</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="5">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>gold helmet</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="2">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>chainmail boots</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="1">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>chainmail leggings</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="4">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>chainmail chestplate</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="5">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>chainmail helmet</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="2">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>iron boots</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="2">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>iron leggings</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="5">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>iron chestplate</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="6">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>iron helmet</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="2">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>diamond boots</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="3">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>diamond leggings</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="6">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>diamond chestplate</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="8">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-            <rule>
-                <match>
-                    <material>diamond helmet</material>
-                </match>
-                <modify show-attributes="false">
-                    <attribute amount="3">armor</attribute>
-                    <attribute amount="400">armor_toughness</attribute>
-                </modify>
-            </rule>
-        </item-mods>
-    </if>
+<!-- Modern only changes (from OCN global include) -->
+<if min-server-version="1.21.1">
+    <!-- Increase default attack speed -->
+    <spawns>
+        <player-kit>
+            <attribute operation="multiply" amount="4.001">attack_speed</attribute>
+        </player-kit>
+    </spawns>
+</if>
 </map>
