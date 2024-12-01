@@ -11,7 +11,7 @@
     </if>
 </if>
 <if has-variant="christmas">
-    <if variant="christmas">
+    <if variant="default">
         <phase>staging</phase>
     </if>
 </if>
