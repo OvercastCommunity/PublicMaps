@@ -78,7 +78,7 @@
         <circle id="blue-spawn-ship" center="2018.5,-2062.5" radius="30"/>
         <circle id="red-spawn-ship" center="2007.5,-1871.5" radius="30"/>
     </union>
-    <complement id="void">
+    <complement id="void-region">
         <everywhere/>
         <rectangle min="1922,-2032" max="2104,-1902"/>
     </complement>
@@ -86,7 +86,7 @@
     <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn-ship"/>
     <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn-ship"/>
     <apply block="never" message="You may not destroy the spawn areas!" region="spawns"/>
-    <apply block="deny-void" message="You may not build in the void!" region="void"/>
+    <apply block="deny-void" message="You may not build in the void!" region="void-region"/>
 </regions>
 <modes>
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
