@@ -1,0 +1,85 @@
+<map proto="1.4.2">
+<version>1.0.4</version>
+<name>Rubik's Rage</name>
+<objective>Kill all the player's in the enemy team's before the time runs out!</objective>
+<gamemode>br</gamemode>
+<authors>
+    <author uuid="08f38600-083e-4917-97d5-3e18e4c0c9de"/> <!-- Edde -->
+</authors>
+<contributors>
+    <contributor uuid="d4faae7a-6cca-4695-abc8-20230500aa73" contribution="PvP god, oh and he helped me with the map"/>
+</contributors>
+<teams>
+    <team id="red" max="10" max-overfill="15" color="dark red">Red</team>
+    <team id="blue" max="10" max-overfill="15" color="blue">Blue</team>
+    <team id="orange" max="10" max-overfill="15" color="gold">Orange</team>
+    <team id="green" max="10" max-overfill="15" color="green">Green</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" enchantment="damage all:10" name="`9`l1-Hit kill!" material="diamond sword"/>
+        <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <helmet locked="true" team-color="true" material="leather helmet"/>
+        <chestplate locked="true" team-color="true" material="leather chestplate"/>
+        <leggings locked="true" team-color="true" material="leather leggings"/>
+        <boots locked="true" team-color="true" material="leather boots"/>
+        <effect duration="5">heal</effect>
+        <effect duration="5" amplifier="4">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <regions yaw="90">
+            <point>-439.5,31,-727.5</point>
+        </regions>
+    </default>
+    <spawn team="red" safe="true" kit="spawn-kit">
+        <regions yaw="45">
+            <point>-421.5,1,-745.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" safe="true" kit="spawn-kit">
+        <regions yaw="135">
+            <point>-421.5,1,-709.5</point>
+        </regions>
+    </spawn>
+    <spawn team="orange" safe="true" kit="spawn-kit">
+        <regions yaw="-135">
+            <point>-457.5,1,-709.5</point>
+        </regions>
+    </spawn>
+    <spawn team="green" safe="true" kit="spawn-kit">
+        <regions yaw="-45">
+            <point>-457.5,1,-745.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<time>5m</time>
+<blitz>
+    <lives>2</lives>
+</blitz>
+<rage/>
+<itemremove>
+    <item>diamond sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>iron sword</item>
+    <item>bow</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<respawn auto="true"/>
+<timelock>on</timelock>
+</map>
