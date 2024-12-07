@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <!-- Base Flag Football kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.12.07-1 -->
+<!-- Version 2024.12.07-2 -->
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
     <constant id="night-vision">false</constant>
@@ -11,6 +11,7 @@
     <constant id="team-2-spawn-pitch" delete="true"/>
     <constant id="flag-color" delete="true"/>
     <constant id="pickup-filter">not-above-nor-below</constant>
+    <constant id="enable-proximity-alarms">true</constant>
 </constants>
 <gamemode>ffb</gamemode>
 <if has-variant="comp">
@@ -92,10 +93,12 @@
     <portal observers="never" filter="team-1-carrying-flag" region="team-1-net" destination="team-1-spawn-point" yaw="@${team-1-spawn-yaw}" pitch="@${team-1-spawn-pitch}"/>
     <portal observers="never" filter="team-2-carrying-flag" region="team-2-net" destination="team-2-spawn-point" yaw="@${team-2-spawn-yaw}" pitch="@${team-2-spawn-pitch}"/>
 </portals>
-<proximity-alarms>
-    <proximity-alarm message="You are running to the wrong goal!" flare-radius="0" region="team-2-side" detect="team-1-carrying-flag" notify="team-1-carrying-flag"/>
-    <proximity-alarm message="You are running to the wrong goal!" flare-radius="0" region="team-1-side" detect="team-2-carrying-flag" notify="team-2-carrying-flag"/>
-</proximity-alarms>
+<unless constant="enable-proximity-alarms" constant-value="false">
+    <proximity-alarms>
+        <proximity-alarm message="You are running to the wrong goal!" flare-radius="0" region="team-2-side" detect="team-1-carrying-flag" notify="team-1-carrying-flag"/>
+        <proximity-alarm message="You are running to the wrong goal!" flare-radius="0" region="team-1-side" detect="team-2-carrying-flag" notify="team-2-carrying-flag"/>
+    </proximity-alarms>
+</unless>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
