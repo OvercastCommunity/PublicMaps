@@ -4,7 +4,6 @@
 <slug>flag_football_longhorn</slug>
 <variant id="comp" slug="flag_football_longhorn_te">TE</variant>
 <constants>
-    <constant id="night-vision">false</constant>
     <constant id="team-1-spawn-yaw">90</constant>
     <constant id="team-2-spawn-yaw">-90</constant>
     <constant id="team-1-spawn-pitch">-20</constant>
