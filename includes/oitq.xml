@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map>
 <!--
       \
       |\
@@ -8,12 +8,12 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.10.14-1 -->
+<!-- Version 2024.12.12-1 -->
 <constants fallback="true">
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
     <constant id="extra-kit">default-extra-kit</constant> <!-- For small additions to the base kit, useful if you just want to add stuff to the default one -->
-    <constant id="classes-amount">3</constant> <!-- Amount of classes the map has -->
+    <constant id="classes-amount">5</constant> <!-- Amount of classes the map has -->
 </constants>
 <game>One in the Quiver</game>
 <modifybowprojectile pickup-filter="never"/>
@@ -86,7 +86,9 @@
     <class name="Fisker" description="Wooden sword! Fishing rod! No bow!" longdescription="Wooden sword! Fishing rod! No bow!" icon="fishing rod">
         <kit parents="${base-kit}">
             <item slot="0" unbreakable="true" name="`c`lSharpened `rStick" lore="`8Multiple Hit Kill" material="wood sword"/>
-            <item slot="1" name="`a`lKool Stik Global Elite" material="fishing rod" damage="24"/>
+            <item slot="1" name="`a`lKool Stik Global Elite" material="fishing rod" damage="24">
+                <attribute operation="add" amount="-2">generic.attackDamage</attribute>
+            </item>
         </kit>
     </class>
     <class name="Phoenix" description="Blaze rod! Strength! No bow!" longdescription="Blaze rod! Strength! No bow!" icon="blaze rod">
