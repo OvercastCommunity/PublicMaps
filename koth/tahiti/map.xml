@@ -1,53 +1,53 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Tahiti</name>
-<version>1.2.2</version>
-<objective>Be the first team to reach 750 points!</objective>
+<version>1.2.3</version>
+<variant id="5v5">5v5</variant>
+<variant id="7v7">7v7</variant>
+<objective>Be the first team to reach ${score} points!</objective>
+<unless variant="7v7">
+    <constant id="score">750</constant>
+    <constant id="points-per-second">1</constant>
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+</unless>
+<if variant="7v7">
+    <constant id="score">2500</constant>
+    <constant id="points-per-second">3</constant>
+    <constant id="team-size">7</constant>
+    <constant id="max-overfill">7</constant>
+</if>
+<unless variant="default">
+    <include id="conquest-comp"/>
+</unless>
+<if variant="default">
+    <constant id="team-size">16</constant>
+    <constant id="max-overfill" delete="true"/>
+    <include id="conquest"/>
+</if>
+<include id="velocity-no-fall-damage"/>
+<constant id="damage-resistance">4s</constant>
+<constant id="respawn-timer">2.5s</constant>
 <created>2018-08-08</created>
-<edition>standard</edition>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="16">Blue</team>
-    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${team-size}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${team-size}">Red</team>
 </teams>
-<kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="2">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="4s" amplifier="255">resistance</effect>
-    </kit>
-    <kit id="jump">
-        <effect amplifier="255">jump</effect>
-    </kit>
-    <take kit="jump">
-        <filter>
-            <grounded/>
-        </filter>
-    </take>
-</kits>
 <spawns>
     <default>
         <region yaw="180">
             <point>15.5,42,52.5</point>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue" kit="base-kit">
         <region yaw="20">
             <point>67.5,12,33.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red" kit="base-kit">
         <region yaw="-20">
             <point>-36.5,12,33.5</point>
         </region>
@@ -67,52 +67,24 @@
         <cuboid id="bottom" min="11,5,18" max="20,9,27"/>
         <cuboid id="cave" min="11,4,49" max="20,8,58"/>
     </union>
-    <apply velocity="0,1.7,0.1" kit="jump">
-        <region>
-            <cuboid min="15,10,38" max="16,11,39"/>
-        </region>
-    </apply>
-    <apply velocity="0,1.5,0.1" kit="jump">
-        <region>
-            <cuboid min="15,8,10" max="16,9,11"/>
-        </region>
-    </apply>
+    <union id="jump-pads">
+        <cuboid id="jump-pad-1" min="15,10,38" max="16,11,39"/>
+        <cuboid id="jump-pad-2" min="15,8,10" max="16,9,11"/>
+    </union>
+    <apply velocity="0,1.7,0.1" kit="velocity-applied" region="jump-pad-1"/>
+    <apply velocity="0,1.5,0.1" kit="velocity-applied" region="jump-pad-2"/>
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy spawn!"/>
     <apply block="never" use="never"/>
 </regions>
 <king>
-    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+    <hills required="false" capture-time="5s" points="${points-per-second}" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
         <hill name="Top" capture="top" progress="top"/>
         <hill name="Bottom" capture="bottom" progress="bottom"/>
         <hill name="Cave" capture="cave" progress="cave"/>
     </hills>
 </king>
 <score>
-    <limit>750</limit>
+    <limit>${score}</limit>
 </score>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
-<itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
-<respawn delay="2.5s" auto="true"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
