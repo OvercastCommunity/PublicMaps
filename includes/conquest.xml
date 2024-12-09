@@ -1,9 +1,13 @@
 <map> <!-- minumum proto 1.4.0 -->
 <!-- Base conquest kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.12.07-1 -->
+<!-- Version 2024.12.09-1 -->
 <include id="gapple-kill-reward"/>
-<constant id="override-itemkeep" fallback="true">false</constant>
+<constants fallback="true">
+    <constant id="override-itemkeep">false</constant>
+    <constant id="enable-feather-falling">false</constant>
+    <constant id="feather-falling-level">1</constant>
+</constants>
 <kits>
     <kit id="base-kit">
         <clear/>
@@ -16,7 +20,11 @@
         <leggings unbreakable="true" material="chainmail leggings">
             <enchantment level="3">projectile_protection</enchantment>
         </leggings>
-        <boots unbreakable="true" material="iron boots"/>
+        <boots unbreakable="true" material="iron boots">
+            <if constant="enable-feather-falling" constant-value="true">
+                <enchantment level="${feather-falling-level}">feather_falling</enchantment>
+            </if>
+        </boots>
         <effect duration="${damage-resistance}" amplifier="5">resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
