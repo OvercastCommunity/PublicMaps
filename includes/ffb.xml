@@ -1,7 +1,11 @@
 <map proto="1.5.0">
-<!-- Base Flag Football kit include file -->
+<!-- Flag Football include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.12.07-2 -->
+<!-- Version 2024.12.09-1 -->
+<!-- 
+    XML notes: team 1 defends their own net, 
+    scoring on team 2's net and vice-versa
+-->
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
     <constant id="night-vision">false</constant>
@@ -11,6 +15,10 @@
     <constant id="team-2-spawn-pitch" delete="true"/>
     <constant id="flag-color" delete="true"/>
     <constant id="pickup-filter">not-above-nor-below</constant>
+    <constant id="team-1-net-region">team-1-spawn</constant>
+    <constant id="team-2-net-region">team-2-spawn</constant>
+    <constant id="team-1-net-portal-filter">team-1-carrying-flag</constant>
+    <constant id="team-2-net-portal-filter">team-2-carrying-flag</constant>
     <constant id="enable-proximity-alarms">true</constant>
 </constants>
 <gamemode>ffb</gamemode>
@@ -74,8 +82,8 @@
           drop-kit="drop-kit"
           pickup-filter="${pickup-filter}">
         <post recover-time="8s" respawn-time="4s">${flag-post}</post>
-        <net points="1" region="team-1-spawn" capture-filter="only-team-1"/>
-        <net points="1" region="team-2-spawn" capture-filter="only-team-2"/>
+        <net points="1" region="${team-1-net-region}" capture-filter="only-team-1"/>
+        <net points="1" region="${team-2-net-region}" capture-filter="only-team-2"/>
     </flag>
 </flags>
 <score>
@@ -89,9 +97,15 @@
     </unless>
 </score>
 <portals>
-    <!-- Team spawn points must be defined separately with a 0.25 higher y-level than regions in spawn module to allow for instant flag capture on teleportation -->
-    <portal observers="never" filter="team-1-carrying-flag" region="team-1-net" destination="team-1-spawn-point" yaw="@${team-1-spawn-yaw}" pitch="@${team-1-spawn-pitch}"/>
-    <portal observers="never" filter="team-2-carrying-flag" region="team-2-net" destination="team-2-spawn-point" yaw="@${team-2-spawn-yaw}" pitch="@${team-2-spawn-pitch}"/>
+    <!-- 
+    Team spawn points must be defined separately with a ~0.25 higher y-level
+    than regions in spawn module to allow for instant flag capture on teleportation,
+    unless you capture the flag at the net rather than at spawn. If doing so, you may
+    need to change the portal filter constant so the portal still works for the player
+    who has already capture the flag by the time they would be teleported.
+    -->
+    <portal observers="never" filter="${team-1-net-portal-filter}" region="team-1-net" destination="team-1-spawn-point" yaw="@${team-1-spawn-yaw}" pitch="@${team-1-spawn-pitch}"/>
+    <portal observers="never" filter="${team-1-net-portal-filter}" region="team-2-net" destination="team-2-spawn-point" yaw="@${team-2-spawn-yaw}" pitch="@${team-2-spawn-pitch}"/>
 </portals>
 <unless constant="enable-proximity-alarms" constant-value="false">
     <proximity-alarms>
