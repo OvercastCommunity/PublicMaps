@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Golden Drought</name>
+<version>1.4.3</version>
 <variant id="christmas" world="christmas" override="true">Merry Drought</variant>
-<version>1.4.2</version>
 <objective>Take the wool from the enemy wool rooms and place it on your victory monument while defending your own wool.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
@@ -199,18 +200,13 @@
     </if>
     <rule>
         <filter>
-            <material>wood</material>
+            <any>
+                <material>wood</material>
+                <material>ladder</material>
+            </any>
         </filter>
         <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>ladder</material>
-        </filter>
-        <drops>
-            <item chance="0" material="ladder"/>
+            <item chance="0" material="glass"/>
         </drops>
     </rule>
 </block-drops>
@@ -237,7 +233,6 @@
             <item amount="16" material="quartz block"/>
             <item amount="8" damage="1" material="wood"/>
         </if>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>35</maxbuildheight>

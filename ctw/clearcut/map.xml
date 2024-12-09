@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Clearcut</name>
-<variant id="christmas" world="christmas" override="true">Coldcut</variant>
 <version>2.2.0</version>
+<variant id="christmas" world="christmas" override="true">Coldcut</variant>
 <objective>Capture and place both of the enemy's wools!</objective>
+<include id="gapple-kill-reward"/>
 <gamemode>ctw</gamemode>
 <authors>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
@@ -218,15 +219,10 @@
 <block-drops>
     <rule>
         <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
+            <any>
+                <material>wood</material>
+                <material>glass</material>
+            </any>
         </filter>
         <drops>
             <item chance="0" material="glass"/>
@@ -251,7 +247,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <if variant="default">
             <item amount="24" damage="2" material="wood"/>
         </if>
