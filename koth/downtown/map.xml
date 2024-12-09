@@ -1,17 +1,22 @@
 <map proto="1.5.0">
 <name>Downtown</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <variant id="christmas" world="christmas">Christmas Eve</variant>
 <objective>Be the first team to 2500 points!</objective>
 <gamemode>koth</gamemode>
+<constants>
+    <constant id="damage-resistance">4s</constant>
+    <constant id="respawn-timer">2s</constant>
+    <constant id="enable-feather-falling">true</constant>
+    <constant id="observers-kit" delete="true"/>
+</constants>
 <include id="conquest"/>
-<constant id="damage-resistance">4s</constant>
-<constant id="respawn-timer">2s</constant>
 <if variant="default">
     <created>2019-04-17</created>
 </if>
 <if variant="christmas">
     <created>2019-11-26</created>
+    <constant id="observers-kit">default-kit</constant>
 </if>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Main Builder"/> <!-- Xerocoles -->
@@ -31,15 +36,14 @@
 </teams>
 <kits>
     <kit id="default-kit">
-        <clear items="false" armor="false" effects="true"/> <!-- kits can't be empty, so this is here as a close-to-no-op -->
-        <if variant="christmas">
-            <effect>night vision</effect>
-        </if>
+        <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit" parents="default-kit,base-kit"/>
+    <kit id="spawn-kit" parent="${observers-kit}">
+        <kit id="base-kit"/>
+    </kit>
 </kits>
 <spawns>
-    <default kit="default-kit">
+    <default kit="${observers-kit}">
         <region yaw="180">
             <point>0.5,60,75.5</point>
         </region>
