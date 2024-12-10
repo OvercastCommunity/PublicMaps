@@ -88,7 +88,7 @@
 <modes>
     <mode id="beacon-mode" after="25m" material="beacon" name="`bBEACON MONUMENT MODE"/>
 </modes>
-<destroyables name="Monument" repairable="false" completion="100%" materials="obsidian" modes="beacon-mode coal-mode">
+<destroyables name="Monument" repairable="false" completion="100%" materials="obsidian" modes="beacon-mode">
     <destroyable owner="red" region="red-monument"/>
     <destroyable owner="yellow" region="yellow-monument"/>
 </destroyables>
