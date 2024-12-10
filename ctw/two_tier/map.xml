@@ -1,8 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Two Tier</name>
+<version>1.3.2</version>
 <variant id="christmas" world="christmas" override="true">Two Trees</variant>
 <variant id="halloween" world="halloween" override="true">Two Tear</variant>
-<version>1.3.1</version>
 <objective>Capture both of the enemy's wools!</objective>
 <if variant="default">
     <created>2013-10-31</created>
@@ -10,6 +10,7 @@
 <if variant="christmas">
     <created>2014-11-30</created>
 </if>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
@@ -113,9 +114,6 @@
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
-    <deny id="deny-void">
-        <void/>
-    </deny>
 </filters>
 <regions>
     <negative id="outside-map">
@@ -147,7 +145,7 @@
         <cuboid min="-22,14,52" max="-15,18,60"/>
         <cuboid min="-120,14,52" max="-113,18,60"/>
     </union>
-    <complement id="void">
+    <complement id="void-region">
         <everywhere/>
         <rectangle id="mid" min="-79,18" max="-56,94"/>
     </complement>
@@ -160,7 +158,7 @@
     <apply block="never" message="You may not break or place blocks in the spawn regions!" region="spawns"/>
     <apply block="blue-in-wr" use="only-blue" region="blue-wool-rooms"/>
     <apply block="red-in-wr" use="only-red" region="red-wool-rooms"/>
-    <apply block="deny-void" message="You may not build in the void!" region="void"/>
+    <apply block="deny(void)" message="You may not build in the void!" region="void-region"/>
 </regions>
 <renewables>
     <renewable particles="true" sound="true" region="iron">
@@ -230,7 +228,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <unless variant="halloween">
             <item amount="32" damage="2" material="wood"/>
         </unless>
