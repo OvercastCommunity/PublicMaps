@@ -1,9 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>BalloonsDTM</name>
+<version>2.3.2</version>
 <variant id="halloween" world="halloween">Halloween</variant>
 <variant id="christmas" world="xmas">Xmas</variant> <!-- Preferred Christmas map -->
 <variant id="christmas-legacy-ocn" world="christmas-ocn">Christmas</variant>
-<version>2.3.1</version>
 <objective>Destroy the enemy team's monument!</objective>
 <if variant="default">
     <created>2014-05-20</created>
@@ -17,6 +17,7 @@
 <if variant="christmas-legacy-ocn">
     <created>2014-12-08</created>
 </if>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
 </authors>
@@ -44,24 +45,15 @@
         <helmet material="jack o lantern"/>
     </kit>
     <kit id="spawn-kit">
+        <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
         <item slot="3" unbreakable="true" enchantment="dig speed:3" material="stone axe"/>
-        <unless variant="christmas-legacy-ocn">
-            <item slot="4" amount="64" material="wood"/>
-            <item slot="5" amount="64" material="glass"/>
-            <item slot="7" material="golden apple"/>
-            <item slot="8" amount="64" material="bread"/>
-            <item slot="31" amount="32" material="wood"/>
-        </unless>
-        <if variant="christmas-legacy-ocn">
-            <item slot="4" amount="64" material="bread"/>
-            <item slot="5" amount="32" material="log"/>
-            <item slot="7" amount="64" material="glass"/>
-            <item slot="8" amount="2" material="golden apple"/>
-            <item slot="34" amount="64" material="glass"/>
-        </if>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="31" amount="32" material="wood"/>
         <item slot="6" amount="32" material="ladder"/>
         <item slot="9" amount="16" damage="4" material="ink sack"/>
         <item slot="28" amount="16" material="arrow"/>
@@ -70,8 +62,7 @@
         <chestplate unbreakable="true" team-color="true" enchantment="protection projectile:2" material="leather chestplate"/>
         <leggings unbreakable="true" team-color="true" material="leather leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
-        <effect duration="5" amplifier="5">damage resistance</effect>
-        <effect duration="5" amplifier="5">heal</effect>
+        <effect duration="5s" amplifier="5">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -155,9 +146,6 @@
     <item>flint</item>
     <item>obsidian</item>
     <item>log</item>
-    <item>wood</item>
-    <item>glass</item>
-    <item>arrow</item>
     <item>coal</item>
     <item>redstone</item>
     <item>ink sack:4</item>
@@ -166,7 +154,6 @@
     <item>leather leggings</item>
     <item>leather boots</item>
     <item>ladder</item>
-    <item>bread</item>
     <unless variant="christmas">
         <item>emerald</item>
     </unless>
@@ -176,8 +163,13 @@
     <item>dispenser</item>
     <item>burning furnace</item>
     <item>ink sack</item>
-    <item>golden apple</item>
 </itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>glass</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
 <crafting>
     <disable>leather chestplate</disable>
     <disable>leather helmet</disable>
@@ -186,11 +178,8 @@
 </crafting>
 <kill-rewards>
     <kill-reward>
-        <unless variant="christmas-legacy-ocn">
-            <item material="golden apple"/>
-            <item amount="16" material="wood"/>
-            <item amount="8" material="glass"/>
-        </unless>
+        <item amount="16" material="wood"/>
+        <item amount="8" material="glass"/>
         <item amount="8" material="gold nugget"/>
         <item material="exp bottle"/>
         <item amount="8" material="arrow"/>
@@ -199,8 +188,10 @@
 <gamerules>
     <doFireTick>false</doFireTick>
 </gamerules>
-<timelock>on</timelock>
 <maxbuildheight>31</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <!-- include src="tutorial.xml"/ -->
 <!-- <tutorial>
     <stage title="Destroy the Monument">
