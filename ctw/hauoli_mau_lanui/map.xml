@@ -1,17 +1,18 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hau'oli Mau Lanui</name>
+<version>1.0.4</version>
 <variant id="christmas" world="christmas" override="true">Mele Kalikimaka</variant>
+<objective>Capture the enemy wool!</objective>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
+</authors>
 <unless variant="christmas">
     <constant id="wood-damage">3</constant>
 </unless>
 <if variant="christmas">
     <constant id="wood-damage">1</constant>
 </if>
-<version>1.0.3</version>
-<objective>Capture the enemy wool!</objective>
-<authors>
-    <author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
-</authors>
 <contributors>
     <contributor uuid="0b4f8c7a-b80c-4fb1-86c8-999ef5b799be"/> <!-- Leo -->
     <unless variant="christmas">
@@ -33,13 +34,13 @@
         <item slot="4" material="wood" damage="${wood-damage}" amount="32"/>
         <item slot="5" amount="16" team-color="true" material="stained clay"/>
         <item slot="7" material="arrow" amount="24"/>
-        <item slot="8" material="golden apple" amount="2"/>
+        <item slot="8" material="golden apple"/>
         <item slot="31" material="stone spade" unbreakable="true"/>
         <helmet team-color="true" unbreakable="true" material="leather helmet"/>
         <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
         <leggings team-color="true" unbreakable="true" material="leather leggings"/>
         <boots team-color="true" unbreakable="true" material="leather boots"/>
-        <effect duration="4s" amplifier="255">resistance</effect>
+        <effect duration="4s" amplifier="5">resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -68,9 +69,6 @@
 <filters>
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
-    <not id="no-void">
-        <void/>
-    </not>
     <all id="cobwebs-red">
         <team>red</team>
         <material>web</material>
@@ -113,7 +111,7 @@
     <apply enter="only-red" message="You may not enter the enemy monument area." region="red-gold"/>
     <apply enter="only-blue" message="You may not enter the enemy monument area." region="blue-gold"/>
     <apply block="always" region="bridgeable-areas"/>
-    <apply block="no-void" message="You may not build in the void." region="everywhere"/>
+    <apply block="deny(void)" message="You may not build in the void." region="everywhere"/>
 </regions>
 <wools craftable="false">
     <wool team="red" color="blue" location="92,16,40">
@@ -129,20 +127,16 @@
 </wools>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="arrow" amount="24"/>
         <item material="wood" damage="${wood-damage}" amount="16"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>20</maxbuildheight>
 <itemremove>
-    <item>wood</item>
     <item>apple</item>
-    <item>stained clay</item>
     <item>quartz block</item>
     <item>flint</item>
     <item>gravel</item>
-    <item>cooked beef</item>
     <item>torch</item>
     <item>seeds</item>
     <item>sapling</item>
@@ -161,6 +155,12 @@
     <item>leather leggings</item>
     <item>leather boots</item>
 </itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>stained clay</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
