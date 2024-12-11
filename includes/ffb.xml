@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <!-- Flag Football include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.12.09-1 -->
+<!-- Version 2024.12.11-1 -->
 <!-- 
     XML notes: team 1 defends their own net, 
     scoring on team 2's net and vice-versa
@@ -105,7 +105,7 @@
     who has already capture the flag by the time they would be teleported.
     -->
     <portal observers="never" filter="${team-1-net-portal-filter}" region="team-1-net" destination="team-1-spawn-point" yaw="@${team-1-spawn-yaw}" pitch="@${team-1-spawn-pitch}"/>
-    <portal observers="never" filter="${team-1-net-portal-filter}" region="team-2-net" destination="team-2-spawn-point" yaw="@${team-2-spawn-yaw}" pitch="@${team-2-spawn-pitch}"/>
+    <portal observers="never" filter="${team-2-net-portal-filter}" region="team-2-net" destination="team-2-spawn-point" yaw="@${team-2-spawn-yaw}" pitch="@${team-2-spawn-pitch}"/>
 </portals>
 <unless constant="enable-proximity-alarms" constant-value="false">
     <proximity-alarms>
