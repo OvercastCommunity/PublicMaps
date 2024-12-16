@@ -1,6 +1,6 @@
-<map proto="1.4.2">
-<version>1.0.4</version>
+<map proto="1.5.0">
 <name>Rubik's Rage</name>
+<version>2.0.0</version>
 <objective>Kill all the player's in the enemy team's before the time runs out!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -10,22 +10,23 @@
     <contributor uuid="d4faae7a-6cca-4695-abc8-20230500aa73" contribution="PvP god, oh and he helped me with the map"/>
 </contributors>
 <teams>
-    <team id="red" max="10" max-overfill="15" color="dark red">Red</team>
-    <team id="blue" max="10" max-overfill="15" color="blue">Blue</team>
-    <team id="orange" max="10" max-overfill="15" color="gold">Orange</team>
-    <team id="green" max="10" max-overfill="15" color="green">Green</team>
+    <team id="only-red" max="6" max-overfill="8" color="dark red">Red</team>
+    <team id="only-blue" max="6" max-overfill="8" color="blue">Blue</team>
+    <team id="only-orange" max="6" max-overfill="8" color="gold">Orange</team>
+    <team id="only-green" max="6" max-overfill="8" color="green">Green</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" enchantment="damage all:10" name="`9`l1-Hit kill!" material="diamond sword"/>
-        <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!" material="bow"/>
-        <item slot="2" material="arrow"/>
+        <item slot="0" enchantment="damage all:10" name="`9`l1-Hit kill!" material="diamond sword" unbreakable="true"/>
+        <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!" material="bow" unbreakable="true"/>
+        <item slot="2" material="arrow" amount="2"/>
         <helmet locked="true" team-color="true" material="leather helmet"/>
         <chestplate locked="true" team-color="true" material="leather chestplate"/>
         <leggings locked="true" team-color="true" material="leather leggings"/>
         <boots locked="true" team-color="true" material="leather boots"/>
-        <effect duration="5">heal</effect>
-        <effect duration="5" amplifier="4">damage resistance</effect>
+        <effect duration="3s">absorption</effect>
+        <effect duration="3s" amplifier="255">damage resistance</effect>
+        <max-health>6</max-health>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
@@ -35,33 +36,66 @@
             <point>-439.5,31,-727.5</point>
         </regions>
     </default>
-    <spawn team="red" safe="true" kit="spawn-kit">
+    <spawn team="only-red" kit="spawn-kit" filter="match-start">
         <regions yaw="45">
             <point>-421.5,1,-745.5</point>
         </regions>
     </spawn>
-    <spawn team="blue" safe="true" kit="spawn-kit">
+    <spawn team="only-red" kit="spawn-kit" filter="after-start">
+        <regions yaw="45">
+            <point>-422.5,1,-744.5</point>
+            <point>-422.5,7,-744.5</point>
+            <point>-422.5,13,-744.5</point>
+        </regions>
+    </spawn>
+    <spawn team="only-blue" kit="spawn-kit" filter="match-start">
         <regions yaw="135">
             <point>-421.5,1,-709.5</point>
         </regions>
     </spawn>
-    <spawn team="orange" safe="true" kit="spawn-kit">
+    <spawn team="only-blue" kit="spawn-kit" filter="after-start">
+        <regions yaw="135">
+            <point>-422.5,1,-710.5</point>
+            <point>-422.5,7,-710.5</point>
+            <point>-422.5,13,-710.5</point>
+        </regions>
+    </spawn>
+    <spawn team="only-orange" kit="spawn-kit" filter="match-start">
         <regions yaw="-135">
             <point>-457.5,1,-709.5</point>
         </regions>
     </spawn>
-    <spawn team="green" safe="true" kit="spawn-kit">
+    <spawn team="only-orange" kit="spawn-kit" filter="after-start">
+        <regions yaw="-135">
+            <point>-456.5,1,-710.5</point>
+            <point>-456.5,7,-710.5</point>
+            <point>-456.5,13,-710.5</point>
+        </regions>
+    </spawn>
+    <spawn team="only-green" kit="spawn-kit" filter="match-start">
         <regions yaw="-45">
             <point>-457.5,1,-745.5</point>
         </regions>
     </spawn>
+    <spawn team="only-green" kit="spawn-kit" filter="after-start">
+        <regions yaw="-45">
+            <point>-456.5,1,-744.5</point>
+            <point>-456.5,7,-744.5</point>
+            <point>-456.5,13,-744.5</point>
+        </regions>
+    </spawn>
 </spawns>
+<filters>
+    <not id="match-start">
+        <time id="after-start">1s</time>
+    </not>
+</filters>
 <regions>
     <apply block="never"/>
 </regions>
 <time>5m</time>
 <blitz>
-    <lives>2</lives>
+    <lives>3</lives>
 </blitz>
 <rage/>
 <itemremove>
@@ -80,6 +114,20 @@
         <item material="arrow"/>
     </kill-reward>
 </kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>contact</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
 <respawn auto="true"/>
-<timelock>on</timelock>
+<world>
+    <timeset>6000</timeset>
+    <timelock>on</timelock>
+</world>
 </map>
