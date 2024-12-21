@@ -1,29 +1,38 @@
-<map proto="1.4.2">
+<map>
 <!-- Ghost Squadron gamemode include file -->
 <!-- Modified by zzuf - Original gs.xml file by the Overcast Network -->
-<!-- Version 2023.08.10-1 -->
+<!-- Version 2024.12.21-1 -->
 <game>Ghost Squadron</game>
 <constants fallback="true">
     <constant id="base-kit">default-base-kit</constant>
+    <constant id="time-limit">4m</constant>
+    <constant id="map-mode">0</constant> <!-- 0: regular GS (invisibility times are static), 1: custom -->
+    <!-- Regular invisibility times -->
+    <constant id="alert-1">1m30s</constant>
+    <constant id="alert-2">2m</constant>
+    <constant id="alert-3">2m10s</constant>
+    <constant id="alert-4">2m20s</constant>
+    <constant id="alert-5">2m30s</constant>
+    <constant id="invis-duration">150</constant> <!-- Used in the default kit -->
 </constants>
 <rules>
     <rule>Do not prolong a match by avoiding combat or hiding.</rule>
 </rules>
 <blitz/>
-<time>4m</time>
+<time>${time-limit}</time>
 <broadcasts>
-    <alert after="1m30s">`7All players will be visible in `c`l1 minute`7!</alert>
-    <alert after="2m">`7All players will be visible in `c`l30 seconds`7!</alert>
-    <alert after="2m10s">`7All players will be visible in `c`l20 seconds`7!</alert>
-    <alert after="2m20s">`7All players will be visible in `c`l10 seconds`7!</alert>
-    <alert after="2m30s">`c`lAll players are now visible!</alert>
+    <alert after="${alert-1}" filter="map_mode=0">`7All players will be visible in `c`l1 minute`7!</alert>
+    <alert after="${alert-2}" filter="map_mode=0">`7All players will be visible in `c`l30 seconds`7!</alert>
+    <alert after="${alert-3}" filter="map_mode=0">`7All players will be visible in `c`l20 seconds`7!</alert>
+    <alert after="${alert-4}" filter="map_mode=0">`7All players will be visible in `c`l10 seconds`7!</alert>
+    <alert after="${alert-5}" filter="map_mode=0">`c`lAll players are now visible!</alert>
 </broadcasts>
 <kits>
     <kit id="default-base-kit" potion-particles="true">
         <effect ambient="true" duration="3" amplifier="3">heal</effect>
         <effect ambient="true" duration="oo" amplifier="2">damage resistance</effect>
         <effect ambient="true" duration="oo" amplifier="1">increase damage</effect>
-        <effect ambient="false" duration="150" amplifier="1">invisibility</effect>
+        <effect ambient="false" duration="${invis-duration}" amplifier="1">invisibility</effect>
         <item slot="8" amount="10" material="cooked beef"/>
         <game-mode>adventure</game-mode>
     </kit>
@@ -368,6 +377,9 @@
     <fuse>3s</fuse>
     <friendly-defuse>false</friendly-defuse>
 </tnt>
+<variables>
+    <variable id="map_mode" default="${map-mode}" scope="match"/>
+</variables>
 <itemremove>
     <item>stick</item>
     <item>tnt</item>
