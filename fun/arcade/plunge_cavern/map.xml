@@ -1,6 +1,6 @@
 <map proto="1.5.0" game="Plunge">
 <name>Plunge: Cavern</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Fall into the void to score and survive!</objective>
 <include id="countdown"/>
 <variant id="rose" override="true" world="rose">Plunge: Rose Cord</variant>
@@ -19,22 +19,25 @@
 <players max="8" colors="true"/>
 <time>1h</time>
 <score/>
-<blitz lives="1">
-    <broadcastLives>false</broadcastLives>
-</blitz>
 <spawns spread="true">
     <spawn region="player-spawn" kit="spawn-kit"/>
     <default region="obs-spawn" kit="night-vision"/>
 </spawns>
+<respawn auto="true" delay="0s"/>
 <kits>
     <kit id="spawn-kit">
         <game-mode>adventure</game-mode>
         <effect>night vision</effect>
         <max-health>2</max-health>
-        <item slot="0" amount="4" material="snow ball"/>
-        <item slot="6" amount="2" material="ice" projectile="freeze" name="`bFreeze Ray"/>
-        <item slot="7" amount="1" material="blaze rod" projectile="blind" name="`6Blinding Light"/>
-        <item slot="8" amount="2" material="ink sack" damage="2" projectile="nausea" name="`5Stink Bomb"/>
+        <action filter="playing=0">
+            <set var="playing" value="1"/>
+            <kit>
+                <item slot="0" amount="4" material="snow ball"/>
+                <item slot="6" amount="2" material="ice" projectile="freeze" name="`bFreeze Ray"/>
+                <item slot="7" amount="1" material="blaze rod" projectile="blind" name="`6Blinding Light"/>
+                <item slot="8" amount="2" material="ink sack" damage="2" projectile="nausea" name="`5Stink Bomb"/>
+            </kit>
+        </action>
     </kit>
     <kit id="night-vision">
         <effect>night vision</effect>
@@ -104,9 +107,6 @@
     <after duration="5s" filter="all(match-running, any(state=${state-idle}, state=${state-countdown}), round=${intermediate})" message="Dropping in {0}"/>
     <after duration="3s" filter="all(match-running, any(state=${state-idle}, state=${state-countdown}), round=${hard})" message="Dropping in {0}"/>
 </filters>
-<portals>
-    <portal region="score-box" destination="player-spawn" sound="false"/>
-</portals>
 <structures clear="true" air="true">
     <structure id="structure-easy-1" region="platform-easy-1"/>
     <structure id="structure-easy-2" region="platform-easy-2"/>
@@ -151,6 +151,7 @@
     <variable id="round" default="1"/>
     <array id="platform" size="13"/>
     <score id="score"/>
+    <variable id="playing" scope="player"/>
 </variables>
 <actions>
     <trigger scope="match" filter="match-started">
@@ -263,6 +264,7 @@
     <trigger scope="player" filter="all(match-running, score-box)">
         <action>
             <set var="score" value="score + 1"/>
+            <teleport x="player.x" y="66.5" z="player.z"/>
             <kit id="fall-success"/>
         </action>
     </trigger>
@@ -340,18 +342,26 @@
         </trigger>
     </actions>
 </if>
-<itemremove>
+<itemkeep>
     <item>snow ball</item>
     <item>ice</item>
     <item>blaze rod</item>
     <item>ink sack</item>
     <item>leather chestplate</item>
     <item>stick</item>
-</itemremove>
+</itemkeep>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<disabledamage>
-    <damage>entity attack</damage>
-</disabledamage>
+<damage>
+    <deny>
+        <any>
+            <cause>melee</cause>
+            <all>
+                <region id="player-box"/>
+                <cause>fall</cause>
+            </all>
+        </any>
+    </deny>
+</damage>
 </map>
