@@ -1,0 +1,112 @@
+<map proto="1.5.0">
+<!-- 5CP technical include file -->
+<!-- Created by mameBT -->
+<!-- Version 2024.12.22-1 -->
+<gamemode>5cp</gamemode>
+<constant id="5cp-2021" fallback="true">true</constant>
+<unless constant="5cp-2021" constant-value="false">
+    <constant id="score">800</constant>
+    <constant id="last-point-gain">1</constant>
+</unless>
+<if constant="5cp-2021" constant-value="false">
+    <constant id="score" fallback="true">750</constant>
+    <constant id="last-point-gain">10000</constant>
+</if>
+<filters>
+    <!-- Capture rules for visual control points, which must be captured sequentially -->
+    <any id="filter-team-1-last">
+        <team id="only-team-1">team-1</team>
+        <objective id="capped-team-1-2nd">team-1-2nd</objective>
+    </any>
+    <any id="filter-team-1-2nd">
+        <objective id="capped-mid">mid</objective>
+        <objective id="capped-team-1-last">team-1-last</objective>
+    </any>
+    <any id="filter-team-2-2nd">
+        <filter id="capped-mid"/>
+        <objective id="capped-team-2-last">team-2-last</objective>
+    </any>
+    <any id="filter-team-2-last">
+        <team id="only-team-2">team-2</team>
+        <objective id="capped-team-2-2nd">team-2-2nd</objective>
+    </any>
+    <!-- To capture mid, a team must control their second point -->
+    <any id="filter-mid">
+        <filter id="capped-team-1-2nd"/>
+        <filter id="capped-team-2-2nd"/>
+    </any>
+    <!-- Filters for the point-giving control points -->
+    <!--
+        A team can capture a point-giving control point when they capture the enemy's associated
+        visual point. However, if the enemy uncaptures the point, they will return the point-giving
+        point to a neutral state and points will no longer be scored from it by the team who lost
+        control.
+    -->
+    <any id="filter-last-point-team-1">
+        <filter id="capped-team-2-last"/>
+        <all>
+            <filter id="only-team-2"/>
+            <not>
+                <any>
+                    <objective team="team-1">team-2-last</objective>
+                    <objective team="team-2">team-2-last</objective>
+                </any>
+            </not>
+        </all>
+    </any>
+    <any id="filter-2nd-point-team-1">
+        <filter id="capped-team-2-2nd"/>
+        <all>
+            <filter id="only-team-2"/>
+            <not>
+                <any>
+                    <objective team="team-1">team-2-2nd</objective>
+                    <objective team="team-2">team-2-2nd</objective>
+                </any>
+            </not>
+        </all>
+    </any>
+    <any id="filter-2nd-point-team-2">
+        <filter id="capped-team-1-2nd"/>
+        <all>
+            <filter id="only-team-1"/>
+            <not>
+                <any>
+                    <objective team="team-1">team-1-2nd</objective>
+                    <objective team="team-2">team-1-2nd</objective>
+                </any>
+            </not>
+        </all>
+    </any>
+    <any id="filter-last-point-team-2">
+        <filter id="capped-team-1-last"/>
+        <all>
+            <filter id="only-team-1"/>
+            <not>
+                <any>
+                    <objective team="team-1">team-1-last</objective>
+                    <objective team="team-2">team-1-last</objective>
+                </any>
+            </not>
+        </all>
+    </any>
+</filters>
+<control-points neutral-state="true" show-progress="true">
+    <!-- Team 1 visual control points -->
+    <control-point initial-owner="team-1" id="team-1-last" required="false" name="${team-1-name} Last" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-team-1-last" progress="cp-team-1-last" player-filter="filter-team-1-last"/>
+    <control-point initial-owner="team-1" id="team-1-2nd" required="false" name="${team-1-name}  2nd" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-team-1-2nd" progress="cp-team-1-2nd" player-filter="filter-team-1-2nd"/>
+    <!-- Mid -->
+    <control-point id="mid" required="false" name="Mid" capture-time="6s" time-multiplier="0.35" points="2" incremental="true" capture="cp-mid" progress="cp-mid" player-filter="filter-mid"/>
+    <!-- Team 2 visual control points -->
+    <control-point initial-owner="team-2" id="team-2-2nd" required="false" name="${team-2-name}  2nd" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-team-2-2nd" progress="cp-team-2-2nd" player-filter="filter-team-2-2nd"/>
+    <control-point initial-owner="team-2" id="team-2-last" required="false" name="${team-2-name}  Last" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-team-2-last" progress="cp-team-2-last" player-filter="filter-team-2-last"/>
+    <!-- Point-giving control points -->
+    <control-point id="team-1-last-point" required="false" show="false" points="${last-point-gain}" name="T1_L Point" capture-time="0s" capture="everywhere" player-filter="filter-last-point-team-2" capture-filter="only-team-2"/>
+    <control-point id="team-1-2nd-point" required="false" show="false" points="1" name="T1_2 Point" capture-time="0s" capture="everywhere" player-filter="filter-2nd-point-team-2" capture-filter="only-team-2"/>
+    <control-point id="team-2-2nd-point" required="false" show="false" points="1" name="T2_2 Point" capture-time="0s" capture="everywhere" player-filter="filter-2nd-point-team-1" capture-filter="only-team-1"/>
+    <control-point id="team-2-last-point" required="false" show="false" points="${last-point-gain}" name="T2_L Point" capture-time="0s" capture="everywhere" player-filter="filter-last-point-team-1" capture-filter="only-team-1"/>
+</control-points>
+<score>
+    <limit>${score}</limit>
+</score>
+</map>
