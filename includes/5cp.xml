@@ -1,14 +1,20 @@
 <map proto="1.5.0">
 <!-- 5CP technical include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.12.22-1 -->
+<!-- Version 2024.12.22-2 -->
 <gamemode>5cp</gamemode>
 <constant id="5cp-2021" fallback="true">true</constant>
 <unless constant="5cp-2021" constant-value="false">
+    <constant id="has-portals" fallback="true">false</constant>
+    <constant id="capture-time">6s</constant>
+    <constant id="time-multiplier">0.35</constant>
     <constant id="score">800</constant>
     <constant id="last-point-gain">1</constant>
 </unless>
 <if constant="5cp-2021" constant-value="false">
+    <constant id="has-portals" fallback="true">true</constant>
+    <constant id="capture-time">5s</constant>
+    <constant id="time-multiplier" delete="true"/>
     <constant id="score" fallback="true">750</constant>
     <constant id="last-point-gain">10000</constant>
 </if>
@@ -90,16 +96,83 @@
             </not>
         </all>
     </any>
+    <!-- Time-based spawn filters -->
+    <not id="before-2m">
+        <time>2m</time>
+    </not>
+    <all id="after-2m">
+        <time>2m</time>
+        <not>
+            <time>4m</time>
+        </not>
+    </all>
+    <all id="after-4m">
+        <time>4m</time>
+        <not>
+            <time>6m</time>
+        </not>
+    </all>
+    <all id="after-6m">
+        <time>6m</time>
+        <not>
+            <time>8m</time>
+        </not>
+    </all>
+    <all id="after-8m">
+        <time>8m</time>
+        <not>
+            <time id="after-10m">10m</time>
+        </not>
+    </all>
+    <if constant="has-portals" constant-value="true">
+        <!-- Portal filters -->
+        <all id="portal-team-1-t1-2nd-active">
+            <filter id="capped-team-1-2nd"/>
+            <not>
+                <filter id="capped-mid"/>
+            </not>
+        </all>
+        <all id="portal-team-1-mid-active">
+            <filter id="capped-mid"/>
+            <not>
+                <filter id="capped-team-2-2nd"/>
+            </not>
+        </all>
+        <all id="portal-team-2-mid-active">
+            <filter id="capped-mid"/>
+            <not>
+                <filter id="capped-team-1-2nd"/>
+            </not>
+        </all>
+        <all id="portal-team-2-t2-2nd-active">
+            <filter id="capped-team-2-2nd"/>
+            <not>
+                <filter id="capped-mid"/>
+            </not>
+        </all>
+    </if>
 </filters>
+<if constant="has-portals" constant-value="true">
+    <portals>
+        <!-- Team 1 portals -->
+        <portal region="portal-team-1-t1-2nd" destination="team-1-at-t1-2nd" yaw="${team-1-at-t1-2nd-yaw}" filter="portal-team-1-t1-2nd-active"/>
+        <portal region="portal-team-1-mid" destination="team-1-at-mid" yaw="${team-1-at-mid-yaw}" filter="portal-team-1-mid-active"/>
+        <portal region="portal-team-1-t2-2nd" destination="team-1-at-t2-2nd" yaw="${team-1-at-t2-2nd-yaw}" filter="capped-team-2-2nd"/>
+        <!-- Team 2 portals -->
+        <portal region="portal-team-2-t2-2nd" destination="team-2-at-t2-2nd" yaw="${team-2-at-t2-2nd-yaw}" filter="portal-team-2-t2-2nd-active"/>
+        <portal region="portal-team-2-mid" destination="team-2-at-mid" yaw="${team-2-at-mid-yaw}" filter="portal-team-2-mid-active"/>
+        <portal region="portal-team-2-t1-2nd" destination="team-2-at-t1-2nd" yaw="${team-2-at-t1-2nd-yaw}" filter="capped-team-1-2nd"/>
+    </portals>
+</if>
 <control-points neutral-state="true" show-progress="true">
     <!-- Team 1 visual control points -->
-    <control-point initial-owner="team-1" id="team-1-last" required="false" name="${team-1-name} Last" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-team-1-last" progress="cp-team-1-last" player-filter="filter-team-1-last"/>
-    <control-point initial-owner="team-1" id="team-1-2nd" required="false" name="${team-1-name}  2nd" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-team-1-2nd" progress="cp-team-1-2nd" player-filter="filter-team-1-2nd"/>
+    <control-point initial-owner="team-1" id="team-1-last" required="false" name="${team-1-name} Last" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-1-last" progress="cp-team-1-last" player-filter="filter-team-1-last"/>
+    <control-point initial-owner="team-1" id="team-1-2nd" required="false" name="${team-1-name} 2nd" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-1-2nd" progress="cp-team-1-2nd" player-filter="filter-team-1-2nd"/>
     <!-- Mid -->
-    <control-point id="mid" required="false" name="Mid" capture-time="6s" time-multiplier="0.35" points="2" incremental="true" capture="cp-mid" progress="cp-mid" player-filter="filter-mid"/>
+    <control-point id="mid" required="false" name="Mid" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="2" incremental="true" capture="cp-mid" progress="cp-mid" player-filter="filter-mid"/>
     <!-- Team 2 visual control points -->
-    <control-point initial-owner="team-2" id="team-2-2nd" required="false" name="${team-2-name}  2nd" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-team-2-2nd" progress="cp-team-2-2nd" player-filter="filter-team-2-2nd"/>
-    <control-point initial-owner="team-2" id="team-2-last" required="false" name="${team-2-name}  Last" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-team-2-last" progress="cp-team-2-last" player-filter="filter-team-2-last"/>
+    <control-point initial-owner="team-2" id="team-2-2nd" required="false" name="${team-2-name} 2nd" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-2-2nd" progress="cp-team-2-2nd" player-filter="filter-team-2-2nd"/>
+    <control-point initial-owner="team-2" id="team-2-last" required="false" name="${team-2-name} Last" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-2-last" progress="cp-team-2-last" player-filter="filter-team-2-last"/>
     <!-- Point-giving control points -->
     <control-point id="team-1-last-point" required="false" show="false" points="${last-point-gain}" name="T1_L Point" capture-time="0s" capture="everywhere" player-filter="filter-last-point-team-2" capture-filter="only-team-2"/>
     <control-point id="team-1-2nd-point" required="false" show="false" points="1" name="T1_2 Point" capture-time="0s" capture="everywhere" player-filter="filter-2nd-point-team-2" capture-filter="only-team-2"/>
