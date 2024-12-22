@@ -1,0 +1,286 @@
+<map proto="1.4.2">
+<name>Forge</name>
+<version>1.7.7</version>
+<objective>Capture all five control points.</objective>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<contributors>
+    <contributor contribution="Being amazing" uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <contributor contribution="So cool" uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+    <contributor contribution="Was awesome" uuid="a43135a4-d7b9-49ab-ac8d-a16bb2513c8d"/> <!-- Ny_ -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="7" max-overfill="7">Blue</team>
+    <team id="red" color="dark red" max="7" max-overfill="7">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="10" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="0" region="spawn-default"/>
+    <spawn team="blue" filter="spawn-1" kit="spawn-kit" yaw="180" region="spawn-blue-1"/>
+    <spawn team="blue" filter="spawn-2" kit="spawn-kit" yaw="180" region="spawn-blue-2"/>
+    <spawn team="blue" filter="spawn-3" kit="spawn-kit" yaw="180" region="spawn-blue-3"/>
+    <spawn team="blue" filter="spawn-4" kit="spawn-kit" yaw="180" region="spawn-blue-4"/>
+    <spawn team="blue" filter="spawn-5" kit="spawn-kit" yaw="180" region="spawn-blue-5"/>
+    <spawn team="blue" filter="spawn-6" kit="spawn-kit" yaw="180" region="spawn-blue-6"/>
+    <spawn team="red" filter="spawn-1" kit="spawn-kit" yaw="0" region="spawn-red-1"/>
+    <spawn team="red" filter="spawn-2" kit="spawn-kit" yaw="0" region="spawn-red-2"/>
+    <spawn team="red" filter="spawn-3" kit="spawn-kit" yaw="0" region="spawn-red-3"/>
+    <spawn team="red" filter="spawn-4" kit="spawn-kit" yaw="0" region="spawn-red-4"/>
+    <spawn team="red" filter="spawn-5" kit="spawn-kit" yaw="0" region="spawn-red-5"/>
+    <spawn team="red" filter="spawn-6" kit="spawn-kit" yaw="0" region="spawn-red-6"/>
+</spawns>
+<filters>
+    <not id="deny-trapdoors">
+        <material>trap door</material>
+    </not>
+    <!-- Portal filters -->
+    <objective id="blue-capped-blue-2nd" team="blue">blue-2nd</objective>
+    <objective id="red-capped-blue-2nd" team="red">blue-2nd</objective>
+    <objective id="blue-capped-mid" team="blue">mid</objective>
+    <objective id="red-capped-mid" team="red">mid</objective>
+    <objective id="blue-capped-red-2nd" team="blue">red-2nd</objective>
+    <objective id="red-capped-red-2nd" team="red">red-2nd</objective>
+    <!-- Capture rules for visual control points, which must be captured sequentially -->
+    <any id="filter-blue-last">
+        <filter id="only-blue"/>
+        <objective id="capped-blue-2nd">blue-2nd</objective>
+    </any>
+    <any id="filter-blue-2nd">
+        <objective id="capped-mid">mid</objective>
+        <objective id="capped-blue-last">blue-last</objective>
+    </any>
+    <any id="filter-red-2nd">
+        <objective id="capped-red-last">red-last</objective>
+        <filter id="capped-mid"/>
+    </any>
+    <any id="filter-red-last">
+        <team id="only-red">red</team>
+        <objective id="capped-red-2nd">red-2nd</objective>
+    </any>
+    <any id="filter-mid">
+        <filter id="capped-red-2nd"/>
+        <filter id="capped-blue-2nd"/>
+    </any>
+    <!-- Filters for the point-giving control points -->
+    <!--
+        A team can capture a point-giving control point when they capture the enemy's associated
+        visual point. If the enemy uncaptures the point, they will return the point-giving
+        point to a neutral state and points will no longer be scored from it by the team who lost
+        control. Once one team reaches 1000 points, or gains full control, the match will end.
+    -->
+    <any id="mercy-cap">
+        <all>
+            <team id="only-blue">blue</team>
+            <filter id="capped-red-last"/>
+        </all>
+        <all>
+            <filter id="only-red"/>
+            <filter id="capped-blue-last"/>
+        </all>
+    </any>
+    <any id="filter-last-point-blue">
+        <filter id="capped-red-last"/>
+        <all>
+            <filter id="only-red"/>
+            <not>
+                <any>
+                    <objective team="blue">red-last</objective>
+                    <objective team="red">red-last</objective>
+                </any>
+            </not>
+        </all>
+    </any>
+    <any id="filter-2nd-point-blue">
+        <filter id="capped-red-2nd"/>
+        <all>
+            <filter id="only-red"/>
+            <not>
+                <any>
+                    <filter id="blue-capped-red-2nd"/>
+                    <filter id="red-capped-red-2nd"/>
+                </any>
+            </not>
+        </all>
+    </any>
+    <any id="filter-2nd-point-red">
+        <filter id="capped-blue-2nd"/>
+        <all>
+            <filter id="only-blue"/>
+            <not>
+                <any>
+                    <filter id="blue-capped-blue-2nd"/>
+                    <filter id="red-capped-blue-2nd"/>
+                </any>
+            </not>
+        </all>
+    </any>
+    <any id="filter-last-point-red">
+        <filter id="capped-blue-last"/>
+        <all>
+            <filter id="only-blue"/>
+            <not>
+                <any>
+                    <objective team="blue">blue-last</objective>
+                    <objective team="red">blue-last</objective>
+                </any>
+            </not>
+        </all>
+    </any>
+    <!-- Time-based spawn location filters -->
+    <not id="spawn-1">
+        <time>2m</time>
+    </not>
+    <all id="spawn-2">
+        <time>2m</time>
+        <not>
+            <time>4m</time>
+        </not>
+    </all>
+    <all id="spawn-3">
+        <time>4m</time>
+        <not>
+            <time>6m</time>
+        </not>
+    </all>
+    <all id="spawn-4">
+        <time>6m</time>
+        <not>
+            <time>8m</time>
+        </not>
+    </all>
+    <all id="spawn-5">
+        <time>8m</time>
+        <not>
+            <time>10m</time>
+        </not>
+    </all>
+    <all id="spawn-6">
+        <time>10m</time>
+    </all>
+    <!-- Portal filters -->
+    <all id="portal-blue-blue-2nd-active">
+        <filter id="capped-blue-2nd"/>
+        <not>
+            <filter id="capped-mid"/>
+        </not>
+    </all>
+    <all id="portal-blue-mid-active">
+        <filter id="capped-mid"/>
+        <not>
+            <filter id="capped-red-2nd"/>
+        </not>
+    </all>
+    <all id="portal-red-mid-active">
+        <filter id="capped-mid"/>
+        <not>
+            <filter id="capped-blue-2nd"/>
+        </not>
+    </all>
+    <all id="portal-red-red-2nd-active">
+        <filter id="capped-red-2nd"/>
+        <not>
+            <filter id="capped-mid"/>
+        </not>
+    </all>
+</filters>
+<regions>
+    <!-- Spawn points -->
+    <point id="spawn-default">-19.5,31,-57.5</point>
+    <point id="spawn-blue-1">0.5,60,133.5</point>
+    <point id="spawn-blue-2">0.5,90,133.5</point>
+    <point id="spawn-blue-3">0.5,120,133.5</point>
+    <point id="spawn-blue-4">0.5,150,133.5</point>
+    <point id="spawn-blue-5">0.5,180,133.5</point>
+    <point id="spawn-blue-6">0.5,210,133.5</point>
+    <point id="spawn-red-1">0.5,60,-132.5</point>
+    <point id="spawn-red-2">0.5,90,-132.5</point>
+    <point id="spawn-red-3">0.5,120,-132.5</point>
+    <point id="spawn-red-4">0.5,150,-132.5</point>
+    <point id="spawn-red-5">0.5,180,-132.5</point>
+    <point id="spawn-red-6">0.5,210,-132.5</point>
+    <!-- Control points -->
+    <cuboid id="cp-blue-last" min="-3,7,97" max="4,15,104"/>
+    <cuboid id="cp-blue-2nd" min="-7,3,37" max="2,15,46"/>
+    <cuboid id="cp-mid" min="4,7,4" max="-3,15,-3"/>
+    <cuboid id="cp-red-2nd" min="8,3,-36" max="-1,15,-45"/>
+    <cuboid id="cp-red-last" min="4,7,-96" max="-3,15,-103"/>
+    <!-- Blue portals-->
+    <cuboid id="portal-blue-blue-2nd" min="-1,9,132" max="2,12,135"/>
+    <cuboid id="portal-blue-mid"  min="-1,9,132" max="2,12,135"/>
+    <cuboid id="portal-blue-red-2nd" min="-1,9,132" max="2,12,135"/>
+    <!-- Red portals -->
+    <cuboid id="portal-red-red-2nd" min="2,9,-131" max="-1,12,-134"/>
+    <cuboid id="portal-red-mid" min="2,9,-131" max="-1,12,-134"/>
+    <cuboid id="portal-red-blue-2nd" min="2,9,-131" max="-1,12,-134"/>
+    <apply block="never" use="deny-trapdoors"/>
+</regions>
+<portals>
+    <!-- Blue portals -->
+    <portal x="@0.5" y="@3.0625" z="@100.5" yaw="@180" region="portal-blue-blue-2nd" filter="portal-blue-blue-2nd-active"/>
+    <portal x="@20.5" y="@8.0625" z="@57.5" yaw="@180" region="portal-blue-mid" filter="portal-blue-mid-active"/>
+    <portal x="@-3.5" y="@3.0625" z="@1.5" yaw="@-145" region="portal-blue-red-2nd" filter="capped-red-2nd"/>
+    <!-- Red portals -->
+    <portal x="@0.5" y="@3.0625" z="@-99.5" yaw="@0" region="portal-red-red-2nd" filter="portal-red-red-2nd-active"/>
+    <portal x="@-19.5" y="@8.0625" z="@-56.5" yaw="@0" region="portal-red-mid" filter="portal-red-mid-active"/>
+    <portal x="@4.5" y="@3.0625" z="@-0.5" yaw="@35" region="portal-red-blue-2nd" filter="capped-blue-2nd"/>
+</portals>
+<control-points neutral-state="true" show-progress="true">
+    <!-- Blue visual control points -->
+    <control-point initial-owner="blue" id="blue-last" required="false" name="Blue Last" capture-time="5s" points="0" incremental="true" capture="cp-blue-last" progress="cp-blue-last" player-filter="filter-blue-last"/>
+    <control-point initial-owner="blue" id="blue-2nd" required="false" name="Blue 2nd" capture-time="5s" points="0" incremental="true" capture="cp-blue-2nd" progress="cp-blue-2nd" player-filter="filter-blue-2nd"/>
+    <!-- Mid -->
+    <control-point id="mid" required="false" name="Mid" capture-time="5s" points="2" incremental="true" capture="cp-mid" progress="cp-mid" player-filter="filter-mid"/>
+    <!-- Red visual control points -->
+    <control-point initial-owner="red" id="red-2nd" required="false" name="Red 2nd" capture-time="5s" points="0" incremental="true" capture="cp-red-2nd" progress="cp-red-2nd" player-filter="filter-red-2nd"/>
+    <control-point initial-owner="red" id="red-last" required="false" name="Red Last" capture-time="5s" points="0" incremental="true" capture="cp-red-last" progress="cp-red-last" player-filter="filter-red-last"/>
+    <!-- Point-giving control points -->
+    <control-point id="red-last-point" required="false" show="false" points="10000" name="RL Point" capture-time="0s" capture="everywhere" player-filter="filter-last-point-blue" capture-filter="only-blue"/>
+    <control-point id="red-2nd-point" required="false" show="false" points="1" name="R2 Point" capture-time="0s" capture="everywhere" player-filter="filter-2nd-point-blue" capture-filter="only-blue"/>
+    <control-point id="blue-2nd-point" required="false" show="false" points="1" name="B2 Point" capture-time="0s" capture="everywhere" player-filter="filter-2nd-point-red" capture-filter="only-red"/>
+    <control-point id="blue-last-point" required="false" show="false" points="10000" name="BL Point" capture-time="0s" capture="everywhere" player-filter="filter-last-point-red" capture-filter="only-red"/>
+</control-points>
+<score>
+    <limit>1000</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="5" material="arrow"/>
+</kill-reward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn delay="6s" auto="true"/>
+</map>
