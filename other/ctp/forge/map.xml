@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Forge</name>
-<version>1.8</version>
+<version>1.8.1</version>
 <variant id="7v7">7v7</variant>
 <variant id="5v5">5v5</variant>
 <objective>Capture all five control points.</objective>
@@ -28,6 +28,8 @@
     <constant id="max-overfill" delete="true"/>
     <include id="conquest"/>
 </unless>
+<constant id="team-1-at-t2-2nd-yaw">@-145</constant>
+<constant id="team-2-at-t1-2nd-yaw">@35</constant>
 <constant id="5cp-2021">false</constant>
 <include id="5cp"/>
 <authors>
@@ -83,28 +85,16 @@
     <cuboid id="cp-mid" min="4,7,4" max="-3,15,-3"/>
     <cuboid id="cp-team-2-2nd" min="8,3,-36" max="-1,15,-45"/>
     <cuboid id="cp-team-2-last" min="4,7,-96" max="-3,15,-103"/>
-    <!-- Team 1 portals-->
-    <cuboid id="portal-team-1-t1-2nd" min="-1,9,132" max="2,12,135"/>
+    <!-- Team 1 portal and destinations -->
+    <cuboid id="team-1-portal" min="-1,9,132" max="2,12,135"/>
     <point id="team-1-at-t1-2nd">0.5,3,100.5</point>
-    <cuboid id="portal-team-1-mid" min="-1,9,132" max="2,12,135"/>
     <point id="team-1-at-mid">20.5,8,57.5</point>
-    <cuboid id="portal-team-1-t2-2nd" min="-1,9,132" max="2,12,135"/>
     <point id="team-1-at-t2-2nd">-3.5,3,1.5</point>
-    <!-- Team 2 portals -->
-    <cuboid id="portal-team-2-t2-2nd" min="2,9,-131" max="-1,12,-134"/>
+    <!-- Team 2 portal and destinations -->
+    <cuboid id="team-2-portal" min="2,9,-131" max="-1,12,-134"/>
     <point id="team-2-at-t2-2nd">0.5,3,-99.5</point>
-    <cuboid id="portal-team-2-mid" min="2,9,-131" max="-1,12,-134"/>
     <point id="team-2-at-mid">-19.5,8,-56.5</point>
-    <cuboid id="portal-team-2-t1-2nd" min="2,9,-131" max="-1,12,-134"/>
     <point id="team-2-at-t1-2nd">4.5,3,-0.5</point>
     <apply block="never" use="never"/>
 </regions>
-<constants>
-    <constant id="team-1-at-t1-2nd-yaw" delete="true"/>
-    <constant id="team-1-at-mid-yaw" delete="true"/>
-    <constant id="team-1-at-t2-2nd-yaw">@-145</constant>
-    <constant id="team-2-at-t2-2nd-yaw" delete="true"/>
-    <constant id="team-2-at-mid-yaw" delete="true"/>
-    <constant id="team-2-at-t1-2nd-yaw">@35</constant>
-</constants>
 </map>
