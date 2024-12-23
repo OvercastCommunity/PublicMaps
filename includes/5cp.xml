@@ -1,15 +1,20 @@
 <map proto="1.5.0">
 <!-- 5CP technical include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.12.22-4 -->
+<!-- Version 2024.12.23-1 -->
 <gamemode>5cp</gamemode>
 <constants fallback="true">
     <constant id="5cp-2021">true</constant>
-    <constant id="indicator-team-1-last" delete="true"/>
-    <constant id="indicator-team-1-2nd" delete="true"/>
-    <constant id="indicator-mid" delete="true"/>
-    <constant id="indicator-team-2-2nd" delete="true"/>
-    <constant id="indicator-team-2-last" delete="true"/>
+    <constant id="cp-team-1-last-captured" delete="true"/>
+    <constant id="cp-team-1-2nd-captured" delete="true"/>
+    <constant id="cp-mid-captured" delete="true"/>
+    <constant id="cp-team-2-2nd-captured" delete="true"/>
+    <constant id="cp-team-2-last-captured" delete="true"/>
+    <constant id="cp-team-1-last-progress">cp-team-1-last</constant>
+    <constant id="cp-team-1-2nd-progress">cp-team-1-2nd</constant>
+    <constant id="cp-mid-progress">cp-mid</constant>
+    <constant id="cp-team-2-2nd-progress">cp-team-2-2nd</constant>
+    <constant id="cp-team-2-last-progress">cp-team-2-last</constant>
 </constants>
 <unless constant="5cp-2021" constant-value="false">
     <constant id="has-portals" fallback="true">false</constant>
@@ -179,13 +184,13 @@
 </if>
 <control-points neutral-state="true" show-progress="true">
     <!-- Team 1 visual control points -->
-    <control-point initial-owner="team-1" id="team-1-last" required="false" name="${team-1-name} Last" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-1-last" progress="cp-team-1-last" captured="${indicator-team-1-last}" player-filter="filter-team-1-last"/>
-    <control-point initial-owner="team-1" id="team-1-2nd" required="false" name="${team-1-name} 2nd" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-1-2nd" progress="cp-team-1-2nd" captured="${indicator-team-1-2nd}" player-filter="filter-team-1-2nd"/>
+    <control-point initial-owner="team-1" id="team-1-last" required="false" name="${team-1-name} Last" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-1-last" progress="${cp-team-1-last-progress}" captured="${cp-team-1-last-captured}" player-filter="filter-team-1-last"/>
+    <control-point initial-owner="team-1" id="team-1-2nd" required="false" name="${team-1-name} 2nd" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-1-2nd" progress="${cp-team-1-2nd-progress}" captured="${cp-team-1-2nd-captured}" player-filter="filter-team-1-2nd"/>
     <!-- Mid -->
-    <control-point id="mid" required="false" name="Mid" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="2" incremental="true" capture="cp-mid" progress="cp-mid" captured="${indicator-mid}" player-filter="filter-mid"/>
+    <control-point id="mid" required="false" name="Mid" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="2" incremental="true" capture="cp-mid" progress="${cp-mid-progress}" captured="${cp-mid-captured}" player-filter="filter-mid"/>
     <!-- Team 2 visual control points -->
-    <control-point initial-owner="team-2" id="team-2-2nd" required="false" name="${team-2-name} 2nd" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-2-2nd" progress="cp-team-2-2nd" captured="${indicator-team-2-2nd}" player-filter="filter-team-2-2nd"/>
-    <control-point initial-owner="team-2" id="team-2-last" required="false" name="${team-2-name} Last" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-2-last" progress="cp-team-2-last" captured="${indicator-team-2-last}" player-filter="filter-team-2-last"/>
+    <control-point initial-owner="team-2" id="team-2-2nd" required="false" name="${team-2-name} 2nd" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-2-2nd" progress="${cp-team-2-2nd-progress}" captured="${cp-team-2-2nd-captured}" player-filter="filter-team-2-2nd"/>
+    <control-point initial-owner="team-2" id="team-2-last" required="false" name="${team-2-name} Last" capture-time="${capture-time}" time-multiplier="${time-multiplier}" points="0" incremental="true" capture="cp-team-2-last" progress="${cp-team-2-last-progress}" captured="${cp-team-2-last-captured}" player-filter="filter-team-2-last"/>
     <!-- Point-giving control points -->
     <control-point id="team-1-last-point" required="false" show="false" points="${last-point-gain}" name="T1_L Point" capture-time="0s" capture="everywhere" player-filter="filter-last-point-team-2" capture-filter="only-team-2"/>
     <control-point id="team-1-2nd-point" required="false" show="false" points="1" name="T1_2 Point" capture-time="0s" capture="everywhere" player-filter="filter-2nd-point-team-2" capture-filter="only-team-2"/>
