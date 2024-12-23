@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <!-- 5CP technical include file -->
 <!-- Created by mameBT -->
-<!-- Version 2024.12.22-3 -->
+<!-- Version 2024.12.22-4 -->
 <gamemode>5cp</gamemode>
 <constants fallback="true">
     <constant id="5cp-2021">true</constant>
@@ -10,12 +10,6 @@
     <constant id="indicator-mid" delete="true"/>
     <constant id="indicator-team-2-2nd" delete="true"/>
     <constant id="indicator-team-2-last" delete="true"/>
-    <constant id="team-1-at-t1-2nd-yaw" delete="true"/>
-    <constant id="team-1-at-mid-yaw" delete="true"/>
-    <constant id="team-1-at-t2-2nd-yaw" delete="true"/>
-    <constant id="team-2-at-t2-2nd-yaw" delete="true"/>
-    <constant id="team-2-at-mid-yaw" delete="true"/>
-    <constant id="team-2-at-t1-2nd-yaw" delete="true"/>
 </constants>
 <unless constant="5cp-2021" constant-value="false">
     <constant id="has-portals" fallback="true">false</constant>
@@ -26,8 +20,14 @@
 </unless>
 <if constant="5cp-2021" constant-value="false">
     <constant id="has-portals" fallback="true">true</constant>
-    <constant id="capture-time">5s</constant>
-    <constant id="time-multiplier" delete="true"/>
+    <constant id="team-1-at-t1-2nd-yaw" fallback="true" delete="true"/>
+    <constant id="team-1-at-mid-yaw" fallback="true" delete="true"/>
+    <constant id="team-1-at-t2-2nd-yaw" fallback="true" delete="true"/>
+    <constant id="team-2-at-t2-2nd-yaw" fallback="true" delete="true"/>
+    <constant id="team-2-at-mid-yaw" fallback="true" delete="true"/>
+    <constant id="team-2-at-t1-2nd-yaw" fallback="true" delete="true"/>
+    <constant id="capture-time" fallback="true">5s</constant>
+    <constant id="time-multiplier" fallback="true" delete="true"/>
     <constant id="score" fallback="true">750</constant>
     <constant id="last-point-gain">10000</constant>
 </if>
