@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map>
 <!--
 █ ▀█▀ █▀▀ █▀▄▀█   █▀ █░█ █▀▄▀█ █▀█
 █ ░█░ ██▄ █░▀░█   ▄█ █▄█ █░▀░█ █▄█
@@ -6,12 +6,12 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.10.14-1 -->
+<!-- Version 2024.12.23-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
     <!-- Match -->
-    <constant id="void-plane">-5</constant>
+    <constant id="void-plane">-10</constant>
     <constant id="time-limit">4m</constant>
     <!-- Items -->
     <constant id="item-spawn-point">0,0,0</constant>
@@ -40,7 +40,7 @@
 </broadcasts>
 <respawn delay="3s" auto="true"/>
 <if variant="lifesteal">
-    <phase>development</phase>
+    <phase>staging</phase>
     <include id="lifesteal"/>
     <constants>
         <!-- Lifesteal include constants -->
