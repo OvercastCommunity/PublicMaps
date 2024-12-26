@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Foundry</name>
-<version>2.2.7</version>
+<version>2.2.8</version>
 <variant id="5v5">5v5</variant>
 <objective>Capture all five control points.</objective>
 <constants>
@@ -9,8 +9,8 @@
     <constant id="damage-resistance">0s</constant>
     <constant id="team-1-at-t1-2nd-yaw">@90</constant>
     <constant id="team-1-at-mid-yaw">@90</constant>
-    <constant id="team-2-at-t2-2nd-yaw">@90</constant>
-    <constant id="team-1-at-t2-2nd-yaw">@-90</constant>
+    <constant id="team-1-at-t2-2nd-yaw">@90</constant>
+    <constant id="team-2-at-t2-2nd-yaw">@-90</constant>
     <constant id="team-2-at-mid-yaw">@-90</constant>
     <constant id="team-2-at-t1-2nd-yaw">@-90</constant>
     <constant id="5cp-2021">false</constant>
