@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map> <!-- proto 1.5.0 recommended -->
 <!-- Arrow cooldown/regen include file -->
 <!-- Created by Pugzy, Pablete1234 -->
-<!-- Version 2024.08.10-1 -->
+<!-- Version 2024.12.31 -->
 <constants fallback="true">
+    <constant id="arrow-rate">4s</constant>
     <constant id="arrow-count">4</constant>
     <constant id="lock-arrows">true</constant>
 </constants>
@@ -23,14 +24,11 @@
     <item>arrow</item>
 </itemremove>
 <modifybowprojectile pickup-filter="never"/>
-<variables>
-    <variable id="prevent_arrows" default="1" scope="player"/>
-</variables>
 <actions>
-    <trigger scope="player">
+    <trigger scope="player" action="arrow-kit">
         <filter>
-            <after id="requires-arrows" duration="4s">
-                <all>
+            <pulse period="${arrow-rate}" duration="0.5s">
+                <after duration="${arrow-rate}">
                     <any>
                         <not>
                             <carrying ignore-metadata="true">
@@ -41,23 +39,9 @@
                             <item material="arrow"/>
                         </carrying>
                     </any>
-                    <alive/>
-                    <variable var="prevent_arrows">1</variable>
-                </all>
-            </after>
+                </after>
+            </pulse>
         </filter>
-        <action>
-            <set var="prevent_arrows" value="0"/>
-            <kit id="arrow-kit"/>
-        </action>
-    </trigger>
-    <trigger scope="player">
-        <filter>
-            <variable var="prevent_arrows">0</variable>
-        </filter>
-        <action>
-            <set var="prevent_arrows" value="1"/>
-        </action>
     </trigger>
     <trigger scope="player">
         <filter>
