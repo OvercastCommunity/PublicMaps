@@ -4,18 +4,6 @@
     <constant id="deny-shield-crafting">true</constant>
 </constants>
 
-<!-- Selectively prevent seasonal variants from sponsoring -->
-<if has-variant="halloween">
-    <if variant="halloween">
-        <phase>staging</phase>
-    </if>
-</if>
-<if has-variant="christmas">
-    <if variant="christmas">
-        <phase>staging</phase>
-    </if>
-</if>
-
 <!-- Add maxbuildheight variable to pre-proto 1.5 maps -->
 <variables>
     <maxbuildheight id="maxbuildheight"/>
