@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Howdy Partner</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Capture both of the enemy's flags.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
@@ -44,18 +45,18 @@
     </kit>
 </kits>
 <spawns>
-    <default>
-        <regions yaw="-90">
+    <default yaw="-90">
+        <region>
             <cylinder base="-389.5,41,-470.5" radius="1" height="2"/>
-        </regions>
+        </region>
     </default>
-    <spawn team="blue-team" kit="spawn-kit">
-        <region yaw="90">
+    <spawn team="blue-team" kit="spawn-kit" yaw="90">
+        <region>
             <point>-306.5,10,-470.5</point>
         </region>
     </spawn>
-    <spawn team="red-team" kit="spawn-kit">
-        <region yaw="-90">
+    <spawn team="red-team" kit="spawn-kit" yaw="-90">
+        <region>
             <point>-472.5,10,-470.5</point>
         </region>
     </spawn>
@@ -87,37 +88,17 @@
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <!-- Blue's objective flags -->
-    <flag id="magenta-flag"
-          name="Magenta Flag"
-          color="magenta"
-          owner="red-team"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-dropped">
+    <flag id="magenta-flag" name="Magenta Flag" color="magenta" owner="red-team" pickup-kit="flag-pickup" drop-kit="flag-dropped">
         <post pickup-filter="only-blue" recover-time="15s" respawn-time="5s" yaw="180">-427.5,6,-430.5</post>
     </flag>
-    <flag id="purple-flag"
-          name="Purple Flag"
-          color="purple"
-          owner="red-team"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-dropped">
+    <flag id="purple-flag" name="Purple Flag" color="purple" owner="red-team" pickup-kit="flag-pickup" drop-kit="flag-dropped">
         <post pickup-filter="only-blue" recover-time="15s" respawn-time="5s" yaw="0">-427.5,6,-510.5</post>
     </flag>
     <!-- Red's objective flags -->
-    <flag id="green-flag"
-          name="Green Flag"
-          color="lime"
-          owner="blue-team"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-dropped">
+    <flag id="green-flag" name="Green Flag" color="lime" owner="blue-team" pickup-kit="flag-pickup" drop-kit="flag-dropped">
         <post pickup-filter="only-red" recover-time="15s" respawn-time="5s" yaw="0">-351.5,6,-510.5</post>
     </flag>
-    <flag id="yellow-flag"
-          name="Yellow Flag"
-          color="yellow"
-          owner="blue-team"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-dropped">
+    <flag id="yellow-flag" name="Yellow Flag" color="yellow" owner="blue-team" pickup-kit="flag-pickup" drop-kit="flag-dropped">
         <post pickup-filter="only-red" recover-time="15s" respawn-time="5s" yaw="180">-351.5,6,-430.5</post>
     </flag>
     <flags points="1">
@@ -146,7 +127,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="8" material="arrow"/>
     </kill-reward>
 </kill-rewards>

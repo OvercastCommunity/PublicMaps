@@ -1,9 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Take Out</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Capture the enemy flag as many times as possible before time runs out!</objective>
-<time result="score" overtime="30s" max-overtime="2m30s">12m</time>
 <edition>standard</edition>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
@@ -46,7 +46,7 @@
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>7.5,7,-83.5</point>
         </region>
     </spawn>
@@ -60,22 +60,13 @@
     <cylinder id="red-net" base="-6.5,18,-58.5" height="3" radius="0.5"/>
     <apply block="never" use="never"/>
 </regions>
+<time result="score" overtime="30s" max-overtime="2m30s">12m</time>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
-    <flag color="blue"
-          id="blue-flag"
-          name="Blue Flag"
-          owner="blue"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-drop">
+    <flag color="blue" id="blue-flag" name="Blue Flag" owner="blue" pickup-kit="flag-pickup" drop-kit="flag-drop">
         <post pickup-filter="only-red" recover-time="15s" respawn-time="10s">5.5,18,55.5</post>
         <net region="red-net" points="1"/>
     </flag>
-    <flag color="red"
-          id="red-flag"
-          name="Red Flag"
-          owner="red"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-drop">
+    <flag color="red" id="red-flag" name="Red Flag" owner="red" pickup-kit="flag-pickup" drop-kit="flag-drop">
         <post pickup-filter="only-blue" recover-time="15s" respawn-time="10s">-6.5,18,-58.5</post>
         <net region="blue-net" points="1"/>
     </flag>
@@ -129,10 +120,11 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="6" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="6" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <respawn auto="true"/>
 <hunger>
     <depletion>off</depletion>

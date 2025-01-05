@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Fenland CTF</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Capture the enemy flag and bring it back to your side</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e5953ddf-c1fc-4405-9ac9-6939631cd185"/> <!-- McSpider -->
 </authors>
@@ -74,8 +75,8 @@
     </negative>
     <apply region="red-base" enter="no-blue-flag" message="You may not enter your base with the flag!"/>
     <apply region="blue-base" enter="no-red-flag" message="You may not enter your base with the flag!"/>
-    <apply region="blue-base" enter="only-blue" message="You may not enter the enemy team's base!"/>
-    <apply region="red-base" enter="only-red" message="You may not enter the enemy team's base!"/>
+    <apply region="blue-base" enter="only-blue" message="You may not enter the enemy's base!"/>
+    <apply region="red-base" enter="only-red" message="You may not enter the enemy's base!"/>
     <apply region="base-no-modify-areas" block="never" message="You may not modify the base!"/>
     <apply region="flag-platforms" block="never" message="You may not destroy the flag platform"/>
     <apply region="playable-inverse" block="never" message="You may not build outside the playing area!"/>
@@ -135,42 +136,5 @@
     <item>beacon</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <maxbuildheight>25</maxbuildheight>
-<!-- <tutorial>
-    <stage title="Capture the Flag">
-        <message>
-            <line>§rThis map is a §a§lCapture the Flag §r(DTM) map.</line>
-            <line>The objective is to pickup the other team's `bflag `rand return it to your side.</line>
-            <line>The first team to capture the enemy flag three times wins the match.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="30">0.5,28,-41.5</point>
-        </teleport>
-    </stage>
-    <stage title="Blue Flag">
-        <message>
-            <line>This is the `9Blue Team`r's flag. It is located left of the `9Blue Team `rspawn.</line>
-            <line>`cRed Team`r's flag is located to the left of the `cRed Team`r's spawn.</line>
-            <line>You must capture the enemy team's `bflag `rand return it to your own flag platform.</line>
-        </message>
-        <teleport>
-            <point yaw="135" pitch="30">55,25,36</point>
-        </teleport>
-    </stage>
-    <stage title="Gold">
-        <message>
-            <line>There is one `6gold block `rlocated in the center of the map.</line>
-            <line>Players also spawn with `6golden nuggets`r, which drop on death.</line>
-            <line>You can use the gold to craft armor.</line>
-        </message>
-        <teleport>
-            <point yaw="-135" pitch="40">-1.5,11,2.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map> 

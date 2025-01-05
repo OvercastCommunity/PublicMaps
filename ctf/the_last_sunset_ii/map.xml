@@ -1,32 +1,23 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Last Sunset II</name>
 <variant id="halloween" world="halloween" override="true" slug="a_spooky_sunset">A SpOOky Sunset II</variant> <!-- slug for original name -->
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Capture each enemy flag two times!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Building"/> <!-- GoldenOre -->
 </authors>
-<broadcasts>
-    <tip after="4s">
-        `3`oYou have to capture the `6flags`3`o in `6spawn`3.
-    </tip>
-    <tip after="6s">
-        `3`oTo make the `6flags`3`o respawn you have to capture both enemy flags first.
-    </tip>
-    <tip after="8s">
-        `6The gold ores`3`o in the `6mines under spawn`3`o drop gold blocks instead of gold ore.
-    </tip>
-    <tip after="10s">
-        `3`oYou can't place water in a 5-block radius around the flag(s).
-    </tip>
-    <tip after="12s">
-        `3`oEvery 4th kill you will get one instant-igniting piece of tnt.
-    </tip>
-</broadcasts>
 <rules>
     <rule>Gold ore drops 1 gold block when mined.</rule>
 </rules>
+<broadcasts>
+    <tip after="4s">`3`oYou have to capture the `6flags`3`o in `6spawn`3.</tip>
+    <tip after="6s">`3`oTo make the `6flags`3`o respawn you have to capture both enemy flags first.</tip>
+    <tip after="8s">`6The gold ores`3`o in the `6mines under spawn`3`o drop gold blocks instead of gold ore.</tip>
+    <tip after="10s">`3`oYou can't place water in a 5-block radius around the flag(s).</tip>
+    <tip after="12s">`3`oEvery 4th kill you will get one instant-igniting piece of tnt.</tip>
+</broadcasts>
 <teams>
     <unless variant="halloween">
         <team id="blue" color="blue" max="24">Blue</team>
@@ -169,31 +160,19 @@
     </if>
 </constants>
 <flags flag-proximity-metric="closest player" net-proximity-metric="closest player" drop-on-water="false">
-    <flag id="north-blue-flag"
-          name="North ${team-1-name} Flag"
-          owner="blue"
-          color="${team-1-color}">
+    <flag id="north-blue-flag" name="North ${team-1-name} Flag" owner="blue" color="${team-1-color}">
         <carry-message>You have the flag! Return it to your `6`lspawn!</carry-message>
         <post pickup-filter="only-red" recover-time="30s" respawn-speed="6">-938.5,4,-445.6</post>
     </flag>
-    <flag id="south-blue-flag"
-          name="South ${team-1-name} Flag"
-          owner="blue"
-          color="${team-1-color}">
+    <flag id="south-blue-flag" name="South ${team-1-name} Flag" owner="blue" color="${team-1-color}">
         <carry-message>You have the flag! Return it to your `6`lspawn!</carry-message>
         <post pickup-filter="only-red" recover-time="30s" respawn-speed="6">-938.5,4,-341.5</post>
     </flag>
-    <flag id="north-red-flag"
-          name="North ${team-2-name} Flag"
-          owner="red"
-          color="${team-2-color}">
+    <flag id="north-red-flag" name="North ${team-2-name} Flag" owner="red" color="${team-2-color}">
         <carry-message>You have the flag! Return it to your `6`lspawn!</carry-message>
         <post pickup-filter="only-blue" recover-time="30s" respawn-speed="6">-802.5,4,-445.5</post>
     </flag>
-    <flag id="south-red-flag"
-          name="South ${team-2-name} Flag"
-          owner="red"
-          color="${team-2-color}">
+    <flag id="south-red-flag" name="South ${team-2-name} Flag" owner="red" color="${team-2-color}">
         <carry-message>You have the flag! Return it to your `6`lspawn!</carry-message>
         <post pickup-filter="only-blue" recover-time="30s" respawn-speed="6">-802.5,4,-341.5</post>
     </flag>
@@ -266,7 +245,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="16" material="wood"/>
         <item amount="8" material="glass"/>
     </kill-reward>

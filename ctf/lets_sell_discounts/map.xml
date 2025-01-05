@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Let's Sell Discounts</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <variant id="5v5">5v5</variant>
 <unless variant="5v5">
     <constant id="team-size">12</constant>
@@ -95,9 +95,6 @@
         <material>long grass</material>
         <material>red rose</material>
     </any>
-    <not id="not-void">
-        <void/>
-    </not>
 </filters>
 <regions>
     <cylinder id="left-spawner-player" base="81,10,123" radius="5" height="3"/>
@@ -152,14 +149,14 @@
     </negative>
     <rectangle id="blue-spawn" min="106,64" max="115,55"/>
     <rectangle id="red-spawn" min="22,148" max="13,157"/>
-    <apply block-place="not-void" region="spawn-drops" message="You may not modify the spawn drop water!"/>
+    <apply block-place="deny(void)" region="spawn-drops" message="You may not modify the spawn drop water!"/>
     <apply block="never" lend-kit="flag-room-regen" region="flag-regions" message="You may not modify the flag area!"/>
     <apply block="never" region="flag-nets" message="You may not modify the flag capture area!"/>
-    <apply block-break="never" block-place="not-void" region="spawns" message="You may not modify the spawn region!"/>
+    <apply block-break="never" block-place="deny(void)" region="spawns" message="You may not modify the spawn region!"/>
     <apply block="only-blocks" region="map-region" message="You may only interact with stained clay and stained glass."/>
     <apply block="never" region="void-region" message="You may not build in the void!"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false" carry-message="Return the flag to your spawn!">
     <flag id="red-flag" name="Red Flag" owner="red-team" color="red" show-respawn-on-pickup="true" carry-kit="flag-pickup">

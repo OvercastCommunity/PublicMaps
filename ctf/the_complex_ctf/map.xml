@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Complex CTF</name>
-<version>0.9.1</version>
+<version>0.9.2</version>
 <objective>Capture the enemy flag and defend your own</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
     <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0"/> <!-- SH4D0W_HAWK -->
@@ -97,9 +98,6 @@
             <carrying-flag>red-flag</carrying-flag>
         </not>
     </all>
-    <deny id="deny-void">
-        <void/>
-    </deny>
 </filters>
 <regions>
     <negative id="buildable-inverse">
@@ -128,7 +126,7 @@
             <cylinder base="46, 6, -45" radius="8" height="4"/>
         </region>
     </apply>
-    <apply block="deny-void" message="No building over void inside the large ring">
+    <apply block="deny(void)" message="No building over void inside the large ring">
         <region>
             <circle center="0.5,0.5" radius="27.5"/>
         </region>
@@ -203,11 +201,6 @@
     <item>vine</item>
     <item>leaves</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <respawn auto="false" delay="3.8s" spectate="false" blackout="false"/>
 <maxbuildheight>40</maxbuildheight>
 </map>

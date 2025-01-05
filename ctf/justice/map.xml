@@ -1,8 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Justice</name>
 <version>0.9.3</version>
-<time overtime="2m" max-overtime="6m" result="score">12m</time>
 <objective>Capture the enemy's flag as many times as possible in 12 minutes!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
@@ -37,18 +37,18 @@
     </kit>
 </kits>
 <spawns>
-    <default>
-        <region yaw="-90">
+    <default yaw="-90">
+        <region>
             <cylinder base="146.5,23,180.5" radius="1" height="1"/>
         </region>
     </default>
     <spawn team="green" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cylinder base="200.5,7,123.5" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="purple" kit="spawn-kit">
-        <region yaw="180">
+    <spawn team="purple" kit="spawn-kit" yaw="180">
+        <region>
             <cylinder base="200.5,7,237.5" radius="1" height="0"/>
         </region>
     </spawn>
@@ -69,27 +69,18 @@
     <cylinder id="green-net" base="200.5,12,123.5" radius="3" height="3"/>
     <cylinder id="purple-net" base="200.5,12,237.5" radius="3" height="3"/>
     <above id="above-map" y="22"/>
-    <apply enter="only-green" message="You may not enter the enemy spawn area!" region="green-spawn"/>
-    <apply enter="only-purple" message="You may not enter the enemy spawn area!" region="purple-spawn"/>
+    <apply enter="only-green" message="You may not enter the enemy's spawn!" region="green-spawn"/>
+    <apply enter="only-purple" message="You may not enter the enemy's spawn!" region="purple-spawn"/>
     <apply enter="never" message="This area is off limits!" region="above-map"/>
     <apply block="only-cobweb" use="deny-beacon"/>
 </regions>
+<time overtime="2m" max-overtime="6m" result="score">12m</time>
 <flags drop-on-water="false">
-    <flag id="green-flag"
-          name="Green Flag"
-          owner="green"
-          color="green"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-reset">
+    <flag id="green-flag" name="Green Flag" owner="green" color="green" pickup-kit="flag-pickup" drop-kit="flag-reset">
         <post yaw="0" recover-time="20s" pickup-filter="only-purple">200.5,13,123.5</post>
         <net points="1" region="purple-net"/>
     </flag>
-    <flag id="purple-flag"
-          name="Purple Flag"
-          owner="purple"
-          color="purple"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-reset">
+    <flag id="purple-flag" name="Purple Flag" owner="purple" color="purple" pickup-kit="flag-pickup" drop-kit="flag-reset">
         <post yaw="180" recover-time="20s" pickup-filter="only-green">200.5,13,237.5</post>
          <net points="1" region="green-net"/>
      </flag>
@@ -115,7 +106,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="10" material="arrow"/>
     </kill-reward>
     <kill-reward>

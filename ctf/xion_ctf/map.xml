@@ -1,23 +1,21 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Xion CTF</name>
 <version>1.0.4</version>
 <objective>Capture the opposing team's flag and return it to your base!</objective>
-<score>
-    <limit>2</limit>
-</score>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
 </authors>
 <contributors>
-    <contributor contribution="Map improvements, XML and CTF gamemode transition" uuid="10c1b730-49b9-4f75-9212-91facc371477"/> <!-- Qixit -->
+    <contributor uuid="10c1b730-49b9-4f75-9212-91facc371477" contribution="Map improvements, XML, and CTF gamemode transition"/> <!-- Qixit -->
 </contributors>
 <teams>
     <team id="blue" color="blue" max="28" max-overfill="32">Blue</team>
     <team id="red" color="dark red" max="28" max-overfill="32">Red</team>
 </teams>
 <kits>    
-    <kit id="spawn" force="true">
+    <kit id="spawn-kit" force="true">
         <clear/>
         <item slot="0" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow">
@@ -37,34 +35,24 @@
         <item slot="5" amount="16" material="leaves"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="64" material="golden carrot"/>
-        <leggings unbreakable="true">iron leggings</leggings>
-        <helmet unbreakable="true" attributes="generic.movementSpeed:add:0.02">iron helmet</helmet>
-        <potion duration="7" amplifier="10">heal</potion>
-    </kit>
-    <kit id="blue-kit" parents="spawn">
-        <chestplate color="0000ff" unbreakable="true" material="leather chestplate">
-            <enchantment>projectile_protection</enchantment>
-        </chestplate>
-        <boots color="0000ff" unbreakable="true" material="leather boots"/>
-    </kit>
-    <kit id="red-kit" parents="spawn">
-        <chestplate color="ff0000" unbreakable="true" material="leather chestplate">
-            <enchantment>projectile_protection</enchantment>
-        </chestplate>
-        <boots color="ff0000" unbreakable="true" material="leather boots"/>
+        <helmet unbreakable="true" attributes="generic.movementSpeed:add:0.02" material="iron helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="iron leggings"/>
+        <boots team-color="true" unbreakable="true" material="leather boots"/>
+        <effect duration="7" amplifier="10">heal</effect>
     </kit>
     <kit id="leaves">
-        <item amount="16" slot="5">leaves</item>
-        <item amount="16" slot="9">leaves</item>
-        <item amount="16" slot="10">leaves</item>
-        <item amount="16" slot="11">leaves</item>
-        <item amount="16" slot="12">leaves</item>
+        <item amount="16" slot="5" material="leaves"/>
+        <item amount="16" slot="9" material="leaves"/>
+        <item amount="16" slot="10" material="leaves"/>
+        <item amount="16" slot="11" material="leaves"/>
+        <item amount="16" slot="12" material="leaves"/>
     </kit>
     <kit id="carry-kit">
-        <potion duration="3" amplifier="5">regeneration</potion>
-        <potion duration="oo" amplifier="-1">health boost</potion>
-        <leggings unbreakable="true" locked="true">diamond leggings</leggings>
-        <helmet unbreakable="true">iron helmet</helmet>
+        <leggings unbreakable="true" locked="true" material="diamond leggings"/>
+        <helmet unbreakable="true" material="iron helmet"/>
+        <effect duration="3" amplifier="5">regeneration</effect>
+        <effect amplifier="-1">health boost</effect>
     </kit>
 </kits>
 <spawns>
@@ -73,17 +61,17 @@
             <block>-34.5,31,-151.5</block>
         </regions>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue" kit="spawn-kit">
         <regions>
-            <block yaw="0">32.5,9,-84.5</block>
+            <block>32.5,9,-84.5</block>
             <block yaw="180">32.5,9,-84.5</block>
             <block yaw="90">32.5,9,-84.5</block>
             <block yaw="-90">32.5,9,-84.5</block>
         </regions>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red" kit="spawn-kit">
         <regions>
-            <block yaw="0">-101.5,9,-218.5</block>
+            <block>-101.5,9,-218.5</block>
             <block yaw="180">-101.5,9,-218.5</block>
             <block yaw="90">-101.5,9,-218.5</block>
             <block yaw="-90">-101.5,9,-218.5</block>
@@ -93,9 +81,6 @@
 <filters>
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
-    <not id="deny-void">
-        <void/>
-    </not>
     <deny id="usage">
         <material>dispenser</material>
     </deny>
@@ -147,17 +132,20 @@
     <!-- Blue Side: Applied filters to regions -->
     <apply region="blue-spawn" enter="only-blue"/>
     <apply region="blue-leaves" kit="leaves"/>
-    <apply block="never" region="blue-spawn-protection" message="`f`lYou may not place or break blocks in `9`lBlue Spawn!"/>
+    <apply block="never" region="blue-spawn-protection" message="You may not place or break blocks in `9Blue Spawn`r!"/>
     <!-- Red Side: Applied filters to regions -->
     <apply region="red-spawn" enter="only-red"/>
     <apply region="red-leaves" kit="leaves"/>
-    <apply block="never" region="red-spawn-protection" message="`f`lYou may not place or break blocks in `4`lRed Spawn!"/>
+    <apply block="never" region="red-spawn-protection" message="You may not place or break blocks in `4Red Spawn`r!"/>
     <!-- Global -->
     <cuboid id="obs-usage-region" min="-34,18,-151" max="-34,25,-151"/>
-    <apply block="deny-void" message="`f`lYou may not place blocks in the void!"/>
+    <apply block="deny(void)" message="You may not place blocks in the void!"/>
     <apply use="usage"/>
     <apply use="obs-usage" region="obs-usage-region"/>
 </regions>
+<score>
+    <limit>2</limit>
+</score>
 <flags>
     <flag id="blue-flag" name="Blue Flag" owner="blue" color="blue" pickup-filter="only-red" carry-message="Return the flag to spawn!" pickup-kit="carry-kit">
         <post yaw="135" recover-time="oo" respawn-time="5s">62.5,11,-54.5</post>
@@ -235,9 +223,6 @@
     <item>redstone lamp off</item>
     <item>redstone block</item>
 </itemremove>
-<kill-reward>
-    <item>golden apple</item>
-</kill-reward>
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>

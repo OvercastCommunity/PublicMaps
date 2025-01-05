@@ -1,95 +1,80 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Nartica</name>
-<version>1.4.4</version>
+<version>1.4.5</version>
 <objective>Capture both of the enemy's flags.</objective>
+<edition>ranked</edition>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
     <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042"/> <!-- Diamyx -->
     <author uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f"/> <!-- Pugzy -->
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
-<edition>ranked</edition>
 <teams>
     <team id="red-team" color="dark red" min="7" max="8">Red</team>
     <team id="blue-team" color="blue" min="7" max="8">Blue</team>
 </teams>
-<spawns>
-    <spawn team="red-team" kit="blue-spawn">
-        <regions yaw="90"><cylinder base="-6.5,3,-4.5" radius="0" height="1"/></regions>
-    </spawn>
-    <spawn team="blue-team" kit="red-spawn">
-        <regions yaw="-90"><cylinder base="-112.5,3,-4.5" radius="0" height="1"/></regions>
-    </spawn>
-    <default kit="obsKit">
-        <regions yaw="0">
-            <cylinder base="-59.5,5,-4.5" radius="1" height="2"/>
-        </regions>
-    </default>
-</spawns>
 <respawn delay="7s" auto="true" blackout="true"/>
 <kits>
-    <kit id="spawnKit">
-        <item slot="0" unbreakable="true">stone sword</item>
-        <item slot="1" unbreakable="true">bow</item>
-        <item slot="2" amount="10">arrow</item>
-        <item slot="8" amount="16">bread</item>
-        <potion duration="oo">night vision</potion>
-    </kit>
-    <kit id="red-spawn" parents="spawnKit">
-        <helmet locked="true" color="0066cc" unbreakable="true">leather helmet</helmet>
-        <chestplate locked="true" color="0066cc" unbreakable="true">leather chestplate</chestplate>
-        <leggings locked="true" color="0066cc" enchantment="protection projectile:1" unbreakable="true">leather leggings</leggings>
-        <boots locked="true" color="0066cc" unbreakable="true">leather boots</boots>
-    </kit>
-    <kit id="blue-spawn" parents="spawnKit">
-        <helmet locked="true" color="cd0000" unbreakable="true">leather helmet</helmet>
-        <chestplate locked="true" color="cd0000" unbreakable="true">leather chestplate</chestplate>
-        <leggings locked="true" color="cd0000" enchantment="protection projectile:1" unbreakable="true">leather leggings</leggings>
-        <boots locked="true" color="cd0000" unbreakable="true">leather boots</boots>
-    </kit>
-    <kit id="red-flag-kit">
-        <potion duration="oo" amplifier="-2" ambient="true">health boost</potion>
-        <potion duration="oo">slowness</potion>
-    </kit>
-    <kit id="blue-flag-kit">
-        <potion duration="oo" amplifier="-2" ambient="true">health boost</potion>
-        <potion duration="oo">slowness</potion>
-    </kit>
     <kit id="obsKit">
-        <potion duration="oo">night vision</potion>
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawnKit" parents="obsKit">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" amount="10" material="arrow"/>
+        <item slot="8" amount="16" material="bread"/>
+        <helmet locked="true" team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate locked="true" team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings locked="true" team-color="true" enchantment="protection projectile" unbreakable="true" material="leather leggings"/>
+        <boots locked="true" team-color="true" unbreakable="true" material="leather boots"/>
+    </kit>
+    <kit id="flag-kit">
+        <effect amplifier="-2" ambient="true">health boost</effect>
+        <effect>slowness</effect>
     </kit>
     <kit id="reset-kit" force="true">
         <potion duration="1" amplifier="0">health boost</potion>
         <potion duration="0" amplifier="10">slowness</potion>
     </kit>
 </kits>
+<spawns>
+    <spawn team="red-team" kit="spawnKit" yaw="90">
+        <region>
+            <cylinder base="-6.5,3,-4.5" radius="0" height="1"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="spawnKit" yaw="-90">
+        <region>
+            <cylinder base="-112.5,3,-4.5" radius="0" height="1"/>
+        </region>
+    </spawn>
+    <default kit="obsKit">
+        <region>
+            <cylinder base="-59.5,5,-4.5" radius="1" height="2"/>
+        </region>
+    </default>
+</spawns>
 <filters>
     <team id="red-only">red-team</team>
     <team id="blue-only">blue-team</team>
     <time id="flag-respawns">0</time>
 </filters>
 <regions>
-    <apply block="never">
-        <region><everywhere/></region>
-    </apply>
-    <cylinder id="blue-net" base="-94.5,2,-4.5" radius="4" height="2" />
-    <cylinder id="red-net" base="-24.5,2,-4.5" radius="4" height="2" />
+    <apply block="never"/>
+    <cylinder id="blue-net" base="-94.5,2,-4.5" radius="4" height="2"/>
+    <cylinder id="red-net" base="-24.5,2,-4.5" radius="4" height="2"/>
 </regions>
-<toolrepair>
-    <tool>iron sword</tool>
-    <tool>bow</tool>
-</toolrepair>
 <flags flag-proximity-metric="closest player">
-    <flag id="north-red-flag" name="North Red Flag" owner="red-team" pickup-kit="red-flag-kit" drop-kit="reset-kit">
+    <flag id="north-red-flag" name="North Red Flag" owner="red-team" pickup-kit="flag-kit" drop-kit="reset-kit">
         <post pickup-filter="blue-only" recover-time="15s" respawn-time="5s">-29.5,10,-36.5</post>
     </flag>
-    <flag id="south-red-flag" name="South Red Flag" owner="red-team" pickup-kit="red-flag-kit" drop-kit="reset-kit">
+    <flag id="south-red-flag" name="South Red Flag" owner="red-team" pickup-kit="flag-kit" drop-kit="reset-kit">
         <post pickup-filter="blue-only" recover-time="15s" respawn-time="5s">-29.5,10,27.5</post>
     </flag>
-    <flag id="south-blue-flag" name="South Blue Flag" owner="blue-team" pickup-kit="blue-flag-kit" drop-kit="reset-kit">>
+    <flag id="south-blue-flag" name="South Blue Flag" owner="blue-team" pickup-kit="flag-kit" drop-kit="reset-kit">
         <post pickup-filter="red-only" recover-time="15s" respawn-time="5s">-89.5,10,27.5</post>
     </flag>
-    <flag id="north-blue-flag" name="North Blue Flag" owner="blue-team" pickup-kit="blue-flag-kit" drop-kit="reset-kit">>
+    <flag id="north-blue-flag" name="North Blue Flag" owner="blue-team" pickup-kit="flag-kit" drop-kit="reset-kit">
         <post pickup-filter="red-only" recover-time="15s" respawn-time="5s">-89.5,10,-36.5</post>
     </flag>
     <flags points="1">
@@ -101,9 +86,15 @@
 </flags>
 <time>12m</time>
 <score/>
-<killreward>
-    <item amount="5">arrow</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="5" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
 <itemremove>
     <item>leather helmet</item>
     <item>leather chestplate</item>

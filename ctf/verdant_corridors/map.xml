@@ -1,12 +1,12 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Verdant Corridors</name>
-<version>1.4.3</version>
+<version>1.4.4</version>
 <objective>Capture the enemy flag as many times as possible in 12 minutes.</objective>
 <edition>standard</edition>
-<time result="score" overtime="2m" max-overtime="1m">12m</time>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/>
-    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
 <teams>
     <team id="blue" color="blue" max="18">Blue</team>
@@ -39,7 +39,7 @@
 </kits>
 <spawns>
     <default kit="default-kit">
-        <region yaw="-90">t
+        <region yaw="-90">
             <cylinder base="0,4,0" radius="1" height="0"/>
         </region>
         <region yaw="90">
@@ -67,21 +67,12 @@
     <cylinder id="blue-net" base="52.5,11,7.5" radius="2" height="2" />
     <cylinder id="red-net" base="-52.5,11,-7.5" radius="2" height="2" />
 </regions>
+<time result="score" overtime="2m" max-overtime="1m">12m</time>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
-    <flag id="blue-flag"
-          name="Blue Flag"
-          owner="blue"
-          color="blue"
-          pickup-kit="pickup-flag"
-          drop-kit="drop-flag">
+    <flag id="blue-flag" name="Blue Flag" owner="blue" color="blue" pickup-kit="pickup-flag" drop-kit="drop-flag">
         <post pickup-filter="only-red" recover-time="40s" respawn-time="10s">52,11,7</post>
     </flag>
-    <flag id="red-flag"
-          name="Red Flag"
-          owner="red"
-          color="red"
-          pickup-kit="pickup-flag"
-          drop-kit="drop-flag">
+    <flag id="red-flag" name="Red Flag" owner="red" color="red" pickup-kit="pickup-flag" drop-kit="drop-flag">
         <post pickup-filter="only-blue" recover-time="40s" respawn-time="10s">-53,11,-8</post>
     </flag>
     <flags points="1">
@@ -111,10 +102,11 @@
     <item>arrow</item>
     <item>iron ingot</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="10" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="10" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <respawn delay="3s"/>
 <hunger>
     <depletion>off</depletion>

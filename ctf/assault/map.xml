@@ -1,8 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Assault</name>
-<version>2.6.4</version>
+<version>2.6.5</version>
 <objective>Capture the other team's flag and return it to your base.</objective>
-<time result="score">10m</time>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </authors>
@@ -10,24 +9,6 @@
     <team id="blue-team" color="blue" max="10">Blue</team>
     <team id="red-team" color="dark red" max="10">Red</team>
 </teams>
-<spawns>
-    <default kit="observer-kit" region="obs-spawn" yaw="-135"/>
-    <spawn team="blue-team" kit="blue-kit" region="blue-spawn" yaw="0"/>
-    <spawn team="red-team" kit="red-kit" region="red-spawn" yaw="180"/>
-</spawns>
-<flags>
-    <flag id="blue-flag" name="Blue Flag" owner="blue-team" color="blue" pickup-filter="only-red">
-        <post yaw="-180" return-time="35s" respawn-speed="8">140.5,18,225.5</post>
-        <net points="1" region="red-platform"/>
-    </flag>
-    <flag id="red-flag" name="Red Flag" owner="red-team" color="red" pickup-filter="only-blue">
-        <post yaw="0" return-time="35s" respawn-speed="8">-6.5,18,193.5</post>
-        <net points="1" region="blue-platform"/>
-    </flag>
-</flags>
-<score>
-    <limit>3</limit>
-</score>
 <kits>
     <kit id="observer-kit">
         <effect>night vision</effect>
@@ -50,10 +31,10 @@
         <effect duration="4s" amplifier="255">damage resistance</effect>
     </kit>
     <kit id="blue-kit" parent="spawn-kit">
-        <item slot="4" amount="24" damage="0">wood</item>
+        <item slot="4" amount="24" damage="0" material="wood"/>
     </kit>
     <kit id="red-kit" parent="spawn-kit">
-        <item slot="4" amount="24" damage="2">wood</item>
+        <item slot="4" amount="24" damage="2" material="wood"/>
     </kit>
     <kit id="kill-boost">
         <effect duration="3s">night vision</effect>
@@ -61,6 +42,11 @@
         <effect duration="4s" amplifier="2">speed</effect>
     </kit>
 </kits>
+<spawns>
+    <default kit="observer-kit" region="obs-spawn" yaw="-135"/>
+    <spawn team="blue-team" kit="blue-kit" region="blue-spawn"/>
+    <spawn team="red-team" kit="red-kit" region="red-spawn" yaw="180"/>
+</spawns>
 <filters>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
@@ -98,6 +84,30 @@
     <apply block="never" region="platforms" message="You may not modify the flag platform"/>
     <apply block="never" region="outside-map" message="You may not build in the void"/>
 </regions>
+<time result="score">10m</time>
+<flags>
+    <flag id="blue-flag" name="Blue Flag" owner="blue-team" color="blue" pickup-filter="only-red">
+        <post yaw="-180" return-time="35s" respawn-speed="8">140.5,18,225.5</post>
+        <net points="1" region="red-platform"/>
+    </flag>
+    <flag id="red-flag" name="Red Flag" owner="red-team" color="red" pickup-filter="only-blue">
+        <post yaw="0" return-time="35s" respawn-speed="8">-6.5,18,193.5</post>
+        <net points="1" region="blue-platform"/>
+    </flag>
+</flags>
+<score>
+    <limit>3</limit>
+</score>
+<block-drops>
+    <rule>
+        <filter>
+            <material>wood</material>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</block-drops>
 <toolrepair>
     <tool>iron axe</tool>
     <tool>bow</tool>
@@ -110,16 +120,6 @@
     <item>leather helmet</item>
     <item>leather chestplate</item>
 </itemremove>
-<block-drops>
-    <rule>
-        <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</block-drops>
 <itemkeep>
     <item>iron axe</item>
     <item>bow</item>
@@ -160,10 +160,6 @@
         <item name="`cExplosive" material="tnt"/>
     </kill-reward>
 </kill-rewards>
-<maxbuildheight>35</maxbuildheight>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <tnt>
     <fuse>2s</fuse>
     <power>4.5</power>
@@ -178,4 +174,8 @@
     <doTileDrops>false</doTileDrops>
     <doDaylightCycle>false</doDaylightCycle>
 </gamerules>
+<maxbuildheight>35</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

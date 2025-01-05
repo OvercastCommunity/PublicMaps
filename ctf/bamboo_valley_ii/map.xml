@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Bamboo Valley II</name>
-<version>2.0.3</version>
+<version>2.0.4</version>
 <objective>Destroy the other team's obsidian monument!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
 </authors>
@@ -63,16 +64,13 @@
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
     <material id="only-iron">iron block</material>
-    <not id="no-void">
-        <void/>
-    </not>
 </filters>
 <regions>
     <union id="bases">
         <rectangle id="blue-base" min="-125,-49" max="-156,50"/>
         <rectangle id="red-base" min="150,50" max="181,-49"/>
     </union>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle min="181,-49" max="-156,50"/>
     </complement>
@@ -84,7 +82,7 @@
     <apply enter="only-red" region="red-base" message="You may not enter the enemy team's base!"/>
     <apply block-break="only-iron" block-place="never" region="bases" message="You may only break iron blocks in the bases!"/>
     <apply block="never" region="nets" message="You may not place blocks around the flag!"/>
-    <apply block="no-void" region="void" message="You may not build outside of the map!"/>
+    <apply block="deny(void)" region="void-area" message="You may not build outside of the map!"/>
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <flag id="blue-flag" name="Blue Flag" owner="red" color="blue">
@@ -101,6 +99,20 @@
 <score>
     <limit>3</limit>
 </score>
+<blockdrops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>leaves</material>
+                <material>vine</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</blockdrops>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -132,20 +144,6 @@
     <item>stained clay:11</item>
     <item>stained clay:14</item>
 </itemremove>
-<blockdrops>
-    <rule>
-        <filter>
-            <any>
-                <material>wood</material>
-                <material>leaves</material>
-                <material>vine</material>
-            </any>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</blockdrops>
 <itemkeep>
     <item>wood</item>
     <item>leaves</item>
@@ -156,15 +154,10 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="3" material="wood"/>
         <item amount="16" damage="3" material="leaves"/>
     </kill-reward>
 </kill-rewards>
-<maxbuildheight>49</maxbuildheight>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <item-mods>
     <rule>
         <match>
@@ -175,4 +168,8 @@
         </modify>
     </rule>
 </item-mods>
+<maxbuildheight>49</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

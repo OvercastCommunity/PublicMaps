@@ -1,21 +1,16 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fairy Tales</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <phase>staging</phase>
 <objective>Take the enemy's flag located on the enemy's side and place it at the top of your tree.</objective>
 <authors>
-    <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/>
-    <!-- D347HxD -->
-    <author uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/>
-    <!-- pbat AKA PandaBatallion -->
-    <author uuid="ccb7a66f-ed6c-4f8d-953e-78205c33abba"/>
-    <!-- GabeisAwesome199 -->
+    <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/> <!-- D347HxD -->
+    <author uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/> <!-- pbat AKA PandaBatallion -->
+    <author uuid="ccb7a66f-ed6c-4f8d-953e-78205c33abba"/> <!-- GabeisAwesome199 -->
 </authors>
 <contributors>
-    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Special Thanks"/>
-    <!-- Plastix -->
-    <contributor uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="XML"/>
-    <!-- CoWinkKeyDinkInc -->
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Special Thanks"/> <!-- Plastix -->
+    <contributor uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="XML"/> <!-- CoWinkKeyDinkInc -->
 </contributors>
 <rules>
     <rule>Do not put lava in front of the entrance.</rule>
@@ -30,51 +25,43 @@
 </teams>
 <kits>
     <kit id="spawn" force="true">
-        <item slot="0">iron sword</item>
-        <item slot="1">bow</item>
-        <item slot="2">iron pickaxe</item>
-        <item slot="3">iron axe</item>
-        <item slot="30">iron spade</item>
-        <item slot="4" amount="64">log</item>
-        <item slot="5" amount="64">glass</item>
-        <item slot="8" amount="64">cooked beef</item>
-        <item slot="9" amount="64">arrow</item>
+        <item slot="0" material="iron sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="2" material="iron pickaxe"/>
+        <item slot="3" material="iron axe"/>
+        <item slot="30" material="iron spade"/>
+        <item slot="4" amount="64" material="log"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="8" amount="64" material="cooked beef"/>
+        <item slot="9" amount="64" material="arrow"/>
         <effect duration="60">saturation</effect>
     </kit>
 </kits>
 <spawns>
-    <spawn team="pink-team" kit="spawn">
-        <regions yaw="180">
+    <spawn team="pink-team" kit="spawn" yaw="180">
+        <region>
             <cuboid min="-41,122,221" max="-39,122,223"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="purple-team" kit="spawn">
-        <regions yaw="0">
+        <region>
             <cuboid min="-39,122,-220" max="-41,122,-222"/>
-        </regions>
+        </region>
     </spawn>
-    <default>
-        <regions yaw="90">
+    <default yaw="90">
+        <region>
             <cuboid min="-2,52,3" max="3,52,-2"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <keep-potion-bottles/>
-<score>
-    <limit>1</limit>
-</score>
-<flags>
-    <flag id="blue-flag" name="Blue Flag" owner="purple-team">
-        <post pickup-filter="only-pink" recover-time="60" respawn-time="1" yaw="0">-37.5,89,-176.5</post>
-    </flag>
-    <flag id="red-flag" name="Red Flag" owner="pink-team">
-        <post pickup-filter="only-purple" recover-time="60" respawn-time="1" yaw="180">-37.5,89,177.5</post>
-    </flag>
-    <flags points="1">
-        <net region="blue-net" flag="blue-flag" rescue="red-flag"/>
-        <net region="red-net" flag="red-flag" rescue="blue-flag"/>
-    </flags>
-</flags>
+<filters>
+    <deny id="deny-chest-break">
+        <material>chest</material>
+    </deny>
+    <team id="only-pink">pink-team</team>
+    <team id="only-purple">purple-team</team>
+</filters>
 <regions>
     <!-- purple team's net -->
     <cuboid id="red-net" min="-34,119,-172" max="-37,122,-169"/>
@@ -126,17 +113,21 @@
     <apply block="never" region="height-min-front"/>
     <apply block="never" region="height-min-back"/>
 </regions>
-<filters>
-    <deny id="deny-chest-break">
-        <material>chest</material>
-    </deny>
-    <all id="only-pink">
-        <team>pink-team</team>
-    </all>
-    <all id="only-purple">
-        <team>purple-team</team>
-    </all>
-</filters>
+<score>
+    <limit>1</limit>
+</score>
+<flags>
+    <flag id="blue-flag" name="Blue Flag" owner="purple-team">
+        <post pickup-filter="only-pink" recover-time="60" respawn-time="1" yaw="0">-37.5,89,-176.5</post>
+    </flag>
+    <flag id="red-flag" name="Red Flag" owner="pink-team">
+        <post pickup-filter="only-purple" recover-time="60" respawn-time="1" yaw="180">-37.5,89,177.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="blue-flag" rescue="red-flag"/>
+        <net region="red-net" flag="red-flag" rescue="blue-flag"/>
+    </flags>
+</flags>
 <world>
     <timeset>15115</timeset>
     <timelock>on</timelock>

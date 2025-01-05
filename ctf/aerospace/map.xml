@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Aerospace</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Capture the enemy's flag 3 times!</objective>
 <edition>standard</edition>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
@@ -39,17 +40,17 @@
 </kits>
 <spawns>
     <default kit="default-kit">
-        <region yaw="0">
+        <region>
             <block>0,26,-27</block>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <block>-31,10,-16</block>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
-        <region yaw="180">
+    <spawn team="red" kit="spawn-kit" yaw="180">
+        <region>
             <block>31,10,16</block>
         </region>
     </spawn>
@@ -64,21 +65,11 @@
     <apply block="never" use="never"/>
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
-    <flag color="blue"
-          id="blue-flag"
-          name="Blue Flag"
-          owner="blue"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-drop">
+    <flag color="blue" id="blue-flag" name="Blue Flag" owner="blue" pickup-kit="flag-pickup" drop-kit="flag-drop">
         <post pickup-filter="only-red" recover-time="15s" respawn-time="10s">-38.5,15,-9.5</post>
         <net region="red-net" points="1"/>
     </flag>
-    <flag color="red"
-          id="red-flag"
-          name="Red Flag"
-          owner="red"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-drop">
+    <flag color="red" id="red-flag" name="Red Flag" owner="red" pickup-kit="flag-pickup" drop-kit="flag-drop">
         <post pickup-filter="only-blue" recover-time="15s" respawn-time="10s">39.5,15,10.5</post>
         <net region="blue-net" points="1"/>
     </flag>
@@ -132,10 +123,11 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="6" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="6" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <respawn delay="3.5s" auto="true"/>
 <hunger>
     <depletion>off</depletion>

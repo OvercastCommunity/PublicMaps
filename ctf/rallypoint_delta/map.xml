@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Rallypoint Delta</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Bring flags back to your base to earn the most points!</objective>
 <gamemode>ctf</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>
@@ -25,7 +26,9 @@
         </item>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
         <chestplate material="chainmail chestplate" unbreakable="true"/>
+        <leggings material="leather leggings" team-color="true" unbreakable="true"/>
         <boots material="iron boots" unbreakable="true">
             <enchantment>protection fall</enchantment>
         </boots>
@@ -35,14 +38,10 @@
         <effect duration="4s" amplifier="8">strength</effect>
     </kit>
     <kit id="purple-kit" parents="spawn-kit">
-        <helmet material="leather helmet" color="7F3FB2" unbreakable="true"/>
-        <leggings material="leather leggings" color="7F3FB2" unbreakable="true"/>
         <item slot="3" material="wood" damage="1" amount="64"/>
         <item slot="4" material="wood" damage="1" amount="64"/>
     </kit>
     <kit id="orange-kit" parents="spawn-kit">
-        <helmet material="leather helmet" color="D87F33" unbreakable="true"/>
-        <leggings material="leather leggings" color="D87F33" unbreakable="true"/>
         <item slot="3" material="wood" damage="2" amount="64"/>
         <item slot="4" material="wood" damage="2" amount="64"/>
     </kit>
@@ -60,26 +59,12 @@
             <point>-814.5,36.5,-218.5</point>
         </regions>
     </spawn>
-    <default>
-        <regions angle="-790.5,186.5,-103.5">
+    <default angle="-790.5,186.5,-103.5">
+        <region>
             <cylinder base="-790.5,185,-99.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-    <kill-reward filter="only-purple">
-        <item material="wood" damage="1" amount="16"/>
-    </kill-reward>
-    <kill-reward filter="only-orange">
-        <item material="wood" damage="2" amount="16"/>
-    </kill-reward>
-</kill-rewards>
 <filters>
     <team id="only-purple">purple-team</team>
     <team id="only-orange">orange-team</team>
@@ -142,9 +127,6 @@
         <material>lever</material>
         <material>skull</material>
     </any>
-    <deny id="deny-void">
-        <void/>
-    </deny>
 </filters>
 <regions>
     <union id="post-pads">
@@ -171,7 +153,7 @@
     <sphere id="purple-return" origin="-790.5,34,3.5" radius="20"/>
     <sphere id="orange-return" origin="-790.5,34,-204.5" radius="20"/>
 
-    <apply block="deny-void"/>
+    <apply block="deny(void)"/>
     <apply region="post-pads" block="never"/>
     <apply block="block-whitelist"/>
 </regions>
@@ -247,4 +229,15 @@
     <item>wood</item>
     <item>golden apple</item>
 </itemkeep>
+<kill-rewards>
+    <kill-reward filter="only-purple">
+        <item material="wood" damage="1" amount="16"/>
+    </kill-reward>
+    <kill-reward filter="only-orange">
+        <item material="wood" damage="2" amount="16"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

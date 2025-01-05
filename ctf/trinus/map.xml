@@ -1,19 +1,83 @@
-<map proto="1.4.2" game="Capture Progress">
+<map proto="1.5.0" game="Capture Progress">
 <name>Trinus</name>
 <version>1.4.4</version>
 <objective>Grab the flag and capture the center point!</objective>
 <gamemode>koth</gamemode>
 <authors>
-    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/>
-    <!-- mitchiii_ -->
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>
 <contributors>
-    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Gameplay and design feedback"/>
-    <!--  DoomRobotBoy  -->
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Gameplay and design feedback"/> <!-- DoomRobotBoy -->
 </contributors>
+<teams>
+    <team id="red" color="dark red" max="16" max-overfill="20">Red</team>
+    <team id="blue" color="blue" max="16" max-overfill="20">Blue</team>
+</teams>
+<broadcasts>
+    <!-- Global Broadcasts -->
+    <tip after="48s" every="2m">`bBreak `aSea Lanterns `bin the water to make the small pillar fall into the void!</tip>
+    <tip after="60s" every="2m">`aCrafting Tables `bare located in team spawns and in the center. Use them to craft better weapons!</tip>
+    <!--  Red Broadcasts  -->
+    <tip after="1s"  every="2m" filter="only-red">`bRetrieve the `9Blue Flag `blocated above the `9Blue `bteam's spawn</tip>
+    <tip after="6s"  every="2m" filter="only-red">`bNavigate to the `4Red Beacon `bwith the `9Blue Flag `band control that area for a total of `a1 minute and 45 seconds `bto win!</tip>
+    <tip after="18s" every="2m" filter="only-red">`bRemember, you `ccannot respawn `bwhile your team is carrying the `9Blue Flag`b!</tip>
+    <tip after="30s" every="2m" filter="only-red">`bYou can only pick up the `9Blue Flag `bwhile the `4Red Flag `bis at its post!</tip>
+    <!--  Blue Broadcasts  -->
+    <tip after="1s"  every="2m" filter="only-blue">`bRetrieve the `4Red Flag `blocated above the `4Red `bteam's spawn</tip>
+    <tip after="6s"  every="2m" filter="only-blue">`bNavigate to the `9Blue Beacon `bwith the `4Red Flag `band control that area for a total of `a1 minute and 45 seconds `bto win!</tip>
+    <tip after="48s" every="2m" filter="only-blue">`bRemember, you `ccannot respawn `bwhile your team is carrying the `4Red Flag`b!</tip>
+    <tip after="30s" every="2m" filter="only-blue">`bYou can only pick up the `4Red Flag `bwhile the `9Blue Flag `bis at its post!</tip>
+</broadcasts>
+<kits>
+    <kit id="clear" force="true">
+        <clear />
+    </kit>
+    <kit id="spawn-kit" parents="clear">
+        <item slot="0" unbreakable="true" prevent-sharing="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" prevent-sharing="true" material="bow"/>
+        <item slot="2" amount="16" material="leaves"/>
+        <item slot="6" amount="24" material="arrow"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="32" material="cooked beef"/>
+        <item slot="35" material="stick"/>
+        <chestplate enchantment="protection projectile" unbreakable="true" material="gold chestplate"/>
+        <leggings team-color="true" unbreakable="true" prevent-sharing="true" material="leather leggings"/>
+        <boots unbreakable="true" locked="true" enchantment="depth strider" material="iron boots"/>
+        <effect duration="5" amplifier="25">heal</effect>
+        <effect duration="5" amplifier="25">damage resistance</effect>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <chestplate enchantment="protection projectile:2" unbreakable="true" locked="true" material="gold chestplate"/>
+        <boots unbreakable="true" locked="true" material="iron boots"/>
+        <effect duration="0" amplifier="-2">health boost</effect>
+        <effect duration="0" amplifier="2">absorption</effect>
+        <effect duration="1" amplifier="25">heal</effect>
+        <effect duration="3" amplifier="2">speed</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <chestplate enchantment="protection projectile:1" unbreakable="true" locked="true" material="gold chestplate"/>
+        <boots unbreakable="true" locked="true" enchantment="depth strider" material="iron boots"/>
+        <effect duration="0" amplifier="0">absorption</effect>
+        <effect duration="0" amplifier="0">health boost</effect>
+    </kit>
+    <kit id="flag-slow" force="true">
+        <effect>slow</effect>
+        <effect>poison</effect>
+    </kit>
+    <kit id="flag-slow-rm" force="true">
+        <effect duration="0">slow</effect>
+        <effect duration="0">poison</effect>
+    </kit>
+    <kit id="remove-extra-health" parents="flag-slow-rm" force="true">
+        <effect duration="0" amplifier="0">absorption</effect>
+    </kit>
+</kits>
+<spawns>
+    <default region="default-spawn" yaw="-90"/>
+    <spawn team="red" kit="spawn-kit" region="red-spawn"/>
+    <spawn team="blue" kit="spawn-kit" region="blue-spawn" yaw="180"/>
+</spawns>
 <filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
     <all id="allowed-blocks">
         <any>
             <any>
@@ -38,11 +102,11 @@
         </not>
     </all>
     <all id="red-pickup">
-        <team>red</team>
+        <team id="only-red">red</team>
         <flag-returned>red-flag</flag-returned>
     </all>
     <all id="blue-pickup">
-        <team>blue</team>
+        <team id="only-blue">blue</team>
         <flag-returned>blue-flag</flag-returned>
     </all>
     <deny id="deny-anvil-open">
@@ -59,20 +123,20 @@
     <carrying-flag id="blue-flag-only">blue-flag</carrying-flag>
 </filters>
 <regions>
-    <circle   id="captured-center"   center="-171.5,-191.5" radius="16" />
-    <cylinder id="red-center-real"   base="-171.5,3,-191.5" radius="9"  height="5" />
-    <cylinder id="blue-center-real"  base="-171.5,3,-191.5" radius="9"  height="5" />
-    <cylinder id="red-beacon-glass"  base="-175.5,3,-95.5"  radius="2"  height="1" />
+    <circle id="captured-center" center="-171.5,-191.5" radius="16" />
+    <cylinder id="red-center-real" base="-171.5,3,-191.5" radius="9"  height="5" />
+    <cylinder id="blue-center-real" base="-171.5,3,-191.5" radius="9"  height="5" />
+    <cylinder id="red-beacon-glass" base="-175.5,3,-95.5"  radius="2"  height="1" />
     <cylinder id="blue-beacon-glass" base="-169.5,3,-189.5" radius="2"  height="1" />
-    <cylinder id="red-net-dummy"     base="-171.5,2,-268.5" radius="12" height="16" />
-    <cylinder id="blue-net-dummy"    base="-171.5,2,-114.5" radius="12" height="16" />
+    <cylinder id="red-net-dummy" base="-171.5,2,-268.5" radius="12" height="16" />
+    <cylinder id="blue-net-dummy" base="-171.5,2,-114.5" radius="12" height="16" />
     <block id="default-spawn">-238.5,9,-191.5</block>
     <block id="red-spawn">-171.5,3,-279.5</block>
     <block id="blue-spawn">-171.5,3,-103.5</block>
     <below id="below-neg" y="-325"/>
     <complement id="leaving-center">
         <cylinder base="-171.5,3,-191.5" radius="12" height="8" />
-        <cylinder base="-171.5,3,-191.5" radius="9"  height="5" />
+        <cylinder base="-171.5,3,-191.5" radius="9" height="5" />
     </complement>
     <apply enter="only-red" block="never">
         <region>
@@ -104,108 +168,26 @@
     <apply use="deny-anvil-open" />
     <apply kit="remove-extra-health">
         <region>
-            <cuboid min="oo,-2,oo" max="-oo,-oo,-oo" />
+            <below y="-2"/>
         </region>
     </apply>
 </regions>
-<kits>
-    <kit id="clear" force="true">
-        <clear />
-    </kit>
-    <kit id="spawn" parents="clear">
-        <item slot="0" unbreakable="true" prevent-sharing="true">stone sword</item>
-        <item slot="1" unbreakable="true" prevent-sharing="true">bow</item>
-        <item slot="2" amount="16">leaves</item>
-        <item slot="6" amount="24">arrow</item>
-        <item slot="7">golden apple</item>
-        <item slot="8" amount="32">cooked beef</item>
-        <item slot="35">stick</item>
-        <chestplate enchantment="protection projectile:1" unbreakable="true">gold chestplate</chestplate>
-        <boots unbreakable="true" locked="true" enchantment="depth strider:1">iron boots</boots>
-        <potion duration="5" amplifier="25">heal</potion>
-        <potion duration="5" amplifier="25">damage resistance</potion>
-    </kit>
-    <kit id="red-kit" parents="spawn">
-        <leggings color="993333" unbreakable="true" prevent-sharing="true">leather leggings</leggings>
-    </kit>
-    <kit id="blue-kit" parents="spawn">
-        <leggings color="334cb2" unbreakable="true" prevent-sharing="true">leather leggings</leggings>
-    </kit>
-    <kit id="flag-pickup" force="true">
-        <chestplate enchantment="protection projectile:2" unbreakable="true" locked="true">gold chestplate</chestplate>
-        <boots unbreakable="true" locked="true">iron boots</boots>
-        <potion duration="0" amplifier="-2">health boost</potion>
-        <potion duration="0" amplifier="2">absorption</potion>
-        <potion duration="1" amplifier="25">heal</potion>
-        <potion duration="3" amplifier="2">speed</potion>
-    </kit>
-    <kit id="flag-drop" force="true">
-        <chestplate enchantment="protection projectile:1" unbreakable="true" locked="true">gold chestplate</chestplate>
-        <boots unbreakable="true" locked="true" enchantment="depth strider:1">iron boots</boots>
-        <potion duration="0" amplifier="0">absorption</potion>
-        <potion duration="0" amplifier="0">health boost</potion>
-    </kit>
-    <kit id="flag-slow" force="true">
-        <potion duration="oo" amplifier="1">slow</potion>
-        <potion duration="oo">poison</potion>
-    </kit>
-    <kit id="flag-slow-rm" force="true">
-        <potion duration="0" amplifier="1">slow</potion>
-        <potion duration="0">poison</potion>
-    </kit>
-    <kit id="remove-extra-health" parents="flag-slow-rm" force="true">
-        <potion duration="0" amplifier="0">absorption</potion>
-    </kit>
-</kits>
-<teams>
-    <team id="red" color="dark red" max="16" max-overfill="20">Red</team>
-    <team id="blue" color="blue" max="16" max-overfill="20">Blue</team>
-</teams>
-<spawns>
-    <default>
-        <regions yaw="-90">
-            <region id="default-spawn" />
-        </regions>
-    </default>
-    <spawn team="red" kit="red-kit">
-        <regions yaw="0">
-            <region id="red-spawn" />
-        </regions>
-    </spawn>
-    <spawn team="blue" kit="blue-kit">
-        <regions yaw="180">
-            <region id="blue-spawn" />
-        </regions>
-    </spawn>
-    <filter>
-        <not>
-            <same-team>
-                <any>
-                    <carrying-flag>red-flag</carrying-flag>
-                    <carrying-flag>blue-flag</carrying-flag>
-                </any>
-            </same-team>
-        </not>
-    </filter>
-</spawns>
 <flags>
     <flag id="red-flag" name="Red Flag" owner="red" pickup-kit="flag-pickup" drop-kit="flag-drop" carry-message="`bYou are carrying the `4Flag`b, return to the `9Blue Beacon`b!">
         <post pickup-filter="blue-pickup" recover-time="0" respawn-time="8">-171.5,10,-268.5</post>
-        <net points="0" region="blue-net-dummy"   capture-filter="never" deny-message="You must use the flag to capture the `9Blue Beacon`c!" />
+        <net points="0" region="blue-net-dummy" capture-filter="never" deny-message="You must use the flag to capture the `9Blue Beacon`c!" />
         <net points="0" region="blue-center-real" capture-filter="never" deny-message="`aControl this area to capture the `9Blue Beacon`a!" />
-        <net points="0" region="leaving-center"   capture-filter="never" deny-message="`cYou are out of the radius! Return to the `9Blue Beacon`c!" />
+        <net points="0" region="leaving-center" capture-filter="never" deny-message="`cYou are out of the radius! Return to the `9Blue Beacon`c!" />
     </flag>
     <flag id="blue-flag" name="Blue Flag" owner="blue" pickup-kit="flag-pickup" drop-kit="flag-drop" carry-message="`bYou are carrying the `9Flag`b, return to the `4Red Beacon`b!">
         <post pickup-filter="red-pickup" recover-time="0" respawn-time="8">-171.5,10,-114.5</post>
-        <net points="0" region="red-net-dummy"   capture-filter="never" deny-message="You must use the flag to capture the `4Red Beacon`c!" />
+        <net points="0" region="red-net-dummy" capture-filter="never" deny-message="You must use the flag to capture the `4Red Beacon`c!" />
         <net points="0" region="red-center-real" capture-filter="never" deny-message="`aControl this area to capture the `4Red Beacon`a!" />
-        <net points="0" region="leaving-center"  capture-filter="never" deny-message="`cYou are out of the radius! Return to the `4Red Beacon`c!" />
+        <net points="0" region="leaving-center" capture-filter="never" deny-message="`cYou are out of the radius! Return to the `4Red Beacon`c!" />
     </flag>
 </flags>
 <respawn spectate="true">
-    <message>
-        { translate: "death.respawn.confirmed.waiting.flagDropped" }
-    </message>
+    <message>{ translate: "death.respawn.confirmed.waiting.flagDropped" }</message>
 </respawn>
 <portals>
     <portal region="below-neg" destination="default-spawn" sound="false" yaw="@90" pitch="@0" />
@@ -319,26 +301,28 @@
         </dynamic>
     </structures>
 </structures>
-<killreward>
-    <item amount="12">arrow</item>
-    <item amount="2">leaves</item>
-    <kit>
-        <potion duration="3" amplifier="2">speed</potion>
-    </kit>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="2"/>
-    </filter>
-    <item>golden apple</item>
-    <item>iron ingot</item>
-</killreward>
-<killreward>
-    <filter>
-        <kill-streak count="4"/>
-    </filter>
-    <item>web</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="12" material="arrow"/>
+        <item amount="2" material="leaves"/>
+        <kit>
+            <effect duration="3" amplifier="2">speed</effect>
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="2"/>
+        </filter>
+        <item material="golden apple"/>
+        <item material="iron ingot"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="4"/>
+        </filter>
+        <item material="web"/>
+    </kill-reward>
+</kill-rewards>
 <falling-blocks>
     <rule>
         <filter>
@@ -395,54 +379,4 @@
     <doDaylightCycle>false</doDaylightCycle>
 </gamerules>
 <maxbuildheight>17</maxbuildheight>
-<broadcasts>
-    <!-- Global Broadcasts -->
-    <tip after="48s" every="2m">`bBreak `aSea Lanterns `bin the water to make the small pillar fall into the void!</tip>
-    <tip after="60s" every="2m">`aCrafting Tables `bare located in team spawns and in the center. Use them to craft better weapons!</tip>
-    <!--  Red Broadcasts  -->
-    <tip after="1s"  every="2m" filter="only-red">`bRetrieve the `9Blue Flag `blocated above the `9Blue `bteam's spawn</tip>
-    <tip after="6s"  every="2m" filter="only-red">`bNavigate to the `4Red Beacon `bwith the `9Blue Flag `band control that area for a total of `a1 minute and 45 seconds `bto win!</tip>
-    <tip after="18s" every="2m" filter="only-red">`bRemember, you `ccannot respawn `bwhile your team is carrying the `9Blue Flag`b!</tip>
-    <tip after="30s" every="2m" filter="only-red">`bYou can only pick up the `9Blue Flag `bwhile the `4Red Flag `bis at its post!</tip>
-    <!--  Blue Broadcasts  -->
-    <tip after="1s"  every="2m" filter="only-blue">`bRetrieve the `4Red Flag `blocated above the `4Red `bteam's spawn</tip>
-    <tip after="6s"  every="2m" filter="only-blue">`bNavigate to the `9Blue Beacon `bwith the `4Red Flag `band control that area for a total of `a1 minute and 45 seconds `bto win!</tip>
-    <tip after="48s" every="2m" filter="only-blue">`bRemember, you `ccannot respawn `bwhile your team is carrying the `4Red Flag`b!</tip>
-    <tip after="30s" every="2m" filter="only-blue">`bYou can only pick up the `4Red Flag `bwhile the `9Blue Flag `bis at its post!</tip>
-</broadcasts>
-<!-- include src="tutorial.xml"/ -->
-<tutorial>
-    <stage title="Welcome to Trinus">
-        <message>
-            <line>`r`bTrinus is a `a`lFlag Blitz, Capture Point `bmap. `bTo win, your team must first pick up the flag located above the other team's spawn.</line>
-        </message>
-        <teleport>
-            <point yaw="50" pitch="38">-137,34,-222</point>
-        </teleport>
-    </stage>
-    <stage title="The Flag and Flag Blitz">
-        <message>
-            <line>`r`bThis here is the `4Red Team's `rflag. `bOnce a player has picked up the flag, their team can `c`lno longer respawn`b. `bThe team will only respawn once the flag is dropped.</line>
-        </message>
-        <teleport>
-            <point yaw="145" pitch="39">-169,12,-265</point>
-        </teleport>
-    </stage>
-    <stage title="Capture Point">
-        <message>
-            <line>`r`bThe flag carrier `a`lmust navigate to the center of the map`b, marked by the beacons. `bThis capture point takes `a`l1 minute and 45 seconds `bto capture and your team's progress can be seen on the scoreboard. `bFor Example, ◉ `4Blue Beacon`b.</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="32">-167,6,-195</point>
-        </teleport>
-    </stage>
-    <stage title="Capture Point">
-        <message>
-            <line>`r`bThe flag does not have a net, so it cannot be placed anywhere or captured. `bThe flag is `c`lonly to capture the center point`b, nothing else.</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="32">-167,6,-195</point>
-        </teleport>
-    </stage>
-</tutorial>
 </map>

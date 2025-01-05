@@ -1,34 +1,15 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Artholis</name>
 <version>1.0.5</version>
 <objective>Capture the opposing team's flags!</objective>
 <authors>
-    <author contribution="Original map" uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
-    <author contribution="XML coding and packaging, CTF gamemode transition, various map changes" uuid="10c1b730-49b9-4f75-9212-91facc371477"/> <!-- Qixit -->
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141" contribution="Original map"/> <!-- Avaleer -->
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" contribution="XML coding and packaging, CTF gamemode transition, various map changes"/> <!-- Qixit -->
 </authors>
-<respawn delay="0.1s" blackout="false" spectate="false"/>
-<maxbuildheight>22</maxbuildheight>
 <teams>
     <team id="blue-team" color="blue" max="32" max-overfill="35">Blue</team>
     <team id="red-team" color="red" max="32" max-overfill="35">Red</team>
 </teams>
-<spawns>
-    <spawn team="red-team" kit="spawn-kit">
-        <regions yaw="-180">
-            <point>-244.5,4.5,247.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue-team" kit="spawn-kit">
-        <regions yaw="0"> 
-            <point>-244.5,4.5,67.5</point>
-        </regions>
-    </spawn>
-    <default>
-        <regions yaw="180">
-            <point>-244.5,40,157.5</point>
-        </regions>
-    </default>
-</spawns>
 <kits>
     <kit id="spawn-kit">
         <item slot="0" unbreakable="true" material="stone sword"/>
@@ -48,7 +29,7 @@
         <boots unbreakable="true" team-color="true" material="leather boots"/>
     </kit>
     <kit id="flag" force="true">
-        <effect duration="oo" amplifier="-3">health boost</effect>
+        <effect amplifier="-3">health boost</effect>
         <effect>slow</effect>
         <effect duration="3" amplifier="10">regeneration</effect>
         <chestplate unbreakable="true" enchantment="depth strider:-5" material="diamond chestplate"/>
@@ -60,12 +41,26 @@
         <chestplate unbreakable="true" enchantment="depth strider:3" material="iron chestplate"/>
     </kit>
 </kits>
+<spawns>
+    <spawn team="red-team" kit="spawn-kit" yaw="-180">
+        <region>
+            <point>-244.5,4.5,247.5</point>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region> 
+            <point>-244.5,4.5,67.5</point>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <point>-244.5,40,157.5</point>
+        </region>
+    </default>
+</spawns>
 <filters>
     <team id="only-red">red-team</team>
     <team id="only-blue">blue-team</team>
-    <not id="deny-void">
-        <void />
-    </not>
     <deny id="water-placement">
         <material>water</material>
     </deny>
@@ -316,4 +311,6 @@
     <item>flower pot</item>
     <item>wood:2</item>
 </itemremove>
+<respawn delay="0.1s" blackout="false" spectate="false"/>
+<maxbuildheight>22</maxbuildheight>
 </map>

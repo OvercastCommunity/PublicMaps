@@ -1,8 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Metropolis</name>
-<version>1.3.5</version>
+<version>1.3.6</version>
 <objective>Capture the most flags in 10 minutes.</objective>
-<time result="score">10m</time>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- Nixani aka King_Coolwhip -->
@@ -79,7 +79,7 @@
         <cylinder id="red-net" base="224.5,39,126.5" radius="4.5" height="3"/>
         <cylinder id="blue-net" base="150.5,39,200.5" radius="4.5" height="3"/>
     </union>
-    <negative id="void">
+    <negative id="void-area">
         <union id="playable-region">
             <cuboid min="239,34,112" max="136,52,192"/>
             <cuboid min="136,34,215" max="239,52,135"/>
@@ -92,9 +92,10 @@
     </negative>
     <apply block="never" region="flags-regions" message="You may not place blocks around the flag!"/>
     <apply block="never" region="spawn-platforms" message="You may not place blocks on the net or the spawn platform!"/>
-    <apply block-break="can-break" region="playable-region" message="You may only break leaves, vines and purple stained glass!"/>
-    <apply block="never" region="void" message="You may not build outside the playable region!"/>
+    <apply block-break="can-break" region="playable-region" message="You may only break leaves, vines, and purple stained glass!"/>
+    <apply block="never" region="void-area" message="You may not build outside the playable region!"/>
 </regions>
+<time result="score">10m</time>
 <flags>
     <flag id="lime-flag" name="Lime Flag" owner="red-team" pickup-kit="flag-pickup" drop-kit="flag-drop">
         <post recover-time="15s" respawn-time="15s" pickup-filter="only-red">185.5,48,217.5</post>
@@ -135,12 +136,13 @@
     <item>leaves</item>
     <item>vine</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="10" material="arrow"/>
-    <item amount="6" material="leaves"/>
-    <item amount="3" material="vine"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="10" material="arrow"/>
+        <item amount="6" material="leaves"/>
+        <item amount="3" material="vine"/>
+    </kill-reward>
+</kill-rewards>
 <respawn delay="3s" auto="true"/>
 <hunger>
     <depletion>off</depletion>
