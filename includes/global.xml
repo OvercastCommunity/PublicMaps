@@ -1,4 +1,7 @@
 <map>
+<!-- Sound keys include for all maps -->
+<include id="sound-keys"/>
+
 <!-- Global constants -->
 <constants fallback="true">
     <constant id="deny-shield-crafting">true</constant>
