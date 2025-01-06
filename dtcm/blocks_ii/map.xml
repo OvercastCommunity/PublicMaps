@@ -105,8 +105,8 @@
     <core team="red-team" region="red-core"/>
 </cores>
 <modes>
-    <mode after="15s" material="obsidian" name="`8OBSIDIAN MONUMENT MODE"/>
-    <mode after="15m" material="gold block" name="`6GOLD MONUMENT MODE"/>
+    <mode after="15s" material="obsidian" name="`8OBSIDIAN CORE MODE"/>
+    <mode after="15m" material="gold block" name="`6GOLD CORE MODE"/>
 </modes>
 <toolrepair>
     <tool>iron sword</tool>
