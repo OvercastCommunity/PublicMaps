@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Hammerhead</name>
-<version>1.5.1</version>
+<version>1.5.2</version>
 <variant id="5v5">5v5</variant>
 <objective>Capture the opponent's flag as many times as possible before the timer ends!</objective>
 <time result="score" overtime="1m" max-overtime="3m">12m</time>
@@ -42,7 +42,7 @@
         </region>
     </default>
     <spawn team="green-team" kit="base-kit">
-        <region yaw="0">
+        <region>
             <point>-140.5,11.25,109.5</point>
         </region>
     </spawn>
@@ -55,9 +55,6 @@
 <filters>
     <team id="only-green">green-team</team>
     <team id="only-purple">purple-team</team>
-    <after id="open-shark-pit" duration="60s" message="`eShark pit opens in {0}">
-        <time>7m</time>
-    </after>
     <material id="only-stained-glass">stained glass</material>
 </filters>
 <regions>
@@ -110,10 +107,9 @@
     </spawner>
 </spawners>
 <actions>
-    <trigger scope="match" filter="open-shark-pit">
-        <action>
-            <fill region="shark-pit" material="air" filter="only-stained-glass"/>
-        </action>
-    </trigger>
+    <fill id="open-shark-pit" region="shark-pit" material="air" filter="only-stained-glass"/>
 </actions>
+<modes>
+    <mode after="8m" show-before="60s" action="open-shark-pit" name="`3Shark Pit Opens"/>
+</modes>
 </map>
