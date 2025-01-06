@@ -1,7 +1,12 @@
 <map>
 <!-- Modern-legacy sound key constants include -->
 <!-- Created by mameBT -->
-<!-- Version 2025.01.05-0 -->
+<!-- Version 2025.01.06-1 -->
+
+<!--
+     NOTE: Please only add constants to this include on an as needed basis.
+     This is a maintainability measure.
+-->
 
 <!-- Define each sound key as itself for modern -->
 <if min-server-version="1.21">
