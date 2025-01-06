@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 -->
-<!-- Version 2024-12-22 -->
+<!-- Version 2025.01.05-1 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -252,7 +252,7 @@
             <switch-scope inner="player" filter="all(is_tnt=1, participating)">
                 <kit id="tnt-kill"/>
             </switch-scope>
-            <sound key="random.explode"/>
+            <sound key="${entity.generic.explode}"/>
             <action filter="players=..12">
                 <set var="round_deathmatch" value="round_deathmatch+1"/>
             </action>
@@ -260,7 +260,7 @@
     </trigger>
     <trigger scope="match" filter="start-tnt-fuse">
         <action>
-            <sound key="game.tnt.primed"/>
+            <sound key="${entity.creeper.primed}"/>
         </action>
     </trigger>
     <trigger scope="match">
@@ -271,7 +271,7 @@
             <set var="tnt_fuse" value="tnt_fuse - 1"/>
             <set var="tmp" value="abs(tnt_fuse % 2)"/>
             <action filter="tmp=0">
-                <sound key="random.fizz" volume="0.3"/>
+                <sound key="${entity.generic.extinguish_fire}" volume="0.3"/>
                 <switch-scope inner="player" filter="all(is_tnt=1, participating)">
                     <kit id="tnt-flash-white-kit"/>
                 </switch-scope>
@@ -297,9 +297,9 @@
             <set var="last_victim" value="1"/>
             <set var="is_tnt" value="1"/>
             <kit id="tnt-kit"/>
-            <sound key="mob.creeper.say" volume="1" pitch="1.5"/>
+            <sound key="${entity.creeper.hurt}" volume="1" pitch="1.5"/>
             <switch-scope inner="match">
-                <sound key="fireworks.twinkle" volume="0.2" pitch=".9"/>
+                <sound key="${entity.firework_rocket.twinkle}" volume="0.2" pitch=".9"/>
                 <message text="{p1} `7tagged {p2}">
                     <replacements>
                         <player id="p1" var="last_attacker" style="color"/>

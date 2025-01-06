@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <!-- Freeze Tag gamemode include file -->
 <!-- Created by mitchiii -->
-<!-- Version 2024-11-08 -->
+<!-- Version 2025.01.05-1 -->
 <objective>Taggers must freeze at least half of all Runners before time runs out!</objective>
 <game>Freeze Tag</game>
 <include id="void-death"/>
@@ -214,7 +214,7 @@
             <kit id="runners-frozen-kit"/>
             <switch-scope inner="match">
                 <action filter="participating">
-                    <sound key="mob.zombie.remedy" volume="0.5" pitch="1.5"/>
+                    <sound key="${entity.zombie_villager.cure}" volume="0.5" pitch="1.5"/>
                 </action>
                 <message text="{p1} `7froze {p2}">
                     <replacements>
@@ -232,7 +232,7 @@
             <kit id="runners-kit"/>
             <switch-scope inner="match">
                 <action filter="participating">
-                    <sound key="dig.glass" volume="0.5"/>
+                    <sound key="${block.glass.break}" volume="0.5"/>
                 </action>
                 <message text="{p1} `7unfroze {p2}">
                     <replacements>

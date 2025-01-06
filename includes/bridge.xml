@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2024.12.29-1 -->
+<!-- Version 2025.01.05-1 -->
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
@@ -358,7 +358,7 @@
     <action id="give-arrow" scope="player">
         <kit id="arrow-kit"/>
         <message text=" `e⚠ `aYou got an arrow!"/>
-        <sound key="random.pop" pitch="0.8"/>
+        <sound key="${entity.item.pickup}" pitch="0.8"/>
     </action>
     <action id="arrow-action" scope="player" filter="arrow_check=1">
         <kit id="arrow-kit"/>
@@ -416,7 +416,7 @@
         <switch-scope outer="player" inner="match">
             <action id="goal-title-scorer"/>
         </switch-scope>
-        <sound key="portal.travel" volume="0.2" pitch="2"/> <!-- OBJECTIVE_GOOD with lower volume -->
+        <sound key="${block.portal.travel}" volume="0.2" pitch="2"/> <!-- OBJECTIVE_GOOD with lower volume -->
     </action>
     <action id="message-enemy-scored" scope="player">
         <message text="`5# # # # # # # # # # # # # # # #"/>
@@ -426,7 +426,7 @@
         <action id="message-score-display-team-two"/>
         <message text="`5# # # # # # # # # # # # # # # #"/>
         <action id="goal-title"/>
-        <sound key="mob.blaze.death" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
+        <sound key="${entity.blaze.death}" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
     </action>
     <action filter="goal_scorer_enabled=1" id="message-score-display-player" scope="player">
         <set var="goal_scorer" value="1"/>
@@ -466,7 +466,7 @@
     </action>
     <action id="go-message" scope="match" filter="pre_round=1">
         <message title="`aGo!" fade-in="0.1" stay="0.5" fade-out="0.1"/>
-        <sound key="note.pling" volume="1" pitch="1.59"/> <!-- Used as SOUND_MATCH_START in PGM -->
+        <sound key="${block.note_block.pling}" volume="1" pitch="1.59"/> <!-- Used as SOUND_MATCH_START in PGM -->
     </action>
     <action id="message-reset-scoring-team" scope="match">
         <set var="scoring_team" value="0"/>
@@ -482,7 +482,7 @@
             </replacements>
         </message>
         <message text="`5# # # # # # # # # # # #"/>
-        <sound key="fireworks.twinkle"/>
+        <sound key="${entity.firework_rocket.twinkle}"/>
     </action>
     <trigger filter="team-one-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>

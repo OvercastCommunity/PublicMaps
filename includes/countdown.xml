@@ -1,10 +1,10 @@
-<map proto="1.4.2">
+<map>
 <constant id="countdown-scope">match</constant>
 <actions>
     <trigger scope="${countdown-scope}" filter="countdown-start">  <!-- countdown 3 -->
         <action>
             <message title="`43"/>
-            <sound key="note.pling" pitch="1.19"/>
+            <sound key="${block.note_block.pling}" pitch="1.19"/>
         </action>
     </trigger>
     <trigger scope="${countdown-scope}"> <!-- countdown 2 -->
@@ -13,7 +13,7 @@
         </filter>
         <action>
             <message title="`e2"/>
-            <sound key="note.pling" pitch="1.19"/>
+            <sound key="${block.note_block.pling}" pitch="1.19"/>
         </action>
     </trigger>
     <trigger scope="${countdown-scope}"> <!-- countdown 1 -->
@@ -22,7 +22,7 @@
         </filter>
         <action>
             <message title="`21"/>
-            <sound key="note.pling" pitch="1.19"/>
+            <sound key="${block.note_block.pling}" pitch="1.19"/>
         </action>
     </trigger>
     <trigger scope="${countdown-scope}"> <!-- countdown end -->
@@ -31,7 +31,7 @@
         </filter>
         <action>
             <message title="`aGO!" fade-in="0.1" stay="0.5" fade-out="0.1"/>
-            <sound key="note.pling" pitch="1.59"/>
+            <sound key="${block.note_block.pling}" pitch="1.59"/>
         </action>
     </trigger>
 </actions>

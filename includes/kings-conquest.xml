@@ -8,7 +8,7 @@
        \/       \//_____/     \/          \/            \/    |__|           \/     \/
 -->
 <!-- Created by mitchiii, based on the King's Conquest maps by Chicky -->
-<!-- Version 2024-10-11 -->
+<!-- Version 2025.01.05-1 -->
 <objective>Kill the enemy team's ${king-noun} to win!</objective>
 <gamemode>arcade</gamemode>
 <game>Kill the ${king-noun}</game>
@@ -325,7 +325,7 @@
                     </action>
                 </switch-scope>
                 <switch-scope inner="match">
-                    <sound key="mob.enderdragon.growl" volume="0.5" pitch="0.8"/>
+                    <sound key="${entity.ender_dragon.growl}" volume="0.5" pitch="0.8"/>
                 </switch-scope>
             </switch-scope>
             <set var="last_warcry" value="1"/>
@@ -877,7 +877,7 @@
     </trigger>
     <trigger filter="sudden-death" scope="match">
         <action>
-            <sound key="ambient.weather.thunder"/>
+            <sound key="${entity.lightning_bolt.thunder}"/>
             <message text=" "/>
             <message text="`6» » » `c`lSUDDEN DEATH `6« « «" title="`6» » » `c`lSUDDEN DEATH `6« « «"/>
             <switch-scope filter="all(not(is_king=1), participating, alive)" inner="player">

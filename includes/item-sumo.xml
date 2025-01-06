@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2024.12.23-2 -->
+<!-- Version 2025.01.05-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -337,7 +337,7 @@
             <message text=" `e⚠ `cHill capturing has been disabled for this match!"/>
             <fill region="center-blocks" material="${hill-block-off}" filter="only-hill-block-on"/>
             <set var="hill_previously_disabled" value="1"/>
-            <sound key="note.bass" volume="1" pitch="0.75"/>
+            <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
         </action>
     </trigger>
     <trigger scope="match" filter="all(hill_disabled=0,hill_previously_disabled=1)">
@@ -345,11 +345,11 @@
             <message text=" `e⚠ `aHill capturing has been enabled for this match!"/>
             <fill region="center-blocks" material="${hill-block-on}" filter="only-hill-block-off"/>
             <set var="hill_previously_disabled" value="0"/>
-            <sound key="note.bass" volume="1" pitch="0.75"/>
+            <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
         </action>
     </trigger>
     <action id="killstreak-sound" scope="player">
-        <sound key="mob.enderdragon.growl" volume="1" pitch="0.8"/>
+        <sound key="${entity.ender_dragon.growl}" volume="1" pitch="0.8"/>
     </action>
 </actions>
 <control-points capture-rule="exclusive" show-progress="true" permanent="true" points="${hill-points}">
