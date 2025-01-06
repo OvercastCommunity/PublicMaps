@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Skirmish</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Conquer all the points and eliminate your foes.</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -32,7 +32,7 @@
         <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
         <leggings material="leather leggings" team-color="true" unbreakable="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true"/>
-        <effect duration="5" amplifier="1">heal</effect>
+        <effect duration="5s" amplifier="5">damage resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
@@ -43,9 +43,6 @@
     <not id="only-first-spawn">
         <time>15s</time>
     </not>
-    <alive id="alive"/>
-    <match-running id="match-running"/>
-    <observing id="observing"/>
     <captured id="owns-forest">forest</captured>
     <captured id="owns-village">village</captured>
     <captured id="owns-ruins">ruins</captured>
@@ -54,7 +51,7 @@
     <time id="judgement-time-shortest">8m</time>
     <any id="allowed-to-win">
         <all>
-            <team id="only-red">red-team</team>
+            <filter id="red-team"/>
             <any>
                 <after duration="45s" filter="all(match-running, red-owns-all, not(judgement-time-short))" message="`4Red`r wins in {0}"/>
                 <after duration="25s" filter="all(red-owns-all, judgement-time-short, not(judgement-time-shorter))" message="`4Red`r wins in {0}"/>
@@ -67,13 +64,13 @@
                         <captured team="red-team">ruins</captured>
                     </all>
                     <not>
-                        <players min="1" filter="all(only-blue, alive)"/>
+                        <players min="1" filter="all(blue-team, alive)"/>
                     </not>
                 </all>
             </any>
         </all>
         <all>
-            <team id="only-blue">blue-team</team>
+            <filter id="blue-team"/>
             <any>
                 <after duration="45s" filter="all(match-running, blue-owns-all, not(judgement-time-short))" message="`9Blue`r wins in {0}"/>
                 <after duration="25s" filter="all(blue-owns-all, judgement-time-short, not(judgement-time-shorter))" message="`9Blue`r wins in {0}"/>
@@ -86,7 +83,7 @@
                         <captured team="blue-team">ruins</captured>
                     </all>
                     <not>
-                        <players min="1" filter="all(only-red, alive)"/>
+                        <players min="1" filter="all(red-team, alive)"/>
                     </not>
                 </all>
             </any>
@@ -117,14 +114,14 @@
 <actions>
     <trigger scope="match" filter="any(red-owns-all, blue-owns-all)">
         <action>
-            <sound key="ambient.weather.thunder"/>
+            <sound key="${entity.lightning_bolt.thunder}"/>
             <message text=" "/>
             <action filter="red-owns-all">
                 <message text="`6» » » `4`lRed's judgement `6« « «"/>
-                <switch-scope inner="player" filter="only-red">
+                <switch-scope inner="player" filter="red-team">
                     <message text="`bEliminate `9Blue `bor prevent `9Blue `bfrom capturing a point to win."/>
                 </switch-scope>
-                <switch-scope inner="player" filter="only-blue">
+                <switch-scope inner="player" filter="blue-team">
                     <message text="`bYou have no points under your team's control and will no longer respawn."/>
                     <message text="`bCapture a point quickly to allow your team to respawn."/>
                 </switch-scope>
@@ -134,10 +131,10 @@
             </action>
             <action filter="blue-owns-all">
                 <message text="`6» » » `9`lBlue's judgement `6« « «"/>
-                <switch-scope inner="player" filter="only-blue">
+                <switch-scope inner="player" filter="blue-team">
                     <message text="`bEliminate `4Red `bor prevent `4Red `bfrom capturing a point to win."/>
                 </switch-scope>
-                <switch-scope inner="player" filter="only-red">
+                <switch-scope inner="player" filter="red-team">
                     <message text="`bYou have no points under your team's control and will no longer respawn."/>
                     <message text="`bCapture a point quickly to allow your team to respawn."/>
                 </switch-scope>
