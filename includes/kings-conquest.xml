@@ -8,7 +8,7 @@
        \/       \//_____/     \/          \/            \/    |__|           \/     \/
 -->
 <!-- Created by mitchiii, based on the King's Conquest maps by Chicky -->
-<!-- Version 2025.01.05-1 -->
+<!-- Version 2025.01.10 -->
 <objective>Kill the enemy team's ${king-noun} to win!</objective>
 <gamemode>arcade</gamemode>
 <game>Kill the ${king-noun}</game>
@@ -135,6 +135,16 @@
         <game-mode>spectator</game-mode>
     </kit>
     <kit id="main-kit" force="true" filter="match_phase=1">
+        <action filter="all(team_one_king=1, not(team-one))">
+            <kit>
+                <team-switch team="team-one"/>
+            </kit>
+        </action>
+        <action filter="all(team_two_king=1, not(team-two))">
+            <kit>
+                <team-switch team="team-two"/>
+            </kit>
+        </action>
         <clear/>
         <game-mode>survival</game-mode>
         <effect duration="3" amplifier="5">strength</effect>
@@ -394,8 +404,8 @@
     <projectile id="projectile-web" name="web" throwable="true" projectile="FallingBlock" material="web" velocity="2"/>
 </projectiles>
 <compass show-distance="true">
-    <player filter="team-one-king" holder-filter="only-team-two" show-player="true"/>
-    <player filter="team-two-king" holder-filter="only-team-one" show-player="true"/>
+    <player filter="team-one-king" holder-filter="team-two" show-player="true"/>
+    <player filter="team-two-king" holder-filter="team-one" show-player="true"/>
 </compass>
 <classes family="king" sticky="false">
     <class name="Knight" icon="iron sword" default="true" description="Attack from both close and afar">
@@ -510,8 +520,6 @@
     <deny id="deny-void">
         <void/>
     </deny>
-    <team id="only-team-one">team-one</team>
-    <team id="only-team-two">team-two</team>
     <after id="sudden-death" duration="30s" message="Sudden death begins in {0}">
         <after duration="${sudden-death-timer-start}" filter="match-running"/>
     </after>
@@ -522,11 +530,11 @@
         <any id="only-king">
             <all id="team-one-king">
                 <variable var="is_king">1</variable>
-                <filter id="only-team-one"/>
+                <filter id="team-one"/>
             </all>
             <all id="team-two-king">
                 <variable var="is_king">1</variable>
-                <filter id="only-team-two"/>
+                <filter id="team-two"/>
             </all>
         </any>
     </not>
@@ -555,15 +563,18 @@
     </wearing>
     <all id="king-not-holding-flag">
         <filter id="conquest-action-delay"/>
-        <filter id="only-king"/>
+        <any>
+            <filter id="team-one-king"/>
+            <filter id="team-two-king"/>
+        </any>
         <not>
             <any>
                 <all>
-                    <filter id="only-team-one"/>
+                    <filter id="team-one"/>
                     <carrying-flag>team-one-king-banner</carrying-flag>
                 </all>
                 <all>
-                    <filter id="only-team-two"/>
+                    <filter id="team-two"/>
                     <carrying-flag>team-two-king-banner</carrying-flag>
                 </all>
             </any>
@@ -573,13 +584,13 @@
         <filter id="conquest-action-delay"/>
         <any>
             <all id="team-one-king-has-died">
-                <filter id="only-team-one"/>
-                <filter id="only-king"/>
+                <filter id="team-one"/>
+                <variable var="team_one_king">1</variable>
                 <dead/>
             </all>
             <all id="team-two-king-has-died">
-                <filter id="only-team-two"/>
-                <filter id="only-king"/>
+                <filter id="team-two"/>
+                <variable var="team_two_king">1</variable>
                 <dead/>
             </all>
         </any>
@@ -613,11 +624,11 @@
         <filter id="conquest-action-delay"/>
         <any>
             <all>
-                <filter id="only-team-one"/>
+                <filter id="team-one"/>
                 <variable var="team_two_has_king">0</variable>
             </all>
             <all>
-                <filter id="only-team-two"/>
+                <filter id="team-two"/>
                 <variable var="team_one_has_king">0</variable>
             </all>
         </any>
@@ -655,10 +666,10 @@
     <apply block-place="deny-void" message="You may not modify the void"/>
 </regions>
 <flags show="false" pickup-kit="king-kit" drop-filter="not(spawn-protection)" carry-message="You are the ${king-noun} - Stay alive as long as possible!" show-messages="true">
-    <flag id="team-one-king-banner" name="${team-one-name} ${king-noun}'s Reign" color="${team-one-flag-color}" pickup-filter="all(match-running, match_phase=1, is_king=1, only-team-one)">
+    <flag id="team-one-king-banner" name="${team-one-name} ${king-noun}'s Reign" color="${team-one-flag-color}" pickup-filter="all(match-running, match_phase=1, is_king=1, team-one)">
         <post recover-time="oo">${team-one-spawn-a}</post>
     </flag>
-    <flag id="team-two-king-banner" name="${team-two-name} ${king-noun}'s Reign" color="${team-two-flag-color}" pickup-filter="all(match-running, match_phase=1, is_king=1, only-team-two)">
+    <flag id="team-two-king-banner" name="${team-two-name} ${king-noun}'s Reign" color="${team-two-flag-color}" pickup-filter="all(match-running, match_phase=1, is_king=1, team-two)">
         <post recover-time="oo">${team-two-spawn-a}</post>
     </flag>
 </flags>
@@ -685,9 +696,6 @@
     <variable id="team_one_king" scope="player" exclusive="1"/>
     <variable id="team_two_king" scope="player" exclusive="1"/>
     <variable id="last_warcry" scope="player" exclusive="1"/>
-    <player-location id="x" component="x"/>
-    <player-location id="y" component="y"/>
-    <player-location id="z" component="z"/>
     <score id="king_health"/>
 </variables>
 <actions>
@@ -712,7 +720,7 @@
         </switch-scope>
         <set var="is_king" value="1"/>
         <set var="king_chance" value="99"/>
-        <action filter="only-team-one">
+        <action filter="team-one">
             <set var="team_one_king" value="1"/>
             <switch-scope inner="match">
                 <message text="{p1} `bhas been crowned ${king-noun} of the ${team-one-text-color-symbol}${team-one-name} Kingdom`b!">
@@ -722,7 +730,7 @@
                 </message>
             </switch-scope>
         </action>
-        <action filter="only-team-two">
+        <action filter="team-two">
             <set var="team_two_king" value="1"/>
             <switch-scope inner="match">
                 <message text="{p1} `bhas been crowned ${king-noun} of the ${team-two-text-color-symbol}${team-two-name} Kingdom`b!">
@@ -810,7 +818,7 @@
             </all>
         </filter>
         <action untrigger-filter="never">
-            <teleport x="x" y="-2" z="z"/>
+            <teleport x="player.x" y="-2" z="player.z"/>
             <kit force="true">
                 <fly flying="true"/>
             </kit>
@@ -822,7 +830,7 @@
         </action>
     </trigger>
     <!-- kills the king when they get negative health through non contact damage -->
-    <trigger filter="all(is_king=1, king-dead, alive)" scope="player">
+    <trigger filter="all(is_king=1, king-dead, alive, any(all(team_one_king=1, team-one), all(team_two_king=1, team-two)))" scope="player">
         <action untrigger-filter="never">
             <kit>
                 <clear effects="true"/>
@@ -950,8 +958,8 @@
 </damage>
 <unless constant="king-race-start" constant-comparison="defined delete">
     <portals sound="false">
-        <portal forward="all(only-team-one, conquest-started)" destination="team-one-spawn-point" yaw="@${team-one-yaw-a}" pitch="@0"/>
-        <portal forward="all(only-team-two, conquest-started)" destination="team-two-spawn-point" yaw="@${team-two-yaw-a}" pitch="@0"/>
+        <portal forward="all(team-one, conquest-started)" destination="team-one-spawn-point" yaw="@${team-one-yaw-a}" pitch="@0"/>
+        <portal forward="all(team-two, conquest-started)" destination="team-two-spawn-point" yaw="@${team-two-yaw-a}" pitch="@0"/>
     </portals>
 </unless>
 <unless constant="world-border-center" constant-comparison="defined delete">
