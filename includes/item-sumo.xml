@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.01.05-1 -->
+<!-- Version 2025.01.25-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -147,6 +147,26 @@
         </give>
     </unless>
 </kits>
+<actions>
+    <trigger filter="match-starting" scope="match">
+        <action id="kit-console" scope="match" expose="true">
+            <message>
+                <text>{"text":"[Settings]","color":"dark_gray","clickEvent":{"action":"run_command","value":"/action trigger settings-menu"},"hoverEvent":{"action":"show_text","value":"View Item Sumo settings"}}</text>
+            </message>
+        </action>
+    </trigger>
+    <action id="settings-menu" scope="player" expose="true">
+        <message>
+            <text>{"text":"» ","color":"dark_green","extra":[{"text":"ITEM SUMO","bold":true,"color":"dark_green"},{"text":" settings:","color":"dark_green"}]}</text>
+        </message>
+        <action id="settings-menu2"/>
+    </action>
+    <action id="settings-menu2" scope="player" expose="true">
+        <message>
+            <text>{"text":"· Hill capturing ","color":"white","extra":[{"text":"[Yes]","color":"green","clickEvent":{"action":"run_command","value":"/variable set hill_disabled 0"},"hoverEvent":{"action":"show_text","value":"Click here to enable this feature"}},{"text":" ","color":"white"},{"text":"[No]","color":"red","clickEvent":{"action":"run_command","value":"/variable set hill_disabled 1"},"hoverEvent":{"action":"show_text","value":"Click here to disable this feature"}}]}</text>
+        </message>
+    </action>
+</actions>
 <filters>
     <participating id="is-playing"/>
     <after id="joined-for-20s" duration="20s">
