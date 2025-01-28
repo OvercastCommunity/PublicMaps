@@ -14,7 +14,9 @@
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow" enchantment="infinity"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
         <item slot="28" material="arrow"/>
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
         <item slot="29" unbreakable="true" material="shears"/>
@@ -32,19 +34,19 @@
 </kits>
 <spawns>
     <default>
-        <regions>
+        <region>
             <point>18.5,22.5,-49.5</point>
-        </regions>
+        </region>
     </default>
-    <spawn team="green" kit="spawn-kit" yaw="-90">
-        <regions>
+    <spawn team="green" kit="spawn-kit">
+        <region yaw="-90">
             <point>62.5,11,21.5</point>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="orange" kit="spawn-kit" yaw="90">
-        <regions>
+    <spawn team="orange" kit="spawn-kit">
+        <region yaw="90">
             <point>-25.5,11,-46.5</point>
-        </regions>
+        </region>
     </spawn>
 </spawns>
 <filters>
@@ -64,15 +66,15 @@
         <everywhere/>
         <rectangle min="-6,-21" max="31,-4"/> <!-- Mid Region -->
     </complement>
+    <apply use="deny(only-beacon)"/>
     <apply enter="orange" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="green" region="green-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="green" use="green" region="red-for-green" message="You may not enter your team's own wool room!"/>
     <apply enter="orange" use="orange" region="cyan-for-orange" message="You may not enter your team's own wool room!"/>
-    <apply block="deny(only-beacon)"/>
-    <apply block="deny(void)" region="void-area" message="You may not place or break blocks here!"/>
     <apply block="deny(any(orange,only-chest))" region="red-for-green" message="You may not modify chests in the wool room, or modify your team's own wool room."/>
     <apply block="deny(any(green,only-chest))" region="cyan-for-orange" message="You may not modify chests in the wool room, or modify your team's own wool room."/>
     <apply block="never" region="spawns" message="You may not modify the spawns!"/>
+    <apply block-place="deny(void)" region="void-area" message="You may not place or break blocks here!"/>
 </regions>
 <wools>
     <wool team="green" color="red" location="-81,12,31">
