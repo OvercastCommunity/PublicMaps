@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.01.25-2 -->
+<!-- Version 2025.02.01-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -48,6 +48,7 @@
         <constant id="max-lives-enabled">1</constant>
         <constant id="total-lives">99</constant>
         <constant id="tutorial-word2">lives</constant>
+        <constant id="show-lifesteal-tutorial">0</constant>
     </constants>
     <blitz>
         <lives>${initial-lives}</lives>
@@ -140,15 +141,35 @@
                 </pages>
             </book>
         </kit>
-        <give kit="obs-kit">
-            <filter>
-                <observing/>
-            </filter>
-        </give>
+        <give kit="obs-kit" filter="any(observing,dead)"/>
     </unless>
+    <if variant="lifesteal">
+        <kit id="obs-kit-ls">
+            <book show-other="false">
+                <title>`e`lHow to Play</title>
+                <author>zzuf</author>
+                <pages>
+                    <page>
+                        `2» `lITEM SUMO
+                        `2» `o(Lifesteal)`0
+                        
+                        Eliminate all the other
+                        players, or capture a
+                        hill by standing on it
+                        for `6${hill-capture-time}`0 to
+                        instantly win!
+                        
+                        Get lives by killing
+                        enemies!
+                    </page>
+                </pages>
+            </book>
+        </kit>
+        <give kit="obs-kit-ls" filter="any(observing,dead)"/>
+    </if>
 </kits>
 <actions>
-    <trigger filter="match-starting" scope="match">
+    <trigger filter="match-idle" scope="match">
         <action id="settings-button" scope="match" expose="true">
             <message>
                 <text>{"text":"[Settings]","color":"dark_gray","clickEvent":{"action":"run_command","value":"/action trigger settings-menu"},"hoverEvent":{"action":"show_text","value":"View Item Sumo settings"}}</text>
@@ -440,7 +461,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `l» {player} `7got a `b`lTriple kill`7! `f(3 kills)">
+                    <message text=" `b`l» » `r{player} `7got a `b`lTRIPLE KILL`7! `f(3 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -458,7 +479,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `l» {player} `7is on a `a`lKilling Spree`7! `f(5 kills)">
+                    <message text=" `a`l» » `r{player} `7is on a `a`lKILLING SPREE`7! `f(5 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -474,8 +495,9 @@
         </filter>
         <kit>
             <action>
+                <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `l» {player} `7is on a `e`lRampage`7! `f(8 kills)">
+                    <message text=" `e`l» » `r{player} `7is on a `e`lRAMPAGE`7! `f(8 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -491,8 +513,9 @@
         </filter>
         <kit>
             <action>
+                <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `l» {player} `7is `6`lDominating`7! `f(12 kills)">
+                    <message text=" `6`l» » `r{player} `7is `6`lDOMINATING`7! `f(12 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -508,8 +531,9 @@
         </filter>
         <kit>
             <action>
+                <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `l» {player} `7is `c`lUnstoppable`7! `f(15 kills)">
+                    <message text=" `c`l» » `r{player} `7is `c`lUNSTOPPABLE`7! `f(15 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -525,8 +549,9 @@
         </filter>
         <kit>
             <action>
+                <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `l» {player} `7is `4`lGODLIKE`7! `f(22 kills)">
+                    <message text=" `4`l» » `r{player} `7is `4`lGODLIKE`7! `f(22 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -542,8 +567,9 @@
         </filter>
         <kit>
             <action>
+                <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `l» {player} `7is `0`l`kzzuf`r `f(30 kills)">
+                    <message text=" `0`l» » `r{player} `7is `0`l`kzzuf`7! `f(30 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
