@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map>
 <!--       /| ________________  -->
 <!-- O|===|* >________________> -->
 <!--       \|                   -->
@@ -13,6 +13,7 @@
     <constant id="max-lives-enabled">0</constant> <!-- 0: off, 1: on -->
     <constant id="tutorial-word1">life</constant>
     <constant id="tutorial-word2">life</constant>
+    <constant id="show-lifesteal-tutorial">1</constant>
 </constants>
 <filters>
     <all id="is-dead">
@@ -56,16 +57,14 @@
             </pages>
         </book>
     </kit>
-    <give kit="obs-kit" filter="is-observer"/>
+    <give kit="obs-kit" filter="all(any(observing,dead),show_lifesteal_tutorial=1)"/>
 </kits>
-<filters>
-    <observing id="is-observer"/>
-</filters>
 <variables>
     <lives id="blitz_lives"/>
     <variable id="extra_lives" scope="player" default="0"/>
     <variable id="max_lives" scope="player" default="${max-lives}"/>
     <variable id="max_lives_enabled" scope="match" default="${max-lives-enabled}"/>
+    <variable id="show_lifesteal_tutorial" scope="match" default="${show-lifesteal-tutorial}"/>
 </variables>
 <actions>
     <trigger filter="is-dead" scope="player">
