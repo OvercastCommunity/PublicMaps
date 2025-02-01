@@ -4,7 +4,7 @@
 <!--       \|                   -->
 <!-- Lifesteal Blitz gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.01.05-1 -->
+<!-- Version 2025.02.01-1 -->
 <game>Blitz: Lifesteal</game>
 <constants fallback="true">
     <constant id="extra-lives">1</constant> <!-- Lives you get after a kill -->
