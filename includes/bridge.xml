@@ -1,8 +1,8 @@
-<map proto="1.5.0">
+<map>
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.01.05-1 -->
+<!-- Version 2025.02.03-1 -->
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
@@ -190,7 +190,7 @@
     <all id="during-buytime">
         <after duration="0.05" filter="on-buytime"/>
         <not>
-            <region id="void-line"/>
+            <region id="void-level"/>
         </not>
     </all>
     <variable id="round-2" var="round_status">2</variable>
@@ -313,7 +313,6 @@
     <action id="increment-round" scope="player">
         <set var="team_score" value="team_score+1"/>
         <set var="player_score" value="player_score+1"/>
-        <message text=" `e⚠ `aYou have scored a goal!"/>
         <message text=" `2You have scored `e{amount} `2goal(s) in this match.">
             <replacements>
                 <decimal id="amount" value="player_score"/>
@@ -431,7 +430,7 @@
     <action filter="goal_scorer_enabled=1" id="message-score-display-player" scope="player">
         <set var="goal_scorer" value="1"/>
         <switch-scope outer="player" inner="match">
-            <message text=" `l» {player} `7scored a goal!">
+            <message text=" `l» `r{player} `7scored a goal!">
                 <replacements>
                     <player id="player" var="goal_scorer"/>
                 </replacements>
@@ -583,8 +582,8 @@
     <negative id="not-cages">
         <region id="cages"/>
     </negative>
-    <below id="void-line" y="${void-plane}"/>
-    <apply kit="void-death" region="void-line"/>
+    <below id="void-level" y="${void-plane}"/>
+    <apply kit="void-death" region="void-level"/>
     <!-- Spawn points -->
     <point id="team-one-spawn-point">${team-one-spawn}</point>
     <point id="team-two-spawn-point">${team-two-spawn}</point>
@@ -600,7 +599,7 @@
     <portal destination="team-one-spawn-point" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}" sound="false"/>
     <portal destination="team-two-spawn-point" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
     <!-- Void -->
-    <portal y="@-110" sound="false" region="void-line" observers="always"/>
+    <portal y="@-110" sound="false" region="void-level" observers="always"/>
 </portals>
 <score>
     <limit>${score-limit}</limit>
