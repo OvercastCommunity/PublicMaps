@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.02.03-1 -->
+<!-- Version 2025.02.03-2 -->
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
@@ -132,7 +132,7 @@
             </pages>
         </book>
     </kit>
-    <give kit="obs-kit" filter="all(is-observer,show_tutorial=1)"/>
+    <give kit="obs-kit" filter="all(observing,show_tutorial=1)"/>
     <give kit="map-kit" filter="during-buytime"/>
     <give kit="absorption-reset-kit" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
@@ -255,7 +255,6 @@
         <message>`4» `fThe match will `cend`f in {0} `4«</message>
         <!-- <message>{"translate":"misc.timeRemaining"}</message> -->
     </after>
-    <observing id="is-observer"/>
     <all id="team-one-own-goal">
         <team>team-one</team>
         <variable var="scoring_team">1</variable>
@@ -282,8 +281,8 @@
     </all>
     <all id="cant-score-obs">
         <filter id="cant-score"/>
-        <filter id="is-observer"/>
         <filter id="after-round-1"/>
+        <observing/>
         <match-running/>
     </all>
     <match-finished id="ended"/>
@@ -399,7 +398,7 @@
             <set var="current_team" value="2"/>
         </action>
     </trigger>
-    <trigger filter="is-observer" scope="player">
+    <trigger filter="observing" scope="player" observers="true">
         <action scope="player">
             <set var="current_team" value="0"/>
         </action>
@@ -457,7 +456,7 @@
         <message title="`f`lGOAL!" subtitle="`7The next round will begin shortly." fade-in="0.5" stay="2" fade-out="0.5"/>
     </action>
     <action id="goal-title-scorer" scope="match" filter="all(pre_round=1,goal_scorer_enabled=1)">
-        <message title="`f`lGOAL!" subtitle="`7{player} scored!" fade-in="0.5" stay="2" fade-out="0.5">
+        <message title="`f`lGOAL!" subtitle="`7by {player}" fade-in="0.5" stay="2" fade-out="0.5">
             <replacements>
                 <player id="player" var="goal_scorer"/>
             </replacements>
@@ -487,7 +486,7 @@
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-one-enemy-goal" action="message-enemy-scored" scope="player"/>
     <trigger filter="team-two-enemy-goal" action="message-enemy-scored" scope="player"/>
-    <trigger filter="cant-score-obs" action="message-obs-scored" scope="player"/>
+    <trigger filter="cant-score-obs" action="message-obs-scored" scope="player" observers="true"/>
     <action id="set-team-one" scope="player">
         <switch-scope outer="player" inner="match">
             <set var="scoring_team" value="1"/>
