@@ -8,7 +8,7 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.02.01-1 -->
+<!-- Version 2025.02.03-1 -->
 <constants fallback="true">
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
@@ -248,7 +248,6 @@
             </action>
         </kit>
     </kill-reward>
-</kill-rewards>
 </kill-rewards>
 <itemremove>
     <item>stone sword</item>
