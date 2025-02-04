@@ -7,7 +7,7 @@
 <!-- ╚═══════╝ -->
 <!-- Bridge Swap gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.01.05-1 -->
+<!-- Version 2025.02.04-1 -->
 <include id="bridge"/>
 <game>Bridge Swap</game>
 <constants fallback="true">
@@ -41,7 +41,7 @@
             </pages>
         </book>
     </kit>
-    <give kit="zzuf-obs-kit" filter="all(is-observer)"/>
+    <give kit="zzuf-obs-kit" filter="all(observing)"/>
 </kits>
 <filters>
     <!-- <all id="team-one-controlling-point"/> -->
