@@ -1,19 +1,41 @@
 <map proto="1.5.0">
 <name>Rubik's Rage</name>
-<version>2.0.0</version>
-<objective>Kill all the player's in the enemy team's before the time runs out!</objective>
-<gamemode>br</gamemode>
+<version>2.1.0</version>
+<variant id="tdm">TDM</variant>
+<variant id="lifesteal">Lifesteal</variant>
+<unless variant="lifesteal,tdm">
+    <objective>Kill all the player's in the enemy team's before the time runs out!</objective>
+    <blitz>
+        <lives>5</lives>
+    </blitz>
+    <gamemode>br</gamemode>
+</unless>
+<if variant="tdm">
+    <objective>Get the most kills when the time runs out!</objective>
+    <gamemode>tdm</gamemode>
+    <score>
+        <kills>1</kills>
+    </score>
+</if>
+<if variant="lifesteal">
+    <objective>Kill all your opponents! You can get an extra life if you get a kill! (once per spawn)</objective>
+    <include id="lifesteal"/>
+    <blitz>
+        <lives>2</lives>
+    </blitz>
+</if>
 <authors>
     <author uuid="08f38600-083e-4917-97d5-3e18e4c0c9de"/> <!-- Edde -->
 </authors>
 <contributors>
     <contributor uuid="d4faae7a-6cca-4695-abc8-20230500aa73" contribution="PvP god, oh and he helped me with the map"/>
 </contributors>
+<rage/>
 <teams>
-    <team id="only-red" max="6" max-overfill="8" color="dark red">Red</team>
-    <team id="only-blue" max="6" max-overfill="8" color="blue">Blue</team>
-    <team id="only-orange" max="6" max-overfill="8" color="gold">Orange</team>
-    <team id="only-green" max="6" max-overfill="8" color="green">Green</team>
+    <team id="red" max="5" max-overfill="8" color="dark red">Red</team>
+    <team id="blue" max="5" max-overfill="8" color="blue">Blue</team>
+    <team id="orange" max="5" max-overfill="8" color="gold">Orange</team>
+    <team id="green" max="5" max-overfill="8" color="green">Green</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -36,48 +58,48 @@
             <point>-439.5,31,-727.5</point>
         </regions>
     </default>
-    <spawn team="only-red" kit="spawn-kit" filter="match-start">
+    <spawn team="red" kit="spawn-kit" filter="match-start">
         <regions yaw="45">
             <point>-421.5,1,-745.5</point>
         </regions>
     </spawn>
-    <spawn team="only-red" kit="spawn-kit" filter="after-start">
+    <spawn team="red" kit="spawn-kit" filter="after-start">
         <regions yaw="45">
             <point>-422.5,1,-744.5</point>
             <point>-422.5,7,-744.5</point>
             <point>-422.5,13,-744.5</point>
         </regions>
     </spawn>
-    <spawn team="only-blue" kit="spawn-kit" filter="match-start">
+    <spawn team="blue" kit="spawn-kit" filter="match-start">
         <regions yaw="135">
             <point>-421.5,1,-709.5</point>
         </regions>
     </spawn>
-    <spawn team="only-blue" kit="spawn-kit" filter="after-start">
+    <spawn team="blue" kit="spawn-kit" filter="after-start">
         <regions yaw="135">
             <point>-422.5,1,-710.5</point>
             <point>-422.5,7,-710.5</point>
             <point>-422.5,13,-710.5</point>
         </regions>
     </spawn>
-    <spawn team="only-orange" kit="spawn-kit" filter="match-start">
+    <spawn team="orange" kit="spawn-kit" filter="match-start">
         <regions yaw="-135">
             <point>-457.5,1,-709.5</point>
         </regions>
     </spawn>
-    <spawn team="only-orange" kit="spawn-kit" filter="after-start">
+    <spawn team="orange" kit="spawn-kit" filter="after-start">
         <regions yaw="-135">
             <point>-456.5,1,-710.5</point>
             <point>-456.5,7,-710.5</point>
             <point>-456.5,13,-710.5</point>
         </regions>
     </spawn>
-    <spawn team="only-green" kit="spawn-kit" filter="match-start">
+    <spawn team="green" kit="spawn-kit" filter="match-start">
         <regions yaw="-45">
             <point>-457.5,1,-745.5</point>
         </regions>
     </spawn>
-    <spawn team="only-green" kit="spawn-kit" filter="after-start">
+    <spawn team="green" kit="spawn-kit" filter="after-start">
         <regions yaw="-45">
             <point>-456.5,1,-744.5</point>
             <point>-456.5,7,-744.5</point>
@@ -94,10 +116,6 @@
     <apply block="never"/>
 </regions>
 <time>5m</time>
-<blitz>
-    <lives>3</lives>
-</blitz>
-<rage/>
 <itemremove>
     <item>diamond sword</item>
     <item>bow</item>
