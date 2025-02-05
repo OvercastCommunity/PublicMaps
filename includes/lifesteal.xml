@@ -4,7 +4,7 @@
 <!--       \|                   -->
 <!-- Lifesteal Blitz gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.02.01-1 -->
+<!-- Version 2025.02.05-1 -->
 <game>Blitz: Lifesteal</game>
 <constants fallback="true">
     <constant id="extra-lives">1</constant> <!-- Lives you get after a kill -->
@@ -57,7 +57,8 @@
             </pages>
         </book>
     </kit>
-    <give kit="obs-kit" filter="all(any(observing,dead),show_lifesteal_tutorial=1)"/>
+    <!-- <give kit="obs-kit" filter="all(any(observing,dead),show_lifesteal_tutorial=1)"/> -->
+    <give kit="obs-kit" filter="all(observing,show_lifesteal_tutorial=1)"/>
 </kits>
 <variables>
     <lives id="blitz_lives"/>
