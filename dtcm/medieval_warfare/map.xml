@@ -1,13 +1,14 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Medieval Warfare</name>
 <variant id="dte" world="dte">DTE</variant>
-<version>1.8.10</version>
+<version>1.8.11</version>
 <unless variant="dte">
     <objective>Leak lava from the enemy's obsidian core.</objective>
 </unless>
 <if variant="dte">
     <objective>Demolish the enemy's castle</objective>
 </if>
+<created>2012-05-27</created>
 <authors>
     <author uuid="c1ea235d-4224-46e4-ba4a-638838f6d039"/> <!-- Daffy_Duck01 -->
 </authors>
@@ -24,11 +25,11 @@
         <alert after="190s" filter="wall-exists">THE WALL IS GONE!! BOOM BOOM TIEM!!!111</alert> <!-- Original monument mode message -->
     </broadcasts>
 </if>
-<created>2012-05-27</created>
 <rules>
     <rule>Dispensers cannot be placed on this map</rule>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
 </rules>
+<include id="gapple-kill-reward"/>
 <if variant="dte">
     <teams>
         <team id="blue" color="blue" max="24">Blue</team>
@@ -91,28 +92,19 @@
 </kits>
 <filters>
     <!-- Recent changes to implement spawn and chest protection -->
-    <deny id="deny-chest-break">
-        <material>chest</material>
-    </deny>
-    <deny id="only-red">
-        <team>blue</team>
-    </deny>
-    <deny id="only-blue">
-        <team>red</team>
-    </deny>
     <deny id="deny-dispenser">
         <material>dispenser</material>
     </deny>
     <not id="anti-tnt-red">
         <all>
             <material>tnt</material>
-            <team>red</team>
+            <team id="only-red">red</team>
         </all>
     </not>
     <not id="anti-tnt-blue">
         <all>
             <material>tnt</material>
-            <team>blue</team>
+            <team id="only-blue">blue</team>
         </all>
     </not>
     <deny id="deny-chest">
@@ -122,6 +114,7 @@
         <material>glass</material>
     </deny>
     <if variant="dte">
+        <!-- TODO: turn wall into a mode that can be controlled by commands -->
         <any id="destroy-wall">
             <after duration="190s" message="The wall comes down in {0}">
                 <all>
@@ -137,9 +130,7 @@
     <!-- Recent changes to implement spawn and chest protection -->
     <apply lend-kit="spawn-protection" filter="only-blue" region="blue-spawn-protect"/>
     <apply lend-kit="spawn-protection" filter="only-red" region="red-spawn-protect"/>
-    <!-- <apply block="deny-chest-break" message="This block can not be placed or broken on this map!">
-        <region id="map"/>
-    </apply> -->
+    <!-- <apply region="map" block="deny-chest" message="This block can not be placed or broken on this map!"/> -->
     <unless variant="dte">
         <union id="spawn">
             <cuboid id="blue-spawn-protect" min="57,93,74" max="63,oo,80"/>
@@ -237,7 +228,7 @@
     </if>
 </regions>
 <unless variant="dte">
-    <cores material="obsidian" leak="3">
+    <cores material="obsidian" leak="3" mode-changes="true">
         <core team="blue">
             <region><cuboid min="30,97,75" max="34,101,79"/></region>
         </core>
@@ -245,6 +236,10 @@
             <region><cuboid min="-55,97,75" max="-51,101,79"/></region>
         </core>
     </cores>
+    <modes>
+        <mode after="15m" material="gold block"/>
+        <mode after="20m" material="glass"/>
+    </modes>
 </unless>
 <if variant="dte">
     <variables>
@@ -271,7 +266,6 @@
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <crafting>

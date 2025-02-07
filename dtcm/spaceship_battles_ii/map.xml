@@ -1,12 +1,13 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Spaceship Battles II</name>
-<version>1.2.4</version>
+<version>1.2.5</version>
 <objective>Leak lava from the enemy's obsidian core and destroy the enemy's Comm Tower made of coal ore.</objective>
+<created>2012-07-04</created>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
     <author uuid="c97373ef-4582-4350-8993-8a78f2775c29"/> <!-- Eclipsen -->
 </authors>
-<created>2012-07-04</created>
 <teams>
     <team id="blue" color="blue" max="40">Blue</team>
     <team id="red" color="dark red" max="40">Red</team>
@@ -36,27 +37,22 @@
     </kit>
 </kits>
 <spawns>
-    <default>
-        <region yaw="270">
+    <default yaw="270">
+        <region>
             <cylinder base="280,68,275" radius="4" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
-        <region yaw="90">
+    <spawn team="blue" kit="spawn-kit" yaw="90">
+        <region>
             <cuboid min="208.5,97,360.5" max="214.5,97,362.5"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
-        <region yaw="90">
+    <spawn team="red" kit="spawn-kit" yaw="90">
+        <region>
             <cuboid min="208.5,97,193.5" max="214.5,97,195.5"/>
         </region>
     </spawn>
 </spawns>
-<filters>
-    <not id="deny-void">
-        <void/>
-    </not>
-</filters>
 <regions>
     <negative id="playable-inverse">
         <cuboid id="playable" min="9,-oo,121" max="266,93,429"/>
@@ -71,9 +67,9 @@
     </union>
     <apply block="never" message="You may not cover the spawn pools." region="spawn-pools"/>
     <apply block="never" region="spawn-ships"/>
-    <apply block-break="always" block-place="deny-void" message="You may not build outside of the map!" region="playable-inverse"/>
+    <apply block-break="always" block-place="deny(void)" message="You may not build outside of the map!" region="playable-inverse"/>
 </regions>
-<cores material="obsidian" leak="-1">
+<cores material="obsidian" leak="-1" mode-changes="true">
     <core team="blue">
         <region>
             <cuboid min="118,20,358" max="127,27,365"/>
@@ -97,6 +93,10 @@
         </region>
     </destroyable>
 </destroyables>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <maxbuildheight>61</maxbuildheight>
 <crafting>
     <disable>boat</disable>
@@ -163,7 +163,6 @@
     <kill-reward>
         <item amount="32" material="wood"/>
         <item amount="16" material="cobblestone"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 </map>

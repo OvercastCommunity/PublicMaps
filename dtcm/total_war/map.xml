@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Total War</name>
-<version>2.0.12</version>
+<version>2.0.13</version>
 <objective>Leak lava from each of the enemy's obsidian core 3 blocks downwards</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
 </authors>
@@ -69,7 +70,7 @@
     <apply region="spawns" block="never"/>
     <apply region="playable-inverse" block="never" message="You may not build outside the playable region!"/>
 </regions>
-<cores leak="3">
+<cores leak="3" mode-changes="true">
     <cores team="red">
         <core name="Rear Core">
             <region>
@@ -95,6 +96,10 @@
         </core>
     </cores>
 </cores>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <itemremove>
     <item>seeds</item>
     <item>golden carrot</item>
@@ -111,10 +116,5 @@
     <tool>iron pickaxe</tool>
     <tool>iron axe</tool>
 </toolrepair>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <maxbuildheight>58</maxbuildheight>
 </map>

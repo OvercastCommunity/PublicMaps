@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Temple Valley</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Leak the enemies core above their central temple.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
 </authors>
@@ -31,19 +32,19 @@
 </kits>
 <spawns>
     <spawn team="purple" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="194,33,9" height="0" radius="3"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="orange" kit="spawn-kit" yaw="180">
-        <regions>
+        <region>
             <cylinder base="-136,33,141" height="0" radius="3"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <cylinder base="28.5,78,-49.5" height="0" radius="6"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -95,7 +96,7 @@
     <apply region="team-spawns" block="never" message="You may not modify the team spawns!"/>
     <apply region="playable-inverse" block="never" message="You may not modify outside of the playing field!"/>
 </regions>
-<cores leak="5">
+<cores leak="5" mode-changes="true">
     <core team="purple">
         <region>
             <cuboid min="190,66,81" max="196,72,87"/>
@@ -107,6 +108,10 @@
         </region>
     </core>
 </cores>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -125,10 +130,5 @@
     <item>obsidian</item>
     <item>gold block</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-    	<item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <maxbuildheight>84</maxbuildheight>
 </map>

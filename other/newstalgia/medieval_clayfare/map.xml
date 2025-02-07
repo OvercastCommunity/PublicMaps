@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Medieval Clayfare</name>
-<version>1.6.11</version>
+<version>1.6.12</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
 <authors>
     <author uuid="c1ea235d-4224-46e4-ba4a-638838f6d039"/> <!-- Daffy_Duck01 -->
@@ -109,7 +109,7 @@
     <apply region="spawn" block="never"/>
     <apply region="outside-map" block="never" message="You may not build outside the map boundary!"/>
 </regions>
-<cores material="obsidian" leak="3">
+<cores material="obsidian" leak="3" mode-changes="true">
     <core team="blue">
         <region>
             <cuboid min="30,97,75" max="35,102,80"/>
@@ -121,6 +121,10 @@
         </region>
     </core>
 </cores>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <itemremove>
     <item>shears</item>
 </itemremove>

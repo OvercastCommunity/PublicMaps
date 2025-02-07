@@ -1,10 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Blocks DTC</name>
 <variant id="christmas" world="christmas" override="true">Holiday Blocks</variant>
 <variant id="halloween" world="halloween" override="true">Haunted Blocks</variant>
 <variant id="tnt" world="dtc_tnt">TNT</variant>
 <variant id="te" world="dtc_te">TE</variant>
-<version>1.5.0</version>
+<version>1.5.1</version>
 <objective>Leak lava from the enemy's obsidian core.</objective>
 <if variant="default">
     <created>2012-06-29</created>
@@ -17,6 +17,9 @@
 </if>
 <if variant="tnt,te">
     <created>2013-12-13</created>
+</if>
+<if variant="tnt">
+    <include id="gapple-kill-reward"/>
 </if>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
@@ -43,21 +46,21 @@
         <clear/>
         <!-- TE variant intentionally has no kits -->
         <unless variant="te">
-            <item slot="0">diamond sword</item>
-            <item slot="1">bow</item>
-            <item slot="2" enchantment="efficiency:2;unbreaking:3">iron pickaxe</item>
-            <item slot="3" enchantment="efficiency">diamond axe</item>
-            <item slot="4" amount="64" damage="2">log</item>
-            <item slot="5" amount="64" team-color="true">wool</item>
-            <item slot="6" amount="64">melon block</item>
-            <item slot="7" enchantment="efficiency">shears</item>
-            <item slot="8" amount="64">golden apple</item>
-            <item slot="28" amount="64">arrow</item>
-            <item slot="30">diamond spade</item>
+            <item slot="0" material="diamond sword"/>
+            <item slot="1" material="bow"/>
+            <item slot="2" enchantment="efficiency:2;unbreaking:3" material="iron pickaxe"/>
+            <item slot="3" enchantment="efficiency" material="diamond axe"/>
+            <item slot="4" amount="64" damage="2" material="log"/>
+            <item slot="5" amount="64" team-color="true" material="wool"/>
+            <item slot="6" amount="64" material="melon block"/>
+            <item slot="7" enchantment="efficiency" material="shears"/>
+            <item slot="8" amount="64" material="golden apple"/>
+            <item slot="28" amount="64" material="arrow"/>
+            <item slot="30" material="diamond spade"/>
             <if variant="tnt">
-                <chestplate team-color="true" unbreakable="true">leather chestplate</chestplate>
-                <leggings team-color="true" unbreakable="true">leather leggings</leggings>
-                <boots team-color="true" unbreakable="true">leather boots</boots>
+                <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+                <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+                <boots team-color="true" unbreakable="true" material="leather boots"/>
             </if>
             <effect amplifier="5" duration="6">damage resistance</effect>
             <effect duration="6">strength</effect>
@@ -149,19 +152,11 @@
     </union>
     <apply region="storages" block-break="only-water" block-place="never" message="You may not modify storage room!"/>
     <apply region="tnt-chests" block="never" message="You may not break the chests!"/>
-    <apply region="red-storage-main" enter="only-red" message="You may not enter the enemy base!"/>
-    <apply region="blue-storage-main" enter="only-blue" message="You may not enter the enemy base!"/>
+    <apply region="red-storage-main" enter="only-red" message="You may not enter the enemy's base!"/>
+    <apply region="blue-storage-main" enter="only-blue" message="You may not enter the enemy's base!"/>
     <apply region="playable-inverse" block="never" message="You may not build in the void on the side"/>
 </regions>
-<!-- Only TNT variant has core modes -->
-<constant id="cores-mode-changes" delete="true"/>
-<if variant="tnt">
-    <constant id="cores-mode-changes">true</constant>
-    <modes>
-        <mode after="20m" material="gold block"/>
-    </modes>
-</if>
-<cores material="obsidian" leak="8" mode-changes="${cores-mode-changes}">
+<cores material="obsidian" leak="8" mode-changes="true">
     <core team="blue">
         <region>
             <if variant="default,tnt,te">
@@ -189,6 +184,17 @@
         </region>
     </core>
 </cores>
+<if variant="tnt">
+    <modes>
+        <if variant="tnt">
+            <mode after="20m" material="gold block"/>
+        </if>
+        <unless variant="tnt">
+            <mode after="15m" material="gold block"/>
+            <mode after="20m" material="glass"/>
+        </unless>
+    </modes>
+</if>
 <maxbuildheight>60</maxbuildheight>
 <gamerules>
     <doFireTick>false</doFireTick>
@@ -197,9 +203,6 @@
     <kill-rewards>
         <kill-reward>
             <item amount="16" material="arrow"/>
-            <if variant="tnt">
-                <item material="golden apple"/>
-            </if>
         </kill-reward>
     </kill-rewards>
     <if variant="tnt">
@@ -245,51 +248,4 @@
         <velocityMod>2.0</velocityMod>
     </modifybowprojectile>
 </if>
-<!-- include src="tutorial.xml"/ -->
-<!-- <tutorial>
-    <stage title="Destroy the Core">
-        <message>
-            <line>`rThis map is a `a`lDestroy the Core `r(DTC) map.</line>
-            <line>`rThe objective is to leak lava from the enemy's `5obsidian `rcore.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="50">16.5,102,18</point>
-        </teleport>
-    </stage>
-    <stage title="Spawn">
-        <message>
-            <line>`rYou spawn inside your base which looks like a double chest.</line>
-            <line>`rThe chests in the base contain all the necessary gear to get ready for battle!</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="15">83,31,72</point>
-        </teleport>
-    </stage>
-    <stage title="Armor">
-        <message>
-            <line>`bDiamond blocks `rcan be found in both of the furnaces on either side of the base.</line>
-            <line>You can use diamond blocks to craft armor.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="25">107,33,42</point>
-        </teleport>
-    </stage>
-    <stage title="The Core">
-        <message>
-            <line>This is `5obsidian `rcore, break your enemy's `5obsidian `rcore and leak the `clava `rfrom inside the core to win.</line>
-        </message>
-        <teleport>
-            <point yaw="-150" pitch="35">83,45,80</point>
-        </teleport>
-    </stage>
-    <stage title="Extra Supplies">
-        <message>
-            <line>`rUseful extra supplies can be found above the base.</line>
-            <line>Stairs from the `aleft `rand `aright `rof spawn allow direct access.</line>
-        </message>
-        <teleport>
-            <point yaw="-50" pitch="-10">90,42,60</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>
