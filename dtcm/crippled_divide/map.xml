@@ -1,7 +1,18 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Crippled Divide</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Destroy the enemy's obsidian monuments and leak their core!</objective>
+<constants>
+    <constant id="eff.team-1">blue-team</constant>
+    <constant id="eff.team-2">red-team</constant>
+    <constant id="eff.t2-m1-region">blue-left-monument</constant>
+    <constant id="eff.t2-m2-region">blue-right-monument</constant>
+    <constant id="eff.t1-m1-region">red-left-monument</constant>
+    <constant id="eff.t1-m2-region">red-right-monument</constant>
+    <constant id="eff.modes-preset">every-10m</constant>
+</constants>
+<include id="efficiency-variables"/>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb"/> <!-- Rasta_Jol -->
     <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LarrowHead -->
@@ -10,104 +21,87 @@
     <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Building help"/> <!-- rockymine -->
 </contributors>
 <teams>
-   <team id="blue-team" color="blue" max="35" max-overfill="45">Blue</team>
-   <team id="red-team" color="dark red" max="35" max-overfill="45">Red</team>
+   <team id="blue-team" color="blue" max="35">Blue</team>
+   <team id="red-team" color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" material="iron sword"/>
-        <item slot="1" enchantment="arrow damage" material="bow"/>
-        <item slot="2" material="diamond pickaxe"/>
-        <item slot="3" material="iron spade"/>
-        <item slot="4" enchantment="dig speed" material="iron axe"/>
-        <item slot="5" amount="2" material="golden apple"/>
-        <item slot="7" amount="32" material="log"/>
-        <item slot="8" amount="64" material="baked potato"/>
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
         <item slot="28" amount="64" material="arrow"/>
-        <helmet team-color="true" material="leather helmet"/>
-        <chestplate team-color="true" material="leather chestplate"/>
-        <leggings team-color="true" material="leather leggings"/>
-        <boots team-color="true" material="leather boots"/>
-        <effect duration="5" amplifier="3">heal</effect>
-        <effect duration="5" amplifier="3">damage resistance</effect>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="31" amount="64" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="7" material="bucket"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="5s" amplifier="5">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
-    <spawn team="red-team" kit="spawn-kit">
-        <regions yaw="-90">
-            <point>75.5,75,108.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue-team" kit="spawn-kit">
-        <regions yaw="90">
-            <point>435.5,75,108.5</point>
-        </regions>
-    </spawn>
     <default>
-        <regions>
+        <region>
             <point>253.5,117,108.5</point>
-        </regions>
+        </region>
     </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="90">
+            <point>435.5,75,108.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="-90">
+            <point>75.5,75,108.5</point>
+        </region>
+    </spawn>
 </spawns>
 <filters>
     <deny id="deny-some">
         <any>
-            <material>beacon</material>
+            <material id="beacon">beacon</material>
             <material>emerald block</material>
             <material>stained glass</material>
         </any>
     </deny>
 </filters>
 <regions>
-    <apply block="never" message="You may not build in the void!">
-        <region>
-            <negative id="void">
-                <rectangle min="70,184" max="441,33"/>
-            </negative>
-        </region>
-    </apply>
-    <apply use="deny-some" block="deny-some"/>
+    <union id="cores">
+        <cuboid id="blue-core" min="342,45,106" max="337,39,111"/>
+        <cuboid id="red-core" min="174,45,106" max="169,39,111"/>
+    </union>
+    <union id="monuments">
+        <cuboid id="blue-left-monument" min="361,43,178" max="360,40,179"/>
+        <cuboid id="blue-right-monument" min="361,43,38" max="360,40,39"/>
+        <cuboid id="red-left-monument" min="151,43,38" max="150,40,39"/>
+        <cuboid id="red-right-monument" min="151,43,178" max="150,40,179"/>
+    </union>
+    <negative id="void-region">
+        <rectangle min="70,184" max="441,33"/>
+    </negative>
+    <apply block="never" region="void-region" message="You may not build in the void!"/>
+    <apply use="deny(beacon)" block="deny-some"/>
 </regions>
 <modes>
     <mode after="25m" material="gold block" name="`6GOLD CORE MODE"/>
 </modes>
 <cores material="obsidian" leak="3" mode-changes="true">
-    <core team="red-team">
-        <region>
-            <cuboid min="174,45,106" max="169,39,111"/>
-        </region>
-    </core>
-    <core team="blue-team">
-        <region>
-            <cuboid min="342,45,106" max="337,39,111"/>
-        </region>
-    </core>
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
 </cores>
-<destroyables materials="obsidian">
-    <destroyables name="Right Monument">
-        <destroyable owner="red-team">
-            <region>
-                <cuboid min="151,43,178" max="150,40,179"/>
-            </region>
-        </destroyable>
-        <destroyable owner="blue-team">
-            <region>
-                <cuboid min="361,43,38" max="360,40,39"/>
-            </region>
-        </destroyable>
-    </destroyables>
-    <destroyables name="Left Monument">
-        <destroyable owner="red-team">
-            <region>
-                <cuboid min="151,43,38" max="150,40,39"/>
-            </region>
-        </destroyable>
-        <destroyable owner="blue-team">
-            <region>
-                <cuboid min="361,43,178" max="360,40,179"/>
-            </region>
-        </destroyable>
-    </destroyables>
+<destroyables material="obsidian">
+    <destroyable owner="blue-team" name="Left Monument" region="blue-left-monument"/>
+    <destroyable owner="blue-team" name="Right Monument" region="blue-right-monument"/>
+    <destroyable owner="red-team" name="Left Monument" region="red-left-monument"/>
+    <destroyable owner="red-team" name="Right Monument" region="red-right-monument"/>
 </destroyables>
 <toolrepair>
     <tool>iron sword</tool>
@@ -117,21 +111,30 @@
     <tool>iron axe</tool>
 </toolrepair>
 <itemremove>
-    <item>baked potato</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
-    <item>leather leggings</item>
+    <item>chainmail leggings</item>
     <item>leather boots</item>
     <item>obsidian</item>
     <item>gold block</item>
-    <item>arrow</item>
-    <item>golden apple</item>
 </itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>glass</item>
+    <item>arrow</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>golden apple</item>
+</itemkeep>
 <kill-rewards>
     <kill-reward>
+        <item amount="32" material="wood"/>
+        <item amount="16" material="glass"/>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>72</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
