@@ -134,6 +134,9 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<world>
+    <timeset>13500</timeset>
+</world>
 <!-- <tutorial>
     <stage title="Mixed Gamemodes">
         <message>
