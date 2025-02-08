@@ -1,39 +1,34 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Cairn</name>
-<version>2.0.2</version>
+<version>2.0.3</version>
 <objective>Leak the enemy's core!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="16">Blue</team>
-    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="28" material="arrow"/>
+        <item slot="28" amount="64" material="arrow"/>
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
         <item slot="3" unbreakable="true" material="iron axe"/>
-        <item slot="5" amount="64" damage="2" material="wood"/>
-        <item slot="6" amount="64" material="glass"/>
-        <item slot="7" material="golden apple"/>
-        <item slot="8" amount="64" material="grilled pork"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="4" amount="64" damage="2" material="wood"/>
+        <item slot="31" amount="64" damage="2" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="7" material="bucket"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="iron leggings"/>
-        <effect duration="3" amplifier="5">heal</effect>
-        <effect duration="3" amplifier="5">damage resistance</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="0080ff" material="leather helmet"/>
-        <chestplate unbreakable="true" color="0080ff" material="leather chestplate"/>
-        <boots unbreakable="true" color="0080ff" material="leather boots"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="cd0000" material="leather helmet"/>
-        <chestplate unbreakable="true" color="cd0000" material="leather chestplate"/>
-        <boots unbreakable="true" color="cd0000" material="leather boots"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="3s" amplifier="5">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -42,23 +37,19 @@
             <cuboid min="1260.5,46,-827.5" max="1259.5,46,-829.5"/>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
-        <region yaw="0">
+    <spawn team="blue-team" kit="spawn-kit">
+        <region>
             <block>1233.5,12,-944.5</block>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="180">
             <block>1233.5,12,-712.5</block>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-    <deny id="deny-beacon">
-        <material>beacon</material>
-    </deny>
+    <material id="beacon">beacon</material>
 </filters>
 <regions>
     <union id="spawns">
@@ -69,32 +60,33 @@
         <cuboid id="blue-core" min="1293.5,5,-924.5" max="1286.5,12,-931.5"/>
         <cuboid id="red-core" min="1181.5,5,-733.5" max="1174.5,12,-726.5"/>
     </union>
-    <complement id="void">
+    <complement id="void-region">
         <everywhere/>
-        <rectangle id="map" min="1310.5,-948.5" max="1156.5,-708.5"/>
+        <rectangle min="1214,-862" max="1253,-795"/>
+        <circle center="1289.5,-927.5" radius="12"/>
+        <circle center="1177.5,-729.5" radius="12"/>
     </complement>
-    <apply enter="only-blue" message="You may not enter the enemy team's spawn!" region="blue-spawn"/>
-    <apply enter="only-red" message="You may not enter the enemy team's spawn!" region="red-spawn"/>
-    <apply use="deny-beacon"/>
-    <apply block="never" message="You may not destroy the spawn regions!" region="spawns"/>
-    <apply block="never" message="You may not build outside the map!" region="void"/>
+    <apply use="deny(beacon)"/>
+    <apply enter="deny(blue-team)" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="deny(red-team)" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply block="never" region="spawns" message="You may not destroy the spawn regions!"/>
+    <apply block="never" region="void-region" message="You may not build outside the map!"/>
 </regions>
 <modes>
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
 </modes>
 <cores name="Core" material="obsidian" leak="4" modes="gold-core">
-    <core team="blue" region="blue-core"/>
-    <core team="red" region="red-core"/>
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
 </cores>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
     <tool>iron axe</tool>
-    <tool>arrow</tool>
+    <tool>iron spade</tool>
 </toolrepair>
 <itemremove>
-    <item>grilled pork</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>iron leggings</item>
@@ -104,33 +96,23 @@
     <item>gold block</item>
     <item>beacon</item>
 </itemremove>
-<block-drops>
-    <rule>
-        <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule>
-        <filter>
-            <material>glass</material>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</block-drops>
 <itemkeep>
     <item>wood</item>
     <item>glass</item>
+    <item>arrow</item>
+    <item>bucket</item>
+    <item>water bucket</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item amount="16" damage="2" material="wood"/>
-    <item amount="8" material="glass"/>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" damage="2" material="wood"/>
+        <item amount="8" material="glass"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>25</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
