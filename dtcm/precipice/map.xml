@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Precipice</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Leak lava from the enemy team's core!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="b0b3c5d5-e9bd-4984-bc07-1bd552d4b042"/> <!-- Beebou -->
 </authors>
@@ -35,19 +36,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="180">
-        <regions>
+        <region>
             <cuboid min="26,81,3" max="19,81,1"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit">
-        <regions>
+        <region>
             <cuboid min="-87,81,-62" max="-78,81,-65"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <cuboid min="-26,108,79" max="-33,108,85"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -67,7 +68,7 @@
     <apply region="spawns" block="never" message="You may not modify the spawns!"/>
     <apply region="map-inverse" block="never" message="You may not build outside the map!"/>
 </regions>
-<cores leak="4">
+<cores leak="4" mode-changes="true">
     <core team="red">
         <region>
             <cuboid min="119,99,-27" max="125,89,-31"/>
@@ -79,6 +80,10 @@
         </region>
     </core>
 </cores>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>stone axe</tool>
@@ -97,7 +102,6 @@
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <timelock>on</timelock>

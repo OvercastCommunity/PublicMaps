@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>SolitudeMC</name>
-<version>1.5.1</version>
+<version>1.5.2</version>
 <variant id="christmas" world="christmas">Christmas</variant>
 <variant id="halloween" world="halloween">Halloween</variant>
 <objective>Leak the lava from your enemy's core!</objective>
@@ -87,15 +87,10 @@
             <material>stained glass:14</material>
         </if>
     </deny>
-    <deny id="no-void">
-        <void/>
-    </deny>
-    <deny id="deny-some">
-        <any>
-            <material>dispenser</material>
-            <material>beacon</material>
-        </any>
-    </deny>
+    <any id="interactive-blocks">
+        <material>dispenser</material>
+        <material>beacon</material>
+    </any>
 </filters>
 <regions>
     <apply block="never" message="You may not build in the spawns!">
@@ -105,8 +100,8 @@
         </region>
     </apply>
     <apply block="deny-stained-glass"/>
-    <apply block="deny-some" use="deny-some" message="You may not interact with Beacons and Dispensers!"/>
-    <apply block="no-void" message="You may not build in the void!">
+    <apply block="deny(interactive-blocks)" use="deny(interactive-blocks)" message="You may not interact with Beacons and Dispensers!"/>
+    <apply block="deny(void)" message="You may not build in the void!">
         <region>
             <negative id="outside-map">
                 <rectangle id="whole-map" min="-29,66" max="31,-66"/>
@@ -114,7 +109,7 @@
         </region>
     </apply>
 </regions>
-<cores leak="6">
+<cores leak="6" mode-changes="true">
     <core team="cyan">
         <region>
             <cuboid id="cyan-core" min="25,28,-47" max="19,34,-53"/>
@@ -126,6 +121,10 @@
         </region>
     </core>
 </cores>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>

@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Nightsail</name>
-<version>2.3.3</version>
+<version>2.3.4</version>
 <created>2013-08-30</created>
 <objective>Leak lava from the enemy's obsidian core</objective>
 <authors>
@@ -45,9 +45,9 @@
         </regions>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cylinder base="2030.5,55,-1507.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -79,7 +79,7 @@
     </apply>
     <apply region="playable-inverse" block="never"/>
 </regions>
-<cores leak="8">
+<cores leak="8" mode-changes="true">
     <core team="red">
         <region>
             <cuboid min="2066,16,-1551" max="2064,13,-1547"/>
@@ -91,6 +91,10 @@
         </region>
     </core>
 </cores>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -112,60 +116,4 @@
 </itemremove>
 <maxbuildheight>20</maxbuildheight>
 <timelock>off</timelock>
-<!-- <tutorial>
-    <stage title="Destroy the Core">
-        <message>
-            <line>`rThis map is a `a`lDestroy the Core (DTC) `rmap.</line>
-            <line>The objective is to leak the lava from other team's core on their side.</line>
-        </message>
-        <teleport>
-            <point yaw="90" pitch="35">2119,43,-1509.5</point>
-        </teleport>
-    </stage>
-    <stage title="Blue Spawn">
-        <message>
-            <line>`rThis is one of the `bBlue Team`r's two spawns.</line>
-            <line>`rYou spawn with gear ready to go into battle!</line>
-        </message>
-        <teleport>
-            <point yaw="-135" pitch="20">2093,17,-1426.5</point>
-        </teleport>
-    </stage>
-    <stage title="Red Spawn">
-        <message>
-            <line>`rThis is one of the `cRed Team`r's two spawns.</line>
-            <line>`rYou spawn with gear ready to go into battle!</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="20">2034,17,-1589.5</point>
-        </teleport>
-    </stage>
-    <stage title="Red Core">
-        <message>
-            <line>`rThis is the `cRed Core`r.</line>
-            <line>`rThe `5obsidian blocks`r hold `clava`r inside. `bBlue Team `rneeds to break the obsidian blocks to leak the lava out of the core to win.</line>
-        </message>
-        <teleport>
-            <point yaw="180" pitch="40">2064.5,22,-1539.5</point>
-        </teleport>
-    </stage>
-    <stage title="Blue Core">
-        <message>
-            <line>`rThis is the `bBlue Core`r.</line>
-            <line>`rThe `5obsidian blocks`r hold `clava`r inside. `cRed Team `rneeds to break the obsidian blocks to leak the lava out of the core to win.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="40">2064.5,22,-1476.5</point>
-        </teleport>
-    </stage>
-    <stage title="Diamond Pickaxe Spawners">
-        <message>
-            <line>`rEach side has spawners in the middle that spawn `bDiamond Pickaxes`r.</line>
-            <line>`rYou need a `bDiamond Pickaxe`r to break the `5obsidian core`r. Don't forget to grab one!</line>
-        </message>
-        <teleport>
-            <point yaw="180" pitch="45">2064.5,20,-1427.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Black Gold</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <created>2012-10-20</created>
 <objective>Leak lava from the enemy core!</objective>
 <authors>
@@ -23,7 +23,7 @@
         <item slot="0" material="iron sword"/>
         <item slot="1" material="bow"/>
         <item slot="2" material="diamond pickaxe"/>
-        <item slot="3" amount="1" enchantment="efficiency:2;unbreaking:2" material="iron axe"/>
+        <item slot="3" enchantment="efficiency:2;unbreaking:2" material="iron axe"/>
         <item slot="4" amount="16" damage="1" material="log"/>
         <item slot="5" amount="64" material="glass"/>
         <item slot="6" amount="32" material="grilled pork"/>
@@ -34,27 +34,24 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <point>-199,11,274</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="spawn-kit" yaw="-90">
-        <regions>
+        <region>
             <point>-466,11,274</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <point>-188,49,207</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
     <team id="only-red">red</team>
     <team id="only-blue">blue</team>
-    <deny id="deny-void">
-        <void/>
-    </deny>
 </filters>
 <regions>
     <union id="spawn-rooms">
@@ -76,9 +73,9 @@
     <apply region="blue-spawn-room" enter="only-blue" message="You may not enter Blue's spawn!"/>
     <apply region="red-spawn-room" enter="only-red" message="You may not enter Red's spawn!"/>
     <apply region="spawn-roof" block="never" message="You may not modify the spawn room/roof!"/>
-    <apply region="outside-playable" block="deny-void" message="You may not build outside of the map."/>
+    <apply region="outside-playable" block="deny(void)" message="You may not build outside of the map."/>
 </regions>
-<cores leak="6">
+<cores leak="6" mode-changes="true">
     <core team="blue">
         <region>
             <cuboid min="-210,42,271" max="-203,49,278"/>
@@ -90,6 +87,10 @@
         </region>
     </core>
 </cores>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>

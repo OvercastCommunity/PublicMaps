@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Synergy</name>
-<version>1.1.8</version>
+<version>1.1.9</version>
 <objective>Leak lava from the core and destroy both team's monuments.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
 </authors>
@@ -37,20 +38,20 @@
 <spawns>
     <spawns kit="spawn-kit">
         <spawn team="purple" yaw="-90">
-            <regions>
+            <region>
                 <cuboid min="-97,5,-112" max="-96,5,-111"/>
-            </regions>
+            </region>
         </spawn>
         <spawn team="cyan" yaw="90">
-            <regions>
+            <region>
                 <cuboid min="118,5,-111" max="117,5,-112"/>
-            </regions>
+            </region>
         </spawn>
     </spawns>
     <default>
-        <regions>
+        <region>
             <cuboid min="8,21,-185" max="12,21,-181"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -61,9 +62,6 @@
         <material>trap door</material>
         <material>glass</material>
     </any>
-    <deny id="no-void">
-        <void/>
-    </deny>
     <any id="gravel">
         <material>gravel</material>
         <material>stone plate</material>
@@ -113,7 +111,7 @@
     <apply region="purple-base" enter="only-purple" message="You may not enter the opposing team's spawn!"/>
     <apply region="extra-loot-chests" block="never" message="You may not break the extra loot chests!"/>
     <apply region="bases" block-place="never" block-break="only-iron" message="You can only break iron blocks in the bases!"/>
-    <apply block="no-void" message="You may not modify in this area!">
+    <apply block="deny(void)" message="You may not modify in this area!">
         <region>
             <complement id="void-area">
                 <negative>
@@ -129,7 +127,7 @@
         </region>
     </apply>
 </regions>
-<cores material="obsidian" leak="5">
+<cores material="obsidian" leak="5" mode-changes="true">
     <core team="cyan" region="cyan-core"/>
     <core team="purple" region="purple-core"/>
 </cores>
@@ -155,6 +153,10 @@
         </region>
     </destroyable>
 </destroyables>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="20m" material="glass"/>
+</modes>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -178,11 +180,6 @@
     <item>sapling</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <timelock>on</timelock>
 <maxbuildheight>26</maxbuildheight>
 </map>
