@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Grassy Mound CTF</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Capture the other team's flag 3 times to win!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -204,4 +204,5 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<maxbuildheight>20</maxbuildheight>
 </map>
