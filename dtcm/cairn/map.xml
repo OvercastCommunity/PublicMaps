@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Cairn</name>
-<version>2.0.3</version>
+<version>2.0.4</version>
 <objective>Leak the enemy's core!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -70,7 +70,7 @@
     <apply enter="deny(blue-team)" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="deny(red-team)" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply block="never" region="spawns" message="You may not destroy the spawn regions!"/>
-    <apply block="never" region="void-region" message="You may not build outside the map!"/>
+    <apply block="deny(void)" region="void-region" message="You may not build outside the map!"/>
 </regions>
 <modes>
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
