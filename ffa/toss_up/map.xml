@@ -1,8 +1,14 @@
 <map proto="1.4.2">
 <name>Toss Up</name>
-<version>1.4.3</version>
+<variant id="iotq">One in the Quiver</variant>
+<version>1.5</version>
 <objective>Kill as many players as you can before 5 minutes are up!</objective>
-<created>2016-03-27</created>
+<if variant="default">
+    <created>2016-03-27</created>
+</if>
+<if variant="oitq">
+    <created>2021-05-21</created>
+</if>
 <gamemode>ffa</gamemode>
 <authors>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
@@ -26,9 +32,15 @@
     <kit id="spawn-kit" parents="default-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
+        <if variant="default">
+            <item slot="1" unbreakable="true" material="bow"/>
+            <item slot="8" amount="16" material="arrow"/>
+        </if>
+        <if variant="oitq">
+            <item slot="1" unbreakable="true" enchantment="arrow damage:10" name="`One Shot, One Kill" material="bow"/>
+            <item slot="8" material="arrow"/>
+        </if>
         <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16">arrow</item>
         <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
@@ -102,7 +114,12 @@
 </itemremove>
 <kill-reward>
     <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
+    <if variant="default">
+        <item amount="8" material="arrow"/>
+    </if>
+    <if variant="oitq">
+        <item material="arrow"/>
+    </if>
 </kill-reward>
 <hunger>
     <depletion>off</depletion>
