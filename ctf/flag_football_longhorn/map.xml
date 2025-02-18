@@ -1,7 +1,9 @@
 <map proto="1.5.0">
 <name>Longhorn</name>
 <version>1.2</version>
-<slug>flag_football_longhorn</slug>
+<if variant="default">
+    <slug>flag_football_longhorn</slug>
+</if>
 <variant id="comp" slug="flag_football_longhorn_te">TE</variant>
 <constants>
     <constant id="team-1-spawn-yaw">90</constant>

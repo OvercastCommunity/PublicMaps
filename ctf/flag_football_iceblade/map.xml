@@ -1,7 +1,9 @@
 <map proto="1.5.0">
 <name>Iceblade</name>
 <version>1.2</version>
-<slug>flag_football_iceblade</slug>
+<if variant="default">
+    <slug>flag_football_iceblade</slug>
+</if>
 <variant id="comp" slug="flag_football_iceblade_te">TE</variant>
 <constants>
     <constant id="night-vision">true</constant>
