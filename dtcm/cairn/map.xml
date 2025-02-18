@@ -2,7 +2,6 @@
 <name>Cairn</name>
 <version>2.0.4</version>
 <objective>Leak the enemy's core!</objective>
-<phase>development</phase>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -63,7 +62,7 @@
     </union>
     <complement id="void-region">
         <everywhere/>
-        <rectangle min="1214,-877" max="1253,-780"/>
+        <rectangle min="1214,-862" max="1253,-795"/>
         <circle center="1289.5,-927.5" radius="12"/>
         <circle center="1177.5,-729.5" radius="12"/>
     </complement>
