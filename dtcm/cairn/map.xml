@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Cairn</name>
-<version>2.0.4</version>
+<version>2.0.6</version>
 <objective>Leak the enemy's core!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -34,43 +34,41 @@
 <spawns>
     <default>
         <region yaw="90">
-            <cuboid min="1260.5,46,-827.5" max="1259.5,46,-829.5"/>
+            <cuboid min="1260.5,47,-827.5" max="1259.5,47,-829.5"/>
         </region>
     </default>
     <spawn team="blue-team" kit="spawn-kit">
         <region>
-            <block>1233.5,12,-944.5</block>
+            <point>1233.5,13,-944.5</point>
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
         <region yaw="180">
-            <block>1233.5,12,-712.5</block>
+            <point>1233.5,13,-712.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
+    <all id="only-iron-regen">
+        <material id="iron-block">iron block</material>
+        <cause>world</cause>
+    </all>
     <material id="beacon">beacon</material>
 </filters>
 <regions>
     <union id="spawns">
-        <cylinder id="blue-spawn" base="1233.5,0,-944.5" radius="6" height="50"/>
-        <cylinder id="red-spawn" base="1233.5,0,-712.5" radius="6" height="50"/>
+        <cuboid id="blue-spawn" min="1212,0,-949" size="43,255,21"/>
+        <cuboid id="red-spawn" min="1212,0,-729" size="43,255,21"/>
     </union>
     <union id="cores">
-        <cuboid id="blue-core" min="1293.5,5,-924.5" max="1286.5,12,-931.5"/>
-        <cuboid id="red-core" min="1181.5,5,-733.5" max="1174.5,12,-726.5"/>
+        <cuboid id="blue-core" min="1293.5,6,-924.5" max="1286.5,13,-931.5"/>
+        <cuboid id="red-core" min="1181.5,6,-733.5" max="1174.5,13,-726.5"/>
     </union>
-    <complement id="void-region">
-        <everywhere/>
-        <rectangle min="1214,-862" max="1253,-795"/>
-        <circle center="1289.5,-927.5" radius="12"/>
-        <circle center="1177.5,-729.5" radius="12"/>
-    </complement>
     <apply use="deny(beacon)"/>
     <apply enter="deny(blue-team)" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
     <apply enter="deny(red-team)" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply block="never" region="spawns" message="You may not destroy the spawn regions!"/>
-    <apply block="deny(void)" region="void-region" message="You may not build outside the map!"/>
+    <apply block-break="iron-block" block-place="only-iron-regen" region="spawns" message="You may only break iron in the spawns!"/>
+    <apply block="deny(void)" message="You may not build outside the map!"/> <!-- block 36 -->
 </regions>
 <modes>
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
@@ -79,6 +77,9 @@
     <core team="blue-team" region="blue-core"/>
     <core team="red-team" region="red-core"/>
 </cores>
+<renewables>
+    <renewable region="spawns" renew-filter="iron-block"/>
+</renewables>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
