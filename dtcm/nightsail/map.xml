@@ -1,14 +1,14 @@
 <map proto="1.5.0">
 <name>Nightsail</name>
-<version>2.3.4</version>
+<version>2.3.5</version>
 <created>2013-08-30</created>
 <objective>Leak lava from the enemy's obsidian core</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team id="red" color="dark red" max="16" max-overfill="20">Red</team>
-    <team id="blue" color="blue" max="16" max-overfill="20">Blue</team>
+    <team id="red-team" color="dark red" max="16" max-overfill="20">Red</team>
+    <team id="blue-team" color="blue" max="16" max-overfill="20">Blue</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -28,7 +28,7 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <regions yaw="-45">
             <cuboid min="2022,7,-1580" max="2026,7,-1576"/>
         </regions>
@@ -36,7 +36,7 @@
             <cuboid min="2104,7,-1577" max="2108,7,-1579"/>
         </regions>
     </spawn>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <regions yaw="135">
             <cuboid min="2104,7,-1438" max="2108,7,-1434"/>
         </regions>
@@ -50,10 +50,6 @@
         </region>
     </default>
 </spawns>
-<filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
-</filters>
 <regions>
     <union id="spawns">
         <union id="r-spawns">
@@ -68,8 +64,8 @@
     <negative id="playable-inverse">
         <rectangle id="main-area" min="2024,-1433" max="2105,-1582"/>
     </negative>
-    <apply region="r-spawns" enter="only-red" message="You may not enter Red's spawn!"/>
-    <apply region="b-spawns" enter="only-blue" message="You may not enter Blue's spawn!"/>
+    <apply region="r-spawns" enter="deny(blue-team)" message="You may not enter Red's spawn!"/>
+    <apply region="b-spawns" enter="deny(red-team)" message="You may not enter Blue's spawn!"/>
     <apply region="spawns" block="never" message="You may not modify the spawn!"/>
     <apply block="never">
         <region>
@@ -80,14 +76,14 @@
     <apply region="playable-inverse" block="never"/>
 </regions>
 <cores leak="8" mode-changes="true">
-    <core team="red">
+    <core team="red-team">
         <region>
-            <cuboid min="2066,16,-1551" max="2064,13,-1547"/>
+            <cuboid min="2066,16,-1552" max="2062,13,-1548"/>
         </region>
     </core>
-    <core team="blue">
+    <core team="blue-team">
         <region>
-            <cuboid min="2063,16,-1464" max="2065,13,-1468"/>
+            <cuboid min="2062,16,-1464" max="2066,13,-1468"/>
         </region>
     </core>
 </cores>
