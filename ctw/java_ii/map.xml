@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Java II</name>
-<version>1.4.4</version>
+<version>1.4.5</version>
 <variant id="comp">TE</variant>
 <include id="gapple-kill-reward"/>
 <objective>Capture the enemy's two wools!</objective>
@@ -56,11 +56,7 @@
         </if>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
-        <boots unbreakable="true" team-color="true" material="leather boots">
-            <unless variant="comp">
-                <enchantment>depth_strider</enchantment>
-            </unless>
-        </boots>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect duration="5s" amplifier="255">resistance</effect>
     </kit>
 </kits>
@@ -82,10 +78,7 @@
     </spawn>
 </spawns>
 <filters>
-    <void id="void"/>
     <material id="chest">chest</material>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <all id="only-iron-regen">
         <cause>world</cause>
         <material id="only-iron">iron block</material>
@@ -152,16 +145,16 @@
         <cuboid id="mid-spawn-drop" min="121.4,12.5,197.4" max="121.6,12.5,197.6"/>
         <cuboid id="mid-spawn-activation" min="128,19,192" max="115,9,205"/>
     </union>
-    <apply use="deny(only-blue)" region="blue-wool-rooms"/>
-    <apply use="deny(only-red)" region="red-wool-rooms"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the opponent's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the opponent's spawn!"/>
-    <apply enter="only-blue" region="red-wool-rooms" message="You may not enter your own wool room!"/>
-    <apply enter="only-red" region="blue-wool-rooms" message="You may not enter your own wool room!"/>
+    <apply use="deny(blue-team)" region="blue-wool-rooms"/>
+    <apply use="deny(red-team)" region="red-wool-rooms"/>
+    <apply enter="deny(red-team)" region="blue-spawn" message="You may not enter the opponent's spawn!"/>
+    <apply enter="deny(blue-team)" region="red-spawn" message="You may not enter the opponent's spawn!"/>
+    <apply enter="deny(red-team)" region="red-wool-rooms" message="You may not enter your own wool room!"/>
+    <apply enter="deny(blue-team)" region="blue-wool-rooms" message="You may not enter your own wool room!"/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You may not edit the spawn!"/>
     <apply block="deny(chest)" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
-    <apply block="deny(only-blue)" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
-    <apply block="deny(only-red)" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny(blue-team)" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny(red-team)" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="never" region="spawner" message="You may not destroy the spawner!"/>
     <unless variant="comp">
         <apply block="deny-water-flow" region="wool-rooms"/>
@@ -235,19 +228,6 @@
     <item>redstone torch on</item>
     <item>seeds</item>
 </itemremove>
-<block-drops>
-    <rule>
-        <filter>
-            <any>
-                <material>wood</material>
-                <material>glass</material>
-            </any>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</block-drops>
 <itemkeep>
     <item>wood</item>
     <item>glass</item>
@@ -272,16 +252,6 @@
     <hunger>
         <depletion>off</depletion>
     </hunger>
-    <item-mods>
-        <rule>
-            <match>
-                <material>iron boots</material>
-            </match>
-            <modify>
-                <enchantment>depth_strider</enchantment>
-            </modify>
-        </rule>
-    </item-mods>
 </unless>
 <if variant="comp">
     <crafting>
