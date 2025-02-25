@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fairy Tales 2: A Tale or Two</name>
-<version>3.10.5</version>
+<version>3.10.6</version>
 <objective>Take the enemy's wool located in bedrock castles on the enemy's side and place it in your victory monument.</objective>
 <include id="lava-buckets"/>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/> <!-- D347HxD -->
 </authors>
@@ -44,7 +45,7 @@
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect duration="5" amplifier="3">damage resistance</effect>
-        <effect duration="2" amplifier="1">heal</effect>
+        <effect duration="2">heal</effect>
     </kit>
 </kits>
 <spawns>
@@ -54,7 +55,7 @@
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cylinder base="-51,7,-94" radius="2.5" height="0"/>
         </region>
     </spawn>
@@ -89,9 +90,6 @@
             <filter id="materials"/>
             <team id="only-blue">blue</team>
         </any>
-    </not>
-    <not id="deny-void">
-        <void/>
     </not>
 </filters>
 <regions>
@@ -135,15 +133,15 @@
         </union>
     </complement>
     <apply enter="never" block="never" message="You may not go underneath the wool rooms!" region="under-wool-rooms"/>
-    <apply enter="only-blue" message="You may not enter blue's storage room!" region="blue-storage-room"/>
-    <apply enter="only-red" message="You may not enter red's storage room!" region="red-storage-room"/>
+    <apply enter="only-blue" message="You may not enter Blue's storage room!" region="blue-storage-room"/>
+    <apply enter="only-red" message="You may not enter Red's storage room!" region="red-storage-room"/>
     <apply enter="only-blue" message="You may not enter your own wool rooms!" region="blue-wool-rooms"/>
     <apply enter="only-red" message="You may not enter your own wool rooms!" region="red-wool-rooms"/>
     <apply block="never" message="You may not break or place blocks in the storage room!" region="storage-rooms"/>
     <apply block-place="deny-lava" message="You may not place lava around the spawn area!" region="deny-lava-block"/>
     <apply block="blue-in-wr" use="only-blue" region="blue-wool-rooms"/>
     <apply block="red-in-wr" use="only-red" region="red-wool-rooms"/>
-    <apply block="deny-void" message="You may not build outside of the map!" region="outside-map"/>
+    <apply block="deny(void)" message="You may not build outside of the map!" region="outside-map"/>
 </regions>
 <wools>
     <wool team="blue" color="green" location="41,18,59">
@@ -228,7 +226,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="1" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

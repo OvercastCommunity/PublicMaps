@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Winter Wakening</name>
 <version>2.0.4</version>
 <include id="gapple-kill-reward"/>
@@ -148,8 +148,8 @@
     <!-- applicators -->
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-blue" region="reds-woolrooms" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-red" region="blues-woolrooms" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-blue" region="reds-woolrooms" message="You may not enter your team's wool rooms!"/>
+    <apply enter="only-red" region="blues-woolrooms" message="You may not enter your team's wool rooms!"/>
     <apply block="blues-woolrooms-filter" region="blues-woolrooms" message="You may not edit the wool rooms!"/>
     <apply block="reds-woolrooms-filter" region="reds-woolrooms" message="You may not edit the wool rooms!"/>
     <apply use="only-red" region="blues-woolrooms" message="You may not interact with this block!"/>

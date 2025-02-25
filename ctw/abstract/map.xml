@@ -1,86 +1,18 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Abstract</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <include id="gapple-kill-reward"/>
 <phase>staging</phase>
 <objective>Capture the other team's wool to win!</objective>
 <authors>
-    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--  DoomyBoy  -->
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomyBoy -->
 </authors>
 <teams>
     <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
     <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
 </teams>
-<respawn delay="6s" auto="true"/>
-<spawns>
-    <spawn team="red" filter="spawn1" kit="red-kit">
-        <regions>
-            <point yaw="90">12.5,4,-74.5</point>
-        </regions>
-    </spawn>
-    <spawn team="red" filter="spawn2" kit="red-kit">
-        <regions>
-            <point yaw="90">22.5,55,-74.5</point>
-        </regions>
-    </spawn>
-    <spawn team="red" filter="spawn3" kit="red-kit">
-        <regions>
-            <point yaw="90">22.5,103,-74.5</point>
-        </regions>
-    </spawn>
-    <spawn team="red" filter="spawn4" kit="red-kit">
-        <regions>
-            <point yaw="90">22.5,151,-74.5</point>
-        </regions>
-    </spawn>
-    <spawn team="red" filter="spawn5" kit="red-kit">
-        <regions>
-            <point yaw="90">22.5,199,-74.5</point>
-        </regions>
-    </spawn>
-    <spawn team="red" filter="spawn6" kit="red-kit">
-        <regions>
-            <point yaw="90">22.5,247,-74.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue" filter="spawn1" kit="blue-kit">
-        <regions>
-            <point yaw="-90">-115.5,4,-82.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue" filter="spawn2" kit="blue-kit">
-        <regions>
-            <point yaw="-90">-125.5,55,-82.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue" filter="spawn3" kit="blue-kit">
-        <regions>
-            <point yaw="-90">-125.5,103,-82.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue" filter="spawn4" kit="blue-kit">
-        <regions>
-            <point yaw="-90">-125.5,151,-82.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue" filter="spawn5" kit="blue-kit">
-        <regions>
-            <point yaw="-90">-125.5,199,-82.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue" filter="spawn6" kit="blue-kit">
-        <regions>
-            <point yaw="-90">-125.5,247,-82.5</point>
-        </regions>
-    </spawn>
-    <default>
-        <regions>
-            <point>-51.5,37,-78.5</point>
-        </regions>
-    </default>
-</spawns>
 <kits>
-    <kit id="spawn" force="true">
+    <kit id="spawn-kit">
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" unbreakable="true" enchantment="dig speed:1" material="iron pickaxe"/>
@@ -90,25 +22,79 @@
         <item slot="6" amount="12" material="sandstone"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" amount="18" material="arrow"/>
+        <helmet unbreakable="true" enchantment="protection projectile" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" enchantment="protection projectile:2" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" enchantment="protection projectile:2" material="chainmail leggings"/>
-    </kit>
-    <kit id="red-kit" parents="spawn">
-        <helmet unbreakable="true" enchantment="protection projectile:1" color="993333" material="leather helmet"/>
-        <chestplate unbreakable="true" enchantment="protection projectile:2" color="993333" material="leather chestplate"/>
-        <boots unbreakable="true" enchantment="protection projectile:1" color="993333" material="leather boots"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn">
-        <helmet unbreakable="true" enchantment="protection projectile:1" color="334CB2" material="leather helmet"/>
-        <chestplate unbreakable="true" color="334CB2" enchantment="protection projectile:2" material="leather chestplate"/>
-        <boots unbreakable="true" enchantment="protection projectile:1" color="334CB2" material="leather boots"/>
+        <boots unbreakable="true" enchantment="protection projectile" team-color="true" material="leather boots"/>
     </kit>
 </kits>
-<kill-rewards>
-    <kill-reward>
-        <item amount="4" material="sandstone"/>
-        <item amount="6" material="arrow"/>
-    </kill-reward>
-</kill-rewards>
+<spawns>
+    <spawn team="red" filter="spawn1" kit="spawn-kit">
+        <regions>
+            <point yaw="90">12.5,4,-74.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn2" kit="spawn-kit">
+        <regions>
+            <point yaw="90">22.5,55,-74.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn3" kit="spawn-kit">
+        <regions>
+            <point yaw="90">22.5,103,-74.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn4" kit="spawn-kit">
+        <regions>
+            <point yaw="90">22.5,151,-74.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn5" kit="spawn-kit">
+        <regions>
+            <point yaw="90">22.5,199,-74.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn6" kit="spawn-kit">
+        <regions>
+            <point yaw="90">22.5,247,-74.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn1" kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-115.5,4,-82.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn2" kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-125.5,55,-82.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn3" kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-125.5,103,-82.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn4" kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-125.5,151,-82.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn5" kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-125.5,199,-82.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn6" kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-125.5,247,-82.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <region>
+            <point>-51.5,37,-78.5</point>
+        </region>
+    </default>
+</spawns>
 <filters>
     <team id="only-blue">blue</team>
     <team id="only-red">red</team>
@@ -203,15 +189,12 @@
     <not id="no-nether-brick">
         <material>nether brick</material>
     </not>
-    <not id="no-void">
-        <void/>
-    </not>
 </filters>
 <regions>
     <cuboid id="red-portal" min="20,2,-77" max="25,3,-72"/>
     <cuboid id="blue-portal" min="-128,2,-85" max="-123,3,-80"/>
     <union id="regions">
-    <!-- Red Side -->
+        <!-- Red Side -->
         <rectangle min="-6,-53" max="-13,-60"/>
         <rectangle min="-13,-63" max="-20,-71"/>
         <rectangle min="-13,-89" max="-7,-96"/>
@@ -220,9 +203,9 @@
         <rectangle min="-29,-79" max="-35,-83"/>
         <rectangle min="-29,-56" max="-35,-50"/>
         <rectangle min="-29,-79" max="-35,-83"/>
-    <!-- Center -->
+        <!-- Center -->
         <rectangle min="-35,-57" max="-68,-100"/>
-    <!-- Blue Side -->
+        <!-- Blue Side -->
         <rectangle min="-68,-101" max="-74,-107"/>
         <rectangle min="-74,-74" max="-68,-78"/>
         <rectangle min="-82,-73" max="-75,-67"/>
@@ -270,14 +253,8 @@
     <apply block="in-cyan-wool" use="only-red-chest" region="cyan-wool" message="Only Red can modify nether brick fences here."/>
     <apply block="in-orange-wool" use="only-blue-chest" region="orange-wool" message="Only Blue can modify nether brick fences here."/>
     <apply block="no-spawners" region="spawners" message="You may not edit the spawners."/>
-
-    <apply block="no-nether-brick" message="You may not modify blocks outside the playing area.">
-        <region>
-            <region id="center-level-1"/>
-        </region>
-    </apply>
-
-    <apply block="no-void" message="You may not modify blocks outside the playing area.">
+    <apply region="center-level-1" block="no-nether-brick" message="You may not modify blocks outside the playing area."/>
+    <apply block="deny(void)" message="You may not modify blocks outside the playing area.">
         <region>
             <negative>
                 <region id="build-region"/>
@@ -285,6 +262,37 @@
         </region>
     </apply>
 </regions>
+<!-- TODO: investigate these fake destroyables and see if we can do something nicer -->
+<destroyables materials="stained glass" completion="0%" required="false" show="false" mode-changes="true">
+    <destroyable name="monu" owner="red">
+       <region>
+           <cuboid min="-97,0,-43" max="-6,1,-114"/>
+       </region>
+    </destroyable>
+    <destroyable name="monu" owner="blue">
+       <region>
+           <cuboid min="-97,0,-43" max="-6,1,-114"/>
+       </region>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="0s" material="air" show-before="0"/>
+</modes>
+<wools>
+    <wool team="red" color="cyan" location="-115.5,13,-82.5">
+        <monument>
+            <block>15.5,5,-74.5</block>
+        </monument>
+    </wool>
+</wools>
+<wools>
+    <wool team="blue" color="orange" location="12.5,13,-74.5">
+        <monument>
+            <block>-118.5,5,-82.5</block>
+        </monument>
+    </wool>
+</wools>
+<time result="objectives">20m</time>
 <portals>
     <!-- Red Portal -->
     <portal x="@12.5" y="@4" z="@-74.5" yaw="@90" region="red-portal"/>
@@ -325,6 +333,12 @@
     <item>sandstone:2</item>
     <item>ladder</item>
 </itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="4" material="sandstone"/>
+        <item amount="6" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <renewables>
     <renewable interval="10s" grow="true" particles="true" sound="true" avoid-entities="true">
         <region>
@@ -350,38 +364,6 @@
         </drops>
     </rule>
 </block-drops>
-<destroyables materials="stained glass" completion="0%" required="false" show="false" mode-changes="true">
-    <destroyable name="monu" owner="red">
-       <region>
-           <cuboid min="-97,0,-43" max="-6,1,-114"/>
-       </region>
-    </destroyable>
-    <destroyable name="monu" owner="blue">
-       <region>
-           <cuboid min="-97,0,-43" max="-6,1,-114"/>
-       </region>
-    </destroyable>
-</destroyables>
-<modes>
-    <mode after="0s" material="air" show-before="0"/>
-</modes>
-<wools>
-    <wool team="red" color="cyan" location="-115.5,13,-82.5">
-        <monument>
-            <block>15.5,5,-74.5</block>
-        </monument>
-    </wool>
-</wools>
-<wools>
-    <wool team="blue" color="orange" location="12.5,13,-74.5">
-        <monument>
-            <block>-118.5,5,-82.5</block>
-        </monument>
-    </wool>
-</wools>
-<timelock>on</timelock>
-<maxbuildheight>14</maxbuildheight>
-<time result="objectives">20m</time>
 <spawners>
     <spawner id="wool-spawner" spawn-region="orange-spawn"  player-region="orange-wool" max-entities="50" min-delay="1s" max-delay="2s" filter="only-blue">
         <item amount="1" name="Orange Wool" material="wool" damage="1"/>
@@ -390,4 +372,7 @@
         <item amount="1" name="Cyan Wool" material="wool:" damage="9"/>
     </spawner>
 </spawners>
+<timelock>on</timelock>
+<maxbuildheight>14</maxbuildheight>
+<respawn delay="6s" auto="true"/>
 </map>

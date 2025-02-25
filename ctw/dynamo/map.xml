@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Dynamo</name>
-<version>1.6.1</version>
+<version>1.6.2</version>
 <include id="gapple-kill-reward"/>
 <variant id="halloween" world="halloween" override="true">DynaboOo</variant>
 <objective>Grab the wool from the enemy's wool room and place it on your victory monument.</objective>
@@ -15,7 +15,7 @@
     <contributor uuid="af209afd-77dc-4bdb-8cf1-f1513c77bb0b" contribution="Feedback"/> <!-- TranquilSea -->
     <contributor uuid="8dfe823e-3359-44e2-b1c4-3875bf9f57d9" contribution="Feedback"/> <!-- andykay18 -->
     <if variant="halloween">
-        <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Halloween Version"/> <!-- Timothee38 -->
+        <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Halloween version"/> <!-- Timothee38 -->
     </if>
 </contributors>
 <teams>
@@ -115,10 +115,10 @@
         <circle id="for-blue" center="73.5,40.5" radius="8.5"/>
         <circle id="for-red" center="-54.5,40.5" radius="8.5"/>
     </union>
-    <apply enter="only-blue" message="You may not enter the enemy team's victory monument area!" region="blue-places"/>
-    <apply enter="only-red" message="You may not enter the enemy team's victory monument area!" region="red-places"/>
-    <apply enter="only-blue" message="You may not enter your team's own wool room!" region="for-blue"/>
-    <apply enter="only-red" message="You may not enter your team's own wool room!" region="for-red"/>
+    <apply enter="only-blue" message="You may not enter the enemy's victory monument area!" region="blue-places"/>
+    <apply enter="only-red" message="You may not enter the enemy's victory monument area!" region="red-places"/>
+    <apply enter="only-blue" message="You may not enter your team's wool room!" region="for-blue"/>
+    <apply enter="only-red" message="You may not enter your team's wool room!" region="for-red"/>
     <apply block="blue-in-wr" use="only-blue" region="for-blue"/>
     <apply block="red-in-wr" use="only-red" region="for-red"/>
     <apply block="never" message="You may not modify the base!" region="bases"/>
@@ -240,24 +240,4 @@
         </sticky>
     </rule>
 </falling-blocks>
-<include src="tutorial.xml"/>
-<tutorial>
-    <stage title="Capture the Wool">
-        <message>
-            <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
-            <line>The objective is to grab the `c`lwool`r on the other team's side and place it in your `c`lvictory monument`r.</line>
-        </message>
-        <teleport>
-            <point yaw="68" pitch="10">64,19,24</point>
-        </teleport>
-    </stage>
-    <stage title="Wool Monument">
-        <message>
-            <line>`rThe wool monument is `a`lbehind`r, the wool rooms.</line>
-        </message>
-        <teleport>
-            <point yaw="-34" pitch="15">88,13,34</point>
-        </teleport>
-    </stage>
-</tutorial>
 -->

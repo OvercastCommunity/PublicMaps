@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Super Happy Fun World</name>
-<version>2.0.2</version>
+<version>2.0.3</version>
 <objective>Capture both of the enemy team's wools!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
@@ -66,7 +67,7 @@
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cylinder base="72.5,13,-119.5" radius="0.5" height="0"/>
         </region>
     </spawn>
@@ -89,9 +90,6 @@
             <cuboid min="-36,17,26" size="3,2,3"/>
             <cuboid min="179,17,26" size="3,2,3"/>
         </any>
-    </deny>
-    <deny id="deny-void">
-        <void/>
     </deny>
     <all id="only-iron-renew">
         <material id="only-iron">iron block</material>
@@ -117,14 +115,14 @@
         </union>
     </union>
     <apply use="deny-beacon"/>  
-    <apply enter="only-blue" region="blue-spawn-et-al" message="You may not enter the enemy ream's spawn region!"/>
-    <apply enter="only-red" region="red-spawn-et-al" message="You may not enter the enemy ream's spawn region!"/>
-    <apply enter="only-blue" region="red-wools" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-red" region="blue-wools" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-blue" region="blue-spawn-et-al" message="You may not enter the enemy's spawn region!"/>
+    <apply enter="only-red" region="red-spawn-et-al" message="You may not enter the enemy's spawn region!"/>
+    <apply enter="only-blue" region="red-wools" message="You may not enter your team's wool rooms!"/>
+    <apply enter="only-red" region="blue-wools" message="You may not enter your team's wool rooms!"/>
     <apply block="blue-in-wr" use="only-blue" region="red-wools"/>
     <apply block="red-in-wr" use="only-red" region="blue-wools"/>
     <apply block-place="only-iron-renew" block-break="only-iron" region="spawn-et-al" message="You may only break iron blocks in the spawn regions!"/>
-    <apply block-place="deny-void" message="You may not build in the void!"/>
+    <apply block-place="deny(void)" message="You may not build in the void!"/>
 </regions>
 <renewables>
     <renewable region="spawn-et-al" renew-filter="only-iron"/>
@@ -226,7 +224,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="24" damage="1" material="wood"/>
         <item amount="6" material="glass"/>
     </kill-reward>

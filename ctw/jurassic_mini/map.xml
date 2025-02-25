@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Jurassic Mini</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Capture the enemy's two wools!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>
@@ -51,7 +52,7 @@
             <cuboid min="-170.5,25,62.5" max="-169.5,25,64.5"/>
         </region>
     </default>
-    <spawn team="purple-team" kit="purple-kit" yaw="0">
+    <spawn team="purple-team" kit="purple-kit">
         <region>
             <point>-120.5,3,3.5</point>
         </region>
@@ -63,9 +64,6 @@
     </spawn>
 </spawns>
 <filters>
-    <not id="no-void">
-        <void/>
-    </not>
     <material id="only-iron">iron block</material>
     <not id="deny-purple-wool-rooms">
         <any>
@@ -141,7 +139,7 @@
     <apply block="never" region="bridges" message="You may not edit the bridge!"/>
     <apply block-place="never" region="not-buildable" message="You may not edit the void!"/>
     <apply block="always" region="buildable"/>
-    <apply block-place="no-void" message="You may not edit the void!"/>
+    <apply block-place="deny(void)" message="You may not edit the void!"/>
 </regions>
 <renewables>
     <renewable rate="1" grow="false" particles="true" sound="true" avoid-entities="true" region="spawns" renew-filter="only-iron"/>
@@ -208,7 +206,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="8" damage="4" material="wood"/>
     </kill-reward>
 </kill-rewards>

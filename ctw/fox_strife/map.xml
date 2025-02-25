@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fox Strife</name>
-<version>4.1.8</version>
+<version>4.1.9</version>
 <created>2013-12-25</created>
 <objective>Capture both of the enemy's wools and place it in your victory monument.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
@@ -35,7 +36,7 @@
         <helmet material="leather helmet" team-color="true" unbreakable="true"/>
         <chestplate material="chainmail chestplate" team-color="true" unbreakable="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit id="reset-resistance-kit" force="true">
         <effect duration="0" amplifier="0">damage resistance</effect>
@@ -63,8 +64,6 @@
     <wool team="blue-team" color="green" monument="blue-team-green-wool" location="-113,15.2,40"/>
 </wools>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <any id="block-break-void-filter">
         <all>
             <any>
@@ -78,11 +77,11 @@
         </not>
     </any>
     <all id="reds-woolrooms-filter">
-        <team>blue-team</team>
+        <team id="only-blue">blue-team</team>
         <filter id="woolrooms-filter"/>
     </all>
     <all id="blues-woolrooms-filter">
-        <team>red-team</team>
+        <team id="only-red">red-team</team>
         <filter id="woolrooms-filter"/>
     </all>
     <any id="woolrooms-filter">
@@ -301,15 +300,14 @@
 <renewables>
     <renewable rate="1" region="iron-regen" renew-filter="only-iron" replace-filter="only-air" avoid-players="2"/>
 </renewables>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<maxbuildheight>100</maxbuildheight>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="wood" amount="24" damage="2"/>
         <item material="glass" amount="12"/>
     </kill-reward>
 </kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>100</maxbuildheight>
 </map>

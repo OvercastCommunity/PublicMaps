@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Xion</name>
 <version>1.2.5</version>
 <include id="gapple-kill-reward"/>
@@ -55,12 +55,12 @@
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <block>32.5,9,-84.5</block>
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <block>-101.5,9,-218.5</block>
         </region>
     </spawn>
@@ -99,9 +99,6 @@
             </any>
             <filter id="only-blue"/>
         </all>
-    </not>
-    <not id="deny-void">
-        <void/>
     </not>
     <deny id="deny-usage">
         <any>
@@ -162,10 +159,10 @@
         <rectangle id="blue-iron" min="62,-84" max="34,-55"/>
     </union>
     <apply use="deny-usage"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy spawn!"/>
-    <apply enter="only-blue" region="blue-wools" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-red" region="red-wools" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-blue" region="blue-wools" message="You may not enter your team's wool rooms!"/>
+    <apply enter="only-red" region="red-wools" message="You may not enter your team's wool rooms!"/>
     <apply filter="only-blue" region="blue-spawn" lend-kit="protection-spawn"/>
     <apply filter="only-red" region="red-spawn" lend-kit="protection-spawn"/>
     <apply filter="only-blue" region="blue-leaves" kit="leaves"/>
@@ -175,7 +172,7 @@
     <apply block="never" block-physics="never" region="spawns" message="You may not destroy the spawn areas!"/>
     <apply block="blue-in-wr" use="only-blue-usage" region="blue-wools"/>
     <apply block="red-in-wr" use="only-red-usage" region="red-wools"/>
-    <apply block="deny-void" message="You may not break or place blocks in the void area!"/>
+    <apply block="deny(void)" message="You may not break or place blocks in the void area!"/>
 </regions>
 <wools>
     <wool team="blue" color="orange" location="-172,9,-190">
@@ -292,10 +289,12 @@
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item amount="8" material="wood"/>
-    <item amount="4" material="leaves"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" material="wood"/>
+        <item amount="4" material="leaves"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>25</maxbuildheight>
 <hunger>
     <depletion>off</depletion>

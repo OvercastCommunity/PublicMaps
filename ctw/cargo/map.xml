@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Cargo</name>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <variant id="halloween" world="halloween" override="true">Haunted Cargo</variant>
 <objective>Capture the enemy's wools!</objective>
 <if variant="default">
@@ -70,7 +70,7 @@
         </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cylinder base="116,7.5,16" height="0" radius="1"/>
         </region>
     </spawn>
@@ -87,9 +87,6 @@
             <team id="only-blue">blue</team>
             <material>chest</material>
         </any>
-    </not>
-    <not id="deny-void">
-        <void/>
     </not>
 </filters>
 <regions>
@@ -129,7 +126,7 @@
     <apply block="blue-in-wr" use="only-blue" region="blue-wool-rooms"/>
     <apply block="red-in-wr" use="only-red" region="red-wool-rooms"/>
     <apply block="never" region="underside" message="You may not under-bridge!"/>
-    <apply block="deny-void" message="You may not build in the void!"/> <!-- uses block 36 -->
+    <apply block="deny(void)" message="You may not build in the void!"/> <!-- uses block 36 -->
 </regions>
 <renewables>
     <renewable>

@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Last Overcastian</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Capture the enemy teams wools!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
     <author uuid="7cbf2168-7f49-4fb3-aea8-6df8048a7ade"/> <!-- nigges60 -->
@@ -52,7 +53,7 @@
         </regions>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <regions yaw="0">
+        <regions>
             <point>-24.5,19,-100.5</point>
             <point>3.5,19,-100.5</point>
         </regions>
@@ -61,12 +62,12 @@
 <filters>
     <any id="only-some">
         <material>web</material>
-        <material>95:3</material>
-        <material>95:6</material>
-        <material>95:10</material>
-        <material>95:13</material>
-        <material>5:0</material>
-        <material>5:2</material>
+        <material>stained glass:3</material>
+        <material>stained glass:6</material>
+        <material>stained glass:10</material>
+        <material>stained glass:13</material>
+        <material>wood:0</material>
+        <material>wood:2</material>
         <material>glass</material>
     </any>
     <all id="blue-in-wr">
@@ -81,15 +82,10 @@
         <cause>world</cause>
         <material id="only-iron">iron block</material>
     </all>
-    <allow id="leaves">
-        <material>leaves</material>
-    </allow>
-    <not id="no-void">
-        <void/>
-    </not>
+    <material id="leaves">leaves</material>
 </filters>
 <regions>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle id="b-first" min="7,69" max="-28,86"/>
         <rectangle id="b-second" min="28,103" max="-49,120"/>
@@ -125,15 +121,14 @@
             <rectangle id="purple-wool" min="-95,-42" max="-114,-59"/>
         </union>
     </union>
-    <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply enter="only-blue" region="red-wools" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-red" region="blue-wools" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-blue" region="red-wools" message="You may not enter your team's wool rooms!"/>
+    <apply enter="only-red" region="blue-wools" message="You may not enter your team's wool rooms!"/>
     <apply block="blue-in-wr" use="only-blue" region="red-wools"/>
     <apply block="red-in-wr" use="only-red" region="blue-wools"/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You may only break iron blocks in spawn!"/>
-    <apply block-break="leaves" region="void"/>
-    <apply block="no-void" region="void" message="You may not modify the void area!"/>
+    <apply block-place="deny(void)" block-break="leaves" region="void-area" message="You may not modify the void area!"/>
 </regions>
 <renewables>
     <renewable region="spawns" renew-filter="only-iron"/>
@@ -219,11 +214,12 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>25</maxbuildheight>
 <hunger>
     <depletion>off</depletion>

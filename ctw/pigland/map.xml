@@ -1,12 +1,12 @@
-<?xml version="1.0"?> <!-- created during december 7th/8th 2019 -->
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Pigland</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Capture both wools!</objective>
 <gamemode>ctw</gamemode>
-<created>2019-12-07</created>
+<created>2019-12-07</created> <!-- created during december 7th/8th 2019 -->
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30"/> <!--  Ruediger_LP  -->
+    <author uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30"/> <!-- Ruediger_LP -->
 </authors>
 <teams>
     <team id="blue-team" color="blue" max="16">Blue</team>
@@ -28,7 +28,7 @@
         <item slot="30" material="iron spade" unbreakable="true"/>
         <chestplate material="chainmail chestplate" unbreakable="true"/>
         <boots material="iron boots" unbreakable="true"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
@@ -52,17 +52,12 @@
     <wool team="red-team" color="orange" monument="red-team-orange-wool" location="97.5,6.2,-8.5"/>
 </wools>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
-    <not id="not-void">
-        <void/>
-    </not>
     <all id="reds-woolrooms-filter">
-        <team>blue-team</team>
+        <team id="only-blue">blue-team</team>
         <filter id="woolrooms-filter"/>
     </all>
     <all id="blues-woolrooms-filter">
-        <team>red-team</team>
+        <team id="only-red">red-team</team>
         <filter id="woolrooms-filter"/>
     </all>
     <all id="woolrooms-filter">
@@ -264,11 +259,13 @@
     <apply enter="only-red" region="blues-woolrooms" message="You may not enter your own wool room!"/>
     <apply enter="only-blue" region="reds-woolrooms" message="You may not enter your own wool room!"/>
     <apply block="deny-water-flow" region="everywhere"/>
-    <apply block-place="only-iron-cause-world" block-break="only-iron" region="max-build-height-region" message="You have reached the maximum build height!"/>
+    <apply block-place="only-iron-cause-world" block-break="only-iron" region="max-build-height-region">
+        <message>{"translate":"match.maxBuildHeight"}</message>
+    </apply>
     <apply block-place="only-iron-cause-world" block-break="only-iron" region="spawns" message="You may not edit spawn!"/>
     <apply block="blues-woolrooms-filter" region="blues-woolrooms" message="You may not edit the wool room!"/>
     <apply block="reds-woolrooms-filter" region="reds-woolrooms" message="You may not edit the wool room!"/>
-    <apply block="not-void" region="not-build-area" message="You may not edit the void!"/>
+    <apply block="deny(void)" region="not-build-area" message="You may not edit the void!"/>
     <apply kit="reset-resistance-kit" region="not-spawns"/>
     <apply block-physics="deny-block-physics-woolrooms" region="woolrooms"/>
     <apply use="deny-flower-pot"/>
@@ -433,7 +430,6 @@
 </damage>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="wood" amount="16" damage="2"/>
         <item material="brick" amount="8"/>
     </kill-reward>

@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Mist</name>
 <version>2.0</version>
 <phase>staging</phase>
@@ -20,7 +20,7 @@
     <contributor uuid="ec80a24a-4e83-4049-8e1d-77abad67e8f3" contribution="Building and theming help"/> <!-- Bamby_ -->
     <contributor uuid="6fe9c9fe-b2dd-448c-b9f4-42b2f8c14836" contribution="Spawners and pruning"/> <!-- _IQ -->
     <contributor uuid="f6e61e24-5143-4ab9-b269-d765c3ffb216" contribution="Gameplay and building ideas"/> <!-- Martiku AKA RedstoneVEVO -->
-    <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="Building help, XML"/> --> <!-- zzuf -->
+    <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="Building help, XML"/> <!-- zzuf -->
     <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Building help"/> <!-- Tywnis -->
 </contributors>
 <teams>

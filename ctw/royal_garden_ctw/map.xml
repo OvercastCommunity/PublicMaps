@@ -1,14 +1,14 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Royal Garden CTW</name>
-<version>1.6.10</version>
+<version>1.6.11</version>
 <include id="gapple-kill-reward"/>
 <objective>Capture the opposing team's wools and place them at your victory monuments.</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="40">Blue</team>
-    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue-team" color="blue" max="40">Blue</team>
+    <team id="red-team" color="dark red" max="40">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -43,12 +43,12 @@
             <cylinder base="15.5,43,75.5" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="-90">
             <cylinder base="-136.5,18,25.5" radius="3" height="0"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="90">
             <cylinder base="167.5,18,25.5" radius="3" height="0"/>
         </region>
@@ -58,20 +58,11 @@
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
-    <deny id="deny-blue">
-        <team id="only-blue">blue</team>
-    </deny>
-    <deny id="deny-red">
-        <team id="only-red">red</team>
-    </deny>
     <deny id="deny-in-wr">
         <any>
             <material>chest</material>
             <material>mob spawner</material>
         </any>
-    </deny>
-    <deny id="deny-void">
-        <void/>
     </deny>
     <after id="add-water-lane" duration="300s" message="`eWater lanes will be added in {0}">
         <time>55m</time>
@@ -124,35 +115,35 @@
         <rectangle min="29,54" max="2,-3"/>
     </complement>
     <apply use="deny-beacon"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy base!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy base!"/>
-    <apply enter="only-blue" region="blue-wool-rooms" message="You may not enter your own wool rooms!"/>
-    <apply enter="only-red" region="red-wool-rooms" message="You may not enter your own wool rooms!"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's base!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's base!"/>
+    <apply enter="blue-team" region="blue-wool-rooms" message="You may not enter your own wool rooms!"/>
+    <apply enter="red-team" region="red-wool-rooms" message="You may not enter your own wool rooms!"/>
     <apply block-break="only-iron" block-place="never" region="spawns" message="You may only break iron blocks in spawn!"/>
     <apply block="deny-in-wr" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
-    <apply block="deny-blue" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
-    <apply block="deny-red" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny(blue-team)" region="red-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
+    <apply block="deny(red-team)" region="blue-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
     <apply block="deny-water-flow" region="wool-rooms"/>
     <apply block="add-water-lane" region="water-lanes"/>
-    <apply block="deny-void" region="non-bridge" message="You may not build in the void!"/>
+    <apply block="deny(void)" region="non-bridge" message="You may not build in the void!"/>
 </regions>
 <wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
-    <wool team="blue" color="orange" location="68,23,-36">
+    <wool team="blue-team" color="orange" location="68,23,-36">
         <monument>
             <block>-143,18,23</block>
         </monument>
     </wool>
-    <wool team="blue" color="purple" location="68,23,86">
+    <wool team="blue-team" color="purple" location="68,23,86">
         <monument>
             <block>-143,18,27</block>
         </monument>
     </wool>
-    <wool team="red" color="pink" location="-38,23,86">
+    <wool team="red-team" color="pink" location="-38,23,86">
         <monument>
             <block>173,18,27</block>
         </monument>
     </wool>
-    <wool team="red" color="yellow" location="-38,23,-36">
+    <wool team="red-team" color="yellow" location="-38,23,-36">
         <monument>
             <block>173,18,23</block>
         </monument>

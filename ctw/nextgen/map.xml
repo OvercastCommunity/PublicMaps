@@ -1,17 +1,18 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>NextGen</name>
-<version>3.4.10</version>  <!-- Based upon the TE edition -->
+<version>3.4.11</version>  <!-- Based upon the TE edition -->
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="reinventing the map"/> <!-- ElectroidFilms -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Reinventing the map"/> <!-- ElectroidFilms -->
 </authors>
 <contributors>
-    <contributor uuid="cbdc7b1d-7a07-465b-bebb-4f20bfb8ebd8" contribution="re-reinventing the map"/> <!-- Cratain -->
-    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="bias"/>
-    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="old map design"/> <!-- Plastix -->
-    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="old map design"/> <!-- IM_A_H0B0 -->
-    <contributor uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="old map design and gameplay management"/> <!-- MonsieurApple -->
-    <contributor uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="old map design and item management"/> <!-- Anxuiz -->
+    <contributor uuid="cbdc7b1d-7a07-465b-bebb-4f20bfb8ebd8" contribution="Re-reinventing the map"/> <!-- Cratain -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="Bias"/>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Old map design"/> <!-- Plastix -->
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Old map design"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="Old map design and gameplay management"/> <!-- MonsieurApple -->
+    <contributor uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="Old map design and item management"/> <!-- Anxuiz -->
 </contributors>
 <teams>
     <team id="blue" color="blue" max="24">Blue</team>
@@ -43,26 +44,23 @@
     </kit>
 </kits>
 <spawns>
-    <default>
-        <region yaw="-90">
+    <default yaw="-90">
+        <region>
             <cylinder base="-158.5,51,13.5" radius="3" height="0"/>
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>-158.5,4,-42.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
-        <region yaw="180">
+    <spawn team="red" kit="spawn-kit" yaw="180">
+        <region>
             <point>-158.5,4,69.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <not id="deny-void">
-        <void/>
-    </not>
     <deny id="deny-glass">
         <material>glass</material>
     </deny>
@@ -157,14 +155,14 @@
         <block location="-159.5,5.5,78.5" id="orange-wool"/>
     </union>
     <!-- Entry Rules -->
-    <apply enter="only-blue" message="You may not enter the enemy wool room!" region="blue-rooms"/>
-    <apply enter="only-red" message="You may not enter the enemy wool room!" region="red-rooms"/>
+    <apply enter="only-blue" message="You may not enter the enemy's wool room!" region="blue-rooms"/>
+    <apply enter="only-red" message="You may not enter the enemy's wool room!" region="red-rooms"/>
     <!-- Block Rules -->
     <apply block="never" message="You may not edit the spawn area!" region="spawns"/>
     <apply block-place="deny-glass" message="You may not place glass in the side lanes!" region="side-lanes"/>
     <apply block="blue-in-wr" use="only-blue-usage" region="blue-rooms"/>
     <apply block="red-in-wr" use="only-red-usage" region="red-rooms"/>
-    <apply block-place="deny-void" message="You may not build outside of the map!" region="void-region"/>
+    <apply block-place="deny(void)" message="You may not build outside of the map!" region="void-region"/>
 </regions>
 <wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
     <wool team="blue" color="purple" location="-196.5,14.5,90.5" monument="purple-wool"/>
@@ -215,9 +213,6 @@
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-</kill-reward>
 <maxbuildheight>28</maxbuildheight>
 <crafting>
     <disable>iron trapdoor</disable>

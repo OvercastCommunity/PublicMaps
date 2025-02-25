@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Gridlock 2</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="62b6d081-8df8-4c09-aa15-71141ca7df76"/> <!-- Arzanex -->
     <author uuid="04105de3-ecd4-4879-af0c-929715728070"/> <!-- MapleMint -->
@@ -58,33 +59,24 @@
         <material>chest</material>
         <material>workbench</material>
     </any>
-    <not id="deny-void">
-        <void/>
-    </not>
-    <deny id="only-cyan">
-        <team>purple</team>
-    </deny>
-    <deny id="only-purple">
-        <team>cyan</team>
-    </deny>
     <all id="only-webs-c">
         <material>web</material>
-        <team>cyan</team>
+        <team id="only-cyan">cyan</team>
     </all>
     <all id="only-webs-p">
         <material>web</material>
-        <team>purple</team>
+        <team id="only-purple">purple</team>
     </all>
     <not id="only-cyan-usage">
         <all>
             <filter id="materials"/>
-            <team>purple</team>
+            <filter id="only-purple"/>
         </all>
     </not>
     <not id="only-purple-usage">
         <all>
             <filter id="materials"/>
-            <team>cyan</team>
+            <filter id="only-cyan"/>
         </all>
     </not>
     <material id="allow-iron">iron block</material>
@@ -120,7 +112,7 @@
         <rectangle id="spawn-cyan" max="-190,23" min="-165,58"/>
         <rectangle id="spawn-purple" max="100,22" min="127,58"/>
     </union>
-    <negative id="void">
+    <negative id="void-area">
         <union>
             <rectangle min="0,11" max="-64,70"/>
             <region id="cyan-portals"/>
@@ -139,7 +131,7 @@
     <apply block="only-webs-p" use="only-purple-usage" region="cyan-woolrooms"/>
     <apply enter="only-purple" message="You may not enter your own wool room!." region="cyan-woolrooms"/>
     <!--  void protection  -->
-    <apply block-place="deny-void" block-break="always" message="You may not edit the void area!" region="void"/>
+    <apply block-place="deny(void)" block-break="always" message="You may not edit the void area!" region="void-area"/>
 </regions>
 <portals>
     <!--  portals in cyan base  -->
@@ -264,11 +256,12 @@
     <item>bucket</item>
     <item>glass</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <item-mods>
     <rule>
         <match>

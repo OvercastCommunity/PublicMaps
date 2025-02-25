@@ -1,11 +1,11 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Vertex</name>
 <version>1.3.2</version>
 <objective>Capture the wool and return it to your victory monument</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii -->
 </authors>
-<include id="gapple-kill-reward"/>
 <teams>
     <team id="blue-team" color="blue" max="7">Blue</team>
     <team id="red-team" color="dark red" max="7">Red</team>
@@ -37,19 +37,17 @@
         </regions>
     </default>
     <spawn team="blue-team" kit="main-kit" yaw="180">
-        <regions>
+        <region>
             <cylinder base="268,3,344" radius="1.5" height="1"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red-team" kit="main-kit" yaw="-90">
-        <regions>
+        <region>
             <cylinder base="201,3,277" radius="1.5" height="1"/>
-        </regions>
+        </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <deny id="deny-woolroom-blocks">
         <blocks region="wool-rooms">
             <not>
@@ -85,16 +83,15 @@
         <rectangle id="blue-side" min="281,349" max="249,264"/>
         <mirror id="red-side" region="blue-side" origin="261,0,284" normal="-1,0,-1"/>
     </union>
-    <apply region="blue-spawn" enter="only-blue" message="You may not enter the enemy spawn!"/>
-    <apply region="red-spawn" enter="only-red" message="You may not enter the enemy spawn!"/>
+    <apply region="blue-spawn" enter="blue-team" message="You may not enter the enemy's spawn!"/>
+    <apply region="red-spawn" enter="red-team" message="You may not enter the enemy's spawn!"/>
     <apply region="team-spawns" block="never" message="You may not modify the spawn area!"/>
-    <apply region="blue-wool" enter="only-red" message="You may not enter this wool room!"/>
-    <apply region="red-wool" enter="only-blue" message="You may not enter this wool room!"/>
-    <apply region="blue-wool" block="all(deny-woolroom-blocks, only-red)" use="only-red" message="You may not modify that block!"/>
-    <apply region="red-wool" block="all(deny-woolroom-blocks, only-blue)" use="only-blue" message="You may not modify that block!"/>
+    <apply region="blue-wool" enter="red-team" message="You may not enter this wool room!"/>
+    <apply region="red-wool" enter="blue-team" message="You may not enter this wool room!"/>
+    <apply region="blue-wool" block="all(deny-woolroom-blocks, red-team)" use="red-team" message="You may not modify that block!"/>
+    <apply region="red-wool" block="all(deny-woolroom-blocks, blue-team)" use="blue-team" message="You may not modify that block!"/>
     <apply block-place="playable-area" block-break="deny-bottom-layer"/>
 </regions>
-<maxbuildheight>20</maxbuildheight>
 <wools>
     <wool team="blue-team" color="orange" location="200,12,277">
         <monument>
@@ -108,10 +105,10 @@
     </wool>
 </wools>
 <spawners max-entities="1" delay="1s">
-    <spawner spawn-region="blue-wool-spawner" player-region="blue-wool" filter="only-red">
+    <spawner spawn-region="blue-wool-spawner" player-region="blue-wool" filter="red-team">
         <item material="wool" damage="3"/>
     </spawner>
-    <spawner spawn-region="red-wool-spawner" player-region="red-wool" filter="only-blue">
+    <spawner spawn-region="red-wool-spawner" player-region="red-wool" filter="blue-team">
         <item material="wool" damage="1"/>
     </spawner>
 </spawners>
@@ -201,4 +198,5 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<maxbuildheight>20</maxbuildheight>
 </map>

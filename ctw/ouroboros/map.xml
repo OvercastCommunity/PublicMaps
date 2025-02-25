@@ -1,16 +1,16 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Ouroboros</name>
-<version>6.4.7</version>
+<version>6.4.8</version>
 <include id="gapple-kill-reward"/>
 <objective>Capture the other team's wools to win the game!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="10" max-overfill="12">Blue</team>
-    <team id="purple" color="dark purple" max="10" max-overfill="12">Purple</team>
-    <team id="red" color="dark red" max="10" max-overfill="12">Red</team>
-    <team id="yellow" color="yellow" max="10" max-overfill="12">Yellow</team>
+    <team id="blue-team" color="blue" max="10" max-overfill="12">Blue</team>
+    <team id="purple-team" color="dark purple" max="10" max-overfill="12">Purple</team>
+    <team id="red-team" color="dark red" max="10" max-overfill="12">Red</team>
+    <team id="yellow-team" color="yellow" max="10" max-overfill="12">Yellow</team>
 </teams>
 <rules>
     <rule>Creating alliances with other team(s) is allowed.</rule>
@@ -55,54 +55,36 @@
             <cylinder base="0.5,11,0.5" radius="2" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="-90">
             <point>-8.5,4,-69.5</point>
         </region>
     </spawn>
-    <spawn team="purple" kit="spawn-kit">
+    <spawn team="purple-team" kit="spawn-kit">
         <region yaw="90">
             <point>9.5,4,70.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="180">
             <point>-69.5,4,9.5</point>
         </region>
     </spawn>
-    <spawn team="yellow" kit="spawn-kit">
+    <spawn team="yellow-team" kit="spawn-kit">
         <region>
             <point>70.5,4,-8.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <deny id="deny-blue">
-        <team id="only-blue">blue</team>
-    </deny>
-    <deny id="deny-purple">
-        <team id="only-purple">purple</team>
-    </deny>
-    <deny id="deny-red">
-        <team id="only-red">red</team>
-    </deny>
-    <deny id="deny-yellow">
-        <team id="only-yellow">yellow</team>
-    </deny>
-    <deny id="deny-beacon">
-        <material id="beacons">beacon</material>
-    </deny>
     <deny id="denied-blocks">
         <any>
-            <filter id="beacons"/>
+            <material id="beacons">beacon</material>
             <material>obsidian</material>
             <material>wall sign</material>
             <material>sign post</material>
         </any>
     </deny>
-    <not id="deny-void">
-        <void/>
-    </not>
     <deny id="deny-wool">
         <material>wool</material>
     </deny>
@@ -140,51 +122,50 @@
         <rectangle id="red-gate" min="-79.5,8.5" max="-59.5,-6.5"/>
         <rectangle id="yellow-gate" min="80.5,-7.5" max="60.5,7.5"/>
     </union> -->
-    <union id="wool-placement">
-        <!-- Blue monument -->
-        <block>-16.5,5,-68.5</block> <!-- purple -->
-        <block>-16.5,5,-69.5</block> <!-- red -->
-        <block>-16.5,5,-70.5</block> <!-- yellow -->
-        <!-- Purple monument -->
-        <block>17.5,5,69.5</block> <!-- blue -->
-        <block>17.5,5,70.5</block> <!-- red -->
-        <block>17.5,5,71.5</block> <!-- yellow -->
-        <!-- Red monument -->
-        <block>-69.5,5,17.5</block> <!-- blue -->
-        <block>-68.5,5,17.5</block> <!-- purple -->
-        <block>-70.5,5,17.5</block> <!-- yellow -->
-        <!-- Yellow monument -->
-        <block>70.5,5,-16.5</block> <!-- blue -->
-        <block>69.5,5,-16.5</block> <!-- purple -->
-        <block>71.5,5,-16.5</block> <!-- red -->
-    </union>
     <complement id="no-wool-placement">
         <everywhere/>
-        <region id="wool-placement"/>
+        <union id="wool-placement">
+            <!-- Blue monument -->
+            <block>-16.5,5,-68.5</block> <!-- purple -->
+            <block>-16.5,5,-69.5</block> <!-- red -->
+            <block>-16.5,5,-70.5</block> <!-- yellow -->
+            <!-- Purple monument -->
+            <block>17.5,5,69.5</block> <!-- blue -->
+            <block>17.5,5,70.5</block> <!-- red -->
+            <block>17.5,5,71.5</block> <!-- yellow -->
+            <!-- Red monument -->
+            <block>-69.5,5,17.5</block> <!-- blue -->
+            <block>-68.5,5,17.5</block> <!-- purple -->
+            <block>-70.5,5,17.5</block> <!-- yellow -->
+            <!-- Yellow monument -->
+            <block>70.5,5,-16.5</block> <!-- blue -->
+            <block>69.5,5,-16.5</block> <!-- purple -->
+            <block>71.5,5,-16.5</block> <!-- red -->
+        </union>
     </complement>
     <!-- Applied -->
-    <apply use="deny-beacon"/>
-    <apply enter="only-blue" message="You may not enter enemy spawns!" region="blue-se"/>
-    <apply enter="only-purple" message="You may not enter enemy spawns!" region="purple-se"/>
-    <apply enter="only-red" message="You may not enter enemy spawns!" region="red-se"/>
-    <apply enter="only-yellow" message="You may not enter enemy spawns!" region="yellow-se"/>
-    <apply enter="deny-blue" message="You may not enter your own wool room!" region="blue-wool-room-e"/>
-    <apply enter="deny-purple" message="You may not enter your own wool room!" region="purple-wool-room-e"/>
-    <apply enter="deny-red" message="You may not enter your own wool room!" region="red-wool-room-e"/>
-    <apply enter="deny-yellow" message="You may not enter your own wool room!" region="yellow-wool-room-e"/>
+    <apply use="deny(beacons)"/>
+    <apply enter="blue-team" message="You may not enter enemy spawns!" region="blue-se"/>
+    <apply enter="purple-team" message="You may not enter enemy spawns!" region="purple-se"/>
+    <apply enter="red-team" message="You may not enter enemy spawns!" region="red-se"/>
+    <apply enter="yellow-team" message="You may not enter enemy spawns!" region="yellow-se"/>
+    <apply enter="deny(blue-team)" message="You may not enter your own wool room!" region="blue-wool-room-e"/>
+    <apply enter="deny(purple-team)" message="You may not enter your own wool room!" region="purple-wool-room-e"/>
+    <apply enter="deny(red-team)" message="You may not enter your own wool room!" region="red-wool-room-e"/>
+    <apply enter="deny(yellow-team)" message="You may not enter your own wool room!" region="yellow-wool-room-e"/>
     <apply block="never" message="You may not edit above the height limit! (20 Blocks)" region="above-23"/>
     <apply block="never" message="You may not edit the spawn areas!" region="spawns"/>
     <!-- Outting the gate
     <apply block-place="never" block-break="always" message="`7You may not go anti-clockwise or build around the hurdles!" region="gates"/> -->
-    <apply block="never" use="deny-red" region="red-wool-room-b"/>
-    <apply block="never" use="deny-blue" region="blue-wool-room-b"/>
-    <apply block="never" use="deny-purple" region="purple-wool-room-b"/>
-    <apply block="never" use="deny-yellow" region="yellow-wool-room-b"/>
+    <apply block="never" use="deny(red-team)" region="red-wool-room-b"/>
+    <apply block="never" use="deny(blue-team)" region="blue-wool-room-b"/>
+    <apply block="never" use="deny(purple-team)" region="purple-wool-room-b"/>
+    <apply block="never" use="deny(yellow-team)" region="yellow-wool-room-b"/>
     <apply block="deny-wool" message="You may not place safeties!" region="no-wool-placement"/>
     <apply block="denied-blocks" message="This block is disabled on this map!"/>
-    <apply block="deny-void" message="You may not edit the void area!"/>
+    <apply block="deny(void)" message="You may not edit the void area!"/>
 </regions>
-<wools team="blue">
+<wools team="blue-team">
     <wool color="purple" location="20.5,18,80.5">
         <monument>
             <block>-16.5,5,-68.5</block>
@@ -201,7 +182,7 @@
         </monument>
     </wool>
 </wools>
-<wools team="purple">
+<wools team="purple-team">
     <wool color="blue" location="-19.5,18,-79.5">
         <monument>
             <block>17.5,5,69.5</block>
@@ -218,7 +199,7 @@
         </monument>
     </wool>
 </wools>
-<wools team="red">
+<wools team="red-team">
     <wool color="blue" location="-19.5,18,-79.5">
         <monument>
             <block>-69.5,5,17.5</block>
@@ -235,7 +216,7 @@
         </monument>
     </wool>
 </wools>
-<wools team="yellow">
+<wools team="yellow-team">
     <wool color="blue" location="-19.5,18,-79.5">
         <monument>
             <block>71.5,5,-16.5</block>
@@ -307,40 +288,4 @@
         <item amount="4" team-color="true" material="stained clay"/>
     </kill-reward>
 </kill-rewards>
-<!-- include src="tutorial.xml"/ -->
-<!-- <tutorial>
-    <stage title="Capture the Wool">
-        <message>
-            <line>`rThis map is a `a`lCapture the Wool (CTW) `rmap.</line>
-            <line>The objective is to capture all needed wools for your team.</line>
-        </message>
-    </stage>
-    <stage title="The Base">
-        <message>
-            <line>`rThis is the `9Blue Team's Base`r.</line>
-            <line>`rThis is where the `9Blue Team `rspawns. You spawn with gear ready to go into battle!</line>
-        </message>
-        <teleport>
-            <point yaw="90" pitch="20">-8.5,4,-69.5</point>
-        </teleport>
-    </stage>
-    <stage title="Wool Room">
-        <message>
-            <line>`rThis is the a `fWool Room`r.</line>
-            <line>`rThe other three teams need to get the wool from the chests back to their base to win.</line>
-        </message>
-        <teleport>
-            <point yaw="-33" pitch="0">-19.5,19,-76.5</point>
-        </teleport>
-    </stage>
-    <stage title="Wool Monument">
-        <message>
-            <line>`rThis is the Wool Monument`r.</line>
-            <line>`rplace the other teams' wools here to win.</line>
-        </message>
-        <teleport>
-            <point yaw="90">-8.5,4,-69.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

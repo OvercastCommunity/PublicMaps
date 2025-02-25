@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>A New Day II</name>
-<version>1.0.9</version>
+<version>1.0.10</version>
 <include id="gapple-kill-reward"/>
 <objective>Capture the enemy's wools!</objective>
 <created>2017-11-14</created>
@@ -72,9 +72,6 @@
         <team id="only-red">red</team>
     </all>
     <material id="only-iron">iron block</material>
-    <not id="deny-void">
-        <void/>
-    </not>
     <deny id="deny-web">
         <material>web</material>
     </deny>
@@ -93,15 +90,15 @@
         <rectangle max="-83,261" min="-52,229"/>
     </union>
     <rectangle id="mid-map" min="-18,179" max="64,243"/>
-    <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
-    <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
+    <apply enter="only-blue" message="You may not enter the enemy's spawn!" region="blue-spawn"/>
+    <apply enter="only-red" message="You may not enter the enemy's spawn!" region="red-spawn"/>
     <apply enter="only-blue" message="You may not enter your own wool rooms!" region="red-wool-rooms"/>
     <apply enter="only-red" message="You may not enter your own wool rooms!" region="blue-wool-rooms"/>
     <apply block-break="only-iron" block-place="deny-players" message="You may only break iron in spawn!" region="spawns"/>
     <apply block="blue-in-wr" use="only-blue" region="red-wool-rooms"/>
     <apply block="red-in-wr" use="only-red" region="blue-wool-rooms"/>
     <apply block="deny-web" region="mid-map"/>
-    <apply block-place="deny-void" message="You may not build in the void!"/>
+    <apply block-place="deny(void)" message="You may not build in the void!"/>
 </regions>
 <renewables>
     <renewable rate="2.5" particles="true" sound="true" region="spawns">

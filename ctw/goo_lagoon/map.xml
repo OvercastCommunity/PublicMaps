@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Goo Lagoon</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Capture the enemy team's wools.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
@@ -47,7 +48,7 @@
         </region>
     </default>
     <spawn team="blue-team" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>-599.5,7,-769.5</point>
         </region>
     </spawn>
@@ -65,9 +66,6 @@
     <material id="only-crafting">workbench</material>
     <not id="only-regen">
         <cause>player</cause>
-    </not>
-    <not id="deny-void">
-        <void/>
     </not>
 </filters>
 <regions>
@@ -130,7 +128,7 @@
             <above y="33"/>
         </region>
     </apply>
-    <apply block="deny-void" message="You may not build in the void!">
+    <apply block="deny(void)" message="You may not build in the void!">
         <region>
             <negative>
                 <union>
@@ -238,7 +236,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="5" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

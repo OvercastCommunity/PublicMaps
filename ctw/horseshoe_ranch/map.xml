@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Horseshoe Ranch</name>
-<version>2.1.1</version>
+<version>2.1.2</version>
 <objective>Capture the other team's wool!</objective>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc" contribution="Layout, aesthetics and XML"/>
@@ -43,9 +43,6 @@
     </default>
 </spawns>
 <filters>
-    <deny id="no-void">
-        <void/>
-    </deny>
     <deny id="deny-redstone-wire">
         <all>
             <material>redstone wire</material>
@@ -130,7 +127,7 @@
     </apply>
     <apply enter="only-red" region="red-spawn" message="You may not enter your enemy's spawn!"/>
     <apply enter="only-blue" region="blue-spawn" message="You may not enter your enemy's spawn!"/>
-    <apply block-place="no-void" block-break="deny-redstone-wire" region="void-area" message="You may not build in the void!"/>
+    <apply block-place="deny(void)" block-break="deny-redstone-wire" region="void-area" message="You may not build in the void!"/>
     <apply block-break="only-iron" block-place="never" region="spawns" message="You may only break iron blocks here!"/>
     <apply block-physics="deny-redstone-wire"/>
     <union id="victory-monuments">

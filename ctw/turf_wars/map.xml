@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Turf Wars</name>
-<version>2.0.3</version>
+<version>2.0.4</version>
 <objective>Capture the other team's wools to win the game!</objective>
 <gamemode>ctw</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
@@ -31,6 +32,7 @@
         <item slot="3" unbreakable="true" material="iron axe">
             <enchantment>efficiency</enchantment>
         </item>
+        <item slot="4" amount="64" team-color="true" material="stained clay"/>
         <item slot="5" amount="64" damage="1" material="wood"/>
         <item slot="6" amount="64" material="glass"/>
         <item slot="7" material="water bucket"/>
@@ -42,22 +44,13 @@
         <effect amplifier="255" duration="13">damage resistance</effect>
         <effect amplifier="255" duration="13">regeneration</effect>
     </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <item slot="4" amount="64" damage="11" material="stained clay"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <item slot="4" amount="64" damage="14" material="stained clay"/>
-    </kit>
 </kits>
 <spawns>
     <default region="obs-spawn" yaw="-90"/>
-    <spawn team="blue" kit="blue-kit" region="spawn-blue" yaw="0" pitch="90"/>
-    <spawn team="red" kit="red-kit" region="spawn-red" yaw="-180" pitch="90"/>
+    <spawn team="blue" kit="spawn-kit" region="spawn-blue" pitch="90"/>
+    <spawn team="red" kit="spawn-kit" region="spawn-red" yaw="-180" pitch="90"/>
 </spawns>
 <filters>
-    <not id="no-void">
-        <void/>
-    </not>
     <not id="blue-in-wr">
         <any>
             <material>chest</material>
@@ -162,15 +155,15 @@
     </union>
     <!-- Applied -->
     <apply enter="never" region="spawn-top"/>
-    <apply enter="only-blue" region="blue-base" message="You may not enter the enemy base!"/>
-    <apply enter="only-red" region="red-base" message="You may not enter the enemy base!"/>
-    <apply enter="only-blue" region="blue-wools" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-red" region="red-wools" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-blue" region="blue-base" message="You may not enter the enemy's base!"/>
+    <apply enter="only-red" region="red-base" message="You may not enter the enemy's base!"/>
+    <apply enter="only-blue" region="blue-wools" message="You may not enter your team's wool rooms!"/>
+    <apply enter="only-red" region="red-wools" message="You may not enter your team's wool rooms!"/>
     <apply block="never" region="mid-spawner" message="You may not place blocks around the spawner!"/>
     <apply block-break="only-iron" block-place="never" region="bases" message="You may only break iron blocks in the base!"/>
     <apply block="blue-in-wr" use="only-blue" region="blue-wools"/>
     <apply block="red-in-wr" use="only-red" region="red-wools"/>
-    <apply block-place="no-void" region="void-filter" message="You may not build in the void!"/>
+    <apply block-place="deny(void)" region="void-filter" message="You may not build in the void!"/>
 </regions>
 <wools>
     <wool team="blue" location="76.5,16,66.5" monument="magenta-monument" color="magenta"/>
@@ -178,6 +171,7 @@
     <wool team="red" location="76.5,16,-65.5" monument="orange-monument" color="orange"/>
     <wool team="red" location="-75.5,16,-65.5" monument="yellow-monument" color="yellow"/>
 </wools>
+<!-- TODO: replace fake destroyable with something nice that works with /mode command -->
 <modes>
     <mode id="water-lane" after="30m" name="`eWater lanes added" material="water" show-before="5m"/>
 </modes>
@@ -242,15 +236,9 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="16" damage="2" material="wood"/>
         <item amount="16" material="glass"/>
-    </kill-reward>
-    <kill-reward filter="only-blue">
-        <item amount="16" material="stained clay" damage="11"/>
-    </kill-reward>
-    <kill-reward filter="only-red">
-        <item amount="16" material="stained clay" damage="14"/>
+        <item amount="16" material="stained clay" team-color="true"/>
     </kill-reward>
 </kill-rewards>
 <hunger>
@@ -264,53 +252,4 @@
     <respawn delay="3s" filter="before-1h-after-45m"/>
     <respawn delay="3.5s" filter="after-1h"/>
 </respawns>
-<!-- include src="tutorial.xml"/ -->
-<!-- <tutorial>
-    <stage title="Capture the Wool">
-        <message>
-            <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
-            <line>The objective is to grab the wool on the other team's side and return it to your base.</line>
-        </message>
-        <teleport>
-            <point yaw="-150" pitch="40">-22,48,6</point>
-        </teleport>
-    </stage>
-    <stage title="Wool Rooms">
-        <message>
-            <line>This is `9Blue Team`r's `eyellow`r wool room. They also have to defend the `6orange`r wool room.</line>
-            <line>`cRed Team `rhas to defend `5purple `rand `dmagenta`r wools.</line>
-            <line>Blue Team should defend these rooms against Red Team invaders who are trying to steal the wool and make it back alive.</line>
-            <line>There are some good items inside which will help the red team fight off enemy's on their way out.</line>
-        </message>
-        <teleport>
-            <point yaw="43" pitch="10">-64,21,-76</point>
-        </teleport>
-    </stage>
-    <stage title="Spawn">
-        <message>
-            <line>This is the `9Blue Team`r's spawn base. They spawn from up in the sky and fall down into this base.</line>
-        </message>
-        <teleport>
-            <point yaw="-163" pitch="10">-5,26,-126.5</point>
-        </teleport>
-    </stage>
-    <stage title="Victory Monument">
-        <message>
-            <line>This is the `9Blue Team`r's victory monument. They must place both of the red team's wools in the designated spots to win the match.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="5">0,20,-125.5</point>
-        </teleport>
-    </stage>
-    <stage title="Iron Supplies">
-        <message>
-            <line>Here is the iron supply for `9Blue Team`r. Note that `cRed Team `rhas the same thing on their side.</line>
-            <line>You should place down a crafting table and then craft armor so that you can go into battle.</line>
-            <line>There are chests with extra blocks and recources if needed.</line>
-        </message>
-        <teleport>
-            <point yaw="180">0,15,-121.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

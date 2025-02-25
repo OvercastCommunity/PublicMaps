@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The 9th Law</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Capture both of the enemy team's wools!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
@@ -69,9 +70,6 @@
             <material>stationary water</material>
         </any>
     </all>
-    <deny id="deny-void">
-        <void/>
-    </deny>
     <deny id="deny-spruce-wood">
         <material>log:13</material>
     </deny>
@@ -129,7 +127,7 @@
     <!-- Deny building in the area above y = 31 for wool rooms -->
     <apply block="deny-players" message="You may not build in the wool rooms!" region="wool-rooms"/>
     <!--  No building outside the map  -->
-    <apply block-place="deny-void" message="You may not build in the void!" region="outside-map"/>
+    <apply block-place="deny(void)" message="You may not build in the void!" region="outside-map"/>
     <!-- Each team may not enter the enemy base or their own wool rooms -->
     <apply enter="only-blue" message="You may not enter the enemy base!" region="blue-base"/>
     <apply enter="only-red" message="You may not enter the enemy base!" region="red-base"/>
@@ -250,54 +248,14 @@
     <item>wood</item>
     <item>glass</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="24" damage="1" material="wood"/>
-    <item amount="12" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="24" damage="1" material="wood"/>
+        <item amount="12" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>34</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
 </map>
-<!-- include src="tutorial.xml"/>
-<tutorial>
-    <stage title="Capture the Wool">
-        <message>
-            <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
-            <line>First team to capture both `bwools `rwins.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="90">0.5,57,0.5</point>
-        </teleport>
-    </stage>
-    <stage title="Iron Supplies">
-        <message>
-            <line>Iron Supplies are located directly `bunder `rboth team spawns.</line>
-        </message>
-        <teleport>
-            <point yaw="90">-86.5,17,0.5</point>
-        </teleport>
-    </stage>
-    <stage title="Blue Teams Wool Rooms">
-        <message>
-            <line>These are `9Blue team`r's wool rooms housing `3cyan`r and `blight blue `rwools.</line>
-            <line>`cRed Team `rhas `alime`r and `2green `rwools.</line>
-            <line>Teams should defend these rooms against invaders who are trying to steal the wool and make it back alive.</line>
-            <line>There are special goodies inside that will help you fight your way out.</line>
-            <line>The wool is spawned from walking over a dispenser.</line>
-        </message>
-        <teleport>
-            <point yaw="90">-125.5,49,0.5</point>
-        </teleport>
-    </stage>
-    <stage title="Victory Monument">
-        <message>
-            <line>There are `atwo `bvictory monuments`r. One for each wool from the enemys side.</line>
-            <line>The monuments are to the `6left `rand `6right `rof each team spawn.</line>
-        </message>
-        <teleport>
-            <point yaw="-90">-81.5,14,0.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->

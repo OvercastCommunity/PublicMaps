@@ -1,4 +1,4 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Woolirium</name>
 <version>1.1.4</version>
 <include id="gapple-kill-reward"/>
@@ -84,9 +84,6 @@
             <material>tnt</material>
         </any>
     </deny>
-    <deny id="deny-void">
-        <void/>
-    </deny>
     <deny id="deny-lava">
         <any>
             <material>lava</material>
@@ -107,7 +104,7 @@
         <rectangle id="orange-wr" min="1524,-1417" max="1538,-1406"/>
         <rectangle id="yellow-wr" min="1524,-1363" max="1538,-1352"/>
     </union>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle min="1401,-1420" max="1466,-1349"/>
     </complement>
@@ -118,7 +115,7 @@
     <apply block="never" message="You may not modify the bases!" region="spawns"/>
     <apply block="blue-in-wr" use="only-blue-usage" region="blue-wrs"/>
     <apply block="red-in-wr" use="only-red-usage" region="red-wrs"/>
-    <apply block="deny-void" message="You may not build in the void area!" region="void"/>
+    <apply block="deny(void)" message="You may not build in the void area!" region="void-area"/>
     <apply block="deny-lava" use="deny-lava" message="You may not place this block!"/>
 </regions>
 <wools wool-proximity-metric="none" monument-proximity-metric="closest block">
@@ -186,35 +183,4 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<!-- include src="tutorial.xml"/ -->
-<!-- <tutorial>
-    <stage title="Capture the Wool">
-        <message>
-            <line>`rThis map is a `a`lCapture the Wool (CTW) `rmap.</line>
-            <line>`rThe objective is to capture both of the enemy's wools and place it at your victory monument!</line>
-        </message>
-        <teleport>
-            <point yaw="-50" pitch="15">1429,23,-1429</point>
-        </teleport>
-    </stage>
-    <stage title="Wool Room">
-        <message>
-            <line>`rThis is the `eYellow `rwool room.</line>
-            <line>`rThe `9Blue Team `rmust defend this.</line>
-            <line>`rThe `cRed Team `rmust enter this.</line>
-            <line>`rThere are some goodies such as `cTNT `rin the wool room!</line>
-        </message>
-        <teleport>
-            <point yaw="-130" pitch="10">1523,10,-1346</point>
-        </teleport>
-    </stage>
-    <stage title="Wool Monument">
-        <message>
-            <line>`rPlace the other team's wools here to win.</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="0">1536,4,-1384</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

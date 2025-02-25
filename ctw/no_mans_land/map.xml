@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>No Man's Land</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Capture the enemy team's wools and return them safely to your victory monument.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
 </authors>
@@ -116,10 +117,5 @@
     <item>cooked beef</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <timelock>on</timelock>
 </map>

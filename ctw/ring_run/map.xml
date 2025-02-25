@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Ring Run</name>
 <variant id="halloween" world="halloween" override="true">Haunted Ring Run</variant>
-<version>1.8.0</version>
+<version>1.8.1</version>
 <objective>Capture both enemy wools!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
 </authors>
@@ -46,15 +47,12 @@
         </region>
     </spawn>
     <spawn team="purple" kit="spawn-kit">
-        <region yaw="270">
+        <region yaw="90">
             <cylinder base="19,11,-3" radius="3" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <deny id="deny-void">
-        <void/>
-    </deny>
     <deny id="orange-in-wr">
         <any>
             <team id="only-purple">purple</team>
@@ -89,19 +87,19 @@
             <rectangle id="lime-wr" min="-63,-43" max="-42,-64"/>
         </union>
     </union>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle min="78,-30" max="101,25"/>
         <rectangle min="60,-21" max="118,16"/>
     </complement>
     <apply enter="only-orange" region="orange-spawn" message="You may not enter the enemy's spawn room!"/>
     <apply enter="only-purple" region="purple-spawn" message="You may not enter the enemy's spawn room!"/>
-    <apply enter="only-orange" region="purple-wrs" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-purple" region="orange-wrs" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-orange" region="purple-wrs" message="You may not enter your team's wool rooms!"/>
+    <apply enter="only-purple" region="orange-wrs" message="You may not enter your team's wool rooms!"/>
     <apply block="never" region="spawns" message="You may not modify the spawn areas!"/>
     <apply block="orange-in-wr" use="only-orange" region="purple-wrs"/>
     <apply block="purple-in-wr" use="only-purple" region="orange-wrs"/>
-    <apply block="deny-void" region="void" message="You may not modify the void area!"/>
+    <apply block="deny(void)" region="void-area" message="You may not modify the void area!"/>
 </regions>
 <wools craftable="false">
     <wool team="orange" color="blue" location="-57.5,8,48.5">
@@ -173,7 +171,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="2" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

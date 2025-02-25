@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Far Fetched</name>
-<version>1.2.8</version>
+<version>1.2.9</version>
 <objective>Capture the enemy's three wools!</objective>
 <created>2019-05-06</created>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
 </authors>
@@ -80,9 +81,6 @@
         <material id="only-iron">iron block</material>
         <cause>world</cause>
     </all>
-    <deny id="void-filter">
-        <void/>
-    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -125,8 +123,8 @@
         <cuboid min="-5,10,-39" max="6,3,-57"/>
         <cuboid min="6,10,242" max="-5,3,260"/>
     </union>
-    <apply enter="only-blue" region="red-wr" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-red" region="blue-wr" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="only-blue" region="red-wr" message="You may not enter your team's wool rooms!"/>
+    <apply enter="only-red" region="blue-wr" message="You may not enter your team's wool rooms!"/>
     <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="only-blue" region="blue-spawn-bridge-gateway" message="You may not access this bridge!"/>
@@ -135,38 +133,38 @@
     <apply block="red-in-wr" use="only-red" region="blue-wr"/>
     <apply block-break="only-iron" block-place="only-iron-regen" region="spawns" message="You may not edit spawn!"/>
     <apply block="never" region="spawn-bridges" message="You may not edit this bridge!"/>
-    <apply block-place="void-filter" message="You may not edit the void!"/>
+    <apply block-place="deny(void)" message="You may not edit the void!"/>
 </regions>
 <renewables>
     <renewable region="iron-mines" renew-filter="only-iron"/>
 </renewables>
-<wools>
-    <wool team="blue-team" color="gray" craftable="false" location="-92.5,21,263.5">
+<wools craftable="false">
+    <wool team="blue-team" color="gray" location="-92.5,21,263.5">
         <monument>
             <block>-3.5,13,-54.5</block>
         </monument>
     </wool>
-    <wool team="blue-team" color="orange" craftable="false" location="0.5,20,315.5">
+    <wool team="blue-team" color="orange" location="0.5,20,315.5">
         <monument>
             <block>-4.5,13,-52.5</block>
         </monument>
     </wool>
-    <wool team="blue-team" color="silver" craftable="false" location="93.5,21,263.5">
+    <wool team="blue-team" color="silver" location="93.5,21,263.5">
         <monument>
             <block>-3.5,13,-50.5</block>
         </monument>
     </wool>
-    <wool team="red-team" color="cyan" craftable="false" location="93.5,21,-60.5">
+    <wool team="red-team" color="cyan" location="93.5,21,-60.5">
         <monument>
             <block>4.5,13,257.5</block>
         </monument>
     </wool>
-    <wool team="red-team" color="light blue" craftable="false" location="-92.5,21,-60.5">
+    <wool team="red-team" color="light blue" location="-92.5,21,-60.5">
         <monument>
             <block>4.5,13,253.5</block>
         </monument>
     </wool>
-    <wool team="red-team" color="lime" craftable="false" location="0.5,20,-112.5">
+    <wool team="red-team" color="lime" location="0.5,20,-112.5">
         <monument>
             <block>5.5,13,255.5</block>
         </monument>
@@ -208,7 +206,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" damage="1" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

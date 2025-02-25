@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Downforce</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Capture the enemy team's wool!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="61982fa8-f0f9-46d7-977a-47325c9bbd5c"/> <!-- Cirenah -->
 </authors>
@@ -84,7 +85,7 @@
                     <cuboid min="16,7,-25" max="33,30,-32"/>    
                 </complement>
             </union>
-            <cuboid id="void" min="2,7,-14" max="44,30,15"/>
+            <cuboid id="void-area" min="2,7,-14" max="44,30,15"/>
             <cuboid id="blue-wool" max="-41,0,15" min="-32,30,26"/>
             <cuboid id="red-wool" max="-41,0,-25" min="-32,30,-14"/>
         </union>
@@ -132,7 +133,6 @@
     <kill-reward>
         <item amount="2" material="arrow"/>
         <item amount="4" damage="2" material="log"/>
-    	<item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 </map>

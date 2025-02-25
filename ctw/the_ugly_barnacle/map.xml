@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Ugly Barnacle</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Capture the enemy team's two wools.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
@@ -181,11 +181,12 @@
 	<disable>minecart</disable>
 	<disable>iron trapdoor</disable>
 </crafting>
-<kill-reward>
-    <item>golden apple</item>
-    <item amount="32" damage="2" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" damage="2" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>

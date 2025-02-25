@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Golden Drought V</name>
-<version>1.2.0</version>
+<version>1.2.1</version>
 <objective>Capture the enemy wool!</objective>
+<include id="gapple-kill-reward"/>
 <!-- <time result="objectives" max-overtime="10m" overtime="10m">25m</time> -->
 <authors>
     <author uuid="52bcb4dd-a1a0-4d9b-94e0-49e145e318e4"/> <!-- Lich_of_Flowers -->
@@ -69,9 +70,6 @@
         </any>
     </not>
     <material id="only-gold">gold block</material>
-    <not id="deny-void">
-        <void/>
-    </not>
 </filters>
 <regions>
     <union id="spawns">
@@ -82,7 +80,7 @@
         <rectangle id="purple-for-blue" min="-15,-1273" max="-6,-1264"/> <!-- Blue must get -->
         <rectangle id="green-for-red" min="79,-1282" max="88,-1291"/> <!-- Red must get -->
     </union>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle min="8,-1309" max="65,-1246"/>
         <union id="wr-bridges">
@@ -102,16 +100,16 @@
         <region id="skybridge-lanes"/>
         <below y="13"/>
     </intersect>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy spawn!"/>
-    <apply enter="only-blue" region="purple-for-blue" message="You may not enter your team's own wool room!"/>
-    <apply enter="only-red" region="green-for-red" message="You may not enter your team's own wool room!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-blue" region="purple-for-blue" message="You may not enter your team's wool room!"/>
+    <apply enter="only-red" region="green-for-red" message="You may not enter your team's wool room!"/>
     <apply block-break="only-gold" block-place="never" region="spawns" message="You may only break gold blocks in spawn!"/>
     <apply block="blue-in-wr" use="only-blue" region="purple-for-blue"/>
     <apply block="red-in-wr" use="only-red" region="green-for-red"/>
     <apply block="never" region="under-bridges" message="You may not build in the void!"/>
-    <apply block="deny-void" region="under-skybridge" message="You may not build in the void!"/>
-    <apply block="deny-void" region="void" message="You may not build in the void!"/>
+    <apply block="deny(void)" region="under-skybridge" message="You may not build in the void!"/>
+    <apply block="deny(void)" region="void-area" message="You may not build in the void!"/>
 </regions>
 <renewables>
     <renewable rate="2" grow="true" region="spawns" renew-filter="only-gold"/>
@@ -141,11 +139,12 @@
     <item>leather helmet</item>
     <item>arrow</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" material="sandstone"/>
-    <item amount="12" damage="2" material="wood"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" material="sandstone"/>
+        <item amount="12" damage="2" material="wood"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>20</maxbuildheight>
 <respawn delay="3s" auto="true" blackout="false"/>
 <crafting>

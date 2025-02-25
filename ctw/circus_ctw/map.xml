@@ -1,7 +1,8 @@
-﻿<map proto="1.4.2">
+﻿<map proto="1.5.0">
 <name>Circus CTW</name>
 <version>1.2.6</version>
 <objective>Capture the wools before the other team does!</objective>
+<include id="gapple-kill-reward"/>
 <phase>staging</phase>
 <authors>
     <author uuid="cf1b2da8-3718-45a9-8836-bb70b0628773"/> <!-- Andruew -->
@@ -64,11 +65,6 @@
     </default>
 </spawns>
 <filters>
-    <deny id="deny-void">
-        <void/>
-    </deny>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
     <deny id="only-some">
         <any>
             <material>mob spawner</material>
@@ -76,11 +72,11 @@
         </any>
     </deny>
     <any id="only-red-w">
-        <team>red</team>
+        <team id="only-red">red</team>
         <filter id="only-some"/>
     </any>
     <any id="only-blue-w">
-        <team>blue</team>
+        <team id="only-blue">blue</team>
         <filter id="only-some"/>
     </any>
     <not id="only-red-usage">
@@ -129,7 +125,7 @@
         <rectangle id="purplewool" min="1185,529" max="1167,551"/>
         <rectangle id="cyanwool" min="1185,468" max="1167,490"/>
     </union>
-    <apply region="void-area" block="deny-void" message="You may not build in the void!"/>
+    <apply region="void-area" block="deny(void)" message="You may not build in the void!"/>
     <apply region="redwoolrooms" block="only-red-w" use="only-red-usage"/>
     <apply region="redwoolrooms" enter="only-red" message="You may not enter your own wool room!"/>
     <apply region="bluewoolrooms" block="only-blue-w" use="only-blue-usage"/>
@@ -185,7 +181,6 @@
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="16" material="arrow"/>
     </kill-reward>
 </kill-rewards>

@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Dorreak</name>
 <version>1.1.5</version>
 <objective>Capture both of the enemy team's wools!</objective>
 <created>2017-05-18</created> <!-- earliest commit in Stratus repositories -->
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9"/> <!-- Obelistics -->
 </authors>
@@ -50,23 +51,14 @@
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cylinder base="65,10,-129" radius="0.5" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <deny id="deny-blue">
-        <team id="only-blue">blue-team</team>
-    </deny>
-    <deny id="deny-red">
-        <team id="only-red">red-team</team>
-    </deny>
     <deny id="deny-chests">
         <material>chest</material>
-    </deny>
-    <deny id="deny-void">
-        <void/>
     </deny>
 </filters>
 <regions>
@@ -94,16 +86,16 @@
             <cylinder id="light-blue-spawner" base="51,19,25" radius="1" height="3"/>
         </union>
     </union>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply enter="only-blue" region="blue-wool-rooms" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-red" region="red-wool-rooms" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="blue-team" region="blue-wool-rooms" message="You may not enter your team's wool rooms!"/>
+    <apply enter="red-team" region="red-wool-rooms" message="You may not enter your team's wool rooms!"/>
     <apply block="never" region="spawns" message="You may not break or place blocks in the spawns!"/>
     <apply block="deny-chests" region="wool-rooms" message="You may not break or place chests in the wool rooms!"/>
-    <apply block="deny-blue" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
-    <apply block="deny-red" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny(blue-team)" region="red-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
+    <apply block="deny(red-team)" region="blue-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
     <apply block="never" region="wool-spawners" message="You may not interfere with the wool spawners!"/>
-    <apply block="deny-void" message="You may not build in the void areas!"/>
+    <apply block="deny(void)" message="You may not build in the void areas!"/>
 </regions>
 <wools wool-proximity-metric="none" monument-proximity-metric="closest block">
     <wool team="blue-team" color="magenta" location="92,20,-143">
@@ -129,26 +121,26 @@
 </wools>
 <spawners>
     <!-- wool spawners for blue -->
-    <spawner delay="5s" player-region="magenta-wr" filter="only-blue">
+    <spawner delay="5s" player-region="magenta-wr" filter="blue-team">
         <spawn-region>
             <point>92,20,-143</point>
         </spawn-region>
         <item amount="3" damage="2" material="wool"/>
     </spawner>
-    <spawner delay="5s" player-region="pink-wr" filter="only-blue">
+    <spawner delay="5s" player-region="pink-wr" filter="blue-team">
         <spawn-region>
             <point>37,20,-143</point>
         </spawn-region>
         <item amount="3" damage="6" material="wool"/>
     </spawner>
     <!-- wool spawners for red -->
-    <spawner delay="5s" player-region="cyan-wr" filter="only-red">
+    <spawner delay="5s" player-region="cyan-wr" filter="red-team">
         <spawn-region>
             <point>-5,20,25</point>
         </spawn-region>
         <item amount="3" damage="9" material="wool"/>
     </spawner>
-    <spawner delay="5s" player-region="light-blue-wr" filter="only-red">
+    <spawner delay="5s" player-region="light-blue-wr" filter="red-team">
         <spawn-region>
             <point>51,20,25</point>
         </spawn-region>
@@ -230,7 +222,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="16" damage="5" material="wood"/>
         <item amount="8" team-color="true" material="stained glass"/>
         <item amount="12" material="arrow"/>

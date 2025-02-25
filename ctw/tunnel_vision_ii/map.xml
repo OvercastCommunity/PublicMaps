@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Tunnel Vision II</name>
 <version>1.0.4</version>
 <objective>Capture the enemy's wools!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e931b4b3-479f-4761-8808-4c4b2ed69b0f" contribution="Layout, terrain"/> <!-- Mattato -->
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Aesthetics, XML"/> <!-- Xerocoles -->
@@ -53,18 +54,12 @@
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>43.5,16,-77.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <deny id="deny-blue">
-        <team id="only-blue">blue-team</team>
-    </deny>
-    <deny id="deny-red">
-        <team id="only-red">red-team</team>
-    </deny>
     <deny id="deny-chest">
         <material>chest</material>
     </deny>
@@ -72,9 +67,6 @@
         <cause>world</cause>
         <material id="only-iron">iron block</material>
     </all>
-    <deny id="deny-void">
-        <void/>
-    </deny>
 </filters>
 <regions>
     <union id="spawns">
@@ -124,19 +116,19 @@
         <cuboid id="east-portal-no-edit" min="76,4,66" max="80,9,61"/>
     </union>
     <cuboid id="low-lane-height" min="33,30,250" max="60,80,-100"/>
-    <apply use="only-blue" region="blue-wrs"/>
-    <apply use="only-red" region="red-wrs"/>
-    <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
-    <apply enter="only-blue" region="blue-wrs" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="only-red" region="red-wrs" message="You may not enter your team's own wool rooms!"/>
+    <apply use="blue-team" region="blue-wrs"/>
+    <apply use="red-team" region="red-wrs"/>
+    <apply enter="blue-team" use="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" use="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="blue-team" region="blue-wrs" message="You may not enter your team's wool rooms!"/>
+    <apply enter="red-team" region="red-wrs" message="You may not enter your team's wool rooms!"/>
     <apply block-place="only-iron-renew" block-break="only-iron" region="spawns" message="You may not edit this area!"/>
     <apply block="never" region="portals-no-edit" message="You may not edit the portals!"/>
     <apply block="deny-chest" region="wool-rooms" message="You may not break or place chests in the wool rooms!"/>
-    <apply block="deny-blue" region="red-wrs" message="You may not interfere with your team's own wool rooms!"/>
-    <apply block="deny-red" region="blue-wrs" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny(blue-team)" region="red-wrs" message="You may not interfere with your team's wool rooms!"/>
+    <apply block="deny(red-team)" region="blue-wrs" message="You may not interfere with your team's wool rooms!"/>
     <apply block-place="never" region="low-lane-height" message="You have reached the height limit for the lower lane!"/>
-    <apply block-place="deny-void" message="You may not edit the void!"/>
+    <apply block-place="deny(void)" message="You may not edit the void!"/>
 </regions>
 <wools craftable="false">
     <wool team="blue-team" color="orange" location="18.5,23,-64.5">
@@ -226,11 +218,12 @@
     <item>water bucket</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="24" material="wood"/>
-    <item amount="12" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="24" material="wood"/>
+        <item amount="12" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>36</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
