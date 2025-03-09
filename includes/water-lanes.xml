@@ -1,0 +1,40 @@
+<map>
+<!-- Water lanes include file -->
+<!-- Created by mameBT & Pablete1234 -->
+<!-- Version 2025.03.09-1 -->
+
+<!--
+     NOTE: Maps implementing this include require a region named `water-lanes`.
+-->
+
+<constants fallback="true">
+    <constant id="minutes-to-place">45m</constant>
+</constants>
+<filters>
+    <variable id="water-lanes-placed" var="water_lanes_placed">1</variable>
+    <material id="only-air">air</material>
+    <holding id="holding-bucket">
+        <item>bucket</item>
+    </holding>
+</filters>
+<regions>
+    <apply block-break="deny(holding-bucket)" region="water-lanes" message="You can't use buckets here!"/>
+</regions>
+<variables>
+    <variable id="water_lanes_placed" scope="match"/>
+</variables>
+<actions>
+    <action id="place-water-lanes" expose="true" scope="match">
+        <fill region="water-lanes" material="water" filter="only-air"/>
+        <set var="water_lanes_placed" value="1"/>
+    </action>
+</actions>
+<modes>
+    <mode name="`eWater lanes added" action="place-water-lanes" after="${minutes-to-place}" show-before="5m"/>
+</modes>
+<block-drops>
+    <rule region="water-lanes">
+        <replacement>stationary water</replacement>
+    </rule>
+</block-drops>
+</map>
