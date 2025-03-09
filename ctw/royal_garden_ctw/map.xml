@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <name>Royal Garden CTW</name>
-<version>1.7</version>
-<constant id="minutes-to-place">60m</constant>
+<version>1.7.1</version>
+<constant id="water-lane-timer">60m</constant>
 <include id="gapple-kill-reward"/>
 <include id="water-lanes"/>
 <objective>Capture the opposing team's wools and place them at your victory monuments.</objective>
@@ -122,7 +122,6 @@
     <apply block="deny(blue-team)" region="red-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
     <apply block="deny(red-team)" region="blue-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
     <apply block="deny-water-flow" region="wool-rooms"/>
-    <apply block="water-lanes-placed" region="water-lanes"/>
     <apply block="deny(void)" region="non-bridge" message="You may not build in the void!"/>
 </regions>
 <wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
