@@ -1,7 +1,9 @@
 <map proto="1.5.0">
 <name>Royal Garden CTW</name>
-<version>1.6.11</version>
+<version>1.7</version>
+<constant id="minutes-to-place">60m</constant>
 <include id="gapple-kill-reward"/>
+<include id="water-lanes"/>
 <objective>Capture the opposing team's wools and place them at your victory monuments.</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -64,11 +66,7 @@
             <material>mob spawner</material>
         </any>
     </deny>
-    <after id="add-water-lane" duration="300s" message="`eWater lanes will be added in {0}">
-        <time>55m</time>
-    </after>
     <material id="only-iron">iron block</material>
-    <material id="only-air">air</material>
     <deny id="deny-water-flow">
         <all>
             <any>
@@ -124,7 +122,7 @@
     <apply block="deny(blue-team)" region="red-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
     <apply block="deny(red-team)" region="blue-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
     <apply block="deny-water-flow" region="wool-rooms"/>
-    <apply block="add-water-lane" region="water-lanes"/>
+    <apply block="water-lanes-placed" region="water-lanes"/>
     <apply block="deny(void)" region="non-bridge" message="You may not build in the void!"/>
 </regions>
 <wools craftable="false" wool-proximity-metric="none" monument-proximity-metric="closest block">
@@ -149,13 +147,6 @@
         </monument>
     </wool>
 </wools>
-<actions>
-    <trigger scope="match" filter="add-water-lane">
-        <action>
-            <fill region="water-lanes" material="water" filter="only-air"/>
-        </action>
-    </trigger>
-</actions>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -182,27 +173,7 @@
     <item>double plant</item>
     <item>water lily</item>
 </itemremove>
-<block-drops>
-    <rule>
-        <filter>
-            <any>
-                <material>wood</material>
-                <material>glass</material>
-                <material>ladder</material>
-            </any>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</block-drops>
 <itemkeep>
-    <item>iron sword</item>
-    <item>bow</item>
-    <item>iron pickaxe</item>
-    <item>iron axe</item>
-    <item>iron spade</item>
-    <item>arrow</item>
     <item>wood</item>
     <item>glass</item>
     <item>ladder</item>
