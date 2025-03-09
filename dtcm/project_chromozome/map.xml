@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Project Chromozome</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Airship Battle redefined... Destroy 75% of the enemy's battle ship!</objective>
 <authors>
     <author uuid="30e27366-0b14-4076-8f55-0819ece49ce3" contribution="Original Map (Airship Battle)"/> <!-- dewtroid -->
@@ -66,7 +66,7 @@
         <foodlevel>20</foodlevel>
     </kit>
     <kit id="haste" force="true">
-        <effect duration="oo" amplifier="20">fast digging</effect>
+        <effect amplifier="20">fast digging</effect>
         <effect duration="0" amplifier="0">speed</effect>
     </kit>
 </kits>
@@ -74,9 +74,9 @@
     <spawn team="red" kit="tnt-inventory" region="red-spawn" yaw="135"/>
     <spawn team="blue" kit="tnt-inventory" region="blue-spawn" yaw="-45"/>
     <default kit="obs" yaw="135">
-        <regions>
+        <region>
             <point>-11.5,103,28.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>

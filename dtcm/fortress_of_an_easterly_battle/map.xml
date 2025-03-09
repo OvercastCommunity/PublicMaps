@@ -1,24 +1,25 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fortress of an Easterly Battle</name>
-<version>1.0.4</version>
-<phase>staging</phase>
+<version>1.0.5</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
-<rules>
-    <rule>You cannot place dispensers on the map!</rule>
-    <rule>Players have resistance and reduced knockback in spawn!</rule>
-</rules>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
     <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
     <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
 </authors>
+<rules>
+    <rule>You cannot place dispensers on the map!</rule>
+    <rule>Players have resistance and reduced knockback in spawn!</rule>
+</rules>
 <teams>
-    <team color="gold" id="orange" max="24">Orange</team>
-    <team color="light purple" id="pink" max="24">Pink</team>
+    <team id="orange-team" color="gold" max="24">Orange</team>
+    <team id="pink-team" color="light purple" max="24">Pink</team>
 </teams>
 <kits>
     <kit id="spawn-protection">
-        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <effect amplifier="10">damage resistance</effect>
         <knockback-reduction>1</knockback-reduction>
     </kit>
     <kit id="spawn">
@@ -36,33 +37,29 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="orange" kit="spawn" yaw="90">
-        <regions>
+    <spawn team="orange-team" kit="spawn" yaw="90">
+        <region>
             <point>27.5,65.5,-79.5</point>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="pink" kit="spawn" yaw="-90">
-        <regions>
+    <spawn team="pink-team" kit="spawn" yaw="-90">
+        <region>
             <point>61.5,65.5,-79.5</point>
-        </regions>
+        </region>
     </spawn>
-    <default>
-        <regions yaw="180">
+    <default yaw="180">
+        <region>
             <cylinder base="44.5,64.5,-79.5" radius="7" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
     <deny id="deny-dispenser">
         <material>dispenser</material>
     </deny>
-    <!--
-    <deny id="deny-chest-break">
+    <!-- <deny id="deny-chest-break">
         <material>chest</material>
-    </deny>
-    -->
-    <team id="only-pink">pink</team>
-    <team id="only-orange">orange</team>
+    </deny> -->
 </filters>
 <regions>
     <cuboid id="orange-spawn-protect" min="16,61,-84" max="11,68,-51"/>
@@ -78,8 +75,8 @@
         <rectangle min="78,-45" max="72,-83"/>
         <rectangle min="59,-77" max="72,-83"/>
     </union>
-    <apply region="orange-spawn-protect" lend-kit="spawn-protection" filter="only-orange"/>
-    <apply region="pink-spawn-protect" lend-kit="spawn-protection" filter="only-pink"/>
+    <apply region="orange-spawn-protect" lend-kit="spawn-protection" filter="orange-team"/>
+    <apply region="pink-spawn-protect" lend-kit="spawn-protection" filter="pink-team"/>
     <!--
     <apply block="deny-chest-break" message="This block can not be placed or broken on this map!">
         <rectangle min="1,-50" max="85,39"/>
@@ -94,13 +91,13 @@
         </region>
     </apply>
 </regions>
-<cores material="obsidian" leak="3" mode-changes="true" name="Core">
-    <core team="orange">
+<cores name="Core" material="obsidian" leak="3" mode-changes="true">
+    <core team="orange-team">
         <region>
             <cuboid min="5,60,0" max="10,66,-7"/>
         </region>
     </core>
-    <core team="pink">
+    <core team="pink-team">
         <region>
             <cuboid min="84,60,0" max="79,66,-7"/>
         </region>
@@ -110,15 +107,10 @@
     <mode after="15m" material="lapis block"/>
     <mode after="25m" material="glass"/>
 </modes>
-<maxbuildheight>130</maxbuildheight>
-<gamerules>
-    <doFireTick>false</doFireTick>
-</gamerules>
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="arrow"/>
         <item amount="16" material="glass"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <toolrepair>
@@ -142,4 +134,8 @@
     <disable>chest</disable>
     <disable>boat</disable>
 </crafting>
+<maxbuildheight>130</maxbuildheight>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
 </map>

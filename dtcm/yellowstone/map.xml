@@ -1,100 +1,87 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Yellowstone</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Destroy all three of the enemy's monuments to win!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="39332cfb-c179-4458-b068-3262573304d9"/>
-    <!-- Evocal -->
+    <author uuid="39332cfb-c179-4458-b068-3262573304d9"/> <!-- Evocal -->
 </authors>
 <teams>
-    <team id="moon" color="dark aqua" max="25">Moon</team>
-    <team id="sun" color="yellow" max="25">Sun</team>
+    <team id="moon-team" color="dark aqua" max="25">Moon</team>
+    <team id="sun-team" color="yellow" max="25">Sun</team>
 </teams>
-<spawns>
-    <spawn team="moon" kit="mkit">
-        <regions yaw="0">
-            <point>0, 8, -260</point>
-        </regions>
-    </spawn>
-    <spawn team="sun" kit="skit">
-        <regions yaw="180">
-            <point>0, 8, 7</point>
-        </regions>
-    </spawn>
-    <default>
-        <regions yaw="90">
-            <point>97, 60, -126</point>
-        </regions>
-    </default>
-</spawns>
 <kits>
-    <kit id="both">
-        <item slot="0">stone sword</item>
-        <item slot="1">bow</item>
-        <item slot="27" amount="32">arrow</item>
-        <item slot="2">diamond pickaxe</item>
-        <item slot="3" amount="3">golden apple</item>
-        <item slot="4" amount="64">cobblestone</item>
-        <item slot="5" amount="32">log</item>
-        <item slot="6" amount="12">golden carrot</item>
-        <item slot="7" amount="4">exp bottle</item>
-        <item slot="28" amount="1">lapis block"</item> 
-    </kit>
-    <kit id="mkit" parents="both">
-        <helmet color="00AAAA" damage="-3000">leather helmet</helmet>
-    </kit>
-    <kit id="skit" parents="both">
-        <helmet color="FFFF55" damage="-3000">leather helmet</helmet>
+    <kit id="spawn-kit">
+        <item slot="0" material="stone sword"/>
+        <item slot="1" material="bow"/>
+        <item slot="27" amount="32" material="arrow"/>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" amount="3" material="golden apple"/>
+        <item slot="4" amount="64" material="cobblestone"/>
+        <item slot="5" amount="32" material="log"/>
+        <item slot="6" amount="12" material="golden carrot"/>
+        <item slot="7" amount="4" material="exp bottle"/>
+        <item slot="28" material="lapis block"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
     </kit>
 </kits>
-<kill-rewards>
-    <kill-reward>
-        <item amount="1" material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
-<destroyables owner="moon" completion="100%">
-    <destroyable name="Left" region="moon-front-left" materials="obsidian"/>
-    <destroyable name="Right" region="moon-front-right" materials="obsidian"/>
-    <destroyable name="Back Left" region="moon-back-left" materials="obsidian"/>
-    <destroyable name="Back Right" region="moon-back-right" materials="obsidian"/>
-</destroyables>
-<destroyables owner="sun" completion="100%">
-    <destroyable name="Left" region="sun-front-left" materials="obsidian"/>
-    <destroyable name="Right" region="sun-front-right" materials="obsidian"/>
-    <destroyable name="Back Left" region="sun-back-left" materials="obsidian"/>
-    <destroyable name="Back Right" region="sun-back-right" materials="obsidian"/>
-</destroyables>
-<filters>
-    <team id="only-moon">moon</team>
-    <team id="only-sun">sun</team>
-</filters>
+<spawns>
+    <spawn team="moon-team" kit="spawn-kit">
+        <region>
+            <point>0,8,-260</point>
+        </region>
+    </spawn>
+    <spawn team="sun-team" kit="spawn-kit" yaw="180">
+        <region>
+            <point>0,8,7</point>
+        </region>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <point>97,60,-126</point>
+        </region>
+    </default>
+</spawns>
 <regions>
-    <cylinder id="moon-spawn" base="0, 5, -258" radius="9" height="7"/>
-    <cylinder id="sun-spawn" base="0, 5, 4" radius="9" height="7"/>
-    <cuboid id="nobuild-one" max="-46, 36, -90" min="-44, 27, -92"/>
-    <cuboid id="nobuild-two" max="46, 36, -162" min="44, 27, -164"/>
-    <cuboid id="nobuild-three" max="46, 36, -92" min="44, 27, -90"/>
-    <cuboid id="nobuild-four" max="-46, 36, -162" min="-44, 27, 164"/>
+    <cylinder id="moon-spawn" base="0,5,-258" radius="9" height="7"/>
+    <cylinder id="sun-spawn" base="0,5,4" radius="9" height="7"/>
+    <cuboid id="nobuild-one" max="-46,36,-90" min="-44, 27, -92"/>
+    <cuboid id="nobuild-two" max="46,36,-162" min="44, 27, -164"/>
+    <cuboid id="nobuild-three" max="46,36,-92" min="44, 27, -90"/>
+    <cuboid id="nobuild-four" max="-46,36,-162" min="-44, 27, 164"/>
     <union id="monuments">
-        <block id="moon-front-left">-29, 28, -193</block>
-        <block id="moon-front-right">29, 28, -193</block>
-        <block id="moon-back-left">-69, 22, -234</block>
-        <block id="moon-back-right">69, 22, -234</block>
-        <block id="sun-front-left">29, 28, -61</block>
-        <block id="sun-front-right">-29, 28, -61</block>
-        <block id="sun-back-left">69, 22, -20</block>
-        <block id="sun-back-right">-69, 22, -20</block>
+        <block id="moon-front-left">-29,28,-193</block>
+        <block id="moon-front-right">29,28,-193</block>
+        <block id="moon-back-left">-69,22,-234</block>
+        <block id="moon-back-right">69,22,-234</block>
+        <block id="sun-front-left">29,28,-61</block>
+        <block id="sun-front-right">-29,28,-61</block>
+        <block id="sun-back-left">69,22,-20</block>
+        <block id="sun-back-right">-69,22,-20</block>
     </union>
     <apply block="never" region="nobuild-one" message="You may not modify blocks here!"/>
     <apply block="never" region="nobuild-two" message="You may not modify blocks here!"/>
     <apply block="never" region="nobuild-three" message="You may not modify blocks here!"/>
     <apply block="never" region="nobuild-four" message="You may not modify blocks here!"/>
-    <apply block="never" enter="only-moon" region="moon-spawn" message="You may not modify blocks or enter here!"/>
-    <apply block="never" enter="only-sun" region="sun-spawn" message="You may not modify blocks or enter here!"/>
-    <apply enter="only-sun" region="sun-spawn"/>
-    <apply enter="only-moon" region="moon-spawn"/>
+    <apply block="never" enter="moon-team" region="moon-spawn" message="You may not modify blocks or enter here!"/>
+    <apply block="never" enter="sun-team" region="sun-spawn" message="You may not modify blocks or enter here!"/>
+    <apply enter="sun-team" region="sun-spawn"/>
+    <apply enter="moon-team" region="moon-spawn"/>
 </regions>
+<destroyables materials="obsidian">
+    <destroyables owner="moon-team">
+        <destroyable name="Left" region="moon-front-left"/>
+        <destroyable name="Right" region="moon-front-right"/>
+        <destroyable name="Back Left" region="moon-back-left"/>
+        <destroyable name="Back Right" region="moon-back-right"/>
+    </destroyables>
+    <destroyables owner="sun-team">
+        <destroyable name="Left" region="sun-front-left"/>
+        <destroyable name="Right" region="sun-front-right"/>
+        <destroyable name="Back Left" region="sun-back-left"/>
+        <destroyable name="Back Right" region="sun-back-right"/>
+    </destroyables>
+</destroyables>
 <itemremove>
     <item>leather helmet</item>
     <item>leather chestplate</item>

@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Streamline II</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Destroy and leak the enemy team's obsidian cores.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -29,25 +30,23 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit">
-        <regions yaw="180">
+    <spawn team="blue" kit="spawn-kit" yaw="180">
+        <region>
             <cylinder base="0.5,10,89.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="0.5,10,-89.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
-    <default>
-        <regions yaw="-90">
+    <default yaw="-90">
+        <region>
             <point>-72.5,10,0.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
     <deny id="no-beacon">
         <material>beacon</material>
     </deny>
@@ -62,9 +61,6 @@
             <cause>explosion</cause>
             <material id="core-materials">obsidian</material>
         </all>
-    </not>
-    <not id="no-void">
-        <void/>
     </not>
 </filters>
 <regions>
@@ -97,11 +93,11 @@
     <negative id="outside-map">
         <rectangle id="map" min="44,96" max="-43,-96"/>
     </negative>
-    <apply region="centers" block="no-void" message="You may not modify the void area!"/>
     <apply region="spawns" block="never" message="You may not modify the spawns!"/>
     <apply region="outside-map" block="never" message="You may not bridge outside of the map!"/>
     <apply region="no-water-area" block-place="no-water" message="No water around the core"/>
     <apply region="cores" block-break="manual-break-core"/>
+    <apply region="centers" block="deny(void)" message="You may not modify the void area!"/>
     <apply use="no-beacon"/>
 </regions>
 <cores material="obsidian" leak="4">
@@ -145,7 +141,6 @@
         <item amount="16" material="smooth brick"/>
         <item amount="16" material="wood"/>
         <item amount="16" material="tnt"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <hunger>

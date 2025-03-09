@@ -192,46 +192,4 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<!-- include src="tutorial.xml"/ -->
-<!-- <tutorial>
-    <stage title="Destroy the Monument">
-        <teleport>
-            <point angle="21.5,15.5,0.5">50,48,0.5</point>
-        </teleport>
-        <message>
-            <line>The objective is `3Destroy the Monument`r.</line>
-            <line>Your team can win by destroying the other team's `4monument`r, which consists of two `5obsidian blocks`r.</line>
-        </message>
-    </stage>
-    <stage title="The Monument">
-        <teleport>
-            <point pitch="10" yaw="42">10,23,38</point>
-        </teleport>
-        <message>
-            <line>The monument's two `5obsidian blocks `rare located in the center of the `9large balloon`r.</line>
-            <line>Note that there is also a monument on `9Blue Team`r's side.</line>
-            <line>`4Red Team `rmust defend their monument from `9Blue Team `rinvaders, and vice versa.</line>
-        </message>
-    </stage>
-    <stage title="Your Side">
-        <teleport>
-            <point angle="0.5,9.5,44">-0.5,24.5,4.5</point>
-        </teleport>
-        <message>
-            <line>This is `4Red Team`r's side. (Note that `9Blue Team`r's side is exactly the same.)</line>
-            <line>There are chests with `6special supplies `rscattered throughout.</line>
-            <line>These supplies can help you do things such as `5enchant your tools `ror `2build defenses`r.</line>
-        </message>
-    </stage>
-    <stage title="Center Lane">
-        <teleport>
-            <point pitch="25" yaw="47.5">31,23.5,-15.5</point>
-        </teleport>
-        <message>
-            <line>This is the center lane. The purple balloons have `5enchanting tables `rin them.</line>
-            <line>These tables can be used to `2enchant your tools `rwith special abilities.</line>
-            <line>These abilities can give you a `4major advantage `rin `6navigating the map `ror `6fighting with other players`r.</line>
-        </message>
-    </stage>
-</tutorial> -->
 </map>

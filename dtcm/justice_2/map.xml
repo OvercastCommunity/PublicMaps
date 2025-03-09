@@ -1,73 +1,84 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Justice 2</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <gamemode>dtm</gamemode>
-<objective>Destroy the enemies monuments!</objective>
+<objective>Destroy the enemy's monuments!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- Evocal -->
 </authors>
 <teams>
-    <team max="25" min="1" color="red" id="red-team">Red</team>
-    <team max="25" min="1" color="yellow" id="yellow-team">Yellow</team>
+    <team id="red-team" color="red" max="25">Red</team>
+    <team id="yellow-team" color="yellow" max="25">Yellow</team>
 </teams>
 <kits>
-    <kit id="spawn">
-        <item material="stone sword" show-unbreakable="false" unbreakable="true" slot="0"/>
-        <item material="bow" slot="1">
-            <enchantment level="1">arrow_infinite</enchantment>
+    <kit id="spawn-kit">
+        <item slot="0" show-unbreakable="false" unbreakable="true" material="stone sword"/>
+        <item slot="1" material="bow">
+            <enchantment>arrow_infinite</enchantment>
         </item>
-        <item material="diamond pickaxe" slot="2"/>
-        <item material="golden apple" amount="3" slot="3"/>
-        <item material="log" amount="64" slot="4"/>
-        <item material="glass" amount="32" slot="5"/>
-        <item material="apple" amount="24" slot="7"/>
-        <item material="arrow" amount="1" slot="27"/>
-    </kit>
-    <kit id="red-kit" parents="spawn">
-        <helmet unbreakable="true" color="B02E26">leather helmet</helmet>
-    </kit>
-    <kit id="yellow-kit" parents="spawn">
-        <helmet unbreakable="true" color="FED83D">leather helmet</helmet>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="3" amount="3" material="golden apple"/>
+        <item slot="4" amount="64" material="log"/>
+        <item slot="5" amount="32" material="glass"/>
+        <item slot="7" amount="24" material="apple"/>
+        <item slot="27" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
     </kit>
 </kits>
 <spawns>
-    <default>
-        <regions>
-            <point yaw="-90">-1322.5,83,-324.5</point>
-        </regions>
+    <default yaw="-90">
+        <region>
+            <point>-1322.5,83,-324.5</point>
+        </region>
     </default>
-    <spawn safe="true" kit="red-kit" team="red-team">
-        <regions>
-            <point yaw="0">-1199.5,27,-457.5</point>
-        </regions>
+    <spawn safe="true" kit="spawn-kit" team="red-team">
+        <region>
+            <point>-1199.5,27,-457.5</point>
+        </region>
     </spawn>
-    <spawn safe="true" kit="yellow-kit" team="yellow-team">
-        <regions>
-            <point yaw="180">-1199.5,27,-191.5</point>
-        </regions>
+    <spawn safe="true" kit="spawn-kit" team="yellow-team" yaw="180">
+        <region>
+            <point>-1199.5,27,-191.5</point>
+        </region>
     </spawn>
 </spawns>
+<regions>
+    <negative id="not-playing-field">
+        <cuboid id="playing-field" min="-1293.5,0,-168.5" max="-1105.5,200,-480.5"/>
+    </negative>
+    <cylinder id="red-spawn" base="-1999.5,24,-457.5" radius="15" height="20"/>
+    <cylinder id="yellow-spawn" base="-1999.5,24,-191.5" radius="15" height="20"/>
+    <apply region="red-spawn" block="never" enter="red-team"/>
+    <apply region="red-spawn" enter="red-team" message="You may not enter Red's base!"/>
+    <apply region="yellow-spawn" block="never" enter="yellow-team"/>
+    <apply region="yellow-spawn" enter="yellow-team" message="You may not enter Yellow's base!"/>
+    <apply region="not-playing-field" block="never" message="You may not place blocks outside the playing field!"/>
+</regions>
 <destroyables materials="obsidian">
     <!-- Yellow needs to destroy -->
     <destroyable name="Left Monument" owner="red-team">
-        <region><cuboid min="-1270,30,-401" max="-1267,32,-404"/></region>
+        <region>
+            <cuboid min="-1270,30,-401" max="-1267,32,-404"/>
+        </region>
     </destroyable>
     <destroyable name="Right Monument" owner="red-team">
-        <region><cuboid min="-1132,30,-401" max="-1129,32,-404"/></region>
+        <region>
+            <cuboid min="-1132,30,-401" max="-1129,32,-404"/>
+        </region>
     </destroyable>
     <!-- Red needs to destroy -->
     <destroyable name="Left Monument" owner="yellow-team">
-        <region><cuboid min="-1132,30,-245" max="-1128,32,-248"/></region>
+        <region>
+            <cuboid min="-1132,30,-245" max="-1128,32,-248"/>
+        </region>
     </destroyable>
     <destroyable name="Right Monument" owner="yellow-team">
-        <region><cuboid min="-1270,30,-245" max="-1267,32,-248"/></region>
+        <region>
+            <cuboid min="-1270,30,-245" max="-1267,32,-248"/>
+        </region>
     </destroyable>
 </destroyables>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <itemremove>
     <item>stone sword</item>
     <item>apple</item>
@@ -81,25 +92,5 @@
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
 </toolrepair>
-<filters>
-    <team id="only-red">yellow-team</team>
-    <team id="only-yellow">yellow-team</team>
-</filters>
-<regions>
-    <cuboid id="playing-field" min="-1293.5,0,-168.5" max="-1105.5,200,-480.5"/>
-    <apply message="You may not place blocks outside the playing field!" block="never">
-        <region>
-            <negative>
-                <region id="playing-field"/>
-            </negative>
-        </region>
-    </apply>
-    <cylinder id="red-spawn" base="-1999.5,24,-457.5" radius="15" height="20"/>
-    <apply region="red-spawn" block-place="never" block-break="never" enter="only-red"/>
-    <apply region="red-spawn" enter="only-red" message="You may not enter Red's base!"/>
-    <cylinder id="yellow-spawn" base="-1999.5,24,-191.5" radius="15" height="20"/>
-    <apply region="yellow-spawn" block-place="never" block-break="never" enter="only-yellow"/>
-    <apply region="yellow-spawn" enter="only-yellow" message="You may not enter Yellow's base!"/>
-</regions>
 <timelock>on</timelock>
 </map>

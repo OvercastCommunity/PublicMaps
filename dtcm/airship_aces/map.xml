@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Airship Aces</name>
-<version>1.2.9</version>
+<version>1.2.10</version>
 <objective>Leak lava into the void below to win!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
 </authors>
@@ -13,8 +14,8 @@
     <rule>Players have resistance and reduced knockback in spawn!</rule>
 </rules>
 <teams>
-    <team id="blue" color="blue" max="15">Blue</team>
-    <team id="red" color="dark red" max="15">Red</team>
+    <team id="blue-team" color="blue" max="15">Blue</team>
+    <team id="red-team" color="dark red" max="15">Red</team>
 </teams>
 <kits>
     <kit id="spawn-protection">
@@ -38,20 +39,20 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit">
-        <regions>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region>
             <point>-21.5,60,-52.5</point>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" yaw="180">
-        <regions>
+    <spawn team="red-team" kit="spawn-kit" yaw="180">
+        <region>
             <point>-21.5,60,-84.5</point>
-        </regions>
+        </region>
     </spawn>
     <default yaw="90">
-        <regions>
+        <region>
             <cylinder base="-21.5,59,-68.5" radius="5" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -62,8 +63,6 @@
     <deny id="deny-chest-break">
         <material>chest</material>
     </deny>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <!-- Line where recent changes end -->
 </filters>
 <regions>
@@ -79,18 +78,18 @@
     <!-- Recent changes to implement spawn and chest protection -->
     <cuboid id="red-spawn-protect" min="-49,59,-101" max="-24,65,-97"/>
     <cuboid id="blue-spawn-protect" min="-49,59,-35" max="-24,65,-40"/>
-    <apply region="blue-spawn-protect" lend-kit="spawn-protection" filter="only-blue"/>
-    <apply region="red-spawn-protect" lend-kit="spawn-protection" filter="only-red"/>
+    <apply region="blue-spawn-protect" lend-kit="spawn-protection" filter="blue-team"/>
+    <apply region="red-spawn-protect" lend-kit="spawn-protection" filter="red-team"/>
     <!-- <apply block="deny-chest-break" message="This block can not be placed or broken on this map!"/> -->
     <!-- Line where recent changes end -->
 </regions>
 <cores material="obsidian" leak="7" mode-changes="true">
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="-101,56,-102" max="-107,63,-97"/>
         </region>
     </core>
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="-101,56,-40" max="-107,63,-35"/>
         </region>
@@ -128,7 +127,6 @@
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <timelock>on</timelock>
@@ -140,34 +138,4 @@
         <mob>silverfish</mob>
     </filter>
 </mobs>
-<!-- <tutorial>
-    <stage title="Destroy the Core">
-        <message>
-            <line>This map is a `aDestroy the Core `r(DTC) map.</line>
-            <line>The objective is to leak the other team's obsidian core.</line>
-        </message>
-        <teleport>
-            <point yaw="140" pitch="20">-41,75,-61</point>
-        </teleport>
-    </stage>
-    <stage title="Core">
-        <message>
-            <line>Each team has one obsidian core that they must defend.</line>
-            <line>The core is thinner toward the spawn and thicker the further away, so beware!</line>
-            <line>The core will become `6gold blocks `rat 15 minutes and `7glass `rat 20 minutes!</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="5">-122,62,-38</point>
-        </teleport>
-    </stage>
-    <stage title="Supplies">
-        <message>
-            <line>You don't spawn with any supplies, get them from the chests scattered around the ship!</line>
-            <line>Make sure to protect them with water, because the enemy will want to quickly destroy them.</line>
-        </message>
-        <teleport>
-            <point yaw="55" pitch="20">-48.5,56.5,-42.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

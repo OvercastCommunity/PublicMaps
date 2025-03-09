@@ -1,14 +1,15 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Ternio</name>
-<version>2.2.3</version>
+<version>2.2.4</version>
 <phase>staging</phase>
 <objective>Destroy the enemy team's monuments!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="44df6b20-168f-4389-b7ac-434518207c2f"/> <!-- ParaPenguin -->
 </authors>
 <teams>
-    <team id="purple" color="dark purple" max="16">Purple</team>
-    <team id="cyan" color="dark aqua" max="16">Cyan</team>
+    <team id="purple-team" color="dark purple" max="16">Purple</team>
+    <team id="cyan-team" color="dark aqua" max="16">Cyan</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -29,65 +30,63 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="purple" kit="spawn-kit">
-        <regions>
+    <spawn team="purple-team" kit="spawn-kit">
+        <region>
             <cylinder base="4.5,25,-821.5" height="0" radius="2"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="cyan" kit="spawn-kit" yaw="180">
-        <regions>
+    <spawn team="cyan-team" kit="spawn-kit" yaw="180">
+        <region>
             <cylinder base="4.5,25,-714.5" height="0" radius="2"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cylinder base="-56.5,46,-767.5" height="0" radius="1"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
     <deny id="deny-fire-spread">
         <material>fire</material>
     </deny>
-    <team id="only-purple">purple</team>
-    <team id="only-cyan">cyan</team>
 </filters>
 <regions>
     <union id="spawns">
         <cylinder id="cyan-spawn" base="4,23,-714" height="6" radius="7"/>
         <cylinder id="purple-spawn" base="4,23,-821" height="6" radius="7"/>
     </union>
-    <apply region="cyan-spawn" enter="only-cyan" message="You may not enter `3Cyan`c's spawn area!"/>
-    <apply region="purple-spawn" enter="only-purple" message="You may not enter `5Purple`c's spawn area!"/>
+    <apply region="cyan-spawn" enter="cyan-team" message="You may not enter `3Cyan`c's spawn area!"/>
+    <apply region="purple-spawn" enter="purple-team" message="You may not enter `5Purple`c's spawn area!"/>
     <apply region="spawns" block="never" message="You may not modify the spawn area."/>
 </regions>
 <destroyables materials="obsidian">
-    <destroyable name="Left" owner="purple">
+    <destroyable name="Left" owner="purple-team">
         <region>
             <block>-33,29,-821</block>
         </region>
     </destroyable>
-    <destroyable name="Center" owner="purple">
+    <destroyable name="Center" owner="purple-team">
         <region>
             <block>4,29,-858</block>
         </region>
     </destroyable>
-    <destroyable name="Right" owner="purple">
+    <destroyable name="Right" owner="purple-team">
         <region>
             <block>41,29,-821</block>
         </region>
     </destroyable>
-    <destroyable name="Left" owner="cyan">
+    <destroyable name="Left" owner="cyan-team">
         <region>
             <block>41,29,-714</block>
         </region>
     </destroyable>
-    <destroyable name="Center" owner="cyan">
+    <destroyable name="Center" owner="cyan-team">
         <region>
             <block>4,29,-677</block>
         </region>
     </destroyable>
-    <destroyable name="Right" owner="cyan">
+    <destroyable name="Right" owner="cyan-team">
         <region>
             <block>-33,29,-714</block>
         </region>
@@ -111,11 +110,6 @@
     <item>cooked fish</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <timelock>on</timelock>
 <maxbuildheight>64</maxbuildheight>
 </map>

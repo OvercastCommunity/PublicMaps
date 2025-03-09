@@ -1,10 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Spaceship Battles</name>
 <include id="gapple-kill-reward"/>
 <variant id="halloween" world="halloween">Halloween</variant>
 <variant id="blitz" world="blitz">Blitz</variant>
 <!-- <variant id="tournament" world="tournament">TE</variant> -->
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Leak lava from the enemy's obsidian core and destroy both of their antennas.</objective>
 <if variant="default">
     <created>2012-02-26</created>
@@ -25,9 +25,14 @@
         <rule>Dispensers are disabled.</rule>
     </if>
 </rules>
+<if variant="blitz">
+    <broadcasts>
+        <alert after="5s" every="5m">You'll only lose lives after 5 minutes!</alert>
+    </broadcasts>
+</if>
 <teams>
-    <team id="blue" color="blue" max="24">Blue</team>
-    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue-team" color="blue" max="24">Blue</team>
+    <team id="red-team" color="dark red" max="24">Red</team>
 </teams>
 <if variant="blitz">
     <timelock>on</timelock>
@@ -70,35 +75,30 @@
     </kit>
 </kits>
 <spawns>
+    <default yaw="90">
+        <regions>
+            <cylinder base="298.5,71,108.5" radius="2" height="0"/>
+        </regions>
+    </default>
     <unless variant="blitz">
-        <default yaw="270">
-            <regions>
-                <cylinder base="298.5,71,108.5" radius="2" height="0"/>
-            </regions>
-        </default>
-        <spawn team="blue" kit="spawn-kit" yaw="180">
+        <spawn team="blue-team" kit="spawn-kit" yaw="180">
             <regions>
                 <cuboid min="295.5,72,88.5" max="298.5,72,91.5"/>
             </regions>
         </spawn>
-        <spawn team="red" kit="spawn-kit">
+        <spawn team="red-team" kit="spawn-kit">
             <regions>
                 <cuboid min="295.5,72,124.5" max="298.5,72,127.5"/>
             </regions>
         </spawn>
     </unless>
     <if variant="blitz">
-        <default yaw="90">
-            <regions>
-                <cylinder base="298.5,71,108.5" radius="2" height="0"/>
-            </regions>
-        </default>
-        <spawn team="blue" yaw="180">
+        <spawn team="blue-team" yaw="180">
             <regions>
                 <cuboid min="295.5,72,88.5" max="298.5,72,91.5"/>
             </regions>
         </spawn>
-        <spawn team="red">
+        <spawn team="red-team">
             <regions>
                 <cuboid min="295.5,72,124.5" max="298.5,72,127.5"/>
             </regions>
@@ -110,8 +110,6 @@
     <deny id="deny-chest-break">
         <material>chest</material>
     </deny>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <!-- Line where recent changes end -->
     <deny id="deny-dispenser">
         <material>dispenser</material>
@@ -130,8 +128,8 @@
         <rectangle id="red-drop-down" min="244,136" max="239,141"/>
         <cuboid id="red-bottom-proect" min="237,40,143" max="246,44,134"/>
     </union>
-    <apply lend-kit="spawn-protection" filter="only-blue" region="blue-spawn-protect"/>
-    <apply lend-kit="spawn-protection" filter="only-red" region="red-spawn-protect"/>
+    <apply lend-kit="spawn-protection" filter="blue-team" region="blue-spawn-protect"/>
+    <apply lend-kit="spawn-protection" filter="red-team" region="red-spawn-protect"/>
     <apply block="deny-chest-break" message="This block can not be placed or broken on this map!"/>
     <!-- Line where recent changes end -->
     <union id="water-drop">
@@ -166,12 +164,12 @@
     </if>
 </regions>
 <cores material="obsidian" leak="0" mode-changes="true">
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="208,42,76" max="211,48,79"/>
         </region>
     </core>
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="208,42,137" max="211,48,140"/>
         </region>
@@ -187,7 +185,7 @@
     </if>
 </modes>
 <destroyables materials="coal ore" repairable="false">
-    <destroyables owner="blue">
+    <destroyables owner="blue-team">
         <destroyable name="Antenna A">
             <region>
                 <cuboid min="226,48,68" max="229,58,71"/>
@@ -199,7 +197,7 @@
             </region>
         </destroyable>
     </destroyables>
-    <destroyables owner="red">
+    <destroyables owner="red-team">
         <destroyable name="Antenna A">
             <region>
                 <cuboid min="226,48,145" max="229,58,148"/>
@@ -244,11 +242,6 @@
     <item>arrow</item>
     <item>bucket</item>
 </itemkeep>
-<if variant="blitz">
-    <broadcasts>
-        <alert after="5s" every="5m">You'll only lose lives after 5 minutes!</alert>
-    </broadcasts>
-</if>
 <kill-rewards>
     <kill-reward>
         <unless variant="blitz">

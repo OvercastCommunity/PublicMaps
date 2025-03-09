@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Beauty to Ashes</name>
-<version>1.1.7</version>
+<version>1.1.8</version>
 <objective>Destroy the enemy's monument and leak their core!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -16,8 +16,8 @@
     <contributor uuid="8053ed38-89d9-4096-b265-a0fcce3a1c33"/> <!-- JETUB1 -->
 </contributors>
 <teams>
-    <team id="orange" color="gold" max="35">Orange</team>
-    <team id="magenta" color="light purple" max="35">Magenta</team>
+    <team id="orange-team" color="gold" max="35">Orange</team>
+    <team id="magenta-team" color="light purple" max="35">Magenta</team>
 </teams>
 <kits>
     <kit id="teams">
@@ -53,20 +53,18 @@
             <cylinder base="10.5,50,-72.5" radius="3" height="2"/>
         </region>
     </default>
-    <spawn team="orange" kit="teams">
+    <spawn team="orange-team" kit="teams">
         <region yaw="180">
             <point>-49.5,82,78.5</point>
         </region>
     </spawn>
-    <spawn team="magenta" kit="teams">
+    <spawn team="magenta-team" kit="teams">
         <region>
             <point>-49.5,82,-225.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-orange">orange</team>
-    <team id="only-magenta">magenta</team>
     <deny id="not-spawners">
         <any>
             <material>mob spawner</material>
@@ -100,8 +98,8 @@
         <rectangle min="-103,-209" max="-8,-199"/>
     </union>
     <!-- Applied -->
-    <apply region="magenta-pad" velocity="@0,2,0.5" kit="heal" filter="only-magenta"/>
-    <apply region="orange-pad" velocity="@0,2,-0.5" kit="heal" filter="only-orange"/>
+    <apply region="magenta-pad" velocity="@0,2,0.5" kit="heal" filter="magenta-team"/>
+    <apply region="orange-pad" velocity="@0,2,-0.5" kit="heal" filter="orange-team"/>
     <apply region="spawns" block="never" message="You may not modify this house!"/>
     <apply region="spawn-water" block="never" message="You may not edit this area!"/>
     <apply region="above-river" block="never" message="You have reach the maximum build height above the river! (`735 Blocks`c)"/>
@@ -109,12 +107,12 @@
     <apply region="map-inverse" block="never" message="You may not edit outside the main area!"/>
 </regions>
 <cores material="obsidian" leak="7" mode-changes="true">
-    <core team="orange" region="orange-core"/>
-    <core team="magenta" region="magenta-core"/>
+    <core team="orange-team" region="orange-core"/>
+    <core team="magenta-team" region="magenta-core"/>
 </cores>
 <destroyables name="Monument" materials="obsidian" repairable="false">
-    <destroyable owner="orange" region="orange-monument"/>
-    <destroyable owner="magenta" region="magenta-monument"/>
+    <destroyable owner="orange-team" region="orange-monument"/>
+    <destroyable owner="magenta-team" region="magenta-monument"/>
 </destroyables>
 <modes>
     <mode after="15m" material="gold block" name="GOLD CORE MODE"/>

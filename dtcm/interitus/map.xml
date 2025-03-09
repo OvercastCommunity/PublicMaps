@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Interitus</name>
-<version>2.3.8</version>
+<version>2.3.9</version>
 <objective>Leak lava from the enemy's obsidian core and break their two endstone monuments.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
     <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0"/> <!-- SH4D0W_HAWK -->
@@ -12,8 +13,8 @@
     <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Help and Feedback"/> <!-- khazhyk -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
 </teams>
 <kits>
     <kit id="teams" parents="observer">
@@ -43,7 +44,7 @@
             <cylinder base="-84,33,0" radius="2" height="0"/>
         </regions>
     </default>
-    <spawns team="blue" kit="teams">
+    <spawns team="blue-team" kit="teams">
         <spawn yaw="270">
             <regions>
                 <cuboid min="-58,4,-56" max="-56,4,-54"/>
@@ -65,7 +66,7 @@
             </regions>
         </spawn>
     </spawns>
-    <spawns team="red" kit="teams">
+    <spawns team="red-team" kit="teams">
         <spawn yaw="270">
             <regions>
                 <cuboid min="-56,4,55" max="-58,4,57"/>
@@ -89,8 +90,6 @@
     </spawns>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <deny id="no-beacon">
         <material>beacon</material>
     </deny>
@@ -113,25 +112,25 @@
         <rectangle id="map" min="61,53" max="-60,-52"/>
     </negative>
     <apply region="spawn-protection" block="never" message="You may not modify the spawns"/>
-    <apply region="red-spawns" enter="only-red" message="You may not enter the enemy spawn"/>
-    <apply region="blue-spawns" enter="only-blue" message="You may not enter the enemy spawn"/>
+    <apply region="red-spawns" enter="red-team" message="You may not enter the enemy's spawn"/>
+    <apply region="blue-spawns" enter="blue-team" message="You may not enter the enemy's spawn"/>
     <apply use="no-beacon"/>
     <apply region="map-inverse" block="never" message="You may not build outside the map"/>
 </regions>
 <cores material="obsidian" leak="5" mode-changes="true">
-    <core id="red-core" team="red">
+    <core id="red-core" team="red-team">
         <region>
             <cuboid min="3,22,39" max="-2,30,44"/>
         </region>
     </core>
-    <core id="blue-core" team="blue">
+    <core id="blue-core" team="blue-team">
         <region>
             <cuboid min="3,22,-43" max="-2,30,-38"/>
         </region>
     </core>
 </cores>
 <destroyables materials="ender stone" sparks="true" show-progress="true">
-    <destroyables owner="red">
+    <destroyables owner="red-team">
         <destroyable id="red-west-monument" name="West Monument">
             <region>
                 <cylinder base="-32.5,10,37.5" radius="3" height="12"/>
@@ -143,7 +142,7 @@
             </region>
         </destroyable>
     </destroyables>
-    <destroyables owner="blue">
+    <destroyables owner="blue-team">
         <destroyable id="blue-east-monument" name="East Monument">
             <region>
                 <cylinder base="33.5,10,-36.5" radius="3" height="12"/>
@@ -181,11 +180,6 @@
     <item>ladder</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <maxbuildheight>40</maxbuildheight>
 <timelock>on</timelock>
 </map>

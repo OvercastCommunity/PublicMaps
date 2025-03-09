@@ -1,14 +1,15 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Rift</name>
-<version>1.2.7</version>
+<version>1.2.8</version>
 <objective>Destroy the enemy's three Inhibitor Crystals and one large Nexus Crystal to win!</objective>
+<created>2013-03-31</created>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!--  Lyzak  -->
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
 </authors>
 <contributors>
     <contributor uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87" contribution="Building assistance"/> <!-- Torn_Ares -->
 </contributors>
-<created>2013-03-31</created>
 <teams>
    <team id="cyan" color="dark aqua" max="45">Cyan</team>
    <team id="purple" color="dark purple" max="45">Purple</team>
@@ -21,7 +22,7 @@
     <kit id="spawn-kit" parents="heal">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="8" material="paper" name="`fCollect `aemeralds `fto buy items!" prevent-sharing="true"/>
+        <item slot="8" material="paper" prevent-sharing="true" name="`fCollect `aemeralds `fto buy items!"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" team-color="true" material="leather leggings"/>
@@ -39,12 +40,8 @@
         <material>glowing redstone ore</material>
         <material>tnt</material>
     </any>
-    <deny id="deny-cyan">
-        <team id="only-cyan">cyan</team>
-    </deny>
-    <deny id="deny-purple">
-        <team id="only-purple">purple</team>
-    </deny>
+    <team id="only-cyan">cyan</team>
+    <team id="only-purple">purple</team>
 </filters>
 <regions>
     <union id="spawn-points">
@@ -136,14 +133,14 @@
         <region id="purple-base"/>
     </union>
     <apply enter="never" region="no-trees" message="The tree tops are off limits!"/>
-    <apply enter="only-cyan" region="cyan-base" message="You may not enter the enemy team's base!"/>
-    <apply enter="only-purple" region="purple-base" message="You may not enter the enemy team's base!"/>
+    <apply enter="only-cyan" region="cyan-base" message="You may not enter the enemy's base!"/>
+    <apply enter="only-purple" region="purple-base" message="You may not enter the enemy's base!"/>
     <apply kit="heal" enter="only-cyan" region="cyan-portals"/>
     <apply kit="heal" enter="only-purple" region="purple-portals"/>
     <apply block="never" region="bases"/>
     <apply block="allow-world" region="towers"/>
-    <apply block="deny-cyan" region="no-block-cyan"/>
-    <apply block="deny-purple" region="no-block-purple"/>
+    <apply block="deny(only-cyan)" region="no-block-cyan"/>
+    <apply block="deny(only-purple)" region="no-block-purple"/>
     <apply block="blocks-only"/>
 </regions>
 <spawns>
@@ -195,10 +192,11 @@
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="2" material="emerald"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="2" material="emerald"/>
+    </kill-reward>
+</kill-rewards>
 <mobs>
     <filter>
         <spawn>spawner</spawn>

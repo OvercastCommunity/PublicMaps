@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>A Watery Grave</name>
-<version>1.2.4</version>
+<version>1.2.5</version>
 <objective>Break the enchanting table inside of the enemy team's obsidian core.</objective>
 <authors>
     <author uuid="9a96b43e-e5d7-47e4-9679-ccbfe3fffc10"/> <!-- Skirmisher47 -->
@@ -34,38 +34,36 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cuboid min="42,114,13" max="39,114,7"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="-90">
-        <regions>
+        <region>
             <cuboid min="75,114,6" max="80,114,14"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <cylinder base="58,114,9" radius="5" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <any id="only-obsidian-only-blue">
-        <team>blue</team>
+        <team id="only-blue">blue</team>
         <not>
             <any>
-                <team>blue</team>
+                <filter id="only-blue"/>
                 <material>obsidian</material>
             </any>
         </not>
     </any>
     <any id="only-obsidian-only-red">
-        <team>red</team>
+        <team id="only-red">red</team>
         <not>
             <any>
-                <team>red</team>
+                <filter id="only-red"/>
                 <material>obsidian</material>
             </any>
         </not>
@@ -143,59 +141,4 @@
 </kill-rewards>
 <timelock>on</timelock>
 <maxbuildheight>40</maxbuildheight>
-<!-- <tutorial>
-    <stage title="Gamemode Information">
-        <message>
-            <line>`rThis map is a `a`lDestroy the Monument `r(DTM)</line>
-            <line>`rThe objective is to destroy the enemy team's monument.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="90">
-                <cuboid min="61,85,6" max="56,86,13"/>
-            </point>
-        </teleport>
-    </stage>
-    <stage title="Blue Team's Monument">
-        <message>
-            <line>`rThis is the protective shell for `9Blue Team's `rmonument.</line>
-            <line>`rInside this obsidian cube is an enchanting table. You must break it to win the game.</line>
-            <line>`rIt is your `cyour team's job `rto attack the enemy monument and defend your own.</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="45">
-                <cuboid min="94,27,7" max="95,28,12"/>
-            </point>
-        </teleport>
-    </stage>
-    <stage title="Supply Information">
-        <message>
-            <line>`rThis is where `cRed Team `renters the map.</line>
-            <line>`9Blue Team `renters the map in an area exactly like this.</line>
-            <line>`rYou spawn with what you need. The chests contain building blocks.</line>
-        </message>
-        <teleport>
-            <point yaw="-90">
-                <cuboid min="-6,19,5" max="-5,20,14"/>
-            </point>
-        </teleport>
-    </stage>
-    <stage title="Mining the Monument">
-        <message>
-            <line>`rThere are several chests with `bDiamond Pickaxes `rin them.</line>
-            <line>`rUse these pickaxes to mine the monument and win the game for your team!</line>
-        </message>
-        <teleport>
-            <point yaw="-90">54,29.5,51</point>
-        </teleport>
-    </stage>
-    <stage title="Special Equipment">
-        <message>
-            <line>`rThere are chests with `especial equipment `rscattered around the map.</line>
-            <line>`rAcquiring these items could give you a `asmall advantage `rover your enemy!</line>
-        </message>
-        <teleport>
-            <point yaw="0">58.5,26,57.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Moonlight Summit</name>
-<version>1.5.8</version>
+<version>1.5.9</version>
 <objective>Destroy 90% of all three of the enemy's monuments!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- Chicky -->
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draeyx -->
@@ -86,9 +87,6 @@
         <cause>world</cause>
     </allow>
     <cause id="only-world">world</cause>
-    <not id="not-void">
-        <void/>
-    </not>
     <any id="monument-material">
         <material>obsidian</material>
         <material>ender stone</material>
@@ -213,14 +211,14 @@
     <apply kit="unlockable-a" region="portals-a"/>
     <apply kit="unlockable-b" region="portals-b"/>
     <apply kit="unlockable-c" region="portals-c"/>
-    <apply enter="only-blue" message="`aYou may not enter the enemy village!" region="blue-village"/>
-    <apply enter="only-red" message="`aYou may not enter the enemy village!" region="red-village"/>
+    <apply enter="only-blue" message="`aYou may not enter the enemy's village!" region="blue-village"/>
+    <apply enter="only-red" message="`aYou may not enter the enemy's village!" region="red-village"/>
     <apply use="not-some-global" message="`aGo to spawn and trade your ores in for `6Golden Coins" region="not-villages"/>
     <apply block="only-redstone" use="not-some-village" region="villages"/>
     <apply block="deny-blue-destroyable" message="`aYou may not damage your own monument!" region="blue-monuments"/>
     <apply block="deny-red-destroyable" message="`aYou may not damage your own monument!" region="red-monuments"/>
     <apply block-place="never" message="`aYou may not place blocks above the height limit! (`e65 Blocks`a)" region="above-65"/>
-    <apply block-place="not-void" message="`aYou may not place blocks outside of the map!"/>
+    <apply block-place="deny(void)" message="`aYou may not place blocks outside of the map!"/>
 </regions>
 <portals>
     <portal x="@-1" y="@36" z="@156" yaw="@180" pitch="@0" filter="only-blue" region="blue-portals"/>
@@ -369,7 +367,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item name="`6Golden Coins" amount="2" material="gold nugget"/>
         <item amount="12" material="wood"/>
         <item amount="16" material="arrow"/>
@@ -457,54 +454,4 @@
             <team>blue</team>
         </detect>
     </proximity-alarm>
-</proximity-alarms>
-<include src="tutorial.xml"/>
-<tutorial>
-    <stage title="Destroy the Monument">
-        <message>
-            <line>This map is a `bDTM`r, with a `bvillager trading system.</line>
-            <line>The objective is to destroy 90% of each of the `athree monuments`r. This is the `bfront monument`r.</line>
-        </message>
-        <teleport>
-            <point yaw="151" pitch="20">-8,45,-205</point>
-        </teleport>
-    </stage>
-    <stage title="Villager trading">
-        <message>
-            <line>This map has a `bvillager trading system.</line>
-            <line>`cKill people or sell recources `rto get `6Golden Coins `rto trade with the `cvilagers`r.</line>
-        </message>
-        <teleport>
-            <point yaw="-45" pitch="5">14.5,34,-399.5</point>
-        </teleport>
-    </stage>
-    <stage title="Kits">
-        <message>
-            <line>By throwing any extra `6Golden Coins `rinto the water hole, you will help your team get closer to unlocking the next kit.</line>
-            <line>Reaching 2 stacks unlocks kit 1, reaching 5 stacks unlocks kit 2, and reaching 10 stacks unlocks kit 3.</line>
-            <line>You must unlock the previous kit in order to unlock the next one. For example, if you want to unlock kit two, you must first unlock the first kit upgrade.</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="10">-5.5,35,-439.5</point>
-        </teleport>
-    </stage>
-    <stage title="Amount to Unlock Kits">
-        <message>
-            <line>Reaching `a2 `rstacks unlocks `6kit 1`r.</line>
-            <line>Reaching `a5 `rstacks unlocks `6kit 2`r.</line>
-            <line>Reaching `a10 `rstacks unlocks `6kit 3`r.</line>
-        </message>
-    </stage>
-    <stage title="Kit Portals">
-        <message>
-            <line>In front of you is the first unlockable kit for the `4Red Team`r.</line>
-            <line>To get new gear, you must simply walk through the portal. You will be given a new kit, and teleported back to your spawn.</line>
-            <line>Be careful, your sword, armor, and tools will be overridden.</line>
-            <line>You `lwill `rhave to go through the portal to recieve your new kit every time you respawn.</line>
-            <line>If you want to keep your items while going through the portal, take them out of your hotbar!</line>
-        </message>
-        <teleport>
-            <point yaw="90">-10.5,35,-439.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
+</proximity-alarms> -->

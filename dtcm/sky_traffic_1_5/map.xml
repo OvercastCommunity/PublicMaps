@@ -1,10 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Sky Traffic 1.5</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Attackers must leak the enemy's core. Defenders must stop them from doing so for 10 minutes!</objective>
 <gamemode>ad</gamemode>
 <gamemode>dtc</gamemode>
-<time result="red">10m</time>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
@@ -15,32 +15,6 @@
     <team id="blue" color="blue" max="24">Attackers</team>
     <team id="red" color="dark red" max="24">Defenders</team>
 </teams>
-<filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
-    <deny id="anti-chest-grief">
-        <material>chest</material>
-    </deny>
-</filters>
-<regions>
-    <rectangle id="map" min="60,-17" max="-113,170"/>
-    <union id="spawn-tunnels">
-        <cuboid id="blue-spawn-tunnel-exit" min="53,86,23" max="66,126,-36"/>
-        <cuboid id="red-spawn-tunnel-exit" min="-84,86,-29" max="-89,126,23"/>
-        <cuboid id="spawn-tunnel-length" min="66,86,-29" max="-89,126,-36"/>
-        <cuboid id="spawn-platform" min="7,80,-17" max="-30,126,-59"/>
-    </union>
-    <complement id="void-area">
-        <everywhere/>
-        <!-- Middle-->
-        <region id="map"/>
-        <region id="spawn-tunnels"/>
-    </complement>
-    <apply block="never" region="void-area" message="You may not build outside the map"/>
-    <apply block="anti-chest-grief" region="everywhere" message="Chests cannot be destroyed!"/>
-    <apply block="never" region="spawn-tunnels" message="You may not build in or on the spawn tunnels!"/>
-    <apply enter="never" region="spawn-tunnels" message="You may not reenter the spawns!"/>
-</regions>
 <kits>
     <kit id="spawn-kit">
         <clear/>
@@ -61,14 +35,64 @@
         <boots material="leather boots" team-color="true" unbreakable="true"/>
     </kit>
 </kits>
+<spawns>
+    <default>
+        <region>
+            <point>-11.5,90,-32.5</point>
+        </region>
+    </default>
+    <spawn team="red" kit="spawn-kit" yaw="90">
+        <region>
+            <point>-27.5,91,-32.5</point>
+        </region>
+    </spawn>
+    <spawn team="blue" kit="spawn-kit" yaw="-90">
+        <region>
+            <point>4.5,91,-32.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <deny id="anti-chest-grief">
+        <material>chest</material>
+    </deny>
+</filters>
+<regions>
+    <rectangle id="map" min="60,-17" max="-113,170"/>
+    <union id="spawn-tunnels">
+        <cuboid id="blue-spawn-tunnel-exit" min="53,86,23" max="66,126,-36"/>
+        <cuboid id="red-spawn-tunnel-exit" min="-84,86,-29" max="-89,126,23"/>
+        <cuboid id="spawn-tunnel-length" min="66,86,-29" max="-89,126,-36"/>
+        <cuboid id="spawn-platform" min="7,80,-17" max="-30,126,-59"/>
+    </union>
+    <complement id="void-area">
+        <everywhere/>
+        <!-- Middle-->
+        <region id="map"/>
+        <region id="spawn-tunnels"/>
+    </complement>
+    <apply block="never" region="void-area" message="You may not build outside the map"/>
+    <apply block="anti-chest-grief" message="Chests cannot be destroyed!"/>
+    <apply block="never" region="spawn-tunnels" message="You may not build in or on the spawn tunnels!"/>
+    <apply enter="never" region="spawn-tunnels" message="You may not reenter the spawns!"/>
+</regions>
+<time result="red">10m</time>
+<cores material="obsidian" leak="1">
+    <core team="red">
+        <region>
+           <cuboid min="-68,50,14" max="-78,56,26"/>
+        </region>
+    </core>
+</cores>
 <crafting>
     <disable>boat</disable>
     <disable>chest</disable>
 </crafting>
-<killreward>
-    <item amount="16">arrow</item>
-    <item>golden apple</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <toolrepair>
     <tool>diamond sword</tool>
     <tool>bow</tool>
@@ -90,30 +114,6 @@
     <item>water bucket</item>
     <item>golden apple</item>
 </itemremove>
-<spawns>
-    <default yaw="0">
-        <regions>
-            <point>-11.5,90,-32.5</point>
-        </regions>
-    </default>
-    <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
-            <point>-27.5,91,-32.5</point>
-        </regions>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit" yaw="-90">
-        <regions>
-            <point>4.5,91,-32.5</point>
-        </regions>
-    </spawn>
-</spawns>
-<cores material="obsidian" leak="1">
-    <core team="red">
-        <region>
-           <cuboid min="-68,50,14" max="-78,56,26"/>
-        </region>
-    </core>
-</cores>
 <itemkeep>
     <item>golden apple</item>
 </itemkeep>

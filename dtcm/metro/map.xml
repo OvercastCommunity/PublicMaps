@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Metro</name>
-<version>1.8.8</version>
+<version>1.8.9</version>
 <objective>Destroy the enemy monuments</objective>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- yoyo_power -->
@@ -30,13 +30,13 @@
         <effect duration="5" amplifier="2">increase_damage</effect>
     </kit>
     <kit id="gas-mask" force="true">
-        <helmet locked="true" enchantment="protection environmental:3" name="`6Gas Mask" lore="`7Anti-Gas I" damage="15" material="stained glass"/>
+        <helmet locked="true" enchantment="protection environmental:3" name="`6Gas Mask" lore="`r`7Anti-Gas I" damage="15" material="stained glass"/>
     </kit>
     <kit id="give-toxins" force="true">
-        <effect duration="oo" amplifier="3">wither</effect>
-        <effect duration="oo" amplifier="1">confusion</effect>
-        <effect duration="oo" amplifier="2">slow digging</effect>
-        <effect duration="oo" amplifier="2">weakness</effect>
+        <effect amplifier="3">wither</effect>
+        <effect>confusion</effect>
+        <effect amplifier="2">slow digging</effect>
+        <effect amplifier="2">weakness</effect>
     </kit>
     <kit id="remove-toxins" force="true">
         <effect duration="0" amplifier="0">wither</effect>
@@ -61,9 +61,6 @@
     <default region="default-spawn"/>
 </spawns>
 <filters>
-    <not id="deny-void">
-        <void/>
-    </not>
     <all id="blue-spawn-check">
         <team id="only-blue">blue</team>
         <material>iron block</material>
@@ -131,9 +128,9 @@
     <apply region="nontoxic-region" kit="remove-toxins"/>
     <apply region="blue-spawns-protection" block="blue-spawn-check" message="You may not modify the spawns"/>
     <apply region="red-spawns-protection" block="red-spawn-check" message="You may not modify the spawns"/>
-    <apply block="deny-void" message="You may not place blocks outside the map"/>
     <apply region="lava-lake" block="deny-lava"/>
     <apply region="observer-spawn-protection" block="never"/>
+    <apply block="deny(void)" message="You may not place blocks outside the map"/>
 </regions>
 <destroyables materials="obsidian">
     <destroyables name="Underground Monument">
@@ -207,32 +204,4 @@
 <hunger>
     <depletion>on</depletion>
 </hunger>
-<!-- include src="tutorial.xml"/ -->
-<!--<tutorial>
-    <stage title="The surface is toxic!">
-        <message>
-            <line>You need a gasmask to go to the surface, else the toxic air will kill you.</line>
-            <line>In order to get a gasmask you need to kill one enemy, then you will have one.</line>
-        </message>
-        <teleport>
-            <point yaw="-90">545,31,1580</point>
-        </teleport>
-    </stage>
-    <stage title="Surface Monument">
-        <message>
-            <line>You need to break both the enemy monuments, this is the surface monument.</line>
-        </message>
-        <teleport>
-            <point yaw="90">545,84,1580</point>
-        </teleport>
-    </stage>
-    <stage title="Underground Monument">
-        <message>
-            <line>This is the underground monument, you have to break both of the enemy monuments to win.</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="90">713,18,1580</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

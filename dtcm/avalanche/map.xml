@@ -1,13 +1,13 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Avalanche</name>
-<version>1.2.11</version>
+<version>1.2.12</version>
 <objective>Leak lava from the enemy's mountaintop core.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="74664520-5d92-4661-b207-b0434b342e8b"/> <!-- way2hot4rs -->
     <author uuid="904bf23f-67c5-484a-ae60-61f4ec150b48"/> <!-- oib5 -->
     <author uuid="90ad8634-0e78-466a-afa9-60ddb7cd0da9"/> <!-- OliverDollar -->
 </authors>
-<!-- include src="tutorial.xml"/ -->
 <teams>
     <team id="red-team" color="dark red" max="32">Red</team>
     <team id="blue-team" color="blue" max="32">Blue</team>
@@ -30,7 +30,7 @@
         <item slot="31" material="wood" damage="1" amount="64"/>
         <helmet material="leather helmet" team-color="true" unbreakable="true"/>
         <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit id="reset-resistance-kit" force="true">
         <effect duration="0" amplifier="0">damage resistance</effect>
@@ -53,21 +53,7 @@
         </region>
     </default>
 </spawns>
-<cores material="obsidian" leak="3">
-    <core team="red-team">
-        <region>
-            <cuboid min="213,55,-1" max="206,62,-8"/>
-        </region>
-    </core>
-    <core team="blue-team">
-        <region>
-            <cuboid min="-10,62,-8" max="-3,55,-1"/>
-        </region>
-    </core>
-</cores>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <all id="only-iron-cause-world">
         <material id="only-iron">iron block</material>
         <cause>world</cause>
@@ -95,12 +81,24 @@
         <rectangle min="-47,-60" max="250,51"/>
     </negative>
     <!-- applicator -->
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
     <apply block-place="only-iron-cause-world" block-break="only-iron-and-above-12" region="spawns" message="You may not edit spawn!"/>
     <apply block="never" region="not-build-region" message="You may not edit the void!"/>
     <apply kit="reset-resistance-kit" region="not-spawns"/>
 </regions>
+<cores material="obsidian" leak="3">
+    <core team="red-team">
+        <region>
+            <cuboid min="213,55,-1" max="206,62,-8"/>
+        </region>
+    </core>
+    <core team="blue-team">
+        <region>
+            <cuboid min="-10,62,-8" max="-3,55,-1"/>
+        </region>
+    </core>
+</cores>
 <renewables>
     <renewable renew-filter="only-iron" region="spawns" grow="false" rate="10"/>
 </renewables>
@@ -148,73 +146,13 @@
         <modify unbreakable="true"/>
     </rule>
 </item-mods>
-<maxbuildheight>70</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
-<!-- <tutorial>
-    <stage title="Gamemode Information">
-        <message>
-            <line>This map is a `a`lDestroy the Core `r(DTC).</line>
-            <line>The objective is to `cleak lava `rfrom the enemy team's obsidian core.</line>
-        </message>
-        <teleport>
-            <point yaw="180" pitch="45">
-                <cuboid min="90,71,58" max="110,71,58"/>
-            </point>
-        </teleport>
-    </stage>
-    <stage title="Red Team's Core">
-        <message>
-            <line>This is `cRed Team`r's core.</line>
-            <line>To win, you must mine the enemy core so that lava leaks below it.</line>
-            <line>It is `cyour team's job `rto attack the enemy core and defend your own.</line>
-        </message>
-        <teleport>
-            <point yaw="-90">
-                <cuboid min="184,60,-7" max="184,60,-1"/>
-            </point>
-        </teleport>
-    </stage>
-    <stage title="Supply Information">
-        <message>
-            <line>This is the spawn point for `9Blue Team`r. `9Blue Team `rcan collect supplies here.</line>
-            <line>`cRed Team `rspawns in a similar area on the opposite side of the map.</line>
-            <line>The chests you are facing contain `ecannon supplies`r. The rest contain `estandard supply loadouts`r.</line>
-        </message>
-        <teleport>
-            <point yaw="-90">
-                <cuboid min="-2,12,-9" max="-2,12,0"/>
-            </point>
-        </teleport>
-    </stage>
-    <stage title="Diamond and Iron Supplies">
-        <message>
-            <line>There are caves in the mountains which contain `biron `rand `bdiamond blocks`r.</line>
-            <line>Both teams have the exact same amount of ore resources.</line>
-            <line>Use these iron and diamond blocks to craft yourself `aarmor`r.</line>
-            <line>More iron and diamond blocks can be found on the `6bedrock islands`r.</line>
-        </message>
-        <teleport>
-            <point yaw="135">24,24,24</point>
-        </teleport>
-    </stage>
-    <stage title="Power Bows">
-        <message>
-            <line>Directly above spawn are chests with `ePower I Bows.</line>
-            <line>Power bows can also be found on the bedrock islands.</line>
-        </message>
-        <teleport>
-            <point yaw="-90">
-                <cuboid min="161,21,-12" max="161,21,5"/>
-            </point>
-        </teleport>
-    </stage>
-</tutorial> -->
+<maxbuildheight>70</maxbuildheight>
 </map>

@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hyperspace</name>
-<version>1.4.5</version>
+<version>1.4.6</version>
 <objective>Destroy the other team's monument</objective>
 <authors>
     <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
@@ -38,28 +38,26 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <point>79.5,42,-17.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="green" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <point>79.5,42,-77.5</point>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cylinder base="100.5,55,-47.5" radius="4" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
-<filters>
-    <team id="only-green">green</team>
-    <team id="only-blue">blue</team>
+<!-- <filters>
     <deny id="deny-chest-break">
         <material>chest</material>
     </deny>
-</filters>
+</filters> -->
 <regions>
     <negative id="map-b-inverse">
         <rectangle id="map-b" min="65,-113" max="-11,18"/>

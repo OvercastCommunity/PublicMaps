@@ -1,14 +1,15 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Relic</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Destroy the enemy team's core and two endstone monuments to win!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
     <author uuid="ab9e5cd0-756f-4092-a5bd-6b47b22ce425"/> <!-- Vylorque -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="24">Blue</team>
-    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue-team" color="blue" max="24">Blue</team>
+    <team id="red-team" color="dark red" max="24">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -33,20 +34,20 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit" yaw="-90">
-        <regions>
+    <spawn team="blue-team" kit="spawn-kit" yaw="-90">
+        <region>
             <point>-185,10,1.5</point>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
+    <spawn team="red-team" kit="spawn-kit" yaw="90">
+        <region>
             <point>10,10,1.5</point>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <cylinder base="-87.5,60,76.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -56,8 +57,6 @@
             <material>stationary water</material>
         </any>
     </deny>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
 </filters>
 <regions>
     <above id="above-40" y="41"/>
@@ -86,13 +85,13 @@
         </region>
     </apply>
     <apply region="tunnels" block="never" message="You may not modify outside the map boundry!"/>
-    <apply region="above-40" block="never" message="You may not modify above the height limit! (`440 blocks`c)"/>
-    <apply region="red-tunnel" enter="only-red" message="You may not enter `4Red`c's spawn tunnel!"/>
-    <apply region="blue-tunnel" enter="only-blue" message="You may not enter `9Blue`c's spawn tunnel!"/>
+    <apply region="above-40" block="never" message="You may not modify above the height limit! (`440 blocks`r)"/>
+    <apply region="red-tunnel" enter="red-team" message="You may not enter `4Red`r's spawn tunnel!"/>
+    <apply region="blue-tunnel" enter="blue-team" message="You may not enter `9Blue`r's spawn tunnel!"/>
 </regions>
 <cores material="obsidian" leak="1" mode-changes="true">
-    <core team="blue" region="blue-core"/>
-    <core team="red" region="red-core"/>
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
 </cores>
 <modes>
 	<mode after="10m" material="gold block"/>
@@ -100,12 +99,12 @@
 </modes>
 <destroyables materials="ender stone" sparks="true" show-progress="true">
     <destroyables name="Right Monument">
-        <destroyable owner="blue" region="blue-right-monument"/>
-        <destroyable owner="red" region="red-right-monument"/>
+        <destroyable owner="blue-team" region="blue-right-monument"/>
+        <destroyable owner="red-team" region="red-right-monument"/>
     </destroyables>
     <destroyables name="Left Monument">
-        <destroyable owner="blue" region="blue-left-monument"/>
-        <destroyable owner="red" region="red-left-monument"/>
+        <destroyable owner="blue-team" region="blue-left-monument"/>
+        <destroyable owner="red-team" region="red-left-monument"/>
     </destroyables>
 </destroyables>
 <block-drops>
@@ -166,7 +165,6 @@
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

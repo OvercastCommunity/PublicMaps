@@ -1,8 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Wallop Series X</name>
-<version>2.1.8</version>
-<include id="gapple-kill-reward"/>
+<version>2.1.9</version>
 <objective>Destroy the monument and leak the core.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
@@ -62,8 +62,6 @@
     </spawn>
 </spawns>
 <filters>
-    <team id="only-red">red-team</team>
-    <team id="only-blue">blue-team</team>
     <deny id="no-stone">
         <material>stone</material>
     </deny>
@@ -108,15 +106,13 @@
     </union>
     <above id="tnt-height-limit" y="47"/>
     <above id="above-height-limit" y="48"/>
-    <apply enter="only-blue" region="blue-spawn-entry" message="You may not enter the enemy team's spawn!"/>
-    <apply enter="only-red" region="red-spawn-entry" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="blue-team" region="blue-spawn-entry" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" region="red-spawn-entry" message="You may not enter the enemy's spawn!"/>
     <apply block="never" region="not-playable" message="You may not build outside of the playable region!"/>
     <apply block="never" region="spawns" message="You may not edit the team spawns!"/>
     <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
     <apply block-place="never" region="above-height-limit">
-        <message>
-            {"translate":"match.maxBuildHeight"}
-        </message>
+        <message>{"translate":"match.maxBuildHeight"}</message>
     </apply>
     <apply block-place="no-stone"/>
 </regions>

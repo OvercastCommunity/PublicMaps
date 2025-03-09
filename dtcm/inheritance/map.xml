@@ -1,14 +1,15 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Inheritance</name>
-<version>1.6.4</version>
+<version>1.6.5</version>
 <created>2013-02-24</created>
 <objective>Leak lava from both of the enemy's obsidian cores!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="green" color="green" max="32">Green</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="green-team" color="green" max="32">Green</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -38,20 +39,18 @@
             <cylinder base="839,152,936" radius="5" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="90">
             <cylinder base="947,31,969" radius="3" height="0"/>
         </region>
     </spawn>
-    <spawn team="green" kit="spawn-kit">
+    <spawn team="green-team" kit="spawn-kit">
         <region yaw="270">
             <cylinder base="733,31,969" radius="3" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-green">green</team>
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
@@ -70,14 +69,14 @@
     <negative id="playable-inverse">
         <rectangle min="724,919" max="957,1020"/>
     </negative>
-    <apply use="deny-beacon"/>
-    <apply enter="only-blue" message="You may not enter the enemy team's spawn!" region="blue-spawn-front"/>
-    <apply enter="only-green" message="You may not enter the enemy team's spawn!" region="green-spawn-front"/>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn!" region="blue-spawn-front"/>
+    <apply enter="green-team" message="You may not enter the enemy's spawn!" region="green-spawn-front"/>
     <apply block="never" message="You may not modify the spawn areas!" region="spawns"/>
     <apply block="never" message="You may not build in the void area!" region="playable-inverse"/>
+    <apply use="deny-beacon"/>
 </regions>
 <cores material="obsidian" leak="5" mode-changes="true">
-    <cores team="blue">
+    <cores team="blue-team">
         <core name="Left Core">
             <region>
                 <cuboid min="908,41,939" max="913,46,944"/>
@@ -89,7 +88,7 @@
             </region>
         </core>
     </cores>
-    <cores team="green">
+    <cores team="green-team">
         <core name="Left Core">
             <region>
                 <cuboid min="768,41,995" max="773,46,1000"/>
@@ -158,7 +157,6 @@
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="24" damage="2" material="wood"/>
         <item amount="12" material="glass"/>
     </kill-reward>

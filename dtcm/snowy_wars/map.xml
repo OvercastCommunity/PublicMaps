@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Snowy Wars</name>
-<version>1.6.5</version>
+<version>1.6.6</version>
 <include id="gapple-kill-reward"/>
 <variant id="christmas" world="christmas">Christmas</variant>
 <variant id="halloween" world="halloween">Halloween</variant>
@@ -101,7 +101,7 @@
             <cylinder base="-571.5,10,259.5" height="6" radius="7"/> <!-- East -->
         </union>
     </negative>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle min="-631,236" max="-560,373"/>
     </complement>
@@ -119,11 +119,9 @@
     <apply enter="never"  region="obs-spawn" message="You may not enter the observers spawn area!"/>
     <apply block="no-melting"/>
     <apply block="never" region="spawns" message="You may not break or place blocks in the spawn regions!"/>
-    <apply block="never" region="void" message="You may not build outside of the playing field!"/>
+    <apply block="never" region="void-area" message="You may not build outside of the playing field!"/>
     <apply block-place="never" region="height-limit">
-        <message>
-            {"translate":"match.maxBuildHeight"}
-        </message>
+        <message>{"translate":"match.maxBuildHeight"}</message>
     </apply>
 </regions>
 <destroyables name="Monument" material="obsidian" mode-changes="true">

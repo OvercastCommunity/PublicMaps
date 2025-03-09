@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Fenland</name>
 <created>2013-08-01</created>
-<version>1.2.14</version>
+<version>1.2.15</version>
 <include id="gapple-kill-reward"/>
 <objective>Break the obsidian from the enemy team's monument.</objective>
 <authors>
@@ -50,8 +50,6 @@
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <deny id="no-beacon">
         <material>beacon</material>
     </deny>
@@ -69,9 +67,9 @@
         <cuboid id="playable" min="64,0,-38" max="-63,31,39"/>
     </negative>
     <cylinder id="observers-platform" base="0.5,19,-46.5" radius="6" height="oo"/>
-    <apply region="red-interior" enter="only-red" message="You may not enter the enemy team's base!"/>
+    <apply region="red-interior" enter="red-team" message="You may not enter the enemy's base!"/>
     <apply region="red-base" block="never" message="You may not modify the base!"/>
-    <apply region="blue-interior" enter="only-blue" message="You may not enter the enemy team's base!"/>
+    <apply region="blue-interior" enter="blue-team" message="You may not enter the enemy's base!"/>
     <apply region="blue-base" block="never" message="You may not modify the base!"/>
     <apply region="playable-inverse" block="never" message="You may not build outside the playing area!"/>
     <apply region="observers-platform" enter="never" message="Don't enter the observers spawn area!"/>

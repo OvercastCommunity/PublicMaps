@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Ion</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Leak both enemy cores!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83"/> <!-- lonelyhornet -->
 </authors>
@@ -44,7 +45,7 @@
 </kits>
 <spawns>
     <default>
-        <region yaw="0">
+        <region>
             <cylinder base="163.4,63,-69.5" radius="1.5" height="0"/>
         </region>
     </default>
@@ -76,7 +77,7 @@
         <above id="tnt-height-limit" y="35"/>
         <above id="above-height-limit" y="36"/>
     </union>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle min="64,-46" max="263,47"/>
     </complement>
@@ -85,7 +86,7 @@
     <apply block="never" region="above-height-limit" message="You may not break or place any blocks at this height!"/>
     <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
     <apply block-place="no-stone"/>
-    <apply block="never" region="void" message="You may not break or place blocks outside of the map!"/>
+    <apply block="never" region="void-area" message="You may not break or place blocks outside of the map!"/>
 </regions>
 <renewables>
     <renewable>
@@ -171,21 +172,6 @@
         </drops>
     </rule>
 </block-drops>
-<itemkeep>
-    <item>golden apple</item>
-    <item>wood</item>
-    <item>glass</item>
-    <item>ladder</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
-<respawn delay="4s" auto="true"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <item-mods>
     <rule>
         <match>
@@ -204,4 +190,20 @@
         </modify>
     </rule>
 </item-mods>
+<itemkeep>
+    <item>golden apple</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>ladder</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
+<respawn delay="4s" auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

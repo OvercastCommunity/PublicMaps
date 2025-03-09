@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <time result="objectives">1h</time>
 <name>Intercept</name>
-<version>0.1.5</version>
+<version>0.1.6</version>
 <objective>Destroy the enemy's emerald monument before the timer runs out</objective>
 <phase>staging</phase>
 <authors>
@@ -13,32 +13,10 @@
     <team id="red" color="dark red" max="50">Red</team>
     <team id="blue" color="blue" max="50">Blue</team>
 </teams>
-<respawn bed="true"/>
-<spawns safe="true">
-    <spawn team="red" kit="player">
-        <regions yaw="90">
-            <region id="red-spawn"/>
-        </regions>
-    </spawn>
-    <spawn team="blue" kit="player">
-        <regions yaw="90">
-            <region id="blue-spawn"/>
-        </regions>
-    </spawn>
-    <default kit="obs">
-        <regions yaw="90">
-            <region id="obs-spawn"/>
-        </regions>
-    </default>
-</spawns>
-<destroyables materials="emerald block">
-    <destroyable id="red-orb-mon" region="red-orb" owner="red" name="Red Orb"/>
-    <destroyable id="blue-orb-mon" region="blue-orb" owner="blue" name="Blue Orb"/>
-</destroyables>
 <kits>
     <kit id="obs" force="true" potion-particles="false">
-        <potion duration="oo">night vision</potion>
-        <item slot="0">compass</item>
+        <effect>night vision</effect>
+        <item slot="0" material="compass"/>
         <book slot="1">
             <title>`b`lMap Information`r</title>
             <author>`6ElectroidFilms</author>
@@ -76,6 +54,23 @@
         <effect duration="5">damage resistance</effect>
     </kit>
 </kits>
+<spawns safe="true">
+    <spawn team="red" kit="player">
+        <regions yaw="90">
+            <region id="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="player">
+        <regions yaw="90">
+            <region id="blue-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="obs">
+        <regions yaw="90">
+            <region id="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
 <filters>
     <not id="manual-break-orb">
         <all>
@@ -110,7 +105,6 @@
 </filters>
 <regions>
     <!-- Definitions -->
-    <rectangle id="all" min="-oo,-oo" max="oo,oo"/>
     <cuboid id="drop-zone" min="-365,81,1" max="-364,oo,0"/>
     <negative id="outside-lanes">
         <union id="lanes">
@@ -138,10 +132,14 @@
     <apply block-break="manual-break-orb" region="orbs" message="You must break this manually"/>
     <apply block-place="non-players" region="drop-zone" message="Only the drop zone spawner may place blocks here"/>
     <apply block="no-explosives" region="bases" message="Explosives are not allowed in the spawn areas"/>
-    <apply block-break="no-spawner" region="all" message="You may not break mob spawners"/>
-    <apply block-break="no-lava" use="no-lava" region="all" message="You may not edit the lava"/>
-    <apply use="no-beacon" region="all" message="You may not open beacons"/>
+    <apply block-break="no-spawner" message="You may not break mob spawners"/>
+    <apply block-break="no-lava" use="no-lava" message="You may not edit the lava"/>
+    <apply use="no-beacon" message="You may not open beacons"/>
 </regions>
+<destroyables materials="emerald block">
+    <destroyable id="red-orb-mon" region="red-orb" owner="red" name="Red Orb"/>
+    <destroyable id="blue-orb-mon" region="blue-orb" owner="blue" name="Blue Orb"/>
+</destroyables>
 <blockdrops>
     <rule>
         <filter>
@@ -226,4 +224,5 @@
     <tool>wood spade</tool>
 </toolrepair>
 <maxbuildheight>90</maxbuildheight>
+<respawn bed="true"/>
 </map>

@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Totally War II</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <objective>Destroy and leak both of the enemy team's obsidian core.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
 </authors>
@@ -36,25 +37,22 @@
 </kits>
 <spawns>
     <spawn team="red" kit="teams">
-        <regions>
+        <region>
             <cuboid min="-25,10,64" max="-16,10,69"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="purple" kit="teams" yaw="180">
-        <regions>
+        <region>
             <cuboid min="26,10,-63" max="17,10,-68"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="90">
-        <regions>
+        <region>
             <point>-61.5,30,0.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
-    <deny id="deny-void">
-        <void/>
-    </deny>
     <deny id="deny-chest">
         <material>chest</material>
     </deny>
@@ -126,14 +124,14 @@
         </union>
     </union>
     <!-- Applied -->
-    <apply region="purple-base-e" enter="only-purple" message="You may not enter `5Purple`c's base!"/>
-    <apply region="red-base-e" enter="only-red" message="You may not enter the `4Red`c's base!"/>
+    <apply region="purple-base-e" enter="only-purple" message="You may not enter `5Purple`r's base!"/>
+    <apply region="red-base-e" enter="only-red" message="You may not enter the `4Red`r's base!"/>
     <apply region="purple-no-tnt-regions" block="anti-grief-purple" message="TNT is not allowed in this area!"/>
     <apply region="red-no-tnt-regions" block="anti-grief-red" message="TNT is not allowed in this area!"/>
     <apply region="no-water-regions" block="deny-water" message="Water is not allowed around the core!"/>
     <apply region="bases-b" block="never" message="`7You may not edit the spawn area!"/>
-    <apply region="above-55" block="never" message="You may not edit above the height limit! (`455 Blocks`c)"/>
-    <apply region="outside-center" block="deny-void" message="You may not edit the void area!"/>
+    <apply region="above-55" block="never" message="You may not edit above the height limit! (`455 Blocks`r)"/>
+    <apply region="outside-center" block="deny(void)" message="You may not edit the void area!"/>
     <apply block="deny-chest" message="Chests are disabled on this map!"/>
 </regions>
 <cores material="obsidian" leak="5" mode-changes="true">
@@ -171,11 +169,6 @@
     <item>stained clay</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <!-- implemented by Qixit in order to prevent a form of teamgriefing whereby players are able to craft
 chests and block entrances to spawn due to the chest themselves being unbreakable, as specified in <filters> -->
 <crafting>
@@ -185,45 +178,4 @@ chests and block entrances to spawn due to the chest themselves being unbreakabl
 <disabledamage>
     <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
 </disabledamage>
-<!-- <tutorial>
-    <stage title="Destroy the Core">
-        <message>
-            <line>`7This map is a `a`lDestroy the Core `7(DTC) map.</line>
-            <line>`7The objective is to `cleak the lava `7from both of the enemy's `ccores`7.</line>
-        </message>
-        <teleport>
-            <point yaw="-128" pitch="15">-34,25,22</point>
-        </teleport>
-    </stage>
-    <stage title="Spawn Building">
-        <message>
-            <line>`7You will spawn in this building located in the back of the base.</line>
-            <line>`7You will `cnot `7be able to enter the enemy's base.</line>
-            <line>`7Nor be allowed to break and/or place blocks there.</line>
-        </message>
-        <teleport>
-            <point yaw="-50" pitch="5">0,12,-86</point>
-        </teleport>
-    </stage>
-    <stage title="Cannon Platforms and TNT Supplies">
-        <message>
-            <line>`7Build cannons on each of your two platforms to destroy the enemy side.</line>
-            <line>`7Behind in the wall are some chests with supplys to make TNT and other redstone goodies.</line>
-            <line>`7Please remember to `cONLY `7use other teammates' cannons with their `cPERMISSION`7!</line>
-        </message>
-        <teleport>
-            <point yaw="125" pitch="15">34,16,-19</point>
-        </teleport>
-    </stage>
-    <stage title="Both Cores">
-        <message>
-            <line>`7In each tower their lies your obsidian core; you must defend this.</line>
-            <line>`7Go to the enemy side and leak both of them to win.</line>
-            <line>`c`lREMEMBER: `r`7Water is disabled for flowing around the cores!</line>
-        </message>
-        <teleport>
-            <point yaw="50" pitch="5">42,45,50</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

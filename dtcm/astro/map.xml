@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Astro</name>
-<version>1.0.12</version>
+<version>1.0.13</version>
 <objective>Destroy the enemy team's core!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
@@ -29,20 +30,20 @@
 <spawns>
     <spawns>
         <spawn team="purple" kit="teams" yaw="180">
-            <regions>
+            <region>
                 <cylinder base="-1.5,120,-15.5" radius="2" height="0"/>
-            </regions>
+            </region>
         </spawn>
         <spawn team="orange" kit="teams">
-            <regions>
+            <region>
                 <cylinder base="-1.5,120,-268.5" radius="2" height="0"/>
-            </regions>
+            </region>
         </spawn>
     </spawns>
     <default yaw="90" kit="all">
-        <regions>
+        <region>
             <cylinder base="73.5,34,-142.0" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -59,9 +60,6 @@
             <team id="only-purple">purple</team>
         </all>
     </not>
-    <deny id="deny-void">
-        <void/>
-    </deny>
 </filters>
 <regions>
     <negative id="center-inverse">
@@ -96,7 +94,7 @@
             <region id="purple-ship"/>
         </region>
     </apply>
-    <apply region="center-inverse" block="deny-void" message="You may not build outside the map!"/>
+    <apply region="center-inverse" block="deny(void)" message="You may not build outside the map!"/>
 </regions>
 <cores material="obsidian" leak="3" mode-changes="true">
     <core name="Back Core" team="purple">
@@ -161,48 +159,7 @@
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>100</maxbuildheight>
-<!-- <tutorial>
-    <stage title="Destroy The Core">
-        <message>
-            <line>`rThis map is a `a`lDestroy The Core `r(DTC) map</line>
-            <line>The objective is to leak both of the enemy team's cores.</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="0">-73.5,34,-142</point>
-        </teleport>
-    </stage>
-    <stage title="Purple Team's Spawn">
-        <message>
-            <line>`rThis is the `5Purple Team's `rbase. You spawn with gear ready to go into battle!</line>
-            <line>There is iron located on the ship to help you suit up.</line>
-        </message>
-        <teleport>
-            <point yaw="-20">-1.5,120,-15.5</point>
-        </teleport>
-    </stage>
-    <stage title="Diamond Mines">
-        <message>
-            <line>These are the diamond mines, where you can get diamond armor and gear.</line>
-            <line>They are in the center of the map, so watch out for enemies!</line>
-        </message>
-        <teleport>
-            <point yaw="-111" pitch="15">18,5,-150</point>
-        </teleport>
-    </stage>
-    <stage title="Orange Cores">
-        <message>
-            <line>These are the `6Orange Team`r's cores.</line>
-            <line>They are both signified by a beacon on top of them.</line>
-            <line>Orange Team must defend their cores, while the Purple Team will try to leak it.</line>
-            <line>Purple Team has two identical cores on their side which they must protect.</line>
-        </message>
-        <teleport>
-            <point yaw="55" pitch="45">34.5,64,-255.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

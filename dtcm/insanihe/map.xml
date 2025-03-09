@@ -1,101 +1,78 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Insanihe</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Destroy both monuments, before the enemy destroys yours</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Making of map and XML"/> <!-- Obelistics -->
 </authors>
 <teams>
-    <team id="red_team" color="dark red" max="12" max-overfill="15">Red</team>
-    <team id="blue_team" color="blue" max="12" max-overfill="15">Blue</team>
+    <team id="red-team" color="dark red" max="12" max-overfill="15">Red</team>
+    <team id="blue-team" color="blue" max="12" max-overfill="15">Blue</team>
 </teams>
-<spawns>
-    <spawn team="red_team" kit="red_kit">
-        <regions yaw="90">
-            <cylinder base="-85.5,6,-348.5" radius="0.5" height="0"/>
-        </regions>
-    </spawn>
-    <spawn team="blue_team" kit="blue_kit">
-        <regions yaw="-90">
-            <cylinder base="-219.5,6,-348.5" radius="0.5" height="0"/>
-        </regions>
-    </spawn>
-    <default>
-        <regions yaw="0">
-            <cylinder base="-152.5,23,-388.5" radius="2" height="0"/>
-        </regions>
-    </default>
-</spawns>
 <kits>
-    <kit id="spawn" force="true">
+    <kit id="spawn-kit">
         <item slot="0" material="iron sword"/>
         <item slot="1" material="bow"/>
         <item slot="2" material="iron pickaxe"/>
         <item slot="3" material="iron axe"/>
         <item slot="4" material="log" damage="1" amount="4"/>
+        <item slot="5" material="stained clay" team-color="true" amount="24"/>
         <item slot="6" material="golden apple"/>
         <item slot="7" material="cooked fish" damage="1" amount="16"/>
         <item slot="8" material="arrow" amount="16"/>
-    </kit>
-    <kit id="red_kit" parents="spawn">
-        <helmet color="cd0000" material="leather helmet"/>
-        <chestplate color="cd0000" material="leather chestplate"/>
-        <boots color="cd0000" material="leather boots"/>
-        <item slot="5" material="stained clay" damage="14" amount="24"/>
-        </kit>
-    <kit id="blue_kit" parents="spawn">
-        <helmet color="0066cc" material="leather helmet"/>
-        <chestplate color="0066cc" material="leather chestplate"/>
-        <boots color="0066cc" material="leather boots"/>
-        <item slot="5" material="stained clay" damage="11" amount="24"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <boots team-color="true" material="leather boots"/>
     </kit>
 </kits>
-<destroyables name="Left Monument" materials="coal_block" completion="100%" mode-changes="false">
-    <destroyable owner="red_team">
-        <region><cylinder base="-124.5,3,-339.5" radius="4" height="12"/></region>
-    </destroyable>
-    <destroyable owner="blue_team">
-        <region><cylinder base="-180.5,3,-357.5" radius="4" height="12"/></region>
-    </destroyable>
-</destroyables>
-<destroyables name="Right Monument" materials="coal_block" completion="100%" mode-changes="false">
-    <destroyable owner="red_team">
-        <region><cylinder base="-124.5,3,-357.5" radius="4" height="12"/></region>
-    </destroyable>
-    <destroyable owner="blue_team">
-        <region><cylinder base="-180.5,3,-339.5" radius="4" height="12"/></region>
-    </destroyable>
-</destroyables>
-<filters>
-    <not id="no-void">
-        <void/>
-    </not>
-</filters>
+<spawns>
+    <spawn team="red-team" kit="spawn-kit" yaw="90">
+        <region>
+            <cylinder base="-85.5,6,-348.5" radius="0.5" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit" yaw="-90">
+        <region>
+            <cylinder base="-219.5,6,-348.5" radius="0.5" height="0"/>
+        </region>
+    </spawn>
+    <default>
+        <region>
+            <cylinder base="-152.5,23,-388.5" radius="2" height="0"/>
+        </region>
+    </default>
+</spawns>
 <regions>
     <apply block="always">
         <region>
             <rectangle id="middle-area" min="-189,-324" max="-116,-373"/>
         </region>
     </apply>
-    <apply block="no-void" region="everywhere" message="You may not modify this area!"/>
+    <apply block="deny(void)" message="You may not modify this area!"/>
 </regions>
-<kill-rewards>
-    <!-- 1 Kill -->
-    <kill-reward>
-        <item material="golden apple" amount="1"/>
-        <item material="arrow" amount="4"/>
-    </kill-reward>
-    <!-- 5 Kills -->
-    <kill-reward>
-        <filter>
-            <all>
-                <kill-streak count="5"/>
-            </all>
-        </filter>
-        <item material="web" amount="4"/>
-        <item material="log" damage="1" amount="2"/>
-    </kill-reward>
-</kill-rewards>
+<destroyables materials="coal block" mode-changes="false">
+    <destroyable name="Left Monument" owner="red-team">
+        <region>
+            <cylinder base="-124.5,3,-339.5" radius="4" height="12"/>
+        </region>
+    </destroyable>
+    <destroyable name="Left Monument" owner="blue-team">
+        <region>
+            <cylinder base="-180.5,3,-357.5" radius="4" height="12"/>
+        </region>
+    </destroyable>
+    <destroyable name="Right Monument" owner="red-team">
+        <region>
+            <cylinder base="-124.5,3,-357.5" radius="4" height="12"/>
+        </region>
+    </destroyable>
+    <destroyable name="Right Monument" owner="blue-team">
+        <region>
+            <cylinder base="-180.5,3,-339.5" radius="4" height="12"/>
+        </region>
+    </destroyable>
+</destroyables>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -121,6 +98,20 @@
     <item>stained clay</item>
     <item>coal block</item>
 </itemremove>
+<kill-rewards>
+    <!-- 1 Kill -->
+    <kill-reward>
+        <item material="arrow" amount="4"/>
+    </kill-reward>
+    <!-- 5 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="5"/>
+        </filter>
+        <item material="web" amount="4"/>
+        <item material="log" damage="1" amount="2"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>18</maxbuildheight>
 <timelock>on</timelock>
 </map>

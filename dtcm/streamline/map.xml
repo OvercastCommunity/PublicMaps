@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Streamline</name>
-<version>2.0.12</version>
+<version>2.0.13</version>
 <objective>Destroy and leak the enemy team's obsidian core.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
@@ -38,19 +39,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="teams" pitch="-10">
-        <regions>
+        <region>
             <point>-16.5,10,73.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="teams" yaw="180" pitch="-10">
-        <regions>
+        <region>
             <point>-16.5,10,-26.5</point>
-        </regions>
+        </region>
     </spawn>
     <default yaw="90">
-        <regions>
+        <region>
             <point>41.5,29,23.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -182,7 +183,6 @@
 <kill-rewards>
     <kill-reward>
         <item amount="12" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <hunger>
@@ -191,54 +191,4 @@
 <disabledamage>
     <damage self="false" enemy="false" other="false">block explosion</damage>
 </disabledamage>
-<!-- <tutorial>
-    <stage title="`a`lDestroy the Core">
-        <message>
-            <line>`7This map is a `aDestroy the Core `7(DTC) map.</line>
-            <line>`7The objective is to leak the enemy's obsidian core behind their base.</line>
-        </message>
-        <teleport>
-            <point yaw="50" pitch="10">30,22,17</point>
-        </teleport>
-    </stage>
-    <stage title="`a`lCenter Supplies">
-        <message>
-            <line>`7Fight for the `6iron blocks `7in the center of the map.</line>
-            <line>`7There are also 2 diagonal cannons to launch at their side.</line>
-            <line>`7Use the spawner to get a `bdiamond pickaxe `7to break their core!</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="40">-55,25,23</point>
-        </teleport>
-    </stage>
-    <stage title="`c`lTNT and Redstone Supplies">
-        <message>
-            <line>`7Each lane has a bunker full of various supplies.</line>
-            <line>`7From `cTNT `7to `4redstone`7, you will find a lot of useful items.</line>
-            <line>`7But don't grief your own side, it's illegal!</line>
-        </message>
-        <teleport>
-            <point yaw="70" pitch="5">7,5,-58</point>
-        </teleport>
-    </stage>
-    <stage title="`a`lThe Core">
-        <message>
-            <line>`7This is the core you must leak to win the game!</line>
-            <line>`7It has to leak 5 blocks down!</line>
-        </message>
-        <teleport>
-            <point yaw="155" pitch="10">-10,17,10</point>
-        </teleport>
-    </stage>
-    <stage title="`a`lSpawn Building">
-        <message>
-            <line>`7Your spawn is indestructable, and no one can break it.</line>
-            <line>`7If you are reading this, break the 2 iron blocks on top of the spawn!</line>
-            <line>`7You may build below and above your spawn building!</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="0">-17,11,62</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

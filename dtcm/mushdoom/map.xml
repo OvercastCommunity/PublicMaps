@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Mushdoom</name>
-<version>1.1.7</version>
+<version>1.1.8</version>
 <objective>Destroy the opposing team's monument and leak their core!</objective>
 <created>2019-02-12</created>
 <edition>standard</edition>
@@ -48,7 +48,7 @@
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <point>36.5,8,158.5</point>
         </region>
     </spawn>
@@ -59,11 +59,6 @@
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-    <deny id="deny-void">
-        <void/>
-    </deny>
     <deny id="no-stone">
         <material>stone</material>
     </deny>
@@ -80,7 +75,7 @@
     </any>
 </filters>
 <regions>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle min="-16,150" max="89,295"/>
     </complement>
@@ -91,10 +86,10 @@
     <above id="above-height-limit" y="35"/>
     <apply block="never" region="spawns" message="You may not break or place blocks in the spawns!"/>
     <apply block="height-limit-materials" region="above-height-limit" message="Only TNT, redstone blocks, and water may be placed at this level!"/>
-    <apply block="deny-void" region="void" message="You may not build in the void!"/>
+    <apply block="deny(void)" region="void-area" message="You may not build in the void!"/>
     <apply block-place="no-stone"/>
 </regions>
-<destroyables completion="100%" name="Monument" materials="ender stone" show-progress="true" proximity-metric="none" repairable="false">
+<destroyables name="Monument" materials="ender stone" show-progress="true" proximity-metric="none" repairable="false">
     <destroyable owner="blue">
         <region>
             <cylinder base="59.5,17,186.5" radius="1.5" height="5"/>

@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fort Wars</name>
-<version>1.4.7</version>
+<version>1.4.8</version>
 <objective>Destroy the enemy's flag!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="5bd4f5c6-f60c-44b1-9c37-c27a7db35ec6"/> <!-- whiskers434 -->
 </authors>
@@ -41,19 +42,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" safe="true">
-        <regions>
+        <region>
             <point>-151.5,38,-141.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" safe="true" yaw="180">
-        <regions>
+        <region>
             <point>-151.5,38,-165.5</point>
-        </regions>
+        </region>
     </spawn>
     <default yaw="90">
-        <regions>
+        <region>
             <cylinder base="-152,38,-154" radius="4" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -62,25 +63,23 @@
         <material>chest</material>
     </deny>
     <!-- Line where recent changes end -->
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <any id="blue-base-tnt">
         <not>
             <all>
-                <team>blue</team>
+                <team id="only-blue">blue</team>
                 <material>tnt</material>
             </all>
         </not>
-        <team>red</team>
+        <filter id="only-red"/>
     </any>
     <any id="red-base-tnt">
         <not>
             <all>
-                <team>red</team>
+                <team id="only-red">red</team>
                 <material>tnt</material>
             </all>
         </not>
-        <team>blue</team>
+        <filter id="only-blue"/>
     </any>
 </filters>
 <regions>
@@ -163,46 +162,6 @@
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
-<!-- <tutorial>
-    <stage title="Fort Wars">
-        <message>
-            <line>This is Fort Wars, `aDestroy the Monument (DTM) `rmap.</line>
-            <line>The objective is to destroy the other team's `bflag`r, on the top of their `bcastle`r.</line>
-        </message>
-        <teleport>
-            <point yaw="-70" pitch="10">-144,60,-203</point>
-        </teleport>
-    </stage>
-    <stage title="Supplies">
-        <message>
-            <line>This is the `bsupply room`r.</line>
-            <line>It gets blown up easily, `cbe careful`r!</line>
-            <line>It has everything you need to go into battle.</line>
-        </message>
-        <teleport>
-            <point yaw="0">-66.5,8,-238</point>
-        </teleport>
-    </stage>
-    <stage title="The Flag">
-        <message>
-            <line>This is the `bflag`r. If it gets `cdestroyed`r, the other team wins.</line>
-        </message>
-        <teleport>
-            <point yaw="140" pitch="10">-54,35,-218</point>
-        </teleport>
-    </stage>
-    <stage title="The Blimp">
-        <message>
-            <line>This is the `bblimp`r.</line>
-            <line>It has ready-made TNT cannons aimed at the flag.</line>
-            <line>It also has some hidden goodies at it's center.</line>
-        </message>
-        <teleport>
-            <point yaw="-90">-121.5,55,-152</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

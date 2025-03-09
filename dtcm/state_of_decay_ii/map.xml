@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>State of Decay II</name>
-<version>1.3.3</version>
+<version>1.3.4</version>
 <objective>Destroy the enemy team's cave and mountain monuments to win!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
 </authors>
@@ -10,8 +11,8 @@
     <contributor uuid="105f6a09-f533-412b-93cb-501601763c11" contribution="The Ivorian"/> <!-- JTerwiesch -->
 </contributors>
 <teams>
-    <team id="cyan" color="dark aqua" max="32" max-overfill="40">Cyan</team>
-    <team id="red" color="dark red" max="32" max-overfill="40">Red</team>
+    <team id="cyan-team" color="dark aqua" max="32" max-overfill="40">Cyan</team>
+    <team id="red-team" color="dark red" max="32" max-overfill="40">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -31,26 +32,22 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="red" kit="spawn-kit" yaw="45">
-        <regions>
+    <spawn team="red-team" kit="spawn-kit" yaw="45">
+        <region>
             <point>76.5,23,-8.5</point>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="cyan" kit="spawn-kit" yaw="-135">
-        <regions>
+    <spawn team="cyan-team" kit="spawn-kit" yaw="-135">
+        <region>
             <point>-93.5,23,9.5</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <cuboid min="-8,41,-67" max="-10,41,-69"/>
-        </regions>
+        </region>
     </default>
 </spawns>
-<filters>
-    <team id="only-red">red</team>
-    <team id="only-cyan">cyan</team>
-</filters>
 <regions>
     <union id="spawns">
         <circle id="red-spawn" center="76,-9" radius="4"/>
@@ -59,31 +56,31 @@
     <negative id="playable-inverse">
         <rectangle id="playable" min="-107.5,-39.5" max="90.5,40.5"/>
     </negative>
-    <apply region="red-spawn" enter="only-red" message="You may not enter the enemy's spawn!"/>
-    <apply region="cyan-spawn" enter="only-cyan" message="You may not enter the enemy's spawn!"/>
+    <apply region="red-spawn" enter="red-team" message="You may not enter the enemy's spawn!"/>
+    <apply region="cyan-spawn" enter="cyan-team" message="You may not enter the enemy's spawn!"/>
     <apply region="spawns" block="never" message="You may not modify the spawn!"/>
     <apply region="playable-inverse" block="never" message="You may not build outside the map!"/>
 </regions>
 <destroyables materials="gold block;obsidian">
     <destroyables name="Mountain Monument">
-        <destroyable owner="cyan">
+        <destroyable owner="cyan-team">
             <region>
                 <cuboid min="-52,35,25" max="-55,31,28"/>
             </region>
         </destroyable>
-        <destroyable owner="red">
+        <destroyable owner="red-team">
             <region>
                 <cuboid min="35,35,-24" max="38,31,-27"/>
             </region>
         </destroyable>
     </destroyables>
     <destroyables name="Cave Monument">
-        <destroyable owner="cyan">
+        <destroyable owner="cyan-team">
             <region>
                 <cuboid min="-56,14,-19" max="-59,11,-22"/>
             </region>
         </destroyable>
-        <destroyable owner="red">
+        <destroyable owner="red-team">
             <region>
                 <cuboid min="39,14,20" max="42,11,23"/>
             </region>
@@ -107,39 +104,9 @@
 </toolrepair>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="4" material="tnt"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>65</maxbuildheight>
 <timelock>on</timelock>
-<!-- <tutorial>
-    <stage title="Destroy the Monument">
-        <message>
-            <line>This map is a `a`lDestroy the Monument`r map with `4TNT`r.</line>
-            <line>The objective is to `4destroy`r the other team's `aCave`r and `aMountain`r Monuments, made of `bobsidian`r.</line>
-        </message>
-        <teleport>
-            <point yaw="-115" pitch="5">-18,30,23</point>
-        </teleport>
-    </stage>
-    <stage title="Cave Monument and Iron Mines">
-        <message>
-            <line>This is the `aCave`r Monument.</line>
-            <line>It consists of `a1`r obsidian block and `a10`r gold blocks, break them all or use TNT to win!</line>
-        </message>
-        <teleport>
-            <point yaw="150" pitch="5">46,11,25</point>
-        </teleport>
-    </stage>
-    <stage title="Mountain Monument">
-        <message>
-            <line>This is the `aMountain`r Monument.</line>
-            <line>It consists of `a2`r obsidian blocks, break them all to win!</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="25">41,35,-33</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

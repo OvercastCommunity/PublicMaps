@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>DATAcenter</name>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Destroy 60% of the enemy's battle ship!</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -14,8 +14,8 @@
     <rule>Fall damage is disabled!</rule>
 </rules>
 <teams>
-    <team id="yellow" color="yellow" max="12" max-overfill="15">Yellow</team>
-    <team id="red" color="dark red" max="12" max-overfill="15">Red</team>
+    <team id="yellow-team" color="yellow" max="12" max-overfill="15">Yellow</team>
+    <team id="red-team" color="dark red" max="12" max-overfill="15">Red</team>
 </teams>
 <kits>
     <kit id="obs">
@@ -58,25 +58,23 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="yellow" kit="teams">
-        <regions>
+    <spawn team="yellow-team" kit="teams">
+        <region>
             <cuboid min="-27,52,-102" max="-17,52,-104"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="red" kit="teams" yaw="180">
-        <regions>
+    <spawn team="red-team" kit="teams" yaw="180">
+        <region>
             <cuboid min="-28,52,44" max="-18,52,42"/>
-        </regions>
+        </region>
     </spawn>
     <default kit="obs" yaw="-90" pitch="-20">
-        <regions>
+        <region>
             <point>-61.5,76,-29.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
-    <team id="only-yellow">yellow</team>
-    <team id="only-red">red</team>
     <deny id="deny-fire">
         <material>fire</material>
     </deny>
@@ -99,14 +97,14 @@
     <!-- Applied -->
     <apply region="yellow-pad" velocity="@0,2,12" kit="velocity"/>
     <apply region="red-pad" velocity="@0,2,-12" kit="velocity"/>
-    <apply region="yellow-spawn" enter="only-yellow" message="You may not enter the enemy's spawn area!"/>
-    <apply region="red-spawn" enter="only-red" message="You may not enter the enemy's spawn area!"/>
+    <apply region="yellow-spawn" enter="yellow-team" message="You may not enter the enemy's spawn area!"/>
+    <apply region="red-spawn" enter="red-team" message="You may not enter the enemy's spawn area!"/>
     <apply region="ships" block-place="deny-fire" message="You may not burn down the ship!"/>
     <apply region="outside-ships" block="never" message="You may not edit outside the main area!"/>
 </regions>
 <destroyables name="Ship" show-progress="true" completion="60%" repairable="true">
-    <destroyable region="yellow-ship" owner="yellow" materials="stained clay:4;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;71:10;71:0;71:4;71:2;71:8;71:3;71:6;lever:3;lever:11;lever:4;lever:12;trap door:9;trap door:13;redstone wire;gold block;stone button"/>
-    <destroyable region="red-ship" owner="red" materials="stained clay:14;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;71:10;71:0;71:4;71:2;71:8;71:3;71:6;lever:3;lever:11;lever:4;lever:12;trap door:8;trap door:12;redstone wire;gold block;stone button"/>
+    <destroyable region="yellow-ship" owner="yellow-team" materials="stained clay:4;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;71:10;71:0;71:4;71:2;71:8;71:3;71:6;lever:3;lever:11;lever:4;lever:12;trap door:9;trap door:13;redstone wire;gold block;stone button"/>
+    <destroyable region="red-ship" owner="red-team" materials="stained clay:14;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;71:10;71:0;71:4;71:2;71:8;71:3;71:6;lever:3;lever:11;lever:4;lever:12;trap door:8;trap door:12;redstone wire;gold block;stone button"/>
 </destroyables>
 <itemremove>
     <item>stone sword</item>

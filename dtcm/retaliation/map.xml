@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Retaliation</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <objective>Leak the enemy team's core to win!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draeyx fka Draco_Rogue -->
 </authors>
@@ -11,8 +12,8 @@
     <contributor uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27" contribution="Feedback and support"/> <!-- HardstyleRaver fka HardstyleRaver2 -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">
@@ -31,17 +32,8 @@
         <item slot="6" amount="64" material="ladder"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="64" material="cooked fish"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="334CB2" material="leather helmet"/>
-        <chestplate unbreakable="true" color="334CB2" material="leather chestplate">
-            <enchantment level="3">blast_protection</enchantment>
-            <enchantment>projectile_protection</enchantment>
-        </chestplate>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="993333" material="leather helmet"/>
-        <chestplate unbreakable="true" color="993333" material="leather chestplate">
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate">
             <enchantment level="3">blast_protection</enchantment>
             <enchantment>projectile_protection</enchantment>
         </chestplate>
@@ -53,20 +45,18 @@
             <cuboid min="40,5,0" max="43,5,3"/>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region>
             <point>-4.5,28,-112.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="-180">
             <point>-4.5,28,115.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <material id="only-tnt">tnt</material>
     <material id="only-iron">iron block</material>
 </filters>
@@ -82,8 +72,8 @@
     <negative id="playable-inverse">
         <rectangle min="-40,-116" max="31,119"/>
     </negative>
-    <apply enter="only-blue" message="You may not enter the enemy's spawn!" region="blue-spawn"/>
-    <apply enter="only-red" message="You may not enter the enemy's spawn!" region="red-spawn"/>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn!" region="blue-spawn"/>
+    <apply enter="red-team" message="You may not enter the enemy's spawn!" region="red-spawn"/>
     <apply block="never" region="above-height-limit" message="You may not break or place any blocks at this height!"/>
     <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
     <apply block-place="never" block-break="only-iron" message="You may only break iron blocks in the spawn areas!" region="spawns"/>
@@ -94,12 +84,12 @@
     <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
 <cores material="obsidian" leak="4" modes="gold-core ice-core">
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="-8,10,-42" max="-1,17,-35"/>
         </region>
     </core>
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="-8,10,38" max="-1,17,45"/>
         </region>
@@ -131,7 +121,6 @@
     <kill-reward>
         <item amount="8" material="wood"/>
         <item amount="4" material="glass"/>
-        <item material="golden apple"/>
         <item amount="16" material="arrow"/>
     </kill-reward>
 </kill-rewards>
@@ -139,44 +128,4 @@
 <world>
     <timeset>18000</timeset>
 </world>
-<!-- include src="tutorial.xml"/ -->
-<!-- <tutorial>
-    <stage title="Destroy the Core">
-        <message>
-            <line>`rThe objective is to destroy the enemy's `cobsidian core`r.</line>
-            <line>`rUse the items at spawn-such as `cTNT`r-to use against the enemy.</line>
-            <line>`rGet them while they're hot, because they will run out quick!</line>
-        </message>
-        <teleport>
-            <point yaw="-160" pitch="5">95,7,7</point>
-        </teleport>
-    </stage>
-    <stage title="Iron Supplies">
-        <message>
-            <line>`rBoth in-front of the spawn and above the stairs, you will find iron.</line>
-            <line>`rBut be careful, the `cenemy team `rcan blow up your supplies!</line>
-        </message>
-        <teleport>
-            <point yaw="155" pitch="30">82,26,21</point>
-        </teleport>
-    </stage>
-    <stage title="Diamond Supplies">
-        <message>
-            <line>`rIn the top and bottom layers of your base, `adiamonds `rare near the front lines!</line>
-            <line>`rThey run out quickly, so hurry!</line>
-        </message>
-        <teleport>
-            <point yaw="30" pitch="10">1,17,-42</point>
-        </teleport>
-    </stage>
-    <stage title="Core">
-        <message>
-            <line>`rIn the center of your base is the `cobsidian core`r.</line>
-            <line>`rProtect yours, and leak the enemy's!</line>
-        </message>
-        <teleport>
-            <point yaw="90" pitch="45">-18,31,1</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

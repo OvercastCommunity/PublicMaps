@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Sandbox</name>
-<version>0.6.5</version>
+<version>0.6.6</version>
 <objective>Destroy all of the enemy's redstone monument.</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -94,8 +94,6 @@
     <default kit="obs" region="obs-spawn" yaw="45"/>
 </spawns>
 <filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
     <deny id="deny-wall">
         <any id="wall-materials">
             <material>stained glass:11</material>
@@ -145,13 +143,13 @@
         <region>
             <union>
                 <rectangle min="-162,1" max="-1,162"/>
-                <below y="0"/> <!-- anachronistic: added in proto 1.4.0 -->
+                <below y="0"/>
             </union>
         </region>
     </apply>
     <apply enter="never" message="You may not escape the map!">
         <region>
-            <above y="47"/> <!-- anachronistic: added in proto 1.4.0 -->
+            <above y="47"/>
         </region>
     </apply>
     <apply block="no-quartz" message="You may not break quartz"/>

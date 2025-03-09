@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Athirk</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
@@ -54,9 +54,6 @@
     </spawn>
 </spawns>
 <filters>
-    <not id="no-void">
-        <void/>
-    </not>
     <all id="only-world">
         <any id="materials">
             <material id="only-gold">gold block</material>
@@ -65,9 +62,6 @@
         </any>
         <cause>world</cause>
     </all>
-    <deny id="deny-gold">
-        <filter id="only-gold"/>
-    </deny>
 </filters>
 <regions>
     <complement id="not-spawns">
@@ -96,9 +90,9 @@
         <cuboid id="red-gapple-prot" min="411,9,-81" max="414,16.5,-74"/>
     </union>
     <apply block-break="materials" block-place="only-world" region="spawns" message="You may only edit gold blocks in this area!"/>
-    <apply block-place="deny-gold" region="not-spawns"/>
+    <apply block-place="deny(only-gold)" region="not-spawns"/>
     <apply block="never" region="spawner-protection" message="You may not interfere with the golden apple spawner!"/>
-    <apply block="no-void" region="void-regions" message="You may not edit this area!"/>
+    <apply block="deny(void)" region="void-regions" message="You may not edit this area!"/>
 </regions>
 <renewables>
     <renewable region="spawns" particles="false" sound="false" renew-filter="materials"/>

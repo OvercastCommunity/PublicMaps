@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Library DTE</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Destroy 70% of the enemy's side!</objective>
 <authors>
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
@@ -60,7 +60,7 @@
             <cuboid min="41,87,32" max="40,87,29"/>
         </region>
     </default>
-    <spawn team="red" kit="spawn-kit" yaw="0">
+    <spawn team="red" kit="spawn-kit">
         <region>
             <cuboid min="5,91,31" max="4,91,32"/>
         </region>
@@ -119,7 +119,7 @@
         </union>
     </negative>
     <cuboid id="centre" min="-26,0,9" max="36,89,53"/>
-    <apply enter="never" region="centre" message="You may not cross the centre of the map!"/>
+    <apply enter="never" region="centre" message="You may not cross the center of the map!"/>
     <apply block="never" region="outside-map" message="You may not build outside of the map!"/>
     <apply block="deny-bookshelves-and-glass" message="You may not break this block!" region="map"/>
     <apply block="deny-blue-explosions" region="blue-bookcase"/>
@@ -141,6 +141,7 @@
     </union>
     <apply block="never" region="teleport-destinations" message="You may not place blocks here!"/>
 </regions>
+<time result="objectives">15m</time>
 <destroyables name="Bookcase" completion="65%" repairable="false" show-progress="true">
     <destroyable owner="blue" materials="stone;quartz block;stained clay:11;stained clay:9;stained clay:3;stained clay:15;stained clay:5;stained clay:8;wool:15;wool:14;wool:3;wool:9;diamond block;hard clay;coal block;grass;44:7;44:1;126:1" region="blue-bookcase"/>
     <destroyable owner="red" materials="stone;quartz block;stained clay:1;stained clay:14;stained clay:4;stained clay:15;stained clay:5;stained clay:8;wool:15;wool:14;wool:3;wool:9;diamond block;hard clay;coal block;grass;44:7;44:1;126:1" region="red-bookcase"/>
@@ -229,12 +230,14 @@
     <item>arrow</item>
     <item>leather boots</item>
 </itemremove>
-<kill-reward>
-    <kit force="true">
-        <item amount="16">tnt</item>
-        <item amount="6">arrow</item>
-    </kit>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <kit force="true">
+            <item amount="16" material="tnt"/>
+            <item amount="6" material="arrow"/>
+        </kit>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
@@ -242,5 +245,4 @@
     <damage>fall</damage>
     <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
 </disabledamage>
-<time result="objectives">15m</time>
 </map>

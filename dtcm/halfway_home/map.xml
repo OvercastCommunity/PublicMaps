@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Halfway Home</name>
-<version>0.3.3</version>
+<version>0.3.4</version>
 <objective>Detonate all 3 blast zones under your enemy's pillboxes to win</objective>
 <authors>
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
@@ -58,18 +58,13 @@
     <default region="obs-spawn" yaw="270"/>               
 </spawns>
 <filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
-    <deny id="deny-void">
-        <void/>
-    </deny>
     <any id="blast-zone">
         <all>
             <material>tnt:1</material>
             <cause>player</cause>
             <any>
-                <team>red</team>
-                <team>blue</team>
+                <team id="only-red">red</team>
+                <team id="only-blue">blue</team>
             </any>
         </all>
         <all>
@@ -77,19 +72,19 @@
             <cause>explosion</cause>
             <not>
                 <any>
-                    <team>red</team>
-                    <team>blue</team>
+                    <filter id="only-red"/>
+                    <filter id="only-blue"/>
                 </any>
             </not>
         </all>
     </any>
     <all id="red-has-hill">
         <captured team="red">hill</captured>
-        <team>red</team>
+        <filter id="only-red"/>
     </all>
     <all id="blue-has-hill">
         <captured team="blue">hill</captured>
-        <team>blue</team>
+        <filter id="only-blue"/>
     </all>
 </filters>
 <regions>
@@ -155,7 +150,7 @@
     <apply enter="only-blue" region="blue-target-blast-pit" message="You cannot enter your own Blast Zone!"/>
     <apply enter="only-red" region="red-target-blast-pit" message="You cannot enter your own Blast Zone!"/>
     <apply block="blast-zone" region="blast-pits" message="You are not allowed to do that"/>
-    <apply block="deny-void" region="outside-main" message="You may not edit outside of the map"/>
+    <apply block="deny(void)" region="outside-main" message="You may not edit outside of the map"/>
     <apply enter="red-has-hill" region="red-bottom-portal" message="You need to control the center hill to use this portal"/>
     <apply enter="red-has-hill" region="red-mid-portal" message="You need to control the center hill to use this portal"/>
     <apply enter="blue-has-hill" region="blue-bottom-portal" message="You need to control the center hill to use this portal"/>

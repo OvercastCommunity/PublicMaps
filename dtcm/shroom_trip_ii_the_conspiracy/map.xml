@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Shroom Trip II: The Conspiracy</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <created>2012-11-22</created>
 <objective>Leak the enemy core, the Doom Shroom!</objective>
 <authors>
@@ -75,13 +75,13 @@
     <apply block="never" region="spawns" message="You can't place blocks in spawn!"/>
     <apply block="no-break"/>
 </regions>
-<cores material="obsidian" leak="3">
-    <core team="blue" name="Doom Shroom">
+<cores name="Doom Shroom" material="obsidian" leak="3">
+    <core team="blue">
         <region>
             <cuboid min="850,68,-53" max="859,57,-62"/>
         </region>
     </core>
-    <core team="red" name="Doom Shroom">
+    <core team="red">
         <region>
             <cuboid min="527,57,-3" max="517,68,8"/>
         </region>

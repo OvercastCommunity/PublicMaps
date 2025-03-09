@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Cake Wars 3</name>
 <phase>staging</phase>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Capture the wool under enemy spawn or eliminate the other team.</objective>
 <gamemode>blitz</gamemode>
 <gamemode>ctw</gamemode>
@@ -14,70 +14,77 @@
     <contributor uuid="a348a860-8c8b-475f-b793-d556d45252a7" contribution="XML repair and checking"/> <!-- i2 -->
 </contributors>
 <teams>
-    <team id="red" color="dark red" max="32">Red</team>
-    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
 </teams>
-<blitz>
-    <lives>3</lives>
-</blitz>
-<spawns>
-    <spawn team="red" kit="spawn-kit" yaw="270">
-        <region><cylinder base="707,14,-731" radius="2" height="0"/></region>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit" yaw="90">
-        <region><cylinder base="547,14,-731" radius="2" height="0"/></region>
-    </spawn>
-    <default yaw="180">
-        <region><cylinder base="627,64,-776" radius="2" height="0"/></region>
-    </default>
-</spawns>
 <kits>
     <kit id="spawn-kit">
-        <item slot="1" enchantment="arrow infinite:1">bow</item>
-        <item slot="0">stone sword</item>
-        <item slot="2" amount="32">pumpkin pie</item>
-        <item slot="28">arrow</item>
-        <helmet team-color="true">leather helmet</helmet>
-        <chestplate team-color="true">leather chestplate</chestplate>
-        <leggings team-color="true">leather leggings</leggings>
-        <boots team-color="true">leather boots</boots>
+        <item slot="1" enchantment="arrow infinite" material="bow"/>
+        <item slot="0" material="stone sword"/>
+        <item slot="2" amount="32" material="pumpkin pie"/>
+        <item slot="28" material="arrow"/>
+        <helmet team-color="true" material="leather helmet"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>arrow</item>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
-    <item>wool</item>
-</itemremove>
-<filters>
-    <deny id="deny-players">
-        <participating/>
-    </deny>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-</filters>
+<spawns>
+    <spawn team="red-team" kit="spawn-kit" yaw="270">
+        <region>
+            <cylinder base="707,14,-731" radius="2" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit" yaw="90">
+        <region>
+            <cylinder base="547,14,-731" radius="2" height="0"/>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <cylinder base="627,64,-776" radius="2" height="0"/>
+        </region>
+    </default>
+</spawns>
 <regions>
-    <apply enter="only-red" use="only-red" message="You may not enter your own wool room!">
-        <region><cuboid min="566,1,-739" max="554,6,-723"/></region>
+    <apply enter="red-team" use="red-team" message="You may not enter your own wool room!">
+        <region>
+            <cuboid min="566,1,-739" max="554,6,-723"/>
+        </region>
     </apply>
-    <apply enter="only-blue" use="only-blue" message="You may not enter your own wool room!">
-        <region><cuboid min="688,1,-723" max="700,6,-739"/></region>
+    <apply enter="blue-team" use="blue-team" message="You may not enter your own wool room!">
+        <region>
+            <cuboid min="688,1,-723" max="700,6,-739"/>
+        </region>
     </apply>
-    <apply enter="only-red" message="You may not enter the enemy team's spawn!">
-        <region><cuboid min="687,8,-728" max="709,18,-734"/></region>
+    <apply enter="red-team" message="You may not enter the enemy's spawn!">
+        <region>
+            <cuboid min="687,8,-728" max="709,18,-734"/>
+        </region>
     </apply>
-    <apply enter="only-blue" message="You may not enter the enemy team's spawn!">
-        <region><cuboid min="567,8,-734" max="545,18,-728"/></region>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn!">
+        <region>
+            <cuboid min="567,8,-734" max="545,18,-728"/>
+        </region>
     </apply>
-    <apply block="deny-players" message="You may not interact with blocks."/>
+    <apply block="deny(participating)" message="You may not interact with blocks."/>
 </regions>
+<blitz>
+    <lives>3</lives>
+</blitz>
+<wools>
+    <wool team="red-team" color="orange" location="554.5,2,-730.5">
+        <monument>
+            <block location="710,15,-731"/>
+        </monument>
+    </wool>
+    <wool team="blue-team" color="cyan" location="700.5,2,-730.5">
+        <monument>
+            <block location="544,15,-731"/>
+        </monument>
+    </wool>
+</wools>
 <item-mods>
     <rule>
         <match>
@@ -90,16 +97,16 @@
         </modify>
     </rule>
 </item-mods>
-<wools>
-    <wool team="red" color="orange" location="554.5,2,-730.5">
-        <monument>
-            <block location="710,15,-731"/>
-        </monument>
-    </wool>
-    <wool team="blue" color="cyan" location="700.5,2,-730.5">
-        <monument>
-            <block location="544,15,-731"/>
-        </monument>
-    </wool>
-</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wool</item>
+</itemremove>
 </map>

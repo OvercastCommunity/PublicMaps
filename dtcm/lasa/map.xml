@@ -1,13 +1,17 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Lasa</name>
-<version>1.3.5</version>
-<include id="gapple-kill-reward"/>
+<version>1.3.6</version>
+<objective>Attackers have 15 minutes to destroy the Monument. The Red defenders must hold them back.</objective>
 <gamemode>ad</gamemode>
 <gamemode>dtm</gamemode>
-<objective>Attackers have 15 minutes to destroy the Monument. The Red defenders must hold them back.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
+<broadcasts>
+    <tip after="5s" every="2m">`6The `bAttackers `6must destroy the `cMonument `6above.</tip>
+    <tip after="7s" every="2m">`6The Monument turns to `aEmerald `6after 14 minutes.</tip>
+</broadcasts>
 <teams>
     <team id="attackers-team" color="blue" max="10" max-overfill="12" plural="true">Attackers</team>
     <team id="defenders-team" color="dark red" max="10" max-overfill="12" plural="true">Defenders</team>
@@ -49,30 +53,23 @@
     </kit>
 </kits>
 <spawns>
-    <default kit="default-kit">
-        <regions>
-            <point yaw="90">1.5,79,0.5</point>
-        </regions>
+    <default kit="default-kit" yaw="90">
+        <region>
+            <point>1.5,79,0.5</point>
+        </region>
     </default>
     <spawn team="attackers-team" kit="attackers-kit">
-        <regions>
+        <region>
             <point>0.5,3,0.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="defenders-team" kit="defenders-kit">
         <regions>
             <point yaw="180">0.5,33,31.5</point>
-            <point yaw="0">0.5,33,-30.5</point>
+            <point>0.5,33,-30.5</point>
         </regions>
     </spawn>
 </spawns>
-<filters>
-    <team id="only-attackers">attackers-team</team>
-    <team id="only-defenders">defenders-team</team>
-    <not id="no-void">
-        <void/>
-    </not>
-</filters>
 <regions>
     <cylinder id="attacker-spawn" base="0.5,0,0.5" radius="16" height="12"/>
     <below id="tower-base" y="12"/>
@@ -85,8 +82,8 @@
     </negative>
     <apply region="attacker-spawn" block="never"/>
     <apply region="attackers-spawns" block="never" message="You cannot interact with blocks near Attackers' spawn!"/>
-    <apply region="attacker-spawn" enter="only-attackers" message="You may not enter the enemy spawn!"/>
-    <apply region="not-map" block="no-void" message="You may not build so far from Lasa."/>
+    <apply region="attacker-spawn" enter="attackers-team" message="You may not enter the enemy spawn!"/>
+    <apply region="not-map" block="deny(void)" message="You may not build so far from Lasa."/>
 </regions>
 <proximity-alarms>
     <proximity-alarm message="Attackers detected near monument!" flare-radius="2">
@@ -131,47 +128,8 @@
         <item amount="2" material="arrow"/>
     </kill-reward>
 </kill-rewards>
-<broadcasts>
-    <tip after="5s" every="2m">`6The `bAttackers `6must destroy the `cMonument `6above.</tip>
-    <tip after="7s" every="2m">`6The Monument turns to `aEmerald `6after 14 minutes.</tip>
-</broadcasts>
 <hunger>
     <depletion>off</depletion>
 </hunger>
 <maxbuildheight>74</maxbuildheight>
-<!-- <tutorial>
-    <stage title="Attack and Defend the Monument">
-        <message>
-            <line>§rThis map is a §b§lAttack and Defend §r(AnD) map</line>
-            <line>The Blue team must destroy the Monument of the Red team, the Red team must hold them back!</line>
-        </message>
-        <teleport>
-            <point yaw="135" pitch="10">20,50,20</point>
-        </teleport>
-    </stage>
-    <stage title="Blue / Attacker Spawn">
-       <message>
-            <line>The Blue team spawns at the base of the tower</line>
-        </message>
-        <teleport>
-            <point yaw="135" pitch="10">20,8,20</point>
-        </teleport>
-    </stage>
-    <stage title="Red / Defenders Spawns">
-       <message>
-            <line>The Red team spawns on both sides of the map.</line>
-        </message>
-        <teleport>
-            <point yaw="135" pitch="10">35,60,35</point>
-        </teleport>
-    </stage>
-    <stage title="Go!">
-       <message>
-            <line>Good luck!</line>
-        </message>
-        <teleport>
-            <point yaw="135" pitch="10">0,13,0</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

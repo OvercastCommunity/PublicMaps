@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Aerobellum</name>
-<version>1.2.7</version>
+<version>1.2.8</version>
 <variant id="classic" world="classic">Classic</variant>
 <objective>Leak lava from the enemy team's engine to win the match!</objective>
 <include id="gapple-kill-reward"/>
@@ -29,19 +29,19 @@
 </broadcasts>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cylinder base="-59,23,22" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cylinder base="-59,23,-39" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cylinder base="-108.5,33,-7.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -67,15 +67,14 @@
 </tnt>
 <kits>
     <kit id="spawn-protection">
-        <effect amplifier="10" duration="oo">damage resistance</effect>
+        <effect amplifier="10">damage resistance</effect>
         <knockback-reduction>1</knockback-reduction>
     </kit>
     <kit id="spawn-kit">
         <clear/>
         <unless variant="classic">
             <item slot="0" unbreakable="true" material="iron sword"/>
-            <item slot="1" enchantment="arrow_infinite:1" unbreakable="true" material="bow"/>
-            <item slot="28" material="arrow"/>
+            <item slot="1" enchantment="arrow_infinite" unbreakable="true" material="bow"/>
             <item slot="2" unbreakable="true" material="diamond pickaxe"/>
             <item slot="3" unbreakable="true" material="iron axe"/>
             <item slot="4" damage="1" amount="64" material="wood"/>
@@ -86,7 +85,6 @@
         <if variant="classic">
             <item slot="0" material="iron sword"/>
             <item slot="1" enchantment="arrow infinite" material="bow"/>
-            <item slot="28" material="arrow"/>
             <item slot="2" material="diamond pickaxe"/>
             <item slot="3" material="iron axe"/>
             <item slot="4" damage="1" amount="64" material="log"/>
@@ -95,6 +93,7 @@
         <item slot="6" material="water bucket"/>
         <item slot="7" lore="More tnt can be found in your ship!" amount="32" material="tnt"/>
         <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
         <helmet team-color="true" material="leather helmet"/>
         <chestplate enchantment="protection explosions:4" material="chainmail chestplate"/>
         <leggings team-color="true" material="leather leggings"/>

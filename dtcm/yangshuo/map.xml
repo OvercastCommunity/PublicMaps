@@ -1,9 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Yangshuo</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Destroy both of the enemy's monuments!</objective>
 <created>2013-08-21</created>
-<maxbuildheight>112</maxbuildheight>
+<include id="gapple-kill-reward"/>
 <constants>
     <constant id="map-origin">29,0,45</constant>
 </constants>
@@ -14,8 +14,8 @@
     <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="XML"/> <!-- zzuf -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="16">Blue</team>
-    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
 </teams>
 <spawns>
     <default>
@@ -23,12 +23,12 @@
             <point>29,117,124</point>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="-45">
             <point>-57.5,88,9.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="45">
             <point>115.5,88,10.5</point>
         </region>
@@ -59,8 +59,6 @@
     </kit>
 </kits>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
@@ -80,8 +78,8 @@
         <region id="spawns"/>
     </complement>
     <apply use="deny-beacon"/>
-    <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
-    <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn!" region="blue-spawn"/>
+    <apply enter="red-team" message="You may not enter the enemy's spawn!" region="red-spawn"/>
     <apply block="never" message="You may not modify the spawn areas!" region="spawns"/>
     <apply block="never" message="You may not edit the void!" region="not-build-area"/>
     <!-- Monuments -->
@@ -90,11 +88,11 @@
     <mirror id="red-hillside-mon" region="blue-hillside-mon" origin="${map-origin}" normal="1,0,0"/>
     <mirror id="red-riverplains-mon" region="blue-riverplains-mon" origin="${map-origin}" normal="1,0,0"/>
 </regions>
-<destroyables materials="obsidian" completion="100%" mode-changes="true">
-    <destroyable owner="blue" name="Hillside Monument" region="blue-hillside-mon"/>
-    <destroyable owner="blue" name="River Plains Monument" region="blue-riverplains-mon"/>
-    <destroyable owner="red" name="Hillside Monument" region="red-hillside-mon"/>
-    <destroyable owner="red" name="River Plains Monument" region="red-riverplains-mon"/>
+<destroyables materials="obsidian" mode-changes="true">
+    <destroyable owner="blue-team" name="Hillside Monument" region="blue-hillside-mon"/>
+    <destroyable owner="blue-team" name="River Plains Monument" region="blue-riverplains-mon"/>
+    <destroyable owner="red-team" name="Hillside Monument" region="red-hillside-mon"/>
+    <destroyable owner="red-team" name="River Plains Monument" region="red-riverplains-mon"/>
 </destroyables>
 <modes>
     <mode after="15m" material="beacon" name="`bBEACON MONUMENT MODE"/>
@@ -155,10 +153,12 @@
     <item>sapling</item>
     <item>wheat</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" material="wood"/>
-    <item amount="16" material="glass"/>
-    <item amount="16" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" material="wood"/>
+        <item amount="16" material="glass"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>112</maxbuildheight>
 </map>

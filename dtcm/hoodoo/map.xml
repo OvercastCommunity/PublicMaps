@@ -1,15 +1,14 @@
-<?xml version="1.0"?>
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hoodoo</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Invaders must destroy the beacon before time runs out!</objective>
+<created>2013-08-09</created>
+<phase>development</phase>
+<gamemode>ad</gamemode>
 <authors>
     <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- Cubist -->
     <author uuid="5c79d2c9-a4f0-4343-a84b-e1720f13009b" contribution="PGM Adaptation"/> <!-- CoWinkKeyDinkInc -->
 </authors>
-<created>2013-08-09</created>
-<phase>development</phase>
-<gamemode>ad</gamemode>
 <teams>
     <team color="yellow" max="10" plural="true" id="invaders">Invaders</team>
     <team color="blue" max="10" plural="true" id="defenders">Defenders</team>
@@ -34,11 +33,10 @@
     <alert after="78s">The `eInvaders`r have been released!</alert>
 </broadcasts>
 <spawns>
-    <spawn team="invaders" yaw="0" region="invaders-class-spawn"/>
+    <spawn team="invaders" region="invaders-class-spawn"/>
     <spawn team="defenders" yaw="180" kit="defender-kit">
         <region>
-            <!-- Primary spawn point, initial spawn point in regions -->
-            <point>31.5,44.5,284.5</point>
+            <point>31.5,44.5,284.5</point> <!-- Primary spawn point, initial spawn point in regions -->
         </region>
     </spawn>
     <default yaw="-90">
@@ -64,7 +62,7 @@
 <enderchest fallback="DELETE"/>
 <!-- 20 minute countdown starts when invaders are released -->
 <time result="defenders">1278s</time>
-<destroyables completion="100%" materials="beacon">
+<destroyables materials="beacon">
     <destroyable name="Beacon" owner="defenders">
         <region>
             <cuboid min="32,34,241" max="31,35,240"/>
@@ -120,79 +118,78 @@
             <enchantment>punch</enchantment>
             <enchantment level="2">power</enchantment>
         </item>
-        <item slot="2" amount="48">ladder</item>
-        <item slot="3" amount="24">torch</item>
-        <item slot="4" amount="16">cooked fish</item>
+        <item slot="2" amount="48" material="ladder"/>
+        <item slot="3" amount="24" material="torch"/>
+        <item slot="4" amount="16" material="cooked fish"/>
         <!-- two ghast spawn eggs -->
-        <item slot="5" amount="2" damage="56" name="Hatch Chicks">monster egg</item>
-        <helmet unbreakable="true" color="FFFF80">leather helmet</helmet>
-        <chestplate unbreakable="true" color="FFFF80" enchantment="projectile_protection:6">leather chestplate</chestplate>
-        <leggings unbreakable="true" color="FFFF80">leather leggings</leggings>
-        <boots unbreakable="true" color="FFFF80">leather boots</boots>
-        <effect duration="oo">night vision</effect>
+        <item slot="5" amount="2" damage="56" name="Hatch Chicks" material="monster egg"/>
+        <helmet unbreakable="true" color="FFFF80" material="leather helmet"/>
+        <chestplate unbreakable="true" color="FFFF80" enchantment="projectile_protection:6" material="leather chestplate"/>
+        <leggings unbreakable="true" color="FFFF80" material="leather leggings"/>
+        <boots unbreakable="true" color="FFFF80" material="leather boots"/>
+        <effect>night vision</effect>
         <!-- fall damage disabled using filters and variables -->
         <max-health>16</max-health>
     </kit>
     <kit id="beaver" reset-ender-pearls="true">
-        <item slot="0" unbreakable="true">diamond axe</item>
-        <item slot="1" unbreakable="true">diamond pickaxe</item>
-        <item slot="2" unbreakable="true">diamond spade</item>
-        <item slot="3">flint and steel</item>
-        <item slot="4" amount="16">apple</item>
+        <item slot="0" unbreakable="true" material="diamond axe"/>
+        <item slot="1" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="2" unbreakable="true" material="diamond spade"/>
+        <item slot="3" material="flint and steel"/>
+        <item slot="4" amount="16" material="apple"/>
         <item slot="5" amount="32" material="potion" damage="16389"/> <!-- instant health -->
-        <item slot="6" material="potion" damage="14" name="Invisibeaver" lore="Remember to take your armor off">
+        <item slot="6" material="potion" damage="14" name="Invisibeaver" lore="`rRemember to take your armor off">
             <effect duration="20s">invisibility</effect>
         </item>
-        <item slot="7">water bucket</item>
-        <item slot="8" amount="16">stone button</item>
-
-        <item slot="9" amount="64">netherrack</item>
-        <item slot="10" amount="64">brick</item>
-        <item slot="11" amount="16">diode</item>  <!-- redstone repeater -->
-        <item slot="12" amount="64">glass</item>
-        <item slot="13" amount="64">glowstone</item>
-        <item slot="14" amount="64" damage="0">step</item>  <!-- smooth stone slab -->
-        <item slot="16" amount="16" damage="15">ink sack</item>  <!-- bonemeal -->
-        <item slot="17" amount="4">dirt</item>
-        <item slot="18" amount="4" damage="3">sapling</item>
-        <item slot="19" amount="64">ladder</item>
-        <item slot="20" amount="16">redstone</item>
-        <item slot="21" amount="64">redstone torch on</item>
-        <item slot="22" amount="64" damage="1">log</item>
-        <item slot="33">water bucket</item>
-        <item slot="34">water bucket</item>
-        <item slot="35">water bucket</item>
+        <item slot="7" material="water bucket"/>
+        <item slot="8" amount="16" material="stone button"/>
+        <item slot="9" amount="64" material="netherrack"/>
+        <item slot="10" amount="64" material="brick"/>
+        <item slot="11" amount="16" material="diode"/> <!-- redstone repeater -->
+        <item slot="12" amount="64" material="glass"/>
+        <item slot="13" amount="64" material="glowstone"/>
+        <item slot="14" amount="64" damage="0" material="step"/> <!-- smooth stone slab -->
+        <item slot="16" amount="16" damage="15" material="ink sack"/> <!-- bonemeal -->
+        <item slot="17" amount="4" material="dirt"/>
+        <item slot="18" amount="4" damage="3" material="sapling"/>
+        <item slot="19" amount="64" material="ladder"/>
+        <item slot="20" amount="16" material="redstone"/>
+        <item slot="21" amount="64" material="redstone torch on"/>
+        <item slot="22" amount="64" damage="1" material="log"/>
+        <item slot="33" material="water bucket"/>
+        <item slot="34" material="water bucket"/>
+        <item slot="35" material="water bucket"/>
         <helmet unbreakable="true" color="CC6600" material="leather helmet">
             <enchantment level="3">respiration</enchantment>
             <enchantment>aqua_affinity</enchantment>
         </helmet>
-        <chestplate unbreakable="true" color="CC6600" attributes="generic.knockbackResistance:add:1.0">leather chestplate</chestplate>
-        <leggings unbreakable="true" color="CC6600">leather leggings</leggings>
-        <boots unbreakable="true" color="CC6600">leather boots</boots>
-        <effect duration="oo" amplifier="4">haste</effect>
-        <effect duration="oo" amplifier="1">weakness</effect>
-        <effect duration="oo" amplifier="1">regeneration</effect>
+        <chestplate unbreakable="true" color="CC6600" attributes="generic.knockbackResistance:add:1.0" material="leather chestplate"/>
+        <leggings unbreakable="true" color="CC6600" material="leather leggings"/>
+        <boots unbreakable="true" color="CC6600" material="leather boots"/>
+        <effect amplifier="4">haste</effect>
+        <effect>weakness</effect>
+        <effect>regeneration</effect>
         <max-health>20</max-health>
     </kit>
     <kit id="wolf" reset-ender-pearls="true">
         <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:10" name="Snaggle Fang" lore="43% sharper than a diamond sword" material="diamond sword"/>
-        <item slot="1" amount="24">sand</item>
-        <item slot="2" amount="24">torch</item>
-        <item slot="3" amount="8">cooked chicken</item>
-        <item slot="4" amount="1">ender pearl</item>
+        <item slot="1" amount="24" material="sand"/>
+        <item slot="2" amount="24" material="torch"/>
+        <item slot="3" amount="8" material="cooked chicken"/>
+        <item slot="4" material="ender pearl"/>
         <item slot="5" material="potion" damage="3" name="Lick your wounds">
             <effect duration="40s">regeneration</effect>
             <effect duration="40s">saturation</effect>
         </item>
-        <helmet unbreakable="true" color="6677AA">leather helmet</helmet>
-        <chestplate unbreakable="true" color="6677AA">leather chestplate</chestplate>
-        <leggings unbreakable="true" color="6677AA">leather leggings</leggings>
-        <boots unbreakable="true" color="6677AA" enchantment="feather_falling:3">leather boots</boots>
-        <effect duration="oo" amplifier="1">speed</effect>
-        <effect duration="oo" amplifier="1">hunger</effect>
-        <effect duration="oo" amplifier="1">haste</effect>
-        <effect duration="oo" amplifier="4">slow digging</effect>
-        <effect duration="oo" amplifier="2">jump_boost</effect>
+        <helmet unbreakable="true" color="6677AA" material="leather helmet"/>
+        <chestplate unbreakable="true" color="6677AA" material="leather chestplate"/>
+        <leggings unbreakable="true" color="6677AA" material="leather leggings"/>
+        <boots unbreakable="true" color="6677AA" enchantment="feather_falling:3" material="leather boots"/>
+        <effect>speed</effect>
+        <effect>hunger</effect>
+        <effect>haste</effect>
+        <effect amplifier="4">slow digging</effect>
+        <effect amplifier="2">jump_boost</effect>
         <max-health>40</max-health>
         <!-- needed to fill hearts -->
         <effect duration="5">instant_health</effect>
@@ -206,21 +203,21 @@
             <enchantment level="2">knockback</enchantment>
             <!-- unbreaking 2 -->
         </item>
-        <item slot="1">flint and steel</item>
-        <item slot="2" amount="64">tnt</item>
-        <item slot="3" amount="64">tnt</item>
-        <item slot="4" amount="24">baked potato</item>
-        <item slot="5" amount="8">redstone torch on</item>
-        <item slot="6" amount="24">torch</item>
+        <item slot="1" material="flint and steel"/>
+        <item slot="2" amount="64" material="tnt"/>
+        <item slot="3" amount="64" material="tnt"/>
+        <item slot="4" amount="24" material="baked potato"/>
+        <item slot="5" amount="8" material="redstone torch on"/>
+        <item slot="6" amount="24" material="torch"/>
         <item slot="7" material="potion" damage="3">
             <effect duration="30s">fire resistance</effect>
         </item>
-        <helmet unbreakable="true" color="1E1B1B">leather helmet</helmet>
-        <chestplate unbreakable="true" color="1E1B1B" enchantment="blast_protection:6">leather chestplate</chestplate>
-        <leggings unbreakable="true" color="1E1B1B">leather leggings</leggings>
-        <boots unbreakable="true" color="1E1B1B">leather boots</boots>
-        <effect duration="oo">slowness</effect>
-        <effect duration="oo" amplifier="1">regeneration</effect>
+        <helmet unbreakable="true" color="1E1B1B" material="leather helmet"/>
+        <chestplate unbreakable="true" color="1E1B1B" enchantment="blast_protection:6" material="leather chestplate"/>
+        <leggings unbreakable="true" color="1E1B1B" material="leather leggings"/>
+        <boots unbreakable="true" color="1E1B1B" material="leather boots"/>
+        <effect>slowness</effect>
+        <effect>regeneration</effect>
         <max-health>100</max-health>
         <effect duration="5">instant_health</effect>
     </kit>
@@ -228,7 +225,7 @@
         <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow">
             <!-- other defender bows around the map have punch, knockback, power, etc -->
-            <enchantment level="1">infinity</enchantment>
+            <enchantment>infinity</enchantment>
         </item>
         <item slot="2" unbreakable="true" material="iron pickaxe"/>
         <item slot="3" unbreakable="true" material="iron axe"/>

@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Azure</name>
 <variant id="christmas" world="christmas">Christmas</variant>
-<version>1.3.2</version>
+<version>1.3.3</version>
 <objective>Destroy both enemy team monuments to win!</objective>
 <include id="gapple-kill-reward"/>
 <if variant="default">
@@ -91,11 +91,6 @@
     <mode id="gold-mode" after="15m" material="gold block" name="`6GOLD MONUMENT MODE"/>
     <mode id="coal-mode" after="30m" material="coal block" name="`8COAL MONUMENT MODE"/>
 </modes>
-<filters>
-    <not id="not-void">
-        <void/>
-    </not>
-</filters>
 <regions>
     <union id="spawns">
         <cuboid min="-109,6,313" max="-80,27,327"/>
@@ -109,7 +104,7 @@
     </negative>
     <!-- applicators -->
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
-    <apply block-place="not-void" region="not-build-area" message="You may not edit the void!"/>
+    <apply block-place="deny(void)" region="not-build-area" message="You may not edit the void!"/>
 </regions>
 <itemkeep>
     <item>iron sword</item>

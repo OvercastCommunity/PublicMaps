@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Retaliation 2</name>
-<version>1.5.1</version>
+<version>1.5.2</version>
 <objective>Destroy each of the enemy's monuments and leak their core to win!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draeyx fka Draco_Rogue -->
 </authors>
@@ -9,8 +10,8 @@
     <contributor uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27" contribution="Map support and assistance"/> <!-- HardstyleRaver fka HardstyleRaver2 -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
 </teams>
 <kits>
     <kit id="default-kit" force="true">
@@ -26,17 +27,8 @@
         <item slot="4" amount="48" material="wood"/>
         <item slot="7" material="golden apple"/>
         <item slot="8" amount="64" material="golden carrot"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="334CB2" material="leather helmet"/>
-        <chestplate unbreakable="true" color="334CB2" material="leather chestplate">
-            <enchantment level="3">blast_protection</enchantment>
-            <enchantment>projectile_protection</enchantment>
-        </chestplate>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="993333" material="leather helmet"/>
-        <chestplate unbreakable="true" color="993333" material="leather chestplate">
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate">
             <enchantment level="3">blast_protection</enchantment>
             <enchantment>projectile_protection</enchantment>
         </chestplate>
@@ -48,20 +40,18 @@
             <point>12.5,45,48.5</point>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="180">
             <point>58.5,46,144.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
-        <region yaw="0">
+    <spawn team="red-team" kit="spawn-kit">
+        <region>
             <point>58.5,46,-47.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
@@ -91,8 +81,8 @@
         <rectangle min="23,-25" max="94,122"/>
     </negative>
     <apply use="deny-beacon"/>
-    <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
-    <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn!" region="blue-spawn"/>
+    <apply enter="red-team" message="You may not enter the enemy's spawn!" region="red-spawn"/>
     <apply block="never" region="above-height-limit" message="You may not break or place any blocks at this height!"/>
     <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
     <apply block="deny-players" message="You may not build underneath the map!" region="no-underbridging"/>
@@ -103,8 +93,8 @@
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
     <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
-<destroyables completion="100%" materials="ender stone" show-progress="true" sparks="true">
-    <destroyables owner="blue">
+<destroyables materials="ender stone" show-progress="true" sparks="true">
+    <destroyables owner="blue-team">
         <destroyable name="West Monument">
             <region>
                 <cylinder base="31.5,54,95.5" radius="3" height="9"/>
@@ -116,7 +106,7 @@
             </region>
         </destroyable>
     </destroyables>
-    <destroyables owner="red">
+    <destroyables owner="red-team">
         <destroyable name="West Monument">
             <region>
                 <cylinder base="31.5,54,1.5" radius="3" height="9"/>
@@ -130,12 +120,12 @@
     </destroyables>
 </destroyables>
 <cores material="obsidian" leak="5" modes="gold-core ice-core">
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="55,53,85" max="62,60,92"/>
         </region>
     </core>
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="55,53,5" max="62,60,12"/>
         </region>
@@ -181,8 +171,9 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemkeep>
-<kill-reward>
-    <item amount="16" material="arrow"/>
-    <item material="golden apple"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 </map>

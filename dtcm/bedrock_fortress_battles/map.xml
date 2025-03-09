@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Bedrock Fortress Battles</name>
 <phase>staging</phase>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <authors>
     <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
@@ -57,6 +57,7 @@
         </region>
     </core>
 </cores>
+<!-- TODO: integrate this with custom modes -->
 <actions>
     <action id="wall" scope="match">
         <fill id="clear-wall" region="bedrock-wall" material="air"/>

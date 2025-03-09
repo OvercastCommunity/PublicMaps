@@ -1,9 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The President's Cottage</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Leak the enemy team's obsidian core.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="Main author, updating the xml and the map"/> <!-- chle_ -->
+    <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="Main author, updating the XML, and the map"/> <!-- chle_ -->
 </authors>
 <contributors>
     <contributor uuid="9ccbf0e7-f32c-4966-a963-b6eef474b930" contribution="Building the diamond house"/> <!-- Danno428 -->
@@ -16,8 +17,8 @@
     <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" contribution="XML"/> <!-- Kroest -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -34,20 +35,12 @@
         <item slot="5" amount="64" damage="1" material="leaves"/>
         <item slot="7" amount="1" material="golden apple"/>
         <item slot="8" amount="64" material="golden carrot"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect duration="3" amplifier="2">heal</effect>
         <effect duration="4" amplifier="2">damage resistance</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="334CB2" material="leather helmet"/>
-        <chestplate unbreakable="true" color="334CB2" material="leather chestplate"/>
-        <leggings unbreakable="true" color="334CB2" material="leather leggings"/>
-        <boots unbreakable="true" color="334CB2" material="leather boots"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet unbreakable="true" color="993333" material="leather helmet"/>
-        <chestplate unbreakable="true" color="993333" material="leather chestplate"/>
-        <leggings unbreakable="true" color="993333" material="leather leggings"/>
-        <boots unbreakable="true" color="993333" material="leather boots"/>
     </kit>
     <kit id="speed-house" force="true">
         <effect amplifier="2">speed</effect>
@@ -69,7 +62,7 @@
             <block>-75.5,47,0.5</block>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="-90">
             <cuboid min="-30,23,-128" max="-31,23,-126"/>
         </region>
@@ -77,7 +70,7 @@
             <cuboid min="31,23,-128" max="32,23,-126"/>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="-90">
             <cuboid min="-30,23,129" max="-31,23,127"/>
         </region>
@@ -86,26 +79,18 @@
         </region>
     </spawn>
 </spawns>
-<filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-    <not id="deny-void">
-        <void/>
-    </not>
-</filters>
 <regions>
-    <complement id="kit-houses">
-        <union id="spawns">
-            <rectangle id="blue-spawn" min="-35,-135" max="36,-119"/>
-            <rectangle id="red-spawn" min="-35,120" max="36,136"/>
-        </union>
-        <rectangle min="-30,-128" max="-31,-126"/>
-        <rectangle min="31,-128" max="32,-126"/>
-        <rectangle min="-30,129" max="-31,127"/>
-        <rectangle min="31,129" max="32,127"/>
-    </complement>
     <negative id="remove-kit">
-        <region id="kit-houses"/>
+        <complement id="kit-houses">
+            <union id="spawns">
+                <rectangle id="blue-spawn" min="-35,-135" max="36,-119"/>
+                <rectangle id="red-spawn" min="-35,120" max="36,136"/>
+            </union>
+            <rectangle min="-30,-128" max="-31,-126"/>
+            <rectangle min="31,-128" max="32,-126"/>
+            <rectangle min="-30,129" max="-31,127"/>
+            <rectangle min="31,129" max="32,127"/>
+        </complement>
     </negative>
     <union id="jump-pads">
         <cuboid id="blue-pad" min="-1.5,17,-111.5" max="2.5,20,-112.5"/>
@@ -115,7 +100,7 @@
         <rectangle min="-1.5,114.5" max="2.5,112.5"/>
         <rectangle min="-1.5,-111.5" max="2.5,-113.5"/>
     </union>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <rectangle min="-38,-13" max="39,14"/>
         <circle id="obs-spawn" center="-73.5,0.5" radius="7"/>
@@ -126,24 +111,24 @@
     <apply velocity="0.0,0.6,2.7" region="blue-pad"/>
     <apply velocity="0.0,0.6,-2.7" region="red-pad"/>
     <apply use="never" region="obs-spawn"/>
-    <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
-    <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn!" region="blue-spawn"/>
+    <apply enter="red-team" message="You may not enter the enemy's spawn!" region="red-spawn"/>
     <apply block="never" message="You may not modify the spawns!" region="spawns"/>
     <apply block="never" message="You may not destroy the jump pads!" region="jump-pads-d"/>
     <apply block="never" message="You may not build in the void!" region="obs-spawn"/>
-    <apply block-place="deny-void" block-break="always" message="You may not build in the void!" region="void"/>
+    <apply block-place="deny(void)" block-break="always" message="You may not build in the void!" region="void-area"/>
 </regions>
 <modes>
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
     <mode id="ice-core" after="35m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
 <cores material="obsidian" leak="5" modes="gold-core ice-core">
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="-3,14,-52" max="4,21,-45"/>
         </region>
     </core>
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="-3,14,46" max="4,21,53"/>
         </region>
@@ -213,7 +198,6 @@
     <kill-reward>
         <item amount="32" damage="1" material="wood"/>
         <item amount="16" damage="1" material="leaves"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <gamerules>

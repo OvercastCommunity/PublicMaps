@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hot Dam</name>
-<version>1.3.5</version>
+<version>1.3.6</version>
 <objective>Leak lava from the enemy's obsidian core onto the dam.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
 </authors>
@@ -10,8 +11,8 @@
     <contributor>Overcast Network Map Team</contributor>
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="35">Blue</team>
-    <team id="red" color="dark red" max="35">Red</team>
+    <team id="blue-team" color="blue" max="35">Blue</team>
+    <team id="red-team" color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -28,15 +29,10 @@
         <item slot="7" amount="64" material="ladder"/>
         <item slot="8" amount="64" material="golden carrot"/>
         <item slot="28" amount="64" material="arrow"/>
-        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <chestplate unbreakable="true" material="chainmail chestplate"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect duration="8" amplifier="4">damage resistance</effect>
-        <effect duration="8" amplifier="1">increase damage</effect>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <boots unbreakable="true" color="334CB2">leather boots</boots>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <boots unbreakable="true" color="993333">leather boots</boots>
+        <effect duration="8">increase damage</effect>
     </kit>
 </kits>
 <spawns>
@@ -45,24 +41,17 @@
             <cylinder base="-33.5,36,-54.5" radius="2" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="blue-kit" yaw="90">
+    <spawn team="blue-team" kit="spawn-kit" yaw="90">
         <region>
             <cylinder base="-101,75,-55" radius="2" height="0"/>
         </region>
     </spawn>
-    <spawn team="red" kit="red-kit" yaw="180">
+    <spawn team="red-team" kit="spawn-kit" yaw="180">
         <region>
             <cylinder base="-33,75,-123" radius="2" height="0"/>
         </region>
     </spawn>
 </spawns>
-<filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-    <not id="deny-void">
-        <void/>
-    </not>
-</filters>
 <regions>
     <union id="supply-rooms">
         <cuboid id="blue-supply-room" min="-167,71,-51" max="-143,79,-42"/>
@@ -74,19 +63,19 @@
         <cuboid id="red-spawn-protect" min="-37,73,-118" max="-23,80,-140"/>
         <cuboid id="red-spawn-protect2" min="-24,75,-140" max="-27,74,-150"/>
     </union>
-    <apply enter="only-blue" message="You are not allowed in Blue's supply room!" region="blue-supply-room"/>
-    <apply enter="only-red" message="You are not allowed in Red's supply room!" region="red-supply-room"/>
+    <apply enter="blue-team" message="You are not allowed in Blue's supply room!" region="blue-supply-room"/>
+    <apply enter="red-team" message="You are not allowed in Red's supply room!" region="red-supply-room"/>
     <apply block="never" message="You may not place or break blocks in the supply rooms!" region="supply-rooms"/>
     <apply block="never" message="You may not interfere with the spawn platforms!" region="spawn-protect"/>
-    <apply block="deny-void" message="You may not build outside of the map!"/>
+    <apply block="deny(void)" message="You may not build outside of the map!"/>
 </regions>
 <cores material="obsidian" leak="2" mode-changes="true">
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="-153,76,-93" max="-149,82,-88"/>
         </region>
     </core>
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="-71,76,-175" max="-66,82,-171"/>
         </region>
@@ -117,8 +106,9 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item>golden apple</item>
-    <item amount="16">arrow</item>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 </map>

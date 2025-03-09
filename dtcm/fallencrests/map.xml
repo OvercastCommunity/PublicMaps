@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fallencrests</name>
 <variant id="halloween" world="halloween">Halloween</variant>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <objective>Leak lava from each of the enemy's obsidian core 6 blocks downwards</objective>
+<include id="gapple-kill-reward"/>
 <rules>
     <rule>Players have haste, resistance, and reduced knockback at their spawn!</rule>
 </rules>
@@ -24,26 +25,9 @@
     <contributor uuid="9ee0a4b4-7727-45d0-9aee-1a794e23b641"/> <!-- gloomp -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
 </teams>
-<spawns>
-    <spawn team="blue" kit="spawn-kit" yaw="90">
-        <region>
-            <cuboid min="639,17,429" max="641,17,431"/>
-        </region>
-    </spawn>
-    <spawn team="red" kit="spawn-kit" yaw="270">
-        <region>
-            <cuboid min="569,17,301" max="571,17,305"/>
-        </region>
-    </spawn>
-    <default yaw="270">
-        <region>
-            <cuboid min="513,47,364" max="526,47,371"/>
-        </region>
-    </default>
-</spawns>
 <kits>
     <kit id="spawn-kit">
         <item slot="0" unbreakable="true" material="iron sword"/>
@@ -66,22 +50,35 @@
         <effect amplifier="2" duration="5">fast digging</effect>
     </kit>
     <kit id="spawn-protection">
-        <effect amplifier="10" duration="oo">damage resistance</effect>
-        <effect amplifier="2" duration="oo">fast digging</effect>
+        <effect amplifier="10">damage resistance</effect>
+        <effect amplifier="2">fast digging</effect>
         <knockback-reduction>1</knockback-reduction>
     </kit>
 </kits>
-<filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
-</filters>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" yaw="90">
+        <region>
+            <cuboid min="639,17,429" max="641,17,431"/>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit" yaw="270">
+        <region>
+            <cuboid min="569,17,301" max="571,17,305"/>
+        </region>
+    </spawn>
+    <default yaw="270">
+        <region>
+            <cuboid min="513,47,364" max="526,47,371"/>
+        </region>
+    </default>
+</spawns>
 <regions>
-    <apply lend-kit="spawn-protection" enter="only-blue" block="never" message="You may not interact with Blue Team's spawn!">
+    <apply lend-kit="spawn-protection" enter="blue-team" block="never" message="You may not interact with Blue's spawn!">
         <region>
             <rectangle min="636,426" max="642,437"/>
         </region>
     </apply>
-    <apply lend-kit="spawn-protection" enter="only-red" block="never" message="You may not interact with Red Team's spawn!">
+    <apply lend-kit="spawn-protection" enter="red-team" block="never" message="You may not interact with Red's spawn!">
         <region>
             <rectangle min="575,309" max="567,298"/>
         </region>
@@ -95,22 +92,22 @@
     </apply>
 </regions>
 <cores leak="5" mode-changes="true">
-    <core name="Rear Core" team="red">
+    <core name="Rear Core" team="red-team">
         <region>
             <cuboid min="606,38,250" max="611,43,255"/>
         </region>
     </core>
-    <core name="Front Core" team="red">
+    <core name="Front Core" team="red-team">
         <region>
             <cuboid min="612,38,310" max="617,43,315"/>
         </region>
     </core>
-    <core name="Rear Core" team="blue">
+    <core name="Rear Core" team="blue-team">
         <region>
             <cuboid min="600,38,480" max="605,43,485"/>
         </region>
     </core>
-    <core name="Front Core" team="blue">
+    <core name="Front Core" team="blue-team">
         <region>
             <cuboid min="594,38,420" max="599,43,425"/>
         </region>
@@ -142,7 +139,6 @@
 </toolrepair>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="32" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>

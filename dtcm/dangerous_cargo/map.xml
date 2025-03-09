@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Dangerous Cargo</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Leak lava from the enemy's obsidian core and destroy their two monuments!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
 </authors>
@@ -31,19 +32,19 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn">
-        <regions yaw="-90">
+        <region yaw="-90">
             <cuboid min="-104,67,-20" max="-102,67,-18"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="spawn">
-        <regions yaw="-90">
+        <region yaw="-90">
             <cuboid min="-104,67,56" max="-102,67,58"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="-90">
+        <region yaw="-90">
             <cuboid min="-102,70,17" max="-104,70,21"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -153,7 +154,6 @@
         <item amount="16" material="tnt"/>
         <item amount="8" material="redstone"/>
         <item amount="8" material="ladder"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <hunger>

@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Escensio</name>
-<version>1.0.10</version>
+<version>1.0.11</version>
 <objective>Destroy the three enemy flags to win the match.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
     <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->
@@ -12,8 +13,8 @@
     <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="XML Fixing"/> <!-- IM_A_H0B0 -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="25">Blue</team>
-    <team id="red" color="dark red" max="25">Red</team>
+    <team id="blue-team" color="blue" max="25">Blue</team>
+    <team id="red-team" color="dark red" max="25">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -34,12 +35,12 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit" yaw="270">
+    <spawn team="blue-team" kit="spawn-kit" yaw="270">
         <regions>
             <cuboid min="-94,39,-83" max="-91,39,-87"/>
         </regions>
     </spawn>
-    <spawn team="red" kit="spawn-kit" yaw="90">
+    <spawn team="red-team" kit="spawn-kit" yaw="90">
         <regions>
             <cuboid min="96,39,-11" max="95,39,-15"/>
         </regions>
@@ -50,10 +51,6 @@
         </regions>
     </default>
 </spawns>
-<filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-</filters>
 <regions>
     <union id="spawns">
         <cuboid id="red-spawn" min="91,37,-25" max="101,oo,-2"/>
@@ -67,13 +64,13 @@
             <cuboid min="101,8,-99" max="-98,-7,-98"/>
         </region>
     </apply>
-    <apply region="red-spawn" enter="only-red" message="You may not enter the enemy's spawn!"/>
-    <apply region="blue-spawn" enter="only-blue" message="You may not enter the enemy's spawn!"/>
+    <apply region="red-spawn" enter="red-team" message="You may not enter the enemy's spawn!"/>
+    <apply region="blue-spawn" enter="blue-team" message="You may not enter the enemy's spawn!"/>
     <apply region="spawns" block="never" message="You may not modify the spawn!"/>
     <apply region="playable-inverse" block="never" message="You may not build outside of the map!"/>
 </regions>
 <destroyables completion="75%" materials="wool:11;wool:15;wool:14;wool:7;wool">
-    <destroyables owner="red">
+    <destroyables owner="red-team">
         <destroyable name="Right Flag">
             <region>
                 <cuboid min="74,35,-91" max="77,49,-98"/>
@@ -90,7 +87,7 @@
             </region>
         </destroyable>
     </destroyables>
-    <destroyables owner="blue">
+    <destroyables owner="blue-team">
         <destroyable name="Left Flag">
             <region>
                 <cuboid min="-69,33,-61" max="-70,47,-52"/>
@@ -133,11 +130,6 @@
     <item>shears</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <tnt>
     <instantignite>on</instantignite>
     <licensing>off</licensing>
@@ -145,42 +137,4 @@
     <blockdamage>off</blockdamage>
 </tnt>
 <maxbuildheight>60</maxbuildheight>
-<!-- <tutorial>
-    <stage title="Destroy the Flag">
-        <message>
-            <line>`rThis map is a `a`lDestroy the Flag `r(DTF) map</line>
-            <line>The objective is to destroy the other team's monuments on their side.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="45">-10,109,-106</point>
-        </teleport>
-    </stage>
-    <stage title="The Monuments">
-        <message>
-            <line>`rThis flag is a `bmonument`r. You must destroy all of the enemy flags to win.</line>
-            <line>`cFire `rand `cTNT `rwill not work. Shears are a good way to quickly destroy them.</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="0">26,42,-67.5</point>
-        </teleport>
-    </stage>
-    <stage title="Iron">
-        <message>
-            <line>`bIron blocks `rcan be found by digging underneath the rocks.</line>
-            <line>You can use the `biron blocks `rto craft `aarmor`r.</line>
-        </message>
-        <teleport>
-            <point yaw="145" pitch="45">67,42,-42</point>
-        </teleport>
-    </stage>
-    <stage title="Extra Supplies">
-        <message>
-            <line>There are `bchests `rscattered around the map that contain `bextra supplies`r.</line>
-            <line>The ships contain chests filled with `cTNT`r.</line>
-        </message>
-        <teleport>
-            <point yaw="135" pitch="25">79,46,-6.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

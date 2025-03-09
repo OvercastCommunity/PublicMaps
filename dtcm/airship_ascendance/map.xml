@@ -1,10 +1,11 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Airship Ascendance</name>
-<version>0.6.2</version>
+<version>0.6.3</version>
 <objective>Leak lava from the enemy's obsidian Engine Core</objective>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="30e27366-0b14-4076-8f55-0819ece49ce3" contribution="original creator"/> <!-- Dewtroid -->
-    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="overhaul"/> <!-- last_username -->
+    <author uuid="30e27366-0b14-4076-8f55-0819ece49ce3" contribution="Original creator"/> <!-- Dewtroid -->
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Overhaul"/> <!-- last_username -->
 </authors>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
@@ -14,8 +15,8 @@
     <alert after="1">`7Cores will be turned to `6Gold `7in `b5 minutes`7. `7Build your defences!</alert>
 </broadcasts>
 <teams>
-    <team id="blue" color="blue" max="24">Blue</team>
-    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue-team" color="blue" max="24">Blue</team>
+    <team id="red-team" color="dark red" max="24">Red</team>
 </teams>
 <kits>
     <kit id="spawn-protection">
@@ -46,20 +47,20 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" yaw="270" kit="blue-kit">
-        <regions>
+    <spawn team="blue-team" yaw="270" kit="blue-kit">
+        <region>
             <cuboid min="4.5,40,-34.5" max="8.5,40,-30.5"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="red" yaw="90" kit="red-kit">
-        <regions>
+    <spawn team="red-team" yaw="90" kit="red-kit">
+        <region>
             <cuboid min="-31.5,40,-34.5" max="-27.5,40,-30.5"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <cylinder base="-11.5,40,-32.5" radius="6" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -67,8 +68,6 @@
     <deny id="deny-chest-break">
         <material>chest</material>
     </deny>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <!-- Line where recent changes end -->
     <deny id="deny-cyan-clay">
         <material>stained clay:9</material>
@@ -78,8 +77,8 @@
     <!-- Recent changes to implement spawn and chest protection -->
     <cuboid id="red-spawn-protect" min="-42,39,-36" max="-35,45,7"/>
     <cuboid id="blue-spawn-protect" min="19,39,-36" max="12,45,7"/>
-    <apply region="blue-spawn-protect" lend-kit="spawn-protection" filter="only-blue"/>
-    <apply region="red-spawn-protect" lend-kit="spawn-protection" filter="only-red"/>
+    <apply region="blue-spawn-protect" lend-kit="spawn-protection" filter="blue-team"/>
+    <apply region="red-spawn-protect" lend-kit="spawn-protection" filter="red-team"/>
     <apply block="deny-chest-break" message="This block can not be placed or broken on this map!"/>
     <!-- Line where recent changes end -->
     <union id="tunnels">
@@ -100,12 +99,12 @@
     <apply block="deny-cyan-clay" message="This material is stronger than it looks"/>
 </regions>
 <cores material="obsidian" leak="9" mode-changes="true">
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="13,41,33" max="18,48,38"/>
         </region>
     </core>
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="-41,41,33" max="-36,48,38"/>
         </region>
@@ -117,7 +116,7 @@
 <proximity-alarms>
     <proximity-alarm message="`4Red `fEngine Core `cis under attack!" flare-radius="3">
         <detect>
-            <team>blue</team>
+            <team>blue-team</team>
         </detect>
         <region>
             <cuboid min="-46,35,28" max="-31,52,43"/>
@@ -125,7 +124,7 @@
     </proximity-alarm>
     <proximity-alarm message="`9Blue `fEngine Core `cis under attack!" flare-radius="3">
         <detect>
-            <team>red</team>
+            <team>red-team</team>
         </detect>
         <region>
             <cuboid min="8,35,28" max="23,52,43"/>
@@ -144,11 +143,6 @@
     <item>chainmail chestplate</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <crafting>
     <disable>chest</disable>
 </crafting>

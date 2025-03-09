@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Siloë</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <objective>Leak both enemy cores.</objective>
 <created>2013-11-24</created>
 <include id="gapple-kill-reward"/>
@@ -9,12 +9,12 @@
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <contributors>
-    <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="first XML shot"/> <!-- nixter1029 -->
+    <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="First XML shot"/> <!-- nixter1029 -->
     <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="XML correction"/> <!-- Tywnis -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="24">Blue</team>
-    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue-team" color="blue" max="24">Blue</team>
+    <team id="red-team" color="dark red" max="24">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -44,39 +44,32 @@
             <cylinder base="1574.5,45,-1210.5" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="90">
             <cuboid min="1708,4,-1222" max="1703,4,-1217"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="-90">
             <cuboid min="1441,4,-1217" max="1446,4,-1222"/>
         </region>
     </spawn>
 </spawns>
-<filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-    <deny id="deny-void">
-        <void/>
-    </deny>
-</filters>
 <regions>
     <union id="spawns">
         <rectangle id="blue-spawn" min="1689,-1226" max="1712,-1213"/>
         <rectangle id="red-spawn" min="1460,-1213" max="1437,-1226"/>
     </union>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <cylinder base="1519.5,0,-1219.5" radius="58" height="25"/>
         <cylinder base="1629.5,0,-1219.5" radius="58" height="25"/>
         <rectangle min="1561,-1259" max="1587,-1180"/>
     </complement>
-    <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter the enemy's base!"/>
-    <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter the enemy's base!"/>
+    <apply enter="blue-team" use="blue-team" region="blue-spawn" message="You may not enter the enemy's base!"/>
+    <apply enter="red-team" use="red-team" region="red-spawn" message="You may not enter the enemy's base!"/>
     <apply block="never" region="spawns" message="You may not destroy the spawns!"/>
-    <apply block="deny-void" region="void" message="You may not build in the void!"/>
+    <apply block="deny(void)" region="void-area" message="You may not build in the void!"/>
 </regions>
 <renewables>
     <renewable rate="0.5" avoid-players="5">
@@ -91,24 +84,24 @@
 </modes>
 <cores material="obsidian" leak="1" modes="gold-core ice-core">
     <cores name="North Core">
-        <core team="blue">
+        <core team="blue-team">
             <region>
                 <sphere origin="1649.5,18,-1247.5" radius="3"/>
             </region>
         </core>
-        <core team="red">
+        <core team="red-team">
             <region>
                 <sphere origin="1499.5,18,-1247.5" radius="3"/>
             </region>
         </core>
     </cores>
     <cores name="South Core">
-        <core team="blue">
+        <core team="blue-team">
             <region>
                 <sphere origin="1649.5,18,-1191.5" radius="3"/>
             </region>
         </core>
-        <core team="red">
+        <core team="red-team">
             <region>
                 <sphere origin="1499.5,18,-1191.5" radius="3"/>
             </region>

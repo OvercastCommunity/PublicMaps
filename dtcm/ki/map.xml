@@ -1,42 +1,21 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Kï</name>
-<version>3.0.3</version>
+<version>3.0.4</version>
 <objective>Destroy 60% of the enemy's base! You only have 10 minutes!</objective>
-<!-- <include id="tutorial"/> -->
+<game>Destroy the Base</game>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
 <rules>
     <rule>Fall damage is disabled!</rule>
 </rules>
-<game>Destroy the Base</game>
-<maxbuildheight>32</maxbuildheight>
-<time result="objectives">10m</time>
-<respawn auto="true"/>
 <teams>
-    <team id="red" color="red" max="24">Red</team>
-    <team id="blue" color="blue" max="24">Blue</team>
+    <team id="red-team" color="red" max="24">Red</team>
+    <team id="blue-team" color="blue" max="24">Blue</team>
 </teams>
-<spawns>
-    <spawn team="red" kit="spawn-kit" yaw="0">
-        <region>
-            <cuboid min="28,3,-78" max="-27,3,-75"/>
-        </region>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit" yaw="180">
-        <region>
-            <cuboid min="-27,3,76" max="28,3,79"/>
-        </region>
-    </spawn>
-    <default kit="obs" yaw="90">
-        <region>
-            <point>-67.5,51,0.5</point>
-        </region>
-    </default>
-</spawns>
 <kits>
     <kit id="obs">
-        <effect duration="oo">night vision</effect>
+        <effect>night vision</effect>
     </kit>
     <kit id="spawn-kit">
         <item slot="0" unbreakable="true" material="stone sword"/>
@@ -65,23 +44,35 @@
         <item slot="31" amount="64" material="redstone"/>
         <item slot="34" amount="32" material="nether fence"/>
         <item slot="35" amount="64" material="step"/>
-        <item slot="9" amount="16" damage="9" name="`aRepair Block" lore="`7Place this over your base to repair it!" material="stained clay"/>
+        <item slot="9" amount="16" damage="9" name="`aRepair Block" lore="`r`7Place this over your base to repair it!" material="stained clay"/>
         <helmet team-color="true" material="stained clay" locked="true"/>
         <chestplate unbreakable="true" enchantment="protection explosions:4;water worker:3" material="chainmail chestplate"/>
         <leggings unbreakable="true" team-color="true" material="leather leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots" enchantment="protection fall:2"/>
-        <effect duration="oo">fast digging</effect>
-        <effect duration="oo">water breathing</effect>
+        <effect>fast digging</effect>
+        <effect>water breathing</effect>
         <effect duration="20">heal</effect>
-        <effect duration="oo">damage resistance</effect>
+        <effect>damage resistance</effect>
     </kit>
 </kits>
+<spawns>
+    <spawn team="red-team" kit="spawn-kit">
+        <region>
+            <cuboid min="28,3,-78" max="-27,3,-75"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit" yaw="180">
+        <region>
+            <cuboid min="-27,3,76" max="28,3,79"/>
+        </region>
+    </spawn>
+    <default kit="obs" yaw="90">
+        <region>
+            <point>-67.5,51,0.5</point>
+        </region>
+    </default>
+</spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-    <deny id="deny-void">
-        <void/>
-    </deny>
     <deny id="deny-fire">
         <material>fire</material>
     </deny>
@@ -90,17 +81,17 @@
     </deny>
     <deny id="deny-some">
         <any>
-            <material>155</material>
-            <material>95</material>
-            <material>160</material>
-            <material>44:7</material>
-            <material>159:12</material>
-            <material>159:15</material>
-            <material>156</material>
-            <material>20</material>
+            <material>quartz block</material>
+            <material>stained glass</material>
+            <material>stained glass pane</material>
+            <material>step:7</material>
+            <material>stained clay:12</material>
+            <material>stained clay:15</material>
+            <material>quartz stairs</material>
+            <material>glass</material>
             <material>beacon</material>
-            <material>22</material>
-            <material>87</material>
+            <material>lapis block</material>
+            <material>netherrack</material>
         </any>
     </deny>
     <deny id="only-tnt-mon">
@@ -124,39 +115,28 @@
         <cuboid id="blue-spawn" min="-27,3,70" max="28,3,84"/>
         <cuboid id="red-spawn" min="28,3,-69" max="-27,3,-83"/>
     </union>
-    <union id="bases">
-        <cuboid id="blue-base" min="-50,0,73" max="51,32,0"/>
-        <cuboid id="red-base" min="-50,0,-72" max="51,32,0"/>
-    </union>
+    <negative id="outside-bases">
+        <union id="bases">
+            <cuboid id="blue-base" min="-50,0,73" max="51,32,0"/>
+            <cuboid id="red-base" min="-50,0,-72" max="51,32,0"/>
+        </union>
+    </negative>
     <!-- Applied -->
-    <apply block="never" message="`eYou may not edit outside the main area!">
-        <region>
-            <negative>
-                <region id="bases"/>
-            </negative>
-        </region>
-    </apply>
-    <apply block-place="deny-void" message="`eYou may not bridge to the enemy side!" region="bases"/>
+    <apply enter="blue-team" message="`eYou may not enter the enemy's spawn area!" region="blue-spawn"/>
+    <apply enter="red-team" message="`eYou may not enter the enemy's spawn area!" region="red-spawn"/>
+    <apply enter="never" message="`eYou may not go onto the roof" region="above-map"/>
     <apply block-place="deny-fire" message="`eYou may not burn down the bases!" region="bases"/>
     <apply use="deny-beacon"/>
     <apply block-break="only-tnt-mon" message="You may only break monument blocks with TNT!"/>
     <apply block-break="deny-some"/>
-    <apply enter="only-blue" message="`eYou may not enter the enemy's spawn area!" region="blue-spawn"/>
-    <apply enter="only-red" message="`eYou may not enter the enemy's spawn area!" region="red-spawn"/>
-    <apply enter="never" message="`eYou may not go onto the roof" region="above-map"/>
+    <apply region="outside-bases" block="never" message="`eYou may not edit outside the main area!"/>
+    <apply block-place="deny(void)" message="`eYou may not bridge to the enemy side!" region="bases"/>
 </regions>
 <destroyables show-progress="true" completion="60%" repairable="true">
-    <destroyable name="Blue Base" materials="stained clay:11;stained clay:9;stained clay:3" owner="blue">
-        <region>
-            <region id="blue-base"/>
-        </region>
-    </destroyable>
-    <destroyable name="Red Base" materials="stained clay:14;stained clay:9;stained clay:1" owner="red">
-        <region>
-            <region id="red-base"/>
-        </region>
-    </destroyable>
+    <destroyable name="Blue Base" materials="stained clay:11;stained clay:9;stained clay:3" owner="blue-team" region="blue-base"/>
+    <destroyable name="Red Base" materials="stained clay:14;stained clay:9;stained clay:1" owner="red-team" region="red-base"/>
 </destroyables>
+<time result="objectives">10m</time>
 <itemremove>
 	<item>leather leggings</item>
 	<item>leather boots</item>
@@ -203,22 +183,6 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<!-- <tutorial>
-    <stage title="Destroy the Base">
-        <message>
-            <line>This map is a `aDestroy the Bases `r(DTB) map.</line>
-            <line>The objective is to destroy `c70% `rof the enemy team's base!</line>
-            <line>You can get iron gears upon breaking the middle ressources.</line>
-        </message>
-        <teleport>
-            <point yaw="-90">-46,9,0</point>
-        </teleport>
-    </stage>
-    <stage title="Kill Rewards">
-        <message>
-            <line>When you kill an enemy, you will recieve:</line>
-            <line>16 `6Repair Blocks`r and 16 `cTNT`r.</line>
-        </message>
-    </stage>
-</tutorial> -->
+<maxbuildheight>32</maxbuildheight>
+<respawn auto="true"/>
 </map>

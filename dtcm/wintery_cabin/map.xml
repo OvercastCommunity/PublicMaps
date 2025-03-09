@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Wintery Cabin</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Destroy the enemy's monument and core.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->
     <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
@@ -123,11 +124,6 @@
     <tool>iron sword</tool>
     <tool>stone axe</tool>
 </toolrepair>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <maxbuildheight>31</maxbuildheight>
 <timelock>on</timelock>
 </map> 

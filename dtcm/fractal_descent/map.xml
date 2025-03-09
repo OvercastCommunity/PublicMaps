@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fractal Descent</name>
-<version>1.2.7</version>
+<version>1.2.8</version>
 <include id="gapple-kill-reward"/>
 <objective>Leak lava from the enemy's obsidian core and destroy their two endstone monuments.</objective>
 <created>2013-12-24</created>
@@ -12,8 +12,8 @@
     <rule>Players have resistance and reduced knockback in spawn!</rule>
 </rules>
 <teams>
-    <team id="red" color="dark red" max="32">Red</team>
-    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -38,26 +38,22 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit">
-        <regions>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region>
             <cuboid min="-1,18,-102" max="1,18,-100"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" yaw="180">
-        <regions>
+    <spawn team="red-team" kit="spawn-kit" yaw="180">
+        <region>
             <cuboid min="-1,18,100" max="1,18,102"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cuboid min="-58,29,-2" max="-54,29,2"/>
-        </regions>
+        </region>
     </default>
 </spawns>
-<filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
-</filters>
 <regions>
     <negative id="outside-playable">
         <cuboid id="main" min="-42,12,-92" max="42,45,92"/>
@@ -67,12 +63,12 @@
         <circle id="red-spawn" center="0,84" radius="10"/>
         <circle id="blue-spawn" center="0,-84" radius="10"/>
     </union>
-    <apply lend-kit="spawn-protection" filter="only-blue">
+    <apply lend-kit="spawn-protection" filter="blue-team">
         <region>
             <cuboid min="-9,17,-75" max="9,25,-99"/>
         </region>
     </apply>
-    <apply lend-kit="spawn-protection" filter="only-red">
+    <apply lend-kit="spawn-protection" filter="red-team">
         <region>
             <cuboid min="-9,17,75" max="9,25,99"/>
         </region>
@@ -85,19 +81,19 @@
     <mode after="15m" material="glass" name="GLASS CORE MODE"/>
 </modes>
 <cores material="obsidian" leak="6" mode-changes="true">
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="-3,17,-45" max="3,23,-39"/>
         </region>
     </core>
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="-3,17,39" max="3,23,45"/>
         </region>
     </core>
 </cores>
 <destroyables sparks="true" materials="ender stone">
-    <destroyables owner="blue">
+    <destroyables owner="blue-team">
         <destroyable name="West Monument">
             <region>
                 <cuboid min="-26,11,-31" max="-22,15,-27"/>
@@ -109,7 +105,7 @@
             </region>
         </destroyable>
     </destroyables>
-    <destroyables owner="red">
+    <destroyables owner="red-team">
         <destroyable name="East Monument">
             <region>
                 <cuboid min="22,11,27" max="26,15,31"/>

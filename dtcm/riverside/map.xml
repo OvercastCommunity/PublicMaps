@@ -1,15 +1,16 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Riverside</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Destroy enemy team's obsidian monument!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTerwiesch -->
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -38,23 +39,18 @@
             <cylinder base="-97.5,36,202" radius="2" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="135">
             <cylinder base="36.5,24,287.5" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="-45">
             <cylinder base="-71.5,24,113.5" radius="3" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-    <deny id="deny-void">
-        <void/>
-    </deny>
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
@@ -65,22 +61,22 @@
         <rectangle id="red-spawn" min="-79,105" max="-42,143"/>
     </union>
     <apply use="deny-beacon"/>
-    <apply enter="only-blue" message="You may not enter the enemy team's spawn area!" region="blue-spawn"/>
-    <apply enter="only-red" message="You may not enter the enemy team's spawn area!" region="red-spawn"/>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn area!" region="blue-spawn"/>
+    <apply enter="red-team" message="You may not enter the enemy's spawn area!" region="red-spawn"/>
     <apply block="never" message="You may not place or break blocks in the spawns!" region="spawns"/>
-    <apply block="deny-void" message="You may not build outside of the map!"/>
+    <apply block="deny(void)" message="You may not build outside of the map!"/>
 </regions>
 <modes>
     <mode id="beacon-mode" after="20m" material="beacon" name="`bBEACON MONUMENT MODE"/>
     <mode id="coal-mode" after="40m" material="coal block" name="`8COAL MONUMENT MODE"/>
 </modes>
 <destroyables name="Monument" materials="obsidian" modes="beacon-mode coal-mode">
-    <destroyable owner="blue">
+    <destroyable owner="blue-team">
         <region>
             <cuboid min="-29,12,251" max="-26,17,254"/>
         </region>
     </destroyable>
-    <destroyable owner="red">
+    <destroyable owner="red-team">
         <region>
             <cuboid min="-8,12,148" max="-5,17,151"/>
         </region>
@@ -128,12 +124,13 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="16" material="wood"/>
-    <item amount="8" material="glass"/>
-    <item amount="16" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="wood"/>
+        <item amount="8" material="glass"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>30</maxbuildheight>
 <hunger>
     <depletion>off</depletion>

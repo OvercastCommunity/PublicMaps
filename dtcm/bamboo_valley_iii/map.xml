@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Bamboo Valley III</name>
 <variant id="halloween" world="halloween" override="true">Bam-BOOO Valley III</variant>
-<version>1.7.0</version>
+<version>1.7.1</version>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
 </authors>
@@ -80,9 +81,6 @@
             </not>
         </all>
     </deny>
-    <not id="deny-void">
-        <void/>
-    </not>
 </filters>
 <regions>
     <union id="spawns">
@@ -104,10 +102,10 @@
     <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
     <apply block="never" region="spawns" message="You may not destroy the spawn areas!"/>
-    <apply block="never" region="core-height-limit" message="You have hit the height limit over the core!"/>
+    <apply block="never" region="core-height-limit" message="You have reached the height limit over the core!"/>
     <apply block="never" region="obs-spawn"/>
     <apply block-break="deny-non-player-explosions"/>
-    <apply block="deny-void" region="outside-map" message="You may not build in the void areas!"/>
+    <apply block="deny(void)" region="outside-map" message="You may not build in the void areas!"/>
 </regions>
 <modes>
     <mode id="gold-core" after="15m" material="gold block" name="`6GOLD CORE MODE"/>
@@ -246,7 +244,6 @@
     <kill-reward>
         <item amount="32" damage="3" material="wood"/>
         <item amount="16" team-color="true" material="stained clay"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>42</maxbuildheight>

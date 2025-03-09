@@ -1,16 +1,17 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fractal Descent: Classic</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Leak lava from the enemy's obsidian cores and destroy their two endstone monuments.</objective>
 <gamemode>dtm</gamemode>
 <gamemode>dtc</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="c33a03bf-0f73-46e2-a93e-ddb7d25232d1" contribution="Design and building"/> <!-- teheggy -->
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Design, building, and XML"/> <!-- Reshif -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -40,20 +41,18 @@
             <cylinder base="-56,29,0" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+    <spawn team="blue-team" kit="spawn-kit">
+        <region>
             <cylinder base="0,18.1,-101" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="180">
             <cylinder base="0,18.1,101" radius="1" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <deny id="no-stone">
         <material>stone</material>
     </deny>
@@ -71,8 +70,8 @@
         <above id="tnt-height-limit" y="60"/>
         <above id="above-height-limit" y="61"/>
     </union>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy spawn!"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
     <apply block="never" region="spawns" message="You may not destroy the spawn area!"/>
     <apply block="never" region="above-height-limit" message="You may not break or place any blocks at this height!"/>
     <apply block-place="only-tnt" region="tnt-height-limit" message="Only TNT may be placed at this height!"/>
@@ -84,44 +83,44 @@
     <mode id="ice-core" after="25m" material="packed ice" name="`3PACKED ICE CORE MODE"/>
 </modes>
 <cores material="obsidian" leak="4" modes="gold-core ice-core">
-    <core team="blue" name="West Core">
+    <core team="blue-team" name="West Core">
         <region>
             <cuboid min="-32,37,-86" max="-28,41,-82"/>
         </region>
     </core>
-    <core team="blue" name="East Core">
+    <core team="blue-team" name="East Core">
         <region>
             <cuboid min="28,37,-86" max="32,41,-82"/>
         </region>
     </core>
-    <core team="red" name="West Core">
+    <core team="red-team" name="West Core">
         <region>
             <cuboid min="-32,37,82" max="-28,41,86"/>
         </region>
     </core>
-    <core team="red" name="East Core">
+    <core team="red-team" name="East Core">
         <region>
             <cuboid min="28,37,82" max="32,41,86"/>
         </region>
     </core>
 </cores>
 <destroyables materials="ender stone">
-    <destroyable owner="blue" name="West Monument">
+    <destroyable owner="blue-team" name="West Monument">
         <region>
             <cuboid min="-26,11,-31" max="-22,15,-27"/>
         </region>
     </destroyable>
-    <destroyable owner="blue" name="East Monument">
+    <destroyable owner="blue-team" name="East Monument">
         <region>
             <cuboid min="22,11,-31" max="26,15,-27"/>
         </region>
     </destroyable>
-    <destroyable owner="red" name="West Monument">
+    <destroyable owner="red-team" name="West Monument">
         <region>
             <cuboid min="-26,11,27" max="-22,15,31"/>
         </region>
     </destroyable>
-    <destroyable owner="red" name="East Monument">
+    <destroyable owner="red-team" name="East Monument">
         <region>
             <cuboid min="22,11,27" max="26,15,31"/>
         </region>
@@ -184,10 +183,11 @@
     <item>wood</item>
     <item>ladder</item>
 </itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" material="smooth brick"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" material="smooth brick"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <respawn auto="true"/>
 </map>

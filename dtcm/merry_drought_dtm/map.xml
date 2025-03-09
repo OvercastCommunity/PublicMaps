@@ -1,14 +1,14 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Merry Drought DTM</name>
-<version>1.1.7</version>
+<version>1.1.8</version>
 <phase>staging</phase>
 <objective>Destroy the obsidian monuments on the enemy side while defending your own monuments.</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="50">Blue</team>
-    <team id="red" color="dark red" max="50">Red</team>
+    <team id="blue-team" color="blue" max="50">Blue</team>
+    <team id="red-team" color="dark red" max="50">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -30,34 +30,32 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit" yaw="135">
-        <regions>
+    <spawn team="blue-team" kit="spawn-kit" yaw="135">
+        <region>
             <cylinder base="136,16,-346" radius="1" height="0"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" yaw="135">
-        <regions>
+    <spawn team="red-team" kit="spawn-kit" yaw="135">
+        <region>
             <cylinder base="2,16,-481" radius="1" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="225">
-        <regions>
+        <region>
             <cylinder base="116,12,-461" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <material id="allow-iron">iron block</material>
 </filters>
 <regions>
-    <apply enter="only-blue" message="You may not enter the enemy team's base">
+    <apply enter="blue-team" message="You may not enter the enemy team's base">
         <region>
             <rectangle min="154,-329" max="119,-364"/>
         </region>
     </apply>
-    <apply enter="only-red" message="You may not enter the enemy team's base">
+    <apply enter="red-team" message="You may not enter the enemy team's base">
         <region>
             <rectangle min="-15,-498" max="20,-463"/>
         </region>
@@ -87,7 +85,7 @@
      </apply>
 </regions>
 <destroyables materials="obsidian">
-    <destroyables owner="blue">
+    <destroyables owner="blue-team">
         <destroyable name="Light Green Monument">
             <region>
                 <cuboid min="172,20,-340" max="176,22,-336"/>
@@ -99,7 +97,7 @@
             </region>
         </destroyable>
     </destroyables>
-    <destroyables owner="red">
+    <destroyables owner="red-team">
         <destroyable name="Pink Monument">
             <region>
                 <cuboid min="-7,20,-519" max="-3,22,-515"/>
@@ -133,56 +131,4 @@
     <tool>arrow</tool>
 </toolrepair>
 <maxbuildheight>45</maxbuildheight>
-<!-- <tutorial>
-    <stage title="Destroy the Monument">
-        <message>
-            <line>`rThis map is a `a`lDestroy the Monument `r(DTM) map</line>
-            <line>The objective is to get to the enemy side and destroy two obsidian monuments.</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="10">111.5,15,-455.5</point>
-        </teleport>
-    </stage>
-    <stage title="Green Team Base">
-        <message>
-            <line>`rThis is the `aGreen Team `rbase. You spawn with gear ready to go into battle!</line>
-            <line>To your right and to your left are `bchests `rfilled with extra equipment.</line>
-            <line>To the back is one set of `6iron block `rsupplies.</line>
-        </message>
-        <teleport>
-            <point yaw="-45" pitch="10">121.5,19,-361.5</point>
-        </teleport>
-    </stage>
-    <stage title="Iron Supplies">
-        <message>
-            <line>Here is the `7iron `rsupply for `aGreen Team`r. Note that `cRed Team `rhas the same thing on their side.</line>
-            <line>You can craft `7iron armor `rto prepare yourself for battle.</line>
-            <line>If you happen to run out of iron, there may be some left in the center ceiling or on the upper level.</line>
-        </message>
-        <teleport>
-            <point yaw="-45">133.5,8,-349.5</point>
-        </teleport>
-    </stage>
-    <stage title="Red Monuments">
-        <message>
-            <line>These are `cRed team`r's monuments.</line>
-            <line>`4Red Team `rhas `drink`r and `5purple `rmonuments.</line>
-            <line>`cRed Team`r should defend these monuments against `aGreen Team`r invaders who are trying to break them.</line>
-            <line>There are 5 obsidian blocks to break with your efficiency II diamond pickaxe.</line>
-        </message>
-        <teleport>
-            <point yaw="135">-3.5,21,-486.5</point>
-        </teleport>
-    </stage>
-    <stage title="Diamond Blocks">
-        <message>
-            <line>There are `b4 `rislands with a diamond block and extra iron blocks.</line>
-            <line>The diamond block can be used to make armor or weapons.</line>
-            <line>This will help when trying to defend and get in wool rooms</line>
-        </message>
-        <teleport>
-            <point yaw="135" pitch="90">69.5,35,-413.5</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map> 

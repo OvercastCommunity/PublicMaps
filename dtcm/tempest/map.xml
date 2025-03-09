@@ -1,13 +1,13 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Tempest</name>
-<version>2.0.4</version>
+<version>2.0.5</version>
 <objective>Destroy the enemy's two capacitors and their cendrum to win!</objective>
 <authors>
     <author uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83"/> <!-- lonelyhornet -->
-    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Building, aesthetics and WorldEdit magic"/> <!-- xXFracXx -->
+    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Building, aesthetics, and WorldEdit magic"/> <!-- xXFracXx -->
 </authors>
 <contributors>
-    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Feedback, aesthetics, building and XML fixing"/> <!-- ItsMiiOlly -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Feedback, aesthetics, building, and XML fixing"/> <!-- ItsMiiOlly -->
     <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Feedback"/> <!-- Tywnis -->
     <contributor uuid="714ff88f-25d9-4754-9caa-d0f3cf24f230" contribution="Feedback, building"/> <!-- thegoodguy -->
     <contributor uuid="939a9a1c-f735-467a-bfd7-ae77cafd6693" contribution="Building, feedback"/> <!-- PlasmaCross -->
@@ -41,19 +41,19 @@
 </kits>
 <spawns>
     <spawn team="cyan" kit="spawn-kit" yaw="270">
-        <regions>
+        <region>
             <cylinder base="-44.5,14,123.5" radius="3" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="green" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cylinder base="305.5,14,123.5" radius="3" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <cylinder base="130.5,78,19.5" radius="4" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>

@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Monument Valley</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <include id="gapple-kill-reward"/>
 <objective>Destroy the enemy team's monument.</objective>
 <authors>
@@ -13,8 +13,8 @@
     <rule>Players have resistance and reduced knockback in spawn!</rule>
 </rules>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -51,20 +51,18 @@
             <cuboid min="115,84,22" max="118,84,25"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="180">
             <cuboid min="3,46,-45" max="6,46,-42"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
-        <region yaw="0">
+    <spawn team="red-team" kit="spawn-kit">
+        <region>
             <cuboid min="3,46,89" max="6,46,92"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
@@ -86,20 +84,20 @@
         </complement>
     </negative>
     <apply use="deny-beacon"/>
-    <apply enter="only-blue" region="blue-entry" message="You may not enter the enemy spawn!"/>
-    <apply enter="only-red" region="red-entry" message="You may not enter the enemy spawn!"/>
-    <apply lend-kit="spawn-protection" filter="only-blue" region="blue-entry"/>
-    <apply lend-kit="spawn-protection" filter="only-red" region="red-entry"/>
+    <apply enter="blue-team" region="blue-entry" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" region="red-entry" message="You may not enter the enemy's spawn!"/>
+    <apply lend-kit="spawn-protection" filter="blue-team" region="blue-entry"/>
+    <apply lend-kit="spawn-protection" filter="red-team" region="red-entry"/>
     <apply block="never" region="spawn-build" message="You may not modify the spawn areas!"/>
     <apply block-place="never" region="void-area" message="You may not build outside of the map"/>
 </regions>
 <destroyables name="Monument" materials="obsidian" mode-changes="true">
-    <destroyable owner="blue">
+    <destroyable owner="blue-team">
         <region>
             <cuboid min="61,41,-26" max="62,44,-25"/>
         </region>
     </destroyable>
-    <destroyable owner="red">
+    <destroyable owner="red-team">
         <region>
             <cuboid min="61,41,72" max="62,44,73"/>
         </region>

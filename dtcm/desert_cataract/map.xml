@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Desert Cataract</name>
-<version>1.1.17</version>
+<version>1.1.18</version>
 <include id="gapple-kill-reward"/>
 <objective>Destroy enemy team's obsidian monument!</objective>
 <authors>
@@ -56,7 +56,7 @@
         </region>
     </spawn>
 </spawns>
-<destroyables name="Monument" materials="obsidian" completion="100%" mode-changes="true">
+<destroyables name="Monument" materials="obsidian" mode-changes="true">
     <destroyable owner="blue-team" region="blue-monument"/>
     <destroyable owner="red-team" region="red-monument"/>
 </destroyables>
@@ -68,8 +68,6 @@
     <deny id="deny-beacon">
         <material>beacon</material>
     </deny>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
 </filters>
 <regions>
     <cuboid id="blue-spawn" min="-94,7,-4" max="-98,100,3"/>
@@ -81,8 +79,8 @@
     </negative>
     <!-- applicators -->
     <apply use="deny-beacon"/>
-    <apply enter="only-blue" message="You may not enter the enemy team's spawn!" region="blue-spawn"/>
-    <apply enter="only-red" message="You may not enter the enemy team's spawn!"  region="red-spawn"/>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn!" region="blue-spawn"/>
+    <apply enter="red-team" message="You may not enter the enemy's spawn!" region="red-spawn"/>
     <apply block="never" message="You may not edit this part of the map!" region="not-build-area"/>
 </regions>
 <itemkeep>

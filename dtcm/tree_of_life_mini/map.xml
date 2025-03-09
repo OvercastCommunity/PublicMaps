@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Tree of Life: Mini</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Leak the enemy team's core to win the match!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
 </authors>
@@ -35,19 +36,19 @@
 </kits>
 <spawns>
     <default kit="observers" yaw="180">
-        <regions>
+        <region>
             <cylinder base="-47.5,63.2,58.5" radius="1.5" height="0"/>
-        </regions>
+        </region>
     </default>
     <spawn team="blue" yaw="90" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="-95.5,23.2,0.5" radius="3.5" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" yaw="-90" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="0.5,23.2,0.5" radius="3.5" height="0"/>
-        </regions>
+        </region>
     </spawn>
 </spawns>
 <filters>
@@ -125,7 +126,6 @@
     <kill-reward>
         <item amount="16" material="leaves"/>
         <item amount="16" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <tnt>

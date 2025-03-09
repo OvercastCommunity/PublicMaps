@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Alpine Mining</name>
-<version>1.2.17</version>
+<version>1.2.18</version>
 <objective>Destroy the enemy's 2 monuments!</objective>
 <created>2014-06-22</created>
 <include id="gapple-kill-reward"/>
@@ -14,8 +14,8 @@
     <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML"/> <!-- orky48 -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="35">Blue</team>
-    <team id="red" color="dark red" max="35">Red</team>
+    <team id="blue-team" color="blue" max="35">Blue</team>
+    <team id="red-team" color="dark red" max="35">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -45,28 +45,23 @@
             <cylinder base="66.5,57,72.5" radius="2" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="90">
             <cuboid min="43,27,322" max="40,27,319"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="-90">
             <cuboid min="-42,27,-177" max="-39,27,-174"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <deny id="deny-enchantment-table">
         <material>enchantment table</material>
     </deny>
     <deny id="deny-beacon-use">
         <material>beacon</material>
-    </deny>
-    <deny id="deny-void">
-        <void/>
     </deny>
 </filters>
 <regions>
@@ -81,34 +76,34 @@
     </union>
     <cuboid id="lake-deny" min="-46,36,-2" max="47,55,147"/>
     <apply use="deny-beacon-use"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn region!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn region!"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn region!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn region!"/>
     <apply block="never" region="spawns" message="You may not place or break blocks in spawn!"/>
     <apply block="never" region="defense-chests" message="You may not break the defense chests!"/>
     <apply block-place="never" region="lake-deny" message="You have reached the maximum build limit over the lake!"/>
     <apply block-break="deny-enchantment-table" message="You may not break the enchanting table!"/>
-    <apply block-place="deny-void" block-break="deny(obs-spawn)" message="You may not build outside of the map!"/>
+    <apply block-place="deny(void)" block-break="deny(obs-spawn)" message="You may not build outside of the map!"/>
 </regions>
 <destroyables materials="obsidian" mode-changes="true">
     <destroyables name="Monument A">
-        <destroyable owner="blue">
+        <destroyable owner="blue-team">
             <region>
                 <cuboid min="20,32,239" max="21,35,240"/>
             </region>
         </destroyable>
-        <destroyable owner="red">
+        <destroyable owner="red-team">
             <region>
                 <cuboid min="-19,32,-94" max="-20,35,-95"/>
             </region>
         </destroyable>
     </destroyables>
     <destroyables name="Monument B">
-        <destroyable owner="blue">
+        <destroyable owner="blue-team">
             <region>
                 <cuboid min="-21,34,214" max="-22,37,215"/>
             </region>
         </destroyable>
-        <destroyable owner="red">
+        <destroyable owner="red-team">
             <region>
                 <cuboid min="22,34,-69" max="23,37,-70"/>
             </region>

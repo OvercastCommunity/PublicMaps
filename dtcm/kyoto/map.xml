@@ -1,18 +1,19 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Kyoto</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Destroy the other team's two monuments to win!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="c1d94f18-6ea3-495a-8d1b-7d9eaf393f64"/> <!-- KyotoSquid -->
 </authors>
 <contributors>
     <contributor uuid="2df2bef6-6f50-4e4e-a891-048990bf1f5c"/> <!-- Blaszczak -->
-    <contributor uuid="9ec82338-4c1d-4b38-97b2-fedd0a92923c" /> <!-- D_A_N_G_E_R -->
-    <contributor uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="XML" /> <!-- Crazy_ -->
+    <contributor uuid="9ec82338-4c1d-4b38-97b2-fedd0a92923c"/> <!-- D_A_N_G_E_R -->
+    <contributor uuid="a9f11454-beac-4cc3-a138-1780802c8794" contribution="XML"/> <!-- Crazy_ -->
 </contributors>
 <teams>
-    <team id="white" color="white" max="16">White</team>
-    <team id="yellow" color="yellow" max="16">Yellow</team>
+    <team id="white-team" color="white" max="16">White</team>
+    <team id="yellow-team" color="yellow" max="16">Yellow</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -37,24 +38,22 @@
 </kits>
 <spawns>
     <default>
-        <region yaw="0">
+        <region>
             <cylinder base="76,115,61" radius="1" height="0"/>
         </region>
     </default>
-    <spawn team="white" kit="spawn-kit">
-        <region yaw="0">
+    <spawn team="white-team" kit="spawn-kit">
+        <region>
             <cylinder base="-2,75,-40" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="yellow" kit="spawn-kit">
-        <region yaw="180">
+    <spawn team="yellow-team" kit="spawn-kit" yaw="180">
+        <region>
             <cylinder base="-2,75,156" radius="1" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-white">white</team>
-    <team id="only-yellow">yellow</team>
     <all id="only-iron-regen">
         <material id="only-iron">iron block</material>
         <cause>world</cause>
@@ -65,38 +64,40 @@
         <cuboid id="white-spawn-area" min="-9,74,-44" max="6,90,-33"/>
         <cuboid id="yellow-spawn-area" min="6,74,160" max="-9,90,150"/>
     </union>
-    <complement id="void">
+    <complement id="void-area">
         <everywhere/>
         <cuboid min="47,58,-59" max="-51,88,175"/>
     </complement>
-    <apply enter="only-white" region="white-spawn-area" message="You may not enter the other team's spawn!"/>
-    <apply enter="only-yellow" region="yellow-spawn-area" message="You may not enter the other team's spawn!"/>
+    <apply enter="white-team" region="white-spawn-area" message="You may not enter the enemy's spawn!"/>
+    <apply enter="yellow-team" region="yellow-spawn-area" message="You may not enter the enemy's spawn!"/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You can only break iron blocks in spawn!"/>
-    <apply block="never" region="void" message="You may not interact with blocks outside the playing field."/>
+    <apply block="never" region="void-area" message="You may not interact with blocks outside the playing field."/>
 </regions>
-<destroyables name="Left Monument" materials="gold block;obsidian" completion="100%">
-    <destroyable owner="white">
-        <region>
-            <cuboid min="43,65,-28" max="39,69,-30"/>
-        </region>
-    </destroyable>
-    <destroyable owner="yellow">
-        <region>
-            <cuboid min="-43,65,144" max="-47,69,146"/>
-        </region>
-    </destroyable>
-</destroyables>
-<destroyables name="Right Monument" materials="gold block;obsidian" completion="100%">
-    <destroyable owner="white">
-        <region>
-            <cuboid min="-43,65,-28" max="-47,69,-30"/>
-        </region>
-    </destroyable>
-    <destroyable owner="yellow">
-        <region>
-            <cuboid min="43,65,144" max="39,69,146"/>
-        </region>
-    </destroyable>
+<destroyables materials="gold block;obsidian">
+    <destroyables name="Left Monument">
+        <destroyable owner="white-team">
+            <region>
+                <cuboid min="43,65,-28" max="39,69,-30"/>
+            </region>
+        </destroyable>
+        <destroyable owner="yellow-team">
+            <region>
+                <cuboid min="-43,65,144" max="-47,69,146"/>
+            </region>
+        </destroyable>
+    </destroyables>
+    <destroyables name="Right Monument">
+        <destroyable owner="white-team">
+            <region>
+                <cuboid min="-43,65,-28" max="-47,69,-30"/>
+            </region>
+        </destroyable>
+        <destroyable owner="yellow-team">
+            <region>
+                <cuboid min="43,65,144" max="39,69,146"/>
+            </region>
+        </destroyable>
+    </destroyables>
 </destroyables>
 <toolrepair>
     <tool>iron sword</tool>
@@ -114,6 +115,16 @@
     <item>gold block</item>
     <item>obsidian</item>
 </itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>glass</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" material="wood"/>
+        <item amount="16" material="glass"/>
+    </kill-reward>
+</kill-rewards>
 <block-drops>
     <rule>
         <filter>
@@ -127,15 +138,6 @@
         </drops>
     </rule>
 </block-drops>
-<itemkeep>
-    <item>wood</item>
-    <item>glass</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="32" material="wood"/>
-    <item amount="16" material="glass"/>
-</kill-reward>
 <hunger>
     <depletion>off</depletion>
 </hunger>

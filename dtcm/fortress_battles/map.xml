@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fortress Battles</name>
-<version>3.2.9</version>
+<version>3.2.10</version>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <created>2012-01-15</created>
+<include id="gapple-kill-reward"/>
 <rules>
     <rule>You cannot place dispensers on the map!</rule>
     <rule>Players have resistance and reduced knockback in spawn!</rule>
@@ -13,8 +14,8 @@
     <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="24">Blue</team>
-    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue-team" color="blue" max="24">Blue</team>
+    <team id="red-team" color="dark red" max="24">Red</team>
 </teams>
 <kits>
     <kit id="spawn-protection">
@@ -40,20 +41,20 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
+    <spawn team="red-team" kit="spawn-kit" yaw="90">
+        <region>
             <point>1249,27,519</point>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="blue" kit="spawn-kit" yaw="270">
-        <regions>
+    <spawn team="blue-team" kit="spawn-kit" yaw="270">
+        <region>
             <point>1286,27,519</point>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <cylinder base="1267,27,518" radius="7" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -61,8 +62,6 @@
     <deny id="deny-chest-break">
         <material>chest</material>
     </deny>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <!-- Line where recent changes end -->
     <deny id="deny-dispenser">
         <material>dispenser</material>
@@ -75,8 +74,8 @@
     <!-- Recent changes to implement spawn and chest protection -->
     <cuboid id="red-spawn-protect" min="1239,25,556" max="1234,30,518"/>
     <cuboid id="blue-spawn-protect" min="1301,25,518" max="1296,30,554"/>
-    <apply region="blue-spawn-protect" lend-kit="spawn-protection" filter="only-blue"/>
-    <apply region="red-spawn-protect" lend-kit="spawn-protection" filter="only-red"/>
+    <apply region="blue-spawn-protect" lend-kit="spawn-protection" filter="blue-team"/>
+    <apply region="red-spawn-protect" lend-kit="spawn-protection" filter="red-team"/>
     <!--
     <apply block="deny-chest-break" message="This block can not be placed or broken on this map!">
         <region>
@@ -98,12 +97,12 @@
     <apply block="deny-dispenser" message="Dispensers are disabled on this map!"/>
 </regions>
 <cores material="obsidian" leak="5" mode-changes="true">
-    <core team="red">
+    <core team="red-team">
         <region>
             <cuboid min="1233,22,597" max="1227,30,589"/>
         </region>
     </core>
-    <core team="blue">
+    <core team="blue-team">
         <region>
             <cuboid min="1302,22,589" max="1307,30,597"/>
         </region>
@@ -138,7 +137,6 @@
     <kill-reward>
         <item amount="16" material="arrow"/>
         <item amount="8" material="log"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <crafting>
