@@ -1,7 +1,7 @@
 <map>
 <!-- Water lanes include file -->
 <!-- Created by Pablete1234, mameBT & Eliminate -->
-<!-- Version 2025.03.09-2 -->
+<!-- Version 2025.03.09-3 -->
 
 <!--
      NOTE: Maps implementing this include require a region named `water-lanes`.
@@ -117,8 +117,12 @@
     <holding id="holding-bucket">
         <item>bucket</item>
     </holding>
+    <!-- Denying sponges -->
+    <material id="sponge">sponge</material>
 </filters>
 <regions>
+    <!-- Deny sponge placement -->
+    <apply block-place="deny(sponge)"/>
     <!-- Deny blacklisted blocks in parts of water lane that were previously air -->
     <apply block-place="deny(all(blacklisted-blocks,water-lanes-air))" region="water-lanes" message="You may not place this block here!"/>
     <!-- Special case doors region -->
