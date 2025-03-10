@@ -1,7 +1,6 @@
 <map proto="1.5.0">
 <name>Royal Garden CTW</name>
-<version>1.7.1</version>
-<constant id="water-lane-timer">60m</constant>
+<version>1.7.2</version>
 <include id="gapple-kill-reward"/>
 <include id="water-lanes"/>
 <objective>Capture the opposing team's wools and place them at your victory monuments.</objective>
@@ -9,8 +8,8 @@
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
 </authors>
 <teams>
-    <team id="blue-team" color="blue" max="40">Blue</team>
-    <team id="red-team" color="dark red" max="40">Red</team>
+    <team id="blue-team" color="blue" max="36">Blue</team>
+    <team id="red-team" color="dark red" max="36">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -57,15 +56,11 @@
     </spawn>
 </spawns>
 <filters>
-    <deny id="deny-beacon">
-        <material>beacon</material>
-    </deny>
-    <deny id="deny-in-wr">
-        <any>
-            <material>chest</material>
-            <material>mob spawner</material>
-        </any>
-    </deny>
+    <material id="beacon">beacon</material>
+    <any id="wool-room-blacklist">
+        <material>chest</material>
+        <material>mob spawner</material>
+    </any>
     <material id="only-iron">iron block</material>
     <deny id="deny-water-flow">
         <all>
@@ -89,38 +84,40 @@
         </union>
     </union>
     <union id="wool-rooms">
-        <union id="blue-wool-rooms"> <!-- red defends, blue must get -->
-            <cuboid id="orange-wr" min="63,23,-29" max="77,45,-42"/>
-            <cuboid id="purple-wr" min="63,23,93" max="77,45,80"/>
-        </union>
-        <union id="red-wool-rooms"> <!-- blue defends, red must get -->
+        <union id="blue-wool-rooms"> <!-- blue defends, red must get -->
             <cuboid id="pink-wr" min="-32,23,80" max="-46,45,93"/>
             <cuboid id="yellow-wr" min="-32,23,-29" max="-46,45,-42"/>
         </union>
+        <union id="red-wool-rooms"> <!-- red defends, blue must get -->
+            <cuboid id="orange-wr" min="63,23,-29" max="77,45,-42"/>
+            <cuboid id="purple-wr" min="63,23,93" max="77,45,80"/>
+        </union>
     </union>
     <union id="water-lanes">
-        <union id="red-lanes">
-            <cuboid id="red-left" min="63,0,80" max="92,3,44"/>
-            <cuboid id="red-right" min="63,0,-29" max="92,3,7"/>
-        </union>
         <union id="blue-lanes">
-            <cuboid id="blue-left" min="-32,0,-29" max="-61,3,7"/>
-            <cuboid id="blue-right" min="-32,0,80" max="-61,3,44"/>
+            <cuboid id="blue-right" min="-68,0,44" max="-46,2,80"/>
+            <mirror id="blue-left" region="blue-right" origin="15.5,0,25.5" normal="0,0,1"/>
+        </union>
+        <union id="red-lanes">
+            <mirror id="red-right" region="blue-right" origin="15.5,0,25.5" normal="1,0,0"/>
+            <mirror id="red-left" region="red-right" origin="15.5,0,25.5" normal="0,0,1"/>
         </union>
     </union>
     <complement id="non-bridge">
         <everywhere/>
         <rectangle min="29,54" max="2,-3"/>
     </complement>
-    <apply use="deny-beacon"/>
-    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's base!"/>
-    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's base!"/>
-    <apply enter="blue-team" region="blue-wool-rooms" message="You may not enter your own wool rooms!"/>
-    <apply enter="red-team" region="red-wool-rooms" message="You may not enter your own wool rooms!"/>
+    <apply use="deny(beacon)"/>
+    <apply use="deny(blue-team)" region="blue-wool-rooms"/>
+    <apply use="deny(red-team)" region="red-wool-rooms"/>
+    <apply enter="deny(red-team)" region="blue-spawn" message="You may not enter the enemy's base!"/>
+    <apply enter="deny(blue-team)" region="red-spawn" message="You may not enter the enemy's base!"/>
+    <apply enter="deny(blue-team)" region="blue-wool-rooms" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="deny(red-team)" region="red-wool-rooms" message="You may not enter your team's own wool rooms!"/>
     <apply block-break="only-iron" block-place="never" region="spawns" message="You may only break iron blocks in spawn!"/>
-    <apply block="deny-in-wr" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
-    <apply block="deny(blue-team)" region="red-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
-    <apply block="deny(red-team)" region="blue-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
+    <apply block="deny(wool-room-blacklist)" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
+    <apply block="deny(blue-team)" region="blue-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny(red-team)" region="red-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny-water-flow" region="wool-rooms"/>
     <apply block="deny(void)" region="non-bridge" message="You may not build in the void!"/>
 </regions>
