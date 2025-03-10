@@ -1,7 +1,7 @@
 <map>
 <!-- Water lanes include file -->
 <!-- Created by Pablete1234, mameBT & Eliminate -->
-<!-- Version 2025.03.09-3 -->
+<!-- Version 2025.03.09-4 -->
 
 <!--
      NOTE: Maps implementing this include require a region named `water-lanes`.
@@ -111,7 +111,7 @@
     </any>
     <!-- Generally, we only want to filter where the water lanes used to be air -->
     <blocks id="water-lanes-air" region="water-lanes">
-        <material id="only-air">air</material>
+        <material>air</material>
     </blocks>
     <!-- Players holding buckets should not be allowed to break the water -->
     <holding id="holding-bucket">
