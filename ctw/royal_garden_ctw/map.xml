@@ -167,12 +167,12 @@
     <item>red rose</item>
     <item>long grass</item>
     <item>double plant</item>
-    <item>water lily</item>
 </itemremove>
 <itemkeep>
     <item>wood</item>
     <item>glass</item>
     <item>ladder</item>
+    <item>water lily</item>
     <item>golden apple</item>
 </itemkeep>
 <kill-rewards>
