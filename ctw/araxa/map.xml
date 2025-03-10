@@ -1,7 +1,8 @@
 <map proto="1.5.0">
 <name>Araxa</name>
-<version>3.0.3</version>
+<version>3.0.4</version>
 <include id="gapple-kill-reward"/>
+<include id="water-lanes"/>
 <objective>Capture the enemy's two wools!</objective>
 <authors>
     <author uuid="e41edd14-9b0e-4501-a0c5-7fda64d2b2f3"/> <!-- JonnyBallgame -->
@@ -74,9 +75,6 @@
         <material id="only-iron">iron block</material>
         <cause>world</cause>
     </all>
-    <after id="add-water-lane" duration="300s" message="`eWater lanes will be added in {0}">
-        <time>40m</time>
-    </after>
     <material id="only-air">air</material>
 </filters>
 <regions>
@@ -99,10 +97,10 @@
         <rectangle min="553,430" max="632,497"/>
     </complement>
     <union id="water-lanes">
-        <cuboid id="orange-side-blue-wool" min="667,0,403" max="689,3,419"/>
-        <cuboid id="orange-side-cyan-wool" min="667,0,508" max="689,3,524"/>
-        <cuboid id="purple-side-red-wool" min="496,0,403" max="518,3,419"/>
-        <cuboid id="purple-side-yellow-wool" min="496,0,508" max="518,3,524"/>
+        <cuboid id="orange-side-blue-wool" min="667,0,403" max="689,2,419"/>
+        <cuboid id="orange-side-cyan-wool" min="667,0,508" max="689,2,524"/>
+        <cuboid id="purple-side-red-wool" min="496,0,403" max="518,2,419"/>
+        <cuboid id="purple-side-yellow-wool" min="496,0,508" max="518,2,524"/>
     </union>
     <apply use="deny-beacon"/>
     <apply use="orange-team" region="purple-wool-rooms"/>
@@ -115,7 +113,6 @@
     <apply block="deny-chest" region="wool-rooms" message="You may not break or place chests in the wool rooms!"/>
     <apply block="deny(orange-team)" region="orange-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block="deny(purple-team)" region="purple-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
-    <apply block="add-water-lane" region="water-lanes"/>
     <apply block="deny(void)" region="void-area" message="You may not edit the void!"/>
 </regions>
 <renewables>
@@ -143,14 +140,6 @@
         </monument>
     </wool>
 </wools>
-<!-- TODO: set this up with /modes command -->
-<actions>
-    <trigger scope="match" filter="add-water-lane">
-        <action>
-            <fill region="water-lanes" material="water" filter="only-air"/>
-        </action>
-    </trigger>
-</actions>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
