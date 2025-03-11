@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Rage Quit TDM</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate the other team before 5 minutes is up.</objective>
 <gamemode>rage</gamemode>
 <authors>
@@ -16,8 +16,8 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!" material="iron sword"/>
-        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!" material="bow"/>
+        <item slot="0" enchantment="damage all:10" lore="`r`91-Hit Kill!" material="iron sword"/>
+        <item slot="1" enchantment="arrow damage:10" lore="`r`91-Shot Kill!" material="bow"/>
         <item slot="2" material="arrow"/>
         <helmet locked="true" team-color="true" material="leather helmet"/>
         <chestplate locked="true" team-color="true" material="leather chestplate"/>
@@ -30,19 +30,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="45">
-        <regions>
+        <region>
             <cuboid min="43,9,-42" max="47,9,-44"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="-135">
-        <regions>
+        <region>
             <cuboid min="-42,9,43" max="-44,9,47"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <cylinder base="-4,49,-73" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

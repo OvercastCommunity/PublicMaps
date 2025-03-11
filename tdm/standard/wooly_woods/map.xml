@@ -1,19 +1,15 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Wooly Woods</name>
 <variant id="halloween" world="halloween" override="true">Witchy Woods</variant>
 <variant id="rage">RAGE</variant>
 <unless variant="rage">
     <include id="gapple-kill-reward"/>
 </unless>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Be the team with the most kills after 10 minutes!</objective>
 <if variant="default">
     <created>2012-12-14</created>
 </if>
-<time result="score">10m</time>
-<score>
-    <kills>1</kills>
-</score>
 <authors>
     <author uuid="2b7f4dfc-8711-4f07-8347-c5e8873d2189"/> <!-- kp10708 -->
     <author uuid="340ffc4d-d41a-49b1-b772-3834fd91a3b1"/> <!-- JoeltheMole -->
@@ -30,12 +26,12 @@
 </contributors>
 <teams>
     <unless variant="halloween">
-        <team id="blue" color="blue" max="32">Blue</team>
-        <team id="red" color="dark red" max="32">Red</team>
+        <team id="blue-team" color="blue" max="32">Blue</team>
+        <team id="red-team" color="dark red" max="32">Red</team>
     </unless>
     <if variant="halloween">
-        <team id="blue" color="green" max="32">Lime</team>
-        <team id="red" color="light purple" max="32">Magenta</team>
+        <team id="blue-team" color="green" max="32">Lime</team>
+        <team id="red-team" color="light purple" max="32">Magenta</team>
     </if>
 </teams>
 <kits>
@@ -75,21 +71,17 @@
             <cylinder base="0.5,66,0.5" radius="2" height="0"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region>
             <cylinder base="72.5,29,-97.5" radius="2" height="0"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="180">
             <cylinder base="82.5,29,98.5" radius="2" height="0"/>
         </region>
     </spawn>
 </spawns>
-<filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-</filters>
 <regions>
     <union id="bases">
         <rectangle id="blue-base" min="55,-107" max="86,-87"/>
@@ -98,11 +90,15 @@
     <negative id="off-map">
         <rectangle min="32,-107" max="123,108"/>
     </negative>
-    <apply enter="only-blue" region="blue-base" message="You may not enter the enemy's base!"/>
-    <apply enter="only-red" region="red-base" message="You may not enter the enemy's base!"/>
+    <apply enter="blue-team" region="blue-base" message="You may not enter the enemy's base!"/>
+    <apply enter="red-team" region="red-base" message="You may not enter the enemy's base!"/>
     <apply block="never" region="off-map" message="You may not interact with blocks outside the playing field."/>
     <apply block="never" region="bases" message="You may not place or break blocks in and around the spawn area!"/>
 </regions>
+<time result="score">10m</time>
+<score>
+    <kills>1</kills>
+</score>
 <if variant="rage">
     <rage/>
     <timelock>on</timelock>

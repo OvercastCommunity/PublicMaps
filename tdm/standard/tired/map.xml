@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Tired</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Be the team with the most kills after about 6 minutes.</objective>
 <authors>
     <author uuid="03236737-c1f8-429c-83df-24b537365f5a" contribution="Block Design/Layout/Map Design"/> <!-- Guicotsch -->
@@ -16,25 +16,6 @@
     <team id="red" color="red" max="16" max-overfill="18">Red</team> 
     <team id="blue" color="blue" max="16" max-overfill="18">Blue</team> 
 </teams>
-<spawns>
-    <default kit="all" yaw="90">
-        <regions>
-            <cylinder base="9.5,20,-55.5" radius="1" height="0"/>
-        </regions>
-    </default>
-    <spawn team="red" kit="spawn-kit">
-        <regions>
-            <cuboid min="-11,35,-123" max="-12,35,-125"/>
-            <cuboid min="24,35,-125" max="25,35,-123"/>
-        </regions>
-    </spawn> 
-    <spawn team="blue" kit="spawn-kit" yaw="-180">
-        <regions>
-            <cuboid min="-7,35,13" max="-8,35,11"/>
-            <cuboid min="29,35,13" max="28,35,11"/>
-        </regions>
-    </spawn>
-</spawns>
 <kits>
     <kit id="all"> 
         <effect>night vision</effect>
@@ -52,6 +33,25 @@
         <effect duration="3" amplifier="100">heal</effect>
     </kit>
 </kits>
+<spawns>
+    <default kit="all" yaw="90">
+        <region>
+            <cylinder base="9.5,20,-55.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="red" kit="spawn-kit">
+        <regions>
+            <cuboid min="-11,35,-123" max="-12,35,-125"/>
+            <cuboid min="24,35,-125" max="25,35,-123"/>
+        </regions>
+    </spawn> 
+    <spawn team="blue" kit="spawn-kit" yaw="-180">
+        <regions>
+            <cuboid min="-7,35,13" max="-8,35,11"/>
+            <cuboid min="29,35,13" max="28,35,11"/>
+        </regions>
+    </spawn>
+</spawns>
 <filters>
     <material id="only-vine">vine</material>
 </filters>

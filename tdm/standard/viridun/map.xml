@@ -1,18 +1,20 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Viridun</name>
 <variant id="rage">RAGE</variant>
 <variant id="ffa">FFA</variant>
 <variant id="ctf" world="ctf">CTF</variant>
-<version>1.6.1</version>
+<version>1.6.2</version>
 <constant id="objective">Be the team with the least amount of deaths after 10 minutes</constant>
 <if variant="rage">
     <constant id="objective">Be the team with the least amount of deaths after 8 minutes. Arrows kill in one hit!</constant>
 </if>
 <if variant="ffa">
     <constant id="objective">Kill the most players in 10 minutes!</constant>
+    <include id="gapple-kill-reward"/>
 </if>
 <if variant="ctf">
     <constant id="objective">Capture the enemy flag located at the corresponding colored beacon and return it to your flag</constant>
+    <include id="gapple-kill-reward"/>
 </if>
 <objective>${objective}</objective>
 <if variant="default">
@@ -54,27 +56,27 @@
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <unless variant="rage">
-            <item slot="0" unbreakable="true">stone sword</item>
-            <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
-            <item slot="28">arrow</item>
+            <item slot="0" unbreakable="true" material="stone sword"/>
+            <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+            <item slot="28" material="arrow"/>
         </unless>
         <if variant="default">
-            <item slot="2" damage="8229">potion</item> <!-- potion of instant health 2 -->
-            <item slot="9" damage="4" amount="64">ink sack</item>
-            <leggings unbreakable="true" enchantment="protection projectile:3">chainmail leggings</leggings>
-            <boots unbreakable="true" enchantment="protection fall:2">iron boots</boots>
-            <effect duration="7" amplifier="1">heal</effect>
+            <item slot="2" damage="8229" material="potion"/> <!-- potion of instant health 2 -->
+            <item slot="9" damage="4" amount="64" material="ink sack"/>
+            <leggings unbreakable="true" enchantment="protection projectile:3" material="chainmail leggings"/>
+            <boots unbreakable="true" enchantment="protection fall:2" material="iron boots"/>
+            <effect duration="7">heal</effect>
             <effect duration="7">damage resistance</effect>
         </if>
         <if variant="rage">
-            <item slot="0" unbreakable="true">diamond sword</item>
-            <item slot="1" unbreakable="true" enchantment="arrow damage:100" lore="`aOne-shot kill!">bow</item>
-            <item slot="2" amount="2">arrow</item>
-            <leggings unbreakable="true" team-color="true">leather leggings</leggings>
-            <boots unbreakable="true" team-color="true">leather boots</boots>
+            <item slot="0" unbreakable="true" material="diamond sword"/>
+            <item slot="1" unbreakable="true" enchantment="arrow damage:10" lore="`aOne-shot kill!" material="bow"/>
+            <item slot="2" amount="2" material="arrow"/>
+            <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+            <boots unbreakable="true" team-color="true" material="leather boots"/>
             <effect duration="3" amplifier="5">damage resistance</effect>
-            <effect duration="oo" amplifier="1">speed</effect>
-            <effect duration="oo" amplifier="2">jump</effect>
+            <effect>speed</effect>
+            <effect amplifier="2">jump</effect>
         </if>
         <if variant="ffa">
             <item slot="2" material="golden apple"/>
@@ -84,10 +86,10 @@
             <effect>speed</effect>
         </if>
         <if variant="ctf">
-            <item slot="2" damage="8229">potion</item> <!-- potion of instant health 2 -->
-            <leggings unbreakable="true" team-color="true">leather leggings</leggings>
-            <boots unbreakable="true" team-color="true" enchantment="protection fall:2">leather boots</boots>
-            <effect duration="10" amplifier="1">heal</effect>
+            <item slot="2" damage="8229" material="potion"/> <!-- potion of instant health 2 -->
+            <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+            <boots unbreakable="true" team-color="true" enchantment="protection fall:2" material="leather boots"/>
+            <effect duration="10">heal</effect>
             <effect duration="20">damage resistance</effect>
         </if>
     </kit>
@@ -293,11 +295,6 @@
     <if variant="rage">
         <kill-reward>
             <item>arrow</item>
-        </kill-reward>
-    </if>
-    <if variant="ffa,ctf">
-        <kill-reward>
-            <item>golden apple</item>
         </kill-reward>
     </if>
 </kill-rewards>

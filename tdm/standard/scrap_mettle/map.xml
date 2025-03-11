@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Scrap Mettle</name>
-<version>1.4.10</version>
+<version>1.4.11</version>
 <objective>Score points by killing the other team and entering your team's goal on the other side.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
 </authors>
@@ -168,69 +169,10 @@
 <kill-rewards>
     <kill-reward>
         <item material="iron ingot"/>
-        <item material="golden apple"/>
         <item amount="8" material="arrow"/>
     </kill-reward>
 </kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<!-- <tutorial>
-    <stage title="Team Death Match">
-        <message>
-            <line>`rThis map is a `a`lTeam Death Match `r(TDM) map with scoreboxes.</line>
-            <line>The objective is to get the most points in `615 `rminutes.</line>
-            <line>You are rewarded `biron ingots `rfor `ckills `rwhich you can craft into `6weapons `rand `6armor`r.</line>
-        </message>
-        <teleport>
-            <point yaw="-90" pitch="15">-4,19,97.5</point>
-        </teleport>
-    </stage>
-    <stage title="Team Spawn">
-        <message>
-            <line>`rEach team spawns on `9ice `rfacing a wool patch.</line>
-            <line>The `6scorebox `ris directly under the spawn. Don't let your enemy enter your scorebox!</line>
-            <line>Run forward into battle!</line>
-        </message>
-        <teleport>
-            <point angle="24,14,237">25,15,221</point>
-        </teleport>
-    </stage>
-    <stage title="The Battle Field">
-        <message>
-            <line>`rThe two teams will come out from opposite sides and fight in the middle.</line>
-            <line>There are sniping spots to the `5left`r, `5right `rand `5back`r.</line>
-        </message>
-        <teleport>
-            <point angle="24,5,97">29,19,110</point>
-        </teleport>
-    </stage>
-    <stage title="Team-Only Doors">
-        <message>
-            <line>`rDoors surrounded with a colored wool are `c`lteam-only `rand can only be entered by the team whoose color is displayed.</line>
-        </message>
-        <teleport>
-            <point angle="38,10,59">39,12,66</point>
-        </teleport>
-    </stage>
-    <stage title="Emergency Exits">
-        <message>
-            <line>`rDownstairs from the battlefield are `a`lemergency exits`r, they will teleport you to the opposite side of the map.</line>
-            <line>Use them to quickly evade your enemy!</line>
-        </message>
-        <teleport>
-            <point yaw="0">14.5,2,138.5</point>
-        </teleport>
-    </stage>
-    <stage title="Score Boxes">
-        <message>
-            <line>`rGet to the other team's side and into this area to score points.</line>
-            <line>The scorebox will automatically teleport you back to your own side when you score.</line>
-            <line>The middle scorebox is smaller, but gives you more points!</line>
-        </message>
-        <teleport>
-            <point angle="24,10,228">31,11,219</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

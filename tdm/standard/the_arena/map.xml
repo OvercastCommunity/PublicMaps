@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Arena</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <slug>the_arena_redux</slug>
 <phase>staging</phase>
 <objective>Be the team with the least amount of deaths after 12 minutes.</objective>
@@ -43,9 +43,12 @@
         <health>1</health>
     </kit>
 </kits>
+<spawns>
+    <default region="spawn-default"/>
+    <spawn team="blue" kit="spawn-kit" yaw="270" region="spawn-blue"/>
+    <spawn team="red" kit="spawn-kit" yaw="90" region="spawn-red"/>
+</spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <not id="no-trapdoor">
         <material>trap door</material>
     </not>
@@ -70,11 +73,6 @@
     <apply block="never" use="no-trapdoor"/>
     <apply kit="void-death" region="below-negative-5"/>
 </regions>
-<spawns>
-    <default region="spawn-default"/>
-    <spawn team="blue" kit="spawn-kit" yaw="270" region="spawn-blue"/>
-    <spawn team="red" kit="spawn-kit" yaw="90" region="spawn-red"/>
-</spawns>
 <portals>
     <portal y="-64" sound="false" region="below-negative-5"/>
 </portals>

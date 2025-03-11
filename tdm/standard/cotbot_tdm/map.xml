@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>CotBot TDM</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Be the team with the most kills before 7 minutes is up</objective>
 <authors>
     <author uuid="878de754-59dd-4828-9328-2bb1b848dc43" contribution="Basic map layout and XML author"/> <!-- MrM00se -->
@@ -29,19 +29,19 @@
 </kits>
 <spawns>
     <spawn team="cot" kit="spawn-kit" yaw="-90">
-        <regions>
+        <region>
             <cuboid min="-55,12,-4" max="-60,12,3"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="bot" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cuboid min="55,12,2" max="62,12,-3"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <cuboid min="-2,22,38" max="3,22,36"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

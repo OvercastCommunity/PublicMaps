@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Wrath Altar</name>
-<version>2.4.1</version>
+<version>2.4.2</version>
 <objective>Be the team with the highest score after 9 minutes!</objective>
 <time result="score">9m</time>
 <score>
@@ -18,7 +17,7 @@
 <rules>
     <rule>Fall damage is disabled!</rule>
 </rules>
- <!-- Exit the hill for spreading players away from mid 
+<!-- Exit the hill for spreading players away from mid 
 <king>
     <hills>
         <hill name="Altar" capture-time="5s" points="1" show="true">
@@ -31,8 +30,8 @@
 -->
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" unbreakable="true" enchantment="sharpness" lore="`aOne hit slice!">iron sword</item>
-        <item slot="1" unbreakable="true" enchantment="power;sharpness" lore="`aOne shot pierce!">bow</item>
+        <item slot="0" unbreakable="true" enchantment="sharpness" lore="`aOne hit slice!" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="power;sharpness" lore="`aOne shot pierce!" material="bow"/>
         <item slot="2" amount="2" material="ender pearl"/>
         <item slot="8" amount="6" material="arrow"/>
         <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
@@ -42,6 +41,7 @@
         <effect>speed</effect>
         <effect duration="4s" amplifier="255">regeneration</effect>
         <effect duration="4s" amplifier="255">damage resistance</effect>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
@@ -51,7 +51,7 @@
         </region>
     </default>
     <spawn team="purple" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cuboid min="1694,8,-1566" max="1681,8,-1565"/>
         </region>
     </spawn>
@@ -109,26 +109,4 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<!--
-<include src="tutorial.xml"/>
-<tutorial>
-    <stage title="TDM Rage">
-        <message>
-            <line>`rThis map is a `aTeam Death Match `r(RAGE) map.</line>
-            <line>`rThe objective is to get the most points before the end of the time limit!</line>
-        </message>
-        <teleport>
-            <point yaw="-150" pitch="10">1675.5,35,-1382.5</point>
-        </teleport>
-    </stage>
-    <stage title="Spawns">
-        <message>
-            <line>`rThis the `cRed Team`r's spawn area.</line>
-        </message>
-        <teleport>
-            <point yaw="-50" pitch="20">1672.5,10,-1366.5</point>
-        </teleport>
-    </stage>
-</tutorial>
--->
 </map>

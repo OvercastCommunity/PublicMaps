@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Funerea</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Kill the enemy players as much as you can before time runs out.</objective>
 <created>2013-07-07</created>
 <authors>
@@ -39,25 +39,25 @@
         <leggings material="diamond leggings"/>
         <boots enchantment="protection fall" material="diamond boots"/>
         <effect amplifier="4" duration="5">heal</effect>
-        <effect amplifier="1" duration="15">increase_damage</effect>
+        <effect duration="15">increase_damage</effect>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
     <spawn team="blue" yaw="90" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="180.5,24,-197.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" yaw="-90" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="-3.5,24,131.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cylinder base="87.5,73,-35.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
@@ -77,8 +77,8 @@
     <item>diamond leggings</item>
     <item>diamond boots</item>
     <item>cooked beef</item>
-    <item>374</item>
-    <item>368</item>
+    <item>glass bottle</item>
+    <item>ender pearl</item>
     <item>potion</item>
 </itemremove>
 <kill-rewards>

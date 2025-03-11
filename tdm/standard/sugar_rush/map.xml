@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Sugar Rush</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Kill as many enemies you can in 10 minutes!</objective>
 <authors>
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4" contribution="Map author"/> <!-- DiamondAx -->
@@ -28,19 +28,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit">
-        <regions>
+        <region>
             <cuboid min="594,29,51" max="597,29,54"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="green" kit="spawn-kit" yaw="180">
-        <regions>
+        <region>
             <cuboid min="598,29,250" max="595,29,247"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cuboid min="508,79,147" max="515,79,154"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
@@ -63,7 +63,7 @@
     <item>leather leggings</item>
     <item>iron boots</item>
     <item>glass bottle</item>
-    <item>256:15</item>
+    <item>iron spade:15</item>
     <item>potion</item>
 </itemremove>
 <kill-rewards>

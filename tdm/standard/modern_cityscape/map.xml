@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Modern Cityscape</name>
-<version>1.2.15</version>
+<version>1.2.16</version>
 <objective>Be the team with the highest score after 10 minutes!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
 </authors>
@@ -16,7 +17,7 @@
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" enchantment="arrow infinite:1" unbreakable="true" material="bow"/>
+        <item slot="1" enchantment="arrow infinite" unbreakable="true" material="bow"/>
         <item slot="2" material="golden apple"/>
         <item slot="3" amount="16" material="ladder"/>
         <item slot="28" material="arrow"/>
@@ -97,11 +98,6 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>

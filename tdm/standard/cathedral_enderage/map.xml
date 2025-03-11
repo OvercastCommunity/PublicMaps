@@ -1,6 +1,6 @@
-<map proto="1.4.2" internal="true">
+<map proto="1.5.0" internal="true">
 <name>Cathedral EndeRAGE</name>
-<version>0.3.4</version>
+<version>0.3.5</version>
 <objective>Kill each other for 8 minutes! The bow shoots Ender Pearls and doubles as a melee weapon.</objective>
 <authors>
     <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
@@ -11,7 +11,7 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" unbreakable="true" enchantment="arrow infinite;damage all:10" lore="`aDual-purpose teleporter and melee weapon" material="bow"/>
+        <item slot="0" unbreakable="true" enchantment="arrow infinite;damage all:10" lore="`r`aDual-purpose teleporter and melee weapon" material="bow"/>
         <item slot="1" amount="64" material="vine"/>
         <item slot="2" material="diamond pickaxe"/>
         <item slot="3" amount="64" team-color="true" material="stained clay"/>
@@ -28,27 +28,27 @@
         <effect amplifier="2">jump</effect>
     </kit>
     <kit id="give-haste" force="true">
-        <effect amplifier="20" duration="oo">fast digging</effect>
+        <effect amplifier="20">fast digging</effect>
     </kit>
     <kit id="take-haste" force="true">
         <effect amplifier="0" duration="0">fast digging</effect>
     </kit>
 </kits>
-<spawns>
-    <spawn team="blue" yaw="45" kit="spawn-kit" safe="true">
-        <regions>
+<spawns safe="true">
+    <spawn team="blue" yaw="45" kit="spawn-kit">
+        <region>
             <cylinder base="60.5,113,-59.5" radius="7" height="0"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="red" yaw="-135" kit="spawn-kit" safe="true">
-        <regions>
+    <spawn team="red" yaw="-135" kit="spawn-kit">
+        <region>
             <cylinder base="-87.5,113,88.5" radius="7" height="0"/>
-        </regions>
+        </region>
     </spawn>
-    <default safe="true">
-        <regions>
+    <default>
+        <region>
             <cylinder base="-13.5,128,14.5" radius="8" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>

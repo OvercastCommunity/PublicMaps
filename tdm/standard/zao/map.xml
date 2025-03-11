@@ -1,13 +1,14 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Zao</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Earn points by killing players before the timer runs out!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="da98a2f1-673c-4cec-b547-e0a342abfde4"/> <!-- Evocal -->
 </authors>
 <teams>
-    <team id="yellow" color="yellow" max="24">Yellow</team>
-    <team id="purple" color="dark purple" max="24">Purple</team>
+    <team id="yellow-team" color="yellow" max="24">Yellow</team>
+    <team id="purple-team" color="dark purple" max="24">Purple</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -26,32 +27,30 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="yellow" kit="spawn-kit" yaw="-90">
-        <regions>
+    <spawn team="yellow-team" kit="spawn-kit" yaw="-90">
+        <region>
             <cylinder base="23.5,21,-797.5" height="1" radius="1"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="purple" kit="spawn-kit" yaw="90">
-        <regions>
+    <spawn team="purple-team" kit="spawn-kit" yaw="90">
+        <region>
             <cylinder base="252.5,21,-797.5" height="1" radius="1"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <cylinder base="137.5,61,-631.5" height="1" radius="1"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
-    <team id="only-yellow">yellow</team>
-    <team id="only-purple">purple</team>
     <material id="only-sandstone">sandstone</material>
 </filters>
 <regions>
     <cylinder id="yellow-spawn" base="23,20,-798" height="10" radius="15"/>
     <cylinder id="purple-spawn" base="252,20,-797" height="10" radius="15"/>
-    <apply region="yellow-spawn" block="never" enter="only-yellow" message="You may not enter or edit the enemy's spawn!"/>
-    <apply region="purple-spawn" block="never" enter="only-purple" message="You may not enter or edit the enemy's spawn!"/>
+    <apply region="yellow-spawn" block="never" enter="yellow-team" message="You may not enter or edit the enemy's spawn!"/>
+    <apply region="purple-spawn" block="never" enter="purple-team" message="You may not enter or edit the enemy's spawn!"/>
     <apply block="only-sandstone" message="You may only break or place sandstone on this map!"/>
 </regions>
 <time>7m</time>
@@ -74,7 +73,6 @@
 <kill-rewards>
     <kill-reward>
         <item amount="8" material="sandstone"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>95</maxbuildheight>

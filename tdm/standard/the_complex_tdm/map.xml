@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Complex TDM</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Get the most kills after 7 minutes.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
     <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0"/> <!-- SH4D0W_HAWK -->
@@ -34,19 +35,19 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn-kit" yaw="-135">
-        <regions>
+        <region>
             <cuboid min="-43,6,44" max="-47,6,48"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="spawn-kit" yaw="35">
-        <regions>
+        <region>
             <cuboid min="44,6,-43" max="48,6,-47"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="135">
-        <regions>
+        <region>
             <cuboid min="78,60,78" max="75,60,75"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
@@ -192,11 +193,6 @@
     <item>glowstone dust</item>
     <item>arrow</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>

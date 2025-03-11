@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Yggdrasil</name> 
-<version>1.0.3</version>
+<version>1.0.4</version>
 <created>2013-06-14</created> 
 <objective>Get the most kills for your team within the allowed time.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
@@ -10,8 +11,8 @@
     <rule>Fall damage is off!</rule>
 </rules>
 <teams>
-    <team id="blue" color="blue" max="40">Blue</team>
-    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue-team" color="blue" max="40">Blue</team>
+    <team id="red-team" color="dark red" max="40">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -37,38 +38,34 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="red" kit="red-kit">
-        <regions yaw="180">
+    <spawn team="red-team" kit="red-kit" yaw="180">
+        <region>
             <cylinder base="2276.5,98,-1041.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="blue" kit="blue-kit">
-        <regions>
+    <spawn team="blue-team" kit="blue-kit">
+        <region>
             <cylinder base="2262.5,101,-1178.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
-    <default> 
-        <regions yaw="-90">
+    <default yaw="-90"> 
+        <region>
             <cylinder base="2274.5,158,-1101.5" radius="3" height="0" />
-        </regions>
+        </region>
     </default>
 </spawns>
-<filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
-</filters>
 <regions>
     <!-- World -->
     <negative id="world-inverse">
         <cylinder id="world" base="2262.5,-400,-1105.5" radius="90" height="560"/>
     </negative>
     <!-- Enter events -->
-    <apply enter="only-red" message="You may not enter in the enemy's spawn!">
+    <apply enter="red-team" message="You may not enter in the enemy's spawn!">
         <region>
             <cylinder base="2276.5,98,-1041.5" radius="6" height="4"/>
         </region>
     </apply>
-    <apply enter="only-blue" message="You may not enter in the enemy's spawn!">
+    <apply enter="blue-team" message="You may not enter in the enemy's spawn!">
         <region>
             <cylinder base="2262.5,101,-1178.5" radius="6" height="4"/>
         </region>
@@ -130,11 +127,6 @@
     <tool>stone sword</tool>
     <tool>iron axe</tool>
 </toolrepair>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <disabledamage>
     <damage>fall</damage>
     <damage>suffocation</damage>

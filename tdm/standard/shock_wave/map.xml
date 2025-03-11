@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Shock Wave</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Kill the enemy to gain points for your team. The team with the most points wins!</objective>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
@@ -10,8 +10,8 @@
     <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Support"/> <!-- ItsmiiOlly -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="25" max-overfill="30">Blue</team>
-    <team id="green" color="green" max="25" max-overfill="30">Green</team>
+    <team id="blue-team" color="blue" max="25" max-overfill="30">Blue</team>
+    <team id="green-team" color="green" max="25" max-overfill="30">Green</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -29,31 +29,27 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit" yaw="135">
-        <regions>
+    <spawn team="blue-team" kit="spawn-kit" yaw="135">
+        <region>
             <cylinder base="39.5,1,39.5" radius="3" height="0"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="green" kit="spawn-kit" yaw="-45">
-        <regions>
+    <spawn team="green-team" kit="spawn-kit" yaw="-45">
+        <region>
             <cylinder base="-38.5,1,-38.5" radius="3" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <cuboid min="1,9,-60" max="0,9,-59"/>
-        </regions>
+        </region>
     </default>
 </spawns>
-<filters>
-    <team id="only-green">green</team>
-    <team id="only-blue">blue</team>
-</filters>
 <regions>
     <cuboid id="green-spawn" min="-30,0,-30" max="-45,oo,-45"/>
     <cuboid id="blue-spawn" min="31,0,31" max="48,oo,48"/>
-    <apply region="green-spawn" enter="only-green" message="You may not enter the enemy's base!"/>
-    <apply region="blue-spawn" enter="only-blue" message="You may not enter the enemy's base!"/>
+    <apply region="green-spawn" enter="green-team" message="You may not enter the enemy's base!"/>
+    <apply region="blue-spawn" enter="blue-team" message="You may not enter the enemy's base!"/>
     <apply block="never"/>
 </regions>
 <time>10m</time>
@@ -86,34 +82,4 @@
     </kill-reward>
 </kill-rewards>
 <timelock>on</timelock>
-<!-- <tutorial>
-    <stage title="Team Death Match (TDM)">
-        <message>
-            <line>`rThis map is a `4Team Death Match`r `l(TDM)`r map.</line>
-            <line>`rThe objective is to get as many `bpoints for your team`r by `4killing foes`r.</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="15">17,15,-16</point>
-        </teleport>
-    </stage>
-    <stage title="Gold Ingot Spawners">
-        <message>
-            <line>This is the one and only `agold ingot spawner`r.</line>
-            <line>Use the `6gold`r for armour.</line>
-            <line>Collect gold from killing enemies.</line>
-        </message>
-        <teleport>
-            <point yaw="0" pitch="50">0,19,-4</point>
-        </teleport>
-    </stage>
-    <stage title="Arrow spawners">
-        <message>
-            <line>There are `b4 arrow spawners`r in the map.</line>
-            <line>These spawn `a4 arrows`r every 8 seconds.</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="25">25,8,-25</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

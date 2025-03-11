@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Chemical Reaction</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Kill the enemy players as much as you can before time runs out.</objective>
 <phase>staging</phase>
 <authors>
@@ -45,19 +45,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="180">
-        <regions>
+        <region>
             <cylinder base="-37,23,67.5" radius="3" height="1"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="38,23,-66.5" radius="3" height="1"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="270">
-        <regions>
+        <region>
             <cuboid min="58,64,2" max="62,64,-1"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>

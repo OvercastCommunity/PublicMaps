@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Canyon: TDM</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Get the most kills after 7 minutes!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="be49b1a8-600e-4751-9725-a8aead777363"/> <!-- IzJust4Fun -->
     <author uuid="c660918b-4000-44d4-b735-d3fa6f166110"/> <!-- RED_DEAD -->
@@ -11,31 +12,24 @@
     <team id="orange" color="gold" max="20">Orange</team>
 </teams>
 <kits>
-    <kit id="parent">
-        <item slot="0" unbreakable="true">stone sword</item>
-        <item slot="1" unbreakable="true">bow</item>
-        <item slot="8" amount="12">arrow</item>
-        <leggings unbreakable="true">chainmail leggings</leggings>
-        <potion amplifier="10" duration="3s">damage resistance</potion>
-    </kit>
-    <kit id="red-kit" parent="parent">
-        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
-        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
-        <boots color="cd0000" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
-    </kit>
-    <kit id="orange-kit" parent="parent">
-        <helmet color="d87f33" unbreakable="true">leather helmet</helmet>
-        <chestplate color="d87f33" unbreakable="true">leather chestplate</chestplate>
-        <boots color="d87f33" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="8" amount="12" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" enchantment="protection fall:2" material="leather boots"/>
+        <effect amplifier="10" duration="3s">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
-    <spawn team="red" kit="red-kit" yaw="0">
+    <spawn team="red" kit="spawn-kit">
         <region>
             <point>-1274.5,33,-1196.5</point>
         </region>
     </spawn>
-    <spawn team="orange" kit="orange-kit" yaw="180">
+    <spawn team="orange" kit="spawn-kit" yaw="180">
         <region>
             <point>-1282.5,33,-1100.5</point>
         </region>
@@ -63,7 +57,6 @@
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="6" material="arrow"/>
     </kill-reward>
 </kill-rewards>
