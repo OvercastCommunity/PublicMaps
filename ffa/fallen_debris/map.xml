@@ -1,93 +1,62 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Fallen Debris</name>
-<version>4.2.8</version>
+<version>4.2.9</version>
 <phase>staging</phase>
 <objective>Get the most kills before the time is up!</objective>
 <created>2015-12-06</created>
 <authors>
     <author uuid="77912861-9fc0-45fa-aac5-aa455614edbf"/> <!-- Nanu -->
 </authors>
-<score>
-    <kills>1</kills>
-</score>
-<time>8m</time>
-<players min="2" max="20" max-overfill="24" show-name-tags="false" />
-<spawns>
-    <spawn spread="true">
-        <regions>
-            <point yaw="180">18,7,47</point>
-            <point yaw="90">-15,8,46</point>
-            <point yaw="-118">-45.5,8,59.5</point>
-            <point>-54.5,7,35.5</point>
-            <point yaw="-180">-45,8,37</point>
-            <point yaw="-143">-45,20,35</point>
-            <point yaw="-179">-16,7,21</point>
-            <point yaw="-176">-41,7,15</point>
-            <point yaw="-55">-43,12,9</point>
-            <point yaw="-90">-18,4,20</point>
-            <point yaw="139">-7,11,21</point>
-            <point yaw="-18">-47,7,-10</point>
-            <point yaw="41">-38,7,-12</point>
-            <point yaw="-56">-43,15,-29</point>
-            <point yaw="-120">-31,23,-50</point>
-            <point yaw="-26">-14,16,-76</point>
-            <point yaw="-141">-1,5,-43</point>
-            <point yaw="-131">-32,8,-44</point>
-            <point>-13,7,-16</point>
-            <point yaw="-38">-21,11,-21</point>
-            <point yaw="-143">13,12,-29</point>
-            <point yaw="-143">13,12,-29</point>
-            <point yaw="90">13,7,-25</point>
-            <point>22,7,-19</point>
-            <point yaw="130">23,11,-8</point>
-            <point yaw="-20">46,7,-19</point>
-            <point yaw="-4">38,11,-16</point>
-            <point yaw="113">48,7,5</point>
-            <point yaw="-90">31,15,16</point>
-            <point yaw="10">33,7,16</point>
-            <point yaw="140">11,7,23</point>
-        </regions>
-    </spawn>
-    <default>
-        <regions>
-            <point yaw="138">41.5,31,71.5</point>
-        </regions>
-    </default>
-</spawns>
+<players min="2" max="20" max-overfill="24" show-name-tags="false"/>
+<kits>
+    <kit id="global-kit">
+        <game-mode>adventure</game-mode>
+        <effect duration="3" amplifier="5">resistance</effect>
+    </kit>
+    <kit id="kill-reward">
+        <item material="golden apple"/>
+        <item amount="12" material="arrow"/>
+        <effect duration="3" amplifier="3">regeneration</effect>
+    </kit>
+    <kit id="witch-effects">
+        <effect duration="3">wither</effect>
+        <effect duration="5" amplifier="2">weakness</effect>
+    </kit>
+</kits>
 <classes family="debris">
     <class name="Soldier" description="Default class" icon="iron sword" default="true">
         <kit parents="global-kit">
-            <item slot="0" unbreakable="true" material="iron sword" />
-            <item slot="1" unbreakable="true" material="bow" />
-            <item slot="8" amount="12"  material="arrow" />
-            <helmet locked="true" color="000000" unbreakable="true" material="leather helmet" />
-            <chestplate locked="true" unbreakable="true" material="iron chestplate" />
-            <leggings locked="true" unbreakable="true" material="iron leggings" />
-            <boots locked="true" unbreakable="true" material="diamond boots" />
+            <item slot="0" unbreakable="true" material="iron sword"/>
+            <item slot="1" unbreakable="true" material="bow"/>
+            <item slot="8" amount="12"  material="arrow"/>
+            <helmet locked="true" color="000000" unbreakable="true" material="leather helmet"/>
+            <chestplate locked="true" unbreakable="true" material="iron chestplate"/>
+            <leggings locked="true" unbreakable="true" material="iron leggings"/>
+            <boots locked="true" unbreakable="true" material="diamond boots"/>
         </kit>
     </class>
     <class name="Archer" description="Ranged specialist!" icon="bow">
         <kit parents="global-kit">
-            <item slot="0" unbreakable="true" material="stone axe" />
+            <item slot="0" unbreakable="true" material="stone axe"/>
             <item slot="1" unbreakable="true" material="bow">
                 <enchantment level="2">power</enchantment>
-                <enchantment level="1">infinity</enchantment>
+                <enchantment>infinity</enchantment>
             </item>
-            <item slot="8" material="arrow" />
-            <helmet locked="true" color="000000" unbreakable="true" material="leather helmet" />
+            <item slot="8" material="arrow"/>
+            <helmet locked="true" color="000000" unbreakable="true" material="leather helmet"/>
             <chestplate locked="true" unbreakable="true" material="iron chestplate">
                 <enchantment level="3">protection projectile</enchantment>
             </chestplate>
-            <leggings locked="true" unbreakable="true" material="gold leggings" />
-            <boots locked="true" color="000000" unbreakable="true" material="leather boots" />
+            <leggings locked="true" unbreakable="true" material="gold leggings"/>
+            <boots locked="true" color="000000" unbreakable="true" material="leather boots"/>
             <effect>speed</effect>
         </kit>
     </class>
     <class name="Assassin" description="Tipped arrows and swiftness!" icon="stone axe">
         <kit parents="global-kit">
-            <item slot="0" unbreakable="true" material="iron sword" />
-            <item slot="1" unbreakable="true" material="bow" />
-            <item slot="2" unbreakable="true" material="stone axe" />
+            <item slot="0" unbreakable="true" material="iron sword"/>
+            <item slot="1" unbreakable="true" material="bow"/>
+            <item slot="2" unbreakable="true" material="stone axe"/>
             <!-- 16384 + 12 = 16396 -->
             <item slot="3" amount="6" name="`rSplash Potion of Harming and Weakness" damage="16396" material="potion">
                 <effect>harm</effect>
@@ -100,12 +69,12 @@
                 <effect duration="3">weakness</effect>
             </item>
             -->
-            <helmet locked="true" unbreakable="true" material="gold helmet" />
+            <helmet locked="true" unbreakable="true" material="gold helmet"/>
             <chestplate locked="true" color="000000" unbreakable="true" material="leather chestplate">
-                <enchantment level="1">protection</enchantment>
+                <enchantment>protection</enchantment>
             </chestplate>
-            <leggings locked="true" unbreakable="true" material="chainmail leggings" />
-            <boots locked="true" color="000000" unbreakable="true" material="leather boots" />
+            <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
+            <boots locked="true" color="000000" unbreakable="true" material="leather boots"/>
             <effect amplifier="2">speed</effect>
         </kit>
     </class>
@@ -116,10 +85,10 @@
                 <effect duration="4">strength</effect>
                 <effect amplifier="2" duration="4">regeneration</effect>
             </item>
-            <helmet locked="true" unbreakable="true" material="diamond helmet" />
-            <chestplate locked="true" unbreakable="true" material="diamond chestplate" />
-            <leggings locked="true" unbreakable="true" material="iron leggings" />
-            <boots locked="true" unbreakable="true" material="iron boots" />
+            <helmet locked="true" unbreakable="true" material="diamond helmet"/>
+            <chestplate locked="true" unbreakable="true" material="diamond chestplate"/>
+            <leggings locked="true" unbreakable="true" material="iron leggings"/>
+            <boots locked="true" unbreakable="true" material="iron boots"/>
             <effect amplifier="-1">health boost</effect>
             <effect>absorption</effect>
             <effect>slowness</effect>
@@ -128,24 +97,24 @@
     <class name="Pyro" description="Set foes on fire!" icon="fireball">
         <kit parents="global-kit">
             <item slot="0" unbreakable="true" material="stone sword">
-                <enchantment level="1">fire aspect</enchantment>
+                <enchantment>fire aspect</enchantment>
             </item>
             <item slot="1" unbreakable="true" material="bow">
-                <enchantment level="1">flame</enchantment>
+                <enchantment>flame</enchantment>
             </item>
-            <item slot="8" amount="8" material="arrow" />
-            <helmet locked="true" unbreakable="true" material="iron helmet" />
+            <item slot="8" amount="8" material="arrow"/>
+            <helmet locked="true" unbreakable="true" material="iron helmet"/>
             <chestplate locked="true" color="000000" unbreakable="true" material="leather chestplate">
-                <enchantment level="1">protection</enchantment>
+                <enchantment>protection</enchantment>
             </chestplate>
-            <boots locked="true" unbreakable="true" material="gold boots" />
+            <boots locked="true" unbreakable="true" material="gold boots"/>
             <effect>fire resistance</effect>
         </kit>
     </class>
     <class name="Scientist" description="Lingering effects and experiments!" icon="potion">
         <kit parents="global-kit">
-            <item slot="0" unbreakable="true" material="gold axe" />
-            <item slot="1" unbreakable="true" material="bow" />
+            <item slot="0" unbreakable="true" material="gold axe"/>
+            <item slot="1" unbreakable="true" material="bow"/>
             <!-- 16384 + 4 = 16388 -->
             <item slot="2" amount="2" name="`rSplash Potion of Poison" damage="16388" material="potion">
                 <effect duration="3" amplifier="2">poison</effect>
@@ -166,7 +135,7 @@
             <item slot="8" amount="12" material="arrow"/> <!-- was spectral, not in 1.8 -->
             <helmet locked="true" color="000000" unbreakable="true" material="leather helmet"/>
             <chestplate locked="true" unbreakable="true" material="chainmail chestplate">
-                <enchantment level="1">protection projectile</enchantment>
+                <enchantment>protection projectile</enchantment>
             </chestplate>
             <boots locked="true" color="000000" unbreakable="true" material="leather boots"/>
             <effect amplifier="2">speed</effect>
@@ -181,7 +150,7 @@
             <!-- <item slot="1" amount="24" material="chorus fruit" /> -->
             <helmet locked="true" unbreakable="true" material="gold helmet" />
             <chestplate locked="true" unbreakable="true" material="gold chestplate">
-                <enchantment level="1">thorns</enchantment>
+                <enchantment>thorns</enchantment>
             </chestplate>
             <leggings locked="true" unbreakable="true" material="chainmail leggings" />
             <boots color="993333" locked="true" unbreakable="true" material="leather boots" />
@@ -229,21 +198,77 @@
         </kit>
     </class> -->
 </classes>
-<kits>
-    <kit id="global-kit">
-        <game-mode>adventure</game-mode>
-        <potion duration="3" amplifier="5">resistance</potion>
-    </kit>
-    <kit id="kill-reward">
-        <item material="golden apple" />
-        <potion duration="3" amplifier="3">regeneration</potion>
-        <item amount="12">arrow</item>
-    </kit>
-    <kit id="witch-effects">
-        <effect duration="3">wither</effect>
-        <effect duration="5" amplifier="2">weakness</effect>
-    </kit>
-</kits>
+<spawns>
+    <spawn spread="true">
+        <regions>
+            <point yaw="180">18,7,47</point>
+            <point yaw="90">-15,8,46</point>
+            <point yaw="-118">-45.5,8,59.5</point>
+            <point>-54.5,7,35.5</point>
+            <point yaw="-180">-45,8,37</point>
+            <point yaw="-143">-45,20,35</point>
+            <point yaw="-179">-16,7,21</point>
+            <point yaw="-176">-41,7,15</point>
+            <point yaw="-55">-43,12,9</point>
+            <point yaw="-90">-18,4,20</point>
+            <point yaw="139">-7,11,21</point>
+            <point yaw="-18">-47,7,-10</point>
+            <point yaw="41">-38,7,-12</point>
+            <point yaw="-56">-43,15,-29</point>
+            <point yaw="-120">-31,23,-50</point>
+            <point yaw="-26">-14,16,-76</point>
+            <point yaw="-141">-1,5,-43</point>
+            <point yaw="-131">-32,8,-44</point>
+            <point>-13,7,-16</point>
+            <point yaw="-38">-21,11,-21</point>
+            <point yaw="-143">13,12,-29</point>
+            <point yaw="-143">13,12,-29</point>
+            <point yaw="90">13,7,-25</point>
+            <point>22,7,-19</point>
+            <point yaw="130">23,11,-8</point>
+            <point yaw="-20">46,7,-19</point>
+            <point yaw="-4">38,11,-16</point>
+            <point yaw="113">48,7,5</point>
+            <point yaw="-90">31,15,16</point>
+            <point yaw="10">33,7,16</point>
+            <point yaw="140">11,7,23</point>
+        </regions>
+    </spawn>
+    <default>
+        <region yaw="138">
+            <point>41.5,31,71.5</point>
+        </region>
+    </default>
+</spawns>
+<filters>
+    <not id="use">
+        <any>
+            <material>trap door</material>
+            <material>armor stand</material>
+            <material>dropper</material>
+            <material>hopper</material>
+            <material>dispenser</material>
+        </any>
+    </not>
+    <any id="allowed-blocks">
+        <material>redstone block</material>
+        <material>grass</material>
+        <material>smooth brick</material>
+        <material>gravel</material>
+        <material>stone</material>
+        <material>double step</material>
+        <material>wood</material>
+        <material>stained clay</material>
+        <material>cobblestone</material>
+    </any>
+</filters>
+<regions>
+    <apply block="allowed-blocks" use="use"/>
+</regions>
+<score>
+    <kills>1</kills>
+</score>
+<time>8m</time>
 <projectiles>
     <projectile id="tnt-gun" name="exploding gift" projectile="TNTPrimed" velocity="1" damage="8" throwable="false" cooldown="3s" />
     <projectile id="snowball-gun" name="snowball" projectile="Snowball" velocity="1" damage="8" throwable="true" cooldown="0s" />
@@ -251,8 +276,125 @@
         <effect duration="-1" amplifier="10">wither</effect>
     </projectile>
 </projectiles>
+<item-mods>
+    <rule>
+        <match>
+            <material>skull item</material>
+        </match>
+        <modify name="`rExploding Gift"/>
+    </rule>
+</item-mods>
+<block-drops>
+    <rule trample="true">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <class>Necromancer</class>
+                <any>
+                    <all>
+                        <sprinting />
+                        <random>0.6</random>
+                    </all>
+                    <all>
+                        <walking />
+                        <random>0.4</random>
+                    </all>
+                    <all>
+                        <crouching />
+                        <random>0.2</random>
+                    </all>
+                </any>
+                <any>
+                    <material>grass</material>
+                    <material>smooth brick</material>
+                    <material>gravel</material>
+                    <material>stone</material>
+                    <material>double step</material>
+                    <material>wood</material>
+                    <material>stained clay</material>
+                    <material>cobblestone</material>
+                </any>
+            </all>
+        </filter>
+        <replacement>redstone block</replacement>
+    </rule>
+    <rule trample="true" kit="witch-effects">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>redstone block</material>
+                <not>
+                    <class>Necromancer</class>
+                </not>
+            </all>
+        </filter>
+    </rule>
+</block-drops>
+<renewables>
+    <renewable interval="6s" grow="true" particles="true">
+        <renew-filter>
+            <any>
+                <material>grass</material>
+                <material>smooth brick</material>
+                <material>gravel</material>
+                <material>stone</material>
+                <material>double step</material>
+                <material>wood</material>
+                <material>stained clay</material>
+                <material>cobblestone</material>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <material>redstone block</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>stone sword</item>
+    <item>stone axe</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>iron sword</item>
+    <item>iron axe</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>gold sword</item>
+    <item>gold axe</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>diamond sword</item>
+    <item>diamond axe</item>
+    <item>diamond helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>bucket</item>
+    <item>milk bucket</item>
+    <item>skull item</item>
+    <item>snow ball</item>
+    <item>seeds</item>
+    <item>bone</item>
+    <item>rabbit foot</item>
+    <item>egg</item>
+    <item>stone button</item>
+    <item>wood button</item>
+</itemremove>
 <kill-rewards>
-    <kill-reward kit="kill-reward" />
+    <kill-reward kit="kill-reward"/>
     <!-- Soldier Kill Rewards -->
     <kill-reward>
         <filter>
@@ -398,148 +540,6 @@
         </item>
     </kill-reward> -->
 </kill-rewards>
-<item-mods>
-    <rule>
-        <match>
-            <material>skull item</material>
-        </match>
-        <modify name="`rExploding Gift" />
-    </rule>
-</item-mods>
-<regions>
-    <apply block="allowed-blocks" use="use" />
-</regions>
-<block-drops>
-    <rule trample="true">
-        <filter>
-            <all>
-                <cause>trample</cause>
-                <class>Necromancer</class>
-                <any>
-                    <all>
-                        <sprinting />
-                        <random>0.6</random>
-                    </all>
-                    <all>
-                        <walking />
-                        <random>0.4</random>
-                    </all>
-                    <all>
-                        <crouching />
-                        <random>0.2</random>
-                    </all>
-                </any>
-                <any>
-                    <material>grass</material>
-                    <material>smooth brick</material>
-                    <material>gravel</material>
-                    <material>stone</material>
-                    <material>double step</material>
-                    <material>wood</material>
-                    <material>stained clay</material>
-                    <material>cobblestone</material>
-                </any>
-            </all>
-        </filter>
-        <replacement>redstone block</replacement>
-    </rule>
-    <rule trample="true" kit="witch-effects">
-        <filter>
-            <all>
-                <cause>trample</cause>
-                <material>redstone block</material>
-                <not>
-                    <class>Necromancer</class>
-                </not>
-            </all>
-        </filter>
-    </rule>
-</block-drops>
-<renewables>
-    <renewable interval="6s" grow="true" particles="true">
-        <renew-filter>
-            <any>
-                <material>grass</material>
-                <material>smooth brick</material>
-                <material>gravel</material>
-                <material>stone</material>
-                <material>double step</material>
-                <material>wood</material>
-                <material>stained clay</material>
-                <material>cobblestone</material>
-            </any>
-        </renew-filter>
-        <replace-filter>
-            <material>redstone block</material>
-        </replace-filter>
-    </renewable>
-</renewables>
-<itemremove>
-    <item>stone sword</item>
-    <item>stone axe</item>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
-    <item>chainmail helmet</item>
-    <item>chainmail chestplate</item>
-    <item>chainmail leggings</item>
-    <item>chainmail boots</item>
-    <item>iron sword</item>
-    <item>iron axe</item>
-    <item>iron helmet</item>
-    <item>iron chestplate</item>
-    <item>iron leggings</item>
-    <item>iron boots</item>
-    <item>gold sword</item>
-    <item>gold axe</item>
-    <item>gold helmet</item>
-    <item>gold chestplate</item>
-    <item>gold leggings</item>
-    <item>gold boots</item>
-    <item>diamond sword</item>
-    <item>diamond axe</item>
-    <item>diamond helmet</item>
-    <item>diamond chestplate</item>
-    <item>diamond leggings</item>
-    <item>diamond boots</item>
-    <item>bow</item>
-    <item>arrow</item>
-    <item>potion</item>
-    <item>glass bottle</item>
-    <item>bucket</item>
-    <item>milk bucket</item>
-    <item>skull item</item>
-    <item>snow ball</item>
-    <item>seeds</item>
-    <item>bone</item>
-    <item>rabbit foot</item>
-    <item>egg</item>
-    <item>stone button</item>
-    <item>wood button</item>
-</itemremove>
-<filters>
-    <not id="use">
-        <any>
-            <material>trap door</material>
-            <material>armor stand</material>
-            <material>dropper</material>
-            <material>hopper</material>
-            <material>dispenser</material>
-        </any>
-    </not>
-    <any id="allowed-blocks">
-        <material>redstone block</material>
-        <material>grass</material>
-        <material>smooth brick</material>
-        <material>gravel</material>
-        <material>stone</material>
-        <material>double step</material>
-        <material>wood</material>
-        <material>stained clay</material>
-        <material>cobblestone</material>
-    </any>
-</filters>
 <disabledamage>
     <damage>suffocation</damage>
 </disabledamage>

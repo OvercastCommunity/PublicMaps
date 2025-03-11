@@ -1,15 +1,12 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Treasure Town</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Be the player with the most kills at the end of 5 minutes!</objective>
 <gamemode>ffa</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- bend -->
 </authors>
-<score>
-    <kills>1</kills>
-</score>
-<time>5m</time>
 <players min="2" max="5" colors="true"/>
 <kits>
     <kit id="spawn-kit">
@@ -17,7 +14,7 @@
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16">arrow</item>
+        <item slot="8" amount="16" material="arrow"/>
         <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
@@ -26,6 +23,7 @@
         </boots>
         <effect duration="2" amplifier="255">heal</effect>
         <effect duration="2" amplifier="255">damage resistance</effect>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
@@ -43,6 +41,10 @@
 <regions>
     <apply block="never"/>
 </regions>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -55,10 +57,11 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>

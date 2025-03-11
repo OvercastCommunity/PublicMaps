@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Trigo</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Have the most kills after 10 minutes to win.</objective>
 <gamemode>rage</gamemode>
 <gamemode>ffa</gamemode>
@@ -15,31 +15,7 @@
 <rules>
     <rule>Fall damage is disabled on this map.</rule>
 </rules>
-<rage/>
-<disabledamage>
-    <damage>fall</damage>
-</disabledamage>
-<score>
-    <kills>1</kills>
-</score>
-<time>5m</time>
-<timelock>on</timelock>
 <players min="2" max="20" max-overfill="24"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<spawns>
-    <default>
-        <regions yaw="90">
-            <point>2.5,58,3.5</point>
-        </regions>
-    </default>
-    <spawn kit="player" spread="true" safe="true">
-        <regions angle="-24.5,7,-4.5">
-            <cuboid min="-75,0,-75" max="75,13,75"/>
-        </regions>
-    </spawn>
-</spawns>
 <kits>
     <kit id="player">
         <item slot="0" unbreakable="true" enchantment="damage_all:5" material="iron sword"/>
@@ -50,14 +26,29 @@
         <leggings material="chainmail leggings"/>
         <boots color="EFE533" material="leather boots"/>
         <double-jump/>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
-<kill-rewards>
-    <killreward>
-        <item material="arrow"/>
-        <item material="nether star"/>
-    </killreward>
-</kill-rewards>
+<spawns>
+    <default>
+        <region yaw="90">
+            <point>2.5,58,3.5</point>
+        </region>
+    </default>
+    <spawn kit="player" spread="true" safe="true">
+        <regions angle="-24.5,7,-4.5">
+            <cuboid min="-75,0,-75" max="75,13,75"/>
+        </regions>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<rage/>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
 <itemremove>
     <item>iron sword</item>
     <item>bow</item>
@@ -70,7 +61,17 @@
 <itemkeep>
     <item>nether star</item>
 </itemkeep>
-<regions>
-    <apply block="never"/>
-</regions>
+<kill-rewards>
+    <killreward>
+        <item material="arrow"/>
+        <item material="nether star"/>
+    </killreward>
+</kill-rewards>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
 </map>

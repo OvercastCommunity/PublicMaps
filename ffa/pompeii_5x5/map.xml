@@ -1,16 +1,13 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Pompeii 5x5</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>kill as many other players as you can in 5 minutes!</objective>
 <created>2016-04-10</created>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
-    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" /> <!-- _3each -->
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
+    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b"/> <!-- _3each -->
 </authors>
-<score>
-    <kills>1</kills>
-</score>
-<time>5m</time>
 <players min="2" max="12" colors="true"/>
 <kits>
     <kit id="spawn-kit">
@@ -24,6 +21,7 @@
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" enchantment="protection fall:2" material="leather boots"/>
         <effect duration="2.5" amplifier="10">resistance</effect>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
@@ -40,15 +38,19 @@
             <point yaw="-45">-10,23,-6</point>
         </regions>
     </spawn>
-    <default>
-        <region yaw="180">
+    <default yaw="180">
+        <region>
             <point>61.5,22,-14.5</point>
         </region>
     </default>
 </spawns>
 <regions>
-    <apply use="never" block="never" />
+    <apply use="never" block="never"/>
 </regions>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -61,17 +63,16 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemremove>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="8" material="arrow"/>
     </kill-reward>
 </kill-rewards>
 <disabledamage>
     <damage>suffocation</damage>
 </disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <timelock>on</timelock>
 </map>

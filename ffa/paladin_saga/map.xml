@@ -1,28 +1,16 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Paladin Saga</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Kill everyone!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
-<score>
-   <kills>1</kills>
-   <deaths>1</deaths>
-</score>
-<time>9m</time>
+<broadcasts>
+    <alert after="2s" every="1m" count="4">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
+    <alert after="3s" every="1m" count="4">`a`othe more your `6Gear `a`o upgrades itself.</alert>
+</broadcasts>
 <players min="2" max="25" max-overfill="28" show-name-tags="false"/>
-<spawns safe="true">
-    <spawn kit="spawn">
-        <regions>
-            <cylinder base="1159.5,3,-1380.5" radius="53" height="40"/>
-        </regions>
-    </spawn>
-    <default kit="obs" yaw="90">
-        <regions>
-            <point>1165.5,89,-1380.5</point>
-        </regions>
-    </default>
-</spawns>
 <kits>
     <kit id="obs">
         <effect>night vision</effect>
@@ -96,11 +84,93 @@
         <effect duration="5">speed</effect>
     </kit>
 </kits>
+<spawns safe="true">
+    <spawn kit="spawn">
+        <region>
+            <cylinder base="1159.5,3,-1380.5" radius="53" height="40"/>
+        </region>
+    </spawn>
+    <default kit="obs" yaw="90">
+        <region>
+            <point>1165.5,89,-1380.5</point>
+        </region>
+    </default>
+</spawns>
+<filters>
+    <any id="breakable-blocks">
+        <material>leaves</material>
+        <material>wool</material>
+        <material>long grass</material>
+        <material>red rose</material>
+        <material>yellow flower</material>
+        <material>double plant</material>
+        <material>vine</material>
+        <material>ice</material>
+        <material>log</material>
+        <material>wood</material>
+    </any>
+    <any id="allow-place">
+        <material>ice</material>
+        <material>leaves</material>  
+        <material>wool</material>
+    </any>
+</filters>
+<regions>
+    <apply block-break="breakable-blocks" block-place="allow-place"/>
+</regions>
+<score>
+   <kills>1</kills>
+   <deaths>1</deaths>
+</score>
+<time>9m</time>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>shears</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>log</item>
+    <item>glass</item>
+    <item>wood</item>
+    <item>sapling</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>golden apple</item>
+    <item>cooked beef</item>
+    <!-- Breakable -->
+    <item>leaves</item>
+    <item>ice</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>double plant</item>
+    <item>snow ball</item>
+    <item>vine</item>
+    <item>bone</item>
+</itemremove>
 <kill-rewards>
     <!-- Normal rewards, every kill -->
     <kill-reward>
         <item amount="4" material="arrow"/>
-        <item material="golden apple"/>
     </kill-reward>
     <!-- Tier 0 -->
     <kill-reward>
@@ -166,85 +236,9 @@
         <kit id="tier 8"/>
     </kill-reward>
 </kill-rewards>
-<filters>
-    <any id="breakable-blocks">
-        <material>leaves</material>
-        <material>wool</material>
-        <material>long grass</material>
-        <material>red rose</material>
-        <material>yellow flower</material>
-        <material>double plant</material>
-        <material>vine</material>
-        <material>79</material>
-        <material>log</material>
-        <material>wood</material>
-    </any>
-    <any id="allow-place">
-        <material>79</material>
-        <material>leaves</material>  
-        <material>wool</material>
-    </any>
-</filters>
-<regions>
-    <apply block-break="breakable-blocks" block-place="allow-place"/>
-</regions>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-    <tool>shears</tool>
-    <tool>iron pickaxe</tool>
-    <tool>iron axe</tool>
-</toolrepair>
-<itemremove>
-    <item>arrow</item>
-    <item>log</item>
-    <item>glass</item>
-    <item>wood</item>
-    <item>sapling</item>
-    <item>iron helmet</item>
-    <item>iron chestplate</item>
-    <item>iron leggings</item>
-    <item>iron boots</item>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
-    <item>chainmail helmet</item>
-    <item>chainmail chestplate</item>
-    <item>chainmail leggings</item>
-    <item>chainmail boots</item>
-    <item>gold helmet</item>
-    <item>gold chestplate</item>
-    <item>gold leggings</item>
-    <item>gold boots</item>
-    <item>golden apple</item>
-    <item>cooked beef</item>
-    <!-- Breakable -->
-    <item>leaves</item>
-    <item>79</item>
-    <item>apple</item>
-    <item>long grass</item>
-    <item>seeds</item>
-    <item>red rose</item>
-    <item>yellow flower</item>
-    <item>double plant</item>
-    <item>snow ball</item>
-    <item>vine</item>
-    <item>bone</item>
-</itemremove>
 <timelock>off</timelock>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<broadcasts>
-    <alert after="2s">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
-    <alert after="3s">`a`othe more your `6Gear `a`o upgrades itself.</alert>
-    <alert after="62s">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
-    <alert after="63s">`a`othe more your `6Gear `a`o upgrades itself.</alert>
-    <alert after="182s">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
-    <alert after="183s">`a`othe more your `6Gear `a`o upgrades itself.</alert>
-    <alert after="382s">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
-    <alert after="383s">`a`othe more your `6Gear `a`o upgrades itself.</alert>
-</broadcasts>
 <maxbuildheight>32</maxbuildheight>
 </map>

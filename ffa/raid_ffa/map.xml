@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Raid FFA</name>
 <variant id="guns">Guns</variant>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Be the player with the most kills in 6 minutes!</objective>
 <created>2023-05-12</created>
 <authors>
@@ -27,6 +27,7 @@
 </unless>
 <if variant="guns">
     <gamemode>ffa</gamemode>
+    <include id="gapple-kill-reward"/>
     <broadcasts>
         <tip after="1s" every="2m">Hover your cursor over each weapon to learn about its stats!</tip>
         <tip after="2s" every="2m">Get `f2 grenades`r per `c2 kills`r!</tip>
@@ -183,24 +184,19 @@
 <itemremove>
     <item>leather helmet</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <unless variant="guns">
+<if variant="guns">
+    <kill-rewards>
+        <kill-reward>
             <item material="arrow"/>
-        </unless>
-        <if variant="guns">
-            <item material="golden apple"/>
-        </if>
-    </kill-reward>
-    <if variant="guns">
+        </kill-reward>
         <kill-reward>
             <filter>
                 <kill-streak count="2"/>
             </filter>
             <item material="fireball" amount="2" name="`fGrenade" projectile="grenade"/>
         </kill-reward>
-    </if>
-</kill-rewards>
+    </kill-rewards>
+</if>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>

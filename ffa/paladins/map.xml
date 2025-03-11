@@ -1,49 +1,50 @@
-<?xml version="1.0"?>
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Paladins</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <objective>Kill everyone!</objective>
+<include id="gapple-kill-reward"/>
 <phase>staging</phase>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
-<score>
-   <kills>1</kills>
-</score>
-<time>7m</time>
 <players min="2" max="20" colors="true"/>
 <kits>
     <kit id="obs">
-        <potion duration="0">night vision</potion>
+        <effect>night vision</effect>
     </kit>
     <kit id="spawn">
         <clear/>
-        <item slot="0" unbreakable="true">stone sword</item>
-        <item slot="1" unbreakable="true">bow</item>
-        <item slot="2">golden apple</item>
-        <item slot="8" amount="16">arrow</item>
-        <helmet unbreakable="true" team-color="true">leather helmet</helmet>
-        <chestplate unbreakable="true" team-color="true">leather chestplate</chestplate>
-        <leggings unbreakable="true">chainmail leggings</leggings>
-        <boots unbreakable="true" team-color="true" enchantment="protection fall:2">leather boots</boots>
-        <potion duration="2.5" amplifier="10">resistance</potion>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="16" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" enchantment="protection fall:2" material="leather boots"/>
+        <effect duration="2.5" amplifier="10">resistance</effect>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
     <spawn spread="true" safe="true" kit="spawn">
-        <regions>
+        <region>
             <cylinder base="1159.5,3,-1380.5" radius="53" height="30"/>
-        </regions>
+        </region>
     </spawn>
     <default kit="obs" yaw="90">
-        <regions>
+        <region>
             <point>1165.5,89,-1380.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
-    <apply block="never" region="everywhere"/>
+    <apply block="never"/>
 </regions>
+<score>
+   <kills>1</kills>
+</score>
+<time>7m</time>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -56,10 +57,11 @@
     <item>golden apple</item>
     <item>arrow</item>
 </itemremove>
-<killreward>
-    <item>golden apple</item>
-    <item amount="8">arrow</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>

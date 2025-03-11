@@ -1,9 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Dwyer Hill FFA</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Get the most kills after 5 minutes!</objective>
 <gamemode>ffa</gamemode>
 <phase>staging</phase>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="bada87c3-3383-42cb-973d-99032a0724b9"/> <!-- Holdfast33 -->
 </authors>
@@ -13,10 +14,6 @@
 <broadcasts>
     <alert after="2s">Fall damage is disabled on this map!</alert>
 </broadcasts>
-<score>
-    <kills>1</kills>
-</score>
-<time>5m</time>
 <players min="2" max="5" colors="true"/>
 <kits>
     <kit id="default-kit">
@@ -27,7 +24,7 @@
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" material="golden apple"/>
-        <item slot="8" amount="16">arrow</item>
+        <item slot="8" amount="16" material="arrow"/>
         <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate locked="true" unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
@@ -38,8 +35,8 @@
     </kit>
 </kits>
 <spawns>
-    <default yaw="0" kit="default-kit">
-        <region yaw="0">
+    <default kit="default-kit">
+        <region>
             <cylinder base="-252,35,902.5" radius="2" height="0"/>
         </region>
     </default>
@@ -51,7 +48,7 @@
             <point>-281,9,859</point>
             <point>-224,9,859</point>
         </regions>
-        <regions yaw="0">
+        <regions>
             <cylinder base="-226,9,887" radius="1" height="0"/>
             <cylinder base="-248,9,887" radius="1" height="0"/>
         </regions>
@@ -66,6 +63,10 @@
 <regions>
     <apply block="never"/>
 </regions>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -78,10 +79,11 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="8" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>

@@ -1,13 +1,14 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Pipes</name>
-<version>3.0.8</version>
+<version>3.0.9</version>
 <objective>Get the most kills in 10 minutes!</objective>
 <gamemode>ffa</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="105f6a09-f533-412b-93cb-501601763c11" /> <!-- JTr -->
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTr -->
 </authors>
 <contributors>
-    <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067" contribution="Chief map embellisher" /> <!-- samthecat43 -->
+    <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067" contribution="Chief map embellisher"/> <!-- samthecat43 -->
 </contributors>
 <rules>
     <rule>Fall damage is disabled!</rule>
@@ -15,10 +16,6 @@
 <broadcasts>
     <alert after="2s">Fall damage is disabled on this map! You can also double jump!</alert>
 </broadcasts>
-<time>10m</time>
-<score>
-    <kills>1</kills>
-</score>
 <players min="2" max="80" colors="true"/>
 <kits>
     <kit id="spawn-kit">
@@ -105,6 +102,10 @@
     </apply>
     <apply block-break="allowed-blocks" block-place="never"/>
 </regions>
+<time>10m</time>
+<score>
+    <kills>1</kills>
+</score>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -136,11 +137,6 @@
         </drops>
     </rule>
 </block-drops>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <disabledamage>
     <damage>fall</damage>
     <damage>suffocation</damage>

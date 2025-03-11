@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Wedgesome</name>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>FFA: Kill as many players as you can before the 10 minutes are up!</objective>
 <gamemode>ffa</gamemode>
 <phase>staging</phase>
@@ -8,29 +8,13 @@
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </authors>
-<players min="2" max="80" colors="true"/>
-<time>10m</time>
-<score>
-    <kills>1</kills>
-</score>
 <rules>
     <rule>Fall damage is disabled!</rule>
 </rules>
 <broadcasts>
     <alert after="2s">Fall damage is disabled on this map! You can also double jump!</alert>
 </broadcasts>
-<spawns safe="true" spread="true">
-    <default kit="default-kit">
-        <region>
-            <point>0.5,127,1.5</point>
-        </region>
-    </default>
-    <spawn kit="spawn-kit">
-        <region angle="0.5,55,0.5">
-            <cylinder base="80.5,46,63.5" radius="300" height="14"/>
-        </region>
-    </spawn>
-</spawns>
+<players min="2" max="80" colors="true"/>
 <kits>
     <kit id="default-kit">
         <effect>night vision</effect>
@@ -59,6 +43,18 @@
         -->
     </kit>
 </kits>
+<spawns safe="true" spread="true">
+    <default kit="default-kit">
+        <region>
+            <point>0.5,127,1.5</point>
+        </region>
+    </default>
+    <spawn kit="spawn-kit">
+        <region angle="0.5,55,0.5">
+            <cylinder base="80.5,46,63.5" radius="300" height="14"/>
+        </region>
+    </spawn>
+</spawns>
 <filters>
     <any id="allow-break">
         <material>leaves</material>
@@ -101,6 +97,10 @@
 <regions>
     <apply block-break="allow-break" block-place="allow-place" use="not-some"/>
 </regions>
+<time>10m</time>
+<score>
+    <kills>1</kills>
+</score>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>

@@ -1,12 +1,14 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Elysium</name>
-<version>1.4.3</version>
+<version>1.4.4</version>
 <objective>Survive and get the most points.</objective>
 <created>2015-05-05</created>
+<include id="gapple-kill-reward"/>
 <phase>staging</phase>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
+<players min="2" max="32" max-overfill="38" show-name-tags="false" colors="true"/>
 <kits>
     <kit id="obs">
         <effect>night vision</effect>
@@ -31,30 +33,18 @@
         <effect duration="8" amplifier="3">fire resistance</effect>
     </kit>
 </kits>
-<score>
-   <kills>1</kills>
-   <deaths>1</deaths>
-</score>
-<time>40m</time>
-<players min="2" max="32" max-overfill="38" show-name-tags="false" colors="true"/>
 <spawns>
     <spawn kit="spawn" spread="true">
-        <regions>
+        <region>
             <cylinder base="0.5,130,0.5" radius="135" height="2"/>
-        </regions>
+        </region>
     </spawn>
-    <default kit="obs">
-        <regions>
-            <point yaw="90">224.5,53,0.5</point>
-        </regions>
+    <default kit="obs" yaw="90">
+        <region>
+            <point>224.5,53,0.5</point>
+        </region>
     </default>
 </spawns>
-<kill-rewards>
-    <kill-reward>
-        <item amount="4" material="arrow"/>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <regions>
     <negative id="reversed-map">
         <cylinder base="0.5,0,0.5" radius="200" height="200"/>
@@ -70,7 +60,11 @@
     <apply region="reversed-map" block="never" message="You may not build outside of the map"/>
     <apply region="villages" block="never" message="You may not interact with this zone"/>
 </regions>
-<maxbuildheight>130</maxbuildheight>
+<score>
+   <kills>1</kills>
+   <deaths>1</deaths>
+</score>
+<time>40m</time>
 <toolrepair>
     <tool>bow</tool>
     <tool>stone sword</tool>
@@ -114,10 +108,16 @@
     <item>tnt</item>
     <item>flint</item>
 </itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="4" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <timelock>off</timelock>
 <mobs>
     <filter>
         <spawn>spawner</spawn>
     </filter>
 </mobs>
+<maxbuildheight>130</maxbuildheight>
 </map>

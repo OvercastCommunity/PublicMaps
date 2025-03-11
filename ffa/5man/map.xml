@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>5man</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Get the most kills within 5 minutes!</objective>
 <created>2016-02-28</created>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- Jtr -->
 </authors>
@@ -32,7 +33,7 @@
     </kit>
 </kits>
 <spawns safe="true">
-    <default kit="default-kit" region="default-spawn" />
+    <default kit="default-kit" region="default-spawn"/>
     <spawn kit="spawn-kit" safe="true" spread="true">
         <regions angle="0,8,0">
             <point>20.5,5,-29.5</point>
@@ -68,7 +69,7 @@
             <material>stained glass pane</material>
         </any>
         <not>
-            <void />
+            <void/>
         </not>
     </all>
 </filters>
@@ -98,8 +99,7 @@
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple" />
-        <item amount="8" material="arrow" />
+        <item amount="8" material="arrow"/>
     </kill-reward>
 </kill-rewards>
 <gamerules>

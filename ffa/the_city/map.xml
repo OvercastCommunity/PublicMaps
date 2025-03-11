@@ -1,16 +1,13 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The City</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Get the most kills before time runs out!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </authors>
 <players min="2" max="48" colors="true"/>
-<time>10m</time>
-<score>
-    <kills>1</kills>
-</score>
 <kits>
     <kit id="obs">
         <effect>night vision</effect>
@@ -53,6 +50,10 @@
     <block id="portal-a" location="-126.5,8,4.5"/>
     <block id="portal-b" location="-55.5,8,4.5"/>
 </regions>
+<time>10m</time>
+<score>
+    <kills>1</kills>
+</score>
 <portals y="7" yaw="360" sound="false" bidirectional="true" smooth="true">
     <portal x="7" region="portal-a"/>
     <portal x="-7" region="portal-b"/>
@@ -69,11 +70,6 @@
     <item>arrow</item>
     <item>golden apple</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>    
-    </kill-reward>
-</kill-rewards>
 <disabledamage>
     <damage>suffocation</damage>
 </disabledamage>

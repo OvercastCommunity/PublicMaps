@@ -1,7 +1,7 @@
-<map proto="1.4.2" game="Survival Games">
+<map proto="1.5.0" game="Survival Games">
 <name>Enthral</name>
 <phase>staging</phase>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Be the sole survivor of the games</objective>
 <created>2015-12-06</created>
 <authors>
@@ -11,28 +11,32 @@
 <contributors>
     <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" /> <!-- DoomyBoy -->
 </contributors>
+<broadcasts>
+    <alert after="1">`4Move and DIE!</alert>
+    <alert after="8s">`c`lThe match will start in 10 seconds!</alert>
+    <alert after="13s">`4`l5</alert>
+    <alert after="14s">`c`l4</alert>
+    <alert after="15s">`d`l3</alert>
+    <alert after="16s">`9`l2</alert>
+    <alert after="17s">`a`l1</alert>
+    <alert after="18s">`f`lYou have 30 seconds to prepare yourselves, you may not attack other players!</alert>
+    <!--<tip after="2m">`7A care package has spawned at: `8(-86, 80, 138)</tip>
+    <tip after="4m">`7A care package has spawned at: `8(249, 80, -207)</tip>-->
+    <tip after="5m">`7The world border will start shrinking in `8One minute.</tip>
+    <tip after="6m">`7The world border is now shrinking!</tip>
+    <tip after="35s">`7You can break some blocks including: iron ore, logs, leaves and cobblestone.</tip>
+</broadcasts>
 <players max="24"/>
-<filters>
-    <all id="block-some">
-        <any>
-            <material>cobblestone</material>
-            <material>log</material>
-            <material>leaves</material>
-            <material>leaves_2</material>
-            <material>iron_ore</material>
-            <material>long_grass</material>
-            <material>wood</material>
-            <material>iron block</material>
-            <material>workbench</material>
-            <material>wheat</material>
-            <material>web</material>
-        </any>
-        <not>
-            <void />
-        </not>
-    </all>
-    <time id="after-1s">1s</time>
-</filters>
+<kits>
+    <kit id="playerKit">
+        <item slot="1" amount="6" material="cooked beef"/>
+        <effect duration="48" amplifier="40">weakness</effect>
+        <effect duration="17" amplifier="30">slowness</effect>
+        <effect duration="14" amplifier="30">blindness</effect>
+        <effect duration="17" amplifier="-30">jump</effect>
+        <effect duration="48">speed</effect>
+    </kit>
+</kits>
 <spawns>
     <spawn kit="playerKit" spread="true" angle="95.5,67,-129.5">
         <regions>
@@ -63,21 +67,11 @@
         </regions>
     </spawn>
     <default>
-        <regions>
-            <point yaw="-15">89.5,68,-152.5</point>
-        </regions>
+        <region yaw="-15">
+            <point>89.5,68,-152.5</point>
+        </region>
     </default>
 </spawns>
-<kits>
-    <kit id="playerKit">
-        <item slot="1" amount="6" material="cooked beef"/>
-        <effect duration="48" amplifier="40">weakness</effect>
-        <effect duration="17" amplifier="30">slowness</effect>
-        <effect duration="14" amplifier="30">blindness</effect>
-        <effect duration="17" amplifier="-30">jump</effect>
-        <effect duration="48" amplifier="1">speed</effect>
-    </kit>
-</kits>
 <!--<structures>
     <structure id="drop1" air="false">
         <region>
@@ -114,55 +108,56 @@
         </dynamic>
     </structures>
 </structures>-->
-<broadcasts>
-    <alert after="1">`4Move and DIE!</alert>
-    <alert after="8s">`c`lThe match will start in 10 seconds!</alert>
-    <alert after="13s">`4`l5</alert>
-    <alert after="14s">`c`l4</alert>
-    <alert after="15s">`d`l3</alert>
-    <alert after="16s">`9`l2</alert>
-    <alert after="17s">`a`l1</alert>
-    <alert after="18s">`f`lYou have 30 seconds to prepare yourselves, you may not attack other players!</alert>
-    <!--<tip after="2m">`7A carepackage has spawned at: `8(-86, 80, 138)</tip>
-    <tip after="4m">`7A carepackage has spawned at: `8(249, 80, -207)</tip>-->
-    <tip after="5m">`7The world border will start shrinking in `8One minute.</tip>
-    <tip after="6m">`7The world border is now shrinking!</tip>
-    <tip after="35s">`7You can break some blocks including: Iron ore, Logs, leaves and Cobblestone.</tip>
-</broadcasts>
+<filters>
+    <all id="block-some">
+        <any>
+            <material>cobblestone</material>
+            <material>log</material>
+            <material>leaves</material>
+            <material>leaves 2</material>
+            <material>iron ore</material>
+            <material>long grass</material>
+            <material>wood</material>
+            <material>iron block</material>
+            <material>workbench</material>
+            <material>wheat</material>
+            <material>web</material>
+        </any>
+        <not>
+            <void/>
+        </not>
+    </all>
+    <time id="after-1s">1s</time>
+</filters>
 <regions>
     <cuboid id="drop1-region" min="-79,94,144" max="-95,118,127" />
     <cuboid id="drop2-region" min="240,120,-199" max="257,96,-215" />
     <cuboid id="portal-region" min="99,109,-126" max="92,118,-133" />
-    <apply block="block-some" />
+    <apply block="block-some"/>
 </regions>
 <blitz>
     <lives>1</lives>
 </blitz>
 <world-borders center="95.5, -129.5">
-    <world-border size="850" />
-    <world-border size="300" after="6m" duration="3m" />
-    <world-border size="100" after="9m30s" duration="3m" />
-    <world-border size="25" after="13m" duration="2m" />
-    <world-border size="10" after="20m" duration="5m" />
+    <world-border size="850"/>
+    <world-border size="300" after="6m" duration="3m"/>
+    <world-border size="100" after="9m30s" duration="3m"/>
+    <world-border size="25" after="13m" duration="2m"/>
+    <world-border size="10" after="20m" duration="5m"/>
 </world-borders>
 <block-drops>
-    <rule wrong-tool="false">
-        <region>
-            <everywhere />
-        </region>
+    <rule region="everywhere" wrong-tool="false">
         <filter>
-            <any>
-                <material>iron ore</material>
-            </any>
+            <material>iron ore</material>
         </filter>
         <drops>
-            <item material="iron ingot" amount="2" />
-            <item material="cobblestone" />
-            <item material="iron chestplate" chance="0.05" />
-            <item material="iron sword" chance="0.05" />
-            <item material="iron boots" chance="0.05" />
-            <item material="iron leggings" chance="0.05" />
-            <item material="iron helmet" chance="0.05" />
+            <item material="iron ingot" amount="2"/>
+            <item material="cobblestone"/>
+            <item material="iron chestplate" chance="0.05"/>
+            <item material="iron sword" chance="0.05"/>
+            <item material="iron boots" chance="0.05"/>
+            <item material="iron leggings" chance="0.05"/>
+            <item material="iron helmet" chance="0.05"/>
         </drops>
         <replacement>stone</replacement>
     </rule>
