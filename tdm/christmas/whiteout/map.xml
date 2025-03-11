@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Whiteout</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <phase>staging</phase>
 <objective>Have the most kills after 10 minutes to win.</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->
@@ -19,18 +20,18 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" damage="-30000" material="iron sword"/>
-        <item slot="1" damage="-30000" material="bow"/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" name="Snow Shovel" enchantment="durability" material="iron spade"/>
         <item slot="3" material="golden apple"/>
         <item slot="4" amount="64" material="golden carrot"/>
         <item slot="6" amount="16" material="snow block"/>
         <item slot="28" amount="64" material="arrow"/>
         <item slot="19" amount="64" material="arrow"/>
-        <helmet damage="-30000" team-color="true" material="leather helmet"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate material="iron chestplate"/>
-        <leggings damage="-30000" team-color="true" material="leather leggings"/>
-        <boots damage="-30000" team-color="true" material="leather boots"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect duration="8" amplifier="25">damage resistance</effect>
         <effect duration="8" amplifier="25">heal</effect>
         <effect>speed</effect>
@@ -147,7 +148,6 @@
 <kill-rewards>
     <kill-reward>
        <item amount="8" material="snow block"/>
-       <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
 <timelock>on</timelock>
