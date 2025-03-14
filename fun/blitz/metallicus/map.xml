@@ -1,6 +1,6 @@
-<map proto="1.4.2" game="Blitz: UHC">
+<map proto="1.5.0" game="Blitz: UHC">
 <name>Metallicus</name>
-<version>1.0.10</version>
+<version>1.0.11</version>
 <objective>Be the last team standing, but remember you don't regenerate health!</objective>
 <gamemode>blitz</gamemode>
 <authors>
@@ -25,19 +25,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit">
-        <regions>
+        <region>
             <point>-4.5,6,-2.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="-180">
-        <regions>
+        <region>
             <point>-4.5,6,93.5</point>
-        </regions>
+        </region>
     </spawn>
     <default yaw="45">
-        <regions>
+        <region>
             <point>29.5,27,46.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -99,44 +99,4 @@
     <depletion>off</depletion>
 </hunger>
 <respawn auto="true"/>
-<!-- <tutorial>
-    <stage title="UHC Blitz">
-        <message>
-            <line>UHC is a term for when you `cdon't `rregenerate health.</line>
-            <line>The objective is kill the enemy team before 12 minutes is up!</line>
-        </message>
-        <teleport>
-            <point yaw="25" pitch="10">7,18,25</point>
-        </teleport>
-    </stage>
-    <stage title="Arrow Spawners">
-        <message>
-            <line>There are `atwo `rarrow spawners, one on each side of the map.</line>
-            <line>They are indicated by the iron block.</line>
-            <line>The spawners will spawn an arrow every second.</line>
-        </message>
-        <teleport>
-            <point yaw="-45" pitch="50">2,11,16</point>
-        </teleport>
-    </stage>
-    <stage title="Portals">
-        <message>
-            <line>The gold block represents a teleporter.</line>
-            <line>It will warp you to the sky area around the center.</line>
-        </message>
-        <teleport>
-            <point yaw="-45" pitch="40">-12,17,12</point>
-        </teleport>
-    </stage>
-    <stage title="Center Potion Spawner">
-        <message>
-            <line>Every 10 seconds, a special potion will splash.</line>
-            <line>The brew is `aRegeneration III `rand `cNausea/Slowness`r.</line>
-            <line>The potion lasts 5 seconds, and will boost your health.</line>
-        </message>
-        <teleport>
-            <point yaw="-45" pitch="30">-9,9,42</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

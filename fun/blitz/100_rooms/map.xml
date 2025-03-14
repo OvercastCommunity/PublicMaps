@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>100 Rooms</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Typical Blitz game with one life.</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -44,9 +44,9 @@
         </spawn>
     </spawns>
     <default yaw="270">
-        <regions>
+        <region>
             <cylinder base="-293,63,-298" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
@@ -71,34 +71,4 @@
 </kill-rewards>
 <timelock>on</timelock>
 <respawn auto="true"/>
-<!-- <tutorial>
-    <stage title="Rage">
-        <message>
-            <line>`rThis map is a `a`lRage `rmap.</line>
-            <line>The objective is to be the team with the most players alive when the match ends.</line>
-            <line>The swords/bows are a `6`l1-hit `c`lkill`r.</line>
-        </message>
-        <teleport>
-            <point yaw="45" pitch="20">-321.5,73,-332</point>
-        </teleport>
-    </stage>
-    <stage title="Blue Spawn">
-        <message>
-            <line>`rThis is where the `9Blue Team `rspawns.</line>
-            <line>You spawn with gear ready for battle!</line>
-        </message>
-        <teleport>
-            <point pitch="90">-357,50,-330</point>
-        </teleport>
-    </stage>
-    <stage title="Red Spawn">
-        <message>
-            <line>`rThis is where the `cRed Team `rspawns.</line>
-            <line>You spawn with gear ready for battle!</line>
-        </message>
-        <teleport>
-            <point pitch="90">-357,50,-267</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

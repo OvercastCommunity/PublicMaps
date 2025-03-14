@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hand of God</name> 
-<version>1.1.1</version> 
+<version>1.1.2</version> 
 <objective>Eliminate the other team!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -35,19 +35,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="red-kit">
-        <regions yaw="180">
+        <region yaw="180">
             <point>0.5,79,32.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="blue-kit">
-        <regions>
+        <region>
             <point>0.5,79,-31.5</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="-90">
+        <region yaw="-90">
             <point>0.5,72,0.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>

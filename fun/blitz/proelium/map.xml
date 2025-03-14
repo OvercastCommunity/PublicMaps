@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Proelium</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Kill the enemy team before time is up.</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -39,19 +39,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit">
-        <regions>
+        <region>
             <cuboid min="5,21,-232" max="2,21,-235"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="180">
-        <regions>
+        <region>
             <cuboid min="1,21,-58" max="6,21,-52"/>
-        </regions>
+        </region>
     </spawn>
     <default kit="obs" yaw="90">
-        <regions>
+        <region>
             <cylinder base="-121,44,-144" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

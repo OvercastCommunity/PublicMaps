@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hanging Garden</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -26,19 +26,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cylinder base="-92.5,13.5,63.5" radius="3" height="1"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="-90">
-        <regions>
+        <region>
             <cylinder base="-188.5,13.5,63.5" radius="3" height="1"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <point>-140.5,24,84.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

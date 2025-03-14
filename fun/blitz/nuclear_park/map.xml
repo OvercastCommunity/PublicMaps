@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Nuclear Park</name>
-<version>2.0.2</version>
+<version>2.0.3</version>
 <phase>staging</phase>
 <objective>Capture and hold the hill or eliminate your enemies!</objective>
 <created>2014-03-23</created> <!-- KotH version -->
@@ -8,7 +8,7 @@
     <constant id="map-origin">-303.5,0,260.5</constant>
 </constants>
 <authors>
-    <author uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Main author, overall ideas and building"/> <!-- iLifting -->
+    <author uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Main author, overall ideas, and building"/> <!-- iLifting -->
     <author uuid="5297c14b-240d-4555-b0da-98d97eb93158" contribution="Ideas and screw around guy"/> <!-- TrollInForYou -->
     <author uuid="0a3faab1-b5e0-4ff7-a93c-21aa0b5d565a" contribution="Derp build slave"/> <!-- l00katmedude -->
 </authors>
@@ -25,22 +25,6 @@
     <team id="green-team" color="dark green" max="8">Green</team>
     <team id="blue-team" color="blue" max="8">Blue</team>
 </teams>
-<blitz>
-    <lives>2</lives>
-</blitz>
-<time>8m</time>
-<respawn auto="true"/>
-<spawns>
-    <default kit="default-kit">
-        <region yaw="90">
-            <cylinder base="-303.5,38,260.5" radius="1" height="0"/>
-        </region>
-    </default>
-    <spawn team="red-team" kit="spawn-kit" yaw="90" region="red-spawn-point"/>
-    <spawn team="orange-team" kit="spawn-kit" yaw="-90" region="orange-spawn-point"/>
-    <spawn team="green-team" kit="spawn-kit" yaw="180" region="green-spawn-point"/>
-    <spawn team="blue-team" kit="spawn-kit" yaw="0" region="blue-spawn-point"/>
-</spawns>
 <kits>
     <kit id="default-kit">
         <effect>night vision</effect>
@@ -51,7 +35,11 @@
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" amount="16" material="arrow"/>
         <item slot="3" material="373" damage="8229"/> <!-- Instant Healh 2 potion -->
-        <item slot="8" amount="2" material="tnt" name="`fDynamite" lore="`7Use this to destroy base walls!" prevent-sharing="true" show-can-place-on="false"><can-place-on><all-blocks/></can-place-on></item>
+        <item slot="8" amount="2" material="tnt" name="`fDynamite" lore="`7Use this to destroy base walls!" prevent-sharing="true" show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
         <helmet unbreakable="true" material="iron helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="iron leggings"/>
@@ -60,17 +48,25 @@
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="90">
+            <cylinder base="-303.5,38,260.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="red-team" kit="spawn-kit" yaw="90" region="red-spawn-point"/>
+    <spawn team="orange-team" kit="spawn-kit" yaw="-90" region="orange-spawn-point"/>
+    <spawn team="green-team" kit="spawn-kit" yaw="180" region="green-spawn-point"/>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point"/>
+</spawns>
 <filters>
-    <deny id="deny-participating">
-        <participating/>
-    </deny>
     <material id="only-tnt">tnt</material>
     <any id="visual-materials">
-        <material>159:0</material>
-        <material>159:1</material>
-        <material>159:11</material>
-        <material>159:13</material>
-        <material>159:14</material>
+        <material>stained clay:0</material>
+        <material>stained clay:1</material>
+        <material>stained clay:11</material>
+        <material>stained clay:13</material>
+        <material>stained clay:14</material>
     </any>
     <all id="allow-tnt">
         <cause>explosion</cause>
@@ -115,6 +111,10 @@
         </region>
     </apply>
 </regions>
+<blitz>
+    <lives>2</lives>
+</blitz>
+<time>8m</time>
 <actions>
     <trigger scope="match">
         <filter>
@@ -163,11 +163,14 @@
     <item>arrow</item>
     <item>potion</item>
 </itemkeep>
-<kill-reward>
-    <item material="373" damage="8229"/> <!-- Instant Healh 2 potion -->
-    <item amount="8" material="arrow"/>
-</kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <item material="373" damage="8229"/> <!-- Instant Healh 2 potion -->
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<respawn auto="true"/>
 </map>

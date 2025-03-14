@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Mushrooms of Oblivion</name>
-<version>1.5.4</version>
+<version>1.5.5</version>
 <objective>Eliminate the opposing team in under 5 minutes.</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -23,19 +23,19 @@
 </kits>
 <spawns>
     <spawn team="purple" kit="spawn-kit" yaw="180">
-        <regions>
+        <region>
             <cuboid min="0,113,36" max="-3,113,41"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="green" kit="spawn-kit">
-        <regions>
+        <region>
             <cuboid min="0,113,-36" max="-3,113,-41"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cuboid min="71,162,-5" max="80,162,4"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

@@ -1,9 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Dead Heat</name>
 <variant id="halloween" world="halloween" override="true">Undead Heat</variant>
-<version>2.6.4</version>
+<version>2.6.5</version>
 <objective>Capture the black wool or eliminate the other team.</objective>
-<!-- <include id="tutorial"/> -->
 <gamemode>blitz</gamemode>
 <gamemode>ctw</gamemode>
 <authors>
@@ -13,6 +12,9 @@
     <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Aesthetics"/> <!-- Plastix -->
     <contributor uuid="5986da63-a546-49c5-812d-d5c41a42510a" contribution="Aesthetics"/> <!-- Lyzak -->
 </contributors>
+<rules>
+    <rule>Each player may only carry one wool at a time.</rule>
+</rules>
 <teams>
     <unless variant="halloween">
         <team id="purple" color="dark purple" max="25">Purple</team>
@@ -23,14 +25,17 @@
         <team id="cyan" color="dark green" max="25">Zombie</team>
     </if>
 </teams>
-<rules>
-    <rule>Each player may only carry one wool at a time.</rule>
-</rules>
-<blitz>
-    <lives>1</lives>
-</blitz>
-<time>5m</time>
-<timelock>on</timelock>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="8" amount="10" material="arrow"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate enchantment="protection fire:2" team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots team-color="true" unbreakable="true" material="leather boots"/>
+    </kit>
+</kits>
 <spawns>
     <spawn team="purple" kit="spawn-kit" yaw="0">
         <region>
@@ -48,32 +53,25 @@
         </region>
     </default>
 </spawns>
-<kits>
-    <kit id="spawn-kit">
-        <item slot="0" unbreakable="true" material="iron sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="8" amount="10" material="arrow"/>
-        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
-        <chestplate enchantment="protection fire:2" team-color="true" unbreakable="true" material="leather chestplate"/>
-        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
-        <boots team-color="true" unbreakable="true" material="leather boots"/>
-    </kit>
-</kits>
 <filters>
     <deny id="deny-dispenser">
         <material>dispenser</material>
     </deny>
 </filters>
 <regions>
+    <block id="purple-monument">0,6,-62</block>
+    <block id="cyan-monument">0,6,62</block>
     <apply use="deny-dispenser">
         <region>
             <rectangle min="-27,-72" max="27,72"/>
         </region>
     </apply>
     <apply block="never"/>
-    <block id="purple-monument">0,6,-62</block>
-    <block id="cyan-monument">0,6,62</block>
 </regions>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<time>5m</time>
 <wools craftable="false">
     <wool team="purple" color="black" location="0.5,1,0.5">
         <monument>
@@ -101,52 +99,5 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<!-- <tutorial>
-    <stage title="Blitz">
-        <message>
-            <line>`rThis map is a `a`lBlitz `rmap.</line>
-            <line>The objective is to be the team with the most players alive when the match ends.</line>
-            <line>`6Blitz `rmeans you only have one life!</line>
-        </message>
-        <teleport>
-            <point angle="0,9,0">-23,42,1</point>
-        </teleport>
-    </stage>
-    <stage title="Capture The Wool">
-        <message>
-            <line>`rThis map is also a `a`lCapture the Wool `r(CTW) map</line>
-            <line>This is a `bvictory monument`r. The objective is to grab the wool from the center and return it to your victory monument.</line>
-            <line>If no wool is capped in `65 `rminutes the team with the most alive players will win.</line>
-        </message>
-        <teleport>
-            <point angle="0,6,-61">-3,6,-57</point>
-        </teleport>
-    </stage>
-    <stage title="Cyan Team Spawn">
-        <message>
-            <line>`rThis is where the `3Cyan Team `rspawns.</line>
-            <line>You spawn with gear ready for battle!</line>
-        </message>
-        <teleport>
-            <point angle="0.5,5,56">0.5,13,40</point>
-        </teleport>
-    </stage>
-    <stage title="Purple Team Spawn">
-        <message>
-            <line>`rThis is where the `5Purple Team `rspawns.</line>
-             <line>You spawn with gear ready for battle!</line>
-        </message>
-        <teleport>
-            <point angle="0.5,5,-55">0.5,13,-41</point>
-        </teleport>
-    </stage>
-    <stage title="Wool Chest">
-        <message>
-            <line>`rThis is where the wool can be found that needs to be `acaptured`r.</line>
-        </message>
-        <teleport>
-            <point angle="0,1,0">2,6,0</point>
-        </teleport>
-    </stage>
-</tutorial> -->
+<timelock>on</timelock>
 </map>

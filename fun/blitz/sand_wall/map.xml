@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Sand Wall</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Eliminate the enemy team!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -30,19 +30,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit">
-        <regions yaw="180">
+        <region yaw="180">
             <cylinder base="-1162.5,18,1188.5" radius="1" height="1"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="-1162.5,18,1088.5" radius="1" height="1"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="90">
+        <region yaw="90">
             <cylinder base="-1215.5,47,1134.5" radius="1" height="1"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

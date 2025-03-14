@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Spooktober</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>One in the chamber!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -26,24 +26,23 @@
 </kits>
 <spawns>
     <spawn team="green" kit="spawn" angle="-30,14,6">
-        <regions>
+        <region>
             <cuboid min="-36,13,12" max="-32,13,8"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="purple" kit="spawn" angle="3,14,-27">
-        <regions>
+        <region>
             <cuboid min="9,13,-33" max="5,13,-29"/>
-        </regions>
+        </region>
     </spawn>
     <default kit="obs" yaw="90">
-        <regions>
+        <region>
             <cylinder base="-13,25,-10" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
     <apply block="never"/>
-    <!-- <apply enter="never" message="You are not allowed to enter this area!"/> -->
 </regions>
 <time>3m</time>
 <blitz>

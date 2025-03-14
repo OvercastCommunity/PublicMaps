@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Rig</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate the opposing team!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -11,60 +10,46 @@
     <contributor uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="XML"/> <!-- Anthonny -->
 </contributors>
 <teams>
-    <team id="yellow"
-          color="yellow"
-          max="10" max-overfill="12">Yellow</team>
-    <team id="orange"
-          color="gold"
-          max="10" max-overfill="12">Orange</team>
+    <team id="yellow" color="yellow" max="10" max-overfill="12">Yellow</team>
+    <team id="orange" color="gold" max="10" max-overfill="12">Orange</team>
 </teams>
-<blitz>
-    <lives>1</lives>
-</blitz>
-<rage/>
-<time>5m</time>
 <kits>
-    <kit id="kitSpawn">
-        <item slot="0" enchantment="damage all:10" unbreakable="true">iron sword</item>
-        <item slot="1" enchantment="arrow damage:10" unbreakable="true">bow</item>
-        <item slot="2">arrow</item>
-    </kit>
-    <kit id="kitYellow" parents="kitSpawn">
-        <helmet color="FFFF00" unbreakable="true" locked="true">leather helmet</helmet>
-        <chestplate color="FFFF00" unbreakable="true" locked="true">leather chestplate</chestplate>
-        <leggings color="FFFF00" unbreakable="true" locked="true">leather leggings</leggings>
-        <boots color="FFFF00" unbreakable="true" locked="true">leather boots</boots>
-    </kit>
-    <kit id="kitOrange" parents="kitSpawn">
-        <helmet color="CC8400" unbreakable="true" locked="true">leather helmet</helmet>
-        <chestplate color="CC8400" unbreakable="true" locked="true">leather chestplate</chestplate>
-        <leggings color="CC8400" unbreakable="true" locked="true">leather leggings</leggings>
-        <boots color="CC8400" unbreakable="true" locked="true">leather boots</boots>
+    <kit id="spawn-kit">
+        <item slot="0" enchantment="damage all:10" unbreakable="true" material="iron sword"/>
+        <item slot="1" enchantment="arrow damage:10" unbreakable="true" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <helmet unbreakable="true" locked="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" locked="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" locked="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" locked="true" team-color="true" material="leather boots"/>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
 <spawns>
-    <spawn team="yellow" kit="kitYellow">
-        <regions yaw="0">
+    <spawn team="yellow" kit="spawn-kit">
+        <region>
             <cuboid min="-17,15,-21" max="-15,15,-20"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="orange" kit="kitOrange">
-        <regions yaw="180">
+    <spawn team="orange" kit="spawn-kit">
+        <region yaw="180">
             <cuboid min="18,15,21" max="20,15,22"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="0">
+        <region>
             <point>1.5,43,0.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
     <apply block="never"/>
 </regions>
-<killreward>
-    <item>arrow</item>
-</killreward>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<rage/>
+<time>5m</time>
 <itemremove>
     <item>iron sword</item>
     <item>bow</item>
@@ -74,6 +59,11 @@
     <item>leather leggings</item>
     <item>leather boots</item>
 </itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>

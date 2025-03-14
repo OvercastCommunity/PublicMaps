@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>CotBot</name>
-<version>1.0.10</version>
+<version>1.0.11</version>
 <objective>Eliminate the other team before 7 minutes is up</objective>
 <gamemode>blitz</gamemode>
 <authors>
@@ -30,19 +30,19 @@
 </kits>
 <spawns>
     <spawn team="cot" kit="spawn-kit" yaw="-90">
-        <regions>
+        <region>
             <cuboid min="-55,11,-4" max="-60,11,3"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="bot" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cuboid min="55,11,2" max="62,11,-3"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <cuboid min="-2,21,38" max="3,21,36"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

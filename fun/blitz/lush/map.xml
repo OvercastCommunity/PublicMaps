@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Lush</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Eliminate the other team before 5 minutes is up!</objective>
 <gamemode>rage</gamemode>
 <authors>
@@ -25,19 +25,19 @@
 </kits>
 <spawns>
     <spawn team="blue-team" kit="spawn-kit">
-        <regions yaw="-90">
+        <region yaw="-90">
             <point>-196.5,6,191.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
-        <regions yaw="90">
+        <region yaw="90">
             <point>-40.5,6,191.5</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="90">
+        <region yaw="90">
             <point>-118.5,44,191.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

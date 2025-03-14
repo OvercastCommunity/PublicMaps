@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Secluded Wharf</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Eliminate the other team before 5 minutes are up</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -15,7 +15,7 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" enchantment="damage all:1000" material="fishing rod"/>
+        <item slot="0" enchantment="damage all:10" material="fishing rod"/>
         <item slot="1" enchantment="arrow_damage:10" material="bow"/>
         <item slot="2" material="arrow"/>
         <item slot="3" amount="16" material="boat"/>
@@ -27,19 +27,19 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn-kit">
-        <regions yaw="135">
+        <region yaw="135">
             <cuboid min="-692,7,-1105" max="-689,7,-1102"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <regions yaw="-45">
+        <region yaw="-45">
             <cuboid min="-724,7,-1189" max="-721,7,-1186"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="-90">
+        <region yaw="-90">
             <point>-741.5,37,-1145.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

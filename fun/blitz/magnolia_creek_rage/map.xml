@@ -1,14 +1,14 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Magnolia Creek</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Elimate the enemy team before time runs out!</objective>
 <gamemode>br</gamemode>
 <authors>
     <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
 </authors>
 <teams>
-    <team id="Inhabitants" color="yellow" max="20" max-overfill="25">Inhabitants</team>
-    <team id="Explorers" color="dark aqua" max="20" max-overfill="25">Explorers</team>
+    <team id="inhabitants" color="yellow" max="20" max-overfill="25">Inhabitants</team>
+    <team id="explorers" color="dark aqua" max="20" max-overfill="25">Explorers</team>
 </teams>
 <kits>
     <kit id="spawn-kit" force="true">
@@ -25,20 +25,20 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="Inhabitants" kit="spawn-kit">
-        <regions yaw="90">
+    <spawn team="inhabitants" kit="spawn-kit">
+        <region yaw="90">
             <point>-196.5,36,-90.5</point>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="Explorers" kit="spawn-kit">
-        <regions yaw="-90">
+    <spawn team="explorers" kit="spawn-kit">
+        <region yaw="-90">
             <point>-336.5,36,-91.5</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="90">
+        <region yaw="90">
             <point>-265.5,83,-90.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

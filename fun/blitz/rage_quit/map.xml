@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Rage Quit</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -30,19 +30,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="45">
-        <regions>
+        <region>
             <cuboid min="43,9,-42" max="47,9,-44"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="-135">
-        <regions>
+        <region>
             <cuboid min="-42,9,43" max="-44,9,47"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="180">
-        <regions>
+        <region>
             <cylinder base="-4,49,-73" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Java: Rage</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Eliminate the enemy team!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -24,19 +24,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit">
-        <regions yaw="45">
+        <region yaw="45">
             <point>89.5,37,18.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="yellow" kit="spawn-kit">
-        <regions yaw="-90">
+        <region yaw="-90">
             <point>24.5,37,88.5</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="90">
+        <region yaw="90">
             <cuboid min="-18,94,52" max="-15,94,55"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

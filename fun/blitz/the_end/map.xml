@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The End</name>
 <slug>the_end_rage</slug>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Eliminate the enemy team within 5 minutes </objective>
 <gamemode>br</gamemode>
 <authors>
@@ -29,19 +29,19 @@
 </kits>
 <spawns>
     <spawn team="purple" kit="spawn-kit" yaw="-90">
-        <regions>
+        <region>
             <cuboid min="706,14,404" max="709,14,407"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="black" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cuboid min="811,14,404" max="814,14,407"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <cylinder base="760.5,27,486.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

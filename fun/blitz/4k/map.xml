@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>4K</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <objective>Kill all your opponents! Each person has 2 lives</objective>
 <gamemode>blitz</gamemode>
 <authors>
@@ -39,19 +39,19 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn-kit" yaw="-180">
-        <regions>
+        <region>
             <cuboid min="2,32,68" max="0,32,66"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <regions>
+        <region>
             <cuboid min="0,32,-68" max="2,32,-64"/>
-        </regions>
+        </region>
     </spawn>
     <default kit="obs" yaw="90">
-        <regions>
+        <region>
             <cuboid min="64,45,1" max="62,45,1"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
@@ -129,34 +129,4 @@
 </kill-rewards>
 <timelock>on</timelock>
 <respawn auto="true"/>
-<!-- <tutorial>
-    <stage title="Blitz">
-        <message>
-            <line>This is a `c15v15 Blitz game`r. Each person has `c`l2 lives`r.</line>
-            <line>In order to `awin`r, you must `4eliminate`r the other team!</line>
-        </message>
-        <teleport>
-            <point yaw="90" pitch="30">48,47,1</point>
-        </teleport>
-    </stage>
-    <stage title="Spawn">
-        <message>
-            <line>This is where you will spawn when the game starts.</line>
-            <line>Simply run out of it and it will accelerate you towards the arena.</line>
-        </message>
-        <teleport>
-            <point yaw="43" pitch="10">10,37,54</point>
-        </teleport>
-    </stage>
-    <stage title="Arena">
-        <message>
-            <line>This is the `darena`r.</line>
-            <line>At the moment, it looks plain. However, after a couple of seconds...</line>
-            <line>blocks will `9`lfall down from the sky`r and change up the gameplay!</line>
-        </message>
-        <teleport>
-            <point yaw="152" pitch="30">12,20,22</point>
-        </teleport>
-    </stage>
-</tutorial> -->
 </map>

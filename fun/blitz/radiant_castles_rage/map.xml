@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Radiant Castles: Rage</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Eliminate the opposing team!</objective>
 <gamemode>br</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="ff0b4c92-edc5-4474-a145-04a433c9e485"/> <!-- MySquishyTurtle -->
     <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->
@@ -29,19 +30,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit">
-        <regions>
+        <region>
             <point>256.5,16,-200.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit">
-        <regions yaw="180">
+        <region yaw="180">
             <point>142.5,16,-200.5</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <point>199.5,45,-200.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
@@ -68,7 +69,6 @@
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="arrow"/>
     </kill-reward>
 </kill-rewards>

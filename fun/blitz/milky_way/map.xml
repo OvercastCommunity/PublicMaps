@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Milky Way</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Kill the other team's players!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -22,8 +22,8 @@
         <boots team-color="true" material="leather boots"/>
         <effect duration="5">heal</effect>
         <effect duration="5" amplifier="4">damage resistance</effect>
-        <effect duration="oo" amplifier="2" ambient="true">speed</effect>
-        <effect duration="oo" amplifier="2" ambient="true">jump</effect>
+        <effect amplifier="2" ambient="true">speed</effect>
+        <effect amplifier="2" ambient="true">jump</effect>
         <effect duration="3" amplifier="100">damage resistance</effect>
         <effect duration="3" amplifier="100">heal</effect>
         <game-mode>adventure</game-mode>
@@ -31,29 +31,29 @@
 </kits>
 <spawns>
     <spawn team="green-team" kit="spawn-kit">
-        <regions yaw="-45">
+        <region yaw="-45">
             <point>808.5,19,-645.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue-team" kit="spawn-kit">
-        <regions yaw="135">
+        <region yaw="135">
             <point>886.5,19,-567.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="orange-team" kit="spawn-kit">
-        <regions yaw="-135">
+        <region yaw="-135">
             <point>808.5,19,-567.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="pink-team" kit="spawn-kit">
-        <regions yaw="45">
+        <region yaw="45">
             <point>886.5,19,-645.5</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <point>847.5,57,-606.5</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

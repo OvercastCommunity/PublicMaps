@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Grimsnes</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Eliminate the enemy team within 6 minutes!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -29,19 +29,19 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn-kit" yaw="180">
-        <regions>
+        <region>
             <cuboid min="682,12,162" max="689,12,169"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="spawn-kit">
-        <regions>
+        <region>
             <cuboid min="682,12,64" max="689,12,71"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="90">
-        <regions>
+        <region>
             <cuboid min="601,51,120" max="610,51,113"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

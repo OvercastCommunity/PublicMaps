@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Pyradic</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Eliminate the opposing team!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -11,63 +10,52 @@
     <alert after="30s">There was a crashing sound coming from the enchantment room! Be careful!</alert>
 </broadcasts>
 <teams> 
-    <team id="blue"
-          color="blue"
-          show-name-tags="false"
-          max="10" max-overfill="12">Blue</team>
-    <team id="red"
-          color="dark red"
-          show-name-tags="false"
-          max="10" max-overfill="12">Red</team>
+    <team id="blue" color="blue" show-name-tags="false" max="10" max-overfill="12">Blue</team>
+    <team id="red" color="dark red" show-name-tags="false" max="10" max-overfill="12">Red</team>
 </teams>
+<kits>
+    <kit id="spawn-kit">
+        <leggings locked="true" material="chainmail leggings"/>
+        <item slot="0" unbreakable="true" enchantment="damage all:10" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:10" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <helmet locked="true" team-color="true" material="leather helmet"/>
+        <chestplate locked="true" team-color="true" material="leather chestplate"/>
+        <boots locked="true" team-color="true" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="180">
+            <block>22.5,39,-138.5</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="70">
+            <block>28.5,3,-136.5</block>
+        </region>
+    </spawn>
+    <default>
+        <region yaw="45">
+            <block>22.5,49,-147.5</block>
+        </region>
+    </default>
+</spawns>
+<regions>
+    <apply block-break="never"/>
+</regions>
 <time>5m</time>
 <blitz>
     <lives>1</lives>
     <broadcastLives>true</broadcastLives>
 </blitz>
-<!-- include src="blitz-global.xml"/ -->
 <rage/>
-<spawns>
-    <spawn team="blue" kit="kitBlue">
-        <regions yaw="180">
-            <block>22.5,39,-138.5</block>
-        </regions>
-    </spawn>
-    <spawn team="red" kit="kitRed">
-        <regions yaw="70">
-            <block>28.5,3,-136.5</block>
-        </regions>
-    </spawn>
-    <default>
-        <regions yaw="45">
-            <block>22.5,49,-147.5</block>
-        </regions>
-    </default>
-</spawns>
-<kits>
-    <kit id="kitSpawn">
-        <leggings locked="true">chainmail leggings</leggings>
-        <item slot="0" unbreakable="true" enchantment="damage all:10">iron sword</item>
-        <item slot="1" unbreakable="true" enchantment="arrow damage:10">bow</item>
-        <item slot="2">arrow</item>
-    </kit>
-    <kit id="kitBlue" parents="kitSpawn">
-        <helmet locked="true" color="0000aa">leather helmet</helmet>
-        <chestplate locked="true" color="0000aa">leather chestplate</chestplate>
-        <boots locked="true" color="0000aa">leather boots</boots>
-    </kit>
-    <kit id="kitRed" parents="kitSpawn">
-        <helmet locked="true" color="aa0000">leather helmet</helmet>
-        <chestplate locked="true" color="aa0000">leather chestplate</chestplate>
-        <boots locked="true" color="aa0000">leather boots</boots>
-    </kit>
-</kits>
-<regions>
-    <apply block-break="never"/>
-</regions>
-<destroyables name="Monument" materials="sandstone:2;sandstone stairs" mode-changes="true">
-    <destroyable owner="blue" show="false">
-        <region><cuboid min="25,31,-153" max="36,32,-142"/></region>
+<!-- TODO: replace fake destroyable with fill action -->
+<destroyables name="Monument" materials="sandstone:2;sandstone stairs" mode-changes="true" show="false">
+    <destroyable owner="blue">
+        <region>
+            <cuboid min="25,31,-153" max="36,32,-142"/>
+        </region>
     </destroyable>
 </destroyables>
 <modes>

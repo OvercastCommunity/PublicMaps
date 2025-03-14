@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Terraced Rice Fields</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate the opposing team within 8 minutes.</objective>
 <created>2013-07-15</created>
 <authors>
@@ -13,27 +13,10 @@
     <rule>Any form of Block Glitching is illegal on this map!</rule>
     <rule>You have two lives.</rule>
 </rules>
-<time>8m</time>
-<blitz>
-    <lives>2</lives>
-    <broadcastLives>true</broadcastLives>
-</blitz>
-<respawn auto="true"/>
 <teams>
    <team id="blue" color="blue" max="20">Blue</team>
    <team id="red" color="red" max="20">Red</team>
 </teams>
-<spawns>
-    <spawn team="blue" kit="spawn-kit" yaw="180">
-        <region><cuboid min="1,153,46" max="-2,153,38"/></region>
-    </spawn>
-    <spawn team="red" kit="spawn-kit" yaw="0">
-        <region><cuboid min="-2,153,-52" max="1,153,-44"/></region>
-    </spawn>
-    <default yaw="-90">
-        <region><cuboid min="76,198,-1" max="78,198,-4"/></region>
-    </default>
-</spawns>
 <kits>
     <kit id="spawn-kit">
         <item slot="0" unbreakable="true" material="stone sword"/>
@@ -44,13 +27,35 @@
         <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
         <leggings team-color="true" unbreakable="true" material="leather leggings"/>
         <boots team-color="true" unbreakable="true" material="leather boots"/>
-        <game-mode>adventure</game-mode>
         <effect duration="3s" amplifier="255">damage resistance</effect>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
+<spawns>
+    <spawn team="blue" kit="spawn-kit" yaw="180">
+        <region>
+            <cuboid min="1,153,46" max="-2,153,38"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region>
+            <cuboid min="-2,153,-52" max="1,153,-44"/>
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <cuboid min="76,198,-1" max="78,198,-4"/>
+        </region>
+    </default>
+</spawns>
 <regions>
     <apply block="never"/>
 </regions>
+<time>8m</time>
+<blitz>
+    <lives>2</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -62,10 +67,13 @@
     <item>leather leggings</item>
     <item>leather boots</item>
 </itemremove>
-<killreward>
-    <item amount="8" material="arrow"/>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>on</depletion>
 </hunger>
+<respawn auto="true"/>
 </map>

@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Bouncy Stadium</name>
 <variant id="christmas" world="christmas" override="true">Frosty Stadium</variant>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Eliminate the other team before 5 minutes are up!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -14,12 +14,24 @@
     <team id="green" color="green" max="20">Green</team>
     <team id="red" color="red" max="20">Red</team>
 </teams>
-<time>5m</time>
-<rage/>
-<respawn auto="true"/>
-<blitz>
-    <lives>2</lives>
-</blitz>
+<kits>
+    <kit id="obs-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="obs-kit">
+        <item slot="0" enchantment="damage all:100" material="iron sword"/>
+        <item slot="1" enchantment="arrow damage:100" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <effect duration="3" amplifier="100">heal</effect>
+        <effect duration="3" amplifier="100">damage resistance</effect>
+        <effect amplifier="2">speed</effect>
+        <effect amplifier="2">jump</effect>
+        <chestplate team-color="true" locked="true" material="leather chestplate"/>
+        <leggings team-color="true" locked="true" material="leather leggings"/>
+        <boots team-color="true" locked="true" material="leather boots"/>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
 <spawns>
     <spawn team="green" kit="spawn-kit" yaw="90">
         <region>
@@ -37,23 +49,6 @@
         </region>
     </default>
 </spawns>
-<kits>
-    <kit id="obs-kit">
-        <effect>night vision</effect>
-    </kit>
-    <kit id="spawn-kit" parents="obs-kit">
-        <item slot="0" enchantment="damage all:100" material="iron sword"/>
-        <item slot="1" enchantment="arrow damage:100" material="bow"/>
-        <item slot="2" material="arrow"/>
-        <effect duration="3" amplifier="100">heal</effect>
-        <effect duration="3" amplifier="100">damage resistance</effect>
-        <effect amplifier="2">speed</effect>
-        <effect amplifier="2">jump</effect>
-        <chestplate team-color="true" locked="true" material="leather chestplate"/>
-        <leggings team-color="true" locked="true" material="leather leggings"/>
-        <boots team-color="true" locked="true" material="leather boots"/>
-    </kit>
-</kits>
 <regions>
     <apply block="never"/>
     <apply velocity="0,2.2,0">
@@ -112,11 +107,11 @@
         </region>
     </apply>
 </regions>
-<kill-rewards>
-    <kill-reward>
-        <item material="arrow"/>
-    </kill-reward>
-</kill-rewards>
+<time>5m</time>
+<rage/>
+<blitz>
+    <lives>2</lives>
+</blitz>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -127,10 +122,16 @@
     <item>leather boots</item>
     <item>arrow</item>
 </itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
+<respawn auto="true"/>
 </map>

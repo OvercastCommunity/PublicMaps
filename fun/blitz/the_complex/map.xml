@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Complex</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Eliminate the other team before 10 minutes is up!</objective>
 <gamemode>blitz</gamemode>
 <authors>
@@ -35,19 +35,19 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="spawn-kit" yaw="-135">
-        <regions>
+        <region>
             <cuboid min="-43,6,44" max="-46,6,49"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="spawn-kit" yaw="35">
-        <regions>
+        <region>
             <cuboid min="44,6,-43" max="49,6,-46"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="135">
-        <regions>
+        <region>
             <cuboid min="78,60,78" max="76,60,76"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

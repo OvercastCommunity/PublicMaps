@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Foxtrot</name>
 <variant id="halloween" world="halloween">A Dance to the Moonlight</variant>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -55,9 +55,9 @@
         </regions>
     </spawn>
     <default yaw="90">
-        <regions>
+        <region>
             <point>104,37,78</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

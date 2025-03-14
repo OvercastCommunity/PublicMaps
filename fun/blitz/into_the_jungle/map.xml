@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Into the Jungle</name>
 <variant id="halloween" world="halloween" override="true">Into the Jack o' Lantern</variant>
-<version>1.2</version>
+<version>1.2.1</version>
 <objective>Eliminate the opposing team in less than 6 minutes</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -15,42 +15,47 @@
     </if>
     <contributor>All of the beta testers (Too many to list)</contributor>
 </contributors>
-<respawn auto="true"/>
-<time>6m</time>
-<rage/>
-<blitz/>
 <teams>
    <team id="orange" color="gold" max="20">Orange</team>
    <team id="purple" color="dark purple" max="20">Purple</team>
 </teams>
-<spawns>
-    <spawn team="orange" kit="spawn-kit" yaw="0">
-        <region><cuboid min="-21,5,-19" max="-12,5,-10"/></region>
-    </spawn>
-    <spawn team="purple" kit="spawn-kit" yaw="180">
-        <region><cuboid min="-21,5,72" max="-12,5,81"/></region>
-    </spawn>
-    <default yaw="0">
-        <region><cuboid min="-19,12,29" max="-16,12,32"/></region>
-    </default>
-</spawns>
 <kits>
     <kit id="spawn-kit">
         <item slot="0" enchantment="damage all:10" name="`9`l1-Hit kill!" material="diamond sword" unbreakable="true"/>
         <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!" material="bow" unbreakable="true"/>
-        <item slot="2" amount="1" material="arrow"/>
+        <item slot="2" material="arrow"/>
         <helmet team-color="true" locked="true" material="leather helmet" unbreakable="true"/>
         <chestplate team-color="true" locked="true" material="leather chestplate" unbreakable="true"/>
         <leggings team-color="true" locked="true" material="leather leggings" unbreakable="true"/>
         <boots team-color="true" locked="true" material="leather boots" unbreakable="true"/>
-        <game-mode>adventure</game-mode>
-        <effect duration="5" amplifier="1">heal</effect>
+        <effect duration="5">heal</effect>
         <effect duration="5" amplifier="4">damage resistance</effect>
+        <game-mode>adventure</game-mode>
     </kit>
 </kits>
+<spawns>
+    <spawn team="orange" kit="spawn-kit">
+        <region>
+            <cuboid min="-21,5,-19" max="-12,5,-10"/>
+        </region>
+    </spawn>
+    <spawn team="purple" kit="spawn-kit" yaw="180">
+        <region>
+            <cuboid min="-21,5,72" max="-12,5,81"/>
+        </region>
+    </spawn>
+    <default>
+        <region>
+            <cuboid min="-19,12,29" max="-16,12,32"/>
+        </region>
+    </default>
+</spawns>
 <regions>
     <apply block="never"/>
 </regions>
+<time>6m</time>
+<rage/>
+<blitz/>
 <timelock>on</timelock>
 <if variant="halloween">
     <world>
@@ -78,4 +83,5 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<respawn auto="true"/>
 </map>

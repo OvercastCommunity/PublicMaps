@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Rooftops</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate the opposing team within 8 minutes.</objective>
 <created>2013-07-12</created>
 <include id="void-death"/>
@@ -14,27 +14,10 @@
 <contributors>
     <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="XML"/> <!-- zzuf -->
 </contributors>
-<time>8m</time>
-<blitz>
-    <lives>2</lives>
-    <broadcastLives>true</broadcastLives>
-</blitz>
-<respawn auto="true"/>
 <teams>
    <team id="purple-team" color="dark purple" max="20">Purple</team>
    <team id="cyan-team" color="dark aqua" max="20">Cyan</team>
 </teams>
-<spawns>
-    <spawn team="cyan-team" kit="spawn-kit" yaw="-45">
-        <region><cylinder base="-42,91,-64" height="0" radius="2"/></region>
-    </spawn>
-    <spawn team="purple-team" kit="spawn-kit" yaw="-135">
-        <region><cylinder base="-42,91,21" height="0" radius="2"/></region>
-    </spawn>
-    <default yaw="-90">
-        <region><point>-27.5,129,-21.5</point></region>
-    </default>
-</spawns>
 <kits>
     <kit id="spawn-kit">
         <item slot="0" unbreakable="true" material="stone sword"/>
@@ -49,9 +32,31 @@
         <effect duration="3s" amplifier="255">damage resistance</effect>
     </kit>
 </kits>
+<spawns>
+    <spawn team="cyan-team" kit="spawn-kit" yaw="-45">
+        <region>
+            <cylinder base="-42,91,-64" height="0" radius="2"/>
+        </region>
+    </spawn>
+    <spawn team="purple-team" kit="spawn-kit" yaw="-135">
+        <region>
+            <cylinder base="-42,91,21" height="0" radius="2"/>
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <point>-27.5,129,-21.5</point>
+        </region>
+    </default>
+</spawns>
 <regions>
     <apply block="never"/>
 </regions>
+<time>8m</time>
+<blitz>
+    <lives>2</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -69,4 +74,5 @@
 <hunger>
     <depletion>on</depletion>
 </hunger>
+<respawn auto="true"/>
 </map>

@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Ieats Hall</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Kill the other team before 5 minutes are up</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -29,19 +29,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
+        <region>
             <cuboid min="61,26,0" max="62,26,1"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="-89">
-        <regions>
+        <region>
             <cuboid min="-16,26,-121" max="-15,26,-120"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="90">
-        <regions>
+        <region>
             <cuboid min="-17,57,-62" max="-15,57,-60"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

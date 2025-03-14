@@ -1,12 +1,11 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hand of Lucifer</name>
-<version>1.2</version>
+<version>1.2.1</version>
 <phase>staging</phase>
 <objective>Eliminate the other team!</objective>
 <gamemode>br</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/>
-    <!--   AtlasGames   -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>
 <teams>
     <team id="red" color="red" max="10" max-overfill="12">Red</team>
@@ -14,44 +13,42 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" enchantment="damage all:10">iron sword</item>
-        <item slot="1" enchantment="arrow damage:10">bow</item>
-        <item slot="2">arrow</item>
-        <item slot="3" amount="4">bread</item>
-        <potion duration="5" amplifier="25">heal</potion>
-        <potion duration="5" amplifier="25">damage resistance</potion>
-        <potion duration="oo" amplifier="1">speed</potion>
-        <potion duration="oo" amplifier="1">jump</potion>
+        <item slot="0" enchantment="damage all:10" material="iron sword"/>
+        <item slot="1" enchantment="arrow damage:10" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <item slot="3" amount="4" material="bread"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <effect duration="5" amplifier="25">heal</effect>
+        <effect duration="5" amplifier="25">damage resistance</effect>
+        <effect>speed</effect>
+        <effect>jump</effect>
     </kit>
     <kit id="red-kit" parents="spawn-kit">
-        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
-        <boots unbreakable="true">iron boots</boots>
+        <boots unbreakable="true" material="iron boots"/>
     </kit>
     <kit id="blue-kit" parents="spawn-kit">
-        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
-        <boots color="334CB2" unbreakable="true">leather boots</boots>
+        <boots color="334CB2" unbreakable="true" material="leather boots"/>
     </kit>
     <kit id="kill" force="true">
-        <potion duration="6" amplifier="25">harm</potion>
-        <potion duration="3" amplifier="5">blindness</potion>
+        <effect duration="6" amplifier="25">harm</effect>
+        <effect duration="3" amplifier="5">blindness</effect>
     </kit>
 </kits>
-<respawn auto="true" delay="3"/>
 <spawns>
     <spawn team="red" kit="red-kit">
-        <regions yaw="179">
+        <region yaw="180">
             <point>0,80,32</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="blue-kit">
-        <regions yaw="0">
+        <region>
             <point>0,80,-32</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="-90">
+        <region yaw="-90">
             <point>0,73,0</point>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
@@ -93,8 +90,11 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
-<killreward>
-    <item>arrow</item>
-</killreward>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <timelock>on</timelock>
+<respawn auto="true" delay="3"/>
 </map>

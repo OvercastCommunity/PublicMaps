@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>BlitzMiners</name>
-<version>2.0.2</version>
+<version>2.0.3</version>
 <objective>Eliminate the other team to win</objective>
 <gamemode>blitz</gamemode>
 <authors>
@@ -35,19 +35,19 @@
 </kits>
 <spawns>
     <spawn team="blue" kit="blue-kit">
-        <regions>
+        <region>
             <cuboid min="16,24,-13" max="15,24,-13"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red" kit="red-kit" yaw="-180">
-        <regions>
+        <region>
             <cuboid min="14,24,27" max="17,24,30"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-180">
-        <regions>
+        <region>
             <cuboid min="11,55,-18" max="13,55,-12"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

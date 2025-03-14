@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Bliss</name>
 <variant id="rage">Rage</variant>
-<version>1.0.9</version>
+<version>1.0.10</version>
 <unless variant="rage">
     <objective>Kill an enemy 3 times to eliminate them; eliminate all enemies to win the match.</objective>
     <gamemode>blitz</gamemode>
@@ -9,6 +9,7 @@
     <blitz>
         <lives>3</lives>
     </blitz>
+    <include id="gapple-kill-reward"/>
 </unless>
 <if variant="rage">
     <objective>Kill all members of the opposing team before 5 minutes passes!</objective>
@@ -27,6 +28,29 @@
     <team id="red" color="dark red" max="20">Red</team>
     <team id="blue" color="blue" max="20">Blue</team>
 </teams>
+<kits>
+    <kit id="teams">
+        <unless variant="rage">
+            <item slot="0" unbreakable="true" material="wood sword"/>
+            <item slot="1" unbreakable="true" material="bow"/>
+            <item slot="2" amount="16" material="cooked fish"/>
+            <item slot="3" amount="32" damage="3" material="leaves"/>
+            <item slot="28" amount="64" material="arrow"/>
+        </unless>
+        <if variant="rage">
+            <item slot="0" unbreakable="true" enchantment="damage all:127" lore="`71-Hit Kill!" material="iron sword"/>
+            <item slot="1" unbreakable="true" enchantment="arrow damage:127" lore="`71-Shot Kill!" material="bow"/>
+            <item slot="3" amount="16" damage="3" material="leaves"/>
+            <item slot="4" amount="1" material="arrow"/>
+            <item slot="8" amount="16" material="cooked fish"/>
+        </if>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots team-color="true" unbreakable="true" material="leather boots"/>
+        <effect duration="5" amplifier="2">heal</effect>
+    </kit>
+</kits>
 <spawns>
     <spawn team="red" kit="teams" yaw="45">
         <region>
@@ -44,30 +68,26 @@
         </region>
     </default>
 </spawns>
-<kits>
-    <kit id="teams">
-        <unless variant="rage">
-            <item slot="0" unbreakable="true" material="wood sword"/>
-            <item slot="1" unbreakable="true" material="bow"/>
-            <item slot="2" amount="16" material="cooked fish"/>
-            <item slot="3" amount="32" damage="3" material="leaves"/>
-            <item slot="28" amount="64" material="arrow"/>
-        </unless>
-        <if variant="rage">
-            <item slot="0" unbreakable="true" enchantment="damage all:127" lore="`71-Hit Kill!" material="iron sword"/>
-            <item slot="1" unbreakable="true" enchantment="arrow damage:127" lore="`71-Shot Kill!" material="bow"/>
-            <item slot="3" amount="16" damage="3" material="leaves"/>
-            <item slot="4" amount="1" material="arrow"/>
-            <item slot="8" amount="16" material="cooked fish"/>
-        </if>
-        <effect duration="5" amplifier="2">heal</effect>
-        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
-        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
-        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
-        <boots team-color="true" unbreakable="true" material="leather boots"/>
-    </kit>
-</kits>
-<maxbuildheight>16</maxbuildheight>
+<filters>
+    <any id="allow-some">
+        <allow>
+            <any>
+                <material>leaves</material>
+                <material>water lily</material>
+            </any>
+        </allow>
+        <deny>
+            <participating/>
+        </deny>
+    </any>
+</filters>
+<regions>
+    <negative id="void-area">
+        <rectangle min="-56,-99" max="45,2" id="playable"/>
+    </negative>
+    <apply block="allow-some" region="playable" message="You may only interact with lily pads and leaves!"/>
+    <apply block="never" region="void-area" message="You may not build in the void!"/>
+</regions>
 <toolrepair>
     <tool>wood sword</tool>
     <tool>iron sword</tool>
@@ -90,7 +110,6 @@
             <item amount="2" material="exp bottle"/>
             <item damage="4" material="ink sack"/>
             <item amount="16" material="arrow"/>
-            <item material="golden apple"/>
         </kill-reward>
     </unless>
     <if variant="rage">
@@ -99,25 +118,6 @@
         </kill-reward>
     </if>
 </kill-rewards>
-<filters>
-    <any id="allow-some">
-        <allow>
-            <any>
-                <material>leaves</material>
-                <material>water lily</material>
-            </any>
-        </allow>
-        <deny>
-            <participating/>
-        </deny>
-    </any>
-</filters>
-<regions>
-    <negative id="void">
-        <rectangle min="-56,-99" max="45,2" id="playable"/>
-    </negative>
-    <apply block="allow-some" region="playable" message="You may only interact with lily pads and leaves!"/>
-    <apply block="never" region="void" message="You may not build in the void!"/>
-</regions>
 <respawn auto="true"/>
+<maxbuildheight>16</maxbuildheight>
 </map>

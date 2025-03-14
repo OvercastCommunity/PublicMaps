@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Vinebay</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
 <created>2015-04-13</created>
 <gamemode>br</gamemode>
@@ -18,8 +18,8 @@
         <item slot="1" enchantment="arrow damage:10" material="bow"/>
         <item slot="2" material="arrow"/>
         <item slot="8" amount="32" material="cooked fish"/>
-        <chestplate team-color="true" damage="-3000" material="leather chestplate"/>
-        <boots team-color="true" damage="-3000" material="leather boots"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
         <effect duration="5" amplifier="25">heal</effect>
         <effect duration="5" amplifier="25">damage resistance</effect>
         <game-mode>adventure</game-mode>
@@ -27,19 +27,19 @@
 </kits>
 <spawns>
     <spawn team="blue-team" kit="spawn-kit">
-        <regions>
+        <region>
             <cuboid min="-224.5,10,1.5" max="-226.5,10,-0.5" />
-        </regions>
+        </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
-        <regions yaw="180">
+        <region yaw="180">
             <cuboid min="-224.5,10,127.5" max="-226.5,10,125.5" />
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="90">
+        <region yaw="90">
             <cuboid min="-224.5,33,62.5" max="-226.5,33,64.5" />
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>

@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>CannonQuad</name>
 <phase>staging</phase>
-<version>1.4.0</version>
+<version>1.4.1</version>
 <objective>Destroy your opponents within 10 minutes and 30 seconds.</objective>
 <created>2014-09-02</created>
 <gamemode>blitz</gamemode>
@@ -20,37 +20,16 @@
 <rules>
     <rule>Do not attempt to hide.</rule>
 </rules>
-<spawns>
-    <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
-            <cylinder base="24.5,61,-75.5" radius="3" height="0"/>
-        </regions>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit" yaw="180">
-        <regions>
-            <cylinder base="24.5,61,-1.5" radius="3" height="0"/>
-        </regions>
-    </spawn>
-    <spawn team="green" kit="spawn-kit" yaw="0">
-        <regions>
-            <cylinder base="-49.5,61,-75.5" radius="3" height="0"/>
-        </regions>
-    </spawn>
-    <spawn team="yellow" kit="spawn-kit" yaw="-90">
-        <regions>
-            <cylinder base="-49.5,61,-1.5" radius="3" height="0"/>
-        </regions>
-    </spawn>
-    <default yaw="0" pitch="20">
-        <regions>
-            <cylinder base="-12.5,37,-38.5" radius="1" height="0"/>
-        </regions>
-    </default>
-</spawns>
-<time>10m30s</time>
-<blitz join-filter="blitz-join-filter">
-    <lives>1</lives>
-</blitz>
+<broadcasts>
+    <alert after="1s">`7You have 20 seconds to prepare.</alert>
+    <tip after="10s">`7After 4 minutes bridges between sides will connect.</tip>
+    <tip after="15s" every="1m" count="6" filter="only-red">`7You can only bridge between the four `4Red `7islands.</tip>
+    <tip after="15s" every="1m" count="6" filter="only-blue">`7You can only bridge between the four `9Blue `7islands.</tip>
+    <tip after="15s" every="1m" count="6" filter="only-yellow">`7You can only bridge between the four `eYellow `7islands.</tip>
+    <tip after="15s" every="1m" count="6" filter="only-green">`7You can only bridge between the four `2Green `7islands.</tip>
+    <alert after="25s">`7TNT is hidden underneath the islands, so be careful or you may be destroyed.</alert>
+    <alert after="6m">`7You may now build in the center.</alert>
+</broadcasts>
 <teams>
     <team id="red" color="dark red" max="10">Red</team>
     <team id="blue" color="blue" max="10">Blue</team>
@@ -99,9 +78,36 @@
         <effect duration="25" amplifier="5">heal</effect>
     </kit>
     <kit id="death">
-        <effect duration="oo" amplifier="5">harm</effect>
+        <effect amplifier="5">harm</effect>
     </kit>
 </kits>
+<spawns>
+    <spawn team="red" kit="spawn-kit" yaw="90">
+        <region>
+            <cylinder base="24.5,61,-75.5" radius="3" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="blue" kit="spawn-kit" yaw="180">
+        <region>
+            <cylinder base="24.5,61,-1.5" radius="3" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="green" kit="spawn-kit">
+        <region>
+            <cylinder base="-49.5,61,-75.5" radius="3" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="yellow" kit="spawn-kit" yaw="-90">
+        <region>
+            <cylinder base="-49.5,61,-1.5" radius="3" height="0"/>
+        </region>
+    </spawn>
+    <default pitch="20">
+        <region>
+            <cylinder base="-12.5,37,-38.5" radius="1" height="0"/>
+        </region>
+    </default>
+</spawns>
 <filters>
     <team id="only-red">red</team>
     <team id="only-blue">blue</team>
@@ -109,8 +115,8 @@
     <team id="only-yellow">yellow</team>
     <deny id="deny-break">
         <any>
-            <material>160</material>
-            <material>95</material>
+            <material>stained glass pane</material>
+            <material>stained glass</material>
             <material>chest</material>
         </any>
     </deny>
@@ -123,8 +129,7 @@
 </filters>
 <regions>
     <!-- Region Definitions -->
-    <rectangle id="main" min="oo,oo" max="-oo,-oo"/>
-    <negative id="void">
+    <negative id="void-area">
         <rectangle id="playable" min="34,8" max="-60,-86"/>
     </negative>
     <cuboid id="top" min="oo,51,oo" max="-oo,oo,-oo"/>
@@ -143,24 +148,18 @@
     <!-- Applied Rules -->
     <apply kit="death" region="death-kit-region"/>
     <apply block="never" region="top" message="You may not build here."/>
-    <apply block="never" region="void" message="You may not build outside the playable area."/>
+    <apply block="never" region="void-area" message="You may not build outside the playable area."/>
     <apply block="region-enabled" region="center-bridging-areas" message="This region is disabled until 6m have passed."/>
     <apply block="never" region="no-bridge-region" message="You may not bridge outside your area."/>
-    <apply block-break="deny-break" region="main" message="You may not break this block."/>
+    <apply block-break="deny-break" message="You may not break this block."/>
 </regions>
+<time>10m30s</time>
+<blitz join-filter="blitz-join-filter">
+    <lives>1</lives>
+</blitz>
 <disabledamage>
     <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
 </disabledamage>
-<broadcasts>
-    <alert after="1s">`7You have 20 seconds to prepare.</alert>
-    <tip after="10s">`7After 4 minutes bridges between sides will connect.</tip>
-    <tip after="15s" every="1m" count="6" filter="only-red">`7You can only bridge between the four `4Red `7islands.</tip>
-    <tip after="15s" every="1m" count="6" filter="only-blue">`7You can only bridge between the four `9Blue `7islands.</tip>
-    <tip after="15s" every="1m" count="6" filter="only-yellow">`7You can only bridge between the four `eYellow `7islands.</tip>
-    <tip after="15s" every="1m" count="6" filter="only-green">`7You can only bridge between the four `2Green `7islands.</tip>
-    <alert after="25s">`7TNT is hidden underneath the islands, so be careful or you may be destroyed.</alert>
-    <alert after="6m">`7You may now build in the center.</alert>
-</broadcasts>
 <itemremove>
     <item>diamond pickaxe</item>
     <item>snow ball</item>
@@ -206,6 +205,7 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<!-- TODO: replace fake destroyable with fill action -->
 <destroyables>
     <destroyable name="Placeholder" materials="stained glass" completion="0%" show="false" mode-changes="true" owner="blue" region="connected-bridges"/>
 </destroyables>

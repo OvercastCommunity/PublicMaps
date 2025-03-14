@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Secluded Oasis</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Eliminate the enemy teams before 10 minutes is up</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -27,29 +27,29 @@
 </kits>
 <spawns>
     <spawn team="green-team" kit="spawn-kit">
-        <regions angle="-23,6,7">
+        <region angle="-23,6,7">
             <cuboid min="-56,8,-31" max="-54,8,-29"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="yellow-team" kit="spawn-kit">
-        <regions angle="-23,6,7">
+        <region angle="-23,6,7">
             <cuboid min="-56,8,46" max="-54,8,44"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
-        <regions angle="-23,6,7">
+        <region angle="-23,6,7">
             <cuboid min="9,8,-31" max="7,8,-29"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue-team" kit="spawn-kit">
-        <regions angle="-23,6,7">
+        <region angle="-23,6,7">
             <cuboid min="9,8,46" max="7,8,44"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions angle="-23,6,7">
+        <region angle="-23,6,7">
             <cuboid min="9,8,46" max="7,8,44"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
@@ -60,7 +60,7 @@
     <lives>2</lives>
     <broadcastLives>true</broadcastLives>
 </blitz>
-<rage />
+<rage/>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>

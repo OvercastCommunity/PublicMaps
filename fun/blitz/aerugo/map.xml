@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Aerugo</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate the other team before 5 minutes!</objective>
 <gamemode>blitz</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
 </authors>
@@ -29,19 +30,19 @@
 </kits>
 <spawns>
     <spawn team="green" kit="spawn-kit" yaw="-180">
-        <regions>
+        <region>
             <cylinder base="-337.5,5,-614.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit">
-        <regions>
+        <region>
             <cylinder base="-338.5,5,-657.5" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <default yaw="-90">
-        <regions>
+        <region>
             <cuboid min="-315,22,-636" max="-314,22,-635"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
@@ -64,10 +65,5 @@
     <tool>stone sword</tool>
     <tool>bow</tool>
 </toolrepair>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <timelock>on</timelock>
 </map>

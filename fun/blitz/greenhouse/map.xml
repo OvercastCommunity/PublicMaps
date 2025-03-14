@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Greenhouse</name>
-<version>1.1.5</version>
+<version>1.1.6</version>
 <objective>Capture the enemy team's wool or eliminate the other team.</objective>
+<include id="gapple-kill-reward"/>
 <phase>staging</phase>
 <edition>standard</edition>
 <authors>
@@ -13,8 +14,8 @@
     <contributor uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9" contribution="Map and Feedback"/> <!-- BrettOgden -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="20">Blue</team>
-    <team id="red" color="dark red" max="20">Red</team>
+    <team id="blue-team" color="blue" max="20">Blue</team>
+    <team id="red-team" color="dark red" max="20">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -30,25 +31,23 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue" kit="spawn-kit" yaw="-90">
-        <regions>
+    <spawn team="blue-team" kit="spawn-kit" yaw="-90">
+        <region>
             <cylinder base="-178,27,0" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit" yaw="90">
-        <regions>
+    <spawn team="red-team" kit="spawn-kit" yaw="90">
+        <region>
             <cylinder base="-18,27,0" radius="2" height="0"/>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions>
+        <region>
             <cylinder base="-98,27,0" radius="2" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <any id="only-break">
         <material id="only-leaves">leaves</material>
         <material>red rose</material>
@@ -57,13 +56,13 @@
     </any>
 </filters>
 <regions>
-    <apply enter="only-blue" use="only-blue" message="You may not interact with the enemy's wool room!">
+    <apply enter="blue-team" use="blue-team" message="You may not interact with the enemy's wool room!">
         <region>
             <cuboid min="-52,27,-3" max="-45,28,4"/>
             <block>-52.5,27,0.5</block>
         </region>
     </apply>
-    <apply enter="only-red" use="only-red" message="You may not interact with the enemy's wool room!">
+    <apply enter="red-team" use="red-team" message="You may not interact with the enemy's wool room!">
         <region>
             <cuboid min="-144,27,4" max="-151,28,-3"/>
             <block>-144.5,27,0.5</block>
@@ -76,12 +75,12 @@
     <lives>5</lives>
 </blitz>
 <wools wool-proximity-metric="none">
-    <wool team="red" color="blue" location="-144.5,27,0.5">
+    <wool team="red-team" color="blue" location="-144.5,27,0.5">
         <monument>
             <block>-15,28,0</block>
         </monument>
     </wool>
-    <wool team="blue" color="red" location="-52.5,27,0.5">
+    <wool team="blue-team" color="red" location="-52.5,27,0.5">
         <monument>
             <block>-183,28,-0</block>
         </monument>
@@ -107,11 +106,6 @@
     <item>apple</item>
     <item>sapling</item>
 </itemremove>
-<kill-rewards>
-    <kill-reward>
-    	<item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <gamerules>
     <doDaylightCycle>true</doDaylightCycle>
 </gamerules>

@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Dry Wound</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <created>2013-06-09</created>
 <objective>Eliminate the other team before 5 minutes is up</objective>
 <gamemode>br</gamemode>
@@ -28,19 +28,19 @@
 </kits>
 <spawns>
     <spawn team="red" kit="spawn-kit" yaw="45">
-        <regions>
+        <region>
             <point>27.5,10,-53.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="blue" kit="spawn-kit" yaw="-135">
-        <regions>
+        <region>
             <point>-26.5,10,54.5</point>
-        </regions>
+        </region>
     </spawn>
     <default yaw="90">
-        <regions>
+        <region>
             <cylinder base="-45,39,0" radius="1" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <regions>
