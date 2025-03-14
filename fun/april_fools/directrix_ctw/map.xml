@@ -1,9 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Directrix CTW</name>
-<phase>staging</phase>
-<version>1.0.3</version>
-<gamemode>ctw</gamemode>
+<version>1.0.4</version>
 <objective>Capture the enemy's wool to win!</objective>
+<gamemode>ctw</gamemode>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </authors>
@@ -29,42 +30,26 @@
         <item slot="5" material="stained clay" team-color="true" amount="24"/>
         <item slot="28" material="arrow" amount="20"/>
         <item slot="30" material="stone spade" unbreakable="true"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+        <leggings material="leather leggings" team-color="true" unbreakable="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true"/>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resitance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
     </kit>
-    <kit id="blue-kit" parent="spawn-kit">
-        <helmet material="leather helmet" color="334CB2" unbreakable="true"/>
-        <chestplate material="leather chestplate" color="334CB2" unbreakable="true"/>
-        <leggings material="leather leggings" color="334CB2" unbreakable="true"/>
-        <boots material="leather boots" color="334CB2" unbreakable="true"/>
-    </kit>
-    <kit id="red-kit" parent="spawn-kit">
-        <helmet material="leather helmet" color="993333" unbreakable="true"/>
-        <chestplate material="leather chestplate" color="993333" unbreakable="true"/>
-        <leggings material="leather leggings" color="993333" unbreakable="true"/>
-        <boots material="leather boots" color="993333" unbreakable="true"/>
-    </kit>
 </kits>
 <spawns>
-    <spawn team="blue-team" kit="blue-kit" region="blue-spawn-point"/>
-    <spawn team="red-team" kit="red-kit" region="red-spawn-point" yaw="180"/>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="180"/>
     <default kit="nv-kit" yaw="90" pitch="-5">
         <region>
             <point>40.5,23,61.5</point>
         </region>
     </default>
 </spawns>
-<respawn delay="3.5s"/>
-<wools craftable="false">
-    <wool team="red-team" color="blue" monument="blue-wool" location="-8.5,20.5,-16.5"/>
-    <wool team="blue-team" color="red" monument="red-wool" location="-8.5,20.5,139.5"/>
-</wools>
-<time>15m</time>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <all id="red-woolroom-filter">
         <team>blue-team</team>
         <filter id="woolrooms-filter"/>
@@ -112,12 +97,17 @@
     <apply block-break="blue-woolroom-filter" block-place="never" region="blue-woolroom" message="You may not edit the wool room!"/>
     <apply block-break="red-woolroom-filter" block-place="never" region="red-woolroom" message="You may not edit the wool room!"/>
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
-    <apply enter="only-blue" region="red-woolroom" message="You may not enter your own wool room!"/>
-    <apply enter="only-red" region="blue-woolroom" message="You may not enter your own wool room!"/>
+    <apply enter="blue-team" region="red-woolroom" message="You may not enter your own wool room!"/>
+    <apply enter="red-team" region="blue-woolroom" message="You may not enter your own wool room!"/>
     <apply use="blue-woolroom-filter-use" region="blue-woolroom" message="You may not steal from the wool room!"/>
     <apply use="red-woolroom-filter-use" region="red-woolroom" message="You may not steal from the wool room!"/>
     <apply kit="reset-resitance-kit" region="not-spawns"/>
 </regions>
+<time>15m</time>
+<wools craftable="false">
+    <wool team="red-team" color="blue" monument="blue-wool" location="-8.5,20.5,-16.5"/>
+    <wool team="blue-team" color="red" monument="red-wool" location="-8.5,20.5,139.5"/>
+</wools>
 <itemkeep>
     <item>stone sword</item>
     <item>bow</item>
@@ -148,12 +138,12 @@
 <maxbuildheight>33</maxbuildheight>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="arrow" amount="16"/>
         <item material="wood" damage="1" amount="16"/>
         <item material="stained clay" team-color="true" amount="8"/>
     </kill-reward>
 </kill-rewards>
+<respawn delay="3.5s"/>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->

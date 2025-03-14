@@ -1,10 +1,11 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Directrageless</name>
-<phase>staging</phase>
-<version>1.0.2</version>
-<gamemode>ctf</gamemode>
-<created>2022-02-21</created>
+<version>1.0.3</version>
 <objective>Capture the enemy's flag as many times as possible in 20 minutes to win!</objective>
+<created>2022-02-21</created>
+<gamemode>ctf</gamemode>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <time result="score" overtime="1m" max-overtime="2m">12m</time>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -13,7 +14,7 @@
 </authors>
 <contributors>
     <contributor contribution="Inspiration">NOVA 2</contributor>
-    <contributor uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81" contribution="Demanded a rageless version of Directrix">_DISTRACTION_</contributor>
+    <contributor uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81" contribution="Demanded a rageless version of Directrix"/> <!-- _DISTRACTION_ -->
 </contributors>
 <rules>
     <rule>Fall damage is disabled.</rule>
@@ -51,7 +52,7 @@
         </region>
     </default>
     <spawn team="blue" kit="spawn-kit">
-        <region yaw="0">
+        <region>
             <cuboid min="-5,12,0" max="-12,12,5"/>
         </region>
     </spawn>
@@ -70,14 +71,14 @@
 </filters>
 <regions>
     <!-- Top level jump pads -->
-    <apply velocity="0, 0.8, -3">
+    <apply velocity="0,0.8,-3">
         <region>
             <cuboid id="r-1" min="9,21,119" max="12,23,117"/>
             <translate region="r-1" offset="-38,0,0"/>
             <translate region="r-1" offset="0,0,-97"/>
         </region>
     </apply>
-    <apply velocity="0, 0.8, 3">
+    <apply velocity="0,0.8,3">
         <region>
             <cuboid id="r-2" min="-26,21,101" max="-29,23,103"/>
             <translate region="r-2" offset="0,0,-97"/>
@@ -85,120 +86,120 @@
         </region>
     </apply>
     <!-- To center sides jump pads -->
-    <apply velocity="-6.7, 1.8, 0">
+    <apply velocity="-6.7,1.8,0">
         <region>
             <cuboid id="n-1" min="-25,12,63" max="-28,14,60"/>
         </region>
     </apply>
-    <apply velocity="6.7, 1.8, 0">
+    <apply velocity="6.7,1.8,0">
         <region>
             <cuboid id="n-2" min="8,12,60" max="11,14,63"/>
         </region>
     </apply>
     <!-- To top center jump pads -->
-    <apply velocity="10, 2.2, 0">
+    <apply velocity="10,2.2,0">
         <region>
             <cuboid id="n-3" min="-51,23,60" max="-48,25,63"/>
         </region>
     </apply>
-    <apply velocity="-10, 2.2, 0">
+    <apply velocity="-10,2.2,0">
         <region>
             <cuboid id="n-4" min="34,23,63" max="32,25,60"/>
         </region>
     </apply>
     <!-- High angle jump pads -->
-    <apply velocity="0, 1.5, 1.7">
+    <apply velocity="0,1.5,1.7">
         <region>
             <cuboid id="r-3" min="7,12,111" max="4,14,113"/>
             <translate region="r-3" offset="-28,0,0"/>
         </region>
     </apply>
-    <apply velocity="0, 1.5, -1.7">
+    <apply velocity="0,1.5,-1.7">
         <region>
             <translate region="r-3" offset="0,0,-101"/>
             <translate region="r-3" offset="-28,0,-101"/>
         </region>
     </apply>
     <!-- "Chicago-midway" jump pads -->
-    <apply velocity="0, 0.8, 3.7">
+    <apply velocity="0,0.8,3.7">
         <region>
             <cuboid id="r-4" min="-7,12,129" max="-10,14,131"/>
         </region>
     </apply>
-    <apply velocity="0, 0.8, -3.7">
+    <apply velocity="0,0.8,-3.7">
         <region>
             <mirror region="r-4" origin="-8.5,0,61.5" normal="0,0,-1"/>
         </region>
     </apply>
     <!-- To above the flag jump pads -->
-    <apply velocity="0, 2.3, -0.7">
+    <apply velocity="0,2.3,-0.7">
         <region>
             <cuboid id="r-5" min="-7,11,152" max="-10,14,155"/>
         </region>
     </apply>
-    <apply velocity="0, 2.3, 0.7">
+    <apply velocity="0,2.3,0.7">
         <region>
             <mirror region="r-5" origin="-8.5,0,61.5" normal="0,0,-1" id="b-5"/>
         </region>
     </apply>
     <!-- Next to high angle jump pads -->
-    <apply velocity="-0.3, 1.1, 3.6">
+    <apply velocity="-0.3,1.1,3.6">
         <region>
             <cuboid id="r-6" min="-37,15,102" max="-34,17,104"/>
         </region>
     </apply>
-    <apply velocity="0.3, 1.1, -3.6">
+    <apply velocity="0.3,1.1,-3.6">
         <region>
             <translate region="r-6" offset="54,0,-83"/>
         </region>
     </apply>
     <!-- Up to the tower jump pads -->
-    <apply velocity="0, 1.7, 0">
+    <apply velocity="0,1.7,0">
         <region>
             <cuboid id="r-7" min="39,15,20" max="40,16,22"/>
             <translate region="r-7" offset="-96,0,81"/>
         </region>
     </apply>
     <!-- Tower side to side jump pads -->
-    <apply velocity="0, 2, 9">
+    <apply velocity="0,2,9">
         <region>
             <cuboid id="r-8" min="40,15,28" max="37,17,30"/>
         </region>
     </apply>
-    <apply velocity="0, 2, -9">
+    <apply velocity="0,2,-9">
         <region>
             <translate region="r-8" offset="-94,0,65"/>
         </region>
     </apply>
     <!-- Side island to side jump pads -->
-    <apply velocity="0, 1.5, -7">
+    <apply velocity="0,1.5,-7">
         <region>
             <cuboid id="r-9" min="37,21,91" max="40,23,89"/>
         </region>
     </apply>
-    <apply velocity="0, 1.5, 7">
+    <apply velocity="0,1.5,7">
         <region>
             <translate region="r-9" offset="-94,0,-57"/>
         </region>
     </apply>
     <!-- Side island to base jump pads -->
-    <apply velocity="-3.1, 1.3, 0">
+    <apply velocity="-3.1,1.3,0">
         <region>
             <cuboid id="r-10" min="35,21,126" max="33,23,123"/>
         </region>
     </apply>
-    <apply velocity="3.1, 1.3, 0">
+    <apply velocity="3.1,1.3,0">
         <region>
             <translate region="r-10" offset="-85,0,-126"/>
         </region>
     </apply>
     <!-- Second island to side island jump pads -->
-    <apply velocity="3.5, 1, 0">
+    <apply velocity="3.5,1,0">
         <region>
             <cuboid id="r-11" min="15,21,95" max="17,23,98"/>
         </region>
     </apply>
-    <apply velocity="-3.5, 1, 0">
+    <apply velocity="-3.5,1,0">
         <region>
             <translate region="r-11" offset="-49,0,-70"/>
         </region>
@@ -220,14 +221,14 @@
     <apply velocity="@2.6,1,0" region="blue-to-platform"/>
   <!-- Monuments for lanes -->
     <union id="smooth-stone">
-            <cuboid id="red-east-stone" min="-5,31,85" max="-6,33,101"/>
-            <cuboid id="red-west-stone" min="-11,31,85" max="-12,33,101"/>
-            <cuboid id="blue-east-stone" min="-5,31,22" max="-6,33,38"/>
-            <cuboid id="blue-west-stone" min="-11,31,22" max="-12,33,38"/>
+        <cuboid id="red-east-stone" min="-5,31,85" max="-6,33,101"/>
+        <cuboid id="red-west-stone" min="-11,31,85" max="-12,33,101"/>
+        <cuboid id="blue-east-stone" min="-5,31,22" max="-6,33,38"/>
+        <cuboid id="blue-west-stone" min="-11,31,22" max="-12,33,38"/>
     </union>
     <union id="glass">
-            <cuboid id="red-glass" min="-6,31,85" max="-11,33,101"/>
-            <cuboid id="blue-glass" min="-6,31,38" max="-11,33,22"/>
+        <cuboid id="red-glass" min="-6,31,85" max="-11,33,101"/>
+        <cuboid id="blue-glass" min="-6,31,38" max="-11,33,22"/>
     </union>
     <!-- no beacons for you -->
     <apply block="never" use="no-beacon"/>
@@ -276,10 +277,6 @@
     <item>leather leggings</item>
     <item>leather boots</item>
 </itemremove>
-<kill-reward>
-    <item material="golden apple"/>
-</kill-reward>
-<respawn delay="2.5s"/>
 <hunger>
     <depletion>off</depletion>
 </hunger>
@@ -291,4 +288,5 @@
     <damage>contact</damage>
     <damage>suffocation</damage>
 </disabledamage>
+<respawn delay="2.5s"/>
 </map>

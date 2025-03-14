@@ -1,9 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Banana Split DTM</name>
-<phase>staging</phase>
-<version>1.0.2</version>
-<gamemode>dtm</gamemode>
+<version>1.0.3</version>
 <objective>Destroy the other team's monuments!</objective>
+<gamemode>dtm</gamemode>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
 </authors>
@@ -31,26 +32,18 @@
         <item slot="28" material="arrow" amount="32"/>
         <item slot="29" material="shears" unbreakable="true"/>
         <item slot="30" material="stick" enchantment="knockback"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+        <chestplate material="leather chestplate" unbreakable="true" team-color="true"/>
+        <leggings material="leather leggings" unbreakable="true" team-color="true"/>
+        <boots material="leather boots" unbreakable="true" team-color="true"/>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
-    <kit force="true" id="reset-resitance-kit">
+    <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
     </kit> 
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="CD0000"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="CD0000"/>
-        <leggings material="leather leggings" unbreakable="true" color="CD0000"/>
-        <boots material="leather boots" unbreakable="true" color="CD0000"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="21618C"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="21618C"/>
-        <leggings material="leather leggings" unbreakable="true" color="21618C"/>
-        <boots material="leather boots" unbreakable="true" color="21618C"/>
-    </kit>
 </kits>
 <spawns>
-    <spawn team="red-team" kit="red-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="180">
             <cuboid min="42,2,43" max="44,2,45"/>
         </region>
@@ -58,7 +51,7 @@
             <cuboid min="44,2,-49" max="42,2,-51"/>
         </region>
     </spawn>
-    <spawn team="blue-team" kit="blue-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region>
             <cuboid min="-42,2,-51" max="-44,2,-49"/>
         </region>
@@ -72,16 +65,6 @@
         </region>
     </default>
 </spawns>
-<destroyables material="obsidian">
-    <destroyable owner="red-team" region="purple-monument" name="Purple Monument"/>
-    <destroyable owner="red-team" region="orange-monument" name="Orange Monument"/>
-    <destroyable owner="blue-team" region="lime-monument" name="Lime Monument"/>
-    <destroyable owner="blue-team" region="cyan-monument" name="Cyan Monument"/>
-</destroyables>
-<filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
-</filters>
 <regions>
     <block id="purple-monument">98,4,23</block>
     <block id="orange-monument">98,4,-30</block>
@@ -105,10 +88,16 @@
     <!--  applicators  -->
     <apply block="never" region="not-build-area" message="You may not edit the void!"/>
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply kit="reset-resitance-kit" region="not-spawns"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
 </regions>
+<destroyables material="obsidian">
+    <destroyable owner="red-team" region="purple-monument" name="Purple Monument"/>
+    <destroyable owner="red-team" region="orange-monument" name="Orange Monument"/>
+    <destroyable owner="blue-team" region="lime-monument" name="Lime Monument"/>
+    <destroyable owner="blue-team" region="cyan-monument" name="Cyan Monument"/>
+</destroyables>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -168,7 +157,6 @@
 </hunger>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="arrow" amount="10"/>
     </kill-reward>
 </kill-rewards>

@@ -1,9 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Snowy Wars CTW</name>
-<phase>staging</phase>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Steal the enemy's wool!</objective>
 <gamemode>ctw</gamemode>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- Ro_G -->
 </authors>
@@ -28,7 +29,7 @@
         <chestplate unbreakable="true" team-color="true" enchantment="protection environmental" material="leather chestplate"/>
         <leggings unbreakable="true" team-color="true" material="leather leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
@@ -57,13 +58,7 @@
         </region>
     </default>
 </spawns>
-<wools craftable="false">
-    <wool team="red-team" color="blue" monument="blue-wool" location="0,0,0"/>
-    <wool team="blue-team" color="red" monument="red-wool" location="0,0,0"/>
-</wools>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <all id="red-woolroom-filter">
         <team>blue-team</team>
         <material>web</material>
@@ -112,19 +107,23 @@
     <negative id="not-playingfield">
         <rectangle min="-635,232" max="-556,377" id="playingfield"/>
     </negative>
-    <!-- applycators -->
+    <!-- applicators -->
+    <apply enter="never" region="obs-spawn" message="You may not enter the observer's spawn!"/>
+    <apply enter="blue-team" region="red-woolroom" message="You may not enter your own wool room!"/>
+    <apply enter="red-team" region="blue-woolroom" message="You may not enter your own wool room!"/>
+    <apply use="blue-woolroom-filter-use" region="blue-woolroom" message="You may not steal from the wool room!"/>
+    <apply use="red-woolroom-filter-use" region="red-woolroom" message="You may not steal from the wool room!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
     <apply block="never" region="wool-monumnets" message="You may not edit the victory monument!"/> 
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
     <apply block-break="blue-woolroom-filter" block-place="never" region="blue-woolroom" message="You may not edit the wool room!"/>
     <apply block-break="red-woolroom-filter" block-place="never" region="red-woolroom" message="You may not edit the wool room!"/>
     <apply block="never" region="not-playingfield" message="You may not edit the void!"/>
-    <apply enter="never" region="obs-spawn" message="You may not enter the observer's spawn!"/>
-    <apply enter="only-blue" region="red-woolroom" message="You may not enter your own wool room!"/>
-    <apply enter="only-red" region="blue-woolroom" message="You may not enter your own wool room!"/>
-    <apply use="blue-woolroom-filter-use" region="blue-woolroom" message="You may not steal from the wool room!"/>
-    <apply use="red-woolroom-filter-use" region="red-woolroom" message="You may not steal from the wool room!"/>
-    <apply kit="reset-resistance-kit" region="not-spawns"/>
 </regions>
+<wools craftable="false">
+    <wool team="red-team" color="blue" monument="blue-wool" location="0,0,0"/>
+    <wool team="blue-team" color="red" monument="red-wool" location="0,0,0"/>
+</wools>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>diamond pickaxe</tool>
@@ -161,17 +160,16 @@
         <modify unbreakable="true" enchantment="protection environmental"/>
     </rule>
 </item-mods>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<maxbuildheight>20</maxbuildheight>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="arrow" amount="12"/>
         <item material="wood" damage="2" amount="12"/>
     </kill-reward>
 </kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>20</maxbuildheight>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->

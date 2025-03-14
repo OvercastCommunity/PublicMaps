@@ -1,16 +1,17 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Desert Cataract CTF</name>
-<phase>staging</phase>
-<version>1.0.3</version>
-<gamemode>ctf</gamemode>
+<version>1.0.4</version>
 <objective>Capture enemy team's flag 3 times!</objective>
+<gamemode>ctf</gamemode>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
     <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->
 </authors>
 <contributors>
     <contributor uuid="cc3a70bf-2702-4bf8-81b7-4b19a748e0a2"/> <!-- Ben_The_Conquer -->
-    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="gameplay improvements"/> <!-- Ruediger_LP -->
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="Gameplay improvements"/> <!-- Ruediger_LP -->
 </contributors>
 <teams>
     <team id="blue-team" color="blue" max="16" max-overfill="22">Blue</team>
@@ -28,30 +29,23 @@
         <item slot="6" material="wood" amount="64" damage="2"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
+        <helmet material="leather helmet" unbreakable="true" team-color="true" locked="true"/>
+        <chestplate material="leather chestplate" unbreakable="true" team-color="true" enchantment="protection environmental" locked="true"/>
         <leggings material="chainmail leggings" unbreakable="true" locked="true"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <boots material="leather boots" unbreakable="true" team-color="true" locked="true"/>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
     </kit> 
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="CD0000" locked="true"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="CD0000" enchantment="protection environmental" locked="true"/>
-        <boots material="leather boots" unbreakable="true" color="CD0000" locked="true"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="21618C" locked="true"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="21618C" enchantment="protection environmental" locked="true"/>
-        <boots material="leather boots" unbreakable="true" color="21618C" locked="true"/>
-    </kit>
 </kits>
 <spawns>
-    <spawn team="blue-team" kit="blue-kit" yaw="-90">
+    <spawn team="blue-team" kit="spawn-kit" yaw="-90">
         <region>
             <cylinder base="-102.5,9,0.5" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="red-team" kit="red-kit" yaw="90">
+    <spawn team="red-team" kit="spawn-kit" yaw="90">
         <region>
             <cylinder base="103.5,9,0.5" radius="1" height="0"/>
         </region>
@@ -62,20 +56,6 @@
         </region>
     </default>
 </spawns>
-<flags>
-    <!-- red flag -->
-    <flag id="red-flag" name="Red Flag" color="red" post="red-flag-post"/>
-    <post id="red-flag-post" pickup-filter="only-red">-34,12,-1</post>
-    <net post="red-flag-post" points="1" region="red-net" capture-filter="only-red"/>
-    <!-- blue flag -->
-    <flag id="blue-flag" name="Blue Flag" color="blue" post="blue-flag-post"/>
-    <post id="blue-flag-post" pickup-filter="only-blue">34,12,-1</post>
-    <net post="blue-flag-post" points="1" region="blue-net" capture-filter="only-blue"/>
-</flags>
-<score>
-    <kills>0</kills>
-    <limit>3</limit>
-</score>
 <filters>
     <team id="only-blue">blue-team</team>
     <team id="only-red">red-team</team>
@@ -104,6 +84,20 @@
     <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
     <apply kit="reset-resistance-kit" region="not-spawns"/>
 </regions>
+<flags>
+    <!-- red flag -->
+    <flag id="red-flag" name="Red Flag" color="red" post="red-flag-post"/>
+    <post id="red-flag-post" pickup-filter="only-red">-34,12,-1</post>
+    <net post="red-flag-post" points="1" region="red-net" capture-filter="only-red"/>
+    <!-- blue flag -->
+    <flag id="blue-flag" name="Blue Flag" color="blue" post="blue-flag-post"/>
+    <post id="blue-flag-post" pickup-filter="only-blue">34,12,-1</post>
+    <net post="blue-flag-post" points="1" region="blue-net" capture-filter="only-blue"/>
+</flags>
+<score>
+    <kills>0</kills>
+    <limit>3</limit>
+</score>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -128,15 +122,10 @@
 <itemremove>
     <item>banner</item>
 </itemremove>
-<maxbuildheight>28</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
+<maxbuildheight>28</maxbuildheight>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->

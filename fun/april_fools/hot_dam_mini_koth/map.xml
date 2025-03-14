@@ -1,9 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Hot Dam: Mini KotH</name>
-<phase>staging</phase>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Score 750 points to win!</objective>
 <gamemode>koth</gamemode>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
 </authors>
@@ -27,33 +28,25 @@
         <item slot="7" material="ladder" amount="16"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow" amount="64"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+        <chestplate material="leather chestplate" unbreakable="true" team-color="true" enchantment="protection projectile:2"/>
+        <leggings material="leather leggings" unbreakable="true" team-color="true"/>
+        <boots material="leather boots" unbreakable="true" team-color="true"/>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
         <effect duration="1.5s">damage resistance</effect>
         <effect duration="1.5s">speed</effect>
-    </kit> 
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="CD0000"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="CD0000" enchantment="protection projectile:2"/>
-        <leggings material="leather leggings" unbreakable="true" color="CD0000"/>
-        <boots material="leather boots" unbreakable="true" color="CD0000"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="21618C"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="21618C" enchantment="protection projectile:2"/>
-        <leggings material="leather leggings" unbreakable="true" color="21618C"/>
-        <boots material="leather boots" unbreakable="true" color="21618C"/>
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue-team" kit="blue-kit" yaw="90">
+    <spawn team="blue-team" kit="spawn-kit" yaw="90">
         <region>
             <cylinder base="-89,38,127" radius="1" height="0"/>
         </region>
     </spawn>
-    <spawn team="red-team" kit="red-kit" yaw="180">
+    <spawn team="red-team" kit="spawn-kit" yaw="180">
         <region>
             <cylinder base="-55,38,93" radius="1" height="0"/>
         </region>
@@ -64,22 +57,6 @@
         </region>
     </default>
 </spawns>
-<control-points incremental="true" show-progress="true" required="false" neutral-state="true" points="1">
-    <control-point name="Blue" capture-time="3s" capture="blue-hill" progress="blue-hill" initial-owner="blue-team"/>
-    <control-point name="Middle" capture-time="5s" capture="mid-hill" progress="mid-hill"/>
-    <control-point name="Red" capture-time="3s" capture="red-hill" progress="red-hill" initial-owner="red-team"/>
-</control-points>
-<score>
-    <kills>0</kills>
-    <limit>750</limit>
-</score>
-<filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
-    <not id="not-void">
-        <void/>
-    </not>
-</filters>
 <regions>
     <union id="hills">
         <cylinder id="blue-hill" base="-114.5,34,109.5" radius="5.01" height="5"/>
@@ -99,13 +76,22 @@
         </union>
     </negative>
     <!-- applicators -->
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
     <apply block="never" region="hills" message="You may not edit the hill!"/>
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
-    <apply block="not-void" region="everywhere" message="You may not edit the void!"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply kit="reset-resistance-kit" region="not-spawns"/>
+    <apply block="deny(void)" message="You may not edit the void!"/>
 </regions>
+<control-points incremental="true" show-progress="true" required="false" neutral-state="true" points="1">
+    <control-point name="Blue" capture-time="3s" capture="blue-hill" progress="blue-hill" initial-owner="blue-team"/>
+    <control-point name="Middle" capture-time="5s" capture="mid-hill" progress="mid-hill"/>
+    <control-point name="Red" capture-time="3s" capture="red-hill" progress="red-hill" initial-owner="red-team"/>
+</control-points>
+<score>
+    <kills>0</kills>
+    <limit>750</limit>
+</score>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -143,11 +129,6 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
-</kill-rewards>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->

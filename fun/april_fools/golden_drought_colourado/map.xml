@@ -1,10 +1,11 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Golden Drought Colourado</name>
-<phase>staging</phase>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Capture all 4 wools!</objective>
-<gamemode>ctw</gamemode>
 <created>2022-04-01</created>
+<gamemode>ctw</gamemode>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
 </authors>
@@ -40,7 +41,7 @@
         <item slot="8" material="golden apple"/>
         <helmet material="leather helmet" team-color="true" unbreakable="true"/>
         <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
@@ -53,32 +54,7 @@
     <spawn team="magenta-team" kit="spawn-kit" yaw="90" region="magenta-spawn-point"/>
     <default yaw="45" region="obs-spawn-point"/>
 </spawns>
-<wools craftable="false">
-    <wool team="lime-team" color="white" monument="lime-team-white-wool" location="0.5,0,0.5"/>
-    <wool team="lime-team" color="orange" monument="lime-team-orange-wool" location="0.5,0,0.5"/>
-    <wool team="lime-team" color="magenta" monument="lime-team-magenta-wool" location="0.5,0,0.5"/>
-    <wool team="lime-team" color="light blue" monument="lime-team-light-blue-wool" location="0.5,0,0.5"/>
-    <wool team="cyan-team" color="yellow" monument="cyan-team-yellow-wool" location="0.5,0,0.5"/>
-    <wool team="cyan-team" color="lime" monument="cyan-team-lime-wool" location="0.5,0,0.5"/>
-    <wool team="cyan-team" color="pink" monument="cyan-team-pink-wool" location="0.5,0,0.5"/>
-    <wool team="cyan-team" color="gray" monument="cyan-team-gray-wool" location="0.5,0,0.5"/>
-    <wool team="orange-team" color="silver" monument="orange-team-silver-wool" location="0.5,0,0.5"/>
-    <wool team="orange-team" color="cyan" monument="orange-team-cyan-wool" location="0.5,0,0.5"/>
-    <wool team="orange-team" color="purple" monument="orange-team-purple-wool" location="0.5,0,0.5"/>
-    <wool team="orange-team" color="blue" monument="orange-team-blue-wool" location="0.5,0,0.5"/>
-    <wool team="magenta-team" color="brown" monument="magenta-team-brown-wool" location="0.5,0,0.5"/>
-    <wool team="magenta-team" color="green" monument="magenta-team-green-wool" location="0.5,0,0.5"/>
-    <wool team="magenta-team" color="red" monument="magenta-team-red-wool" location="0.5,0,0.5"/>
-    <wool team="magenta-team" color="black" monument="magenta-team-black-wool" location="0.5,0,0.5"/>
-</wools>
 <filters>
-    <team id="only-lime">lime-team</team>
-    <team id="only-cyan">cyan-team</team>
-    <team id="only-orange">orange-team</team>
-    <team id="only-magenta">magenta-team</team>
-    <not id="not-void">
-        <void/>
-    </not>
     <any id="wool-sping-filter">
         <material>wool</material>
         <material>bedrock</material>
@@ -153,19 +129,37 @@
         </union>
     </negative>
     <!-- applicators -->
-    <apply enter="only-lime" region="lime-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-cyan" region="cyan-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-orange" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-magenta" region="magenta-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="lime-team" region="lime-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="cyan-team" region="cyan-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="orange-team" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="magenta-team" region="magenta-spawn" message="You may not enter the enemy's spawn!"/>
     <apply block="wool-sping-filter" region="wool-regen" message="You may not edit the wool spring!"/>
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
-    <apply block="not-void" region="not-build-area" message="You may not edit the void!"/>
+    <apply block="deny(void)" region="not-build-area" message="You may not edit the void!"/>
     <apply kit="reset-resistance-kit" region="not-spawns"/>
     <apply block-physics="deny-redstone" region="spawns"/>
 </regions>
-<renewables>
-    <renewable interval="30s" region="wool-regen" renew-filter="renew-filter" replace-filter="replace-filter" shuffle-filter="renew-filter" avoid-players="0"/>
-    <renewable interval="40s" region="not-wool-regen" renew-filter="only-air" replace-filter="renew-filter" avoid-players="0"/>
+<wools craftable="false">
+    <wool team="lime-team" color="white" monument="lime-team-white-wool" location="0.5,0,0.5"/>
+    <wool team="lime-team" color="orange" monument="lime-team-orange-wool" location="0.5,0,0.5"/>
+    <wool team="lime-team" color="magenta" monument="lime-team-magenta-wool" location="0.5,0,0.5"/>
+    <wool team="lime-team" color="light blue" monument="lime-team-light-blue-wool" location="0.5,0,0.5"/>
+    <wool team="cyan-team" color="yellow" monument="cyan-team-yellow-wool" location="0.5,0,0.5"/>
+    <wool team="cyan-team" color="lime" monument="cyan-team-lime-wool" location="0.5,0,0.5"/>
+    <wool team="cyan-team" color="pink" monument="cyan-team-pink-wool" location="0.5,0,0.5"/>
+    <wool team="cyan-team" color="gray" monument="cyan-team-gray-wool" location="0.5,0,0.5"/>
+    <wool team="orange-team" color="silver" monument="orange-team-silver-wool" location="0.5,0,0.5"/>
+    <wool team="orange-team" color="cyan" monument="orange-team-cyan-wool" location="0.5,0,0.5"/>
+    <wool team="orange-team" color="purple" monument="orange-team-purple-wool" location="0.5,0,0.5"/>
+    <wool team="orange-team" color="blue" monument="orange-team-blue-wool" location="0.5,0,0.5"/>
+    <wool team="magenta-team" color="brown" monument="magenta-team-brown-wool" location="0.5,0,0.5"/>
+    <wool team="magenta-team" color="green" monument="magenta-team-green-wool" location="0.5,0,0.5"/>
+    <wool team="magenta-team" color="red" monument="magenta-team-red-wool" location="0.5,0,0.5"/>
+    <wool team="magenta-team" color="black" monument="magenta-team-black-wool" location="0.5,0,0.5"/>
+</wools>
+<renewables avoid-players="0">
+    <renewable interval="30s" region="wool-regen" renew-filter="renew-filter" replace-filter="replace-filter" shuffle-filter="renew-filter"/>
+    <renewable interval="40s" region="not-wool-regen" renew-filter="only-air" replace-filter="renew-filter"/>
 </renewables>
 <toolrepair>
     <tool>stone sword</tool>
@@ -511,17 +505,16 @@
         <replacement>wool:0</replacement>
     </rule>
 </block-drops>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<maxbuildheight>35</maxbuildheight>
 <kill-rewards>
     <kill-reward>
         <item amount="16" material="sandstone"/>
         <item amount="8" damage="2" material="wood"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>35</maxbuildheight>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->

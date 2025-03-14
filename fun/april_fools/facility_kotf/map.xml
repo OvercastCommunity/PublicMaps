@@ -1,9 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Facility KotF</name>
-<phase>staging</phase>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Score 300 Points to win!</objective>
 <gamemode>kotf</gamemode>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design and XML Code"/> <!-- Mikeg542 -->
 </authors>
@@ -27,25 +28,18 @@
         <item slot="1" material="bow" unbreakable="true"/>
         <item slot="2" material="arrow" amount="12"/>
         <item slot="8" material="golden apple"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true" locked="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true" locked="true"/>
         <leggings material="chainmail leggings" unbreakable="true" locked="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true" locked="true"/>
+        <effect amplifier="100">damage resistance</effect>
         <game-mode>adventure</game-mode>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
     </kit>
-    <kit id="blue-kit" parent="spawn-kit">
-        <helmet material="leather helmet" color="334CB2" unbreakable="true" locked="true"/>
-        <chestplate material="leather chestplate" color="334CB2" unbreakable="true" locked="true"/>
-        <boots material="leather boots" color="334CB2" unbreakable="true" locked="true"/>
-    </kit>
-    <kit id="red-kit" parent="spawn-kit">
-        <helmet material="leather helmet" color="993333" unbreakable="true" locked="true"/>
-        <chestplate material="leather chestplate" color="993333" unbreakable="true" locked="true"/>
-        <boots material="leather boots" color="993333" unbreakable="true" locked="true"/>
-    </kit>
     <kit id="pickup-kit" force="true">
-        <effect duration="oo" amplifier="-3">health boost</effect>
+        <effect amplifier="-3">health boost</effect>
         <effect duration="3" amplifier="2">absorption</effect>
     </kit>
     <kit id="drop-kit" force="true">
@@ -54,12 +48,12 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="red-team" kit="red-kit" yaw="90" filter="respawn-filter">
+    <spawn team="red-team" kit="spawn-kit" yaw="90" filter="respawn-filter">
         <region>
             <cylinder base="-101,4,41" radius="1" height="1"/>
         </region>
     </spawn>
-    <spawn team="blue-team" kit="blue-kit" yaw="-90" filter="respawn-filter">
+    <spawn team="blue-team" kit="spawn-kit" yaw="-90" filter="respawn-filter">
         <region>
             <cylinder base="-113,4,157" radius="1" height="1"/>
         </region>
@@ -70,28 +64,7 @@
         </region>
     </default>
 </spawns>
-<respawn spectate="true" delay="3.5s" auto="true">
-    <message>
-        {translate:"death.respawn.confirmed.waiting.flagDropped"}
-    </message>
-</respawn>
-<flags>
-    <flag id="flag" name="Flag" color="purple" points-rate="1" shared="true" pickup-kit="pickup-kit" drop-kit="drop-kit">
-        <post return-time="0s" respawn-time="15s">
-            <block>-78,10,99</block>
-            <block>-107,10,99</block> <!-- mid -->
-            <block>-136,10,99</block>
-        </post>
-    </flag>
-</flags>
-<score>
-    <kills>0</kills>
-    <limit>300</limit>
-</score>
-<time>12m</time>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <not id="respawn-filter">
         <same-team>
             <carrying-flag>flag</carrying-flag>
@@ -123,6 +96,20 @@
     <apply enter="red-spawn-enter-filter" region="red-spawn" message="You may not enter spawn!"/>
     <apply kit="reset-resistance-kit" region="not-spawns"/>
 </regions>
+<flags>
+    <flag id="flag" name="Flag" color="purple" points-rate="1" shared="true" pickup-kit="pickup-kit" drop-kit="drop-kit">
+        <post return-time="0s" respawn-time="15s">
+            <block>-78,10,99</block>
+            <block>-107,10,99</block> <!-- mid -->
+            <block>-136,10,99</block>
+        </post>
+    </flag>
+</flags>
+<score>
+    <kills>0</kills>
+    <limit>300</limit>
+</score>
+<time>12m</time>
 <itemremove>
     <item>banner</item>
     <item>leather helmet</item>
@@ -141,15 +128,17 @@
     <item>blaze rod</item>
     <item>potion</item>
 </itemkeep>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <kill-rewards>
     <kill-reward>
         <item material="arrow" amount="6"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn spectate="true" delay="3.5s" auto="true">
+    <message>{translate:"death.respawn.confirmed.waiting.flagDropped"}</message>
+</respawn>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->

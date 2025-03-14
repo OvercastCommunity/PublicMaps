@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Deepwind Redux DTC</name>
-<phase>staging</phase>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Leak the opposing team's cores!</objective>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/> <!-- PandaBattalion -->
 </authors>
@@ -20,7 +21,7 @@
         <item slot="0" material="stone sword" unbreakable="true"/>
         <item slot="1" material="bow" unbreakable="true"/>
         <item slot="2" material="diamond pickaxe" unbreakable="true"/>
-        <item slot="3" material="iron axe" unbreakable="true" enchantment="dig speed:1"/>
+        <item slot="3" material="iron axe" unbreakable="true" enchantment="dig speed"/>
         <item slot="4" material="wood" amount="48" damage="3"/>
         <item slot="5" material="glass" amount="32"/>
         <item slot="7" material="golden apple"/>
@@ -28,28 +29,20 @@
         <item slot="28" material="arrow" amount="28"/>
         <item slot="29" material="shears" unbreakable="true"/>
         <item slot="30" material="iron spade" unbreakable="true"/>
+        <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+        <chestplate material="leather chestplate" unbreakable="true" team-color="true" enchantment="protection projectile:2"/>
+        <leggings material="leather leggings" unbreakable="true" team-color="true"/>
+        <boots material="leather boots" unbreakable="true" team-color="true"/>
         <potion duration="10" amplifier="3">damage resistance</potion>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="db1818"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="db1818" enchantment="protection projectile:2"/>
-        <leggings material="leather leggings" unbreakable="true" color="db1818"/>
-        <boots material="leather boots" unbreakable="true" color="db1818"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="3c1cd9"/>
-        <chestplate material="leather chestplate" unbreakable="true" color="3c1cd9" enchantment="protection projectile:2"/>
-        <leggings material="leather leggings" unbreakable="true" color="3c1cd9"/>
-        <boots material="leather boots" unbreakable="true" color="3c1cd9"/>
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue-team" kit="blue-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region>
             <cuboid min="-1,9,-76" max="1,9,-73"/>
         </region>
     </spawn>
-    <spawn team="red-team" kit="red-kit" yaw="180">
+    <spawn team="red-team" kit="spawn-kit" yaw="180">
         <region>
             <cuboid min="-1,9,73" max="1,9,76"/>
         </region>
@@ -60,39 +53,6 @@
         </region>
     </default>
 </spawns>
-<cores material="obsidian" leak="3">
-    <core team="red-team" name="Core A">
-      <region>
-        <cuboid min="24,19,70" max="30,13,76"/>
-      </region>
-    </core>
-    <core team="red-team" name="Core B">
-      <region>
-        <cuboid min="-24,19,70" max="-30,13,76"/>
-      </region>
-    </core>
-    <core team="blue-team" name="Core A">
-      <region>
-        <cuboid min="-24,19,-69" max="-30,13,-75"/>
-      </region>
-    </core>
-    <core team="blue-team" name="Core B">
-      <region>
-        <cuboid min="24,19,-69" max="30,13,-75"/>
-      </region>
-    </core>
-</cores>
-<modes>
-    <mode after="10m" material="gold block" name="`6GOLD BLOCK MODE"/>
-    <mode after="20m" material="packed ice" name="`bPACKED ICE MODE"/>
-</modes>
-<filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
-    <not id="not-void">
-        <void/>
-    </not>
-</filters>
 <regions>
     <union id="spawns">
         <rectangle id="blue-spawn" min="-7,-55" max="7,-82"/>
@@ -102,11 +62,37 @@
         <rectangle id="build-area" min="31,-43" max="-31,44"/>
     </negative>
     <!-- applicators -->
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
-    <apply block-place="not-void" region="not-build-area" message="You may not edit the void!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply block-place="deny(void)" region="not-build-area" message="You may not edit the void!"/>
 </regions>
+<cores material="obsidian" leak="3">
+    <core team="red-team" name="Core A">
+        <region>
+            <cuboid min="24,19,70" max="30,13,76"/>
+        </region>
+    </core>
+    <core team="red-team" name="Core B">
+        <region>
+            <cuboid min="-24,19,70" max="-30,13,76"/>
+        </region>
+    </core>
+    <core team="blue-team" name="Core A">
+        <region>
+            <cuboid min="-24,19,-69" max="-30,13,-75"/>
+        </region>
+    </core>
+    <core team="blue-team" name="Core B">
+        <region>
+            <cuboid min="24,19,-69" max="30,13,-75"/>
+        </region>
+    </core>
+</cores>
+<modes>
+    <mode after="10m" material="gold block" name="`6GOLD BLOCK MODE"/>
+    <mode after="20m" material="packed ice" name="`bPACKED ICE MODE"/>
+</modes>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
@@ -140,14 +126,13 @@
     <item>cooked beef</item>
     <item>arrow</item>
 </itemkeep>
-<maxbuildheight>17</maxbuildheight>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="wood" amount="16" damage="3"/>
         <item material="arrow" amount="12"/>
     </kill-reward>
 </kill-rewards>
+<maxbuildheight>17</maxbuildheight>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->

@@ -1,8 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>The Fenland - EPIC STYLE</name>
-<phase>staging</phase>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Break the enemy team's monument, leak their core and capture the wool and the flag!</objective>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="e5953ddf-c1fc-4405-9ac9-6939631cd185"/> <!-- McSpider -->
 </authors>
@@ -26,66 +27,32 @@
         <item slot="7" material="iron ingot"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
+        <helmet material="leather helmet" unbreakable="true" team-color="true"/>
         <chestplate material="iron chestplate" unbreakable="true" enchantment="protection projectile:2"/>
+        <leggings material="leather leggings" unbreakable="true" team-color="true"/>
         <boots material="iron boots" unbreakable="true"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
-    <kit force="true" id="reset-resitance-kit">
+    <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="CD0000"/>
-        <leggings material="leather leggings" unbreakable="true" color="CD0000"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <helmet material="leather helmet" unbreakable="true" color="21618C"/>
-        <leggings material="leather leggings" unbreakable="true" color="21618C"/>
     </kit>
 </kits>
 <spawns>
-    <spawn kit="red-kit" team="red-team" yaw="-90" region="red-spawn-point"/>
-    <spawn kit="blue-kit" team="blue-team" yaw="90" region="blue-spawn-point"/>
+    <spawn kit="spawn-kit" team="red-team" yaw="-90" region="red-spawn-point"/>
+    <spawn kit="spawn-kit" team="blue-team" yaw="90" region="blue-spawn-point"/>
     <default yaw="180">
         <region>
             <cuboid min="-3,25,-44" max="3,25,-50"/>
         </region>
     </default>
 </spawns>
-<wools craftable="false">
-    <wool team="red-team" color="blue" monument="blue-wool" location="0,0,0"/>
-    <wool team="blue-team" color="red" monument="red-wool" location="0,0,0"/>
-</wools>
-<cores material="obsidian" leak="5" name="Core" mode-changes="true">
-    <core team="blue-team" region="blue-core"/>
-    <core team="red-team" region="red-core"/>
-</cores>
-<destroyables material="obsidian" name="Monument" show-progress="true" mode-changes="true">
-    <destroyable owner="blue-team" region="blue-monument"/>
-    <destroyable owner="red-team" region="red-monument"/>
-</destroyables>
-<modes>
-    <mode after="15m" material="gold block" name="`eGOLD BLOCK MODE"/>
-    <mode after="30m" material="packed ice" name="`bPACKED ICE MODE"/>
-</modes>
-<flags carry-message="Capture the Flag at your spawn!">
-    <!-- red flag, blue captures -->
-    <post id="red-flag-post" owner="blue-team" permanent="true" pickup-filter="only-blue">-29,2,-1</post>
-    <flag id="red-flag" name="Red Flag" color="red" post="red-flag-post"/>
-    <net post="red-flag-post" region="blue-spawn-point" owner="blue-team" capture-filter="only-blue"/>
-    <!-- blue flag, red captures -->
-    <post id="blue-flag-post" owner="red-team" permanent="true" pickup-filter="only-red">29,2,1</post>
-    <flag id="blue-flag" name="Blue Flag" color="blue" post="blue-flag-post"/>
-    <net post="blue-flag-post" region="red-spawn-point" owner="red-team" capture-filter="only-red"/>
-</flags>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
     <all id="red-woolroom-filter">
-        <team>blue-team</team>
+        <team id="only-blue">blue-team</team>
         <filter id="woolrooms-filter"/>
     </all>
     <all id="blue-woolroom-filter">
-        <team>red-team</team>
+        <team id="only-red">red-team</team>
         <filter id="woolrooms-filter"/>
     </all>
     <not id="woolrooms-filter">
@@ -160,11 +127,37 @@
     <apply block="never" region="not-build-area" message="You may not edit the void!"/>
     <apply use="red-woolroom-filter-use" region="red-woolroom" message="You may not steal from the wool room!"/>
     <apply use="blue-woolroom-filter-use" region="blue-woolroom" message="You may not steal from the wool room!"/>
-    <apply kit="reset-resitance-kit" region="not-spawns-enter"/>
+    <apply kit="reset-resistance-kit" region="not-spawns-enter"/>
     <apply velocity="0,5,0" region="mid-jump-pad"/>
     <apply velocity="-2,2,2" region="blue-jump-pad"/>
     <apply velocity="2,2,-2" region="red-jump-pad"/>
 </regions>
+<wools craftable="false">
+    <wool team="red-team" color="blue" monument="blue-wool" location="0,0,0"/>
+    <wool team="blue-team" color="red" monument="red-wool" location="0,0,0"/>
+</wools>
+<cores material="obsidian" leak="5" name="Core" mode-changes="true">
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
+</cores>
+<destroyables material="obsidian" name="Monument" show-progress="true" mode-changes="true">
+    <destroyable owner="blue-team" region="blue-monument"/>
+    <destroyable owner="red-team" region="red-monument"/>
+</destroyables>
+<modes>
+    <mode after="15m" material="gold block" name="`eGOLD BLOCK MODE"/>
+    <mode after="30m" material="packed ice" name="`bPACKED ICE MODE"/>
+</modes>
+<flags carry-message="Capture the Flag at your spawn!">
+    <!-- red flag, blue captures -->
+    <post id="red-flag-post" owner="blue-team" permanent="true" pickup-filter="only-blue">-29,2,-1</post>
+    <flag id="red-flag" name="Red Flag" color="red" post="red-flag-post"/>
+    <net post="red-flag-post" region="blue-spawn-point" owner="blue-team" capture-filter="only-blue"/>
+    <!-- blue flag, red captures -->
+    <post id="blue-flag-post" owner="red-team" permanent="true" pickup-filter="only-red">29,2,1</post>
+    <flag id="blue-flag" name="Blue Flag" color="blue" post="blue-flag-post"/>
+    <net post="blue-flag-post" region="red-spawn-point" owner="red-team" capture-filter="only-red"/>
+</flags>
 <itemkeep>
     <item>iron sword</item>
     <item>bow</item>
@@ -205,17 +198,17 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
-<maxbuildheight>22</maxbuildheight>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item amount="12" material="wood"/>
         <item amount="8" material="glass"/>
     </kill-reward>
 </kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>22</maxbuildheight>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->

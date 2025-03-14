@@ -1,10 +1,11 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Cargo DTC/M</name>
 <phase>staging</phase>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Destroy the enemy's monuments and leak their core!</objective>
 <gamemode>dtc</gamemode>
 <gamemode>dtm</gamemode>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
     <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989"/> <!-- EnarRikardz -->
@@ -39,29 +40,23 @@
         <item slot="8" material="golden apple"/>
         <item slot="27" material="stick"/>
         <item slot="28" material="arrow" amount="32"/>
-        <helmet locked="true" unbreakable="true">chainmail helmet</helmet>
-        <leggings locked="true" unbreakable="true">chainmail leggings</leggings>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <helmet locked="true" unbreakable="true" material="chainmail helmet"/>
+        <chestplate material="leather chestplate" unbreakable="true" team-color="true" enchantment="protection projectile:2"/>
+        <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
+        <boots material="leather boots" unbreakable="true" team-color="true" enchantment="protection fall"/>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
-    <kit force="true" id="reset-resitance-kit">
+    <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
     </kit> 
-    <kit id="red-kit" parents="spawn-kit">
-        <chestplate material="leather chestplate" unbreakable="true" color="CD0000" enchantment="protection projectile:2"/>
-        <boots material="leather boots" unbreakable="true" color="CD0000" enchantment="protection fall"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <chestplate material="leather chestplate" unbreakable="true" color="21618C" enchantment="protection projectile:2"/>
-        <boots material="leather boots" unbreakable="true" color="21618C" enchantment="protection fall"/>
-    </kit>
 </kits>
 <spawns>
-    <spawn team="blue-team" kit="blue-kit" yaw="-180">
+    <spawn team="blue-team" kit="spawn-kit" yaw="-180">
         <region>
             <cylinder base="116,43.5,170" height="0" radius="1"/>
         </region>
     </spawn>
-    <spawn team="red-team" kit="red-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region>
             <cylinder base="116,43.5,16" height="0" radius="1"/>
         </region>
@@ -72,26 +67,7 @@
         </region>
     </default>
 </spawns>
-<cores material="obsidian" leak="8" name="Core" mode-changes="true">
-    <core team="blue-team" region="blue-core"/>
-    <core team="red-team" region="red-core"/>
-</cores>
-<destroyables material="obsidian" mode-changes="true">
-    <destroyable owner="red-team" region="purple-monument" name="Purple Monument"/>
-    <destroyable owner="red-team" region="cyan-monument" name="Cyan Monument"/>
-    <destroyable owner="blue-team" region="yellow-monument" name="Yellow Monument"/>
-    <destroyable owner="blue-team" region="orange-monument" name="Orange Monument"/>
-</destroyables>
-<modes>
-    <mode after="15m" material="gold block" name="`eGOLD BLOCK MODE"/>
-    <mode after="30m" material="packed ice" name="`bPACKED ICE MODE"/>
-</modes>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
-    <not id="not-void">
-        <void/>
-    </not>
     <all id="only-iron-world">
         <material id="only-iron">iron block</material>
         <cause>world</cause>
@@ -135,9 +111,23 @@
     <!-- applicators -->
     <apply block="never" region="not-build-area" message="You may not edit the void!"/>
     <apply block-place="only-iron-world" block-break="only-iron" region="spawns" message="You may not edit spawn!"/>
-    <apply block="not-void" message="You may not edit the void!"/>
-    <apply kit="reset-resitance-kit" region="not-spawns"/>
+    <apply block="deny(void)" message="You may not edit the void!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
 </regions>
+<cores material="obsidian" leak="8" name="Core" mode-changes="true">
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
+</cores>
+<destroyables material="obsidian" mode-changes="true">
+    <destroyable owner="red-team" region="purple-monument" name="Purple Monument"/>
+    <destroyable owner="red-team" region="cyan-monument" name="Cyan Monument"/>
+    <destroyable owner="blue-team" region="yellow-monument" name="Yellow Monument"/>
+    <destroyable owner="blue-team" region="orange-monument" name="Orange Monument"/>
+</destroyables>
+<modes>
+    <mode after="15m" material="gold block" name="`eGOLD BLOCK MODE"/>
+    <mode after="30m" material="packed ice" name="`bPACKED ICE MODE"/>
+</modes>
 <renewables>
     <renewable grow="true" particles="true" sound="true" avoid-players="3" region="iron-regen" renew-filter="only-iron" replace-filter="only-air"/>
 </renewables>
@@ -189,7 +179,6 @@
 </hunger>
 <kill-rewards>
     <kill-reward>
-        <item material="golden apple"/>
         <item material="arrow" amount="16"/>
         <item material="wood" amount="16" damage="2"/>
         <item material="leaves" amount="8"/>

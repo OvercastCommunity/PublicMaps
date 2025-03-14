@@ -1,11 +1,12 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Foolirium</name>
-<phase>staging</phase>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Capture both flags and leak the core!</objective>
+<created>2022-04-01</created>
 <gamemode>ctf</gamemode>
 <gamemode>dtc</gamemode>
-<created>2022-04-01</created>
+<include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Original map and gameplay improvements"/> <!-- Tywnis -->
 </authors>
@@ -34,37 +35,59 @@
         <item slot="5" amount="64" damage="2" material="wood"/>
         <item slot="6" amount="64" team-color="true" material="stained clay"/>
         <item slot="8" material="golden apple"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
-        <effect duration="oo" amplifier="100">damage resistance</effect>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect amplifier="100">damage resistance</effect>
     </kit>
     <kit force="true" id="reset-resistance-kit">
         <effect duration="0" amplifier="0">damage resistance</effect>
     </kit>
-    <kit id="blue-kit" parents="spawn-kit">
-        <chestplate unbreakable="true" color="0000FF" material="leather chestplate"/>
-        <boots unbreakable="true" color="0000FF" material="leather boots"/>
-    </kit>
-    <kit id="red-kit" parents="spawn-kit">
-        <chestplate unbreakable="true" color="FF0000" material="leather chestplate"/>
-        <boots unbreakable="true" color="FF0000" material="leather boots"/>
-    </kit>
 </kits>
 <spawns>
-    <spawn team="blue-team" kit="blue-kit" yaw="180" region="blue-spawn-point"/>
-    <spawn team="red-team" kit="red-kit" region="red-spawn-point"/>
+    <spawn team="blue-team" kit="spawn-kit" yaw="180" region="blue-spawn-point"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point"/>
     <default yaw="-90" region="obs-spawn-point"/>
 </spawns>
+<regions>
+    <cylinder id="blue-spawn-point" base="0.5,4,94.5" radius="1.5" height="0"/>
+    <cylinder id="red-spawn-point" base="0.5,4,-93.5" radius="1.5" height="0"/>
+    <cylinder id="obs-spawn-point" base="0.5,51,0.5" radius="1.5" height="0"/>
+    <cuboid id="blue-core" min="-2,23,33" max="3,27,39"/>
+    <cuboid id="red-core" min="-2,23,-38" max="3,27,-32"/>
+    <union id="nets">
+        <cuboid id="blue-net" min="-5,2,68" max="6,15,105"/>
+        <cuboid id="red-net" min="-5,2,-104" max="6,15,-67"/>
+    </union>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <rectangle id="blue-spawn" min="-5,68" max="6,105"/>
+            <rectangle id="red-spawn" min="-5,-104" max="6,-67"/>
+        </union>
+    </negative>
+    <negative id="not-build-area">
+        <union id="build-area">
+            <rectangle min="-35,-32" max="36,33"/> <!-- mid -->
+        </union>
+    </negative>
+    <!-- applicators -->
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply block="never" region="spawns" message="You may not edit spawn!"/>
+    <apply block="deny(void)" region="not-build-area" message="You may not edit the void!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+</regions>
 <flags>
-    <flag id="yellow-flag" name="Yellow Flag" color="yellow" owner="blue-team" pickup-filter="only-red">
+    <flag id="yellow-flag" name="Yellow Flag" color="yellow" owner="blue-team" pickup-filter="red-team">
         <post>-27,7,101</post>
     </flag>
-    <flag id="orange-flag" name="Orange Flag" color="orange" owner="blue-team" pickup-filter="only-red">
+    <flag id="orange-flag" name="Orange Flag" color="orange" owner="blue-team" pickup-filter="red-team">
         <post>27,7,101</post>
     </flag>
-    <flag id="green-flag" name="Green Flag" color="green" owner="red-team" pickup-filter="only-blue">
+    <flag id="green-flag" name="Green Flag" color="green" owner="red-team" pickup-filter="blue-team">
         <post>27,7,-101</post>
     </flag>
-    <flag id="light-blue-flag" name="Light Blue Flag" color="light blue" owner="red-team" pickup-filter="only-blue">
+    <flag id="light-blue-flag" name="Light Blue Flag" color="light blue" owner="red-team" pickup-filter="blue-team">
         <post>-27,7,-101</post>
     </flag>
     <net region="red-net" flag="yellow-flag" post="yellow-flag-monument"/>
@@ -90,41 +113,6 @@
     <core team="blue-team" region="blue-core"/>
     <core team="red-team" region="red-core"/>
 </cores>
-<filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
-    <not id="not-void">
-        <void/>
-    </not>
-</filters>
-<regions>
-    <cylinder id="blue-spawn-point" base="0.5,4,94.5" radius="1.5" height="0"/>
-    <cylinder id="red-spawn-point" base="0.5,4,-93.5" radius="1.5" height="0"/>
-    <cylinder id="obs-spawn-point" base="0.5,51,0.5" radius="1.5" height="0"/>
-    <cuboid id="blue-core" min="-2,23,33" max="3,27,39"/>
-    <cuboid id="red-core" min="-2,23,-38" max="3,27,-32"/>
-    <union id="nets">
-        <cuboid id="blue-net" min="-5,2,68" max="6,15,105"/>
-        <cuboid id="red-net" min="-5,2,-104" max="6,15,-67"/>
-    </union>
-    <negative id="not-spawns">
-        <union id="spawns">
-            <rectangle id="blue-spawn" min="-5,68" max="6,105"/>
-            <rectangle id="red-spawn" min="-5,-104" max="6,-67"/>
-        </union>
-    </negative>
-    <negative id="not-build-area">
-        <union id="build-area">
-            <rectangle min="-35,-32" max="36,33"/> <!-- mid -->
-        </union>
-    </negative>
-    <!-- applicators -->
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply block="never" region="spawns" message="You may not edit spawn!"/>
-    <apply block="not-void" region="not-build-area" message="You may not edit the void!"/>
-    <apply kit="reset-resistance-kit" region="not-spawns"/>
-</regions>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -238,17 +226,16 @@
         </drops>
     </rule>
 </block-drops>
-<maxbuildheight>28</maxbuildheight>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <kill-rewards>
     <kill-reward>
         <item amount="16" damage="2" material="wood"/>
         <item amount="8" team-color="true" material="stained clay"/>
-        <item material="golden apple"/>
     </kill-reward>
 </kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>28</maxbuildheight>
 <!-- <maptags>
     <maptag>#aprilfools</maptag>
 </maptags> -->
