@@ -1,45 +1,28 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Boat Bolt</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Score 50 points before time runs out!</objective>
+<gamemode>ad</gamemode>
+<gamemode>arcade</gamemode>
+<phase>staging</phase>
 <authors>
     <author uuid="a43135a4-d7b9-49ab-ac8d-a16bb2513c8d"/> <!-- Ny_ -->
 </authors>
 <contributors>
     <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067" contribution="Spawn Design"/> <!-- samthecat43 -->
 </contributors>
-<gamemode>ad</gamemode>
-<gamemode>arcade</gamemode>
-<phase>staging</phase>
 <broadcasts>
-    <tip filter="only-boaters" after="0s">`aThe glass wall will dissappear in 5 seconds!</tip>
-    <tip filter="only-defenders" after="0s">`aYou can move in 5 seconds!</tip>
-    <tip filter="only-boaters" after="2s">`aDefenders can shoot fireballs, so watch out!</tip>
-    <tip filter="only-defenders" after="2s">`aYour hoe can shoot fireballs!</tip>
-    <alert filter="only-boaters" after="5s">`1`lGO! Boat into the scoreboxes!</alert>
-    <alert filter="only-defenders" after="5s">`1`lDon't let the attackers score 50 points!</alert>
+    <tip filter="boaters-team" after="0s">`aThe glass wall will dissappear in 5 seconds!</tip>
+    <tip filter="defenders-team" after="0s">`aYou can move in 5 seconds!</tip>
+    <tip filter="boaters-team" after="2s">`aDefenders can shoot fireballs, so watch out!</tip>
+    <tip filter="defenders-team" after="2s">`aYour hoe can shoot fireballs!</tip>
+    <alert filter="boaters-team" after="5s">`1`lGO! Boat into the scoreboxes!</alert>
+    <alert filter="defenders-team" after="5s">`1`lDon't let the attackers score 50 points!</alert>
 </broadcasts>
 <teams>
-    <team id="boaters" min="3" max="12" color="dark red" plural="true">Boaters</team>
-    <team id="defenders" min="1" max="2" color="blue" plural="true">Defenders</team>
+    <team id="boaters-team" min="3" max="12" color="dark red" plural="true">Boaters</team>
+    <team id="defenders-team" min="1" max="2" color="blue" plural="true">Defenders</team>
 </teams>
-<spawns>
-    <spawn team="boaters" kit="boater-kit">
-        <regions yaw="90">
-            <region id="boaters-spawn"/>
-        </regions>
-    </spawn>
-    <spawn team="defenders" kit="defender-kit">
-        <regions yaw="90">
-            <region id="defenders-spawn"/>
-        </regions>
-    </spawn>
-    <default>
-        <regions yaw="90">
-            <cuboid min="23,58,2" max="22,58,-1"/>
-        </regions>
-    </default>
-</spawns>
 <kits>
     <kit id="boater-kit">
         <item slot="0" material="boat"/>
@@ -56,26 +39,59 @@
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="defender-kit">
-        <item projectile="your-mom" name="Hoe of Power" material="gold hoe" slot="1" unbreakable="true" enchantment="ARROW_DAMAGE:10"/>
+        <item slot="1" projectile="your-mom" name="Hoe of Power" material="gold hoe" unbreakable="true" enchantment="arrow_damage:10"/>
         <boots unbreakable="true" color="0066cc" locked="true" material="leather boots"/>
         <game-mode>adventure</game-mode>
         <walk-speed>2.5</walk-speed>
         <effect duration="5s" amplifier="-100">jump_boost</effect>
-        <effect duration="5s" amplifier="1">blindness</effect>
+        <effect duration="5s">blindness</effect>
         <effect duration="5s" amplifier="10">slowness</effect>
     </kit>
     <kit id="boating-kit">
-        <clear-items/>
+        <clear/>
     </kit>
 </kits>
+<spawns>
+    <spawn team="boaters-team" kit="boater-kit" yaw="90" region="boaters-spawn"/>
+    <spawn team="defenders-team" kit="defender-kit" yaw="90" region="defenders-spawn"/>
+    <default>
+        <region yaw="90">
+            <cuboid min="23,58,2" max="22,58,-1"/>
+        </region>
+    </default>
+</spawns>
+<regions>
+    <cuboid id="boaters-spawn" min="2,33,-2" max="4,33,3"/>
+    <cuboid id="defenders-spawn" min="25,53,1" max="24,53,0"/>
+    <union id="death-portal">
+        <cuboid min="oo,28,20" max="-26,27,-20"/>
+        <cuboid min="-26,27,20" max="-46,26,-20"/>
+        <cuboid min="-46,26,20" max="-66,25,-20"/>
+        <cuboid min="-66,25,20" max="-86,24,-20"/>
+        <cuboid min="-86,24,20" max="-106,23,-20"/>
+        <cuboid min="-106,23,20" max="-126,22,-20"/>
+        <cuboid min="-126,22,20" max="-146,21,-20"/>
+        <cuboid min="-146,11,20" max="-186,10,-20"/>
+        <cuboid min="-186,12,20" max="-206,11,-20"/>
+        <cuboid min="-206,11,20" max="-226,10,-20"/>
+        <cuboid min="-226,10,20" max="-246,9,-20"/>
+        <cuboid min="-246,9,20" max="-266,8,-20"/>
+        <cuboid min="-266,8,20" max="-oo,7,-20"/>
+    </union>
+    <cuboid id="boating-area" min="-10,32,20" max="-30,26,-20"/>
+    <apply region="death-portal" enter="boaters-team"/>
+    <apply region="boaters-spawn" kit="boater-kit"/>
+    <apply region="boating-area" kit="boating-kit"/>
+</regions>
 <projectiles>
     <projectile id="your-mom" name="your-mom" projectile="Fireball" velocity="2.0" damage="50" cooldown="1s" throwable="false"/>
 </projectiles>
 <tnt>
     <blockdamage>false</blockdamage>
 </tnt>
+<!-- TODO: replace fake destroyable with fill action -->
 <destroyables name="Walls" show="false" materials="stained glass:15" mode-changes="true" completion="0%">
-    <destroyable id="boater-walls" owner="boaters">
+    <destroyable id="boater-walls" owner="boaters-team">
         <region>
             <cuboid min="-6,31,13" max="-7,39,-12"/>
         </region>
@@ -86,28 +102,28 @@
 </modes>
 <score>
     <limit>50</limit>
-    <box points="2" filter="only-boaters">
+    <box points="2" filter="boaters-team">
         <region>
             <cuboid min="-81,26,-7" max="-84,26,-4"/>
         </region>
     </box>
-    <box points="5" filter="only-boaters">
+    <box points="5" filter="boaters-team">
         <region>
             <cuboid min="-114,24,5" max="-117,24,8"/>
         </region>
     </box>
-    <box points="10" filter="only-boaters">
+    <box points="10" filter="boaters-team">
         <region>
             <cuboid min="-199,13,-6" max="-202,13,-3"/>
         </region>
     </box>
-    <box points="20" filter="only-boaters">
+    <box points="20" filter="boaters-team">
         <region>
             <cuboid min="-306,9,4" max="-309,9,1"/>
         </region>
     </box>
 </score>
-<time result="defenders">125s</time>
+<time result="defenders-team">125s</time>
 <disabledamage>
     <damage enemy="false">projectile</damage>
     <damage enemy="false">entity explosion</damage>
@@ -139,42 +155,8 @@
         </region>
     </portal>
     <!-- Boaters' Void Portal -->
-    <portal>
-        <region>
-            <region id="death-portal"/>
-        </region>
-        <destination>
-            <region id="boaters-spawn"/>
-        </destination>
-    </portal>
+    <portal region="death-portal" destination="boaters-spawn"/>
 </portals>
-<filters>
-    <team id="only-boaters">boaters</team>
-    <team id="only-defenders">defenders</team>
-</filters>
-<regions>
-    <cuboid id="boaters-spawn" min="2,33,-2" max="4,33,3"/>
-    <cuboid id="defenders-spawn" min="25,53,1" max="24,53,0"/>
-    <union id="death-portal">
-        <cuboid min="oo,28,20" max="-26,27,-20"/>
-        <cuboid min="-26,27,20" max="-46,26,-20"/>
-        <cuboid min="-46,26,20" max="-66,25,-20"/>
-        <cuboid min="-66,25,20" max="-86,24,-20"/>
-        <cuboid min="-86,24,20" max="-106,23,-20"/>
-        <cuboid min="-106,23,20" max="-126,22,-20"/>
-        <cuboid min="-126,22,20" max="-146,21,-20"/>
-        <cuboid min="-146,11,20" max="-186,10,-20"/>
-        <cuboid min="-186,12,20" max="-206,11,-20"/>
-        <cuboid min="-206,11,20" max="-226,10,-20"/>
-        <cuboid min="-226,10,20" max="-246,9,-20"/>
-        <cuboid min="-246,9,20" max="-266,8,-20"/>
-        <cuboid min="-266,8,20" max="-oo,7,-20"/>
-    </union>
-    <cuboid id="boating-area" min="-10,32,20" max="-30,26,-20"/>
-    <apply region="death-portal" enter="only-boaters"/>
-    <apply region="boaters-spawn" kit="boater-kit"/>
-    <apply region="boating-area" kit="boating-kit"/>
-</regions>
 <hunger>
     <depletion>off</depletion>
 </hunger>

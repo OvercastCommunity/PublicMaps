@@ -1,8 +1,8 @@
-<map proto="1.4.2" game="Ice Miners">
+<map proto="1.5.0" game="Ice Miners">
 <name>Ice Miners</name>
 <objective>Collect all the gold you can as you make your way down the tunnel!</objective>
 <gamemode>arcade</gamemode>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
 </authors>
@@ -10,37 +10,34 @@
     <tip after="1m" every="30s">The scorebox is at the bottom of the map!</tip>
 </broadcasts>
 <players max="8" max-overfill="8" show-name-tags="false"/>
-<timelock>on</timelock>
-<time>3m</time>
-<spawns>
-    <spawn kit="spawn-kit">
-        <regions>
-            <point yaw="-90">-21.5,101,0.5</point>
-        </regions>
-    </spawn>
-    <default kit="nightvision">
-        <regions>
-            <point yaw="-90">-21.5,101,0.5</point>
-        </regions>
-    </default>
-</spawns>
 <kits>
-    <kit id="spawn-kit">
-        <helmet unbreakable="true">iron helmet</helmet>
-        <chestplate unbreakable="true">leather chestplate</chestplate>
-        <leggings unbreakable="true">chainmail leggings</leggings>
-        <boots unbreakable="true">leather boots</boots>
+    <kit id="spawn-kit" parents="obs-kit">
+        <helmet unbreakable="true" material="iron helmet"/>
+        <chestplate unbreakable="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" material="leather boots"/>
         <item slot="0" unbreakable="true" name="`6Miner's Joy" material="iron pickaxe">
             <enchantment level="6">damage undead</enchantment>
             <enchantment level="5">dig speed</enchantment>
         </item>
-        <potion duration="oo" amplifier="3">resistance</potion>
-        <potion duration="oo">night vision</potion>
+        <effect duration="oo" amplifier="3">resistance</effect>
     </kit>
-    <kit id="nightvision">
-        <potion duration="oo">night vision</potion>
+    <kit id="obs-kit">
+        <effect>night vision</effect>
     </kit>
 </kits>
+<spawns>
+    <spawn kit="spawn-kit">
+        <region yaw="-90">
+            <point>-21.5,101,0.5</point>
+        </region>
+    </spawn>
+    <default kit="obs-kit">
+        <region yaw="-90">
+            <point>-21.5,101,0.5</point>
+        </region>
+    </default>
+</spawns>
 <filters>
     <all id="player-mine">
         <cause>player</cause>
@@ -69,6 +66,7 @@
     <apply block-place="replace-ice"/>
     <apply block="player-mine"/>
 </regions>
+<time>3m</time>
 <score>
     <box region="scorebox">
         <redeemables>
@@ -91,14 +89,9 @@
     <disable>diamond block</disable>
 </crafting>
 <renewables>
-    <renewable interval="10s" grow="false" particles="false" sound="true">
-        <region>
-            <everywhere/>
-        </region>
+    <renewable region="everywhere" interval="10s" grow="false" particles="false" sound="true">
         <renew-filter>
-            <any>
-                <material>ice</material>
-            </any>
+            <material>ice</material>
         </renew-filter>
         <replace-filter>
             <any>
@@ -107,10 +100,7 @@
             </any>
         </replace-filter>
     </renewable>
-    <renewable interval="1m" grow="false" particles="false" sound="true">
-        <region>
-            <everywhere />
-        </region>
+    <renewable region="everywhere" interval="1m" grow="false" particles="false" sound="true">
         <renew-filter>
             <any>
                 <material>stone</material>
@@ -195,4 +185,5 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<timelock>on</timelock>
 </map>

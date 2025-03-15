@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
-<map proto="1.4.2">
+<map proto="1.5.0">
 <game>Progress</game>
 <name>Rainbow Race</name>
-<version>1.0.1</version>
-<phase>staging</phase>
+<version>1.0.2</version>
 <created>2022-09-23</created>
 <objective>Be the first to finish the race!</objective>
+<phase>staging</phase>
 <authors>
     <author contribution="Original Bedrock map author">MKT Builder</author>
 </authors>
@@ -13,38 +12,24 @@
     <contributor uuid="12272c21-3716-44a4-9d35-0c5221756439" contribution="PGM adaptation"/> <!-- Zet -->
     <contributor uuid="6d020912-8d2c-405c-9deb-b5b42361a1bd" contribution="PGM adaptation"/> <!-- insolentes -->
     <contributor uuid="809f418e-7f08-4fc0-a8e3-c24c012b4b6c" contribution="PGM adaptation"/> <!-- panxo -->
-    <contributor uuid="a90be681-0d8d-4d76-9094-c609a5d4596a" contribution="xml"/> <!-- alejitox -->
+    <contributor uuid="a90be681-0d8d-4d76-9094-c609a5d4596a" contribution="XML"/> <!-- alejitox -->
     <contributor uuid="0b5f70a7-f11c-4db3-a596-824d3122db4a"/> <!-- gnomo_maligno -->
-    <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b" contribution="xml help"/> <!-- Jexel -->
+    <contributor uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b" contribution="XML help"/> <!-- Jexel -->
 </contributors>
 <players max="50" colors="true"/>
-<respawn auto="true"/>
-<spawns>
-    <spawn yaw="0" filter="score-0" kit="runner-kit">
-        <region>
-            <cuboid min="-90.5,99.5,-70.5" max="-100.5,99.5,-65.5" />
-        </region>
-    </spawn>
-    <spawn yaw="-180" filter="score-1" region="checkpoint-1" kit="runner-kit" safe="true"/>
-    <spawn yaw="-90" filter="score-2" region="checkpoint-2" kit="runner-kit" safe="true"/>
-    <spawn yaw="-90" filter="score-3" region="checkpoint-3" kit="runner-kit" safe="true"/>
-    <spawn yaw="90" filter="score-4" region="checkpoint-4" kit="runner-kit" safe="true"/>
-    <spawn yaw="90" filter="score-5" region="checkpoint-5" kit="runner-kit" safe="true"/>
-    <default kit="night-vision-kit">
-        <region yaw="90">
-            <cylinder base="-46.5,138.1,-88" radius="3" height="0"/>
-        </region>
-    </default>
-</spawns>
+<broadcasts>
+    <tip after="20s" every="1m">There are various checkpoints around the map, make sure to pass them!</tip>
+    <tip after="22s" every="1m">When you die, you will respawn at the previous checkpoint!</tip>
+</broadcasts>
 <kits>
     <kit id="runner-kit">
         <boots material="leather boots" team-color="true" locked="true" unbreakable="true" name="`oRunner Boots"/>
-        <effect duration="oo" amplifier="1">night vision</effect>
-        <effect duration="oo" amplifier="1">invisibility</effect>
+        <effect>night vision</effect>
+        <effect>invisibility</effect>
         <walk-speed>2.6</walk-speed>
     </kit>
     <kit id="night-vision-kit">
-        <effect duration="oo" amplifier="1">night vision</effect>
+        <effect>night vision</effect>
     </kit>
     <kit id="jump-boost-4-kit" force="true">
         <effect duration="8" amplifier="4">jump_boost</effect>
@@ -65,9 +50,41 @@
         <health>1</health>
     </kit>
 </kits>
-<portals>
-    <portal y="-84" sound="false" region="death"/>
-</portals>
+<spawns>
+    <spawn filter="score-0" kit="runner-kit">
+        <region>
+            <cuboid min="-90.5,99.5,-70.5" max="-100.5,99.5,-65.5" />
+        </region>
+    </spawn>
+    <spawn yaw="-180" filter="score-1" region="checkpoint-1" kit="runner-kit" safe="true"/>
+    <spawn yaw="-90" filter="score-2" region="checkpoint-2" kit="runner-kit" safe="true"/>
+    <spawn yaw="-90" filter="score-3" region="checkpoint-3" kit="runner-kit" safe="true"/>
+    <spawn yaw="90" filter="score-4" region="checkpoint-4" kit="runner-kit" safe="true"/>
+    <spawn yaw="90" filter="score-5" region="checkpoint-5" kit="runner-kit" safe="true"/>
+    <default kit="night-vision-kit">
+        <region yaw="90">
+            <cylinder base="-46.5,138.1,-88" radius="3" height="0"/>
+        </region>
+    </default>
+</spawns>
+<filters>
+    <any id="allow-some">
+        <cause>world</cause>
+    </any>
+    <not id="deny-use">
+        <any>
+            <material>dispenser</material>
+            <material>furnace</material>
+        </any>
+    </not>
+    <time id="after-10s">10s</time>
+    <score id="score-0">0</score>
+    <score id="score-1">1</score>
+    <score id="score-2">2</score>
+    <score id="score-3">3</score>
+    <score id="score-4">4</score>
+    <score id="score-5">5</score>
+</filters>
 <regions>
     <cuboid id="spawn-barrier" min="6,1,-13" max="-7,5,-12"/>
     <cuboid id="checkpoint-1" min="-123.5,102,-58.5" max="-146.5,105.5,-56.5"/>
@@ -135,24 +152,6 @@
     <apply kit="jump-boost-5-kit" region="jump-boost-5-region"/>
     <apply kit="speed-portal-kit" region="speed-portals"/>
 </regions>
-<filters>
-    <any id="allow-some">
-        <cause>world</cause>
-    </any>
-    <not id="deny-use">
-        <any>
-            <material>dispenser</material>
-            <material>furnace</material>
-        </any>
-    </not>
-    <time id="after-10s">10s</time>
-    <score id="score-0">0</score>
-    <score id="score-1">1</score>
-    <score id="score-2">2</score>
-    <score id="score-3">3</score>
-    <score id="score-4">4</score>
-    <score id="score-5">5</score>
-</filters>
 <score>
     <limit>10</limit>
     <box points="1" region="checkpoint-1" filter="score-0"/>
@@ -162,10 +161,9 @@
     <box points="1" region="checkpoint-5" filter="score-4"/>
     <box points="5" region="finish" filter="score-5"/>
 </score>
-<broadcasts>
-    <tip after="20s" every="1m">There are various checkpoints around the map, make sure to pass them!</tip>
-    <tip after="22s" every="1m">When you die, you will respawn at the previous checkpoint!</tip>
-</broadcasts>
+<portals>
+    <portal y="-84" sound="false" region="death"/>
+</portals>
 <disabledamage>
     <damage>entity attack</damage>
     <damage>fall</damage>
@@ -177,4 +175,5 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
+<respawn auto="true"/>
 </map>

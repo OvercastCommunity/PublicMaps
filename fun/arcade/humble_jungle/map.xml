@@ -1,6 +1,6 @@
-<map proto="1.4.2" game="Wool Story Bro">
+<map proto="1.5.0" game="Wool Story Bro">
 <name>Humble Jungle</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Get the most points before time runs out!</objective>
 <gamemode>arcade</gamemode>
 <include id="void-death"/>
@@ -9,70 +9,39 @@
     <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!-- Anthonny -->
 </authors>
 <contributors>
-    <contributor contribution="Original map concept" uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+    <contributor uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141" contribution="Original map concept"/> <!-- Avaleer -->
 </contributors>
 <players colors="true" max="50"/>
+<kits>
+    <kit id="kit" force="true">
+        <item slot="0" enchantment="knockback:2" material="stick"/>
+        <helmet unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true" material="leather helmet"/>
+        <boots damage="64" material="leather boots">
+            <attribute amount="2">generic.knockbackResistance</attribute>
+        </boots>
+        <effect amplifier="2">speed</effect>
+        <health>6</health>
+    </kit>
+</kits>
 <spawns persistent="true">
     <spawn kit="kit">
         <regions>
             <point yaw="-70">130,4,-166</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
             <point>153,5,-168</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
             <point yaw="20">176,4,-166</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
             <point yaw="90">178,5,-143</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
             <point yaw="100">176,4,-120</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
             <point yaw="180">153,5,-118</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
             <point yaw="-165">130,4,-120</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
             <point yaw="-90">128,5,-143</point>
         </regions>
     </spawn>
     <default>
-        <regions>
-            <point yaw="-180">153,17,-145</point>
-        </regions>
+        <region yaw="-180">
+            <point>153,17,-145</point>
+        </region>
     </default>
 </spawns>
-<kits>
-    <kit id="kit" force="true">
-        <item slot="0" enchantment="knockback:2" material="stick"/>
-        <effect amplifier="2">speed</effect>
-        <health>6</health>
-        <boots damage="64" material="leather boots">
-            <attribute amount="2">generic.knockbackResistance</attribute>
-        </boots>
-        <helmet unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true" material="leather helmet"/>
-    </kit>
-</kits>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <regions>
     <apply block="never"/>
 </regions>
@@ -319,5 +288,8 @@
     <item>leather boots</item>
 </itemremove>
 <timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <respawn delay="3s"/>
 </map>

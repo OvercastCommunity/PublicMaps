@@ -1,6 +1,6 @@
-<map proto="1.4.2" game="Rush">
+<map proto="1.5.0" game="Rush">
 <name>Biomes</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Runners must get from one side of the map to the other without getting killed by the Defenders.</objective>
 <gamemode>blitz</gamemode>
 <gamemode>ad</gamemode>
@@ -9,15 +9,53 @@
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
 </authors>
+<teams>
+    <team id="runners" color="red" max="25" max-overfill="30">Runners</team>
+    <team id="defenders" color="green" max="5">Defenders</team>
+</teams>
+<kits>
+    <kit id="runner-kit">
+        <helmet color="F27FA5" material="leather helmet"/>
+        <chestplate color="F27FA5" material="leather chestplate"/>
+        <leggings color="F27FA5" material="leather leggings"/>
+        <boots color="F27FA5" material="leather boots"/>
+        <effect>speed</effect>
+    </kit>
+    <kit id="defender-kit">
+        <item slot="1" unbreakable="true" enchantment="arrow knockback;arrow damage:3;arrow infinite" material="bow"/>
+        <item slot="28" material="arrow"/>
+        <helmet color="7FCC19" material="leather helmet"/>
+        <chestplate color="7FCC19" material="leather chestplate"/>
+        <leggings color="7FCC19" material="leather leggings"/>
+        <boots color="7FCC19" material="leather boots"/>
+        <effect amplifier="5">speed</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="runners" kit="runner-kit">
+        <region>
+            <point>443.5,47,268.5</point>
+        </region>
+    </spawn>
+    <spawn team="defenders" kit="defender-kit">
+        <regions>
+            <point>488.5,60,323.5</point>
+            <point>402.5,60,323.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <region>
+            <point>443.5,47,268.5</point>
+        </region>
+    </default>
+</spawns>
 <filters>
-    <any id="monument">
-        <material>sponge</material>
-    </any>
+    <material id="monument">sponge</material>
 </filters>
 <regions>
-    <apply region="everywhere" block="monument"/>
+    <apply block="monument"/>
 </regions>
-<destroyables name="Monument" materials="sponge" completion="100%">
+<destroyables name="Monument" materials="sponge">
     <destroyable owner="defenders">
         <region>
             <block>446,24,1239</block>
@@ -28,73 +66,7 @@
     <lives>1</lives>
     <broadcastLives>true</broadcastLives>
 </blitz>
-<!-- include src="blitz-global.xml"/ -->
-<teams>
-    <team id="runners" color="red" max="25" max-overfill="30">Runners</team>
-    <team id="defenders" color="green" max="5">Defenders</team>
-</teams>
-<kits>
-    <kit id="runner-kit">
-        <helmet color="F27FA5">leather helmet</helmet>
-        <chestplate color="F27FA5">leather chestplate</chestplate>
-        <leggings color="F27FA5">leather leggings</leggings>
-        <boots color="F27FA5">leather boots</boots>
-        <effect duration="oo" amplifier="1">speed</effect>
-    </kit>
-    <kit id="defender-kit">
-        <helmet color="7FCC19">leather helmet</helmet>
-        <chestplate color="7FCC19">leather chestplate</chestplate>
-        <leggings color="7FCC19">leather leggings</leggings>
-        <boots color="7FCC19">leather boots</boots>
-        <effect duration="oo" amplifier="5">speed</effect>
-        <item slot="1" unbreakable="true" enchantment="arrow knockback:1;arrow damage:3;arrow infinite:1">bow</item>
-        <item slot="28" amount="1">arrow</item>
-    </kit>
-</kits>
-<itemremove>
-    <item>sponge</item>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
-</itemremove>
-<timelock>on</timelock>
-<filters>
-    <any id="defenders-only">
-        <team>defenders</team>
-    </any>
-    <any id="runners-only">
-        <team>runners</team>
-    </any>
-</filters>
-<spawns>
-    <spawn team="runners" kit="runner-kit">
-        <regions yaw="0">
-            <point>443.5,47,268.5</point>
-        </regions>
-    </spawn>
-    <spawn team="defenders" kit="defender-kit">
-        <regions yaw="0">
-            <point>488.5,60,323.5</point>
-            <point>402.5,60,323.5</point>
-        </regions>
-    </spawn>
-    <default>
-        <regions yaw="0">
-            <point>443.5,47,268.5</point>
-        </regions>
-    </default>
-</spawns>
 <time result="defenders">5m</time>
-<gamerules>
-    <naturalRegeneration>false</naturalRegeneration>
-</gamerules>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<disabledamage>
-    <damage>fall</damage>
-</disabledamage>
 <portals>
     <portal x="@487" y="@60" yaw="@0">
         <region>
@@ -126,7 +98,7 @@
             <cuboid min="400,41,1221" max="401,38,1152"/>
         </region>
     </portal>
-    <portal x="@487" y="@10" yaw="@0">>
+    <portal x="@487" y="@10" yaw="@0">
         <region>
             <cuboid min="400,11,790" max="401,8,752"/>
         </region>
@@ -162,10 +134,27 @@
             <cuboid min="491,41,1221" max="490,38,1152"/>
         </region>
     </portal>
-    <portal x="@403" y="@10" yaw="@0">>
+    <portal x="@403" y="@10" yaw="@0">
         <region>
             <cuboid min="491,11,790" max="490,8,752"/>
         </region>
     </portal>
 </portals>
+<itemremove>
+    <item>sponge</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<timelock>on</timelock>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
 </map>

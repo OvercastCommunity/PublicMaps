@@ -1,6 +1,6 @@
-<map proto="1.4.2" game="`eProgress">
+<map proto="1.5.0" game="`eProgress">
 <name>Block Runner: World of Sports</name>
-<version>1.0.0</version>
+<version>1.0.1</version>
 <include id="void-death"/>
 <include id="block-runner"/> <!-- Required by all Block Runner maps -->
 <authors>
@@ -10,11 +10,7 @@
     <contributor uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Concept and XML"/> <!-- AtlasGames -->
 </contributors>
 <spawns>
-    <spawn kit="spawn">
-        <regions yaw="-90">
-            <region id="spawn-location"/>
-        </regions>
-    </spawn>
+    <spawn kit="spawn" yaw="-90" region="spawn-location"/>
     <default>
         <regions yaw="-90">
             <point>-35.5,13,10.5</point>

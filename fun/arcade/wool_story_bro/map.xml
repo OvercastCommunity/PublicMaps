@@ -1,69 +1,17 @@
-<map proto="1.4.2" game="Wool Story Bro">
+<map proto="1.5.0" game="Wool Story Bro">
 <name>Wool Story Bro</name>
-<version>1.0.4</version>
-<gamemode>arcade</gamemode>
+<version>1.0.5</version>
 <objective>Get the most points before time runs out!</objective>
-<!-- include src="void-death.xml"/ -->
+<gamemode>arcade</gamemode>
 <authors>
     <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
 </authors>
 <contributors>
-    <contributor contribution="XML" uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="XML"/> <!-- DoomRobotBoy -->
 </contributors>
 <players max="50" colors="true"/>
-<spawns persistent="true">
-    <spawn kit="kit">
-        <regions>
-            <point yaw="45">337.75,5,-79.75</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
-            <point yaw="-135">305.25,5,-47.25</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
-            <point yaw="-45">305.25,5,-79.75</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
-            <point yaw="135">337.75,5,-47.25</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
-            <point>336.5,5,-63.5</point>
-            <point yaw="180">336.5,5,-63.5</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
-            <point yaw="90">321.5,5,-48.5</point>
-            <point yaw="-90">321.5,5,-48.5</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
-            <point yaw="-90">321.5,5,-78.5</point>
-            <point yaw="90">321.5,5,-78.5</point>
-        </regions>
-    </spawn>
-    <spawn kit="kit">
-        <regions>
-            <point yaw="180">306.5,5,-63.5</point>
-            <point>306.5,5,-63.5</point>
-        </regions>
-    </spawn>
-    <default>
-        <regions>
-            <point>321.5,13,-63.5</point>
-        </regions>
-    </default>
-</spawns>
 <kits>
-    <kit id="kit" force="true">
+    <kit id="spawn-kit" force="true">
         <item slot="0" enchantment="knockback:2" material="stick"/>
         <effect amplifier="2">speed</effect>
         <health>6</health>
@@ -73,9 +21,29 @@
         <helmet unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true" material="leather helmet"/>
     </kit>
 </kits>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+<spawns persistent="true">
+    <spawn kit="spawn-kit">
+        <regions>
+            <point yaw="45">337.75,5,-79.75</point>
+            <point yaw="-135">305.25,5,-47.25</point>
+            <point yaw="-45">305.25,5,-79.75</point>
+            <point yaw="135">337.75,5,-47.25</point>
+            <point>336.5,5,-63.5</point>
+            <point yaw="180">336.5,5,-63.5</point>
+            <point yaw="90">321.5,5,-48.5</point>
+            <point yaw="-90">321.5,5,-48.5</point>
+            <point yaw="-90">321.5,5,-78.5</point>
+            <point yaw="90">321.5,5,-78.5</point>
+            <point yaw="180">306.5,5,-63.5</point>
+            <point>306.5,5,-63.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <region>
+            <point>321.5,13,-63.5</point>
+        </region>
+    </default>
+</spawns>
 <regions>
     <apply block="never"/>
 </regions>
@@ -235,5 +203,8 @@
     <item>leather boots</item>
 </itemremove>
 <timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <respawn delay="3s"/>
 </map>

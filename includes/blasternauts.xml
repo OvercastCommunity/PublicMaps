@@ -1,9 +1,9 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <objective>Use your grenades and TNT to blow up as many people as you can!</objective>
 <game>Blasternauts</game>
 <!-- Blasternauts gamemode include file -->
 <!-- Modified by zzuf - Original blasternauts.xml file from the Overcast Network -->
-<!-- Version 2024.01.09-1 -->
+<!-- Version 2025.03.14-1 -->
 <autorespawn/>
 <rules>
     <rule>Fall damage is disabled</rule>
@@ -15,7 +15,7 @@
 </score>
 <kits>
     <kit id="blasternaut-kit">
-        <item slot="0" enchantment="knockback:1" name="`6Melee Stick" material="blaze rod"/>
+        <item slot="0" enchantment="knockback" name="`6Melee Stick" material="blaze rod"/>
         <item slot="1" unbreakable="true" name="`3TNT Launcher `6| `9Draw back to use." material="bow"/>
         <item slot="2" amount="4" name="`4Landmine `6| `bFuse: 2s `6| `bPower: 3" material="tnt" show-can-place-on="false">
             <can-place-on>
@@ -26,12 +26,12 @@
         <item slot="8" damage="8229" material="potion"/>
         <item slot="28" amount="8" material="arrow"/>
         <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
-        <boots enchantment="protection explosions:1" material="iron boots"/>
+        <boots enchantment="protection explosions" material="iron boots"/>
         <effect duration="8" amplifier="25">heal</effect>
         <effect duration="8" amplifier="25">damage resistance</effect>
-        <effect duration="oo" amplifier="2">speed</effect>
-        <effect duration="oo" amplifier="1">jump</effect>
-        <effect duration="oo" amplifier="1">increase damage</effect>
+        <effect amplifier="2">speed</effect>
+        <effect>jump</effect>
+        <effect>increase damage</effect>
         <double-jump/>
         <game-mode>adventure</game-mode>
     </kit>

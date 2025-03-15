@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Flappy Bird</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Jump and do not hit the pipes!</objective>
 <gamemode>arcade</gamemode>
 <game>Flappy Bird</game>
@@ -21,20 +21,19 @@
 </broadcasts>
 <spawns>
     <default>
-        <regions yaw="-90">
+        <region yaw="-90">
             <cylinder base="23,17,-159" radius="1" height="0"/>
-        </regions>
+        </region>
     </default>
     <spawns kit="spawn">
         <spawn>
-            <regions>
+            <region>
                 <point>0.5,27,-201.5</point>
-            </regions>
+            </region>
         </spawn>
     </spawns>
 </spawns>
 <filters>
-    <participating id="participating"/>
     <not id="gate-1">
         <carrying><item name="1-gate">flint</item></carrying>
     </not>
@@ -118,9 +117,9 @@
         <item slot="0" projectile="egg" name="`aStun Gun" material="diamond barding"/>
         <double-jump recharge-before-landing="true" recharge-time="0s" power="3"/>
         <effect duration="1s" amplifier="50">slowness</effect>
-        <effect duration="oo" amplifier="2">speed</effect>
+        <effect amplifier="2">speed</effect>
         <effect duration="10s" amplifier="50">damage resistance</effect>
-        <effect duration="oo" amplifier="5">regeneration</effect>
+        <effect amplifier="5">regeneration</effect>
     </kit>
     <kit id="1">
         <item slot="9" name="1-gate" material="flint"/>

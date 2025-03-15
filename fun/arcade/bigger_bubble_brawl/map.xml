@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Bigger Bubble Brawl</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <gamemode>arcade</gamemode>
 <phase>staging</phase>
 <objective>Knock all opponents out of the water!</objective>
@@ -22,31 +22,31 @@
 <kits>
     <kit id="spawn-kit" force="true">
         <game-mode>adventure</game-mode>
-        <item slot="0" unbreakable="true" enchantment="knockback:2">fishing rod</item>
-        <helmet unbreakable="true" locked="true" enchantment="oxygen:10">diamond helmet</helmet>
-        <boots unbreakable="true" locked="true" enchantment="depth strider:3">chainmail boots</boots>
-        <effect duration="oo" amplifier="1">water breathing</effect>
-        <effect duration="oo" amplifier="1">night vision</effect>
-        <effect duration="oo" amplifier="10">resistance</effect>
+        <item slot="0" unbreakable="true" enchantment="knockback:2" material="fishing rod"/>
+        <helmet unbreakable="true" locked="true" enchantment="oxygen:10" material="diamond helmet"/>
+        <boots unbreakable="true" locked="true" enchantment="depth strider:3" material="chainmail boots"/>
+        <effect>water breathing</effect>
+        <effect>night vision</effect>
+        <effect amplifier="10">resistance</effect>
     </kit>
     <kit id="death-kit" force="true">
         <effect duration="0">resistance</effect>
-        <effect duration="oo" amplifier="10">instant_damage</effect>
+        <effect amplifier="10">instant_damage</effect>
     </kit>
     <kit id="upgrade-1" force="true">
-        <item slot="0" unbreakable="true" enchantment="knockback:3" name="`e`lGood Fishing Rod">fishing rod</item>
+        <item slot="0" unbreakable="true" enchantment="knockback:3" name="`e`lGood Fishing Rod" material="fishing rod"/>
     </kit>
     <kit id="upgrade-2" force="true">
-        <item slot="0" unbreakable="true" enchantment="knockback:4" name="`6`lGreat Fishing Rod">fishing rod</item>
+        <item slot="0" unbreakable="true" enchantment="knockback:4" name="`6`lGreat Fishing Rod" material="fishing rod"/>
     </kit>
     <kit id="upgrade-3" force="true">
-        <item slot="0" unbreakable="true" enchantment="knockback:5" name="`4`lSuper Fishing Rod">fishing rod</item>
+        <item slot="0" unbreakable="true" enchantment="knockback:5" name="`4`lSuper Fishing Rod" material="fishing rod"/>
     </kit>
 </kits>
 <item-mods>
     <rule>
         <match>
-            <material>raw_fish</material>
+            <material>raw fish</material>
         </match>
         <modify>
             <enchantment level="7">knockback</enchantment>

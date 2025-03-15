@@ -1,6 +1,6 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Skyfall</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Avoid the TNT falling from the sky!</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
@@ -23,15 +23,15 @@
 <spawns>
     <spawns kit="spawn-kit" safe="true">
         <spawn>
-            <regions>
+            <region>
                 <cylinder base="0.5,6,0.5" radius="25" height="1"/>
-            </regions>
+            </region>
         </spawn>
     </spawns>
     <default yaw="180">
-        <regions>
+        <region>
             <cylinder base="0.5,6,0.5" radius="3" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
 <filters>

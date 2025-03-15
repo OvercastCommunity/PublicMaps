@@ -1,20 +1,10 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Rush Wars Tournament 2: Attack of the Defenders</name>
-<version>1.1.11</version>
+<version>1.1.12</version>
 <objective>Runners must break the monument at the end of the map without getting killed by the defenders!</objective>
 <created>2016-06-01</created>
 <gamemode>ad</gamemode>
 <gamemode>blitz</gamemode>
-<rules>
-    <rule>Fall damage is disabled.</rule>
-    <rule>Don't camp!</rule>
-</rules>
-<time result="defenders">6m</time>
-<blitz>
-    <lives>1</lives>
-    <broadcastLives>true</broadcastLives>
-</blitz>
-<!-- include src="blitz-global.xml"/ -->
 <authors>
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Queen/King of the Wool and Goblet of Gamemodes" /> <!-- GoldenOre -->
     <author uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81" contribution="Beta" /> <!-- _DISTRACTION_ -->
@@ -31,6 +21,10 @@
     <author uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b" contribution="Star War Wars" /> <!-- Jexel -->
     <author uuid="503b5493-d591-4bc6-8346-e92609d94d76" contribution="Age of Ares" /> <!-- Magikarp -->
 </authors>
+<rules>
+    <rule>Fall damage is disabled.</rule>
+    <rule>Don't camp!</rule>
+</rules>
 <teams>
     <team color="yellow" id="runners" max="25" max-overfill="30" plural="true">Runners</team>
     <team color="white" id="defenders" max="4" plural="true">Defenders</team>
@@ -62,24 +56,21 @@
 </kits>
 <spawns>
     <spawn team="runners" kit="runners-kit">
-        <regions yaw="180">
+        <region yaw="180">
             <point>-75,253,5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="defenders" kit="defenders-kit">
-        <regions yaw="180">
+        <region yaw="180">
             <point>-75,175,55</point>
-        </regions>
+        </region>
     </spawn>
     <default>
-        <regions yaw="180">
+        <region yaw="180">
             <cylinder base="-74.5,179,56.5" radius="2" height="0" />
-        </regions>
+        </region>
     </default>
 </spawns>
-<gamerules>
-    <naturalRegeneration>false</naturalRegeneration>
-</gamerules>
 <filters>
     <not id="not-buttons">
         <material>stone button</material>
@@ -96,99 +87,110 @@
         </region>
     </apply>
 </regions>
+<time result="defenders">6m</time>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
 <destroyables name="Monument" materials="sponge">
     <destroyable owner="defenders" region="monument"/>
 </destroyables>
 <control-points capture-rule="lead" incremental="true" show="false">
     <control-point name="Center" capture-time="10s">
         <capture>
-            <cylinder base="-73.5,124,-665.5" radius="8" height="5" />
+            <cylinder base="-73.5,124,-665.5" radius="8" height="5"/>
         </capture>
         <progress>
-            <cylinder base="-73.5,124,-665.5" radius="7" height="4" />
+            <cylinder base="-73.5,124,-665.5" radius="7" height="4"/>
         </progress>
     </control-point>
 </control-points>
 <portals>
     <portal x="@-119.5" y="@120" z="@13.5" yaw="@180">
         <region>
-            <cuboid min="-78,178,53" max="-77,175,51" />
+            <cuboid min="-78,178,53" max="-77,175,51"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@120" z="@13.5" yaw="@180">
         <region>
-            <cuboid min="-71,178,51" max="-72,175,53" />
+            <cuboid min="-71,178,51" max="-72,175,53"/>
         </region>
     </portal>
     <portal x="@-119.5" y="@148" z="@-408.5" yaw="@180">
         <region>
-            <cuboid min="-121,123,-385" max="-118,120,-384" />
+            <cuboid min="-121,123,-385" max="-118,120,-384"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@148" z="@-408.5" yaw="@180">
         <region>
-            <cuboid min="-29,123,-385" max="-26,120,-384" />
+            <cuboid min="-29,123,-385" max="-26,120,-384"/>
         </region>
     </portal>
     <portal x="@-119.5" y="@120" z="@-382.5" yaw="@0">
         <region>
-            <cuboid min="-118,151,-407" max="-121,148,-408" />
+            <cuboid min="-118,151,-407" max="-121,148,-408"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@120" z="@-382.5" yaw="@0">
         <region>
-            <cuboid min="-26,151,-407" max="-29,148,-408" />
+            <cuboid min="-26,151,-407" max="-29,148,-408"/>
         </region>
     </portal>
     <portal x="@-119.5" y="@124" z="@-435.5" yaw="@180">
         <region>
-            <cuboid min="-121,151,-417" max="-118,148,-416" />
+            <cuboid min="-121,151,-417" max="-118,148,-416"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@124" z="@-435.5" yaw="@180">
         <region>
-            <cuboid min="-29,151,-417" max="-26,148,-416" />
+            <cuboid min="-29,151,-417" max="-26,148,-416"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@148" z="@-415.5" yaw="@0">
         <region>
-            <cuboid min="-26,127,-433" max="-29,124,-434" />
+            <cuboid min="-26,127,-433" max="-29,124,-434"/>
         </region>
     </portal>
     <portal x="@-119.5" y="@148" z="@-415.5" yaw="@0">
         <region>
-            <cuboid min="-118,127,-433" max="-121,124,-434" />
+            <cuboid min="-118,127,-433" max="-121,124,-434"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@120" yaw="@90">
         <region>
-            <cuboid min="-122,120,15" max="-121,119,-384" />
+            <cuboid min="-122,120,15" max="-121,119,-384"/>
         </region>
     </portal>
     <portal x="@-119" y="@120" yaw="@-90">
         <region>
-            <cuboid min="-25,120,-384" max="-26,119,15" />
+            <cuboid min="-25,120,-384" max="-26,119,15"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@124" yaw="@90">
         <region>
-            <cuboid min="-122,124,-434" max="-121,123,-667" />
+            <cuboid min="-122,124,-434" max="-121,123,-667"/>
         </region>
     </portal>
     <portal x="@-119.5" y="@124" yaw="@-90">
         <region>
-            <cuboid min="-25,124,-667" max="-26,123,-434" />
+            <cuboid min="-25,124,-667" max="-26,123,-434"/>
         </region>
     </portal>
     <portal x="@-63.5" y="@137" z="@-333.5" yaw="@-130">
         <region>
-            <cuboid min="-89,138,-332" max="-60,117,-331" />
+            <cuboid min="-89,138,-332" max="-60,117,-331"/>
         </region>
     </portal>
 </portals>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
@@ -197,10 +199,7 @@
         <cause>explosion</cause>
     </deny>
 </damage>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
-</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>

@@ -1,7 +1,7 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <include id="blasternauts"/>
 <name>BN: Spacecraft</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <authors>
     <author uuid="bada87c3-3383-42cb-973d-99032a0724b9"/> <!-- Holdfast33 -->
     <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
@@ -10,30 +10,26 @@
     <contributor contribution="Spawners and Feedback" uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ItsMiiOlly -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="6" max-overfill="8">Blue</team>
-    <team id="red" color="dark red" max="6" max-overfill="8">Red</team>
+    <team id="blue-team" color="blue" max="6" max-overfill="8">Blue</team>
+    <team id="red-team" color="dark red" max="6" max-overfill="8">Red</team>
 </teams>
-<filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-</filters>
 <regions>
     <union id="spawn-areas">
         <cuboid id="blue-base" min="-276,11,950" max="-284,15,955"/>
         <cuboid id="red-base" min="-276,11,886" max="-284,15,892"/>
     </union>
-    <apply enter="only-blue" message="You cannot enter the enemy spawn!" region="blue-base"/>
-    <apply enter="only-red" message="You cannot enter the enemy spawn!" region="red-base"/>
+    <apply enter="blue-team" message="You may not enter the enemy's spawn!" region="blue-base"/>
+    <apply enter="red-team" message="You may not enter the enemy's spawn!" region="red-base"/>
     <cuboid id="middle-spawner" min="-288,14,920" size="3,1,3"/>
     <cuboid id="real-spawners" min="-288,13,920" size="3,1,3"/>
 </regions>
 <spawns>
-    <spawn team="blue" kit="blasternaut-kit" yaw="-175">
+    <spawn team="blue-team" kit="blasternaut-kit" yaw="-175">
         <region>
             <cuboid min="-278,11,952" max="-281,11,954"/>
         </region>
     </spawn>
-    <spawn team="red" kit="blasternaut-kit" yaw="5">
+    <spawn team="red-team" kit="blasternaut-kit" yaw="5">
         <region>
             <cuboid min="-278,11,888" max="-281,11,890"/>
         </region>

@@ -1,7 +1,7 @@
-<map proto="1.4.2" game="`d`lParkour!">
+<map proto="1.5.0" game="`d`lParkour!">
 <name>Parkour: Ice</name>
 <variant id="team" override="true">Team Parkour: Ice</variant>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <objective>Reach the top first!</objective>
 <if variant="default">
     <created>2019-04-07</created>
@@ -15,6 +15,14 @@
 <contributors>
     <contributor uuid="bf331953-4f92-43ee-8abc-7544b8234936" contribution="Map concept"/> <!-- ViceTechnicolour -->
 </contributors>
+<broadcasts>
+    <if variant="default">
+        <tip after="5s" every="1m">Pass a checkpoint to go back to it if you fall!</tip>
+    </if>
+    <if variant="team">
+        <tip after="5s" every="1m">Checkpoints are shared with all members of your team!</tip>
+    </if>
+</broadcasts>
 <if variant="default">
     <players colors="true" max="50" show-name-tags="false"/>
 </if>
@@ -28,16 +36,9 @@
         <team id="purple" show-name-tags="false" color="dark purple" max="10">Purple</team>
     </teams>
 </if>
-<spawns>
-    <spawn yaw="180" kit="invis" region="spawn" filter="only-at-0"/>
-    <spawn yaw="180" kit="invis" region="portal-check-1" filter="only-at-1"/>
-    <spawn yaw="0" kit="invis" region="portal-check-2" filter="only-at-2"/>
-    <spawn yaw="180" kit="invis" region="portal-check-3" filter="only-at-3"/>
-    <default yaw="180" region="obs-spawn"/>
-</spawns>
 <kits>
     <kit id="invis">
-        <effect duration="oo">invisibility</effect>
+        <effect>invisibility</effect>
         <item slot="0" locked="true" name="`aLocation Indicator" material="wood button"/>
         <item slot="1" locked="true" name="`aLocation Indicator" material="wood button"/>
         <item slot="2" locked="true" name="`aLocation Indicator" material="wood button"/>
@@ -50,6 +51,13 @@
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
+<spawns>
+    <spawn yaw="180" kit="invis" region="spawn" filter="only-at-0"/>
+    <spawn yaw="180" kit="invis" region="portal-check-1" filter="only-at-1"/>
+    <spawn kit="invis" region="portal-check-2" filter="only-at-2"/>
+    <spawn yaw="180" kit="invis" region="portal-check-3" filter="only-at-3"/>
+    <default yaw="180" region="obs-spawn"/>
+</spawns>
 <filters>
     <score id="only-at-0">0</score>
     <score id="only-at-1">1</score>
@@ -91,14 +99,6 @@
     <damage>ENTITY_ATTACK</damage>
 </disabledamage>
 <time>8m</time>
-<broadcasts>
-    <if variant="default">
-        <tip after="5s" every="1m">Pass a checkpoint to go back to it if you fall!</tip>
-    </if>
-    <if variant="team">
-        <tip after="5s" every="1m">Checkpoints are shared with all members of your team!</tip>
-    </if>
-</broadcasts>
 <score>
     <limit>4</limit>
 </score>

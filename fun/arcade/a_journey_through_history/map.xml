@@ -1,113 +1,90 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>A Journey Through History</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Runners must get from one side of the map to the other without getting killed by the Defenders.</objective>
 <gamemode>ad</gamemode>
 <gamemode>blitz</gamemode>
 <created>2016-06-02</created>
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Paleolithic, Neolithic, Chinese Empire, The New World, and The Present stages."/> <!-- GoldenOre -->
+    <author uuid="d3814d5a-3d37-42f2-9db8-916846bb70ad" contribution="Stone Age stage."/> <!-- breadandcinnamon -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Industrial Revolution stage."/> <!-- rockymine -->
+    <author uuid="7e7da86e-57a8-4b90-b297-4ef05e71dbdb" contribution="French Revolution stage."/> <!-- Whitever -->
+    <author uuid="65722be1-29fd-4e7d-a47d-94ed616ed880" contribution="Egyptian Empire and Roman/Greece stages."/> <!-- KroestV2 -->
+    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="American Revolution stage."/> <!-- _3Each -->
+    <author uuid="829ed9df-e947-40a1-933e-81aa7cb05189" contribution="World War stage."/> <!-- Oxinous -->
+    <author uuid="86a53ac5-11db-4435-b672-ea3773c31082" contribution="The End of The World stage."/> <!-- issac7227 -->
+    <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="The Middle Age stage."/> <!-- chle_ -->
+</authors>
 <rules>
     <rule>Fall damage is disabled.</rule>
     <rule>Don't camp!</rule>
 </rules>
-<time result="defenders">5m</time>
-<blitz>
-    <lives>1</lives>
-    <broadcastLives>true</broadcastLives>
-</blitz>
-<respawn auto="true"/>
-<authors>
-    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Paleolithic, Neolithic, Chinese Empire, The New World, and The Present stages." />
-    <!--   GoldenOre   -->
-    <author uuid="d3814d5a-3d37-42f2-9db8-916846bb70ad" contribution="Stone Age stage." />
-    <!--   breadandcinnamon   -->
-    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Industrial Revolution stage." />
-    <!--   rockymine   -->
-    <author uuid="7e7da86e-57a8-4b90-b297-4ef05e71dbdb" contribution="French Revolution stage." />
-    <!--   Whitever   -->
-    <author uuid="65722be1-29fd-4e7d-a47d-94ed616ed880" contribution="Egyptian Empire and Roman/Greece stages." />
-    <!--   KroestV2   -->
-    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="American Revolution stage." />
-    <!--   _3Each  -->
-    <author uuid="829ed9df-e947-40a1-933e-81aa7cb05189" contribution="World War stage." />
-    <!--   Oxinous  -->
-    <author uuid="86a53ac5-11db-4435-b672-ea3773c31082" contribution="The End of The World stage." />
-    <!--   issac7227   -->
-    <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="The Middle Age stage." />
-    <!--   chle_   -->
-</authors>
 <teams>
     <team color="dark red" id="runners" max="40" max-overfill="50" plural="true">Runners</team>
-    <team color="dark_gray" id="defenders" max="6" plural="true">Defenders</team>
+    <team color="dark gray" id="defenders" max="6" plural="true">Defenders</team>
 </teams>
 <kits>
     <kit id="obs-kit">
-        <potion duration="oo" amplifier="1">speed</potion>
+        <effect>speed</effect>
     </kit>
     <kit id="spawn" force="true">
         <saturation>20</saturation>
         <foodlevel>20</foodlevel>
     </kit>
-    <kit id="runners-kit">
-        <helmet color="993333">leather helmet</helmet>
-        <chestplate color="993333">leather chestplate</chestplate>
-        <leggings color="993333">leather leggings</leggings>
-        <boots color="993333" enchantment="depth strider:2">leather boots</boots>
-        <potion duration="oo" amplifier="1">speed</potion>
+    <kit id="runners-kit" parents="obs-kit">
+        <helmet color="993333" material="leather helmet"/>
+        <chestplate color="993333" material="leather chestplate"/>
+        <leggings color="993333" material="leather leggings"/>
+        <boots color="993333" enchantment="depth strider:2" material="leather boots"/>
     </kit>
     <kit id="defenders-kit">
-        <helmet color="191919">leather helmet</helmet>
-        <chestplate color="191919">leather chestplate</chestplate>
-        <leggings color="191919">leather leggings</leggings>
-        <boots color="191919" enchantment="depth strider:2">leather boots</boots>
-        <item slot="1" unbreakable="true" enchantment="ARROW_INFINITE:1;power:1">bow</item>
-        <item slot="28" amount="1">arrow</item>
-        <potion duration="oo" amplifier="3">speed</potion>
+        <helmet color="191919" material="leather helmet"/>
+        <chestplate color="191919" material="leather chestplate"/>
+        <leggings color="191919" material="leather leggings"/>
+        <boots color="191919" enchantment="depth strider:2" material="leather boots"/>
+        <item slot="1" unbreakable="true" enchantment="arrow_infinite;power" material="bow"/>
+        <item slot="28" material="arrow"/>
+        <effect amplifier="3">speed</effect>
     </kit>
-    <kit id="shield" force="true">
-        <helmet color="993333">leather helmet</helmet>
-        <chestplate color="993333">leather chestplate</chestplate>
-        <leggings color="993333">leather leggings</leggings>
-        <boots color="993333" enchantment="depth strider:2">leather boots</boots>
-        <potion duration="oo" amplifier="1">speed</potion>
-        <clear-items />
+    <kit id="shield" parents="obs-kit" force="true">
+        <helmet color="993333" material="leather helmet"/>
+        <chestplate color="993333" material="leather chestplate"/>
+        <leggings color="993333" material="leather leggings"/>
+        <boots color="993333" enchantment="depth strider:2" material="leather boots"/>
+        <clear/>
     </kit>
-    <kit id="boat" force="true">
-        <helmet color="993333">leather helmet</helmet>
-        <chestplate color="993333">leather chestplate</chestplate>
-        <leggings color="993333">leather leggings</leggings>
-        <boots color="993333" enchantment="depth strider:2">leather boots</boots>
-        <potion duration="oo" amplifier="1">speed</potion>
-        <item slot="0" amount="1">boat</item>
-        <clear-items />
+    <kit id="boat" parents="obs-kit" force="true">
+        <helmet color="993333" material="leather helmet"/>
+        <chestplate color="993333" material="leather chestplate"/>
+        <leggings color="993333" material="leather leggings"/>
+        <boots color="993333" enchantment="depth strider:2" material="leather boots"/>
+        <item slot="0" material="boat"/>
+        <clear/>
     </kit>
 </kits>
 <spawns>
     <spawn team="runners" kit="runners-kit">
-        <regions yaw="0">
+        <region>
             <point>-15.5,30,-1285.5</point>
-        </regions>
+        </region>
     </spawn>
     <spawn team="defenders" kit="defenders-kit">
-        <regions yaw="0">
+        <region>
             <point>-14.5,63,-1291.5</point>
-        </regions>
+        </region>
     </spawn>
     <default kit="obs-kit">
-        <regions yaw="0">
+        <region>
             <cylinder base="-15.5,30,-1286.5" radius="1" height="0"/>
-        </regions>
+        </region>
     </default>
 </spawns>
-<gamerules>
-    <naturalRegeneration>false</naturalRegeneration>
-</gamerules>
 <filters>
-    <any id="monument">
-        <material>sponge</material>
-    </any>
+    <material id="monument">sponge</material>
 </filters>
 <regions>
-    <apply region="everywhere" block="monument" />
+    <apply block="monument"/>
     <apply kit="shield">
         <region>
             <rectangle min="-20,-813" max="-9,-812" />
@@ -119,7 +96,12 @@
         </region>
     </apply>
 </regions>
-<destroyables name="Monument" materials="sponge" completion="100%">
+<time result="defenders">5m</time>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<destroyables name="Monument" materials="sponge">
     <destroyable owner="defenders">
         <region>
             <block>-16,38,-189</block>
@@ -258,12 +240,6 @@
         </region>
     </portal>
 </portals>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<disabledamage>
-    <damage>fall</damage>
-</disabledamage>
 <itemremove>
     <item>leather helmet</item>
     <item>leather chestplate</item>
@@ -272,4 +248,14 @@
     <item>sign</item>
     <item>boat</item>
 </itemremove>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn auto="true"/>
 </map>

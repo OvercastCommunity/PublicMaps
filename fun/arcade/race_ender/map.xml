@@ -1,14 +1,14 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Race: Ender</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Score points by completing laps around the track.</objective>
 <include id="race"/>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- PepsiDog -->
 </authors>
 <spawns>
-    <spawn yaw="0" region="spawn"/>
-    <default yaw="0" region="spawn"/>
+    <spawn region="spawn"/>
+    <default region="spawn"/>
 </spawns>
 <regions>
     <cuboid id="spawn" min="-77,63,-175" max="-70,63,-171"/>
