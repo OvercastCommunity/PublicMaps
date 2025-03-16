@@ -184,19 +184,21 @@
 <itemremove>
     <item>leather helmet</item>
 </itemremove>
-<if variant="guns">
-    <kill-rewards>
+<kill-rewards>
+    <unless variant="guns">
         <kill-reward>
             <item material="arrow"/>
         </kill-reward>
+    </unless>
+    <if variant="guns">
         <kill-reward>
             <filter>
                 <kill-streak count="2"/>
             </filter>
             <item material="fireball" amount="2" name="`fGrenade" projectile="grenade"/>
         </kill-reward>
-    </kill-rewards>
-</if>
+    </if>
+</kill-rewards>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
