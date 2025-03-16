@@ -5,7 +5,7 @@
 <variant id="classic" world="classic" slug="directrix">Classic</variant>
 <variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
 <variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
-<version>2.0.7</version>
+<version>2.0.8</version>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
 <if variant="default">
@@ -301,10 +301,10 @@
         <union id="jump-pads">
             <union id="team-1-redux-jump-pads">
                 <cuboid id="team-1-to-platform" min="-51,29,-22" max="-50,31,-19"/>
-                <cuboid id="team-1-rocket-to-lower" min="36,28,22" max="35,30,20"/>
+                <cuboid id="team-1-rocket-to-lower" min="35.5,28,22" max="34,28.5,20"/>
             </union>
             <union id="team-2-redux-jump-pads">
-                <cuboid id="team-2-rocket-to-lower" min="-53,28,101" max="-52,30,103"/>
+                <cuboid id="team-2-rocket-to-lower" min="-52.5,28,101" max="-51,28.5,103"/>
                 <cuboid id="team-2-to-platform" min="34,29,145" max="32,31,142"/>
             </union>
         </union>
