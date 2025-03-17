@@ -9,7 +9,7 @@
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
 <if variant="default">
-    <created>2021-12-06</created>
+    <created>2015-03-07</created>
     <slug>directredux</slug>
 </if>
 <if variant="halloween">
