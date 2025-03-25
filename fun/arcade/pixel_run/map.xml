@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Pixel Run</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Runners must get from one side of the map to the other without getting killed by the Defenders.</objective>
 <gamemode>ad</gamemode>
 <authors>
@@ -149,7 +149,7 @@
         <cuboid id="pipe-side-platforms-left" min="371,17,5" max="417,7,-0"/>
         <cuboid id="pipe-side-platforms-right" min="371,17,33" max="417,7,39"/>
     </union>
-    <apply region="pipe-side-platforms" enter="runners"/>
+    <apply region="pipe-side-platforms" enter="not(runners)"/>
     <cuboid id="capture-hill" min="853,35,20" max="855,38,18"/>
     <cuboid id="jump-pad" min="429,12,19" max="430,11,20"/>
     <apply block="never"/>
