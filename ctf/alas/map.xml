@@ -1,7 +1,8 @@
 <map proto="1.5.0">
 <name>Alas</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Get the most points by capturing enemy flags and killing opponents!</objective>
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="04415962-13e2-4010-b5f1-6d5ed7e537d4"/> <!-- Pos -->
 </authors>
@@ -10,7 +11,7 @@
 </contributors>
 <broadcasts>
     <alert after="2s" every="1m">`6Kills`r = `l1 point`r, `6Flag captures`r = `l10 points</alert>
-    <alert after="5s" every="1m">`rFirst team to `c`l250 points`r wins the game!</alert>
+    <alert after="5s" every="1m">`rFirst team to `c`l150 points`r wins the game!</alert>
     <alert after="20s" every="1m">`rYou will receive a golden apple and 8 arrows every two kills!</alert>
 </broadcasts>
 <teams>
@@ -19,15 +20,14 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" material="stone sword"/>
-        <item slot="1" material="bow"/>
-        <item slot="2" material="stone pickaxe"/>
-        <item slot="3" material="stone axe">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" material="stone pickaxe"/>
+        <item slot="3" unbreakable="true" material="stone axe">
             <enchantment level="2">efficiency</enchantment>
         </item>
         <item slot="4" amount="32" material="wood"/>
         <item slot="7" amount="24" material="arrow"/>
-        <item slot="8" amount="64" material="golden carrot"/>
         <helmet team-color="true" unbreakable="true">leather helmet</helmet>
         <chestplate team-color="true" unbreakable="true">leather chestplate</chestplate>
         <leggings color="191919" unbreakable="true" material="leather leggings"/>
@@ -115,7 +115,6 @@
     <item>leather chestplate</item>
     <item>leather leggings</item>
     <item>chainmail boots</item>
-    <item>golden carrot</item>
     <item>seeds</item>
     <item>yellow flower</item>
     <item>red rose</item>
@@ -142,4 +141,7 @@
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>38</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
