@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Insanihe</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Destroy both monuments, before the enemy destroys yours</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -19,8 +19,7 @@
         <item slot="4" material="log" damage="1" amount="4"/>
         <item slot="5" material="stained clay" team-color="true" amount="24"/>
         <item slot="6" material="golden apple"/>
-        <item slot="7" material="cooked fish" damage="1" amount="16"/>
-        <item slot="8" material="arrow" amount="16"/>
+        <item slot="7" material="arrow" amount="16"/>
         <helmet team-color="true" material="leather helmet"/>
         <chestplate team-color="true" material="leather chestplate"/>
         <boots team-color="true" material="leather boots"/>
@@ -89,7 +88,6 @@
     <item>sandstone</item>
     <item>ender stone</item>
     <item>arrow</item>
-    <item>cooked fish</item>
     <item>golden apple</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
@@ -114,4 +112,7 @@
 </kill-rewards>
 <maxbuildheight>18</maxbuildheight>
 <timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
