@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Mayan Apocalypse</name>
-<version>1.1.8</version>
+<version>1.1.9</version>
 <objective>Destroy the enemy's core!</objective>
 <created>2012-12-13</created>
 <include id="gapple-kill-reward"/>
@@ -25,7 +25,6 @@
         <item slot="3" material="iron axe"/>
         <item amount="64" damage="2" slot="4" material="log"/>
         <item slot="7" material="golden apple"/>
-        <item amount="64" slot="8" material="golden carrot"/>
         <helmet team-color="true" unbreakable="true" enchantment="protection fall" material="leather helmet"/>
         <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
     </kit>
@@ -105,7 +104,6 @@
 <itemremove>
     <item>log</item>
     <item>wood</item>
-    <item>golden carrot</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>obsidian</item>
@@ -128,4 +126,7 @@
     <timeset>18000</timeset>
 </world>
 <maxbuildheight>75</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
