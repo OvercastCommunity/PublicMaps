@@ -1,0 +1,107 @@
+<map proto="1.5.0">
+<name>Basilicas of Space</name>
+<version>1.0.2</version>
+<objective>Eliminate the other teams!</objective>
+<authors>
+   <author uuid="6b5e5a44-a9dd-4ce9-9560-90db49bbf544"/> <!-- molenzwiebel -->
+   <author uuid="2c3222ce-dd30-4453-a077-efcf50e6d795"/> <!-- Jasper_rrr -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="10">Red</team>
+    <team id="blue" color="blue" max="10">Blue</team>
+    <team id="yellow" color="yellow" max="10">Yellow</team>
+    <team id="green" color="green" max="10">Green</team>
+</teams>
+<rules>
+   <rule>Fall damage is disabled</rule>
+</rules>
+<time>5m</time>
+<blitz>
+    <lives>3</lives>
+</blitz>
+<kits>
+    <kit id="spawn">
+        <item slot="0" enchantment="damage all:10" material="stone sword" unbreakable="true"/>
+        <item slot="1" enchantment="power:10" material="bow" unbreakable="true"/>
+        <item slot="8" amount="1" material="arrow"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots team-color="true" unbreakable="true" material="leather boots"/>
+        <game-mode>adventure</game-mode>
+        <effect duration="2s" amplifier="128">resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="spawn">
+        <regions>
+            <point yaw="-135">-57.5,9,31.5</point>
+            <point yaw="-45">-57.5,9,-30.5</point>
+        </regions>
+    </spawn>
+    <spawn team="yellow" kit="spawn">
+        <regions>
+            <point yaw="-45">-30.5,9,-57.5</point>
+            <point yaw="45">31.5,9,-57.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="spawn">
+        <regions>
+            <point yaw="45">58.5,9,-30.5</point>
+            <point yaw="135">58.5,9,-31.5</point>
+        </regions>
+    </spawn>
+    <spawn team="green" kit="spawn">
+        <regions>
+            <point yaw="135">31.5,9,58.5</point>
+            <point yaw="-135">-30.5,9,58.5</point>
+        </regions>
+    </spawn>
+    <default yaw="-180">
+        <region>
+            <point>0.5,26,72.5</point>
+        </region>
+    </default>
+</spawns>
+<regions>
+    <apply block="never" use="never"/> <!-- intentional - chests contain items from a previous blitz version -->
+    <apply velocity="@1,2,-1">
+        <region>
+            <cylinder id="jumppad1" base="-33.5,5,34.5" height="1" radius="2"/>
+        </region>
+    </apply>
+    <apply velocity="@1,2,1">
+        <region>
+            <cylinder id="jumppad2" base="-33.5,5,-33.5" height="1" radius="2"/>
+        </region>
+    </apply>
+    <apply velocity="@-1,2,1">
+        <region>
+            <cylinder id="jumppad3" base="34.5,5,-33.5" height="1" radius="2"/>
+        </region>
+    </apply>
+    <apply velocity="@-1,2,-1">
+        <region>
+            <cylinder id="jumppad4" base="34.5,5,34.5" height="1" radius="2"/>
+        </region>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>golden carrot</item>
+    <item>spider eye</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+</map>
