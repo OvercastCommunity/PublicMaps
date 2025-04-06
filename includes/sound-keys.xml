@@ -1,7 +1,7 @@
 <map>
 <!-- Modern-legacy sound key constants include -->
 <!-- Created by mameBT -->
-<!-- Version 2025.01.06-1 -->
+<!-- Version 2025.04.06-1 -->
 
 <!--
      NOTE: Please only add constants to this include on an as needed basis.
@@ -15,7 +15,9 @@
     <constant id="block.note_block.bass">block.note_block.bass</constant>
     <constant id="block.note_block.harp">block.note_block.harp</constant>
     <constant id="block.note_block.pling">block.note_block.pling</constant>
+    <constant id="block.note_block.snare">block.note_block.snare</constant>
     <constant id="block.portal.travel">block.portal.travel</constant>
+    <constant id="block.slime_block.break">block.slime_block.break</constant>
     <constant id="block.wool.break">block.wool.break</constant>
     <constant id="entity.arrow.hit_player">entity.arrow.hit_player</constant>
     <constant id="entity.blaze.death">entity.blaze.death</constant>
@@ -36,6 +38,7 @@
     <constant id="entity.player.burp">entity.player.burp</constant>
     <constant id="entity.player.levelup">entity.player.levelup</constant>
     <constant id="entity.skeleton_horse.death">entity.skeleton_horse.death</constant>
+    <constant id="entity.snowball.throw">entity.snowball.throw</constant>
     <constant id="entity.villager.trade">entity.villager.trade</constant>
     <constant id="entity.wither.hurt">entity.wither.hurt</constant>
     <constant id="entity.zombie_villager.cure">entity.zombie_villager.cure</constant>
@@ -49,7 +52,9 @@
     <constant id="block.note_block.bass">note.bass</constant>
     <constant id="block.note_block.harp">note.harp</constant>
     <constant id="block.note_block.pling">note.pling</constant>
+    <constant id="block.note_block.snare">note.snare</constant>
     <constant id="block.portal.travel">portal.travel</constant>
+    <constant id="block.slime_block.break">mob.slime.big</constant> <!-- ViaVersion mapping -->
     <constant id="block.wool.break">dig.cloth</constant>
     <constant id="entity.arrow.hit_player">random.successful_hit</constant>
     <constant id="entity.blaze.death">mob.blaze.death</constant>
@@ -70,6 +75,7 @@
     <constant id="entity.player.burp">random.burp</constant>
     <constant id="entity.player.levelup">random.levelup</constant>
     <constant id="entity.skeleton_horse.death">mob.horse.skeleton.death</constant>
+    <constant id="entity.snowball.throw">random.bow</constant> <!-- ViaVersion mapping -->
     <constant id="entity.villager.trade">mob.villager.haggle</constant>
     <constant id="entity.wither.hurt">mob.wither.hurt</constant>
     <constant id="entity.zombie_villager.cure">mob.zombie.remedy</constant>
