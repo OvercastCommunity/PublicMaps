@@ -1,8 +1,10 @@
 <map proto="1.5.0">
 <name>Pandemonium</name>
-<version>1.0.9</version>
+<version>1.1</version>
 <objective>Get the most kills in 10 minutes!</objective>
-<include id="gapple-kill-reward"/>
+<constant id="respawn-timer">2s</constant>
+<constant id="damage-resistance">0s</constant>
+<include id="conquest"/>
 <rules>
     <rule>Fall damage is disabled!</rule>
 </rules>
@@ -11,23 +13,14 @@
 </authors>
 <teams>
     <team id="blue-team" color="blue" max="16">Blue</team>
-    <team id="red-team" color="dark red" max="16">Red</team>
     <team id="green-team" color="green" max="16">Green</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
     <team id="yellow-team" color="yellow" max="16">Yellow</team>
 </teams>
 <kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
-        <item slot="28" material="arrow"/>
-        <item slot="2" material="golden apple"/>
+    <kit id="spawn-kit" parent="base-kit">
         <item slot="3" material="ender pearl"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" enchantment="protection projectile:3" material="chainmail leggings"/>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="6" amplifier="2">speed</effect>
+        <effect duration="6s" amplifier="2">speed</effect>
     </kit>
 </kits>
 <spawns>
@@ -45,9 +38,9 @@
     </default>
 </spawns>
 <filters>
-    <not id="not-player">
+    <deny id="deny-player">
         <cause>player</cause>
-    </not>
+    </deny>
     <deny id="deny-dispenser">
         <material>dispenser</material>
     </deny>
@@ -80,25 +73,13 @@
     <apply region="yellow-spawn-prot" enter="yellow-team"/>
     <apply use="deny-dispenser"/>
     <!-- Cause is not player -->
-    <apply block="not-player"/>
+    <apply block="deny-player"/>
 </regions>
 <time>10m</time>
 <score>
     <kills>1</kills>
 </score>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-</itemremove>
 <itemkeep>
-    <item>arrow</item>
-    <item>golden apple</item>
     <item>ender pearl</item>
 </itemkeep>
 <kill-rewards>
@@ -106,9 +87,6 @@
         <item material="ender pearl"/>
     </kill-reward>
 </kill-rewards>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
