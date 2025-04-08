@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Swamped</name>
-<version>1.1.8</version>
+<version>1.1.9</version>
 <objective>Destroy the enemy's core in front of their spawn.</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -8,24 +8,30 @@
     <author uuid="fcbc5806-e7fd-45f1-845a-22f1df93c9bf" contribution="Many details, aesthetics, feedback, etc"/> <!-- Minii_ -->
 </authors>
 <teams>
-    <team id="orange" color="gold" max="36">Orange</team>
-    <team id="purple" color="dark purple" max="36">Purple</team>
+    <team id="orange" color="gold" max="24">Orange</team>
+    <team id="purple" color="dark purple" max="24">Purple</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
+        <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
-        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
         <item slot="28" material="arrow"/>
         <item slot="2" unbreakable="true" material="diamond pickaxe"/>
         <item slot="3" unbreakable="true" material="iron axe"/>
-        <item slot="4" amount="2" material="golden apple"/>
-        <item slot="5" amount="64" damage="2" material="log"/>
-        <item slot="6" amount="12" material="vine"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <item slot="5" amount="64" damage="2" material="wood"/>
+        <item slot="31" amount="64" damage="2" material="wood"/>
+        <item slot="6" amount="16" material="vine"/>
+        <item slot="7" material="bucket"/>
+        <item slot="8" amount="2" material="golden apple"/>
     </kit>
 </kits>
 <spawns>
-    <default yaw="90">
-        <region>
+    <default>
+        <region yaw="90">
             <cylinder base="56,48,11" radius="2" height="0"/>
         </region>
     </default>
@@ -34,17 +40,17 @@
             <cylinder base="-1,4,-129" radius="2" height="0"/>
         </region>
     </spawn>
-    <spawn team="purple" kit="spawn-kit" yaw="180">
-        <region>
+    <spawn team="purple" kit="spawn-kit">
+        <region yaw="180">
             <cylinder base="-2,4,129" radius="2" height="0"/>
         </region>
     </spawn>
 </spawns>
 <regions>
-    <negative id="playable-inverse">
+    <negative id="void-region">
         <rectangle min="-35,118" max="33,-118"/>
     </negative>
-    <apply region="playable-inverse" block="never" message="You may not build outside the map or in spawns!"/>
+    <apply block="never" region="void-region" message="You may not build outside the map or in spawns!"/>
 </regions>
 <cores leak="4" mode-changes="true">
     <core team="orange">
@@ -63,20 +69,28 @@
     <mode after="20m" material="glass"/>
 </modes>
 <toolrepair>
-    <tool>iron axe</tool>
     <tool>iron sword</tool>
-    <tool>diamond pickaxe</tool>
     <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
     <item>seeds</item>
-    <item>vine</item>
-    <item>log</item>
-    <item>wood</item>
-    <item>golden apple</item>
 </itemremove>
-<timelock>on</timelock>
+<itemkeep>
+    <item>wood</item>
+    <item>vine</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32" damage="2" material="wood"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>48</maxbuildheight>
 <hunger>
      <depletion>off</depletion>
