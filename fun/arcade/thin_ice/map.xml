@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Thin Ice</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Cross the enemy line to score points.</objective>
 <gamemode>arcade</gamemode>
 <authors>
@@ -18,9 +18,9 @@
     <kit id="spawn-kit">
         <item slot="0" enchantment="knockback" material="stick"/>
         <item slot="8" amount="16" material="snow ball"/>
-        <helmet color="334CB2" unbreakable="true" locked="true" material="leather helmet"/>
+        <helmet team-color="true" unbreakable="true" locked="true" material="leather helmet"/>
         <chestplate unbreakable="true" locked="true" material="chainmail chestplate"/>
-        <leggings color="334CB2" unbreakable="true" locked="true" material="leather leggings"/>
+        <leggings team-color="true" unbreakable="true" locked="true" material="leather leggings"/>
         <boots unbreakable="true" locked="true" material="chainmail boots"/>
         <effect duration="1" amplifier="10">regeneration</effect>
         <game-mode>adventure</game-mode>
