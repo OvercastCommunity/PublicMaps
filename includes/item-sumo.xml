@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.02.01-1 -->
+<!-- Version 2025.04.19-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -17,6 +17,7 @@
     <constant id="item-spawn-point">0,0,0</constant>
     <constant id="item-spawn-rate">29.75s</constant>
     <constant id="global-power-up-rate">19.75s</constant>
+    <constant id="enable-helmets">1</constant>
     <!-- Hill -->
     <constant id="hill-name">Center</constant>
     <constant id="hill-capture-time">20s</constant>
@@ -24,7 +25,7 @@
     <constant id="hill-points">0</constant>
     <constant id="hill-block-on">emerald block</constant>
     <constant id="hill-block-off">coal block</constant>
-    <!-- Void Death include -->
+    <!-- void-death include -->
     <constant id="affect-obs">always</constant>
     <!-- Lifesteal variant -->
     <constant id="initial-lives">3</constant>
@@ -110,12 +111,15 @@
         </kit>
         <kit id="kill-streak-5-kit" force="true">
             <helmet locked="true" material="emerald block"/>
+            <action>
+                <set var="times_emerald" value="times_emerald+1"/>
+            </action>
         </kit>
-        <give kit="kill-streak-1-kit" filter="all(participating,kill_streak=1)"/>
-        <give kit="kill-streak-2-kit" filter="all(participating,kill_streak=2)"/>
-        <give kit="kill-streak-3-kit" filter="all(participating,kill_streak=3)"/>
-        <give kit="kill-streak-4-kit" filter="all(participating,kill_streak=4)"/>
-        <give kit="kill-streak-5-kit" filter="all(participating,kill_streak=5..)"/>
+        <give kit="kill-streak-1-kit" filter="all(participating,helmets_enabled=1,kill_streak=1)"/>
+        <give kit="kill-streak-2-kit" filter="all(participating,helmets_enabled=1,kill_streak=2)"/>
+        <give kit="kill-streak-3-kit" filter="all(participating,helmets_enabled=1,kill_streak=3)"/>
+        <give kit="kill-streak-4-kit" filter="all(participating,helmets_enabled=1,kill_streak=4)"/>
+        <give kit="kill-streak-5-kit" filter="all(participating,helmets_enabled=1,kill_streak=5..)"/>
     </unless>
     <unless variant="lifesteal">
         <kit id="obs-kit">
@@ -271,6 +275,7 @@
     2: fireball
     -->
     <variable id="op_item" default="0" scope="match"/>
+    <variable id="times_emerald" default="0" scope="player"/>
     <unless variant="lifesteal">
         <variable id="kill_streak" default="0" scope="player"/>
         <score id="player_score"/>
@@ -278,6 +283,7 @@
     <variable id="hill_disabled" default="0" scope="match"/>
     <variable id="hill_previously_disabled" default="0" scope="match"/>
     <variable id="killstreaker" scope="player" exclusive="1"/> <!-- from oitq.xml -->
+    <variable id="helmets_enabled" default="${enable-helmets}" scope="player"/>
 </variables>
 <regions>
     <negative id="not-playable-area">
@@ -614,6 +620,9 @@
     <disable>wood sword</disable>
     <disable>snow block</disable>
 </crafting>
+<stats>
+    <stat value="times_emerald" name="Emerald-level streaks"/>
+</stats>
 <gamerules>
     <doFireTick>true</doFireTick>
 </gamerules>
