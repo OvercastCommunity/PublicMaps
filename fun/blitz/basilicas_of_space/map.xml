@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Basilicas of Space</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Eliminate the other teams!</objective>
 <authors>
    <author uuid="6b5e5a44-a9dd-4ce9-9560-90db49bbf544"/> <!-- molenzwiebel -->
@@ -19,6 +19,7 @@
 <blitz>
     <lives>3</lives>
 </blitz>
+<rage/>
 <kits>
     <kit id="spawn">
         <item slot="0" enchantment="damage all:10" material="stone sword" unbreakable="true"/>
