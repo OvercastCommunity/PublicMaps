@@ -1,7 +1,8 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Long Shot: Payload</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Push your team's cart back to your base before the enemy!</objective>
+<include id="gapple-kill-reward"/>
 <phase>staging</phase>
 <authors>
     <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- StealthMedia -->
@@ -178,9 +179,6 @@
     <item>tnt</item>
 </itemkeep>
 <kill-rewards>
-    <kill-reward>
-        <item material="golden apple"/>
-    </kill-reward>
     <kill-reward>
         <item amount="4" team-color="true" material="stained clay"/>
     </kill-reward>
