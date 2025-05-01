@@ -35,6 +35,7 @@
     <constant id="entity.item.break">entity.item.break</constant>
     <constant id="entity.item.pickup">entity.item.pickup</constant>
     <constant id="entity.lightning_bolt.thunder">entity.lightning_bolt.thunder</constant>
+    <constant id="entity.minecart.inside">entity.minecart.inside</constant>
     <constant id="entity.player.burp">entity.player.burp</constant>
     <constant id="entity.player.levelup">entity.player.levelup</constant>
     <constant id="entity.skeleton_horse.death">entity.skeleton_horse.death</constant>
@@ -72,6 +73,7 @@
     <constant id="entity.item.break">random.break</constant>
     <constant id="entity.item.pickup">random.pop</constant>
     <constant id="entity.lightning_bolt.thunder">ambient.weather.thunder</constant>
+    <constant id="entity.minecart.inside">minecart.inside</constant>
     <constant id="entity.player.burp">random.burp</constant>
     <constant id="entity.player.levelup">random.levelup</constant>
     <constant id="entity.skeleton_horse.death">mob.horse.skeleton.death</constant>
