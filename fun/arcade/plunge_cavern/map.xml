@@ -1,6 +1,6 @@
 <map proto="1.5.0" game="Plunge">
 <name>Plunge: Cavern</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <objective>Fall into the void to score and survive!</objective>
 <include id="countdown"/>
 <variant id="rose" override="true" world="rose">Plunge: Rose Cord</variant>
@@ -213,16 +213,16 @@
             </action>
             <action id="paste-platform" filter="not(round=${max_rounds}..)">
                 <action filter="round=${easy}">
-                    <action filter="target=1"><paste-structure structure="structure-easy-1" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=2"><paste-structure structure="structure-easy-2" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=3"><paste-structure structure="structure-easy-3" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=4"><paste-structure structure="structure-easy-4" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=5"><paste-structure structure="structure-easy-5" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=6"><paste-structure structure="structure-easy-6" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=7"><paste-structure structure="structure-easy-7" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=8"><paste-structure structure="structure-easy-8" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=9"><paste-structure structure="structure-easy-9" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=10"><paste-structure structure="structure-easy-10" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=1"><paste-structure structure="structure-easy-1" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=2"><paste-structure structure="structure-easy-2" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=3"><paste-structure structure="structure-easy-3" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=4"><paste-structure structure="structure-easy-4" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=5"><paste-structure structure="structure-easy-5" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=6"><paste-structure structure="structure-easy-6" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=7"><paste-structure structure="structure-easy-7" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=8"><paste-structure structure="structure-easy-8" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=9"><paste-structure structure="structure-easy-9" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=10"><paste-structure structure="structure-easy-10" x="-6" y="4" z="-6"/></action>
                     <message text="`eRound {0} `7(`aEasy`7) `edropping in `c8 seconds`e!">
                         <replacements>
                             <decimal id="0" value="round"/>
@@ -230,16 +230,16 @@
                     </message>
                 </action>
                 <action filter="round=${intermediate}">
-                    <action filter="target=1"><paste-structure structure="structure-intermediate-1" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=2"><paste-structure structure="structure-intermediate-2" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=3"><paste-structure structure="structure-intermediate-3" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=4"><paste-structure structure="structure-intermediate-4" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=5"><paste-structure structure="structure-intermediate-5" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=6"><paste-structure structure="structure-intermediate-6" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=7"><paste-structure structure="structure-intermediate-7" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=8"><paste-structure structure="structure-intermediate-8" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=9"><paste-structure structure="structure-intermediate-9" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=10"><paste-structure structure="structure-intermediate-10" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=1"><paste-structure structure="structure-intermediate-1" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=2"><paste-structure structure="structure-intermediate-2" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=3"><paste-structure structure="structure-intermediate-3" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=4"><paste-structure structure="structure-intermediate-4" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=5"><paste-structure structure="structure-intermediate-5" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=6"><paste-structure structure="structure-intermediate-6" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=7"><paste-structure structure="structure-intermediate-7" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=8"><paste-structure structure="structure-intermediate-8" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=9"><paste-structure structure="structure-intermediate-9" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=10"><paste-structure structure="structure-intermediate-10" x="-6" y="4" z="-6"/></action>
                     <message text="`eRound {0} `7(`6Intermediate`7) `edropping in `c5 seconds`e!">
                         <replacements>
                             <decimal id="0" value="round"/>
@@ -247,11 +247,11 @@
                     </message>
                 </action>
                 <action filter="round=${hard}">
-                    <action filter="target=1..2"><paste-structure structure="structure-hard-1" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=3..4"><paste-structure structure="structure-hard-2" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=5..6"><paste-structure structure="structure-hard-3" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=7..8"><paste-structure structure="structure-hard-4" x="-6" y="3" z="-6"/></action>
-                    <action filter="target=9..10"><paste-structure structure="structure-hard-5" x="-6" y="3" z="-6"/></action>
+                    <action filter="target=1..2"><paste-structure structure="structure-hard-1" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=3..4"><paste-structure structure="structure-hard-2" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=5..6"><paste-structure structure="structure-hard-3" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=7..8"><paste-structure structure="structure-hard-4" x="-6" y="4" z="-6"/></action>
+                    <action filter="target=9..10"><paste-structure structure="structure-hard-5" x="-6" y="4" z="-6"/></action>
                     <message text="`eRound {0} `7(`4Hard`7) `edropping in `c3 seconds`e!">
                         <replacements>
                             <decimal id="0" value="round"/>
