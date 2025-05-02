@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>NextRace</name>
-<version>1.0.11</version>
+<version>1.0.12</version>
 <objective>Take the enemy's wool located to the side of the enemy's base and place it in your victory monument.</objective>
 <include id="gapple-kill-reward"/>
 <phase>staging</phase>
@@ -18,8 +18,8 @@
     <contributor uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa" contribution="Re-XMLing the map"/> <!-- Antnecb -->
 </contributors>
 <teams>
-    <team id="blue-team" color="blue" max="5">Blue</team>
-    <team id="red-team" color="dark red" max="5">Red</team>
+    <team id="blue-team" color="blue" max="12">Blue</team>
+    <team id="red-team" color="dark red" max="12">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
