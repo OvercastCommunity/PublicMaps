@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>NextRace</name>
-<version>1.0.12</version>
+<version>1.0.13</version>
 <objective>Take the enemy's wool located to the side of the enemy's base and place it in your victory monument.</objective>
 <include id="gapple-kill-reward"/>
 <phase>staging</phase>
@@ -162,7 +162,6 @@
     <apply block-break="always" region="spawn-backsides"/>
     <apply block-place="deny(void)" region="outside-void-lanes" message="You may not edit out of bounds!"/>
 </regions>
-<time overtime="10m" max-overtime="10m">25m</time>
 <wools craftable="false">
     <wool team="blue-team" color="purple" location="-126.5,11.5,-52.5">
         <monument>
