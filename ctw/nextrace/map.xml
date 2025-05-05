@@ -1,9 +1,21 @@
 <map proto="1.5.0">
 <name>NextRace</name>
-<version>1.0.13</version>
+<version>1.0.14</version>
+<variant id="5v5">5v5</variant>
 <objective>Take the enemy's wool located to the side of the enemy's base and place it in your victory monument.</objective>
 <include id="gapple-kill-reward"/>
 <phase>staging</phase>
+<unless variant="5v5">
+    <constant id="team-size">12</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="respawn-timer">3s</constant>
+</unless>
+<if variant="5v5">
+    <time overtime="10m" max-overtime="10m" end-overtime="1m">25m</time>
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <constant id="respawn-timer">5s</constant>
+</if>
 <authors>
     <author uuid="70c5c702-4e70-457b-8d7b-0e22010dc590" contribution="Re-re-reinventing the map"/> <!-- ocal -->
 </authors>
@@ -18,8 +30,8 @@
     <contributor uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa" contribution="Re-XMLing the map"/> <!-- Antnecb -->
 </contributors>
 <teams>
-    <team id="blue-team" color="blue" max="12">Blue</team>
-    <team id="red-team" color="dark red" max="12">Red</team>
+    <team id="blue-team" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red-team" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -47,21 +59,21 @@
     </kit>
 </kits>
 <spawns>
+    <default>
+        <region yaw="90">
+            <point>-104.5,38,13.5</point>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="180">
+            <point>-158.5,1,64.5</point>
+        </region>
+    </spawn>
     <spawn team="red-team" kit="spawn-kit">
         <region>
             <point>-158.5,1,-37.5</point>
         </region>
     </spawn>
-    <spawn team="blue-team" yaw="180" kit="spawn-kit">
-        <region>
-            <point>-158.5,1,64.5</point>
-        </region>
-    </spawn>
-    <default yaw="90">
-        <region>
-            <point>-104.5,38,13.5</point>
-        </region>
-    </default>
 </spawns>
 <filters>
     <!-- Usage Filters -->
@@ -117,7 +129,7 @@
         </union>
     </union>
     <negative id="outside-void-lanes">
-        <union id="void-lanes">        
+        <union id="void-lanes">
             <union id="main-void">
                 <rectangle id="lime-main" min="-183.5,1.5" max="-163.5,32.5"/>
                 <rectangle id="purple-main" min="-153.5,-5.5" max="-133.5,25.5"/>
@@ -213,15 +225,17 @@
     <tool>bow</tool>
 </toolrepair>
 <block-drops> <!-- This prevents planks from dropping when mined and ensures flint drops -->
-    <rule>
-        <filter>
-            <material>wood</material>
-        </filter>
-        <drops>
-            <item chance="0" material="wood"/>
-        </drops>
-    </rule>
-    <rule wrong-tool="true" region="everywhere">
+    <if variant="5v5">
+        <rule>
+            <filter>
+                <material>wood</material>
+            </filter>
+            <drops>
+                <item chance="0" material="wood"/>
+            </drops>
+        </rule>
+    </if>
+    <rule wrong-tool="true">
         <filter>
             <any>
                 <material>gravel</material>
@@ -254,12 +268,16 @@
         <item amount="16" material="glass"/>
     </kill-reward>
 </kill-rewards>
+<if variant="5v5">
+    <crafting>
+        <disable>iron trapdoor</disable>
+        <disable>minecart</disable>
+        <disable>boat</disable>
+    </crafting>
+</if>
 <maxbuildheight>22</maxbuildheight>
 <hunger>
     <depletion>off</depletion>
 </hunger>
-<gamerules>
-    <doDaylightCycle>false</doDaylightCycle>
-</gamerules>
-<respawn auto="true" delay="5s"/>
+<respawn auto="true" delay="${respawn-timer}"/>
 </map>
