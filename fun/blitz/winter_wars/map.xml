@@ -1,6 +1,6 @@
 <map proto="1.5.0" game="Blitz: Micro Battles">
 <name>Winter Wars</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <created>2022-06-01</created>
 <objective>Four teams are divided onto the map and only one will remain. Gather blocks to help you build up a tower or barricade yourself. Watch out for the world border!</objective>
 <gamemode>arcade</gamemode>
@@ -158,7 +158,7 @@
 <!-- World Border -->
 <world-borders center="0.5,0.5">
     <world-border size="45"/>
-    <world-border size="0" after="0s" duration="160s" damage="100" buffer="0"/>
+    <world-border size="0" after="0s" duration="160s" damage="5" buffer="0"/>
 </world-borders>
 <maxbuildheight>33</maxbuildheight>
 </map>
