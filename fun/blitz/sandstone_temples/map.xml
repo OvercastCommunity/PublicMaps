@@ -1,0 +1,83 @@
+﻿<map proto="1.5.0">
+<name>Sandstone Temples</name>
+<version>1.1.6</version>
+<objective>Eliminate the other team before 6 minutes is up.</objective>
+<gamemode>br</gamemode>
+<authors>
+    <author uuid="bf79899a-a06a-4506-8d18-3409ff39249a"/> <!-- GSwoogy AKA ___gavin -->
+    <!-- <author uuid="facb6996-f160-4c35-8121-3e47da1dab34"/> --> <!-- _gavin - Deleted account -->
+    <author uuid="dd7fb594-17ef-4716-9a95-238cf0e648a3" contribution="Design Input"/> <!-- SnickersBeast -->
+</authors>
+<rules>
+    <rule>Fall damage and hunger are disabled</rule>
+</rules>
+<teams>
+    <team id="red" color="red" max="25">Red</team>
+    <team id="blue" color="blue" max="25">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!" material="iron sword"/>
+        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!" material="bow"/>
+        <item slot="2" material="arrow"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <leggings team-color="true" material="leather leggings"/>
+        <boots team-color="true" material="leather boots"/>
+        <effect duration="3" amplifier="100">heal</effect>
+        <effect duration="3" amplifier="100">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="spawn-kit" yaw="180">
+        <region>
+            <cuboid min="-584,11,-254" max="-584.5,11,-254.5"/>
+        </region>
+    </spawn>
+    <spawn team="blue" kit="spawn-kit">
+        <region>
+            <cuboid min="-584,11,-347" max="-584.5,11,-347.5"/>
+        </region>
+    </spawn>
+    <default yaw="-90">
+        <region>
+            <cuboid min="-516,45,-301" max="-516.5,45,-301.5"/>
+        </region>
+    </default>
+</spawns>
+<regions>
+    <apply enter="never" message="This area is off limits">
+        <region>
+            <above y="29"/>
+        </region>
+    </apply>
+    <apply block="never"/>
+</regions>
+<time>6m</time>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<rage/>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<respawn auto="true"/>
+<timelock>on</timelock>
+</map>
