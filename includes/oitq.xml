@@ -8,7 +8,7 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.05.11-1 -->
+<!-- Version 2025.05.11-2 -->
 <constants fallback="true">
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
@@ -52,8 +52,7 @@
                     
                     Time your `7double
                     `7jumps`0 carefully to
-                    `ochain`0 them and fly
-                    around!
+                    `ochain`0 them!
                     
                     Play using one of
                     many available classes!
@@ -90,7 +89,7 @@
             </item>
         </kit>
     </class>
-    <class name="Phoenix" description="Blaze rod! Strength! No bow!" longdescription="Blaze rod! Strength! No bow! Double jumps!" icon="blaze rod">
+    <class name="Phoenix" description="Blaze rod! Strength! No bow!" longdescription="Fire stick! Strength! No bow! Double jumps!" icon="blaze rod">
         <kit parents="${base-kit}">
             <item slot="0" name="`6`lFire `fStick`r" lore="`8Multiple Hit Kill" material="blaze rod" enchantment="fire aspect:1"/>
             <effect duration="oo" ambient="true">strength</effect>
