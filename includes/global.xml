@@ -4,7 +4,7 @@
 
 <!-- Global constants -->
 <constants fallback="true">
-    <constant id="deny-shield-crafting">true</constant>
+    <constant id="deny-shield-crafting">false</constant>
 </constants>
 
 <!-- Add maxbuildheight variable to pre-proto 1.5 maps -->
@@ -14,7 +14,7 @@
 
 <!-- Modern only changes -->
 <if min-server-version="1.21.1">
-    <!-- Disable shield crafting by default, re-evaluate later -->
+    <!-- Enable shield crafting by default -->
     <if constant="deny-shield-crafting" constant-value="true">
         <crafting>
             <disable>shield</disable>
