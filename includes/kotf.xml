@@ -1,7 +1,7 @@
-<map> <!-- minimum proto 1.4.0 -->
+<map>
 <!-- Base KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2025.05.12-1 -->
+<!-- Version 2025.05.13-1 -->
 <include id="conquest"/>
 <constants fallback="true">
     <constant id="respawn-timer">2s</constant>
@@ -38,6 +38,9 @@
             </replace-item>
         </action>
         <max-health>20</max-health>
+        <if min-server-version="1.9">
+            <effect duration="0s" amplifier="0">glowing</effect>
+        </if>
         <effect duration="0s" amplifier="0">slowness</effect>
         <effect duration="2s" amplifier="10">regeneration</effect>
         <action>
