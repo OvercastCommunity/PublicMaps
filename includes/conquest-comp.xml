@@ -1,13 +1,14 @@
 <map>
 <!-- Base conquest (competitive) kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2025.05.12-1 -->
+<!-- Version 2025.05.12-2 -->
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
     <constant id="override-itemkeep">false</constant>
     <constant id="projectile-protection-level">3</constant>
     <constant id="feather-falling-level">1</constant>
     <constant id="enable-feather-falling">true</constant>
+    <constant id="deny-shield-crafting" fallback="false">true</constant>
 </constants>
 <phase>staging</phase> <!-- prevent competitive conquest from sponsoring -->
 <kits>
