@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>DK Crossovers DTE</name>
-<version>1.4.2</version>
+<version>1.4.3</version>
 <objective>Destroy 70% of the enemy's side!</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
@@ -60,7 +60,9 @@
         <item slot="35" amount="64" material="tnt"/>
         <item slot="26" amount="64" material="tnt"/>
         <item slot="17" amount="64" material="tnt"/>
-        <!-- <item slot="slot.weapon.offhand" unbreakable="true" name="Icarus Shield" lore="Face the icarus with your shield for maximum blast protection!" material="shield"/> -->
+        <if min-server-version="1.21">
+            <item slot="slot.weapon.offhand" unbreakable="true" name="Icarus Shield" lore="Face the icarus with your shield for maximum blast protection!" material="shield"/>
+        </if>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" enchantment="protection explosions:3" material="chainmail chestplate"/>
         <leggings unbreakable="true" material="iron leggings"/>
@@ -304,6 +306,9 @@
     <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>iron pickaxe</tool>
+    <if min-server-version="1.21">
+        <tool>shield</tool>
+    </if>
 </toolrepair>
 <kill-rewards>
     <kill-reward>
