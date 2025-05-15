@@ -1,7 +1,7 @@
 <map>
 <!-- "Micro Battles" gamemode include file -->
 <!-- Created by Eliminate, based on the original "Cozy Cove" XML by Owehttamy -->
-<!-- Version 2025.05.14-2 -->
+<!-- Version 2025.05.14-3 -->
 <include id="gapple-kill-reward"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
     <constant id="game-objective">Eliminate the other teams before the time runs out! Watch out for the shrinking world border!</constant>
@@ -116,7 +116,7 @@
 </kill-rewards>
 <world-borders center="0.5,0.5">
     <world-border size="80"/>
-    <world-border size="0" after="0s" duration="160s" damage="5" buffer="0"/>
+    <world-border size="3" after="0s" duration="160s" damage="5" buffer="0"/>
 </world-borders>
 <maxbuildheight>${max-height-value}</maxbuildheight>
 </map>
