@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <!-- Freeze Tag gamemode include file -->
 <!-- Created by mitchiii -->
-<!-- Version 2025.01.05-1 -->
+<!-- Version 2025.05.17 -->
 <objective>Taggers must freeze at least half of all Runners before time runs out!</objective>
 <game>Freeze Tag</game>
 <include id="void-death"/>
@@ -287,6 +287,9 @@
             <all>
                 <filter id="attacker-is-unfrozen-runner"/>
                 <filter id="victim-is-unfrozen-runner"/>
+                <not>
+                    <cause>void</cause>
+                </not>
             </all>
             <all>
                 <filter id="attacker-is-frozen-runner"/>
@@ -297,6 +300,9 @@
                         <cause>melee</cause>
                     </all>
                 </any>
+                <not>
+                    <cause>void</cause>
+                </not>
             </all>
         </any>
     </deny>
