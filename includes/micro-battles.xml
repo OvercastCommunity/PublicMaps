@@ -1,7 +1,7 @@
 <map>
 <!-- "Micro Battles" gamemode include file -->
 <!-- Created by Eliminate, based on the original "Cozy Cove" XML by Owehttamy -->
-<!-- Version 2025.05.14-3 -->
+<!-- Version 2025.05.16-1 -->
 <include id="gapple-kill-reward"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
     <constant id="game-objective">Eliminate the other teams before the time runs out! Watch out for the shrinking world border!</constant>
@@ -45,9 +45,7 @@
     </kit>
 </kits>
 <filters>
-    <not id="not-glass">
-        <material id="only-glass">>glass</material>
-    </not>
+    <material id="only-glass">glass</material>
 </filters>
 <regions>
     <cuboid id="floor" min="-39,0,-39" max="40,25,40"/>
@@ -58,17 +56,13 @@
     <negative id="not-map">
         <cylinder id="map" base="0.5,0,0.5" radius="27.5" height="25"/>
     </negative>
-    <apply region="map" block="not-glass" message="You may not break the walls."/>
+    <apply region="map" block="not(only-glass)" message="You may not break the walls."/>
     <apply region="not-map" block="never" message="You may not build outside of the map."/>
 </regions>
 <actions>
     <!-- Wall controls -->
     <action id="walls-falling" scope="match">
-        <fill id="walls-air" region="walls" material="air">
-		    <filter>
-			    <material>glass</material>
-            </filter>
-		</fill>
+        <fill id="walls-air" region="walls" material="air" filter="only-glass"/>
     </action>
     <trigger action="walls-falling" scope="match">
         <filter>
