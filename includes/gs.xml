@@ -1,7 +1,7 @@
 <map>
 <!-- Ghost Squadron gamemode include file -->
 <!-- Modified by zzuf - Original gs.xml file by the Overcast Network -->
-<!-- Version 2024.12.21-1 -->
+<!-- Version 2025.05.19-1 -->
 <game>Ghost Squadron</game>
 <constants fallback="true">
     <constant id="base-kit">default-base-kit</constant>
@@ -36,6 +36,12 @@
         <item slot="8" amount="10" material="cooked beef"/>
         <game-mode>adventure</game-mode>
     </kit>
+    <if min-server-version="1.9">
+        <kit id="default-glowing-kit" potion-particles="false">
+            <effect duration="oo">glowing</effect>
+        </kit>
+        <give kit="default-glowing-kit" filter="all(after-invis,map_mode=0)"/>
+    </if>
 </kits>
 <classes family="ghost" sticky="false">
     <class name="Scout" description="Fast with knockback!" longdescription="You spawn with Speed I, a stick that has Knockback and an extra 20% speed. Perfect for knocking enemies around!" icon="stick">
@@ -181,6 +187,9 @@
             <material>chest</material>
             <material>dispenser</material>
             <material>mob spawner</material>
+            <material>trapped chest</material>
+            <material>hopper</material>
+            <material>ender chest</material>
         </any>
     </not>
     <deny id="deny-participating">
@@ -204,6 +213,7 @@
         </allow>
         <filter id="deny-participating"/>
     </any>
+    <time id="after-invis">${invis-duration}</time>
 </filters>
 <regions>
     <apply block-break="allow-breakable" block-place="allow-placeable" use="blacklist"/>
