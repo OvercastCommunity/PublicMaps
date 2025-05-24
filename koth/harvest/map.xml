@@ -6,6 +6,9 @@
 <include id="conquest"/>
 <variant id="halloween" world="halloween" override="true">Harvested</variant>
 <objective>Be the first team to reach 500 points!</objective>
+<if variant="default">
+    <created>2017-08-10</created>
+</if>
 <if variant="halloween">
     <created>2022-09-15</created>
 </if>
