@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.04.19-1 -->
+<!-- Version 2025.05.26-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <constants>
@@ -467,7 +467,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `b`l» » `r{player} `7got a `b`lTRIPLE KILL`7! `f(3 kills)">
+                    <message text=" `b`l» `r{player} `7got a `b`lHAT TRICK`7! `f(3 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -485,7 +485,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `a`l» » `r{player} `7is on a `a`lKILLING SPREE`7! `f(5 kills)">
+                    <message text=" `a`l» `r{player} `7is on a `a`lKILLING SPREE`7! `f(5 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -503,7 +503,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `e`l» » `r{player} `7is on a `e`lRAMPAGE`7! `f(8 kills)">
+                    <message text=" `e`l» `r{player} `7is on a `e`lRAMPAGE`7! `f(8 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -521,7 +521,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `6`l» » `r{player} `7is `6`lDOMINATING`7! `f(12 kills)">
+                    <message text=" `6`l» `r{player} `7is `6`lDOMINATING`7! `f(12 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -539,7 +539,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `c`l» » `r{player} `7is `c`lUNSTOPPABLE`7! `f(15 kills)">
+                    <message text=" `c`l» `r{player} `7is `c`lUNSTOPPABLE`7! `f(15 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -557,7 +557,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `4`l» » `r{player} `7is `4`lGODLIKE`7! `f(22 kills)">
+                    <message text=" `4`l» `r{player} `7is `4`lGODLIKE`7! `f(22 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
@@ -575,7 +575,7 @@
             <action>
                 <set var="killstreaker" value="1"/>
                 <switch-scope outer="player" inner="match">
-                    <message text=" `0`l» » `r{player} `7is `0`l`kzzuf`7! `f(30 kills)">
+                    <message text=" `0`l» `r{player} `7is `0`l`kzzuf`7! `f(30 kills)">
                         <replacements>
                             <player id="player" var="killstreaker"/>
                         </replacements>
