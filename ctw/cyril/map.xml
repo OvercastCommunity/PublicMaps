@@ -21,6 +21,7 @@
         <item unbreakable="true" slot="1" material="bow">
             <enchantment>infinity</enchantment>
         </item>
+        <item slot="28" material="arrow"/>
         <item unbreakable="true" slot="2" material="iron pickaxe">
             <enchantment>efficiency</enchantment>
         </item>
@@ -30,7 +31,6 @@
         <item slot="4" amount="64" damage="1" material="wood"/>
         <item slot="5" amount="48" damage="7" material="stained glass"/>
         <item slot="8" material="golden apple"/>
-        <item slot="28" material="arrow"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
