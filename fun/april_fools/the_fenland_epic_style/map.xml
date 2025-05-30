@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>The Fenland - EPIC STYLE</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Break the enemy team's monument, leak their core and capture the wool and the flag!</objective>
 <include id="gapple-kill-reward"/>
 <phase>staging</phase>
@@ -48,11 +48,11 @@
 </spawns>
 <filters>
     <all id="red-woolroom-filter">
-        <team id="only-blue">blue-team</team>
+        <team>blue-team</team>
         <filter id="woolrooms-filter"/>
     </all>
     <all id="blue-woolroom-filter">
-        <team id="only-red">red-team</team>
+        <team>red-team</team>
         <filter id="woolrooms-filter"/>
     </all>
     <not id="woolrooms-filter">
@@ -116,10 +116,10 @@
         <cylinder id="red-jump-pad" base="-18.5,14,25.5" height="3" radius="0.5"/>
     </union>
     <!-- applicators -->
-    <apply enter="only-blue" region="red-woolroom" message="You may not enter your own wool room!"/>
-    <apply enter="only-red" region="blue-woolroom" message="You may not enter your own wool room!"/>
-    <apply enter="only-red" region="red-spawn-enter" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-blue" region="blue-spawn-enter" message="You may not enter the enemy's spawn!"/>
+    <apply enter="deny(red-team)" region="red-woolroom" message="You may not enter your own wool room!"/>
+    <apply enter="deny(blue-team)" region="blue-woolroom" message="You may not enter your own wool room!"/>
+    <apply enter="deny(blue-team)" region="red-spawn-enter" message="You may not enter the enemy's spawn!"/>
+    <apply enter="deny(red-team)" region="blue-spawn-enter" message="You may not enter the enemy's spawn!"/>
     <apply block="red-woolroom-filter" region="red-woolroom" message="You may not edit the wool room!"/>
     <apply block="blue-woolroom-filter" region="blue-woolroom" message="You may not edit the wool room!"/>
     <apply block="never" region="jump-pads" message="You may not edit the jump pad!"/>
@@ -150,22 +150,23 @@
 </modes>
 <flags carry-message="Capture the Flag at your spawn!">
     <!-- red flag, blue captures -->
-    <post id="red-flag-post" owner="blue-team" permanent="true" pickup-filter="only-blue">-29,2,-1</post>
+    <post id="red-flag-post" owner="blue-team" permanent="true" pickup-filter="blue-team">-29,2,-1</post>
     <flag id="red-flag" name="Red Flag" color="red" post="red-flag-post"/>
-    <net post="red-flag-post" region="blue-spawn-point" owner="blue-team" capture-filter="only-blue"/>
+    <net post="red-flag-post" region="blue-spawn-point" owner="blue-team" capture-filter="blue-team"/>
     <!-- blue flag, red captures -->
-    <post id="blue-flag-post" owner="red-team" permanent="true" pickup-filter="only-red">29,2,1</post>
+    <post id="blue-flag-post" owner="red-team" permanent="true" pickup-filter="red-team">29,2,1</post>
     <flag id="blue-flag" name="Blue Flag" color="blue" post="blue-flag-post"/>
-    <net post="blue-flag-post" region="red-spawn-point" owner="red-team" capture-filter="only-red"/>
+    <net post="blue-flag-post" region="red-spawn-point" owner="red-team" capture-filter="red-team"/>
 </flags>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>diamond axe</tool>
+</toolrepair>
 <itemkeep>
-    <item>iron sword</item>
-    <item>bow</item>
-    <item>diamond pickaxe</item>
-    <item>diamond axe</item>
     <item>arrow</item>
-    <item>iron chestplate</item>
-    <item>iron boots</item>
+    <item>golden apple</item>
     <item>glass</item>
     <item>wood</item>
 </itemkeep>
@@ -173,6 +174,8 @@
     <item>string</item>
     <item>obsidian</item>
     <item>gold block</item>
+    <item>iron chestplate</item>
+    <item>iron boots</item>
     <item>leather helmet</item>
     <item>leather leggings</item>
 </itemremove>
@@ -198,7 +201,6 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
-
 <kill-rewards>
     <kill-reward>
         <item amount="12" material="wood"/>
