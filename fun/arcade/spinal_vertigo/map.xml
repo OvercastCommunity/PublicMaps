@@ -1,0 +1,442 @@
+<map proto="1.5" game="Elytra Race" min-server-version="1.9">
+<name>Spinal Vertigo</name>
+<version>2.0.2</version>
+<objective>Fly a complete lap to win!</objective>
+<authors>
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
+</authors>
+<contributors>
+    <contributor uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="XML update"/> <!-- zzuf -->
+</contributors>
+<players max="100"/>
+<respawn delay="0s"/>
+<score>
+    <limit>1</limit>
+    <box region="finish-line" points="1"/>
+</score>
+<spawns>
+    <spawn kit="spawn-kit">
+        <regions angle="-6,210,28">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="obs-kit">
+        <regions yaw="180">
+            <region id="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <chestplate unbreakable="true" locked="true">elytra</chestplate>
+        <leggings unbreakable="true" locked="true">leather leggings</leggings>
+        <boots name="player-boots" unbreakable="true" locked="true">leather boots</boots>
+        <effect duration="5s" amplifier="1">speed</effect>
+        <effect duration="5s" amplifier="1">invisibility</effect>
+        <item name="Gatling Gun" slot="0" projectile="gatlinggun">end rod</item>
+        <double-jump/>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="obs-kit">
+        <chestplate unbreakable="true">elytra</chestplate>
+        <effect duration="oo" amplifier="1">night vision</effect>
+    </kit>
+    <kit id="point1-kit">
+        <action><set var="current_point" value="1"/><action id="checkpoint-msg"/></action>
+    </kit>
+    <kit id="point2-kit">
+        <action><set var="current_point" value="2"/><action id="checkpoint-msg"/></action>
+    </kit>
+    <kit id="point3-kit">
+        <action><set var="current_point" value="3"/><action id="checkpoint-msg"/></action>
+    </kit>
+    <kit id="point4-kit">
+        <action><set var="current_point" value="4"/><action id="checkpoint-msg"/></action>
+    </kit>
+    <kit id="point5-kit">
+        <action><set var="current_point" value="5"/><action id="checkpoint-msg"/></action>
+    </kit>
+    <kit id="point6-kit">
+        <action><set var="current_point" value="6"/><action id="checkpoint-msg"/></action>
+    </kit>
+    <kit id="point7-kit">
+        <action><set var="current_point" value="7"/><action id="checkpoint-msg"/></action>
+    </kit>
+    <kit id="speed-1" force="true">
+        <effect duration="2s" amplifier="2">speed</effect>
+    </kit>
+    <kit id="speed-2" force="true">
+        <effect duration="4s" amplifier="3">speed</effect>
+    </kit>
+    <kit id="clear-kit" force="true">
+        <item slot="9">air</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>elytra</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>end rod</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>fly into wall</damage>
+    <damage>suffocation</damage>
+    <damage>fire tick</damage>
+    <damage>lava</damage>
+</disabledamage>
+<damage>
+    <deny>
+        <region id="walkable-area"/>
+    </deny>
+</damage>
+<projectiles>
+    <projectile id="gatlinggun" name="Gatling Gun" projectile="SmallFireball" velocity="5" damage="10" throwable="false"/>
+</projectiles>
+<regions>
+    <apply block="never"/>
+    <!-- Spawns -->
+    <point id="obs-spawn">-5.5,209.5,11.5</point>
+    <cuboid id="player-spawn" min="-7,210.5,10" max="-4,209.6,13"/>
+    <!-- Scorebox -->
+    <below id="finish-line" x="-300"/>
+    <!-- Checkpoint locations -->
+    <point id="checkpoint-1">-5.5,210.5,23</point>
+    <point id="checkpoint-2">-33,75.5,-21</point>
+    <point id="checkpoint-3">79,49.5,211</point>
+    <point id="checkpoint-4">28,110.5,70</point>
+    <point id="checkpoint-5">-3,106,284</point>
+    <point id="checkpoint-6">7,248,203</point>
+    <point id="checkpoint-7">-89,219.5,253</point>
+    <!-- Checkpoint areas -->
+    <cuboid id="checkpoint-1-area" min="-16,200,5" max="10,250,40"/>
+    <cuboid id="checkpoint-2-area" min="-59,59,-33" max="-8,110,-5"/>
+    <cuboid id="checkpoint-3-area" min="56,30,186" max="114,100,244"/>
+    <cuboid id="checkpoint-4-area" min="5,95,46" max="37,131,95"/>
+    <cuboid id="checkpoint-5-area" min="-31,81,275" max="25,122,296"/>
+    <cuboid id="checkpoint-6-area" min="-4,229,188" max="42,257,228"/>
+    <cuboid id="checkpoint-7-area" min="-112,200,242" max="-57,265,265"/>
+    <union id="walkable-area">
+        <region id="checkpoint-1-area"/>
+        <region id="checkpoint-2-area"/>
+        <region id="checkpoint-3-area"/>
+        <region id="checkpoint-4-area"/>
+        <region id="checkpoint-5-area"/>
+        <region id="checkpoint-6-area"/>
+        <region id="checkpoint-7-area"/>
+    </union>
+    <apply kit="point1-kit" region="checkpoint-1-area" filter="current_point=0"/>
+    <apply kit="point2-kit" region="checkpoint-2-area" filter="current_point=1"/>
+    <apply kit="point3-kit" region="checkpoint-3-area" filter="current_point=2"/>
+    <apply kit="point4-kit" region="checkpoint-4-area" filter="current_point=3"/>
+    <apply kit="point5-kit" region="checkpoint-5-area" filter="current_point=4"/>
+    <apply kit="point6-kit" region="checkpoint-6-area" filter="current_point=5"/>
+    <apply kit="point7-kit" region="checkpoint-7-area" filter="current_point=6"/>
+   <!-- <apply kit="point1-kit" region="finish-line"/> -->
+    <negative id="out-of-spawn">
+        <region id="checkpoint-1-area"/>
+    </negative>
+    <apply region="out-of-spawn" kit="point1-kit" filter="current_point=0"/>
+    <!-- Yellow Flags -->
+    <cuboid id="yflag-1" min="-57,77,128" max="-51,82,129"/>
+    <cuboid id="yflag-2" min="-30,69,86" max="-24,76,87"/>
+    <cuboid id="yflag-3" min="-67,64,42" max="-61,70,43"/>
+    <cuboid id="yflag-4" min="-12,62,-54" max="-11,68,-48"/>
+    <cuboid id="yflag-5" min="19,62,-31" max="20,67,-25"/>
+    <cuboid id="yflag-6" min="59,32,-13" max="65,38,-12"/>
+    <cuboid id="yflag-7" min="35,13,17" max="41,19,18"/>
+    <cuboid id="yflag-8" min="60,32,46" max="66,37,47"/>
+    <cuboid id="yflag-9" min="124,53,104" max="130,58,105"/>
+    <cuboid id="yflag-10" min="107,38,129" max="113,43,130"/>
+    <cuboid id="yflag-11" min="117,47,177" max="124,54,178"/>
+    <cuboid id="yflag-12" min="94,48,179" max="95,53,185"/>
+    <cuboid id="yflag-13" min="80,37,240" max="86,42,241"/>
+    <cuboid id="yflag-14" min="40,36,219" max="41,42,255"/>
+    <cuboid id="yflag-15" min="55,50,255" max="62,56,256"/>
+    <cuboid id="yflag-16" min="22,50,247" max="23,56,253"/>
+    <cuboid id="yflag-17" min="10,50,287" max="11,55,293"/>
+    <cuboid id="yflag-18" min="-15,43,292" max="-16,49,298"/>
+    <cuboid id="yflag-19" min="-66,62,317" max="-65,69,324"/>
+    <cuboid id="yflag-20" min="-135,40,296" max="-129,46,297"/>
+    <cuboid id="yflag-21" min="-146,34,260" max="-140,40,261"/>
+    <cuboid id="yflag-22" min="-121,34,260" max="-117,40,261"/>
+    <cuboid id="yflag-23" min="-142,47,221" max="-135,53,222"/>
+    <cuboid id="yflag-24" min="-120,38,194" max="-114,44,195"/>
+    <cuboid id="yflag-25" min="-136,63,168" max="-130,68,169"/>
+    <cuboid id="yflag-26" min="-116,53,138" max="-110,59,139"/>
+    <cuboid id="yflag-27" min="-72,103,70" max="-71,109,76"/>
+    <cuboid id="yflag-28" min="-29,103,66" max="-28,108,72"/>
+    <cuboid id="yflag-29" min="4,112,45" max="5,118,51"/>
+    <cuboid id="yflag-30" min="29,55,153" max="35,60,154"/>
+    <cuboid id="yflag-31" min="18,55,139" max="19,60,145"/>
+    <cuboid id="yflag-32" min="-7,67,176" max="-1,75,177"/>
+    <cuboid id="yflag-33" min="-21,76,204" max="-15,82,205"/>
+    <cuboid id="yflag-34" min="-34,97,231" max="-28,102,232"/>
+    <cuboid id="yflag-35" min="-16,91,259" max="-10,97,260"/>
+    <cuboid id="yflag-36" min="-10,94,291" max="-4,99,292"/>
+    <cuboid id="yflag-37" min="17,96,304" max="16,102,310"/>
+    <cuboid id="yflag-38" min="44,97,321" max="45,103,327"/>
+    <cuboid id="yflag-39" min="72,82,292" max="73,88,298"/>
+    <cuboid id="yflag-40" min="93,90,304" max="94,97,310"/>
+    <cuboid id="yflag-41" min="108,102,273" max="109,107,280"/>
+    <cuboid id="yflag-42" min="136,121,268" max="137,128,274"/>
+    <cuboid id="yflag-43" min="138,126,254" max="144,132,255"/>
+    <cuboid id="yflag-44" min="158,139,239" max="164,145,240"/>
+    <cuboid id="yflag-45" min="150,141,213" max="156,147,214"/>
+    <cuboid id="yflag-46" min="164,153,199" max="171,59,200"/>
+    <cuboid id="yflag-47" min="144,162,176" max="150,168,177"/>
+    <cuboid id="yflag-48" min="145,175,142" max="146,180,148"/>
+    <cuboid id="yflag-49" min="119,182,148" max="120,188,155"/>
+    <cuboid id="yflag-50" min="98,198,125" max="99,204,131"/>
+    <cuboid id="yflag-51" min="73,203,132" max="74,209,138"/>
+    <cuboid id="yflag-52" min="44,211,147" max="45,218,154"/>
+    <cuboid id="yflag-53" min="50,211,170" max="56,217,171"/>
+    <cuboid id="yflag-54" min="17,226,180" max="23,232,181"/>
+    <cuboid id="yflag-55" min="18,233,228" max="24,240,229"/>
+    <cuboid id="yflag-56" min="21,243,280" max="27,256,281"/>
+    <cuboid id="yflag-57" min="4,210,296" max="10,215,297"/>
+    <cuboid id="yflag-58" min="-15,196,320" max="-14,202,326"/>
+    <cuboid id="yflag-59" min="-16,182,298" max="-15,189,304"/>
+    <cuboid id="yflag-60" min="-57,198,272" max="-51,204,273"/>
+    <cuboid id="yflag-61" min="-84,213,274" max="-78,219,275"/>
+    <cuboid id="yflag-62" min="-101,216,235" max="-95,222,236"/>
+    <cuboid id="yflag-63" min="-94,223,235" max="-88,229,236"/>
+    <cuboid id="yflag-64" min="-88,216,235" max="-82,222,236"/>
+    <cuboid id="yflag-65" min="-169,89,171" max="-168,94,177"/>
+    <cuboid id="yflag-66" min="-201,89,192" max="-200,95,198"/>
+    <cuboid id="yflag-67" min="-222,97,169" max="-221,102,175"/>
+    <cuboid id="yflag-68" min="-243,109,189" max="-242,115,195"/>
+    <cuboid id="yflag-69" min="-264,117,170" max="-263,124,177"/>
+
+    <!-- Green Flags -->
+    <cuboid id="gflag-1" min="-43,68,111" max="-39,72,112"/>
+    <cuboid id="gflag-2" min="-52,64,14" max="-48,69,15"/>
+    <cuboid id="gflag-3" min="51,13,7" max="55,16,8"/>
+    <cuboid id="gflag-4" min="105,35,150" max="109,38,151"/>
+    <cuboid id="gflag-5" min="77,35,211" max="81,39,212"/>
+    <cuboid id="gflag-6" min="26,35,276" max="30,38,277"/>
+    <cuboid id="gflag-7" min="-147,34,296" max="-143,37,297"/>
+    <cuboid id="gflag-8" min="-108,75,106" max="-104,79,107"/>
+    <cuboid id="gflag-9" min="-112,87,99" max="-108,91,100"/>
+    <cuboid id="gflag-10" min="-102,88,102" max="-101,92,106"/>
+    <cuboid id="gflag-11" min="25,50,146" max="30,53,151"/>
+    <cuboid id="gflag-12" min="-21,87,268" max="-17,90,269"/>
+    <cuboid id="gflag-13" min="56,89,319" max="57,93,323"/>
+    <cuboid id="gflag-14" min="121,108,287" max="122,112,291"/>
+    <cuboid id="gflag-15" min="161,158,173" max="165,162,174"/>
+    <cuboid id="gflag-16" min="96,193,150" max="97,198,154"/>
+    <cuboid id="gflag-17" min="5,247,223" max="9,250,224"/>
+    <cuboid id="gflag-18" min="-93,213,234" max="-89,217,235"/>
+
+    <!-- Yellow flag pads -->
+    <apply region="yflag-1" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-2" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-3" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-4" velocity="2,0,0" kit="speed-1"/>
+    <apply region="yflag-5" velocity="2,0,0" kit="speed-1"/>
+    <apply region="yflag-6" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-7" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-8" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-9" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-10" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-11" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-12" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-13" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-14" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-15" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-16" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-17" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-18" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-19" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-20" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-21" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-22" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-23" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-24" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-25" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-26" velocity="0,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-27" velocity="2,0,0" kit="speed-1"/>
+    <apply region="yflag-28" velocity="2,0,0" kit="speed-1"/>
+    <apply region="yflag-29" velocity="2,0,2" kit="speed-1"/>
+    <apply region="yflag-30" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-31" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-32" velocity="-1.5,0.5,2.5" kit="speed-1"/>
+    <apply region="yflag-33" velocity="-1.5,0.5,2.5" kit="speed-1"/>
+    <apply region="yflag-34" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-35" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-36" velocity="2,0,2" kit="speed-1"/>
+    <apply region="yflag-37" velocity="2,0,0" kit="speed-1"/>
+    <apply region="yflag-38" velocity="2,0,0" kit="speed-1"/>
+    <apply region="yflag-39" velocity="2,0.5,0" kit="speed-1"/>
+    <apply region="yflag-40" velocity="2,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-41" velocity="2,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-42" velocity="2,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-43" velocity="2,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-44" velocity="0,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-45" velocity="0,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-46" velocity="0,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-47" velocity="0,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-48" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-49" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-50" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-51" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-52" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-53" velocity="-2,0,2" kit="speed-1"/>
+    <apply region="yflag-54" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-55" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-56" velocity="0,0,2" kit="speed-1"/>
+    <apply region="yflag-57" velocity="-2,0,0.5" kit="speed-1"/>
+    <apply region="yflag-58" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-59" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-60" velocity="-2,0.5,-2" kit="speed-1"/>
+    <apply region="yflag-61" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-62" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-63" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-64" velocity="0,0,-2" kit="speed-1"/>
+    <apply region="yflag-65" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-66" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-67" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-68" velocity="-2,0,0" kit="speed-1"/>
+    <apply region="yflag-69" velocity="-2,0,0" kit="speed-1"/>
+
+    <!-- Green flag pads -->
+    <apply region="gflag-1" velocity="0,0,-4" kit="speed-2"/>
+    <apply region="gflag-2" velocity="2,0,-4" kit="speed-2"/>
+    <apply region="gflag-3" velocity="0,0.5,4" kit="speed-2"/>
+    <apply region="gflag-4" velocity="-2,0,3.5" kit="speed-2"/>
+    <apply region="gflag-5" velocity="-2.5,0,2.5" kit="speed-2"/>
+    <apply region="gflag-6" velocity="-2.5,0,2.5" kit="speed-2"/>
+    <apply region="gflag-7" velocity="0,0,-4" kit="speed-2"/>
+    <apply region="gflag-8" velocity="2.5,1,-2.5" kit="speed-2"/>
+    <apply region="gflag-9" velocity="2.5,1,-2.5" kit="speed-2"/>
+    <apply region="gflag-10" velocity="2.5,1,-2.5" kit="speed-2"/>
+    <apply region="gflag-11" velocity="-2,0,2" kit="speed-2"/>
+    <apply region="gflag-12" velocity="3,0.5,3" kit="speed-2"/>
+    <apply region="gflag-13" velocity="4,0.5,0" kit="speed-2"/>
+    <apply region="gflag-14" velocity="2,1,-2" kit="speed-2"/>
+    <apply region="gflag-15" velocity="-2,0.5,-2" kit="speed-2"/>
+    <apply region="gflag-16" velocity="-3,0.5,0" kit="speed-2"/>
+    <apply region="gflag-17" velocity="1.5,0,3.5" kit="speed-2"/>
+    <apply region="gflag-18" velocity="0,0,-4" kit="speed-2"/>
+</regions>
+<filters>
+    <!-- <not id="needs-reset">
+        <gliding/>
+    </not> -->
+    <grounded id="needs-reset"/>
+    <all id="point-1">
+        <variable var="current_point">1</variable>
+        <filter id="needs-reset"/>
+        <not>
+            <region id="walkable-area"/>
+        </not>
+        <time>3s</time>
+    </all>
+    <all id="point-2">
+        <variable var="current_point">2</variable>
+        <filter id="needs-reset"/>
+        <not>
+            <region id="walkable-area"/>
+        </not>
+        <time>3s</time>
+    </all>
+    <all id="point-3">
+        <variable var="current_point">3</variable>
+        <filter id="needs-reset"/>
+        <not>
+            <region id="walkable-area"/>
+        </not>
+        <time>3s</time>
+    </all>
+    <all id="point-4">
+        <variable var="current_point">4</variable>
+        <filter id="needs-reset"/>
+        <not>
+            <region id="walkable-area"/>
+        </not>
+        <time>3s</time>
+    </all>
+    <all id="point-5">
+        <variable var="current_point">5</variable>
+        <filter id="needs-reset"/>
+        <not>
+            <region id="walkable-area"/>
+        </not>
+        <time>3s</time>
+    </all>
+    <all id="point-6">
+        <variable var="current_point">6</variable>
+        <filter id="needs-reset"/>
+        <not>
+            <region id="walkable-area"/>
+        </not>
+        <time>3s</time>
+    </all>
+    <all id="point-7">
+        <variable var="current_point">7</variable>
+        <filter id="needs-reset"/>
+        <not>
+            <region id="walkable-area"/>
+        </not>
+        <time>3s</time>
+    </all>
+    <not id="walkable-filter">
+        <region id="walkable-area"/>
+    </not>
+</filters>
+<variables>
+    <variable id="current_point" scope="player" default="0"/>
+</variables>
+<actions>
+    <action id="checkpoint-msg" scope="player">
+        <message text="`f » `7Checkpoint! `8({current}/7)">
+            <replacements>
+                <decimal id="current" value="current_point"/>
+            </replacements>
+        </message>
+        <sound/>
+    </action>
+    <trigger scope="player" filter="point-1">
+        <action>
+            <teleport x="-5.5" y="210.5" z="23" yaw="0"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="point-2">
+        <action>
+            <teleport x="-33" y="75.5" z="-21" yaw="-120"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="point-3">
+        <action>
+            <teleport x="79" y="49.5" z="211" yaw="45"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="point-4">
+        <action>
+            <teleport x="28" y="110.5" z="70" yaw="180"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="point-5">
+        <action>
+            <teleport x="-3" y="106" z="284" yaw="-45"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="point-6">
+        <action>
+            <teleport x="7" y="248" z="203" yaw="45"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="point-7">
+        <action>
+            <teleport x="-89" y="219.5" z="253" yaw="180"/>
+        </action>
+    </trigger>
+</actions>
+<portals observers="never">
+    <!-- Finish line portal -->
+    <portal filter="current_point=7" region="finish-line" destination="player-spawn" yaw="@0"/>
+</portals>
+</map>
