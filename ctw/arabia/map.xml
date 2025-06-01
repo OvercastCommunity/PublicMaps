@@ -197,8 +197,7 @@
     </rule>
 </block-drops>
 <itemkeep>
-    <item>wood:1</item>
-    <item>wood:2</item>
+    <item>wood</item>
     <item>glass</item>
     <item>golden apple</item>
     <item>water bucket</item>
