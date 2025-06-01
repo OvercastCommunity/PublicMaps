@@ -83,18 +83,7 @@
     </spawn>
 </spawns>
 <filters>
-    <not id="team-1-in-wr">
-        <any>
-            <team>team-2</team>
-            <material>chest</material>
-        </any>
-    </not>
-    <not id="team-2-in-wr">
-        <any>
-            <team>team-1</team>
-            <material>chest</material>
-        </any>
-    </not>
+    <material id="chest">chest</material>
     <all id="only-gold-regen">
         <material id="only-gold">gold block</material>
         <cause>world</cause>
@@ -125,12 +114,15 @@
         <region id="gold"/>
         <region id="wool-rooms"/>
     </complement>
+    <apply use="deny(team-2)" region="team-2-wool-rooms"/>
+    <apply use="deny(team-1)" region="team-1-wool-rooms"/>
     <apply enter="deny(team-2)" region="team-1-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="deny(team-1)" region="team-2-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="deny(team-2)" region="team-2-wool-rooms" message="You may not enter your team's wool rooms!"/>
     <apply enter="deny(team-1)" region="team-1-wool-rooms" message="You may not enter your team's wool rooms!"/>
-    <apply block="team-1-in-wr" use="deny(team-2)" region="team-2-wool-rooms"/>
-    <apply block="team-2-in-wr" use="deny(team-1)" region="team-1-wool-rooms"/>
+    <apply block="deny(chest)" region="wool-rooms" message="You may not break or place this block in the wool rooms!"/>
+    <apply block="deny(team-2)" region="team-2-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
+    <apply block="deny(team-1)" region="team-1-wool-rooms" message="You may not interfere with your team's own wool rooms!"/>
     <apply block-break="only-gold" block-place="only-gold-regen" region="gold" message="You may only break gold blocks here!"/>
     <apply block="deny(void)" region="void-area" message="You may not edit the void area!"/>
 </regions>
@@ -183,19 +175,6 @@
         <item>snow ball</item>
     </if>
 </itemremove>
-<block-drops>
-    <rule>
-        <filter>
-            <any>
-                <material>wood</material>
-                <material>glass</material>
-            </any>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</block-drops>
 <itemkeep>
     <item>wood</item>
     <item>glass</item>
