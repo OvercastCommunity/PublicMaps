@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Insanihe</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
 <objective>Destroy both monuments, before the enemy destroys yours</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -12,6 +12,7 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
+        <clear/>
         <item unbreakable="true" slot="0" material="iron sword"/>
         <item unbreakable="true" slot="1" material="bow"/>
         <item unbreakable="true" slot="2" material="iron pickaxe"/>
@@ -78,22 +79,19 @@
     <tool>iron pickaxe</tool>
     <tool>iron axe</tool>
 </toolrepair>
-<itemremove>
-    <item>iron sword</item>
-    <item>bow</item>
-    <item>iron pickaxe</item>
-    <item>iron axe</item>
-    <item>nether brick</item>
+<itemkeep>
     <item>wood</item>
+    <item>stained clay</item>
+    <item>golden apple</item>
+</itemkeep>
+<itemremove>
+    <item>nether brick</item>
     <item>sandstone</item>
     <item>ender stone</item>
     <item>arrow</item>
-    <item>golden apple</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>leather boots</item>
-    <item>log</item>
-    <item>stained clay</item>
     <item>coal block</item>
 </itemremove>
 <kill-rewards>
