@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Insanihe</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Destroy both monuments, before the enemy destroys yours</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -16,7 +16,7 @@
         <item unbreakable="true" slot="1" material="bow"/>
         <item unbreakable="true" slot="2" material="iron pickaxe"/>
         <item unbreakable="true" slot="3" material="iron axe"/>
-        <item slot="4" material="log" damage="1" amount="4"/>
+        <item slot="4" material="wood" damage="1" amount="16"/>
         <item slot="5" material="stained clay" team-color="true" amount="24"/>
         <item slot="6" material="golden apple"/>
         <item slot="7" material="arrow" amount="16"/>
