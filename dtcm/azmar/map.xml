@@ -1,6 +1,6 @@
 <map proto="1.5">
 <name>Azmar</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <created>2017-01-16</created>
 <objective>Destroy the other teams monuments</objective>
 <include id="gapple-kill-reward"/>
@@ -43,9 +43,8 @@
         <item slot="2" unbreakable="true" enchantment="durability:1" material="diamond pickaxe"/>
         <item slot="3" unbreakable="true" enchantment="dig speed:2;durability:2" material="iron axe"/>
         <item slot="4" unbreakable="true" enchantment="dig speed:3;durability:1" material="wood spade"/>
-        <item slot="5" amount="32" material="bread"/>
-        <item slot="6" amount="16" material="glass"/>
-        <item slot="7" amount="32" material="wood"/>
+        <item slot="5" amount="16" material="glass"/>
+        <item slot="6" amount="32" material="wood"/>
         <item slot="28" amount="64" material="arrow"/>
         <helmet team-color="true" material="leather helmet" unbreakable="true"/>
         <chestplate team-color="true" material="leather chestplate" unbreakable="true"/>
@@ -54,15 +53,19 @@
     </kit>
 </kits>
 <respawns>
-    <respawn delay="2s" blackout="false" filter="spawn-1"/>
-    <respawn delay="3s" blackout="false" filter="spawn-2"/>
+    <respawn delay="2s" filter="spawn-1"/>
+    <respawn delay="3s" filter="spawn-2"/>
 </respawns>
 <destroyables name="Monument" materials="obsidian" completion="100%" sparks="true" mode-changes="true">
     <destroyable owner="blue-team">
-       <region><cuboid min="-2,14,-46" max="-3,17,-47"/></region>
+       <region>
+            <cuboid min="-2,14,-46" max="-3,17,-47"/>
+       </region>
     </destroyable>
     <destroyable owner="red-team">
-       <region><cuboid min="0,14,73" max="2,17,74"/></region>
+        <region>
+            <cuboid min="0,14,73" max="2,17,74"/>
+        </region>
     </destroyable>
 </destroyables>
 <modes>
@@ -87,7 +90,7 @@
     </union>
     <rectangle id="red-spawn-tunnel" min="14,125" max="19,132"/>
     <rectangle id="blue-spawn-tunnel" min="-15,-99" max="-20,-106"/>
-    <apply block="never" region="spawns" message="You may only break not break any blocks in spawn!"/>
+    <apply block="never" region="spawns" message="You may not break any blocks in spawn!"/>
     <apply enter="red-team" region="red-spawn-tunnel" message="You may not enter the enemy spawn!"/>
     <apply enter="blue-team" region="blue-spawn-tunnel" message="You may not enter the enemy spawn!"/>
     <apply block="no-void" message="You may not modify the void area!"/>
@@ -104,16 +107,14 @@
 </toolrepair>
 <itemkeep>
     <item>golden apple</item>
+    <item>wood</item>
 </itemkeep>
 <itemremove>
     <item>glass</item>
-    <item>cooked fish</item>
     <item>obsidian</item>
-    <item>log</item>
     <item>seeds</item>
     <item>coal block</item>
     <item>beacon</item>
-    <item>bread</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>leather leggings</item>
