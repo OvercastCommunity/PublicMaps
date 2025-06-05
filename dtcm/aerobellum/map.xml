@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Aerobellum</name>
-<version>1.2.8</version>
+<version>1.2.9</version>
 <variant id="classic" world="classic">Classic</variant>
 <objective>Leak lava from the enemy team's engine to win the match!</objective>
 <include id="gapple-kill-reward"/>
@@ -94,10 +94,10 @@
         <item slot="7" lore="More tnt can be found in your ship!" amount="32" material="tnt"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
-        <helmet team-color="true" material="leather helmet"/>
-        <chestplate enchantment="protection explosions:4" material="chainmail chestplate"/>
-        <leggings team-color="true" material="leather leggings"/>
-        <boots team-color="true" material="leather boots"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate enchantment="protection explosions:4" unbreakable="true" material="chainmail chestplate"/>
+        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots team-color="true" unbreakable="true" material="leather boots"/>
         <effect duration="5" amplifier="10">heal</effect>
     </kit>
 </kits>
