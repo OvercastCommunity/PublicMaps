@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.05.29-1 -->
+<!-- Version 2025.06.09-1 -->
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
@@ -200,6 +200,9 @@
     <any id="remove-entities">
         <entity>dropped item</entity>
         <entity>arrow</entity>
+        <if min-server-version="1.9">
+            <entity>area effect cloud</entity>
+        </if>
     </any>
     <all id="on-buytime">
         <variable var="buytime">1</variable>
