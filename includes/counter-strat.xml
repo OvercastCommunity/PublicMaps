@@ -8,12 +8,12 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.06.08-2 -->
+<!-- Version 2025.06.09-1 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
     <!-- Counter-Strat -->
-    <constant id="cs-mode">point</constant> <!-- Valid options: point, hostage (unfinished) -->
+    <constant id="cs-mode">point</constant> <!-- Valid options: point, hostage (unfinished). Use anything else to disable sub-gamemode specific messages -->
     <constant id="cs-team-size">5</constant>
     <constant id="cs-test-mode">false</constant> <!-- Valid options: true, false -->
     <constant id="cs-shops-enabled">true</constant> <!-- Valid options: true, false -->
@@ -23,10 +23,12 @@
     <if max-server-version="1.20"><constant id="cs-shop-dude">Villager</constant></if>
     <if min-server-version="1.21"><constant id="cs-shop-dude">Pillager</constant></if>
     <!-- Attackers -->
+    <constant id="cs-team-one-name">Attackers</constant>
     <constant id="cs-team-one-shop-yaw">0</constant>
     <constant id="cs-team-one-shop-pitch">0</constant>
     <constant id="cs-team-one-shop-point">0,0,0</constant>
     <!-- Defenders -->
+    <constant id="cs-team-two-name">Defenders</constant>
     <constant id="cs-team-two-shop-yaw">0</constant>
     <constant id="cs-team-two-shop-pitch">0</constant>
     <constant id="cs-team-two-shop-point">0,0,0</constant>
@@ -44,6 +46,7 @@
     <constant id="overtime-default">0</constant>
     <constant id="goal-scorer">0</constant>
     <constant id="goal-type-message">0</constant>
+    <constant id="goal-obs-message">0</constant>
     <!-- Misc. -->
     <constant id="main-kit">cs-kit</constant>
     <constant id="armor-kit">cs-armor-kit</constant>
@@ -58,8 +61,8 @@
     <game>Counter-Strat: Hostage</game>
 </if>
 <teams>
-    <team id="team-one" color="dark red" max="${cs-team-size}">Attackers</team>
-    <team id="team-two" color="blue" max="${cs-team-size}">Defenders</team>
+    <team id="team-one" color="dark red" max="${cs-team-size}">${cs-team-one-name}</team>
+    <team id="team-two" color="blue" max="${cs-team-size}">${cs-team-two-name}</team>
 </teams>
 <broadcasts>
     <if constant="cs-shops-enabled" constant-value="true">
@@ -70,9 +73,11 @@
             <tip after="2s" every="3m">Buy items at the spawn shops!</tip>
         </if>
     </if>
-    <tip after="3s" every="3m" filter="cs_score_mode=1">Defenders will win if the objectives are not completed when the round ends!</tip>
-    <tip after="2s" every="3m" filter="all(cs_score_mode=1,team-one)">Capture the point, or eliminate all defenders before the round ends!</tip>
-    <tip after="3s" every="3m" filter="cs_score_mode=0">Defenders can also capture the point and lose by time in this map!</tip>
+    <if constant="cs-mode" constant-value="point">
+        <tip after="3s" every="3m" filter="cs_score_mode=1">Defenders will win if the objectives are not completed when the round ends!</tip>
+        <tip after="2s" every="3m" filter="all(cs_score_mode=1,team-one)">Capture the point, or eliminate all defenders before the round ends!</tip>
+        <tip after="3s" every="3m" filter="cs_score_mode=0">Defenders can also capture the point and lose by time in this map!</tip>
+    </if>
 </broadcasts>
 <respawns>
     <respawn auto="true" delay="0s" spectate="true" filter="can-score">
@@ -310,13 +315,14 @@
         destroy-filter="never"
         cooldown="4s"/>
 </projectiles>
-<if constant="cs-shops-enabled" constant-value="true">
-    <kill-rewards>
-        <kill-reward>
+<kill-rewards>
+    <kill-reward>
+        <if constant="cs-shops-enabled" constant-value="true">
             <item material="emerald" name="`fLegal Tender Emerald" lore="`9ⓘ `7Use this at spawn shops to buy interesting items!||`8ZZUF●D●G●REX●ET●IMP|`8Issued JUNE 2025"/>
-        </kill-reward>
-    </kill-rewards>
-</if>
+        </if>
+        <item amount="4" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
 <crafting>
     <disable>emerald block</disable>
 </crafting>
