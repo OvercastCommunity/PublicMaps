@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.06.09-1 -->
+<!-- Version 2025.06.09-2 -->
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
@@ -19,7 +19,8 @@
     <constant id="arrow-check-enabled">1</constant>
     <constant id="overtime-default">0</constant>
     <constant id="goal-scorer">1</constant>
-    <constant id="goal-type-message">1</constant>
+    <constant id="goal-type-message">1</constant> <!-- Should the default GOAL message say "GOAL"? -->
+    <constant id="goal-obs-message">1</constant> <!-- Should observers get the default GOAL message? -->
     <!-- <constant id="defense-kills">1</constant> -->
     <!-- Misc. -->
     <constant id="main-kit">spawn-kit</constant> <!-- If using a custom kit, requires a clear-[your kit name] action -->
@@ -313,6 +314,7 @@
     <variable id="goal_scorer" scope="player" exclusive="1"/>
     <variable id="goal_scorer_enabled" scope="match" default="${goal-scorer}"/>
     <variable id="goal_type_message" scope="match" default="${goal-type-message}"/>
+    <variable id="goal_obs_message" scope="match" default="${goal-obs-message}"/>
 </variables>
 <actions>
     <action id="increment-round" scope="player">
@@ -500,7 +502,7 @@
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-one-enemy-goal" action="message-enemy-scored" scope="player"/>
     <trigger filter="team-two-enemy-goal" action="message-enemy-scored" scope="player"/>
-    <trigger filter="cant-score-obs" action="message-obs-scored" scope="player" observers="true"/>
+    <trigger filter="all(cant-score-obs,goal_obs_message=1)" action="message-obs-scored" scope="player" observers="true"/>
     <action id="set-team-one" scope="player">
         <switch-scope outer="player" inner="match">
             <set var="scoring_team" value="1"/>
