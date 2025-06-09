@@ -8,7 +8,7 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.06.08-1 -->
+<!-- Version 2025.06.08-2 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
@@ -224,22 +224,26 @@
             <set var="round_status" value="1"/>
             <action id="set-buytime"/>
             <kill-entities filter="remove-entities"/>
-            <message text="`5# # # # # # # # # # # #"/>
-            <message text="`5# #       `4{one-score}`6 `l－`r `9{two-score}`5       # #">
-                <replacements>
-                    <decimal id="one-score" value="team_one_score"/>
-                    <decimal id="two-score" value="team_two_score"/>
-                </replacements>
-            </message>
-            <message text="`5# # # # # # # # # # # #"/>
         </switch-scope>
         <action id="tiebreaker-win"/>
     </action>
     <action id="increment-score-t1" scope="match">
         <set var="team_one_score" value="team_one_score+1"/>
+        <action id="round-score-message"/>
     </action>
     <action id="increment-score-t2" scope="match">
         <set var="team_two_score" value="team_two_score+1"/>
+        <action id="round-score-message"/>
+    </action>
+    <action id="round-score-message" scope="match">
+        <message text="`5# # # # # # # # # # # #"/>
+        <message text="`5# #       `4{one-score}`6 `l－`r `9{two-score}`5       # #">
+            <replacements>
+                <decimal id="one-score" value="team_one_score"/>
+                <decimal id="two-score" value="team_two_score"/>
+            </replacements>
+        </message>
+        <message text="`5# # # # # # # # # # # #"/>
     </action>
     <action id="clear-cs-kit" scope="player">
         <replace-item ignore-metadata="true">
