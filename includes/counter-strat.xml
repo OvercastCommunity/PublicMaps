@@ -1,0 +1,329 @@
+<map proto="1.5.0">
+<!-- 
+     dBBBP  dBBBBP dBP dBP dBBBBb dBBBBBBP dBBBP dBBBBBb         .dBBBBP dBBBBBBP dBBBBBb dBBBBBb  dBBBBBBP
+           dBP.BP             dBP                    dBP         BP                   dBP      BB          
+   dBP    dBP.BP dBP dBP dBP dBP   dBP   dBBP    dBBBBK          `BBBBb   dBP     dBBBBK   dBP BB   dBP    
+  dBP    dBP.BP dBP_dBP dBP dBP   dBP   dBP     dBP  BB dBBBBBP     dBP  dBP     dBP  BB  dBP  BB  dBP     
+ dBBBBP dBBBBP dBBBBBP dBP dBP   dBP   dBBBBP  dBP  dB'        dBBBBP'  dBP     dBP  dB' dBBBBBBB dBP      
+-->
+<!-- Counter-Strat gamemode include file -->
+<!-- Created by zzuf (GitHub @zzufx) -->
+<!-- Version 2025.06.08-1 -->
+<include id="bridge"/>
+<include id="gapple-kill-reward"/>
+<constants fallback="true">
+    <!-- Counter-Strat -->
+    <constant id="cs-mode">point</constant> <!-- Valid options: point, hostage (unfinished) -->
+    <constant id="cs-team-size">5</constant>
+    <constant id="cs-test-mode">false</constant> <!-- Valid options: true, false -->
+    <constant id="cs-shops-enabled">true</constant> <!-- Valid options: true, false -->
+    <constant id="cs-round-time">1m55s</constant>
+    <constant id="cs-score-mode">1</constant> <!-- Should Defenders win by default and not be able to capture points? 0: No, 1: Yes -->
+    <!-- Shops -->
+    <if max-server-version="1.20"><constant id="cs-shop-dude">Villager</constant></if>
+    <if min-server-version="1.21"><constant id="cs-shop-dude">Pillager</constant></if>
+    <!-- Attackers -->
+    <constant id="cs-team-one-shop-yaw">0</constant>
+    <constant id="cs-team-one-shop-pitch">0</constant>
+    <constant id="cs-team-one-shop-point">0,0,0</constant>
+    <!-- Defenders -->
+    <constant id="cs-team-two-shop-yaw">0</constant>
+    <constant id="cs-team-two-shop-pitch">0</constant>
+    <constant id="cs-team-two-shop-point">0,0,0</constant>
+</constants>
+<constants>
+    <!-- Gamemode -->
+    <constant id="gamemode">tdm</constant>
+    <!-- Map -->
+    <constant id="map-origin">0.5,0,0.5</constant>
+    <constant id="void-plane">-69</constant>
+    <!-- Match -->
+    <constant id="score-limit">5</constant>
+    <constant id="mercy-limit">-1</constant>
+    <constant id="arrow-check-enabled">0</constant>
+    <constant id="overtime-default">0</constant>
+    <constant id="goal-scorer">0</constant>
+    <constant id="goal-type-message">0</constant>
+    <!-- Misc. -->
+    <constant id="main-kit">cs-kit</constant>
+    <constant id="armor-kit">cs-armor-kit</constant>
+    <constant id="spawn-filter">any(game-start,cant-score)</constant>
+    <constant id="show-tutorial">0</constant>
+    <constant id="natural-regeneration">true</constant>
+</constants>
+<if constant="cs-mode" constant-value="point">
+    <game>Counter-Strat: Point</game>
+</if>
+<if constant="cs-mode" constant-value="hostage">
+    <game>Counter-Strat: Hostage</game>
+</if>
+<teams>
+    <team id="team-one" color="dark red" max="${cs-team-size}">Attackers</team>
+    <team id="team-two" color="blue" max="${cs-team-size}">Defenders</team>
+</teams>
+<broadcasts>
+    <if constant="cs-shops-enabled" constant-value="true">
+        <if min-server-version="1.21.1" max-server-version="1.21.1">
+            <tip after="2s" every="3m">`cShops in this map are enabled but not supported in PGM 1.21.1`r</tip>
+        </if>
+        <if min-server-version="1.21.5">
+            <tip after="2s" every="3m">Buy items at the spawn shops!</tip>
+        </if>
+    </if>
+    <tip after="3s" every="3m" filter="cs_score_mode=1">Defenders will win if the objectives are not completed when the round ends!</tip>
+    <tip after="2s" every="3m" filter="all(cs_score_mode=1,team-one)">Capture the point, or eliminate all defenders before the round ends!</tip>
+    <tip after="3s" every="3m" filter="cs_score_mode=0">Defenders can also capture the point and lose by time in this map!</tip>
+</broadcasts>
+<respawns>
+    <respawn auto="true" delay="0s" spectate="true" filter="can-score">
+        <message>You will spawn on the next round!</message>
+    </respawn>
+</respawns>
+<kits>
+    <kit id="cs-kit">
+        <item material="stone sword" unbreakable="true" name="`fKnife" lore="`9ⓘ `7Damages players. Makes you run faster!"/>
+        <item material="bow" unbreakable="true" lore="`9ⓘ `7Standard issue.||`8Deadwood Bowyers &#38; Co."/>
+        <item material="arrow" amount="4" lore="`9ⓘ `7Standard issue.||`8Rockaway Arrowsmiths Association"/>
+        <item slot="8" material="golden apple"/>
+        <effect duration="oo">invisibility</effect>
+        <effect duration="oo" amplifier="255">slow_digging</effect>
+        <effect duration="2s" amplifier="255">resistance</effect>
+        <effect duration="0s">wither</effect>
+        <game-mode>adventure</game-mode>
+        <if constant="cs-test-mode" constant-value="true">
+            <item material="emerald" amount="64" name="`fLegal Tender Emerald" lore="`9ⓘ `7Use this at spawn shops to buy interesting items!||`8ZZUF●D●G●REX●ET●IMP|`8Issued JUNE 2025"/>
+        </if>
+    </kit>
+    <kit id="cs-armor-kit">
+        <helmet material="leather helmet" team-color="true" unbreakable="true" locked="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+        <leggings material="leather leggings" team-color="true" unbreakable="true" locked="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true" locked="true"/>
+    </kit>
+    <kit id="wither-kit">
+        <health>1</health>
+        <effect amplifier="5">wither</effect>
+    </kit>
+    <give kit="wither-kit" filter="all(cs_score_mode=1,long-round,team-one,alive)"/>
+    <give kit="wither-kit" filter="all(cs_score_mode=0,long-round,alive)"/>
+    <kit id="cs-obs-kit">
+        <item slot="9" material="air"/>
+    </kit>
+    <give kit="cs-obs-kit" filter="any(observing,dead)"/>
+    <kit id="knife-kit">
+        <effect>speed</effect>
+    </kit>
+    <kit id="no-knife-kit" force="true">
+        <effect duration="0">speed</effect>
+    </kit>
+    <give kit="knife-kit" filter="holding-knife"/>
+    <give kit="no-knife-kit" filter="not(holding-knife)"/>
+</kits>
+<filters>
+    <holding id="holding-knife" ignore-metadata="true">
+        <item material="stone sword"/>
+    </holding>
+    <all id="game-start">
+        <time>0s</time>
+        <not>
+            <time>1s</time>
+        </not>
+    </all>
+    <all id="no-reds">
+        <time>1s</time>
+        <not>
+            <players min="1">
+                <all>
+                    <region id="everywhere"/>
+                    <team>team-one</team>
+                    <alive/>
+                </all>
+            </players>
+        </not>
+    </all>
+    <all id="no-blues">
+        <time>1s</time>
+        <not>
+            <players min="1">
+                <all>
+                    <region id="everywhere"/>
+                    <team>team-two</team>
+                    <alive/>
+                </all>
+            </players>
+        </not>
+    </all>
+    <if constant="cs-mode" constant-value="point">
+        <after id="red-cap" duration="10s" message="`4Attackers`f are `ccapturing`f the site`f! `b{0} left">
+            <all>
+                <players min="1">
+                    <all>
+                        <region id="site"/>
+                        <team>team-one</team>
+                        <alive/>
+                    </all>
+                </players>
+                <not>
+                    <players min="1">
+                        <all>
+                            <region id="site"/>
+                            <team>team-two</team>
+                            <alive/>
+                        </all>
+                    </players>
+                </not>
+            </all>
+        </after>
+        <after id="blue-cap" duration="10s" message="`9Defenders`f are `ccapturing`f the site`f! `b{0} left">
+            <all>
+                <players min="1">
+                    <all>
+                        <region id="site"/>
+                        <variable var="cs_score_mode">0</variable>
+                        <team>team-two</team>
+                        <alive/>
+                    </all>
+                </players>
+                <not>
+                    <players min="1">
+                        <all>
+                            <region id="site"/>
+                            <team>team-one</team>
+                            <alive/>
+                        </all>
+                    </players>
+                </not>
+            </all>
+        </after>
+    </if>
+    <after id="long-round" message="{'translate':'misc.timeRemaining','with':['{0}']}" duration="${cs-round-time}">
+        <filter id="all(can-score,not-on-buytime)"/>
+    </after>
+</filters>
+<regions>
+    <cuboid id="team-one-portal" min="0,0,0" size="0,0,0"/>
+    <mirror id="team-two-portal" region="team-one-portal" origin="${map-origin}" normal="1,0,0"/>
+    <!-- Round cages -->
+    <union id="cages">
+        <cylinder id="team-one-spawn-cage" base="${team-one-spawn}" height="3" radius="2"/>
+        <cylinder id="team-two-spawn-cage" base="${team-two-spawn}" height="3" radius="2"/>
+    </union>
+    <apply velocity="0.5,0.5,0">
+        <region>
+            <cylinder base="-6.5,-58,0.5" height="0.5" radius="0.5"/>
+        </region>
+    </apply>
+</regions>
+<variables>
+    <variable id="cs_score_mode" scope="match" default="${cs-score-mode}"/>
+</variables>
+<actions>
+    <action id="increment-round-custom" scope="player" expose="true">
+        <switch-scope outer="player" inner="match">
+            <set var="can_score" value="0"/>
+            <set var="round_status" value="1"/>
+            <action id="set-buytime"/>
+            <kill-entities filter="remove-entities"/>
+            <message text="`5# # # # # # # # # # # #"/>
+            <message text="`5# #       `4{one-score}`6 `l－`r `9{two-score}`5       # #">
+                <replacements>
+                    <decimal id="one-score" value="team_one_score"/>
+                    <decimal id="two-score" value="team_two_score"/>
+                </replacements>
+            </message>
+            <message text="`5# # # # # # # # # # # #"/>
+        </switch-scope>
+        <action id="tiebreaker-win"/>
+    </action>
+    <action id="increment-score-t1" scope="match">
+        <set var="team_one_score" value="team_one_score+1"/>
+    </action>
+    <action id="increment-score-t2" scope="match">
+        <set var="team_two_score" value="team_two_score+1"/>
+    </action>
+    <action id="clear-cs-kit" scope="player">
+        <replace-item ignore-metadata="true">
+            <find material="stone sword"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item>
+            <find material="bow" unbreakable="true"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="arrow"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="golden apple"/>
+            <replace material="air"/>
+        </replace-item>
+    </action>
+    <if constant="cs-test-mode" constant-value="false">
+        <trigger action="increment-score-t1" scope="match" filter="any(all(red-cap),all(can-score,no-blues))"/>
+        <trigger action="increment-score-t2" scope="match" filter="any(all(blue-cap),all(can-score,no-reds))"/>
+        <trigger action="increment-round-custom" scope="player" filter="any(all(red-cap),all(can-score,no-blues))"/>
+        <trigger action="increment-round-custom" scope="player" filter="any(all(blue-cap),all(can-score,no-reds))"/>
+    </if>
+</actions>
+<shops>
+    <shop id="zzuf-shop" name="`7Booth">
+        <category id="weapons" name="`7The Goods" material="emerald">
+            <item name="`fKevlar" material="chainmail chestplate" amount="1" price="3" currency="emerald"/>
+            <if min-server-version="1.9">
+                <item filter="team-two" material="shield" name="`fRiot Shield" damage="300" amount="1" price="5" currency="emerald"/>
+                <item material="lingering potion" name="`fMolotov Cocktail`r" price="3" currency="emerald">
+                    <effect duration="10s">poison</effect>
+                </item>
+            </if>
+            <item name="`eHE Grenade" material="snowball" lore="`9ⓘ `7Damages players." amount="1" price="3" currency="emerald" prevent-sharing="true" projectile="heGrenade"/>
+            <if max-server-version="1.20"><item name="`cMore items in 1.21+!" material="bedrock" amount="1" price="999" currency="emerald"/></if>
+        </category>
+    </shop>
+</shops>
+<if constant="cs-shops-enabled" constant-value="true">
+    <if min-server-version="1.21.5">
+        <shopkeepers>
+            <shopkeeper name="`7Booth" shop="zzuf-shop" mob="${cs-shop-dude}">
+                <point yaw="${cs-team-one-shop-yaw}" pitch="${cs-team-one-shop-pitch}">${cs-team-one-shop-point}</point>
+            </shopkeeper>
+            <shopkeeper name="`7Booth" shop="zzuf-shop" mob="${cs-shop-dude}">
+                <point yaw="${cs-team-two-shop-yaw}" pitch="${cs-team-two-shop-pitch}">${cs-team-two-shop-point}</point>
+            </shopkeeper>
+        </shopkeepers>
+    </if>
+</if>
+<projectiles>
+    <projectile
+        id="heGrenade"
+        name="HE Grenade"
+        projectile="Snowball"
+        velocity="1.5"
+        click="right"
+        power="4"
+        damage="8"
+        throwable="true"
+        destroy-filter="never"
+        cooldown="4s"/>
+</projectiles>
+<if constant="cs-shops-enabled" constant-value="true">
+    <kill-rewards>
+        <kill-reward>
+            <item material="emerald" name="`fLegal Tender Emerald" lore="`9ⓘ `7Use this at spawn shops to buy interesting items!||`8ZZUF●D●G●REX●ET●IMP|`8Issued JUNE 2025"/>
+        </kill-reward>
+    </kill-rewards>
+</if>
+<crafting>
+    <disable>emerald block</disable>
+</crafting>
+<itemkeep>
+    <item>stone sword</item>
+    <item>emerald</item>
+</itemkeep>
+<toolrepair>
+    <tool>stone sword</tool>
+</toolrepair>
+<itemremove>
+    <item>chainmail chestplate</item>
+</itemremove>
+</map>
