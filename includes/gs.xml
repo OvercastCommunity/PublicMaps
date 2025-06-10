@@ -1,7 +1,7 @@
 <map>
 <!-- Ghost Squadron gamemode include file -->
 <!-- Modified by zzuf - Original gs.xml file by the Overcast Network -->
-<!-- Version 2025.05.19-1 -->
+<!-- Version 2024.06.10-1 -->
 <game>Ghost Squadron</game>
 <constants fallback="true">
     <constant id="base-kit">default-base-kit</constant>
@@ -169,7 +169,41 @@
             <item slot="0" enchantment="thorns:1" material="fishing rod" unbreakable="true"/>
         </kit>
     </class>
-    <!-- ************ Disabled Classes ************ -->
+    <!-- Seasonal classes -->
+    <!-- Summer -->
+    <class name="Crab" description="Special class for summer!" longdescription="Heeeey heey! Pinch your enemies and move really fast with this special class for the summer!" icon="349:3">
+        <kit parents="${base-kit}">
+            <item slot="0" name="`bCrab Claw" attributes="generic.attackDamage:add:1.0;generic.movementSpeed:base:-0.2" material="lever"/>
+            <item slot="2" name="`cFriendly Crabs" amount="3" damage="60" enchantment="thorns:1" material="monster egg" show-can-place-on="false"> <!-- Silverfish -->
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
+            <effect amplifier="3">speed</effect>
+        </kit>
+    </class>
+    <!-- Spring -->
+    <class name="Spring Bunny" description="Special class for spring!" longdescription="Spring class! Egg your enemies and spawn crazy chicks!" icon="egg">
+        <kit parents="${base-kit}">
+            <item slot="0" name="`eBunny Claw" attributes="generic.attackDamage:add:1" material="stone button"/>
+            <item slot="2" amount="4" grenade="true" grenade-power="1.8" grenade-fire="true" name="`4Explosive `6Easter Eggs" material="egg"/>
+            <item slot="3" amount="6" damage="93" enchantment="thorns:1" material="monster egg" show-can-place-on="false"> <!-- Chicken -->
+                <can-place-on>
+                    <all-blocks/>
+                </can-place-on>
+            </item>
+            <effect ambient="true" amplifier="3">jump</effect>
+        </kit>
+    </class>
+    <!-- Winter/Christmas -->
+    <class name="Yeti" description="Special class for the winter!" longdescription="Winter class! Get some snowballs, 3 Freeze Potions and a Yeti Claw!" icon="snow ball">
+        <kit parents="${base-kit}">
+            <item slot="0" name="`bYeti Claw" attributes="generic.attackDamage:add:1" material="nether star"/>
+            <item slot="2" amount="3" damage="16386" potions="slow:100:15:true;poison:75:1:true" name="`bFreeze Potions" material="potion"/>
+            <item slot="3" amount="16" material="snow ball"/>
+        </kit>
+    </class>
+    <!-- ************ Disabled classes ************ -->
     <!-- Disabled as it doesn't work without <ghostsquadron/> -->
     <!-- <class name="Tracker" description="Easily track your enemies!" longdescription="View enemy footsteps and reveal them using the compass melee!" icon="compass">
         <kit parents="${base-kit}">
@@ -358,6 +392,38 @@
         </filter>
         <item amount="3" damage="16460" material="potion"/>
     </kill-reward>
+    <!-- Seasonal classes -->
+    <kill-reward>
+        <filter>
+            <all>
+                <kill-streak count="1" repeat="true"/>
+                <class>Crab</class>
+            </all>
+        </filter>
+        <item name="`cFriendly Crabs" amount="1" damage="60" enchantment="thorns:1" material="monster egg" show-can-place-on="false"> <!-- Silverfish -->
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <kill-streak count="1" repeat="true"/>
+                <class>Spring Bunny</class>
+            </all>
+        </filter>
+        <item amount="2" grenade="true" grenade-power="1.8" grenade-fire="true" name="`4Explosive `6Easter Eggs" material="egg"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <all>
+                <kill-streak count="1" repeat="true"/>
+                <class>Yeti</class>
+            </all>
+        </filter>
+        <item amount="16" material="snow ball"/>
+    </kill-reward>
 </kill-rewards>
 <gamerules>
     <doFireTick>false</doFireTick>
@@ -375,6 +441,7 @@
     <not>
         <any>
             <relation>ally</relation>
+            <relation>self</relation>
         </any>
     </not>
 </damage>
