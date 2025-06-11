@@ -4,6 +4,7 @@
 <!-- Version 2025.06.10-2 -->
 <include id="gapple-kill-reward"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
+    <constant id="use-default-teams">true</constant> <!-- Make sure this is ABOVE the include statement in your map's XML if changing to "false" -->
     <constant id="game-objective">Eliminate the other teams before the time runs out! Watch out for the shrinking world border!</constant>
     <constant id="resistance-time">0</constant>
     <constant id="max-height-value">25</constant>
@@ -18,12 +19,14 @@
 <gamemode>blitz</gamemode>
 <game>Blitz: Micro Battles</game>
 <objective>${game-objective}</objective>
-<teams>
-    <team id="blue-team" color="blue" max="8">Blue</team>
-    <team id="green-team" color="green" max="8">Green</team>
-    <team id="red-team" color="red" max="8">Red</team>
-    <team id="yellow-team" color="yellow" max="8">Yellow</team>
-</teams>
+<if constant="use-default-teams" constant-value="true">
+    <teams>
+        <team id="blue-team" color="blue" max="8">Blue</team>
+        <team id="green-team" color="green" max="8">Green</team>
+        <team id="red-team" color="red" max="8">Red</team>
+        <team id="yellow-team" color="yellow" max="8">Yellow</team>
+    </teams>
+</if>
 <time>170s</time>
 <broadcasts>
     <alert after="1s">`cEliminate the other teams before the time runs out! Watch out for the shrinking world border!</alert>
