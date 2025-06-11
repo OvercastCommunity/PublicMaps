@@ -27,7 +27,7 @@
     </kit>
     <kit id="default-kit" parents="obs">
         <clear/>
-        <item slot="0" material="iron sword"/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" enchantment="arrow infinite" name="`5Ender Bow" material="bow"/>
         <item slot="2" amount="16" material="snow ball"/>
         <item slot="3" amount="16" material="snow ball"/>
@@ -39,7 +39,7 @@
         <boots team-color="true" unbreakable="true" material="leather boots">
         <enchantment level="5">protection fall</enchantment>
         </boots>
-        <effect duration="5" amplifier="15">damage resistance</effect>
+        <effect duration="5" amplifier="5">damage resistance</effect>
     </kit>
     <!-- Potion effects for regions -->
     <kit id="absorption" force="true">
