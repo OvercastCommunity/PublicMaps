@@ -1,13 +1,14 @@
 <map>
 <!-- Base conquest kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2025.05.12-2 -->
+<!-- Version 2025.06.12-2 -->
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
     <constant id="override-itemkeep">false</constant>
     <constant id="projectile-protection-level">3</constant>
     <constant id="feather-falling-level">1</constant>
     <constant id="enable-feather-falling">false</constant>
+    <constant id="override-kill-reward">false</constant>
     <constant id="deny-shield-crafting" fallback="false">true</constant>
 </constants>
 <kits>
@@ -50,11 +51,13 @@
         <item>arrow</item>
     </itemkeep>
 </unless>
-<kill-rewards>
-    <kill-reward>
-        <item amount="6" material="arrow"/>
-    </kill-reward>
-</kill-rewards>
+<unless constant="override-kill-reward" constant-value="true">
+    <kill-rewards>
+        <kill-reward>
+            <item amount="6" material="arrow"/>
+        </kill-reward>
+    </kill-rewards>
+</unless>
 <respawn delay="${respawn-timer}" auto="true"/>
 <hunger>
     <depletion>off</depletion>
