@@ -2,23 +2,8 @@
 <!-- Sound keys include for all maps -->
 <include id="sound-keys"/>
 
-<!-- Global constants -->
-<constants fallback="true">
-    <constant id="deny-shield-crafting">false</constant>
-</constants>
-
 <!-- Add maxbuildheight variable to pre-proto 1.5 maps -->
 <variables>
     <maxbuildheight id="maxbuildheight"/>
 </variables>
-
-<!-- Modern only changes -->
-<if min-server-version="1.21.1">
-    <!-- Enable shield crafting by default -->
-    <if constant="deny-shield-crafting" constant-value="true">
-        <crafting>
-            <disable>shield</disable>
-        </crafting>
-    </if>
-</if>
 </map>
