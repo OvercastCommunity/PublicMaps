@@ -9,7 +9,7 @@
     <constant id="respawn-timer">3s</constant>
     <include id="conquest"/>
 </unless>
-<if variant="comp">
+<if variant="5v5">
     <constant id="team-size">5</constant>
     <constant id="max-overfill">5</constant>
     <constant id="respawn-timer">5s</constant>
