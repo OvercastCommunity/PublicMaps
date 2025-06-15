@@ -3,7 +3,7 @@
 <variant id="rage">RAGE</variant>
 <variant id="ffa">FFA</variant>
 <variant id="ctf" world="ctf">CTF</variant>
-<version>1.6.2</version>
+<version>1.6.3</version>
 <constant id="objective">Be the team with the least amount of deaths after 10 minutes</constant>
 <if variant="rage">
     <constant id="objective">Be the team with the least amount of deaths after 8 minutes. Arrows kill in one hit!</constant>
@@ -18,7 +18,7 @@
 </if>
 <objective>${objective}</objective>
 <if variant="default">
-    <created>2012-09-22</created>
+    <created>2012-09-4</created>
 </if>
 <authors>
     <author uuid="27cf0cdd-c294-4163-a536-18e11360cc7b" contribution="Map design and layout"/> <!-- OurLoneHero -->
