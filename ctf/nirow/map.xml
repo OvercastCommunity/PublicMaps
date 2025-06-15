@@ -1,88 +1,71 @@
 <map proto="1.5.0">
 <name>Nirow</name>
-<version>1.0.0</version>
-<objective>Capture the enemies' flag 3 times!</objective>
-<include id="gapple-kill-reward"/>
+<version>1.0.1</version>
+<objective>Capture the enemy's flag 3 times!</objective>
+<constant id="damage-resistance">2s</constant>
+<constant id="respawn-timer">4s</constant>
+<include id="conquest"/>
 <authors>
     <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
 </authors>
 <teams>
-    <team id="red" color="Dark Red" max="10" max-overfill="12">Red</team>
-    <team id="blue" color="Blue" max="10" max-overfill="12">Blue</team>
+    <team id="blue-team" color="blue" max="10">Blue</team>
+    <team id="red-team" color="dark red" max="10">Red</team>
 </teams>
 <kits>
-    <kit id="slowness" force="true">
-        <effect>slowness</effect>
-    </kit>
-    <kit id="spawn-kit" force="true">
-        <game-mode>adventure</game-mode>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" amount="32" material="baked potato"/>
-        <item slot="7" amount="28" material="arrow"/>
-        <item slot="8" amount="2" material="golden apple"/>
-        <helmet unbreakable="true" material="chainmail helmet"/>
-        <chestplate unbreakable="true" enchantment="protection projectile:2" material="chainmail chestplate"/>
-        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
-        <boots unbreakable="true" material="chainmail boots"/>
-        <effect duration="2s" amplifier="25">damage resistance</effect>
-    </kit>
+    <lend>
+        <kit>
+            <effect>slowness</effect>
+        </kit>
+        <filter>
+            <any>
+                <carrying-flag>blue-flag</carrying-flag>
+                <carrying-flag>red-flag</carrying-flag>
+            </any>
+        </filter>
+    </lend>
 </kits>
 <spawns>
-    <spawn team="red" kit="spawn-kit" yaw="90">
-        <region>
-            <block>105.5,6,3.5</block>
-        </region>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit" yaw="-90">
-        <region>
-            <block>-6.5,6,0.5</block>
-        </region>
-    </spawn>
     <default>
         <region>
             <cuboid min="51.5,28,-33.5" max="47.5,29,-37.5"/>
         </region>
     </default>
+    <spawn team="blue-team" kit="base-kit">
+        <region yaw="-90">
+            <point>-6.5,6,0.5</point>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="base-kit">
+        <region yaw="90">
+            <point>105.5,6,3.5</point>
+        </region>
+    </spawn>
 </spawns>
-<filters>
-    <team id="onlyBlue">blue</team>
-    <team id="onlyRed">red</team>
-</filters>
 <regions>
-    <cuboid id="blueNet" min="19,8,1" max="22,12,-2"/>
-    <cuboid id="redNet" min="80,8,3" max="77,12,6"/>
+    <cuboid id="blue-net" min="19,8,-2" max="22,12,1"/>
+    <cuboid id="red-net" min="77,8,3" max="80,12,6"/>
 </regions>
-<flags>
-    <flag id="redFlag" name="Red Flag" color="red" owner="red" post="redFlagPost" carry-kit="slowness"/>
-    <post id="redFlagPost" pickup-filter="onlyBlue" owner="red" recover-time="10s" respawn-speed="10" yaw="-90">78.5,8,4.5</post>
-    <net deny-message="" post="redFlagPost" points="1" region="blueNet" owner="blue" capture-filter="onlyBlue"/>
-    <flag id="blueFlag" name="Blue Flag" color="blue" owner="blue" post="blueFlagPost" carry-kit="slowness"/>
-    <post id="blueFlagPost" pickup-filter="onlyRed" owner="blue" recover-time="10s" respawn-speed="10" yaw="-90">20.5,8,-0.5</post>
-    <net deny-message="" post="blueFlagPost" points="1" region="redNet" owner="red" capture-filter="onlyRed"/>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue-team"
+          color="blue">
+        <post pickup-filter="red-team" recover-time="10s" respawn-time="10s">20.5,8,-0.5</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red-team"
+          color="red">
+        <post pickup-filter="blue-team" recover-time="10s" respawn-time="10s">78.5,8,4.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag"/>
+        <net region="red-net" flag="blue-flag"/>
+    </flags>
 </flags>
 <score>
     <limit>3</limit>
 </score>
-<timelock>on</timelock>
-<itemremove>
-    <item>baked potato</item>
-    <item>arrow</item>
-    <item>golden apple</item>
-    <item>chainmail helmet</item>
-    <item>chainmail chestplate</item>
-    <item>leather leggings</item>
-    <item>chainmail boots</item>
-</itemremove>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<kill-rewards>
-    <killreward>
-        <item amount="8" material="arrow"/>
-    </killreward>
-</kill-rewards>
-<respawn delay="4s"/>
 </map>
