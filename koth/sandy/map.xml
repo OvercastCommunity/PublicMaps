@@ -1,32 +1,43 @@
 <map proto="1.5.0">
 <name>Sandy</name>
-<version>1.1.4</version>
-<include id="conquest-comp"/>
-<constant id="respawn-timer">5s</constant>
+<version>1.1.5</version>
+<variant id="5v5">5v5</variant>
 <constant id="damage-resistance">4s</constant>
+<unless variant="5v5">
+    <constant id="team-size">12</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="respawn-timer">3s</constant>
+    <include id="conquest"/>
+</unless>
+<if variant="comp">
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <constant id="respawn-timer">5s</constant>
+    <include id="conquest-comp"/>
+</if>
 <objective>Be the first to 750 points</objective>
 <authors>
     <author uuid="53f0b566-4ae5-48d7-ac86-5a6f7a38bd3a"/> <!-- Xuph -->
     <author uuid="0b8f95fa-0f40-4f28-9fd0-b8e243bb6800"/> <!-- Fouled -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
-    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+    <team id="blue-team" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red-team" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <spawns>
     <default>
-        <region yaw="0">
-            <block>-892,42,-697</block>
+        <region>
+            <cylinder base="-891.5,42,-696.5" height="0" radius="1"/>
         </region>
     </default>
-    <spawn team="blue" kit="base-kit">
+    <spawn team="blue-team" kit="base-kit">
         <region yaw="-90">
-            <block>-922,19,-665</block>
+            <point>-921.5,19,-664.5</point>
         </region>
     </spawn>
-    <spawn team="red" kit="base-kit">
+    <spawn team="red-team" kit="base-kit">
         <region yaw="90">
-            <block>-862,19,-665</block>
+            <point>-861.5,19,-664.5</point>
         </region>
     </spawn>
 </spawns>
