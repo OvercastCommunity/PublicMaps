@@ -1,0 +1,118 @@
+<map proto="1.4.2">
+<name>Steam</name>
+<version>1.0.8</version>
+<objective>Be the first team to reach 750 points!</objective>
+<authors>
+    <author uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f"/> <!-- Pugzy -->
+    <author uuid="9b4fbb38-ed55-44ad-b510-9f0197433f93"/> <!-- Indicado -->
+    <author uuid="30401f63-f5bb-4f24-9a5a-0ecd5f706115"/> <!-- dentmaged -->
+</authors>
+<contributors>
+    <contributor uuid="e82603df-417d-4a95-bd1f-1720648be0b4"/> <!-- Pablete1234 -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
+    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="10" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="4s" amplifier="255">resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="90">
+            <cylinder base="53.5,27,0.5" radius="2" height="1"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-90">
+            <cylinder base="-31.5,12,0.5" radius="1" height="1"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="90">
+            <cylinder base="32.5,12,0.5" radius="1" height="1"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <apply block="never" use="never"/>
+</regions>
+<king>
+    <hills required="false" capture-time="5s" points="1" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
+        <hill name="Hill A">
+            <capture>
+                <cuboid min="-3,12,33" max="-10,20,26"/>
+            </capture>
+            <progress>
+                <cuboid min="-3,12,33" max="-10,14,26"/>
+            </progress>
+            <captured>
+                <cuboid min="-3,12,33" max="-10,50,26"/>
+            </captured>
+        </hill>
+        <hill name="Middle">
+            <capture>
+                <cuboid min="4,8,-3" max="-3,15,4"/>
+            </capture>
+            <progress>
+                <cuboid min="4,8,-3" max="-3,50,4"/>
+            </progress>
+        </hill>
+        <hill name="Hill B">
+            <capture>
+                <cuboid min="11,12,-25" max="4,20,-32"/>
+            </capture>
+            <progress>
+                <cuboid min="11,12,-25" max="4,14,-32"/>
+            </progress>
+            <captured>
+                <cuboid min="11,12,-25" max="4,50,-32"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="5" material="arrow"/>
+</kill-reward>
+<respawn delay="5s" auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
