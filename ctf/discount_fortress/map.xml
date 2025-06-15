@@ -1,14 +1,12 @@
 <map proto="1.5.0">
 <name>Discount Fortress</name>
-<version>1.2.10</version>
+<version>1.2.11</version>
 <variant id="7v7">7v7</variant>
 <constant id="override-itemkeep">true</constant>
 <constant id="damage-resistance">5s</constant>
 <unless variant="7v7">
     <constant id="respawn-timer">3s</constant>
     <include id="conquest"/>
-    <constant id="pickup-kit">flag-pickup</constant>
-    <constant id="drop-kit">flag-drop</constant>
     <constant id="max">20</constant>
     <constant id="max-overfill" delete="true"/>
     <constant id="arrow-kill-reward-additional">4</constant>
@@ -16,8 +14,6 @@
 <if variant="7v7">
     <constant id="respawn-timer">6s</constant>
     <include id="conquest-comp"/>
-    <constant id="pickup-kit" delete="true"/>
-    <constant id="drop-kit" delete="true"/>
     <constant id="max">7</constant>
     <constant id="max-overfill">7</constant>
     <constant id="arrow-kill-reward-additional">2</constant>
@@ -42,8 +38,8 @@
     <contributor uuid="eb1f6661-e01f-4062-b2ae-cd01a9dc4b92"/> <!-- susou -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="${max}" max-overfill="${max-overfill}">Blue</team>
-    <team id="red" color="dark red" max="${max}" max-overfill="${max-overfill}">Red</team>
+    <team id="blue-team" color="blue" max="${max}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red-team" color="dark red" max="${max}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit" parent="base-kit">
@@ -59,12 +55,17 @@
         <game-mode>survival</game-mode>
     </kit>
     <unless variant="7v7">
-        <kit id="flag-pickup" force="true">
-            <effect>slowness</effect>
-        </kit>
-        <kit id="flag-drop" force="true">
-            <effect duration="0">slowness</effect>
-        </kit>
+        <lend>
+            <kit>
+                <effect>slowness</effect>
+            </kit>
+            <filter>
+                <any>
+                    <carrying-flag>blue-flag</carrying-flag>
+                    <carrying-flag>red-flag</carrying-flag>
+                </any>
+            </filter>
+        </lend>
     </unless>
 </kits>
 <spawns>
@@ -73,20 +74,18 @@
             <point>14.5,26.5,-413.5</point>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="180">
             <point>18.0,1,-299.0</point>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region>
             <point>-19.0,1,-442.0</point>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
     <any id="playable-blocks">
         <material>leaves</material>
         <material>glass</material>
@@ -120,19 +119,15 @@
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <flag id="blue-flag"
           name="Blue Flag"
-          owner="blue"
-          color="blue"
-          pickup-kit="${pickup-kit}"
-          drop-kit="${drop-kit}">
-        <post pickup-filter="only-red" recover-time="20s" respawn-time="15s">-15.5,10,-311.5</post>
+          owner="blue-team"
+          color="blue">
+        <post pickup-filter="red-team" recover-time="20s" respawn-time="15s">-15.5,10,-311.5</post>
     </flag>
     <flag id="red-flag"
           name="Red Flag"
-          owner="red"
-          color="red"
-          pickup-kit="${pickup-kit}"
-          drop-kit="${drop-kit}">
-        <post pickup-filter="only-blue" recover-time="20s" respawn-time="15s">14.5,10,-429.5</post>
+          owner="red-team"
+          color="red">
+        <post pickup-filter="blue-team" recover-time="20s" respawn-time="15s">14.5,10,-429.5</post>
     </flag>
     <flags points="1">
         <net region="blue-net" flag="red-flag"/>
