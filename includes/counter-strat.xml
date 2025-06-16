@@ -8,7 +8,7 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.06.09-1 -->
+<!-- Version 2025.06.16-1 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
@@ -101,8 +101,8 @@
     </kit>
     <kit id="cs-armor-kit">
         <helmet material="leather helmet" team-color="true" unbreakable="true" locked="true"/>
-        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
-        <leggings material="leather leggings" team-color="true" unbreakable="true" locked="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true" enchantment="projectile protection"/>
+        <leggings material="chainmail leggings" team-color="true" unbreakable="true" locked="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true" locked="true"/>
     </kit>
     <kit id="wither-kit">
@@ -267,6 +267,14 @@
             <find material="golden apple"/>
             <replace material="air"/>
         </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="leather helmet"/>
+            <replace material="air"/>
+        </replace-item>
+        <replace-item ignore-metadata="true">
+            <find material="chainmail leggings"/>
+            <replace material="air"/>
+        </replace-item>
     </action>
     <if constant="cs-test-mode" constant-value="false">
         <trigger action="increment-score-t1" scope="match" filter="any(all(red-cap),all(can-score,no-blues))"/>
@@ -278,7 +286,7 @@
 <shops>
     <shop id="zzuf-shop" name="`7Booth">
         <category id="weapons" name="`7The Goods" material="emerald">
-            <item name="`fKevlar" material="chainmail chestplate" amount="1" price="3" currency="emerald"/>
+            <item name="`fKevlar" material="iron chestplate" amount="1" price="3" currency="emerald" enchantment="projectile protection"/>
             <if min-server-version="1.9">
                 <item filter="team-two" material="shield" name="`fRiot Shield" damage="300" amount="1" price="5" currency="emerald"/>
                 <item material="lingering potion" name="`fMolotov Cocktail`r" price="3" currency="emerald">
@@ -334,6 +342,19 @@
     <tool>stone sword</tool>
 </toolrepair>
 <itemremove>
-    <item>chainmail chestplate</item>
+    <item>iron chestplate</item>
+    <item>chainmail leggings</item>
 </itemremove>
+<if min-server-version="1.21">
+    <item-mods>
+        <rule>
+            <match>
+                <material>bow</material>
+            </match>
+            <modify show-attributes="false">
+                <attribute amount="-10">player.block_interaction_range</attribute>
+            </modify>
+        </rule>
+    </item-mods>
+</if>
 </map>
