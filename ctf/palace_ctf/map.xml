@@ -1,11 +1,9 @@
 <map proto="1.5.0">
 <name>Palace CTF</name>
-<version>1.2.4</version>
+<version>1.2.5</version>
 <objective>Have the most flag captures in 12 minutes!</objective>
 <constant id="damage-resistance">4s</constant>
 <constant id="respawn-timer">4s</constant>
-<constant id="enable-feather-falling">true</constant>
-<constant id="feather-falling-level">2</constant>
 <include id="conquest"/>
 <time result="score" overtime="1m" max-overtime="2m">12m</time>
 <authors>
@@ -20,6 +18,13 @@
     <team id="yellow-team" color="yellow" max="24">Yellow</team>
 </teams>
 <kits>
+    <kit id="spawn-kit" parent="base-kit">
+        <action>
+            <enchant-item ignore-metadata="true" enchantment="feather_falling" level="2">
+                <find material="iron boots"/>
+            </enchant-item>
+        </action>
+    </kit>
     <kit id="flag-pickup" force="true">
         <max-health>16</max-health>
         <effect ambient="true">slowness</effect>

@@ -1,7 +1,7 @@
 <map>
 <!-- Base KotF kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2025.05.13-1 -->
+<!-- Version 2025.06.16-1 -->
 <include id="conquest"/>
 <constants fallback="true">
     <constant id="respawn-timer">2s</constant>
@@ -16,10 +16,9 @@
     </kit>
     <kit id="flag-kit-no-slowness" force="true">
         <action>
-            <replace-item>
-                <find unbreakable="true" enchantment="projectile_protection:3" material="chainmail leggings"/>
-                <replace unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
-            </replace-item>
+            <enchant-item ignore-metadata="true" enchantment="projectile_protection" level="2">
+                <find material="chainmail leggings"/>
+            </enchant-item>
         </action>
         <max-health>8</max-health>
         <if min-server-version="1.9">
@@ -32,10 +31,9 @@
     </kit>
     <kit id="reset-health" force="true">
         <action>
-            <replace-item>
-                <find unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
-                <replace unbreakable="true" enchantment="projectile_protection:3" material="chainmail leggings"/>
-            </replace-item>
+            <enchant-item ignore-metadata="true" enchantment="projectile_protection" level="3">
+                <find material="chainmail leggings"/>
+            </enchant-item>
         </action>
         <max-health>20</max-health>
         <if min-server-version="1.9">

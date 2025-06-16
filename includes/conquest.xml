@@ -1,14 +1,11 @@
 <map>
 <!-- Base conquest kit include file -->
 <!-- Created by mameBT -->
-<!-- Version 2025.06.13-1 -->
+<!-- Version 2025.06.16-1 -->
 <include id="gapple-kill-reward"/>
 <include id="legacy-pvp"/>
 <constants fallback="true">
     <constant id="override-itemkeep">false</constant>
-    <constant id="projectile-protection-level">3</constant>
-    <constant id="feather-falling-level">1</constant>
-    <constant id="enable-feather-falling">false</constant>
     <constant id="override-kill-reward">false</constant>
 </constants>
 <kits>
@@ -21,13 +18,9 @@
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="${projectile-protection-level}">projectile_protection</enchantment>
+            <enchantment level="3">projectile_protection</enchantment>
         </leggings>
-        <boots unbreakable="true" material="iron boots">
-            <if constant="enable-feather-falling" constant-value="true">
-                <enchantment level="${feather-falling-level}">feather_falling</enchantment>
-            </if>
-        </boots>
+        <boots unbreakable="true" material="iron boots"/>
         <effect duration="${damage-resistance}" amplifier="5">resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>

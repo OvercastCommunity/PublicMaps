@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Discount Fortress</name>
-<version>1.2.11</version>
+<version>1.2.12</version>
 <variant id="7v7">7v7</variant>
 <constant id="override-itemkeep">true</constant>
 <constant id="damage-resistance">5s</constant>
@@ -47,10 +47,9 @@
         <item slot="3" unbreakable="true" material="shears"/>
         <item slot="4" amount="12" material="leaves"/>
         <action>
-            <replace-item ignore-metadata="true">
+            <enchant-item ignore-metadata="true" enchantment="projectile_protection" level="2">
                 <find material="chainmail leggings"/>
-                <replace unbreakable="true" enchantment="projectile_protection:2" material="chainmail leggings"/>
-            </replace-item>
+            </enchant-item>
         </action>
         <game-mode>survival</game-mode>
     </kit>

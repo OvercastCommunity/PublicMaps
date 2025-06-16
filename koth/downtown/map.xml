@@ -1,13 +1,12 @@
 <map proto="1.5.0">
 <name>Downtown</name>
-<version>1.2.6</version>
+<version>1.2.7</version>
 <variant id="christmas" world="christmas">Christmas Eve</variant>
 <objective>Be the first team to 2500 points!</objective>
 <gamemode>koth</gamemode>
 <constants>
     <constant id="damage-resistance">4s</constant>
     <constant id="respawn-timer">2s</constant>
-    <constant id="enable-feather-falling">true</constant>
     <constant id="observers-kit" delete="true"/>
 </constants>
 <include id="conquest"/>
@@ -40,6 +39,11 @@
     </kit>
     <kit id="spawn-kit" parent="${observers-kit}">
         <kit id="base-kit"/>
+        <action>
+            <enchant-item ignore-metadata="true" enchantment="feather_falling" level="1">
+                <find material="iron boots"/>
+            </enchant-item>
+        </action>
     </kit>
 </kits>
 <spawns>

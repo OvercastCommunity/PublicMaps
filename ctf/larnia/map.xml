@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Larnia</name>
-<version>1.6.2</version>
+<version>1.6.3</version>
 <objective>Capture or defend the green flag!</objective>
 <time result="defenders-team">15m</time>
 <include id="conquest"/>
@@ -27,14 +27,12 @@
         <item amount="2" material="golden apple"/>
         <item amount="28" material="arrow"/>
         <action>
-            <replace-item ignore-metadata="true">
+            <enchant-item ignore-metadata="true" enchantment="projectile_protection" level="1">
                 <find material="chainmail leggings"/>
-                <replace unbreakable="true" enchantment="projectile_protection" material="chainmail leggings"/>
-            </replace-item>
-            <replace-item ignore-metadata="true">
+            </enchant-item>
+            <enchant-item ignore-metadata="true" enchantment="depth_strider" level="1">
                 <find material="iron boots"/>
-                <replace unbreakable="true" enchantment="depth_strider" material="iron boots"/>
-            </replace-item>
+            </enchant-item>
         </action>
         <effect duration="30s">speed</effect>
         <game-mode>survival</game-mode>
