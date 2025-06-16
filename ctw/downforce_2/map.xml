@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Downforce 2</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Take the enemy's wool located to either side of the enemy's base and place it on your victory monument.</objective>
 <gamemode>ctw</gamemode>
 <include id="gapple-kill-reward"/>
@@ -9,8 +9,8 @@
     <author uuid="36e46b32-80ef-4fa5-b1e2-6c777736d888" contribution="Aesthetic and gameplay edits, XML"/> <!-- Elijahyap -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="14">Blue</team>
-    <team id="red" color="dark red" max="14">Red</team>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="red" color="dark red" max="16">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -24,7 +24,6 @@
         <item slot="5" damage="1" amount="32" material="wood"/>
         <item slot="6" amount="16" material="ladder"/>
         <item slot="7" amount="16" material="arrow"/>
-        <item slot="8" amount="64" material="cooked beef"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <effect duration="3" amplifier="5">damage resistance</effect>
@@ -211,7 +210,6 @@
     <item>wood</item>
     <item>ladder</item>
     <item>arrow</item>
-    <item>cooked beef</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
     <item>string</item>
@@ -223,7 +221,9 @@
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item amount="5" material="arrow"/>
+        <item amount="24" material="wood" damage="1"/>
+        <item amount="24" material="glass"/>
+        <item amount="5" material="arrow"/>       
     </kill-reward>
 </kill-rewards>
 <portals>
