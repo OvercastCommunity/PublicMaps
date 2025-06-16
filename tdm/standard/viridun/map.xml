@@ -18,7 +18,7 @@
 </if>
 <objective>${objective}</objective>
 <if variant="default">
-    <created>2012-09-4</created>
+    <created>2012-09-04</created>
 </if>
 <authors>
     <author uuid="27cf0cdd-c294-4163-a536-18e11360cc7b" contribution="Map design and layout"/> <!-- OurLoneHero -->
