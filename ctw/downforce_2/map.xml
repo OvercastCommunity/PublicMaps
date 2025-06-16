@@ -216,7 +216,6 @@
     <item>glowstone dust</item>
     <item>clay ball</item>
     <item>step</item>
-    <item>cooked fish</item>
     <item>redstone wire</item>
 </itemremove>
 <kill-rewards>
@@ -250,4 +249,7 @@
     <power>5</power>
 </tnt>
 <maxbuildheight>18</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
