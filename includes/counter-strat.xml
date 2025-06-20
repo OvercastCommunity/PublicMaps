@@ -8,7 +8,7 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.06.20-2 -->
+<!-- Version 2025.06.20-3 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
@@ -66,7 +66,7 @@
     <game>Counter-Strat: Hostage</game>
 </if>
 <teams>
-    <team id="team-one" color="dark red" max="${cs-team-size}" show-name-tags="allies">${cs-team-one-name}</team>
+    <team id="team-one" color="gold" max="${cs-team-size}" show-name-tags="allies">${cs-team-one-name}</team>
     <team id="team-two" color="blue" max="${cs-team-size}" show-name-tags="allies">${cs-team-two-name}</team>
 </teams>
 <broadcasts>
@@ -239,7 +239,7 @@
         </not>
     </all>
     <if constant="cs-mode" constant-value="point">
-        <after id="red-cap" duration="10s" message="`4Attackers`f are `ccapturing`f ${site-name}`f! `b{0} left">
+        <after id="red-cap" duration="10s" message="`6Attackers`f are `ccapturing`f ${site-name}`f! `b{0} left">
             <all>
                 <players min="1">
                     <all>
@@ -330,7 +330,7 @@
         <set var="team_one_score" value="team_one_score+1"/>
         <action>
             <message text="`5# # # # # # # # # # # #"/>
-            <message text="`5# #       `4{one-score}`6 `l－`r `9{two-score}`5       # #">
+            <message text="`5# #       `6{one-score}`6 `l－`r `9{two-score}`5       # #">
                 <replacements>
                     <decimal id="one-score" value="team_one_score"/>
                     <decimal id="two-score" value="team_two_score"/>
@@ -343,7 +343,7 @@
         <set var="team_two_score" value="team_two_score+1"/>
         <action>
             <message text="`5# # # # # # # # # # # #"/>
-            <message text="`5# #       `4{one-score}`6 `l－`r `9{two-score}`5       # #">
+            <message text="`5# #       `6{one-score}`6 `l－`r `9{two-score}`5       # #">
                 <replacements>
                     <decimal id="one-score" value="team_one_score"/>
                     <decimal id="two-score" value="team_two_score"/>
@@ -440,7 +440,7 @@
 <kill-rewards>
     <kill-reward>
         <if constant="cs-shops-enabled" constant-value="true">
-            <item material="emerald" name="`fLegal Tender Emerald" lore="`9ⓘ `7Use this at spawn shops to buy interesting items!||`8ZZUF●D●G●REX●ET●IMP|`8Issued JUNE 2025"/>
+            <item material="emerald" amount="2" name="`fLegal Tender Emerald" lore="`9ⓘ `7Use this at spawn shops to buy interesting items!||`8ZZUF●D●G●REX●ET●IMP|`8Issued JUNE 2025"/>
         </if>
         <item amount="4" material="arrow"/>
     </kill-reward>
