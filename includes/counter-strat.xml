@@ -8,7 +8,7 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.06.20-1 -->
+<!-- Version 2025.06.20-2 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
@@ -391,9 +391,9 @@
         </if>
         <if constant="cs-mode" constant-value="hostage">
             <trigger action="increment-score-t1" scope="match" filter="all(can-score,no-team-two)"/>
-            <trigger action="increment-score-t2" scope="match" filter="all(can-score,no-team-one))"/>
+            <trigger action="increment-score-t2" scope="match" filter="all(can-score,no-team-one)"/>
             <trigger action="increment-round-custom" scope="player" filter="all(can-score,no-team-two)"/>
-            <trigger action="increment-round-custom" scope="player" filter="all(can-score,no-team-one))"/>
+            <trigger action="increment-round-custom" scope="player" filter="all(can-score,no-team-one)"/>
         </if>
     </if>
 </actions>
