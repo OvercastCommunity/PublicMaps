@@ -1,8 +1,8 @@
 <map proto="1.5.0">
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
-<!-- Support from Pablete1234 -->
-<!-- Version 2025.01.05-1 -->
+<!-- Support from Pablete1234 <3 -->
+<!-- Version 2025.06.21 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -12,6 +12,7 @@
     <constant id="idle">0</constant>
     <constant id="starting">1</constant>
     <constant id="running">2</constant>
+    <constant id="block-filter">never</constant>
 </constants>
 <blitz>
     <broadcastLives>false</broadcastLives>
@@ -20,7 +21,6 @@
 <kits>
     <kit id="tnt-kit" force="true" parent="tnt-flash-red-kit">
         <item slot="4" material="compass" locked="true"/>
-        <effect amplifier="10">damage resistance</effect>
         <effect amplifier="2">speed</effect>
         <action filter="round_deathmatch=1..">
             <kit force="true">
@@ -85,23 +85,29 @@
     <time id="delayed">0.05s</time>
     <after id="round-starting" duration="1s" filter="round_state=${idle}"/>
     <after id="round-begin" duration="3s" filter="round_state=${starting}" message="The next round begins in {0}"/>
-    <variable id="countdown-start" var="round_state">${starting}</variable>
+    <all id="countdown-start">
+        <match-running/>
+        <variable var="round_state">${starting}</variable>
+    </all>
     <variable id="round-running" var="round_state">${running}</variable>
     <any id="round-end">
         <after id="round-sm-end" duration="15s" message="TNT explodes in {0}">
             <all id="round-sm-begin">
+                <match-running/>
                 <variable var="players">1..8</variable>
                 <variable var="round_state">${running}</variable>
             </all>
         </after>
         <after id="round-md-end" duration="25s" message="TNT explodes in {0}">
             <all id="round-md-begin">
+                <match-running/>
                 <variable var="players">9..32</variable>
                 <variable var="round_state">${running}</variable>
             </all>
         </after>
         <after id="round-lg-end" duration="45s" message="TNT explodes in {0}">
             <all id="round-lg-begin">
+                <match-running/>
                 <variable var="players">33..</variable>
                 <variable var="round_state">${running}</variable>
             </all>
@@ -113,8 +119,13 @@
         <after duration="12s" filter="round-sm-begin"/>
     </any>
     <any id="game-damage">
-        <cause>void</cause>
         <cause>potion</cause>
+        <cause>void</cause>
+        <cause>combustion</cause>
+        <cause>suffocation</cause>
+        <cause>squash</cause>
+        <cause>drowning</cause>
+        <cause>cactus</cause>
     </any>
     <attacker id="attacker-is-tnt">
         <variable id="is-tnt" var="is_tnt">1</variable>
@@ -127,7 +138,7 @@
     </victim>
 </filters>
 <regions>
-    <apply block="never"/>
+    <apply block="${block-filter}"/>
 </regions>
 <portals>
     <portal forward="all(participating, round-running, round_deathmatch=1..)" destination="center" sound="false"/>
@@ -250,6 +261,7 @@
         <action>
             <set var="round_state" value="${idle}"/>
             <switch-scope inner="player" filter="all(is_tnt=1, participating)">
+                <set var="is_tnt" value="0"/>
                 <kit id="tnt-kill"/>
             </switch-scope>
             <sound key="${entity.generic.explode}"/>
@@ -290,7 +302,7 @@
         <kit id="hider-kit"/>
     </action>
     <action id="become-tnt" scope="player" filter="all(not(game-damage), round-running)">
-        <kit>
+        <kit force="true">
             <health>20</health>
         </kit>
         <action filter="all(attacker-was-tnt, victim-is-hider)">
@@ -343,8 +355,7 @@
                         </any>
                         <filter id="round-running"/>
                     </all>
-                    <cause>potion</cause>
-                    <cause>void</cause>
+                    <filter id="game-damage"/>
                 </any>
             </not>
         </any>
