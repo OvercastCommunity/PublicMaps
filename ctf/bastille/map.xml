@@ -1,0 +1,143 @@
+<map proto="1.4.2">
+<name>Bastille</name>
+<version>3.0.1</version>
+<objective>Capture the enemy flag.</objective>
+<time result="score" overtime="1m" max-overtime="3m">12m</time>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
+    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="12" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="3">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="2s" amplifier="255">resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0s" amplifier="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="0">
+            <point>0.5,9,-12.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="180">
+            <point>-32.5,5,28.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="180">
+            <point>33.5,5,28.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <time id="flag-respawns">0</time>
+</filters>
+<regions>
+    <cuboid id="blue-net" min="-44,9,-8" size="3,2,3"/>
+    <cuboid id="red-net" min="42,9,-8" size="3,2,3"/>
+    <apply block="never" use="never"/>
+</regions>
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          color="blue"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="10s">-42.5,9,-6.5</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red"
+          color="red"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="10s">43.5,9,-6.5</post>
+    </flag>
+    <flags points="1">
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<score/>
+<spawners>
+    <spawner id="mid-gapple" delay="7s">
+        <spawn-region>
+            <point>0.5,4.2,-2.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="0.5,3,-2.5" radius="2.5" height="4"/>
+        </player-region>
+        <item material="golden apple"/>
+    </spawner>
+    <spawner id="blue-arrow" delay="3s">
+        <spawn-region>
+            <point>-17.5,14.2,-9.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="-17.5,13,-9.5" radius="2" height="4"/>
+        </player-region>
+        <item material="arrow"/>
+    </spawner>
+    <spawner id="red-arrow" delay="3s">
+        <spawn-region>
+            <point>18.5,14.2,-9.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="18.5,13,-9.5" radius="2" height="4"/>
+        </player-region>
+        <item material="arrow"/>
+    </spawner>
+</spawners>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
+</itemremove>
+<itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="6" material="arrow"/>
+</kill-reward>
+<respawn delay="6.5s" auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
