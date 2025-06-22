@@ -1,8 +1,22 @@
-<map proto="1.4.2">
+<map proto="1.5.0">
 <name>Basilica</name>
-<version>2.1.7</version>
+<version>2.1.8</version>
+<variant id="5v5">5v5</variant>
 <objective>Capture the enemy flag as many times as possible before time runs out!</objective>
 <time result="score" overtime="1m" max-overtime="3m">12m</time>
+<constant id="damage-resistance">2s</constant>
+<unless variant="5v5">
+    <constant id="team-size">12</constant>
+    <constant id="max-overfill" delete="true"/>
+    <constant id="respawn-timer">3s</constant>
+    <include id="conquest"/>
+</unless>
+<if variant="5v5">
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <constant id="respawn-timer">4.5s</constant>
+    <include id="conquest-comp"/>
+</if>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
     <author uuid="cbdc7b1d-7a07-465b-bebb-4f20bfb8ebd8"/> <!-- Cratain -->
@@ -13,34 +27,25 @@
     <contributor uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d" contribution="Aesthetics"/> <!-- Claf -->
 </contributors>
 <teams>
-    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
-    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+    <team id="blue-team" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="red-team" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit" parents="default-kit">
-        <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="golden apple"/>
-        <item slot="8" amount="12" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
-        <leggings unbreakable="true" material="chainmail leggings">
-            <enchantment level="3">projectile_protection</enchantment>
-        </leggings>
-        <boots unbreakable="true" material="iron boots"/>
-        <effect duration="2s" amplifier="255">resistance</effect>
-        <game-mode>adventure</game-mode>
-    </kit>
-    <kit id="flag-pickup" force="true">
-        <effect>slowness</effect>
-    </kit>
-    <kit id="flag-reset" force="true">
-        <effect duration="0s">slowness</effect>
-    </kit>
+    <kit id="spawn-kit" parents="default-kit,base-kit"/>
+    <lend>
+        <kit>
+            <effect>slowness</effect>
+        </kit>
+        <filter>
+            <any>
+                <carrying-flag>blue-flag</carrying-flag>
+                <carrying-flag>red-flag</carrying-flag>
+            </any>
+        </filter>
+    </lend>
 </kits>
 <spawns>
     <default kit="default-kit">
@@ -48,21 +53,17 @@
             <cylinder base="0.5,14,-23.5" height="0" radius="1"/>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="90">
             <cylinder base="38,8,-17" height="0" radius="1"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="-90">
             <cylinder base="-37,8,-17" height="0" radius="1"/>
         </region>
     </spawn>
 </spawns>
-<filters>
-    <team id="only-blue">blue</team>
-    <team id="only-red">red</team>
-</filters>
 <regions>
     <cuboid id="blue-net" min="22,7,11" size="3,5,3"/>
     <cuboid id="red-net" min="-24,7,11" size="3,5,3"/>
@@ -71,20 +72,16 @@
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
     <flag id="blue-flag"
           name="Blue Flag"
-          owner="blue"
-          color="blue"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-reset">
-        <post pickup-filter="only-red" recover-time="15s" respawn-time="10s">23.5,8,12.5</post>
+          owner="blue-team"
+          color="blue">
+        <post pickup-filter="red-team" recover-time="15s" respawn-time="10s">23.5,8,12.5</post>
         <net region="red-net" points="1"/>
     </flag>
     <flag id="red-flag"
           name="Red Flag"
-          owner="red"
-          color="red"
-          pickup-kit="flag-pickup"
-          drop-kit="flag-reset">
-        <post pickup-filter="only-blue" recover-time="15s" respawn-time="10s">-22.5,8,12.5</post>
+          owner="red-team"
+          color="red">
+        <post pickup-filter="blue-team" recover-time="15s" respawn-time="10s">-22.5,8,12.5</post>
         <net region="blue-net" points="1"/>
     </flag>
 </flags>
@@ -127,29 +124,4 @@
         <item material="golden apple"/>
     </spawner>
 </spawners>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-</toolrepair>
-<itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>chainmail leggings</item>
-    <item>iron boots</item>
-    <item>banner</item>
-</itemremove>
-<itemkeep>
-    <item>stone sword</item>
-    <item>bow</item>
-    <item>golden apple</item>
-    <item>arrow</item>
-</itemkeep>
-<kill-reward>
-    <item material="golden apple"/>
-    <item amount="6" material="arrow"/>
-</kill-reward>
-<respawn delay="4.5s" auto="true"/>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
 </map>
