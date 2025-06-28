@@ -100,6 +100,11 @@
     <tool>iron axe</tool>
     <tool>arrow</tool>
 </toolrepair>
+<itemkeep>
+    <item>golden apple</item>
+    <item>log</item>
+    <item>wood</item>
+</itemkeep>
 <itemremove>
     <item>leather helmet</item>
     <item>iron chestplate</item>
