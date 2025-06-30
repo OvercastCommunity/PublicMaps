@@ -1,6 +1,6 @@
 ﻿<map proto="1.5.0">
 <name>Sandstone Temples</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Eliminate the other team before 6 minutes is up.</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -17,8 +17,8 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!" material="iron sword"/>
-        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!" material="bow"/>
+        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!" material="iron sword" unbreakable="true"/>
+        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!" material="bow" unbreakable="true"/>
         <item slot="2" material="arrow"/>
         <chestplate team-color="true" material="leather chestplate"/>
         <leggings team-color="true" material="leather leggings"/>
@@ -45,6 +45,11 @@
         </region>
     </default>
 </spawns>
+<respawn auto="true"/>
+<time>6m</time>
+<blitz/>
+<rage/>
+<timelock>on</timelock>
 <regions>
     <apply enter="never" message="This area is off limits">
         <region>
@@ -53,11 +58,6 @@
     </apply>
     <apply block="never"/>
 </regions>
-<time>6m</time>
-<blitz>
-    <lives>1</lives>
-</blitz>
-<rage/>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -78,6 +78,4 @@
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
-<respawn auto="true"/>
-<timelock>on</timelock>
 </map>
