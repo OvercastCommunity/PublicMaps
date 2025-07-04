@@ -5,8 +5,16 @@
 <variant id="classic" world="classic" slug="directrix">Classic</variant>
 <variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
 <variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
-<version>2.0.8</version>
-<gamemode>ctf</gamemode>
+<variant id="tdm" world="tdm">TDM</variant>
+<version>2.1.0</version>
+<unless variant="tdm">
+    <gamemode>ctf</gamemode>
+</unless>
+<if variant="tdm">
+    <gamemode>tdm</gamemode>
+    <gamemode>scorebox</gamemode>
+    <created>2025-07-03</created>
+</if>
 <gamemode>rage</gamemode>
 <if variant="default">
     <created>2015-03-07</created>
@@ -31,8 +39,22 @@
     <constant id="team-2-flag-base">-8.5,22,139.5</constant>
     <phase>staging</phase>
 </if>
-<objective>Capture the enemy's flag as many times as possible in ${time-limit} minutes to win!</objective>
-<time overtime="1m" max-overtime="${max-overtime}">${time-limit}m</time>
+<unless variant="tdm">
+    <constant id="overtime">1m</constant>
+</unless>
+<if variant="tdm">
+    <constant id="time-limit">10</constant>
+    <constant id="overtime" delete="true"/>
+    <constant id="max-overtime" delete="true"/>
+    <phase>development</phase>
+</if>
+<unless variant="tdm">
+    <objective>Capture the enemy's flag as many times as possible in ${time-limit} minutes to win!</objective>
+</unless>
+<if variant="tdm">
+    <objective>Get the most points in ${time-limit} minutes to win!</objective>
+</if>
+<time overtime="${overtime}" max-overtime="${max-overtime}">${time-limit}m</time>
 <authors>
     <unless variant="king_ranch,king_ranch_og">
         <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -55,6 +77,9 @@
         <if variant="christmas">
             <contributor uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9" contribution="Original Christmas-ification"/> <!-- Xerorca -->
         </if>
+        <if variant="tdm">
+            <contributor uuid="4efaccb9-7535-4638-8907-47b47cf1af37" contribution="Removed the flags"/> <!-- TTtie -->
+        </if>
         <contributor contribution="Inspiration">NOVA 2</contributor>
     </unless>
     <if variant="king_ranch,king_ranch_og">
@@ -72,7 +97,9 @@
     <broadcasts>
         <alert after="1s">An additional lane in the clouds will spawn after 8 minutes!</alert>
         <alert after="8m">An additional lane has spawned in the clouds!</alert>
-        <alert after="15m">If the match ends in a tie, the game will enter overtime!</alert>
+        <unless variant="tdm">
+            <alert after="15m">If the match ends in a tie, the game will enter overtime!</alert>
+        </unless>
     </broadcasts>
 </unless>
 <constants>
@@ -147,18 +174,16 @@
     </default>
     <spawn team="team-1" kit="spawn-kit">
         <region>
-            <cuboid min="-5,12,0" max="-12,12,5"/>
+            <cuboid id="team-1-spawn" min="-5,12,0" max="-12,12,5"/>
         </region>
     </spawn>
     <spawn team="team-2" kit="spawn-kit">
         <region yaw="180">
-            <cuboid min="-5,12,118" max="-12,12,123"/>
+            <cuboid id="team-2-spawn" min="-5,12,118" max="-12,12,123"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <team id="only-team-1">team-1</team>
-    <team id="only-team-2">team-2</team>
     <material id="beacon">beacon</material>
 </filters>
 <regions>
@@ -341,26 +366,49 @@
         </dynamic>
     </structures>
 </unless>
-<flags flag-proximity-metric="none" net-proximity-metric="closest player">
-    <flag id="team-1-flag" name="${team-1-flag-name} Flag" owner="team-1" color="${team-1-flag-color}" pickup-filter="only-team-2">
-        <post recover-time="15s" respawn-time="10s" yaw="0">${team-1-flag-base}</post>
-    </flag>
-    <net points="1" flag="team-1-flag" return="team-2-flag">
-        <region>
-            <cylinder base="${team-2-flag-base}" radius="2" height="2"/>
-        </region>
-    </net>
-    <flag id="team-2-flag" name="${team-2-flag-name} Flag" owner="team-2" color="${team-2-flag-color}" pickup-filter="only-team-1">
-        <post recover-time="15s" respawn-time="10s" yaw="-180">${team-2-flag-base}</post>
-    </flag>
-    <net points="1" flag="team-2-flag" return="team-1-flag">
-        <region>
-            <cylinder base="${team-1-flag-base}" radius="2" height="2"/>
-        </region>
-    </net>
-</flags>
+<unless variant="tdm">
+    <flags flag-proximity-metric="none" net-proximity-metric="closest player">
+        <flag id="team-1-flag" name="${team-1-flag-name} Flag" owner="team-1" color="${team-1-flag-color}" pickup-filter="team-2">
+            <post recover-time="15s" respawn-time="10s" yaw="0">${team-1-flag-base}</post>
+        </flag>
+        <net points="1" flag="team-1-flag" return="team-2-flag">
+            <region>
+                <cylinder base="${team-2-flag-base}" radius="2" height="2"/>
+            </region>
+        </net>
+        <flag id="team-2-flag" name="${team-2-flag-name} Flag" owner="team-2" color="${team-2-flag-color}" pickup-filter="team-1">
+            <post recover-time="15s" respawn-time="10s" yaw="-180">${team-2-flag-base}</post>
+        </flag>
+        <net points="1" flag="team-2-flag" return="team-1-flag">
+            <region>
+                <cylinder base="${team-1-flag-base}" radius="2" height="2"/>
+            </region>
+        </net>
+    </flags>
+</unless>
+<if variant="tdm">
+    <regions>
+        <cuboid id="team-1-scorebox" min="-11,21,-20" max="-6,26,-15"/>
+        <cuboid id="team-2-scorebox" min="-11,21,138" max="-6,26,143"/>
+        <cuboid id="team-1-inner-scorebox" min="-10,21,-19" max="-7,22,-16"/>
+        <cuboid id="team-2-inner-scorebox" min="-10,21,139" max="-7,22,142"/>
+        <apply enter="team-2" region="team-1-scorebox" message="You cannot enter your own team's scorebox!"/>
+        <apply enter="team-1" region="team-2-scorebox" message="You cannot enter your own team's scorebox!"/>
+    </regions>
+    <portals>
+        <portal region="team-1-inner-scorebox" destination="team-2-spawn" yaw="@180"/>
+        <portal region="team-2-inner-scorebox" destination="team-1-spawn" yaw="@0"/>
+    </portals>
+</if>
 <score>
-    <mercy>3</mercy>
+    <unless variant="tdm">
+        <mercy>3</mercy>
+    </unless>
+    <if variant="tdm">
+        <kills>1</kills>
+        <box points="10" filter="team-2" region="team-1-inner-scorebox"/>
+        <box points="10" filter="team-1" region="team-2-inner-scorebox"/>
+    </if>
 </score>
 <toolrepair>
     <tool>stone sword</tool>
