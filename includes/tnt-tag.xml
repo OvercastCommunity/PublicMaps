@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 <3 -->
-<!-- Version 2025.06.21 -->
+<!-- Version 2025.07.05 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -14,7 +14,7 @@
     <constant id="running">2</constant>
     <constant id="block-filter">never</constant>
 </constants>
-<blitz>
+<blitz lightning="true">
     <broadcastLives>false</broadcastLives>
 </blitz>
 <players max="64"/>
