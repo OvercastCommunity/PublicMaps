@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Race for Victory</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <authors>
     <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design"/> <!-- Plastix -->
@@ -51,8 +51,7 @@
     </default>
 </spawns>
 <filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
+    <material id="chest">chest</material>
 </filters>
 <regions>
     <union id="spawn-protections">
@@ -64,6 +63,10 @@
         <block id="blue-team-yellow-wool">0,75,97</block>
         <block id="red-team-lime-wool">0,75,-98</block>
         <block id="red-team-orange-wool">-1,75,-98</block>
+    </union>
+    <union id="victory-monuments">
+        <cuboid id="red-victory-monument" min="-2,73,-100" size="4,4,3"/>
+        <cuboid id="blue-victory-monument" min="-2,73,97" size="4,4,3"/>
     </union>
     <union id="wool-rooms">
         <union id="red-wool-rooms">
@@ -95,14 +98,16 @@
         <rectangle min="13,111" max="42,101"/>
         <rectangle min="-13,111" max="-42,101"/>
     </union>
-    <apply region="blue-wool-rooms" block="only-red" use="only-red"/>
-    <apply region="blue-wool-rooms" enter="only-red" message="You may not enter your own wool room!"/>
-    <apply region="red-wool-rooms" block="only-blue" use="only-blue"/>
-    <apply region="red-wool-rooms" enter="only-blue" message="You may not enter your own wool room!"/>
-    <apply region="red-base" enter="only-red" message="You may not enter the enemy's spawn!"/>
-    <apply region="red-base" block="only-red"/>
-    <apply region="blue-base" enter="only-blue" message="You may not enter the enemy's spawn!"/>
-    <apply region="blue-base" block="only-blue"/>
+    <apply region="wool-rooms" block="deny(chest)"/>
+    <apply region="victory-monuments" block="never"/>
+    <apply region="blue-wool-rooms" block="red-team" use="red-team"/>
+    <apply region="blue-wool-rooms" enter="red-team" message="You may not enter your own wool room!"/>
+    <apply region="red-wool-rooms" block="blue-team" use="blue-team"/>
+    <apply region="red-wool-rooms" enter="blue-team" message="You may not enter your own wool room!"/>
+    <apply region="red-base" enter="red-team" message="You may not enter the enemy's spawn!"/>
+    <apply region="red-base" block="red-team" use="red-team"/>
+    <apply region="blue-base" enter="blue-team" message="You may not enter the enemy's spawn!"/>
+    <apply region="blue-base" block="blue-team" use="blue-team"/>
     <apply region="void-area" block="never" message="You may not build over the void!"/>
     <apply region="map-protection" block="never" message="You may not edit blocks in this area!"/>
 </regions>
