@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Let's Sell Discounts</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <variant id="5v5">5v5</variant>
 <unless variant="5v5">
     <constant id="team-size">12</constant>
@@ -34,7 +34,7 @@
         <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" material="diamond pickaxe">
+        <item slot="2" unbreakable="true" material="diamond pickaxe">
             <enchantment>efficiency</enchantment>
         </item>
         <item slot="3" material="golden apple"/>
@@ -155,18 +155,18 @@
     <apply block-break="never" block-place="deny(void)" region="spawns" message="You may not modify the spawn region!"/>
     <apply block="only-blocks" region="map-region" message="You may only interact with stained clay and stained glass."/>
     <apply block="never" region="void-region" message="You may not build in the void!"/>
-    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="deny(red-team)" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="deny(blue-team)" region="red-spawn" message="You may not enter the enemy's spawn!"/>
 </regions>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false" carry-message="Return the flag to your spawn!">
     <flag id="red-flag" name="Red Flag" owner="red-team" color="red" show-respawn-on-pickup="true" carry-kit="flag-pickup">
-        <post recover-time="20s" respawn-time="15s" pickup-filter="only-blue" sequential="true">
+        <post recover-time="20s" respawn-time="15s" pickup-filter="blue-team" sequential="true">
             <post id="red-right-post" yaw="180" name="Purple Post">53.5,17,155.5</post>
             <post id="red-left-post" yaw="-90" name="Yellow Post">14.5,17,116.5</post>
         </post>
     </flag>
     <flag id="blue-flag" name="Blue Flag" owner="blue-team" color="blue" show-respawn-on-pickup="true" carry-kit="flag-pickup">
-        <post recover-time="20s" respawn-time="15s" pickup-filter="only-red" sequential="true">
+        <post recover-time="20s" respawn-time="15s" pickup-filter="red-team" sequential="true">
             <post id="blue-right-post" yaw="0" name="Lime Post">74.5,17,56.5</post>
             <post id="blue-left-post" yaw="90" name="Orange Post">113.5,17,95.5</post>
         </post>
