@@ -1,25 +1,45 @@
 <map proto="1.5.0">
 <name>Marzipan</name>
-<version>1.4.3</version>
+<version>1.4.4</version>
+<variant id="ac">AC</variant>
+<variant id="7v7">7v7</variant>
+<variant id="7v7-ac">7v7 AC</variant>
 <variant id="5v5">5v5</variant>
-<unless variant="5v5">
-    <constant id="respawn-timer">8s</constant>
-    <constant id="team-size">7</constant>
-</unless>
-<if variant="5v5">
-    <constant id="respawn-timer">6s</constant>
-    <constant id="team-size">5</constant>
-</if>
+<variant id="5v5-ac">5v5 AC</variant>
+<constant id="team-1-name">Cyan</constant>
+<constant id="team-2-name">Yellow</constant>
 <constant id="damage-resistance">2s</constant>
-<include id="conquest-comp"/>
+<if variant="default,ac">
+    <constant id="respawn-timer">4s</constant>
+    <constant id="team-size">12</constant>
+    <constant id="max-overfill" delete="true"/>
+    <include id="conquest"/>
+</if>
+<unless variant="default,ac">
+    <if variant="7v7,7v7-ac">
+        <constant id="respawn-timer">8s</constant>
+        <constant id="team-size">7</constant>
+        <constant id="max-overfill">7</constant>
+    </if>
+    <if variant="5v5,5v5-ac">
+        <constant id="respawn-timer">6s</constant>
+        <constant id="team-size">5</constant>
+        <constant id="max-overfill">5</constant>
+    </if>
+    <include id="conquest-comp"/>
+</unless>
+<if variant="ac,7v7-ac,5v5-ac">
+    <include id="arrow-cooldown"/>
+</if>
+<include id="5cp"/>
 <objective>Capture all five control points.</objective>
 <authors>
     <author uuid="0c44ca5a-6a42-49b7-81f2-58dc6d2ae3e9"/> <!-- Xerocoles -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
 <teams>
-    <team id="cyan" color="dark aqua" max="${team-size}" max-overfill="${team-size}">Cyan</team>
-    <team id="yellow" color="yellow" max="${team-size}" max-overfill="${team-size}">Yellow</team>
+    <team id="team-1" color="dark aqua" max="${team-size}" max-overfill="${max-overfill}">${team-1-name}</team>
+    <team id="team-2" color="yellow" max="${team-size}" max-overfill="${max-overfill}">${team-2-name}</team>
 </teams>
 <spawns>
     <default>
@@ -27,120 +47,23 @@
             <cuboid min="165.5,45,3.5" max="162.5,45,5.5"/>
         </region>
     </default>
-    <spawn team="cyan" kit="base-kit">
+    <spawn team="team-1" kit="base-kit">
         <region yaw="-155">
             <block>106.5,6.25,54.5</block>
         </region>
     </spawn>
-    <spawn team="yellow" kit="base-kit">
+    <spawn team="team-2" kit="base-kit">
         <region yaw="25">
             <block>106.5,6.25,-45.5</block>
         </region>
     </spawn>
 </spawns>
-<filters>
-    <!-- Capture rules for visual control points, which must be captured sequentially -->
-    <any id="filter-cyan-last">
-        <team id="only-cyan">cyan</team>
-        <objective id="capped-cyan-2nd">cyan-2nd</objective>
-    </any>
-    <any id="filter-cyan-2nd">
-        <objective id="capped-mid">mid</objective>
-        <objective id="capped-cyan-last">cyan-last</objective>
-    </any>
-    <any id="filter-yellow-2nd">
-        <filter id="capped-mid"/>
-        <objective id="capped-yellow-last">yellow-last</objective>
-    </any>
-    <any id="filter-yellow-last">
-        <team id="only-yellow">yellow</team>
-        <objective id="capped-yellow-2nd">yellow-2nd</objective>
-    </any>
-    <!-- To capture mid, a team must control their second point -->
-    <any id="filter-mid">
-        <filter id="capped-cyan-2nd"/>
-        <filter id="capped-yellow-2nd"/>
-    </any>
-    <!-- Filters for the point-giving control points -->
-    <!--
-        A team can capture a point-giving control point when they capture the enemy's associated
-        visual point. However, if the enemy uncaptures the point, they will return the point-giving
-        point to a neutral state and points will no longer be scored from it by the team who lost
-        control.
-    -->
-    <any id="filter-last-point-cyan">
-        <filter id="capped-yellow-last"/>
-        <all>
-            <filter id="only-yellow"/>
-            <not>
-                <any>
-                    <objective team="cyan">yellow-last</objective>
-                    <objective team="yellow">yellow-last</objective>
-                </any>
-            </not>
-        </all>
-    </any>
-    <any id="filter-2nd-point-cyan">
-        <filter id="capped-yellow-2nd"/>
-        <all>
-            <filter id="only-yellow"/>
-            <not>
-                <any>
-                    <objective team="cyan">yellow-2nd</objective>
-                    <objective team="yellow">yellow-2nd</objective>
-                </any>
-            </not>
-        </all>
-    </any>
-    <any id="filter-2nd-point-yellow">
-        <filter id="capped-cyan-2nd"/>
-        <all>
-            <filter id="only-cyan"/>
-            <not>
-                <any>
-                    <objective team="cyan">cyan-2nd</objective>
-                    <objective team="yellow">cyan-2nd</objective>
-                </any>
-            </not>
-        </all>
-    </any>
-    <any id="filter-last-point-yellow">
-        <filter id="capped-cyan-last"/>
-        <all>
-            <filter id="only-cyan"/>
-            <not>
-                <any>
-                    <objective team="cyan">cyan-last</objective>
-                    <objective team="yellow">cyan-last</objective>
-                </any>
-            </not>
-        </all>
-    </any>
-</filters>
 <regions>
-    <cuboid id="cp-cyan-last" min="103,11,45" max="110,14,38"/>
-    <cuboid id="cp-cyan-2nd" min="147,14,26" max="140,17,19"/>
+    <cuboid id="cp-team-1-last" min="103,11,45" max="110,14,38"/>
+    <cuboid id="cp-team-1-2nd" min="147,14,26" max="140,17,19"/>
     <cuboid id="cp-mid" min="103,9,8" max="110,12,1"/>
-    <cuboid id="cp-yellow-2nd" min="73,14,-17" max="66,17,-10"/>
-    <cuboid id="cp-yellow-last" min="110,11,-36" max="103,14,-29"/>
-    <apply block="never"/>
+    <cuboid id="cp-team-2-2nd" min="73,14,-17" max="66,17,-10"/>
+    <cuboid id="cp-team-2-last" min="110,11,-36" max="103,14,-29"/>
+    <apply block="never" use="never"/>
 </regions>
-<control-points neutral-state="true" show-progress="true">
-    <!-- Cyan visual control points -->
-    <control-point initial-owner="cyan" id="cyan-last" required="false" name="Cyan Last" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-cyan-last" progress="cp-cyan-last" player-filter="filter-cyan-last"/>
-    <control-point initial-owner="cyan" id="cyan-2nd" required="false" name="Cyan 2nd" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-cyan-2nd" progress="cp-cyan-2nd" player-filter="filter-cyan-2nd"/>
-    <!-- Mid -->
-    <control-point id="mid" required="false" name="Mid" capture-time="6s" time-multiplier="0.35" points="2" incremental="true" capture="cp-mid" progress="cp-mid" player-filter="filter-mid"/>
-    <!-- Yellow visual control points -->
-    <control-point initial-owner="yellow" id="yellow-2nd" required="false" name="Yellow 2nd" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-yellow-2nd" progress="cp-yellow-2nd" player-filter="filter-yellow-2nd"/>
-    <control-point initial-owner="yellow" id="yellow-last" required="false" name="Yellow Last" capture-time="6s" time-multiplier="0.35" points="0" incremental="true" capture="cp-yellow-last" progress="cp-yellow-last" player-filter="filter-yellow-last"/>
-    <!-- Point-giving control points -->
-    <control-point id="yellow-last-point" required="false" show="false" points="1" name="YL Point" capture-time="0s" capture="everywhere" player-filter="filter-last-point-cyan" capture-filter="only-cyan"/>
-    <control-point id="yellow-2nd-point" required="false" show="false" points="1" name="Y2 Point" capture-time="0s" capture="everywhere" player-filter="filter-2nd-point-cyan" capture-filter="only-cyan"/>
-    <control-point id="cyan-2nd-point" required="false" show="false" points="1" name="P2 Point" capture-time="0s" capture="everywhere" player-filter="filter-2nd-point-yellow" capture-filter="only-yellow"/>
-    <control-point id="cyan-last-point" required="false" show="false" points="1" name="PL Point" capture-time="0s" capture="everywhere" player-filter="filter-last-point-yellow" capture-filter="only-yellow"/>
-</control-points>
-<score>
-    <limit>800</limit>
-</score>
 </map>
