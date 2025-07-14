@@ -42,9 +42,6 @@
     <constant id="max-overfill">7</constant>
     <constant id="respawn-timer">5s</constant>
 </if>
-<if variant="5v5-ac,7v7-ac">
-    <include id="arrow-cooldown"/>
-</if>
 <objective>Control the flag for ${score} seconds to win!</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -147,4 +144,7 @@
         <timeset>1000</timeset>
     </world>
 </unless>
+<if variant="5v5-ac,7v7-ac">
+    <include id="arrow-cooldown"/>
+</if>
 </map>

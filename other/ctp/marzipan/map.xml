@@ -28,9 +28,6 @@
     </if>
     <include id="conquest-comp"/>
 </unless>
-<if variant="ac,7v7-ac,5v5-ac">
-    <include id="arrow-cooldown"/>
-</if>
 <include id="5cp"/>
 <objective>Capture all five control points.</objective>
 <authors>
@@ -66,4 +63,7 @@
     <cuboid id="cp-team-2-last" min="110,11,-36" max="103,14,-29"/>
     <apply block="never" use="never"/>
 </regions>
+<if variant="ac,7v7-ac,5v5-ac">
+    <include id="arrow-cooldown"/>
+</if>
 </map>
