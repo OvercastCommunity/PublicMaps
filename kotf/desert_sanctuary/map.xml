@@ -1,17 +1,20 @@
 <map proto="1.5.0">
 <name>Desert Sanctuary</name>
-<version>1.6.6</version>
+<version>1.6.7</version>
 <variant id="5v5" world="5v5">5v5</variant>
 <variant id="7v7" world="7v7">7v7</variant>
+<variant id="5v5-ac" world="5v5">5v5 AC</variant>
+<variant id="7v7-ac" world="7v7">7v7 AC</variant>
 <variant id="halloween" world="halloween" override="true">Deserted Sanctuary</variant>
 <variant id="christmas" world="christmas" override="true">Christmas Sanctuary</variant>
-<unless variant="5v5,7v7">
+<constant id="damage-resistance">7.5s</constant>
+<unless variant="5v5,7v7,5v5-ac,7v7-ac">
     <include id="kotf"/>
     <constant id="mid-post-filter">always</constant>
     <constant id="team-size">20</constant>
     <constant id="max-overfill" delete="true"/>
 </unless>
-<if variant="5v5,7v7">
+<if variant="5v5,7v7,5v5-ac,7v7-ac">
     <include id="kotf-comp"/>
     <constant id="mid-post-filter">never</constant>
 </if>
@@ -29,17 +32,19 @@
     <constant id="team-2-name">Orange</constant>
     <constant id="flag-color">lime</constant>
 </if>
-<if variant="5v5">
+<if variant="5v5,5v5-ac">
     <constant id="team-size">5</constant>
     <constant id="max-overfill">5</constant>
     <constant id="respawn-timer">4s</constant>
 </if>
-<if variant="7v7">
+<if variant="7v7,7v7-ac">
     <constant id="team-size">7</constant>
     <constant id="max-overfill">7</constant>
     <constant id="respawn-timer">5s</constant>
 </if>
-<constant id="damage-resistance">7.5s</constant>
+<if variant="5v5-ac,7v7-ac">
+    <include id="arrow-cooldown"/>
+</if>
 <objective>Control the flag for ${score} seconds to win!</objective>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
@@ -71,10 +76,9 @@
         </if>
         <unless variant="5v5">
             <action>
-                <replace-item ignore-metadata="true">
+                <enchant-item ignore-metadata="true" enchantment="feather_falling" level="2">
                     <find material="iron boots"/>
-                    <replace unbreakable="true" enchantment="feather_falling:2" material="iron boots"/>
-                </replace-item>
+                </enchant-item>
             </action>
         </unless>
         <if variant="christmas">
