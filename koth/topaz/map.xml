@@ -1,19 +1,21 @@
 <map proto="1.5.0">
 <name>Topaz</name>
 <version>1.2.3</version>
+<variant id="ac">AC</variant>
 <variant id="5v5">5v5</variant>
+<variant id="5v5-ac">5v5 AC</variant>
 <constant id="damage-resistance">2s</constant>
-<if variant="5v5">
-    <constant id="team-size">5</constant>
-    <constant id="max-overfill">5</constant>
-    <constant id="respawn-timer">4s</constant>
-    <include id="conquest-comp"/>
-</if>
-<unless variant="5v5">
+<if variant="default,ac">
     <constant id="team-size">10</constant>
     <constant id="max-overfill" delete="true"/>
     <constant id="respawn-timer">3s</constant>
     <include id="conquest"/>
+</if>
+<unless variant="default,ac">
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
+    <constant id="respawn-timer">4s</constant>
+    <include id="conquest-comp"/>
 </unless>
 <objective>Reach 750 points before the opposing team!</objective>
 <authors>
@@ -56,4 +58,7 @@
 <score>
     <limit>750</limit>
 </score>
+<if variant="ac,5v5-ac">
+    <include id="arrow-cooldown"/>
+</if>
 </map>
