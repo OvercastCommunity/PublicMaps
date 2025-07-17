@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.06.09-2 -->
+<!-- Version 2025.07.17-1 -->
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
@@ -614,7 +614,7 @@
     <portal destination="team-one-spawn-point" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}" sound="false"/>
     <portal destination="team-two-spawn-point" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
     <!-- Void -->
-    <portal y="@-110" sound="false" region="void-level" observers="always"/>
+    <portal y="@-150" sound="false" region="void-level" observers="always"/>
 </portals>
 <score>
     <limit>${score-limit}</limit>
