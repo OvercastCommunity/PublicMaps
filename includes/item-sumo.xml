@@ -6,9 +6,11 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.05.26-1 -->
+<!-- Version 2025.07.18-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
+<variant id="scaffolding" min-server-version="1.21">Scaffolding</variant>
+<variant id="scaffolding-lifesteal" min-server-version="1.21">Scaffolding: Lifesteal</variant>
 <constants>
     <!-- Match -->
     <constant id="void-plane">-10</constant>
@@ -18,6 +20,17 @@
     <constant id="item-spawn-rate">29.75s</constant>
     <constant id="global-power-up-rate">19.75s</constant>
     <constant id="enable-helmets">1</constant>
+    <if max-server-version="1.20">
+        <constant id="game-block">wool</constant>
+    </if>
+    <if min-server-version="1.21">
+        <unless variant="scaffolding,scaffolding-lifesteal">
+            <constant id="game-block">wool</constant>
+        </unless>
+        <if variant="scaffolding,scaffolding-lifesteal">
+            <constant id="game-block">scaffolding</constant>
+        </if>
+    </if>
     <!-- Hill -->
     <constant id="hill-name">Center</constant>
     <constant id="hill-capture-time">20s</constant>
@@ -31,16 +44,16 @@
     <constant id="initial-lives">3</constant>
 </constants>
 <broadcasts>
-    <unless variant="lifesteal">
+    <unless variant="lifesteal,scaffolding-lifesteal">
         <alert after="1m6s" every="1m" filter="joined-for-20s">`3Get the most amount of `ckills`3, or `acapture the hill`3 at the center of the map to win!</alert>
         <alert after="1m7s" every="1m" filter="joined-for-20s">`3You get `fmore`3 points based on your `ckill streak`3!</alert>
     </unless>
-    <if variant="lifesteal">
+    <if variant="lifesteal,scaffolding-lifesteal">
         <alert after="6s" every="1m10s">`3Be the `flast`3 player standing, or `acapture the hill`3 at the center of the map to instantly win!</alert>
     </if>
 </broadcasts>
 <respawn delay="3s" auto="true"/>
-<if variant="lifesteal">
+<if variant="lifesteal,scaffolding-lifesteal">
     <phase>staging</phase>
     <include id="lifesteal"/>
     <constants>
@@ -57,7 +70,7 @@
     </blitz>
     <game>IS and Lifesteal</game>
 </if>
-<unless variant="lifesteal">
+<unless variant="lifesteal,scaffolding-lifesteal">
     <game>Item Sumo</game>
     <time>${time-limit}</time>
     <score/>
@@ -65,14 +78,14 @@
 <kits>
     <kit id="spawn-kit" reset-ender-pearls="true">
         <clear/>
-        <item slot="0" amount="64" team-color="true" material="wool"/>
+        <item slot="0" amount="64" team-color="true" material="${game-block}"/>
         <item slot="8" unbreakable="true" material="shears"/>
         <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <effect amplifier="255">resistance</effect>
     </kit>
     <kit id="wool-kit" force="true">
-        <item amount="32" team-color="true" material="wool"/> <!-- amount="oo" behaves weirdly with higher ping -->
+        <item amount="32" team-color="true" material="${game-block}"/> <!-- amount="oo" behaves weirdly with higher ping -->
     </kit>
     <give kit="wool-kit" filter="give-blocks"/>
     <!-- Global Power-Ups -->
@@ -80,11 +93,25 @@
         <item material="tnt"/>
     </kit>
     <kit id="pw-sb">
-        <item amount="5" material="snowball"/>
+        <!-- TODO: remove when snowballs work in modern versions -->
+        <if max-server-version="1.20">
+            <item amount="5" material="snowball"/>
+        </if>
+        <if min-server-version="1.21">
+            <item amount="3" material="wind charge"/>
+        </if>
     </kit>
     <kit id="pw-fb">
         <item material="fireball" projectile="fireball-projectile"/>
     </kit>
+    <!-- TODO: re-enable when snowballs work in modern versions
+    <if min-server-version="1.21">
+        <kit id="pw-wc">
+            <item amount="3" material="wind charge"/>
+        </kit>
+        <give kit="pw-wc" filter="all(base-pulse,next_global_powerup=3)"/>
+    </if>
+    -->
     <give kit="pw-tnt" filter="all(base-pulse,next_global_powerup=0)"/>
     <give kit="pw-sb" filter="all(base-pulse,next_global_powerup=1)"/>
     <give kit="pw-fb" filter="all(base-pulse,next_global_powerup=2)"/>
@@ -121,7 +148,7 @@
         <give kit="kill-streak-4-kit" filter="all(participating,helmets_enabled=1,kill_streak=4)"/>
         <give kit="kill-streak-5-kit" filter="all(participating,helmets_enabled=1,kill_streak=5..)"/>
     </unless>
-    <unless variant="lifesteal">
+    <unless variant="lifesteal,scaffolding-lifesteal">
         <kit id="obs-kit">
             <book show-other="false">
                 <title>`e`lHow to Play</title>
@@ -147,7 +174,7 @@
         </kit>
         <give kit="obs-kit" filter="any(observing,dead)"/>
     </unless>
-    <if variant="lifesteal">
+    <if variant="lifesteal,scaffolding-lifesteal">
         <kit id="obs-kit-ls">
             <book show-other="false">
                 <title>`e`lHow to Play</title>
@@ -208,11 +235,11 @@
         <participating/>
         <alive/>
         <not>
-            <carrying ignore-metadata="true" amount="[32,oo)"><item material="wool"/></carrying>
+            <carrying ignore-metadata="true" amount="[32,oo)"><item material="${game-block}"/></carrying>
         </not>
     </all>
     <any id="only-some">
-        <material>wool</material>
+        <material>${game-block}</material>
         <material>fire</material>
         <material>tnt</material>
     </any>
@@ -271,8 +298,9 @@
     <variable id="next_global_powerup" default="0" scope="match"/>
     <!--
     0: tnt
-    1: snowball
+    1: snowball/wind charge
     2: fireball
+    3: wind charge
     -->
     <variable id="op_item" default="0" scope="match"/>
     <variable id="times_emerald" default="0" scope="player"/>
@@ -299,7 +327,7 @@
     <apply enter="never" region="center-blocks"/>
 </regions>
 <actions>
-    <unless variant="lifesteal">
+    <unless variant="lifesteal,scaffolding-lifesteal">
         <trigger scope="player" filter="just-joined">
             <action>
                 <sound preset="alert"/>
@@ -357,6 +385,22 @@
             <set var="next_global_powerup" value="0"/>
         </action>
     </trigger>
+    <!-- TODO: re-enable when snowballs work in modern versions
+    <if max-server-version="1.20">
+        <trigger scope="match" filter="all(after-pulse,next_global_powerup=3)">
+            <action>
+                <set var="next_global_powerup" value="0"/>
+            </action>
+        </trigger>
+    </if>
+    <if min-server-version="1.21">
+        <trigger scope="match" filter="all(after-pulse,next_global_powerup=4)">
+            <action>
+                <set var="next_global_powerup" value="0"/>
+            </action>
+        </trigger>
+    </if>
+    -->
     <!-- Messages -->
     <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=0)">
         <action>
@@ -365,7 +409,13 @@
     </trigger>
     <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=1)">
         <action>
-            <message text=" `aAll living players have received a `fSnowball`a power-up!"/>
+            <!-- TODO: remove when snowballs work in modern versions -->
+            <if max-server-version="1.20">
+                <message text=" `aAll living players have received a `fSnowball`a power-up!"/>
+            </if>
+            <if min-server-version="1.21">
+                <message text=" `aAll living players have received a `fWind Charge`a power-up!"/>
+            </if>
         </action>
     </trigger>
     <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=2)">
@@ -373,6 +423,13 @@
             <message text=" `aAll living players have received a `fFireball`a power-up!"/>
         </action>
     </trigger>
+    <!-- TODO: re-enable when snowballs work in modern versions
+    <trigger scope="match" filter="all(power-up-pulse,next_global_powerup=3)">
+        <action>
+            <message text=" `aAll living players have received a `fWind Charge`a power-up!"/>
+        </action>
+    </trigger>
+    -->
     <trigger scope="match" filter="op-pulse">
         <action>
             <message text=" `e⚠ `6A special item has spawned at middle!"/>
@@ -412,7 +469,7 @@
             <material>air</material>
         </renew-filter>
         <replace-filter>
-            <material>wool</material>
+            <material>${game-block}</material>
         </replace-filter>
     </renewable>
 </renewables>
@@ -597,7 +654,7 @@
     <item>fishing rod</item>
 </itemkeep>
 <itemremove>
-    <item>wool</item>
+    <item>${game-block}</item>
     <item>leather helmet</item>
     <item>chainmail helmet</item>
     <item>iron helmet</item>
