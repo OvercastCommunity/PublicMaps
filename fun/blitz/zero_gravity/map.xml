@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Zero Gravity</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Knock all of your enemies into the void before time runs out.</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -16,6 +16,10 @@
    <team id="cyan" color="dark aqua" max="12">Cyan</team>
    <team id="lime" color="green" max="12">Lime</team>
 </teams>
+<constants>
+    <constant id="void-plane">10</constant>
+</constants>
+<include id="void-death"/>
 <kits>
     <kit id="effects" force="true">
         <effect>night vision</effect>
@@ -64,13 +68,6 @@
     <blockdamage>off</blockdamage>
     <yield>50</yield>
 </tnt>
-<portals>
-    <portal y="@-100">
-        <region>
-            <cuboid min="-oo,9,-oo" max="oo,10,oo"/>
-        </region>
-    </portal>
-</portals>
 <itemremove>
     <item>diamond boots</item>
     <item>leather helmet</item>
