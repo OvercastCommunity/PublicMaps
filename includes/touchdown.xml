@@ -1,8 +1,8 @@
 <map>
 <!-- Touchdown gamemode include file -->
-<!-- XML by zzuf and arcadeboss et al. (verify others?) -->
+<!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
 <!-- Includified by mameBT -->
-<!-- Version 2025.07.21-1 -->
+<!-- Version 2025.07.21-2 -->
 <include id="void-death"/>
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
@@ -40,7 +40,7 @@
     <constant id="flag-respawn">5s</constant>
     <constant id="flag-prerespawn">4.8s</constant>
     <constant id="gridiron-engine">false</constant>
-    <constant id="endzone-entry">false</constant>
+    <constant id="deny-endzone-entry">false</constant>
     <if constant="gridiron-engine" constant-value="true">
         <constant id="time-limit">10m</constant>
         <constant id="score-display" delete="true"/>
@@ -777,7 +777,7 @@
         <region id="playing-field"/>
     </negative>
     <apply block-break="never"/>
-    <if constant="endzone-entry" constant-value="false">
+    <if constant="deny-endzone-entry" constant-value="true">
         <apply enter="deny(team-one)" region="team-one-portal" message="You may not enter your own goal!"/>
         <apply enter="deny(team-two)" region="team-two-portal" message="You may not enter your own goal!"/>
         <apply enter="carrying-snowball" region="nets" message="You may not enter the goal without the Flag!"/>
