@@ -2,8 +2,7 @@
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
 <!-- Includified by mameBT -->
-<!-- Version 2025.07.21-2 -->
-<include id="void-death"/>
+<!-- Version 2025.07.21-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
@@ -48,6 +47,7 @@
         <constant id="score-limit">-1</constant>
     </if>
 </constants>
+<include id="void-death"/>
 <respawn auto="true" delay="${respawn-timer}"/>
 <gamerules>
     <naturalRegeneration>${natural-regeneration}</naturalRegeneration>
