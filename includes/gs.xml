@@ -1,7 +1,7 @@
 <map>
 <!-- Ghost Squadron gamemode include file -->
 <!-- Modified by zzuf - Original gs.xml file by the Overcast Network -->
-<!-- Version 2025.06.10-1 -->
+<!-- Version 2025.07.22-1 -->
 <game>Ghost Squadron</game>
 <constants fallback="true">
     <constant id="base-kit">default-base-kit</constant>
@@ -71,7 +71,7 @@
                 </can-destroy>
             </item>
             <effect ambient="true" duration="oo" amplifier="2">slow</effect>
-            <effect ambient="true" duration="oo" amplifier="-3">health boost</effect>
+            <max-health>8</max-health>
         </kit>
     </class>
     <class name="Alchemist" description="Throw various helpful/harmful potions!" longdescription="A variety of potions that include Poison, Instant Damage II, Instant Health II, and Revealing!" icon="potion">
@@ -165,7 +165,7 @@
         <kit parents="${base-kit}">
             <effect ambient="true" duration="oo" amplifier="2">jump</effect>
             <effect ambient="true" duration="oo" amplifier="1">speed</effect>
-            <effect ambient="true" duration="oo" amplifier="-1">health boost</effect>
+            <max-health>16</max-health>
             <item slot="0" enchantment="thorns:1" material="fishing rod" unbreakable="true"/>
         </kit>
     </class>
@@ -434,6 +434,9 @@
         <any>
             <spawn>spawner</spawn>
             <spawn>spawner egg</spawn>
+            <if min-server-version="1.21.8">
+                <spawn>natural</spawn> <!-- Wardens from Sculk Shriekers -->
+            </if>
         </any>
     </filter>
 </mobs>
