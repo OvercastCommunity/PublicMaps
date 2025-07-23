@@ -2,7 +2,7 @@
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
 <!-- Includified by mameBT -->
-<!-- Version 2025.07.22-2 -->
+<!-- Version 2025.07.22-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
@@ -33,7 +33,6 @@
     <constant id="natural-regeneration">true</constant>
     <constant id="pre-round-enabled">1</constant>
     <constant id="pre-round-time">5s</constant>
-    <constant id="max-health">20</constant>
     <constant id="show-tutorial">1</constant>
     <constant id="deny-block-interaction">true</constant>
     <!-- Mechanic tweaks -->
@@ -55,8 +54,8 @@
     <naturalRegeneration>${natural-regeneration}</naturalRegeneration>
 </gamerules>
 <spawns>
-    <spawn team="team-one" kit="map-kit" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn-point"/>
-    <spawn team="team-two" kit="map-kit" yaw="${team-two-yaw}" pitch="${team-two-pitch}" region="team-two-spawn-point"/>
+    <spawn team="team-one" kit="${main-kit}" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn-point"/>
+    <spawn team="team-two" kit="${main-kit}" yaw="${team-two-yaw}" pitch="${team-two-pitch}" region="team-two-spawn-point"/>
 </spawns>
 <teams>
     <team id="team-one" color="${team-one-color}" max="${team-size}">${team-one-name}</team>
@@ -104,6 +103,7 @@
         <effect duration="0.01s">night vision</effect>
         <effect duration="0.01s">slowness</effect>
         <max-health>20</max-health>
+        <health>20</health>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="flag-carrier" parents="initialize" force="true" potion-particles="true">
@@ -127,12 +127,6 @@
         <leggings unbreakable="true" locked="true" material="chainmail leggings"/>
         <boots unbreakable="true" locked="true" material="iron boots"/>
         <game-mode>adventure</game-mode>
-    </kit>
-    <kit id="map-kit">
-        <clear/>
-        <kit id="${main-kit}"/>
-        <max-health>${max-health}</max-health>
-        <health>${max-health}</health>
     </kit>
     <kit id="remove-effects-kit" force="true">
         <effect duration="0s">invisibility</effect>
@@ -200,7 +194,7 @@
         </book>
     </kit>
     <give kit="obs-kit" filter="all(observing,show_tutorial=1)"/>
-    <give kit="map-kit" filter="during-buytime"/>
+    <give kit="${main-kit}" filter="during-buytime"/>
     <give kit="gapple-reset-kit" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="${armor-kit}" filter="not-on-buytime-after"/>
