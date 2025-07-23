@@ -1,8 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
-<!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
-<!-- Includified by mameBT -->
-<!-- Version 2025.07.22-6 -->
+<!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
+<!-- Version 2025.07.22-7 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
@@ -37,6 +36,7 @@
     <constant id="deny-block-interaction">true</constant>
     <constant id="dynamic-instaheal">false</constant>
     <constant id="instaheal-required">8</constant>
+    <constant id="enable-night-vision">false</constant>
     <!-- Mechanic tweaks -->
     <constant id="flag-respawn">5s</constant>
     <constant id="flag-prerespawn">4.8s</constant>
@@ -105,7 +105,12 @@
         <clear/>
         <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
         <item slot="8" material="golden apple"/>
-        <effect duration="0.01s">night vision</effect>
+        <unless constant="enable-night-vision" constant-value="true">
+            <effect duration="0.01s">night vision</effect>
+        </unless>
+        <if constant="enable-night-vision" constant-value="true">
+            <effect>night vision</effect>
+        </if>
         <effect duration="0.01s">slowness</effect>
         <max-health>20</max-health>
         <game-mode>adventure</game-mode>
@@ -119,7 +124,9 @@
         <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
         <item slot="1" locked="true" consumable="use-snowball" name="`4`lFootball `f`oYou can also pass to your teammates" material="snowball"/>
         <item slot="8" material="golden apple"/>
-        <effect ambient="false">night vision</effect>
+        <unless constant="enable-night-vision" constant-value="true">
+            <effect ambient="false">night vision</effect>
+        </unless>
         <effect ambient="false">slowness</effect>
         <effect duration="3s">fire resistance</effect>
         <max-health>14</max-health>
@@ -141,6 +148,9 @@
         <effect amplifier="255">slow_digging</effect>
     </kit>
     <kit id="obs-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="tutorial-kit">
         <book show-other="false">
             <title>`e`lHow to Play</title>
             <author>MewTwoKing</author>
@@ -192,13 +202,16 @@
             </pages>
         </book>
     </kit>
-    <give kit="obs-kit" filter="all(observing,show_tutorial=1)"/>
+    <if constant="enable-night-vision" constant-value="true">
+        <give kit="obs-kit" filter="observing"/>
+    </if>
+    <give kit="tutorial-kit" filter="all(observing,show_tutorial=1)"/>
     <give kit="${main-kit}" filter="during-buytime"/>
     <give kit="heal-gapple" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="${armor-kit}" filter="not-on-buytime-after"/>
     <give kit="remove-effects-kit" filter="not-on-buytime"/>
-    <give kit="flag-carrier" filter="all(flag-post,game_state=${initial})"/>
+    <give kit="${flag-carrier-kit}" filter="all(flag-post,game_state=${initial},alive)"/>
 </kits>
 <filters>
     <entity id="snowball-entity">snowball</entity>
