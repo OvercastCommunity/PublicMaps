@@ -2,7 +2,7 @@
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
 <!-- Includified by mameBT -->
-<!-- Version 2025.07.22-3 -->
+<!-- Version 2025.07.22-4 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
@@ -35,6 +35,8 @@
     <constant id="pre-round-time">5s</constant>
     <constant id="show-tutorial">1</constant>
     <constant id="deny-block-interaction">true</constant>
+    <constant id="dynamic-instaheal">false</constant>
+    <constant id="instaheal-required">8</constant>
     <!-- Mechanic tweaks -->
     <constant id="flag-respawn">5s</constant>
     <constant id="flag-prerespawn">4.8s</constant>
@@ -88,15 +90,17 @@
     <variable id="current_team" scope="player" default="0"/>
     <variable id="goal_scorer" scope="player" exclusive="1"/>
     <variable id="flag_carrier" scope="player" exclusive="1"/>
+    <variable id="instaheal" scope="match" default="0"/>
 </variables>
 <kits>
-    <kit id="initialize">
-        <clear/>
-        <!-- Is it coincidence that these are the same as flag respawn? No idea. -->
-        <effect duration="${flag-respawn}">absorption</effect>
-        <effect duration="${flag-respawn}" amplifier="2">regeneration</effect>
+    <kit id="heal-instant">
+        <effect duration="0.2s">instant health</effect>
     </kit>
-    <kit id="main-kit" parents="initialize" force="true">
+    <kit id="heal-gapple" force="true">
+        <effect duration="5s">absorption</effect>
+        <effect duration="5s" amplifier="2">regeneration</effect>
+    </kit>
+    <kit id="main-kit" force="true">
         <clear/>
         <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
         <item slot="8" material="golden apple"/>
@@ -106,7 +110,7 @@
         <health>20</health>
         <game-mode>adventure</game-mode>
     </kit>
-    <kit id="flag-carrier" parents="initialize" force="true" potion-particles="true">
+    <kit id="flag-carrier" force="true" potion-particles="true">
         <clear/>
         <helmet unbreakable="true" team-color="true" locked="true" material="banner"/>
         <chestplate unbreakable="true" color="FFFFFF" locked="true" material="leather chestplate"/>
@@ -363,10 +367,14 @@
         <observing/>
         <match-running/>
     </all>
+    <players id="instaheal-min" min="${instaheal-required}">
+        <always/>
+    </players>
 </filters>
 <actions>
     <action id="give-main-kit" scope="player">
         <kit id="${main-kit}"/>
+        <action id="apply-heal"/>
     </action>
     <action id="snowball-thrown" scope="player">
         <set var="player_state" value="${throw}"/>
@@ -416,6 +424,7 @@
         <set var="flag_carrier" value="1"/>
         <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
         <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.2" stay="0.5" fade-out="0.2"/>
+        <action id="apply-heal"/>
         <switch-scope inner="match" outer="player">
             <message text="`e⚠ {player} `6picked up the `c`lFlag`6!`r" actionbar="`l{player} `6picked up!">
                 <replacements>
@@ -460,6 +469,7 @@
         <set var="game_state" value="${carry}"/>
         <set var="flag_carrier" value="1"/>
         <kit id="flag-carrier"/>
+        <action id="apply-heal"/>
         <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="0.7" fade-out="0.5"/>
         <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
         <switch-scope inner="match" outer="player">
@@ -485,6 +495,7 @@
         <set var="game_state" value="${carry}"/>
         <set var="flag_carrier" value="1"/>
         <kit id="flag-carrier"/>
+        <action id="apply-heal"/>
         <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="1" fade-out="0.5"/>
         <switch-scope inner="match" outer="player">
             <message text="`e⚠ {player} `6stripped the `c`lFlag`6!`r" actionbar="`l{player} `6stripped!">
@@ -504,10 +515,19 @@
     <action id="flag-entity-pickup-event" scope="player">
         <set var="game_state" value="${initial}"/>
         <kit id="flag-carrier"/>
+        <action id="apply-heal"/>
         <action id="flag-pickup-event"/>
     </action>
     <action id="set-main-kit" scope="player">
         <action id="give-main-kit"/>
+    </action>
+    <action id="apply-heal" scope="player">
+        <action filter="instaheal=0">
+            <kit id="heal-gapple"/>
+        </action>
+        <action filter="instaheal=1">
+            <kit id="heal-instant"/>
+        </action>
     </action>
     <trigger action="reset-player-state" filter="player_state=${catch}" scope="player"/>
     <trigger action="reset-player-state" filter="player_state=${died}" scope="player"/>
@@ -723,6 +743,20 @@
         <action id="tiebreaker-win" scope="player" filter="all(overtime=2,in-overtime)">
             <set var="time_limit" value="0"/>
         </action>
+    </if>
+    <if constant="dynamic-instaheal" constant-value="true">
+        <trigger filter="not(instaheal-min)" scope="match">
+            <action>
+                <message text=" `e⚠ `fDue to a lack of players, `6❤ `e`lGAPPLE`f healing will be used."/>
+                <set var="instaheal" value="0"/>
+            </action>
+        </trigger>
+        <trigger filter="instaheal-min" scope="match">
+            <action>
+                <message text=" `e⚠ `d❤ `c`lI`6`lN`e`lS`a`lT`b`lA`d`lH`c`lE`6`lA`e`lL`f is now active!"/>
+                <set var="instaheal" value="1"/>
+            </action>
+        </trigger>
     </if>
 </actions>
 <regions>
