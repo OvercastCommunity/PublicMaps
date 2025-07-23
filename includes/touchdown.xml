@@ -2,7 +2,7 @@
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
 <!-- Includified by mameBT -->
-<!-- Version 2025.07.22-1 -->
+<!-- Version 2025.07.22-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
@@ -35,7 +35,7 @@
     <constant id="pre-round-time">5s</constant>
     <constant id="max-health">20</constant>
     <constant id="show-tutorial">1</constant>
-    <constant id="default-block-break">never</constant>
+    <constant id="deny-block-interaction">true</constant>
     <!-- Mechanic tweaks -->
     <constant id="flag-respawn">5s</constant>
     <constant id="flag-prerespawn">4.8s</constant>
@@ -49,6 +49,7 @@
     </if>
 </constants>
 <include id="void-death"/>
+<include id="gapple-kill-reward"/>
 <respawn auto="true" delay="${respawn-timer}"/>
 <gamerules>
     <naturalRegeneration>${natural-regeneration}</naturalRegeneration>
@@ -63,7 +64,6 @@
 </teams>
 <consumables>
     <consumable id="use-snowball" on="right click" override="false" action="snowball-thrown" consume="false"/>
-    <consumable id="bridge-apple" on="eat" override="true" action="bridge-apple-kit"/>
 </consumables>
 <broadcasts>
     <tip after="10s" every="70s">`6Pass`r to your teammates by throwing the Football!</tip>
@@ -94,19 +94,15 @@
     <kit id="initialize">
         <clear/>
         <!-- Is it coincidence that these are the same as flag respawn? No idea. -->
-        <effect duration="${flag-respawn}" amplifier="1">absorption</effect>
+        <effect duration="${flag-respawn}">absorption</effect>
         <effect duration="${flag-respawn}" amplifier="2">regeneration</effect>
     </kit>
     <kit id="main-kit" parents="initialize" force="true">
         <clear/>
         <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
-        <item slot="8" locked="true" material="golden apple"/>
-        <helmet unbreakable="true" team-color="true" locked="true" material="leather helmet"/>
-        <chestplate unbreakable="true" team-color="true" locked="true" material="leather chestplate"/>
-        <leggings unbreakable="true" locked="true" material="chainmail leggings"/>
-        <boots unbreakable="true" locked="true" material="iron boots"/>
-        <effect duration="0.01s" amplifier="1">night vision</effect>
-        <effect duration="0.01s" amplifier="1">slowness</effect>
+        <item slot="8" material="golden apple"/>
+        <effect duration="0.01s">night vision</effect>
+        <effect duration="0.01s">slowness</effect>
         <max-health>20</max-health>
         <game-mode>adventure</game-mode>
     </kit>
@@ -117,11 +113,11 @@
         <leggings unbreakable="true" team-color="true" locked="true" material="leather leggings"/>
         <boots unbreakable="true" locked="true" team-color="true" material="leather boots"/>
         <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
-        <item slot="1" amount="1" locked="true" consumable="use-snowball" name="`4`lFootball `f`oYou can also pass to your teammates"  material="snowball"/>
-        <item slot="8" amount="1" locked="true" material="golden apple"/>
+        <item slot="1" locked="true" consumable="use-snowball" name="`4`lFootball `f`oYou can also pass to your teammates" material="snowball"/>
+        <item slot="8" material="golden apple"/>
         <effect ambient="false">night vision</effect>
         <effect ambient="false">slowness</effect>
-        <effect duration="3s" amplifier="1">fire resistance</effect>
+        <effect duration="3s">fire resistance</effect>
         <max-health>14</max-health>
         <game-mode>adventure</game-mode>
     </kit>
@@ -133,42 +129,23 @@
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="map-kit">
-        <action id="clear-${main-kit}"/>
-        <action>
-            <kit id="${main-kit}"/>
-            <kit id="heal-kit"/>
-        </action>
-        <action id="remove-extra-armor"/>
-    </kit>
-    <kit id="heal-kit" force="true">
+        <clear/>
+        <kit id="${main-kit}"/>
         <max-health>${max-health}</max-health>
         <health>${max-health}</health>
     </kit>
-    <kit id="default-armor-kit">
-        <chestplate material="leather chestplate" team-color="true" unbreakable="true" locked="true"/>
-        <leggings material="leather leggings" team-color="true" unbreakable="true" locked="true"/>
-        <boots material="leather boots" team-color="true" unbreakable="true" locked="true"/>
-    </kit>
     <kit id="remove-effects-kit" force="true">
-        <effect duration="0">invisibility</effect>
-        <effect duration="0">slow_digging</effect>
+        <effect duration="0s">invisibility</effect>
+        <effect duration="0s">slow_digging</effect>
     </kit>
     <kit id="pre-round-kit" force="true">
-        <effect duration="oo">invisibility</effect>
-        <effect duration="oo" amplifier="255">slow_digging</effect>
+        <effect>invisibility</effect>
+        <effect amplifier="255">slow_digging</effect>
     </kit>
-    <kit id="absorption-kit" force="true">
-        <effect duration="1m">absorption</effect>
-    </kit>
-    <kit id="absorption-reset-kit" force="true">
-        <effect duration="0" amplifier="1">absorption</effect>
+    <kit id="gapple-reset-kit" force="true">
+        <effect duration="0s" amplifier="2">regeneration</effect>
+        <effect duration="0s">absorption</effect>
         <game-mode>adventure</game-mode>
-    </kit>
-    <kit id="bridge-apple-kit" force="true">
-        <health>${max-health}</health>
-        <action scope="player" filter="no-absorption">
-            <kit id="absorption-kit"/>
-        </action>
     </kit>
     <kit id="obs-kit">
         <book show-other="false">
@@ -224,10 +201,11 @@
     </kit>
     <give kit="obs-kit" filter="all(observing,show_tutorial=1)"/>
     <give kit="map-kit" filter="during-buytime"/>
-    <give kit="absorption-reset-kit" filter="on-buytime"/>
+    <give kit="gapple-reset-kit" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="${armor-kit}" filter="not-on-buytime-after"/>
     <give kit="remove-effects-kit" filter="not-on-buytime"/>
+    <give kit="flag-carrier" filter="all(flag-post,game_state=${initial})"/>
 </kits>
 <filters>
     <entity id="snowball-entity">snowball</entity>
@@ -255,7 +233,7 @@
     <after id="flag-fire-go" filter="do_fire=1" duration="0.51s"/>
     <!-- These two delays allow players to hear the sounds, otherwise gets cut-off when TP'd -->
     <after id="match-start-delay" filter="match-started" duration="0.1s"/>
-    <after id="pre-round-reset" filter="all(can_score=0,not(ended),pre_round=1)" duration="0.1s"/>
+    <after id="pre-round-reset" filter="all(can_score=0,not(match-finished),pre_round=1)" duration="0.1s"/>
     <after id="flag-reset-after-throw" duration="${flag-respawn}" filter="game_state=${throw}" message="`b» `fFlag will respawn in {0} `b«"/>
     <after id="just-before-reset" duration="${flag-prerespawn}" filter="game_state=${throw}"/>
     <all id="valid-receive">
@@ -314,10 +292,10 @@
     </all>
     <variable id="cant-score" var="can_score">0</variable>
     <variable id="can-score" var="can_score">1</variable>
-    <after id="after-round-1" duration="0.05" filter="round-1"/>
-    <after id="after-round-0" duration="0.05" filter="round-0"/>
+    <after id="after-round-1" duration="0.05s" filter="round-1"/>
+    <after id="after-round-0" duration="0.05s" filter="round-0"/>
     <all id="during-buytime">
-        <after duration="0.05" filter="on-buytime"/>
+        <after duration="0.05s" filter="on-buytime"/>
         <not>
             <below y="${void-plane}"/>
         </not>
@@ -330,7 +308,7 @@
         <variable var="buytime">1</variable>
         <alive/>
     </all>
-    <after id="not-on-buytime-after" duration="0.05">
+    <after id="not-on-buytime-after" duration="0.05s">
         <all id="not-on-buytime">
             <variable var="buytime">0</variable>
             <alive/>
@@ -391,14 +369,8 @@
         <observing/>
         <match-running/>
     </all>
-    <match-finished id="ended"/>
 </filters>
 <actions>
-    <action id="clear-main-kit" scope="player">
-        <kit>
-            <clear/>
-        </kit>
-    </action>
     <action id="give-main-kit" scope="player">
         <kit id="${main-kit}"/>
     </action>
@@ -553,7 +525,7 @@
     <trigger action="reset-flag-with-messages" filter="flag-reset-after-throw" scope="match"/>
     <trigger action="reset-flag-with-messages" filter="pre-round-reset" scope="match"/>
     <trigger action="carrier-died-event" filter="died-carrying" scope="player"/>
-    <trigger action="touchdown-sound" filter="all(can_score=0,not(ended),pre_round=1)" scope="match"/>
+    <trigger action="touchdown-sound" filter="all(can_score=0,not(match-finished),pre_round=1)" scope="match"/>
     <trigger action="reset-flag" filter="match-started" scope="match"/>
     <trigger action="go-sounds" filter="match-start-delay" scope="match"/>
     <trigger action="give-main-kit" filter="player_state=${throw}" scope="player"/>
@@ -591,25 +563,11 @@
     <action id="reset-counter" scope="match">
         <set var="round_status" value="0"/>
     </action>
-    <action id="remove-extra-armor" scope="player">
-        <replace-item ignore-metadata="true">
-            <find material="leather chestplate"/>
-            <replace material="air"/>
-        </replace-item>
-        <replace-item ignore-metadata="true">
-            <find material="leather leggings"/>
-            <replace material="air"/>
-        </replace-item>
-        <replace-item ignore-metadata="true">
-            <find material="leather boots"/>
-            <replace material="air"/>
-        </replace-item>
-    </action>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
-    <trigger filter="all(can_score=0,not(ended),pre_round=1)" action="create-cages" scope="match"/>
+    <trigger filter="all(can_score=0,not(match-finished),pre_round=1)" action="create-cages" scope="match"/>
     <trigger filter="all(cage-time,pre_round=1)" action="remove-cages" scope="match"/>
-    <trigger filter="all(after-round-1,pre_round=0,not(ended))" action="remove-cages" scope="match"/>
+    <trigger filter="all(after-round-1,pre_round=0,not(match-finished))" action="remove-cages" scope="match"/>
     <trigger filter="after-round-1" action="reset-counter" scope="match"/>
     <action id="remove-timelimit" scope="match" expose="true">
         <set var="overtime" value="1"/>
@@ -774,28 +732,22 @@
     </if>
 </actions>
 <regions>
-    <negative id="not-buildable">
-        <region id="playing-field"/>
-    </negative>
-    <apply block-break="${default-block-break}"/>
-    <if constant="deny-endzone-entry" constant-value="true">
-        <apply enter="deny(team-one)" region="team-one-portal" message="You may not enter your own goal!"/>
-        <apply enter="deny(team-two)" region="team-two-portal" message="You may not enter your own goal!"/>
-        <apply enter="carrying-snowball" region="nets" message="You may not enter the goal without the Flag!"/>
-    </if>
-    <apply filter="game_state=${initial}" region="flag-post" kit="flag-carrier"/>
     <point id="team-one-spawn-point">${team-one-spawn}</point>
     <point id="team-two-spawn-point">${team-two-spawn}</point>
-    <apply block-place="deny(participating)" region="not-buildable">
-        <message>{"translate":"map.protectPortal"}</message>
-    </apply>
-    <apply block-break="deny(participating)" region="not-buildable" message="You may not break that block!"/>
     <negative id="not-cages">
         <union id="cages">
             <cylinder id="team-one-spawn-cage" base="${team-one-spawn}" height="3" radius="3"/>
             <cylinder id="team-two-spawn-cage" base="${team-two-spawn}" height="3" radius="3"/>
         </union>
     </negative>
+    <if constant="deny-endzone-entry" constant-value="true">
+        <apply enter="deny(team-one)" region="team-one-portal" message="You may not enter your own goal!"/>
+        <apply enter="deny(team-two)" region="team-two-portal" message="You may not enter your own goal!"/>
+        <apply enter="carrying-snowball" region="nets" message="You may not enter the goal without the Flag!"/>
+    </if>
+    <if constant="deny-block-interaction" constant-value="true">
+        <apply block="never"/>
+    </if>
 </regions>
 <portals sound="false" observers="never">
     <!-- Scoring -->
@@ -810,11 +762,6 @@
     <mercy>${mercy-limit}</mercy>
 </score>
 <kill-rewards>
-    <kill-reward>
-        <kit deduct-items="false">
-            <item material="golden apple" locked="true" slot="8"/>
-        </kit>
-    </kill-reward>
     <kill-reward filter="any(victim-has-flag,victim-died-with-flag)" action="flag-steal-event" victim-action="death-player-state"/>
 </kill-rewards>
 <itemkeep>
@@ -834,7 +781,6 @@
     <item>iron boots</item>
     <item>${melee-weapon}</item>
     <item>banner</item>
-    <item>golden apple</item>
 </itemremove>
 <toolrepair>
     <tool>${melee-weapon}</tool>
