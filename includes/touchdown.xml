@@ -2,7 +2,7 @@
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
 <!-- Includified by mameBT -->
-<!-- Version 2025.07.21-3 -->
+<!-- Version 2025.07.22-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
