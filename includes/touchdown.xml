@@ -2,7 +2,7 @@
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
 <!-- Includified by mameBT -->
-<!-- Version 2025.07.22-4 -->
+<!-- Version 2025.07.22-5 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
@@ -42,6 +42,7 @@
     <constant id="flag-prerespawn">4.8s</constant>
     <constant id="gridiron-engine">false</constant>
     <constant id="deny-endzone-entry">false</constant>
+    <constant id="fire-material">fire</constant>
     <if constant="gridiron-engine" constant-value="true">
         <constant id="time-limit">10m</constant>
         <constant id="score-display" delete="true"/>
@@ -413,7 +414,7 @@
         <sound key="${block.portal.travel}" volume="0.1" pitch="1.5"/>
     </action>
     <action id="flag-fire" scope="match">
-        <fill region="flag-post" material="fire"/>
+        <fill region="flag-post" material="${fire-material}"/>
         <set var="do_fire" value="0"/>
     </action>
     <action id="reset-fire" scope="match">
