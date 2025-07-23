@@ -35,6 +35,7 @@
     <constant id="pre-round-time">5s</constant>
     <constant id="max-health">20</constant>
     <constant id="show-tutorial">1</constant>
+    <constant id="default-block-break">never</constant>
     <!-- Mechanic tweaks -->
     <constant id="flag-respawn">5s</constant>
     <constant id="flag-prerespawn">4.8s</constant>
@@ -776,7 +777,7 @@
     <negative id="not-buildable">
         <region id="playing-field"/>
     </negative>
-    <apply block-break="never"/>
+    <apply block-break="${default-block-break}"/>
     <if constant="deny-endzone-entry" constant-value="true">
         <apply enter="deny(team-one)" region="team-one-portal" message="You may not enter your own goal!"/>
         <apply enter="deny(team-two)" region="team-two-portal" message="You may not enter your own goal!"/>
