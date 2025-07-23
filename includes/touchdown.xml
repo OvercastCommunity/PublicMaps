@@ -2,7 +2,7 @@
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, & honeyfuggle -->
 <!-- Includified by mameBT -->
-<!-- Version 2025.07.22-5 -->
+<!-- Version 2025.07.22-6 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
@@ -108,7 +108,6 @@
         <effect duration="0.01s">night vision</effect>
         <effect duration="0.01s">slowness</effect>
         <max-health>20</max-health>
-        <health>20</health>
         <game-mode>adventure</game-mode>
     </kit>
     <kit id="flag-carrier" force="true" potion-particles="true">
@@ -140,11 +139,6 @@
     <kit id="pre-round-kit" force="true">
         <effect>invisibility</effect>
         <effect amplifier="255">slow_digging</effect>
-    </kit>
-    <kit id="gapple-reset-kit" force="true">
-        <effect duration="0s" amplifier="2">regeneration</effect>
-        <effect duration="0s">absorption</effect>
-        <game-mode>adventure</game-mode>
     </kit>
     <kit id="obs-kit">
         <book show-other="false">
@@ -200,7 +194,7 @@
     </kit>
     <give kit="obs-kit" filter="all(observing,show_tutorial=1)"/>
     <give kit="${main-kit}" filter="during-buytime"/>
-    <give kit="gapple-reset-kit" filter="on-buytime"/>
+    <give kit="heal-gapple" filter="on-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="${armor-kit}" filter="not-on-buytime-after"/>
     <give kit="remove-effects-kit" filter="not-on-buytime"/>
