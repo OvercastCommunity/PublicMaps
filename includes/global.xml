@@ -12,7 +12,7 @@
 <if min-server-version="1.21.8">
     <spawns> <!-- Using the locatorBar gamerule also hides entities in maps -->
         <player-kit>
-            <attribute operation="base" amount="0">waypoint_transmit_range</attribute>
+            <attribute operation="multiply" amount="-1">waypoint_transmit_range</attribute>
         </player-kit>
     </spawns>
 </if>
