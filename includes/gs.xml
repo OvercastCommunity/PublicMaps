@@ -1,7 +1,7 @@
 <map>
 <!-- Ghost Squadron gamemode include file -->
 <!-- Modified by zzuf - Original gs.xml file by the Overcast Network -->
-<!-- Version 2025.07.22-1 -->
+<!-- Version 2025.07.24-1 -->
 <game>Ghost Squadron</game>
 <constants fallback="true">
     <constant id="base-kit">default-base-kit</constant>
@@ -40,7 +40,7 @@
         <kit id="default-glowing-kit" potion-particles="false">
             <effect duration="oo">glowing</effect>
         </kit>
-        <give kit="default-glowing-kit" filter="all(after-invis,map_mode=0)"/>
+        <give kit="default-glowing-kit" filter="all(after-invis,map_mode=0,alive)"/>
     </if>
 </kits>
 <classes family="ghost" sticky="false">
