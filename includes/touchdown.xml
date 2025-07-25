@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.07.24-1 -->
+<!-- Version 2025.07.24-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
@@ -35,6 +35,7 @@
     <constant id="show-tutorial">1</constant>
     <constant id="deny-block-interaction">true</constant>
     <constant id="dynamic-instaheal">false</constant>
+    <constant id="enable-instaheal">true</constant> <!-- requires dynamic to be false -->
     <constant id="instaheal-required">8</constant>
     <constant id="enable-night-vision">false</constant>
     <!-- Mechanic tweaks -->
@@ -49,6 +50,8 @@
         <constant id="score-points">7</constant>
         <constant id="score-limit">-1</constant>
     </if>
+    <constant id="gapple-slot">8</constant>
+    <constant id="gapple-locked">true</constant>
 </constants>
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
@@ -104,7 +107,7 @@
     <kit id="main-kit" force="true">
         <clear/>
         <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
-        <item slot="8" material="golden apple"/>
+        <item slot="8" locked="true" material="golden apple"/>
         <unless constant="enable-night-vision" constant-value="true">
             <effect duration="0.01s">night vision</effect>
         </unless>
@@ -123,7 +126,7 @@
         <boots unbreakable="true" locked="true" team-color="true" material="leather boots"/>
         <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
         <item slot="1" locked="true" consumable="use-snowball" name="`4`lFootball `f`oYou can also pass to your teammates" material="snowball"/>
-        <item slot="8" material="golden apple"/>
+        <item slot="8" locked="true" material="golden apple"/>
         <unless constant="enable-night-vision" constant-value="true">
             <effect ambient="false">night vision</effect>
         </unless>
@@ -237,7 +240,7 @@
         <variable var="player_state">${carry}</variable>
         <dead/>
     </all>
-    <after id="flag-fire-go" filter="do_fire=1" duration="0.51s"/>
+    <after id="flag-fire-go" filter="do_fire=1" duration="1.02s"/> <!-- this used to be 0.51s-->
     <!-- These two delays allow players to hear the sounds, otherwise gets cut-off when TP'd -->
     <after id="match-start-delay" filter="match-started" duration="0.1s"/>
     <after id="pre-round-reset" filter="all(can_score=0,not(match-finished),pre_round=1)" duration="0.1s"/>
@@ -712,12 +715,6 @@
     </action>
     <trigger filter="team-one-scored" action="set-team-one" scope="player"/>
     <trigger filter="team-two-scored" action="set-team-two" scope="player"/>
-    <action id="clear-spawn-kit" scope="player">
-        <replace-item ignore-metadata="true">
-            <find material="golden apple"/>
-            <replace material="air"/>
-        </replace-item>
-    </action>
     <!-- Match end -->
     <trigger scope="match">
         <filter>
@@ -764,6 +761,15 @@
                 <set var="instaheal" value="1"/>
             </action>
         </trigger>
+    </if>
+    <if constant="dynamic-instaheal" constant-value="false">
+        <if constant="enable-instaheal" constant-value="true">
+            <trigger filter="always" scope="match">
+                <action>
+                    <set var="instaheal" value="1"/>
+                </action>
+            </trigger>
+        </if>
     </if>
 </actions>
 <regions>
