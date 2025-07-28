@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Discount Fortress</name>
-<version>1.2.12</version>
+<version>1.2.13</version>
 <variant id="7v7">7v7</variant>
 <constant id="override-itemkeep">true</constant>
 <constant id="damage-resistance">5s</constant>
@@ -53,19 +53,9 @@
         </action>
         <game-mode>survival</game-mode>
     </kit>
-    <unless variant="7v7">
-        <lend>
-            <kit>
-                <effect>slowness</effect>
-            </kit>
-            <filter>
-                <any>
-                    <carrying-flag>blue-flag</carrying-flag>
-                    <carrying-flag>red-flag</carrying-flag>
-                </any>
-            </filter>
-        </lend>
-    </unless>
+    <kit id="flag-kit">
+        <effect>slowness</effect>
+    </kit>
 </kits>
 <spawns>
     <default>
@@ -115,23 +105,31 @@
     <apply block="never" region="void-region" message="You may not build in the void!"/>
     <apply block-physics="deny-cacti"/>
 </regions>
-<flags flag-proximity-metric="none" net-proximity-metric="none">
+<flags flag-proximity-metric="none" net-proximity-metric="none" points="1">
     <flag id="blue-flag"
           name="Blue Flag"
           owner="blue-team"
           color="blue">
         <post pickup-filter="red-team" recover-time="20s" respawn-time="15s">-15.5,10,-311.5</post>
+        <net region="red-net"/>
+        <unless variant="7v7">
+            <carry-kit>
+                <kit id="flag-kit"/>
+            </carry-kit>
+        </unless>
     </flag>
     <flag id="red-flag"
           name="Red Flag"
           owner="red-team"
           color="red">
         <post pickup-filter="blue-team" recover-time="20s" respawn-time="15s">14.5,10,-429.5</post>
+        <net region="blue-net"/>
+        <unless variant="7v7">
+            <carry-kit>
+                <kit id="flag-kit"/>
+            </carry-kit>
+        </unless>
     </flag>
-    <flags points="1">
-        <net region="blue-net" flag="red-flag"/>
-        <net region="red-net" flag="blue-flag"/>
-    </flags>
 </flags>
 <score>
     <unless variant="7v7">
