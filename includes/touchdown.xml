@@ -211,7 +211,6 @@
     <give kit="${main-kit}" filter="during-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="${armor-kit}" filter="not-on-buytime-after"/>
-    <give kit="remove-effects-kit" filter="not-on-buytime"/>
     <give kit="${flag-carrier-kit}" filter="all(flag-post,game_state=${initial},alive)"/>
 </kits>
 <filters>
