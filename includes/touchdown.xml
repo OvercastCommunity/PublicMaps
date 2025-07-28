@@ -108,7 +108,7 @@
     </kit>
     <kit id="main-kit">
         <clear items="true" armor="true" effects="false"/>
-        <item slot="0" locked="true" unbreakable="true" material="${melee-weapon}"/>
+        <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
         <item slot="8" locked="true" material="golden apple"/>
         <if constant="enable-night-vision" constant-value="true">
             <effect>night vision</effect>
