@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.07.27-1 -->
+<!-- Version 2025.07.27-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -25,13 +25,13 @@
     <constant id="mercy-limit">-1</constant>
     <constant id="void-plane">-64</constant>
     <constant id="main-kit">main-kit</constant>
-    <constant id="flag-carrier-kit">flag-carrier</constant>
-    <constant id="armor-kit">spawn-armor-kit</constant>
+    <constant id="armor-kit">armor-kit</constant>
+    <constant id="flag-carrier-kit">flag-carrier-kit</constant>
+    <constant id="flag-carrier-effects">flag-carrier-effects</constant>
     <constant id="goal-scorer">1</constant>
     <constant id="natural-regeneration">true</constant>
     <constant id="pre-round-enabled">1</constant>
     <constant id="pre-round-time">5s</constant>
-    <constant id="show-tutorial">1</constant>
     <constant id="deny-block-interaction">true</constant>
     <constant id="dynamic-instaheal">false</constant>
     <constant id="enable-instaheal">true</constant> <!-- requires dynamic to be false -->
@@ -89,7 +89,6 @@
     <variable id="scoring_team" scope="match" default="0"/>
     <variable id="pre_round" scope="match" default="${pre-round-enabled}"/>
     <variable id="goal_scorer_enabled" scope="match" default="${goal-scorer}"/>
-    <variable id="show_tutorial" scope="match" default="${show-tutorial}"/>
     <variable id="player_state" scope="player" default="${initial}" exclusive="1"/>
     <variable id="player_score" scope="player" default="0"/>
     <variable id="current_team" scope="player" default="0"/>
@@ -98,50 +97,48 @@
     <variable id="instaheal" scope="match" default="0"/>
 </variables>
 <kits>
-    <kit id="heal-instant">
+    <kit id="heal-instant" force="true">
         <effect duration="0.2s">instant health</effect>
+        <effect duration="0s">absorption</effect>
+        <effect duration="0s" amplifier="2">regeneration</effect>
     </kit>
     <kit id="heal-gapple" force="true">
         <effect duration="5s">absorption</effect>
         <effect duration="5s" amplifier="2">regeneration</effect>
     </kit>
-    <kit id="main-kit" force="true">
-        <clear/>
-        <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
+    <kit id="main-kit">
+        <clear items="true" armor="true" effects="false"/>
+        <item slot="0" locked="true" unbreakable="true" material="${melee-weapon}"/>
         <item slot="8" locked="true" material="golden apple"/>
-        <unless constant="enable-night-vision" constant-value="true">
-            <effect duration="0.01s">night vision</effect>
-        </unless>
         <if constant="enable-night-vision" constant-value="true">
             <effect>night vision</effect>
         </if>
-        <effect duration="0.01s">slowness</effect>
-        <max-health>20</max-health>
         <game-mode>adventure</game-mode>
     </kit>
-    <kit id="flag-carrier" force="true" potion-particles="true">
-        <clear/>
-        <helmet unbreakable="true" team-color="true" locked="true" material="banner"/>
-        <chestplate unbreakable="true" color="FFFFFF" locked="true" material="leather chestplate"/>
-        <leggings unbreakable="true" team-color="true" locked="true" material="leather leggings"/>
-        <boots unbreakable="true" locked="true" team-color="true" material="leather boots"/>
-        <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
-        <item slot="1" locked="true" consumable="use-snowball" name="`4`lFootball `f`oYou can also pass to your teammates" material="snowball"/>
-        <item slot="8" locked="true" material="golden apple"/>
-        <unless constant="enable-night-vision" constant-value="true">
-            <effect ambient="false">night vision</effect>
-        </unless>
-        <effect ambient="false">slowness</effect>
-        <effect duration="3s">fire resistance</effect>
-        <max-health>14</max-health>
-        <game-mode>adventure</game-mode>
-    </kit>
-    <kit id="spawn-armor-kit" force="true">
+    <kit id="armor-kit">
         <helmet unbreakable="true" team-color="true" locked="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" locked="true" material="leather chestplate"/>
         <leggings unbreakable="true" locked="true" material="chainmail leggings"/>
         <boots unbreakable="true" locked="true" material="iron boots"/>
-        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="initial-flag-pickup">
+        <action id="flag-pickup-event"/>
+    </kit>
+    <kit id="flag-carrier-kit">
+        <kit id="main-kit"/>
+        <helmet locked="true" team-color="true" material="banner"/>
+        <chestplate unbreakable="true" locked="true" color="FFFFFF" material="leather chestplate"/>
+        <leggings unbreakable="true" locked="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" locked="true" material="leather boots"/>
+        <item slot="1" locked="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
+    </kit>
+    <kit id="flag-carrier-effects">
+        <unless constant="enable-night-vision" constant-value="true">
+            <effect>night vision</effect>
+        </unless>
+        <effect>slowness</effect>
+        <effect duration="3s">fire resistance</effect>
+        <max-health>14</max-health>
     </kit>
     <kit id="pre-round-kit" force="true">
         <effect>invisibility</effect>
@@ -149,16 +146,13 @@
         <effect duration="0s">absorption</effect>
         <effect duration="2s" amplifier="10">regeneration</effect>
     </kit>
-    <kit id="obs-kit">
-        <effect>night vision</effect>
-    </kit>
-    <kit id="tutorial-kit">
+    <kit id="default-kit">
         <book show-other="false">
             <title>`e`lHow to Play</title>
             <author>MewTwoKing</author>
             <pages>
                 <page>
-                    `2» `lFLAG FOOTBALL
+                    `2» `lTOUCHDOWN
                     `2» Overview`0
 
                     Each team has a
@@ -174,7 +168,7 @@
                     to capture!
                 </page>
                 <page>
-                    `2» `lFLAG FOOTBALL
+                    `2» `lTOUCHDOWN
                     `2» Passing (1/2)`0
 
                     The player with the
@@ -188,7 +182,7 @@
                     respawn at the center.
                 </page>
                 <page>
-                    `2» `lFLAG FOOTBALL
+                    `2» `lTOUCHDOWN
                     `2» Passing (2/2)`0
 
                     Caution: enemies can
@@ -203,15 +197,16 @@
                 </page>
             </pages>
         </book>
+        <if constant="enable-night-vision" constant-value="true">
+            <effect>night vision</effect>
+        </if>
     </kit>
-    <if constant="enable-night-vision" constant-value="true">
-        <give kit="obs-kit" filter="observing"/>
-    </if>
-    <give kit="tutorial-kit" filter="all(observing,show_tutorial=1)"/>
+    <give kit="default-kit" filter="observing"/>
     <give kit="${main-kit}" filter="during-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="${armor-kit}" filter="not-on-buytime-after"/>
-    <give kit="${flag-carrier-kit}" filter="all(flag-post,game_state=${initial},alive)"/>
+    <give kit="initial-flag-pickup" filter="all(flag-post,game_state=${initial},alive)"/>
+    <lend kit="${flag-carrier-effects}" filter="player_state=${carry}"/>
 </kits>
 <filters>
     <entity id="snowball-entity">snowball</entity>
@@ -223,8 +218,8 @@
     <! - If a flag-carrier disconnects, the snowball in their inventory drops onto the ground,
     <! - meaning if a player picks up that snowball, it should be treated as a flag pickup. -->
     <all id="flag-pickup-via-entity">
-        <carrying id="carrying-snowball">
-            <item material="snowball" locked="true" consumable="use-snowball" name="`4`lFootball `f`oYou can also pass to your teammates"/>
+        <carrying>
+            <item locked="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
         </carrying>
         <not>
             <wearing>
@@ -423,6 +418,7 @@
         <set var="flag_carrier" value="1"/>
         <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
         <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.2" stay="0.5" fade-out="0.2"/>
+        <kit id="${flag-carrier-kit}"/>
         <action id="apply-heal"/>
         <switch-scope inner="match" outer="player">
             <message text="`e⚠ {player} `6picked up the `c`lFlag`6!`r" actionbar="`l{player} `6picked up!">
@@ -458,6 +454,9 @@
     </action>
     <action id="reset-flag" scope="match">
         <set var="game_state" value="${initial}"/>
+        <switch-scope inner="player">
+            <set var="player_state" value="${initial}"/>
+        </switch-scope>
         <fill region="flag-post" material="standing banner:${flag-rotation}"/>
         <fill region="flag-indicator" material="sea lantern"/>
         <fill region="flag-indicator2" material="sea lantern"/>
@@ -528,8 +527,7 @@
     <trigger action="reset-player-state" filter="player_state=${catch}" scope="player"/>
     <trigger action="reset-player-state" filter="player_state=${died}" scope="player"/>
     <trigger action="reset-player-state" filter="reset-observer-variables" scope="player"/>
-    <trigger action="flag-pickup-event" filter="carrying-snowball" scope="player"/>
-    <trigger action="flag-entity-pickup-event" filter="flag-pickup-via-entity" scope="player"/>
+    <trigger action="flag-entity-pickup-event" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
     <trigger action="reset-kit-after-throw" filter="flag-reset-after-throw" scope="player"/>
     <trigger action="reset-flag-with-messages" filter="flag-reset-after-throw" scope="match"/>
@@ -759,10 +757,10 @@
     <if constant="deny-endzone-entry" constant-value="true">
         <apply enter="deny(team-one)" region="team-one-portal" message="You may not enter your own goal!"/>
         <apply enter="deny(team-two)" region="team-two-portal" message="You may not enter your own goal!"/>
-        <apply enter="carrying-snowball" region="nets" message="You may not enter the goal without the Flag!"/>
+        <apply enter="player_state=${carry}" region="nets" message="You may not enter the goal without the Flag!"/>
     </if>
     <if constant="deny-block-interaction" constant-value="true">
-        <apply block="never"/>
+        <apply block="never" use="never"/>
     </if>
 </regions>
 <portals sound="false" observers="never">
