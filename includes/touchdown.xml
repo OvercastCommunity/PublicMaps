@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.07.28-1 -->
+<!-- Version 2025.07.28-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -14,6 +14,7 @@
     <constant id="died">4</constant>
     <!-- Maps need to define the following constants -->
     <!--
+    <constant id="team-size"></constant>
     <constant id="team-one-color"></constant>
     <constant id="team-two-color"></constant>
     <constant id="team-one-name"></constant>
@@ -28,7 +29,6 @@
     <constant id="flag-post-y-level"></constant>
     -->
     <!-- Maps may want to consider changing these options -->
-    <constant id="team-size">5</constant>
     <constant id="void-plane">-64</constant>
     <constant id="enable-night-vision">false</constant>
     <constant id="deny-endzone-entry">false</constant>
@@ -72,9 +72,7 @@
 </constants>
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
-<time result="score" overtime="1m" max-overtime="1m">
-    ${time-limit}<if constant="overtime-default" constant-value="2">01s</if>
-</time>
+<time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
 <broadcasts>
     <tip after="10s" every="70s">You can `6pass`r to your teammates by throwing the Football!</tip>
     <tip after="25s" every="2m">Score by running into the end zone on the enemies' side!</tip>
