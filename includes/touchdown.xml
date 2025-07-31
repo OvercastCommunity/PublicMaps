@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.07.30-1 -->
+<!-- Version 2025.07.31-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -225,7 +225,7 @@
     <! - If a flag-carrier disconnects, the snowball in their inventory drops onto the ground,
     <! - meaning if a player picks up that snowball, it should be treated as a flag pickup. -->
     <all id="flag-pickup-via-entity">
-        <carrying>
+        <carrying id="carrying-football">
             <item locked="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
         </carrying>
         <not>
@@ -414,7 +414,7 @@
     <action id="reset-fire" scope="match">
         <fill region="flag-post" material="air"/>
     </action>
-    <action id="pickup-flag" scope="player" filter="not(nets)">
+    <action id="pickup-flag" scope="player" filter="not(can_score=0)">
         <pickup-flag flag="flag"/>
     </action>
     <action id="flag-pickup-event" scope="player" filter="game_state=${initial}">
@@ -509,7 +509,6 @@
     <action id="flag-entity-pickup-event" scope="player">
         <set var="game_state" value="${initial}"/>
         <action id="pickup-flag"/>
-        <action id="apply-heal"/>
     </action>
     <action id="apply-heal" scope="player">
         <action filter="instaheal=0">
@@ -771,7 +770,7 @@
 </portals>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <flag id="flag" name="Flag" color="${flag-color}" shared="true" pickup-kit="${flag-carrier-kit}" carry-kit="${flag-carrier-effects}" carry-message="`f`lYou are the `b`lFlag `f`lcarrier!">
-        <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="any(flag-post,all(player_state=${carry},alive))">
+        <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="any(flag-post,all(player_state=${carry},alive),carrying-football)">
             <point>${flag-post}</point>
         </post>
         <net points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
