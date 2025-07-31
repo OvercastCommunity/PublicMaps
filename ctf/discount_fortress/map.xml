@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Discount Fortress</name>
-<version>1.2.13</version>
+<version>1.2.14</version>
 <variant id="7v7">7v7</variant>
 <constant id="override-itemkeep">true</constant>
 <constant id="damage-resistance">5s</constant>
@@ -105,13 +105,13 @@
     <apply block="never" region="void-region" message="You may not build in the void!"/>
     <apply block-physics="deny-cacti"/>
 </regions>
-<flags flag-proximity-metric="none" net-proximity-metric="none" points="1">
+<flags flag-proximity-metric="none" net-proximity-metric="none">
     <flag id="blue-flag"
           name="Blue Flag"
           owner="blue-team"
           color="blue">
         <post pickup-filter="red-team" recover-time="20s" respawn-time="15s">-15.5,10,-311.5</post>
-        <net region="red-net"/>
+        <net region="red-net" points="1"/>
         <unless variant="7v7">
             <carry-kit>
                 <kit id="flag-kit"/>
@@ -123,7 +123,7 @@
           owner="red-team"
           color="red">
         <post pickup-filter="blue-team" recover-time="20s" respawn-time="15s">14.5,10,-429.5</post>
-        <net region="blue-net"/>
+        <net region="blue-net" points="1"/>
         <unless variant="7v7">
             <carry-kit>
                 <kit id="flag-kit"/>
