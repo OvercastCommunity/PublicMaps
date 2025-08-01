@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.01-1 -->
+<!-- Version 2025.08.01-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -132,6 +132,9 @@
     </kit>
     <kit id="pre-round-reset-kit" force="true">
         <clear items="false" armor="true" effects="false"/>
+        <action>
+            <set var="player.fire_ticks" value="-20"/>
+        </action>
         <effect duration="0s">absorption</effect>
         <effect duration="1s" amplifier="20">regeneration</effect>
     </kit>
