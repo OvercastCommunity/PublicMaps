@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.07.31-2 -->
+<!-- Version 2025.08.01-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -26,6 +26,11 @@
     <constant id="team-two-spawn"></constant>
     <constant id="team-two-yaw"></constant>
     <constant id="flag-post"></constant>
+    -->
+    <!-- If maps want to have team-specific flag posts, they must also define: -->
+    <!--
+    <constant id="team-one-flag-post"></constant>
+    <constant id="team-two-flag-post"></constant>
     -->
     <!-- Maps may want to consider changing these options -->
     <constant id="void-plane">-64</constant>
@@ -58,6 +63,7 @@
     <constant id="score-limit">5</constant>
     <constant id="mercy-limit">-1</constant>
     <!-- Experimental or alternate options -->
+    <constant id="team-flag-posts">false</constant>
     <constant id="gridiron-engine">false</constant>
     <constant id="melee-weapon">stone sword</constant>
     <constant id="natural-regeneration">true</constant>
@@ -237,7 +243,7 @@
         <variable var="player_state">${carry}</variable>
         <dead/>
     </all>
-    <after id="flag-fire-go" filter="do_fire=1" duration="0.51s"/>
+    <after id="flag-fire-go" filter="do_fire=1" duration="1s"/>
     <!-- These two delays allow players to hear the sounds, otherwise gets cut-off when TP'd -->
     <after id="match-start-delay" filter="match-started" duration="0.1s"/>
     <after id="pre-round-reset" filter="all(can_score=0,not(match-finished))" duration="0.1s"/>
@@ -522,7 +528,7 @@
     <trigger action="reset-player-state" filter="player_state=${catch}" scope="player"/>
     <trigger action="reset-player-state" filter="reset-observer-variables" scope="player"/>
     <trigger action="flag-pickup-event" filter="all(has-flag,player_state=${initial})" scope="player"/>
-    <trigger action="pickup-flag" filter="not(has-flag)" scope="player"/>
+    <trigger action="pickup-flag" filter="not(any(has-flag,nets))" scope="player"/>
     <trigger action="flag-entity-pickup-event" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
     <trigger action="reset-kit-after-throw" filter="flag-reset-after-throw" scope="player"/>
@@ -740,7 +746,13 @@
 </actions>
 <regions>
     <!-- Maps must define the portal regions and playing-field -->
-    <block id="flag-post">${flag-post}</block>
+    <union id="flag-posts">
+        <block id="flag-post">${flag-post}</block>
+        <if constant="team-flag-posts" constant-value="true">
+            <block id="team-one-flag-post">${team-one-flag-post}</block>
+            <block id="team-two-flag-post">${team-two-flag-post}</block>
+        </if>
+    </union>
     <union id="spawn-points">
         <point id="team-one-spawn">${team-one-spawn}</point>
         <point id="team-two-spawn">${team-two-spawn}</point>
@@ -774,8 +786,12 @@
 </portals>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <flag id="flag" name="Flag" color="${flag-color}" shared="true" pickup-kit="${flag-carrier-kit}" carry-kit="${flag-carrier-effects}" carry-message="`f`lYou are the `b`lFlag `f`lcarrier!">
-        <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="any(flag-post,all(player_state=${carry},alive),carrying-football)">
-            <point>${flag-post}</point>
+        <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="any(flag-posts,all(player_state=${carry},alive),carrying-football)">
+            <post respawn-filter="scoring_team=0">${flag-post}</post>
+            <if constant="team-flag-posts" constant-value="true">
+                <post respawn-filter="scoring_team=1">${team-one-flag-post}</post>
+                <post respawn-filter="scoring_team=2">${team-two-flag-post}</post>
+            </if>
         </post>
         <net points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
         <net points="${score-points}" region="team-two-portal" capture-filter="team-one"/>
