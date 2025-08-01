@@ -9,8 +9,10 @@
     <constant id="initial">0</constant>
     <constant id="carry">1</constant>
     <constant id="throw">2</constant>
-    <!-- Additional player_state values -->
+    <!-- Additional player_state value -->
     <constant id="catch">3</constant>
+    <!-- Additional game_state value -->
+    <constant id="death">4</constant>
     <!-- Maps need to define the following constants -->
     <!--
     <constant id="team-size"></constant>
@@ -23,7 +25,6 @@
     <constant id="team-one-pitch"></constant>
     <constant id="team-two-spawn"></constant>
     <constant id="team-two-yaw"></constant>
-
     <constant id="flag-post"></constant>
     -->
     <!-- Maps may want to consider changing these options -->
@@ -241,7 +242,8 @@
     <after id="match-start-delay" filter="match-started" duration="0.1s"/>
     <after id="pre-round-reset" filter="all(can_score=0,not(match-finished))" duration="0.1s"/>
     <after id="flag-reset-after-throw" duration="${flag-respawn}" filter="game_state=${throw}" message="`b» `fFlag will respawn in {0} `b«"/>
-    <after id="just-before-reset" duration="${flag-prerespawn}" filter="game_state=${throw}"/>
+    <after id="flag-reset-after-death" duration="${flag-respawn}" filter="game_state=${death}" message="`b» `fFlag will respawn in {0} `b«"/>
+    <after id="just-before-reset" duration="${flag-prerespawn}" filter="any(game_state=${throw},game_state=${death})"/>
     <all id="valid-receive">
         <cause id="got-shot">projectile</cause>
         <attacker>
@@ -414,7 +416,7 @@
     <action id="reset-fire" scope="match">
         <fill region="flag-post" material="air"/>
     </action>
-    <action id="pickup-flag" scope="player" filter="not(can_score=0)">
+    <action id="pickup-flag" scope="player" filter="player_state=${carry}">
         <pickup-flag flag="flag"/>
     </action>
     <action id="flag-pickup-event" scope="player" filter="game_state=${initial}">
@@ -442,10 +444,9 @@
     </action>
     <action id="carrier-died-event" scope="player" filter="died-carrying">
         <set var="player_state" value="${initial}"/>
-        <set var="game_state" value="${initial}"/>
+        <set var="game_state" value="${death}"/>
         <switch-scope inner="match" outer="player">
             <message text="`aThe Flag carrier died!" actionbar="`aFlag carrier died!"/>
-            <action id="reset-flag-with-messages"/>
         </switch-scope>
     </action>
     <action id="reset-flag-with-messages" scope="match">
@@ -526,6 +527,7 @@
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
     <trigger action="reset-kit-after-throw" filter="flag-reset-after-throw" scope="player"/>
     <trigger action="reset-flag-with-messages" filter="flag-reset-after-throw" scope="match"/>
+    <trigger action="reset-flag-with-messages" filter="flag-reset-after-death" scope="match"/>
     <trigger action="reset-flag-with-messages" filter="pre-round-reset" scope="match"/>
     <trigger action="carrier-died-event" filter="died-carrying" scope="player"/>
     <trigger action="touchdown-sound" filter="all(can_score=0,not(match-finished))" scope="match"/>
@@ -534,6 +536,7 @@
     <trigger action="give-main-kit" filter="player_state=${throw}" scope="player"/>
     <trigger action="flag-fire" filter="flag-fire-go" scope="match"/>
     <action id="increment-round" scope="player">
+        <set var="player_state" value="${initial}"/>
         <set var="player_score" value="player_score+1"/>
         <message text=" `e⚠ `aYou scored a touchdown!!"/>
         <message text=" `2You have scored `e{amount} `2touchdown(s) in this match.">
@@ -542,6 +545,7 @@
             </replacements>
         </message>
         <switch-scope outer="player" inner="match">
+            <set var="game_state" value="${initial}"/>
             <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
             <action id="reset-fire"/>
