@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.03-1 -->
+<!-- Version 2025.08.03-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -358,6 +358,12 @@
             <match-running/>
         </all>
     </after>
+    <after id="after-capture" duration="${flag-respawn}">
+        <all>
+            <filter id="round-0"/>
+            <match-running/>
+        </all>
+    </after>
     <all id="team-one-own-goal">
         <team>team-one</team>
         <variable var="scoring_team">1</variable>
@@ -475,13 +481,13 @@
             <message text="`aThe Flag carrier died!" actionbar="`aFlag carrier died!"/>
         </switch-scope>
     </action>
-    <action id="reset-flag-with-messages" scope="match">
-        <action id="reset-flag"/>
+    <action id="reset-flag-message-send" scope="match">
         <message text="`e⚠ `6The `c`lFlag`6 was `c`lReset`6!" actionbar="`c`lThe Flag was Reset!"/>
         <sound key="${entity.firework_rocket.twinkle}" volume="1" pitch="1"/>
         <sound key="${entity.item.pickup}" volume="0.5" pitch="1.5"/>
     </action>
     <action id="reset-flag" scope="match">
+        <!-- I think this makes more sense to be called reset-arena -->
         <set var="game_state" value="${initial}"/>
         <switch-scope inner="player">
             <set var="player_state" value="${initial}"/>
@@ -556,9 +562,12 @@
     <trigger action="flag-entity-pickup-event" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
     <trigger action="reset-kit-after-throw" filter="flag-reset-after-throw" scope="player"/>
-    <trigger action="reset-flag-with-messages" filter="flag-reset-after-throw" scope="match"/>
-    <trigger action="reset-flag-with-messages" filter="flag-reset-after-death" scope="match"/>
-    <trigger action="reset-flag-with-messages" filter="pre-round-reset" scope="match"/>
+    <trigger action="reset-flag" filter="flag-reset-after-throw" scope="match"/>
+    <trigger action="reset-flag-message-send" filter="flag-reset-after-throw" scope="match"/>
+    <trigger action="reset-flag" filter="flag-reset-after-death" scope="match"/>
+    <trigger action="reset-flag-message-send" filter="flag-reset-after-death" scope="match"/>
+    <trigger action="reset-flag" filter="pre-round-reset" scope="match"/>
+    <trigger action="reset-flag-message-send" filter="after-capture" scope="match"/>
     <trigger action="carrier-died-event" filter="died-carrying" scope="player"/>
     <trigger action="touchdown-sound" filter="all(can_score=0,not(match-finished))" scope="match"/>
     <trigger action="reset-flag" filter="match-started" scope="match"/>
@@ -603,7 +612,7 @@
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
     <trigger filter="all(can_score=0,not(match-finished))" action="create-cages" scope="match"/>
-    <trigger filter="all(cage-time)" action="remove-cages" scope="match"/>
+    <trigger filter="cage-time" action="remove-cages" scope="match"/>
     <trigger filter="after-round-1" action="reset-counter" scope="match"/>
     <trigger filter="team-one" scope="player">
         <action scope="player">
@@ -809,7 +818,15 @@
     <portal destination="team-two-spawn" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
 </portals>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
-    <flag id="flag" name="Flag" color="${flag-color}" shared="true" pickup-kit="${flag-carrier-kit}" carry-kit="${flag-carrier-effects}" carry-message="`f`lYou are the `b`lFlag `f`lcarrier!">
+    <flag id="flag"
+          name="Flag"
+          color="${flag-color}"
+          shared="true"
+          pickup-kit="${flag-carrier-kit}"
+          carry-kit="${flag-carrier-effects}"
+          carry-message="`f`lYou are the `b`lFlag `f`lcarrier!"
+          show-messages="false"
+          show-effects="false">
         <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="any(flag-posts,all(player_state=${carry},alive),carrying-football)">
             <post id="default-post" respawn-filter="never">${flag-post}</post>
             <if constant="team-flag-posts" constant-value="true">
