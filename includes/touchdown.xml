@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.02-2 -->
+<!-- Version 2025.08.03-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -79,9 +79,6 @@
     <if constant="inner-indicator-materials" constant-value="true">
         <constant id="indicator-inner-material">sea lantern</constant>
     </if>
-    <!-- Change slot if using custom kit with different slot -->
-    <constant id="gapple-slot">8</constant>
-    <constant id="gapple-locked">true</constant>
 </constants>
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
@@ -104,8 +101,8 @@
     </kit>
     <kit id="main-kit">
         <clear items="true" armor="false" effects="false"/>
-        <item slot="0" unbreakable="true" locked="true" material="${melee-weapon}"/>
-        <item slot="8" locked="true" material="golden apple"/>
+        <item slot="0" unbreakable="true" material="${melee-weapon}"/>
+        <item slot="8" material="golden apple"/>
         <if constant="enable-night-vision" constant-value="true">
             <effect>night vision</effect>
         </if>
@@ -118,12 +115,15 @@
         <leggings unbreakable="true" locked="true" material="chainmail leggings"/>
         <boots unbreakable="true" locked="true" material="iron boots"/>
     </kit>
+    <kit id="football-kit">
+        <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
+    </kit>
     <kit id="flag-carrier-kit" force="true">
         <kit id="main-kit"/>
+        <kit id="football-kit"/>
         <chestplate unbreakable="true" locked="true" color="FFFFFF" material="leather chestplate"/>
         <leggings unbreakable="true" locked="true" team-color="true" material="leather leggings"/>
         <boots unbreakable="true" team-color="true" locked="true" material="leather boots"/>
-        <item slot="1" locked="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
     </kit>
     <kit id="flag-carrier-effects">
         <unless constant="enable-night-vision" constant-value="true">
@@ -205,6 +205,7 @@
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="pre-round-reset-kit" filter="on-buytime"/>
     <give kit="${armor-kit}" filter="not-on-buytime"/>
+    <give kit="football-kit" filter="dropped-football"/>
 </kits>
 <spawns>
     <spawn team="team-one" kit="${main-kit}" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawn"/>
@@ -243,7 +244,7 @@
     <! - meaning if a player picks up that snowball, it should be treated as a flag pickup. -->
     <all id="flag-pickup-via-entity">
         <carrying id="carrying-football">
-            <item locked="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
+            <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
         </carrying>
         <not>
             <carrying-flag id="has-flag">flag</carrying-flag>
@@ -252,6 +253,14 @@
     <all id="died-carrying">
         <variable var="player_state">${carry}</variable>
         <dead/>
+    </all>
+    <all id="dropped-football">
+        <filter id="has-flag"/>
+        <variable var="player_state">${carry}</variable>
+        <not>
+            <filter id="carrying-football"/>
+        </not>
+        <alive/>
     </all>
     <after id="flag-fire-go" filter="do_fire=1" duration="1s"/>
     <!-- These two delays allow players to hear the sounds, otherwise gets cut-off when TP'd -->
@@ -837,10 +846,8 @@
     <item>iron boots</item>
     <item>${melee-weapon}</item>
     <item>banner</item>
-</itemremove>
-<itemkeep>
     <item>golden apple</item>
-</itemkeep>
+</itemremove>
 <disabledamage>
     <damage>fall</damage>
     <damage ally="true" enemy="false" other="false">entity attack</damage>
