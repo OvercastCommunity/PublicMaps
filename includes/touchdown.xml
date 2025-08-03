@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.02-1 -->
+<!-- Version 2025.08.02-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -58,6 +58,11 @@
     <constant id="flag-color">white</constant>
     <constant id="deny-block-interaction">true</constant>
     <constant id="overtime-default">1</constant> <!-- 0: no overtime; 1: PGM default; 2: Tiebreaker mode -->
+    <constant id="mercy-limit">-1</constant>
+    <constant id="indicator-outer-material">sea lantern</constant>
+    <!-- Experimental or alternate options -->
+    <constant id="team-flag-posts">false</constant>
+    <constant id="gridiron-engine">false</constant>
     <unless constant="gridiron-engine" constant-value="true">
         <constant id="score-display">circle</constant>
         <constant id="score-points">1</constant>
@@ -68,11 +73,6 @@
         <constant id="score-points">7</constant>
         <constant id="score-limit">-1</constant>
     </if>
-    <constant id="mercy-limit">-1</constant>
-    <constant id="indicator-outer-material">sea lantern</constant>
-    <!-- Experimental or alternate options -->
-    <constant id="team-flag-posts">false</constant>
-    <constant id="gridiron-engine">false</constant>
     <constant id="melee-weapon">stone sword</constant>
     <constant id="natural-regeneration">true</constant>
     <constant id="inner-indicator-materials">false</constant>
