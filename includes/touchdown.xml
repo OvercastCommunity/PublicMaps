@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.01-2 -->
+<!-- Version 2025.08.02-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -58,19 +58,26 @@
     <constant id="flag-color">white</constant>
     <constant id="deny-block-interaction">true</constant>
     <constant id="overtime-default">1</constant> <!-- 0: no overtime; 1: PGM default; 2: Tiebreaker mode -->
-    <constant id="score-display">circle</constant>
-    <constant id="score-points">1</constant>
-    <constant id="score-limit">5</constant>
+    <unless constant="gridiron-engine" constant-value="true">
+        <constant id="score-display">circle</constant>
+        <constant id="score-points">1</constant>
+        <constant id="score-limit">5</constant>
+    </unless>
+    <if constant="gridiron-engine" constant-value="true">
+        <constant id="score-display" delete="true"/>
+        <constant id="score-points">7</constant>
+        <constant id="score-limit">-1</constant>
+    </if>
     <constant id="mercy-limit">-1</constant>
+    <constant id="indicator-outer-material">sea lantern</constant>
     <!-- Experimental or alternate options -->
     <constant id="team-flag-posts">false</constant>
     <constant id="gridiron-engine">false</constant>
     <constant id="melee-weapon">stone sword</constant>
     <constant id="natural-regeneration">true</constant>
-    <if constant="gridiron-engine" constant-value="true">
-        <constant id="score-display" delete="true"/>
-        <constant id="score-points">7</constant>
-        <constant id="score-limit">-1</constant>
+    <constant id="inner-indicator-materials">false</constant>
+    <if constant="inner-indicator-materials" constant-value="true">
+        <constant id="indicator-inner-material">sea lantern</constant>
     </if>
     <!-- Change slot if using custom kit with different slot -->
     <constant id="gapple-slot">8</constant>
@@ -385,7 +392,7 @@
     <action id="snowball-thrown" scope="player">
         <set var="player_state" value="${throw}"/>
         <set var="game_state" value="${throw}"/>
-        <set var="flag_carrier" value="1"/>
+        <set var="flag_carrier" value="0"/>
         <switch-scope inner="match" outer="player">
             <message text="`e⚠ {player} `6threw the `c`lFootball`6!`r" actionbar="`l{player} `6threw!">
                 <replacements>
@@ -454,6 +461,7 @@
     <action id="carrier-died-event" scope="player" filter="died-carrying">
         <set var="player_state" value="${initial}"/>
         <set var="game_state" value="${death}"/>
+        <set var="flag_carrier" value="0"/>
         <switch-scope inner="match" outer="player">
             <message text="`aThe Flag carrier died!" actionbar="`aFlag carrier died!"/>
         </switch-scope>
@@ -469,8 +477,12 @@
         <switch-scope inner="player">
             <set var="player_state" value="${initial}"/>
         </switch-scope>
-        <fill region="flag-indicator-upper" material="sea lantern"/>
-        <fill region="flag-indicator-lower" material="sea lantern"/>
+        <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
+        <fill region="flag-indicator-lower" material="${indicator-outer-material}"/>
+        <if constant="inner-indicator-materials" constant-value="true">
+            <fill region="flag-indicator-upper-inner" material="${indicator-inner-material}"/>
+            <fill region="flag-indicator-lower-inner" material="${indicator-inner-material}"/>
+        </if>
         <kill-entities filter="snowball-entity"/>
     </action>
     <action id="flag-receive-event" scope="player" filter="valid-receive">
@@ -790,14 +802,20 @@
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <flag id="flag" name="Flag" color="${flag-color}" shared="true" pickup-kit="${flag-carrier-kit}" carry-kit="${flag-carrier-effects}" carry-message="`f`lYou are the `b`lFlag `f`lcarrier!">
         <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="any(flag-posts,all(player_state=${carry},alive),carrying-football)">
-            <post respawn-filter="scoring_team=0">${flag-post}</post>
+            <post id="default-post" respawn-filter="never">${flag-post}</post>
             <if constant="team-flag-posts" constant-value="true">
-                <post respawn-filter="scoring_team=1">${team-one-flag-post}</post>
-                <post respawn-filter="scoring_team=2">${team-two-flag-post}</post>
+                <post id="team-one-post" respawn-filter="never">${team-one-flag-post}</post>
+                <post id="team-two-post" respawn-filter="never">${team-two-flag-post}</post>
             </if>
         </post>
-        <net points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
-        <net points="${score-points}" region="team-two-portal" capture-filter="team-one"/>
+        <unless constant="team-flag-posts" constant-value="true">
+            <net points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
+            <net points="${score-points}" region="team-two-portal" capture-filter="team-one"/>
+        </unless>
+        <if constant="team-flag-posts" constant-value="true">
+            <net points="${score-points}" region="team-one-portal" capture-filter="team-two" post="team-two-post"/>
+            <net points="${score-points}" region="team-two-portal" capture-filter="team-one" post="team-one-post"/>
+        </if>
     </flag>
 </flags>
 <score display="${score-display}">
