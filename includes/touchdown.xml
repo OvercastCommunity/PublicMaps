@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.03-2 -->
+<!-- Version 2025.08.03-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -67,11 +67,13 @@
         <constant id="score-display">circle</constant>
         <constant id="score-points">1</constant>
         <constant id="score-limit">5</constant>
+        <constant id="score-message-end"># #</constant>
     </unless>
     <if constant="gridiron-engine" constant-value="true">
         <constant id="score-display" delete="true"/>
         <constant id="score-points">7</constant>
         <constant id="score-limit">-1</constant>
+        <constant id="score-message-end">`0</constant> <!-- hide end formatting to prevent alignment issues -->
     </if>
     <constant id="melee-weapon">stone sword</constant>
     <constant id="natural-regeneration">true</constant>
@@ -661,7 +663,7 @@
         </switch-scope>
     </action>
     <action filter="team-one" id="message-score-display-team-one" scope="player">
-        <message text="`5# #            `f{one-score}`6 `l－`r `f{two-score}`5            # #">
+        <message text="`5# #            `f{one-score}`6 `l－`r `f{two-score}`5            ${score-message-end}">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
                 <decimal id="two-score" value="team_two_score"/>
@@ -669,7 +671,7 @@
         </message>
     </action>
     <action filter="team-two" id="message-score-display-team-two" scope="player">
-        <message text="`5# #            `f{two-score}`6 `l－`r `f{one-score}`5            # #">
+        <message text="`5# #            `f{two-score}`6 `l－`r `f{one-score}`5            ${score-message-end}">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
                 <decimal id="two-score" value="team_two_score"/>
