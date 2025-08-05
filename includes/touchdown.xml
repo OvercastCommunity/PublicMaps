@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.03-2 -->
+<!-- Version 2025.08.04-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -79,6 +79,7 @@
     <if constant="inner-indicator-materials" constant-value="true">
         <constant id="indicator-inner-material">sea lantern</constant>
     </if>
+    <constant id="gapple-heal-duration">5s</constant>
 </constants>
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
@@ -96,8 +97,8 @@
         <effect duration="0.2s">instant health</effect>
     </kit>
     <kit id="heal-gapple" force="true">
-        <effect duration="5s">absorption</effect>
-        <effect duration="5s" amplifier="2">regeneration</effect>
+        <effect duration="${gapple-heal-duration}">absorption</effect>
+        <effect duration="${gapple-heal-duration}" amplifier="2">regeneration</effect>
     </kit>
     <kit id="main-kit">
         <clear items="true" armor="false" effects="false"/>
