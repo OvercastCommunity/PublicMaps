@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.04-1 -->
+<!-- Version 2025.08.05-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -235,7 +235,10 @@
     <variable id="instaheal" scope="match" default="0"/>
 </variables>
 <filters>
-    <entity id="snowball-entity">snowball</entity>
+    <any id="snowball-entity">
+        <entity>snowball</entity>
+        <entity>dropped item</entity>
+    </any>
     <time id="in-overtime">${time-limit}</time>
     <not id="not-barrier">
         <material>barrier</material>
@@ -262,6 +265,7 @@
             <filter id="carrying-football"/>
         </not>
         <alive/>
+        <variable var="can_score">1</variable>
     </all>
     <after id="flag-fire-go" filter="do_fire=1" duration="1s"/>
     <!-- These two delays allow players to hear the sounds, otherwise gets cut-off when TP'd -->
@@ -448,7 +452,7 @@
     <action id="reset-fire" scope="match">
         <fill region="flag-post" material="air"/>
     </action>
-    <action id="pickup-flag" scope="player" filter="player_state=${carry}">
+    <action id="pickup-flag" scope="player" filter="can_score=1">
         <pickup-flag flag="flag"/>
     </action>
     <action id="flag-pickup-event" scope="player" filter="game_state=${initial}">
