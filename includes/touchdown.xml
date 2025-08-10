@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.08-1 -->
+<!-- Version 2025.08.09-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -830,7 +830,7 @@
           carry-message="`f`lYou are the `b`lFlag `f`lcarrier!"
           show-messages="false"
           show-effects="false">
-        <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="any(flag-posts,all(player_state=${carry},alive),carrying-football)">
+        <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="all(any(flag-posts,player_state=${carry},carrying-football),alive)">
             <post id="default-post" respawn-filter="never">${flag-post}</post>
             <if constant="team-flag-posts" constant-value="true">
                 <post id="team-one-post" respawn-filter="never">${team-one-flag-post}</post>
