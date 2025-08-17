@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.09-1 -->
+<!-- Version 2025.08.17-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -73,7 +73,9 @@
         <constant id="score-points">7</constant>
         <constant id="score-limit">-1</constant>
     </if>
-    <constant id="melee-weapon">stone sword</constant>
+    <constant id="melee-weapon">stone sword</constant> <!-- If updated, must update melee-weapon-name -->
+    <constant id="melee-weapon-name">Stone Sword</constant>
+    <constant id="melee-weapon-enchantment">false</constant> <!-- replace false with knockback, etc -->
     <constant id="natural-regeneration">true</constant>
     <constant id="inner-indicator-materials">false</constant>
     <if constant="inner-indicator-materials" constant-value="true">
@@ -102,7 +104,12 @@
     </kit>
     <kit id="main-kit">
         <clear items="true" armor="false" effects="false"/>
-        <item slot="0" unbreakable="true" material="${melee-weapon}"/>
+        <if constant="melee-weapon-enchantment" constant-value="false">
+            <item slot="0" unbreakable="true" name="${melee-weapon-name}" material="${melee-weapon}"/>
+        </if>
+        <unless constant="melee-weapon-enchantment" constant-value="false">
+            <item slot="0" unbreakable="true" name="${melee-weapon-name}" material="${melee-weapon}" enchantment="${melee-weapon-enchantment}"/>
+        </unless>
         <item slot="8" material="golden apple"/>
         <if constant="enable-night-vision" constant-value="true">
             <effect>night vision</effect>
