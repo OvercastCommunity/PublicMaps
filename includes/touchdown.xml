@@ -104,12 +104,7 @@
     </kit>
     <kit id="main-kit">
         <clear items="true" armor="false" effects="false"/>
-        <unless constant="melee-weapon-enchantment" constant-comparison="defined value">
-            <item slot="0" unbreakable="true" name="${melee-weapon-name}" material="${melee-weapon}"/>
-        </unless>
-        <if constant="melee-weapon-enchantment" constant-comparison="defined value">
-            <item slot="0" unbreakable="true" name="${melee-weapon-name}" material="${melee-weapon}" enchantment="${melee-weapon-enchantment}"/>
-        </if>
+        <item slot="0" unbreakable="true" name="${melee-weapon-name}" material="${melee-weapon}" enchantment="${melee-weapon-enchantment}"/>
         <item slot="8" material="golden apple"/>
         <if constant="enable-night-vision" constant-value="true">
             <effect>night vision</effect>
