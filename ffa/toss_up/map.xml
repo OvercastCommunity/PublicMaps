@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Toss Up</name>
-<version>1.4.5</version>
+<version>1.4.6</version>
 <variant id="oitq" slug="toss_up_oitq">One in the Quiver</variant>
 <objective>Kill as many players as you can before ${time-limit} minutes are up!</objective>
 <created>2016-03-27</created>
@@ -10,6 +10,25 @@
 </authors>
 <players max="5" colors="true"/>
 <constant id="time-limit">5</constant>
+<filters>
+    <any id="allowed-blocks">
+        <material>leaves</material>
+        <material>leaves 2</material>
+        <material>torch</material>
+        <material>long grass</material>
+    </any>
+</filters>
+<regions>
+    <apply velocity="0.0,2,0.0">
+        <region>
+            <block>3,10,-106</block>
+            <block>-24,10,-86</block>
+            <block>2,10,-65</block>
+            <block>29,9,-95</block>
+        </region>
+    </apply>
+    <apply block-place="never" block-break="allowed-blocks"/>
+</regions>
 <if variant="default">
     <gamemode>ffa</gamemode>
     <time result="score">${time-limit}m</time>
@@ -59,7 +78,12 @@
 </if>
 <if variant="oitq">
     <include id="oitq"/>
-    <constant id="extra-kit">default-kit</constant>
+    <constant id="extra-kit">gamemode-kit</constant>
+    <kits>
+        <kit id="gamemode-kit" parent="default-kit">
+            <game-mode>survival</game-mode>
+        </kit>
+    </kits>
 </if>
 <spawns>
     <default>
@@ -90,25 +114,6 @@
         </regions>
     </spawn>
 </spawns>
-<filters>
-    <any id="allowed-blocks">
-        <material>leaves</material>
-        <material>leaves 2</material>
-        <material>torch</material>
-        <material>long grass</material>
-    </any>
-</filters>
-<regions>
-    <apply velocity="0.0,2,0.0">
-        <region>
-            <block>3,10,-106</block>
-            <block>-24,10,-86</block>
-            <block>2,10,-65</block>
-            <block>29,9,-95</block>
-        </region>
-    </apply>
-    <apply block-place="never" block-break="allowed-blocks"/>
-</regions>
 <itemremove>
     <item>stick</item>
     <item>seeds</item>
