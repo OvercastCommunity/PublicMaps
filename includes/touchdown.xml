@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.21-3 -->
+<!-- Version 2025.08.21-4 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -852,8 +852,8 @@
             <net points="${score-points}" region="team-two-portal" capture-filter="team-one"/>
         </unless>
         <if constant="team-flag-posts" constant-value="true">
-            <net points="${score-points}" region="team-one-portal" capture-filter="team-two" post="team-two-post"/>
-            <net points="${score-points}" region="team-two-portal" capture-filter="team-one" post="team-one-post"/>
+            <net points="${score-points}" region="team-one-portal" capture-filter="team-two" post="team-one-post"/>
+            <net points="${score-points}" region="team-two-portal" capture-filter="team-one" post="team-two-post"/>
         </if>
     </flag>
 </flags>
