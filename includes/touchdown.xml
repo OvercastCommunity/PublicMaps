@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.21-2 -->
+<!-- Version 2025.08.21-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -472,9 +472,11 @@
             <action id="pickup-sounds"/>
             <set var="game_state" value="${carry}"/>
             <set var="do_fire" value="1"/>
-            <fill region="flag-post" material="air"/>
-            <fill region="flag-indicator-upper" material="air"/>
-            <fill region="flag-indicator-lower" material="air"/>
+            <fill region="flag-posts" material="air"/>
+            <unless constant="team-flag-posts" constant-value="true">
+                <fill region="flag-indicator-upper" material="air"/>
+                <fill region="flag-indicator-lower" material="air"/>
+            </unless>
         </switch-scope>
     </action>
     <action id="touchdown-sound" scope="match">
@@ -500,11 +502,13 @@
         <switch-scope inner="player">
             <set var="player_state" value="${initial}"/>
         </switch-scope>
-        <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
-        <fill region="flag-indicator-lower" material="${indicator-outer-material}"/>
-        <unless constant="indicator-inner-material" constant-comparison="defined delete">
-            <fill region="flag-indicator-upper-inner" material="${indicator-inner-material}"/>
-            <fill region="flag-indicator-lower-inner" material="${indicator-inner-material}"/>
+        <unless constant="team-flag-posts" constant-value="true">
+            <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
+            <fill region="flag-indicator-lower" material="${indicator-outer-material}"/>
+            <unless constant="indicator-inner-material" constant-comparison="defined delete">
+                <fill region="flag-indicator-upper-inner" material="${indicator-inner-material}"/>
+                <fill region="flag-indicator-lower-inner" material="${indicator-inner-material}"/>
+            </unless>
         </unless>
         <kill-entities filter="snowball-entity"/>
     </action>
