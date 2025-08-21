@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.21-1 -->
+<!-- Version 2025.08.21-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -401,6 +401,10 @@
     <players id="instaheal-min" min="${instaheal-required}">
         <always/>
     </players>
+    <if constant="team-flag-posts" constant-value="true">
+        <flag-dropped id="dropped-from-team-one-post" post="team-one-post">flag</flag-dropped>
+        <flag-dropped id="dropped-from-team-two-post" post="team-two-post">flag</flag-dropped>
+    </if>
 </filters>
 <actions>
     <action id="give-main-kit" scope="player">
@@ -820,6 +824,15 @@
     <portal destination="team-two-spawn" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
 </portals>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
+    <post id="default-post" yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="all(any(flag-posts,player_state=${carry},carrying-football),alive)">${flag-post}</post>
+    <if constant="team-flag-posts" constant-value="true">
+        <post id="team-one-post" yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="all(any(flag-posts,player_state=${carry},carrying-football),alive)" fallback="default-post">
+            <post respawn-filter="not(dropped-from-team-one-post)">${team-one-flag-post}</post>
+        </post>
+        <post id="team-two-post" yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="all(any(flag-posts,player_state=${carry},carrying-football),alive)" fallback="default-post">
+            <post respawn-filter="not(dropped-from-team-two-post)">${team-two-flag-post}</post>
+        </post>
+    </if>
     <flag id="flag"
           name="Flag"
           color="${flag-color}"
@@ -828,14 +841,8 @@
           carry-kit="${flag-carrier-effects}"
           carry-message="`f`lYou are the `b`lFlag `f`lcarrier!"
           show-messages="false"
-          show-effects="false">
-        <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="all(any(flag-posts,player_state=${carry},carrying-football),alive)">
-            <post id="default-post" respawn-filter="never">${flag-post}</post>
-            <if constant="team-flag-posts" constant-value="true">
-                <post id="team-one-post" respawn-filter="never">${team-one-flag-post}</post>
-                <post id="team-two-post" respawn-filter="never">${team-two-flag-post}</post>
-            </if>
-        </post>
+          show-effects="false"
+          post="default-post">
         <unless constant="team-flag-posts" constant-value="true">
             <net points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
             <net points="${score-points}" region="team-two-portal" capture-filter="team-one"/>
