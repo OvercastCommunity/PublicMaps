@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.21-4 -->
+<!-- Version 2025.08.21-5 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -802,8 +802,8 @@
     </union>
     <negative id="not-cages">
         <union id="cages">
-            <cylinder id="team-one-spawn-cage" base="${team-one-spawn}" height="3" radius="3"/>
-            <cylinder id="team-two-spawn-cage" base="${team-two-spawn}" height="3" radius="3"/>
+            <cylinder id="team-one-spawn-cage" base="${team-one-spawn}" height="3" radius="2"/>
+            <cylinder id="team-two-spawn-cage" base="${team-two-spawn}" height="3" radius="2"/>
         </union>
     </negative>
     <union id="nets">
