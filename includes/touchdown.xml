@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.19-1 -->
+<!-- Version 2025.08.21-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -60,6 +60,7 @@
     <constant id="overtime-default">1</constant> <!-- 0: no overtime; 1: PGM default; 2: Tiebreaker mode -->
     <constant id="mercy-limit">-1</constant>
     <constant id="indicator-outer-material">sea lantern</constant>
+    <constant id="indicator-inner-material" delete="true"/>
     <!-- Experimental or alternate options -->
     <constant id="team-flag-posts">false</constant>
     <constant id="gridiron-engine">false</constant>
@@ -77,10 +78,6 @@
     <constant id="melee-weapon-name" delete="true"/> <!-- optional: custom name -->
     <constant id="melee-weapon-enchantment" delete="true"/> <!-- optional: enchantment ("knockback", etc) -->
     <constant id="natural-regeneration">true</constant>
-    <constant id="inner-indicator-materials">false</constant>
-    <if constant="inner-indicator-materials" constant-value="true">
-        <constant id="indicator-inner-material">sea lantern</constant>
-    </if>
     <constant id="gapple-heal-duration">5s</constant>
 </constants>
 <include id="void-death"/>
@@ -501,10 +498,10 @@
         </switch-scope>
         <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
         <fill region="flag-indicator-lower" material="${indicator-outer-material}"/>
-        <if constant="inner-indicator-materials" constant-value="true">
+        <unless constant="indicator-inner-material" constant-comparison="defined delete">
             <fill region="flag-indicator-upper-inner" material="${indicator-inner-material}"/>
             <fill region="flag-indicator-lower-inner" material="${indicator-inner-material}"/>
-        </if>
+        </unless>
         <kill-entities filter="snowball-entity"/>
     </action>
     <action id="flag-receive-event" scope="player" filter="valid-receive">
@@ -635,24 +632,24 @@
         </action>
     </trigger>
     <action id="message-own-scored" scope="player">
-        <message text="`5# # # # # # # # # # # # # # # #"/>
-        <message text="`5# #      `6» `6`lTOUCHDOWN! `6«`5    # #"/>
-        <message text="`5# #    `aYour team scored!`5    # #"/>
+        <message text="`5`l╔══════════════╗"/>
+        <message text="`6         » `6`lTOUCHDOWN! `6«"/>
+        <message text="`a         Your team scored!"/>
         <action id="message-score-display-team-one"/>
         <action id="message-score-display-team-two"/>
-        <message text="`5# # # # # # # # # # # # # # # #"/>
+        <message text="`5`l╚══════════════╝"/>
         <switch-scope outer="player" inner="match">
             <action id="goal-title"/>
         </switch-scope>
         <sound key="${block.portal.travel}" volume="0.2" pitch="2"/> <!-- OBJECTIVE_GOOD with lower volume -->
     </action>
     <action id="message-enemy-scored" scope="player">
-        <message text="`5# # # # # # # # # # # # # # # #"/>
-        <message text="`5# #      `6» `6`lTOUCHDOWN! `6«`5    # #"/>
-        <message text="`5# #    `cThe enemy scored`5    # #"/>
+        <message text="`5`l╔══════════════╗"/>
+        <message text="`6         » `6`lTOUCHDOWN! `6«"/>
+        <message text="`c         The enemy scored"/>
         <action id="message-score-display-team-one"/>
         <action id="message-score-display-team-two"/>
-        <message text="`5# # # # # # # # # # # # # # # #"/>
+        <message text="`5`l╚══════════════╝"/>
         <sound key="${entity.blaze.death}" volume="0.4" pitch="0.8"/> <!-- OBJECTIVE_BAD with lower volume -->
     </action>
     <action id="message-score-display-player" scope="player">
@@ -666,7 +663,7 @@
         </switch-scope>
     </action>
     <action filter="team-one" id="message-score-display-team-one" scope="player">
-        <message text="`5# #            `f{one-score}`6 `l－`r `f{two-score}`5            # #">
+        <message text="                 `f{one-score}`6 `l-`r `f{two-score}">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
                 <decimal id="two-score" value="team_two_score"/>
@@ -674,7 +671,7 @@
         </message>
     </action>
     <action filter="team-two" id="message-score-display-team-two" scope="player">
-        <message text="`5# #            `f{two-score}`6 `l－`r `f{one-score}`5            # #">
+        <message text="                 `f{two-score}`6 `l-`r `f{one-score}">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
                 <decimal id="two-score" value="team_two_score"/>
@@ -705,15 +702,15 @@
     </action>
     <trigger filter="after-round-0" action="message-reset-scoring-team" scope="match"/>
     <action id="message-obs-scored" scope="player">
-        <message text="`5# # # # # # # # # # # # # # # #"/>
-        <message text="`5# #      `6» `6`lTOUCHDOWN! `6«`5    # #"/>
-        <message text="`5# #            `f{one-score}`6 `l－`r `f{two-score}`5            # #">
+        <message text="`5`l╔══════════════╗"/>
+        <message text="`6         » `6`lTOUCHDOWN! `6«"/>
+        <message text="                 `f{one-score}`6 `l-`r `f{two-score}">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
                 <decimal id="two-score" value="team_two_score"/>
             </replacements>
         </message>
-        <message text="`5# # # # # # # # # # # # # # # #"/>
+        <message text="`5`l╚══════════════╝"/>
         <sound key="${entity.firework_rocket.twinkle}"/>
     </action>
     <trigger filter="team-one-own-goal" action="message-own-scored" scope="player"/>
