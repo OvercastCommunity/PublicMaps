@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.21-5 -->
+<!-- Version 2025.08.22-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -274,12 +274,14 @@
     <after id="flag-reset-after-death" duration="${flag-respawn}" filter="game_state=${death}" message="`b» `fFlag will respawn in {0} `b«"/>
     <after id="just-before-reset" duration="${flag-prerespawn}" filter="any(game_state=${throw},game_state=${death})"/>
     <all id="valid-receive">
-        <cause id="got-shot">projectile</cause>
+        <variable var="can_score">1</variable>
+        <cause>projectile</cause>
         <attacker>
             <variable var="player_state">${catch}</variable>
         </attacker>
     </all>
     <all id="valid-pass">
+        <variable var="can_score">1</variable>
         <variable var="player_state">${throw}</variable>
         <victim>
             <cause>projectile</cause>
@@ -412,7 +414,7 @@
         <kit id="${armor-kit}"/>
         <action id="apply-heal"/>
     </action>
-    <action id="snowball-thrown" scope="player">
+    <action id="snowball-thrown" scope="player" filter="can_score=1">
         <set var="player_state" value="${throw}"/>
         <set var="game_state" value="${throw}"/>
         <set var="flag_carrier" value="0"/>
@@ -846,6 +848,7 @@
           carry-message="`f`lYou are the `b`lFlag `f`lcarrier!"
           show-messages="false"
           show-effects="false"
+          capture-filter="player_state=${carry}"
           post="default-post">
         <unless constant="team-flag-posts" constant-value="true">
             <net points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
