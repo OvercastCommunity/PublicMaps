@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.22-1 -->
+<!-- Version 2025.08.22-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -44,7 +44,7 @@
     <constant id="flag-prerespawn">4.8s</constant> <!-- Should be 0.2s, or 1 tick, less than respawn -->
     <constant id="respawn-timer">3s</constant>
     <constant id="dynamic-instaheal">false</constant>
-    <constant id="enable-instaheal">true</constant> <!-- requires dynamic to be false -->
+    <constant id="instaheal-default">1</constant> <!-- 0: gapple healing; 1: instaheal; 2: flag carrier dependent -->
     <constant id="instaheal-required">8</constant>
     <!-- Maps can define these if needed, but these are sane defaults -->
     <constant id="team-one-pitch">0</constant>
@@ -231,7 +231,7 @@
     <variable id="current_team" scope="player" default="0"/>
     <variable id="goal_scorer" scope="player" exclusive="1"/>
     <variable id="flag_carrier" scope="player" exclusive="1"/>
-    <variable id="instaheal" scope="match" default="0"/>
+    <variable id="instaheal" scope="match" default="${instaheal-default}"/>
 </variables>
 <filters>
     <any id="snowball-entity">
@@ -568,6 +568,14 @@
         <action filter="instaheal=1">
             <kit id="heal-instant"/>
         </action>
+        <action filter="instaheal=2">
+            <action filter="player_state=${carry}">
+                <kit id="heal-instant"/>
+            </action>
+            <action filter="not(player_state=${carry})">
+                <kit id="heal-gapple"/>
+            </action>
+        </action>
     </action>
     <trigger action="reset-player-state" filter="player_state=${catch}" scope="player"/>
     <trigger action="reset-player-state" filter="reset-observer-variables" scope="player"/>
@@ -778,15 +786,6 @@
                 <set var="instaheal" value="1"/>
             </action>
         </trigger>
-    </if>
-    <if constant="dynamic-instaheal" constant-value="false">
-        <if constant="enable-instaheal" constant-value="true">
-            <trigger filter="always" scope="match">
-                <action>
-                    <set var="instaheal" value="1"/>
-                </action>
-            </trigger>
-        </if>
     </if>
 </actions>
 <regions>
