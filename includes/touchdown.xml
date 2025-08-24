@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.22-2 -->
+<!-- Version 2025.08.23-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -9,10 +9,8 @@
     <constant id="initial">0</constant>
     <constant id="carry">1</constant>
     <constant id="throw">2</constant>
-    <!-- Additional player_state value -->
-    <constant id="catch">3</constant>
     <!-- Additional game_state value -->
-    <constant id="death">4</constant>
+    <constant id="death">3</constant>
     <!-- Maps need to define the following constants -->
     <!--
     <constant id="team-size"></constant>
@@ -275,14 +273,9 @@
     <after id="just-before-reset" duration="${flag-prerespawn}" filter="any(game_state=${throw},game_state=${death})"/>
     <all id="valid-receive">
         <variable var="can_score">1</variable>
-        <cause>projectile</cause>
         <attacker>
-            <variable var="player_state">${catch}</variable>
+            <variable var="player_state">${throw}</variable>
         </attacker>
-    </all>
-    <all id="valid-pass">
-        <variable var="can_score">1</variable>
-        <variable var="player_state">${throw}</variable>
         <victim>
             <cause>projectile</cause>
         </victim>
@@ -293,15 +286,12 @@
     <victim id="victim-has-flag">
         <variable var="player_state">${carry}</variable>
     </victim>
-    <allow id="flag-carrier-alive">
-        <all>
-            <variable var="player_state">${carry}</variable>
-            <alive/>
-        </all>
-    </allow>
     <all id="reset-observer-variables">
         <observing/>
-        <variable var="player_state">${carry}</variable>
+        <any>
+            <variable var="player_state">${carry}</variable>
+            <variable var="player_state">${throw}</variable>
+        </any>
     </all>
     <all id="team-one-scored">
         <team>team-one</team>
@@ -403,6 +393,14 @@
     <players id="instaheal-min" min="${instaheal-required}">
         <always/>
     </players>
+    <all id="can-pickup-flag">
+        <alive/> <!-- This shouldn't be possible but it is -->
+        <any>
+            <region id="flag-posts"/>
+            <filter id="carrying-football"/>
+            <variable var="player_state">${carry}</variable>
+        </any>
+    </all>
     <if constant="team-flag-posts" constant-value="true">
         <flag-dropped id="dropped-from-team-one-post" post="team-one-post">flag</flag-dropped>
         <flag-dropped id="dropped-from-team-two-post" post="team-two-post">flag</flag-dropped>
@@ -532,13 +530,6 @@
             <action id="flag-fire"/> <!-- Just in case -->
         </switch-scope>
     </action>
-    <action id="flag-pass-event" scope="player" filter="valid-pass">
-        <set var="player_state" value="${catch}"/>
-        <action id="give-main-kit"/>
-        <switch-scope inner="match" outer="player">
-            <action id="flag-fire"/> <!-- Just in case -->
-        </switch-scope>
-    </action>
     <action id="flag-steal-event" filter="game_state=${carry}" scope="player">
         <set var="player_state" value="${carry}"/>
         <set var="game_state" value="${carry}"/>
@@ -577,7 +568,6 @@
             </action>
         </action>
     </action>
-    <trigger action="reset-player-state" filter="player_state=${catch}" scope="player"/>
     <trigger action="reset-player-state" filter="reset-observer-variables" scope="player"/>
     <trigger action="flag-pickup-event" filter="all(has-flag,player_state=${initial})" scope="player"/>
     <trigger action="pickup-flag" filter="not(any(has-flag,nets))" scope="player"/>
@@ -772,7 +762,7 @@
             </switch-scope>
         </if>
     </action>
-    <!-- Instaheal stuff -->
+    <!-- Dynamic instaheal -->
     <if constant="dynamic-instaheal" constant-value="true">
         <trigger filter="not(instaheal-min)" scope="match">
             <action>
@@ -829,12 +819,26 @@
     <portal destination="team-two-spawn" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
 </portals>
 <flags flag-proximity-metric="none" net-proximity-metric="none">
-    <post id="default-post" yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="all(any(flag-posts,player_state=${carry},carrying-football),alive)">${flag-post}</post>
+    <post id="default-post"
+          yaw="${flag-yaw}"
+          respawn-time="${flag-respawn}"
+          recover-time="0s"
+          pickup-filter="can-pickup-flag">${flag-post}</post>
     <if constant="team-flag-posts" constant-value="true">
-        <post id="team-one-post" yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="all(any(flag-posts,player_state=${carry},carrying-football),alive)" fallback="default-post">
+        <post id="team-one-post"
+              yaw="${team-two-yaw}"
+              respawn-time="${flag-respawn}"
+              recover-time="0s"
+              pickup-filter="can-pickup-flag"
+              fallback="default-post">
             <post respawn-filter="not(dropped-from-team-one-post)">${team-one-flag-post}</post>
         </post>
-        <post id="team-two-post" yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="all(any(flag-posts,player_state=${carry},carrying-football),alive)" fallback="default-post">
+        <post id="team-two-post"
+              yaw="${team-one-yaw}"
+              respawn-time="${flag-respawn}"
+              recover-time="0s"
+              pickup-filter="can-pickup-flag"
+              fallback="default-post">
             <post respawn-filter="not(dropped-from-team-two-post)">${team-two-flag-post}</post>
         </post>
     </if>
@@ -847,7 +851,7 @@
           carry-message="`f`lYou are the `b`lFlag `f`lcarrier!"
           show-messages="false"
           show-effects="false"
-          capture-filter="player_state=${carry}"
+          capture-filter="carrying-football"
           post="default-post">
         <unless constant="team-flag-posts" constant-value="true">
             <net points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
@@ -884,7 +888,7 @@
     <damage>fall</damage>
     <damage ally="true" enemy="false" other="false">entity attack</damage>
 </disabledamage>
-<damage attacker-action="flag-pass-event" victim-action="flag-receive-event"/>
+<damage victim-action="flag-receive-event"/>
 <friendlyfire>on</friendlyfire>
 <friendlyfirerefund>off</friendlyfirerefund>
 <respawn delay="${respawn-timer}" auto="true"/>
