@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.25-1 -->
+<!-- Version 2025.08.25-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -763,13 +763,13 @@
     </action>
     <!-- Dynamic instaheal -->
     <if constant="dynamic-instaheal" constant-value="true">
-        <trigger filter="not(instaheal-min)" scope="match">
+        <trigger filter="all(not(instaheal-min),match-started)" scope="match">
             <action>
                 <message text=" `e⚠ `fDue to a lack of players, `6❤ `e`lGAPPLE`f healing will be used."/>
                 <set var="instaheal" value="0"/>
             </action>
         </trigger>
-        <trigger filter="instaheal-min" scope="match">
+        <trigger filter="all(instaheal-min,match-started)" scope="match">
             <action>
                 <message text=" `e⚠ `d❤ `c`lI`6`lN`e`lS`a`lT`b`lA`d`lH`c`lE`6`lA`e`lL`f is now active!"/>
                 <set var="instaheal" value="1"/>
