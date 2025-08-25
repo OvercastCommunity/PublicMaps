@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.24-1 -->
+<!-- Version 2025.08.25-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -77,6 +77,8 @@
     <constant id="melee-weapon-enchantment" delete="true"/> <!-- optional: enchantment ("knockback", etc) -->
     <constant id="natural-regeneration">true</constant>
     <constant id="gapple-heal-duration">5s</constant>
+    <constant id="disable-ally-damage">true</constant>
+    <constant id="friendly-fire-refund">off</constant>
 </constants>
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
@@ -883,11 +885,11 @@
 </itemremove>
 <disabledamage>
     <damage>fall</damage>
-    <damage ally="true" enemy="false" other="false">entity attack</damage>
+    <damage ally="${disable-ally-damage}" enemy="false" other="false">entity attack</damage>
 </disabledamage>
 <damage victim-action="flag-receive-event"/>
 <friendlyfire>on</friendlyfire>
-<friendlyfirerefund>off</friendlyfirerefund>
+<friendlyfirerefund>${friendly-fire-refund}</friendlyfirerefund>
 <respawn delay="${respawn-timer}" auto="true"/>
 <hunger>
     <depletion>off</depletion>
