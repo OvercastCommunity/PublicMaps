@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Streamline II</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Destroy and leak the enemy team's obsidian cores.</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -9,8 +9,8 @@
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </authors>
 <teams>
-    <team id="red" color="blue" max="25">Blue</team>
-    <team id="blue" color="dark red" max="25">Red</team>
+    <team id="blue" color="blue" max="25">Blue</team>
+    <team id="red" color="dark red" max="25">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
