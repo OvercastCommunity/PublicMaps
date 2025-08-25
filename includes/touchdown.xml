@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.23-1 -->
+<!-- Version 2025.08.24-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -213,10 +213,8 @@
     <consumable id="use-snowball" on="right click" override="false" action="snowball-thrown" consume="false"/>
 </consumables>
 <variables>
-    <timelimit id="time_limit"/>
-    <score id="team_score"/>
-    <with-team id="team_one_score" var="team_score" team="team-one"/>
-    <with-team id="team_two_score" var="team_score" team="team-two"/>
+    <with-team id="team_one_score" var="score" team="team-one"/>
+    <with-team id="team_two_score" var="score" team="team-two"/>
     <variable id="game_state" scope="match" default="${initial}"/>
     <variable id="can_score" scope="match" default="1"/>
     <variable id="round_status" scope="match" default="2"/>
@@ -741,26 +739,25 @@
     <!-- End match if overtime disabled (overtime=0) -->
     <trigger scope="match" filter="all(in-overtime,overtime=0)">
         <action>
-            <set var="time_limit" value="0"/>
+            <set var="timelimit" value="0"/>
         </action>
     </trigger>
+    <!-- Action to remove timelimit -->
+    <action id="remove-timelimit" scope="match" expose="true">
+        <set var="overtime" value="1"/>
+        <set var="timelimit" value="-10"/>
+    </action>
     <!-- End match on score in tiebreaker mode (overtime=2) -->
     <trigger scope="match" filter="all(in-overtime,overtime=2)">
         <action>
-            <set var="time_limit" value="-10"/>
+            <set var="timelimit" value="-10"/>
             <message text=" `e⚠ `b`lTIEBREAKER! `7First team to score `awins `7the match."/>
-            <!-- If score/mercy limits are ever made into variables, change scores + those instead -->
         </action>
     </trigger>
     <action id="tiebreaker-win" scope="player" filter="all(in-overtime,overtime=2)">
-        <unless constant="gridiron-engine" constant-value="true">
-            <set var="team_score" value="${score-limit}"/>
-        </unless>
-        <if constant="gridiron-engine" constant-value="true">
-            <switch-scope inner="match">
-                <set var="time_limit" value="0"/>
-            </switch-scope>
-        </if>
+        <switch-scope inner="match">
+            <set var="timelimit" value="0"/>
+        </switch-scope>
     </action>
     <!-- Dynamic instaheal -->
     <if constant="dynamic-instaheal" constant-value="true">
