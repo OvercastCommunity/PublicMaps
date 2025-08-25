@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.25-3 -->
+<!-- Version 2025.08.25-4 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -120,7 +120,7 @@
         <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
     </kit>
     <kit id="flag-carrier-kit" force="true">
-        <kit id="main-kit"/>
+        <kit id="${main-kit}"/>
         <kit id="football-kit"/>
         <chestplate unbreakable="true" locked="true" color="FFFFFF" material="leather chestplate"/>
         <leggings unbreakable="true" locked="true" team-color="true" material="leather leggings"/>
