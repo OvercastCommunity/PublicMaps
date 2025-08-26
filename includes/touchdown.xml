@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.26-1 -->
+<!-- Version 2025.08.26-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -568,14 +568,14 @@
         <set var="player_state" value="${carry}"/>
         <set var="game_state" value="${carry}"/>
         <set var="flag_carrier" value="1"/>
-        <action filter="not(nets)">
-            <switch-scope inner="match">
-                <set var="passed_once" value="0"/>
-            </switch-scope>
-        </action>
         <action filter="flag-strip-in-enemy-net">
             <switch-scope inner="match">
                 <set var="passed_once" value="1"/>
+            </switch-scope>
+        </action>
+        <action filter="not(flag-strip-in-enemy-net)">
+            <switch-scope inner="match">
+                <set var="passed_once" value="0"/>
             </switch-scope>
         </action>
         <action id="pickup-flag"/>
@@ -821,7 +821,7 @@
             </action>
         </trigger>
     </if>
-    <!-- Enable or disable one pass rule-->
+    <!-- Enable or disable one pass rule -->
     <!-- Only permit triggering if match is not running due to flag capture issues -->
     <action id="enable-one-pass" expose="true" scope="match" filter="not(match-running)">
         <message text=" `e⚠ `aOne pass rule has been enabled!"/>
