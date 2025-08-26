@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.26-3 -->
+<!-- Version 2025.08.26-4 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -830,13 +830,19 @@
     <!-- Enable or disable one pass rule -->
     <!-- Only permit triggering if match is not running due to flag capture issues -->
     <action id="enable-one-pass" expose="true" scope="match" filter="not(match-running)">
-        <message text=" `e⚠ `aOne pass rule has been enabled!"/>
+        <message text="`aOne pass rule has been enabled!"/>
         <set var="one_pass_rule" value="1"/>
     </action>
     <action id="disable-one-pass" expose="true" scope="match" filter="not(match-running)">
-        <message text=" `e⚠ `cOne pass rule has been disabled."/>
+        <message text="`cOne pass rule has been disabled."/>
         <set var="one_pass_rule" value="0"/>
     </action>
+    <!-- Announce if one pass rule is in effect -->
+    <trigger filter="all(match-running,one_pass_rule=1)" scope="match">
+        <action>
+            <message text=" `e⚠ `aOne pass rule is in effect for this match!"/>
+        </action>
+    </trigger>
 </actions>
 <regions>
     <!-- Maps must define the portal regions and playing-field -->
