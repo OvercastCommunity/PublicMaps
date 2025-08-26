@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.26-2 -->
+<!-- Version 2025.08.26-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -60,6 +60,7 @@
     <constant id="mercy-limit">-1</constant>
     <constant id="indicator-outer-material">sea lantern</constant>
     <constant id="indicator-inner-material" delete="true"/>
+    <constant id="show-tutorial">1</constant> <!-- 0: disable tutorial; 1: enable tutorial -->
     <!-- Experimental or alternate options -->
     <constant id="team-flag-posts">false</constant>
     <constant id="gridiron-engine">false</constant>
@@ -147,7 +148,7 @@
         <effect duration="0s">absorption</effect>
         <effect duration="1s" amplifier="20">regeneration</effect>
     </kit>
-    <kit id="default-kit">
+    <kit id="tutorial-kit">
         <book show-other="false">
             <title>`e`lHow to Play</title>
             <author>MewTwoKing</author>
@@ -198,11 +199,15 @@
                 </page>
             </pages>
         </book>
-        <if constant="enable-night-vision" constant-value="true">
-            <effect>night vision</effect>
-        </if>
     </kit>
-    <give kit="default-kit" filter="observing"/>
+    <if constant="enable-night-vision" constant-value="true">
+        <give filter="observing">
+            <kit>
+                <effect>night vision</effect>
+            </kit>
+        </give>
+    </if>
+    <give kit="tutorial-kit" filter="all(observing,show_tutorial=1)"/>
     <give kit="${main-kit}" filter="during-buytime"/>
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="pre-round-reset-kit" filter="on-buytime"/>
@@ -226,6 +231,7 @@
     <variable id="do_fire" scope="match" default="0"/>
     <variable id="overtime" scope="match" default="${overtime-default}"/>
     <variable id="scoring_team" scope="match" default="0"/>
+    <variable id="show_tutorial" scope="match" default="${show-tutorial}"/>
     <variable id="player_state" scope="player" default="${initial}" exclusive="1"/>
     <variable id="player_score" scope="player" default="0"/>
     <variable id="current_team" scope="player" default="0"/>
