@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.25-4 -->
+<!-- Version 2025.08.26-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -44,6 +44,7 @@
     <constant id="dynamic-instaheal">false</constant>
     <constant id="instaheal-default">1</constant> <!-- 0: gapple healing; 1: instaheal; 2: flag carrier dependent -->
     <constant id="instaheal-required">8</constant>
+    <constant id="one-pass-default">0</constant> <!-- 0: one pass rule disabled; 1: enabled -->
     <!-- Maps can define these if needed, but these are sane defaults -->
     <constant id="team-one-pitch">0</constant>
     <constant id="team-two-pitch">0</constant>
@@ -231,6 +232,8 @@
     <variable id="goal_scorer" scope="player" exclusive="1"/>
     <variable id="flag_carrier" scope="player" exclusive="1"/>
     <variable id="instaheal" scope="match" default="${instaheal-default}"/>
+    <variable id="one_pass_rule" scope="match" default="${one-pass-default}"/>
+    <variable id="passed_once" scope="match" default="0"/>
 </variables>
 <filters>
     <any id="snowball-entity">
@@ -295,6 +298,10 @@
         </any>
     </all>
     <all id="team-one-scored">
+        <any id="one-pass-enforcement">
+            <variable var="one_pass_rule">0</variable>
+            <variable var="passed_once">1</variable>
+        </any>
         <team>team-one</team>
         <region id="team-two-portal"/>
         <variable var="can_score">1</variable>
@@ -303,6 +310,7 @@
         <alive/>
     </all>
     <all id="team-two-scored">
+        <filter id="one-pass-enforcement"/>
         <team>team-two</team>
         <region id="team-one-portal"/>
         <variable var="can_score">1</variable>
@@ -313,6 +321,7 @@
     <variable id="round-0" var="round_status">0</variable>
     <variable id="round-1" var="round_status">1</variable>
     <all id="should-teleport">
+        <filter id="one-pass-enforcement"/>
         <variable var="can_score">0</variable>
         <match-running/>
         <alive/>
@@ -402,6 +411,17 @@
             <variable var="player_state">${carry}</variable>
         </any>
     </all>
+    <relation id="ally-damage">ally</relation>
+    <any id="flag-strip-in-enemy-net">
+        <all>
+            <filter id="team-one"/>
+            <region id="team-two-portal"/>
+        </all>
+        <all>
+            <filter id="team-two"/>
+            <region id="team-one-portal"/>
+        </all>
+    </any>
     <if constant="team-flag-posts" constant-value="true">
         <flag-dropped id="dropped-from-team-one-post" post="team-one-post">flag</flag-dropped>
         <flag-dropped id="dropped-from-team-two-post" post="team-two-post">flag</flag-dropped>
@@ -471,6 +491,7 @@
                 </replacements>
             </message>
             <action id="pickup-sounds"/>
+            <set var="passed_once" value="0"/>
             <set var="game_state" value="${carry}"/>
             <set var="do_fire" value="1"/>
             <fill region="flag-posts" material="air"/>
@@ -487,6 +508,7 @@
     <action id="carrier-died-event" scope="player" filter="died-carrying">
         <set var="player_state" value="${initial}"/>
         <set var="game_state" value="${death}"/>
+        <set var="passed_once" value="0"/>
         <set var="flag_carrier" value="0"/>
         <switch-scope inner="match" outer="player">
             <message text="`aThe Flag carrier died!" actionbar="`aFlag carrier died!"/>
@@ -500,6 +522,7 @@
     <action id="reset-flag" scope="match">
         <!-- I think this makes more sense to be called reset-arena -->
         <set var="game_state" value="${initial}"/>
+        <set var="passed_once" value="0"/>
         <switch-scope inner="player">
             <set var="player_state" value="${initial}"/>
         </switch-scope>
@@ -520,6 +543,16 @@
         <action id="pickup-flag"/>
         <action id="apply-heal"/>
         <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
+        <action filter="ally-damage">
+            <switch-scope inner="match">
+                <set var="passed_once" value="1"/>
+            </switch-scope>
+        </action>
+        <action filter="not(ally-damage)">
+            <switch-scope inner="match">
+                <set var="passed_once" value="0"/>
+            </switch-scope>
+        </action>
         <switch-scope inner="match" outer="player">
             <message text="`e⚠ {player} `6caught the `c`lFootball`6!`r" actionbar="`l{player} `6caught!">
                 <replacements>
@@ -535,6 +568,16 @@
         <set var="player_state" value="${carry}"/>
         <set var="game_state" value="${carry}"/>
         <set var="flag_carrier" value="1"/>
+        <action filter="not(nets)">
+            <switch-scope inner="match">
+                <set var="passed_once" value="0"/>
+            </switch-scope>
+        </action>
+        <action filter="flag-strip-in-enemy-net">
+            <switch-scope inner="match">
+                <set var="passed_once" value="1"/>
+            </switch-scope>
+        </action>
         <action id="pickup-flag"/>
         <action id="apply-heal"/>
         <switch-scope inner="match" outer="player">
@@ -615,6 +658,7 @@
         <fill region="cages" material="air" filter="not-barrier"/>
         <set var="can_score" value="1"/>
         <set var="buytime" value="0"/>
+        <set var="passed_once" value="0"/>
         <action id="go-message"/>
     </action>
     <action id="reset-counter" scope="match">
@@ -777,6 +821,16 @@
             </action>
         </trigger>
     </if>
+    <!-- Enable or disable one pass rule-->
+    <!-- Only permit triggering if match is not running due to flag capture issues -->
+    <action id="enable-one-pass" expose="true" scope="match" filter="not(match-running)">
+        <message text=" `e⚠ `aOne pass rule has been enabled!"/>
+        <set var="one_pass_rule" value="1"/>
+    </action>
+    <action id="disable-one-pass" expose="true" scope="match" filter="not(match-running)">
+        <message text=" `e⚠ `cOne pass rule has been disabled."/>
+        <set var="one_pass_rule" value="0"/>
+    </action>
 </actions>
 <regions>
     <!-- Maps must define the portal regions and playing-field -->
@@ -851,15 +905,16 @@
           carry-message="`f`lYou are the `b`lFlag `f`lcarrier!"
           show-messages="false"
           show-effects="false"
-          capture-filter="carrying-football"
+          capture-filter="all(carrying-football,one-pass-enforcement)"
           post="default-post">
+        <!-- I promise we'll change the deny message later but this is funny for now -->
         <unless constant="team-flag-posts" constant-value="true">
-            <net points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
-            <net points="${score-points}" region="team-two-portal" capture-filter="team-one"/>
+            <net deny-message="Does he know?" points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
+            <net deny-message="Does he know?" points="${score-points}" region="team-two-portal" capture-filter="team-one"/>
         </unless>
         <if constant="team-flag-posts" constant-value="true">
-            <net points="${score-points}" region="team-one-portal" capture-filter="team-two" post="team-one-post"/>
-            <net points="${score-points}" region="team-two-portal" capture-filter="team-one" post="team-two-post"/>
+            <net deny-message="Does he know?" points="${score-points}" region="team-one-portal" capture-filter="team-two" post="team-one-post"/>
+            <net deny-message="Does he know?" points="${score-points}" region="team-two-portal" capture-filter="team-one" post="team-two-post"/>
         </if>
     </flag>
 </flags>
