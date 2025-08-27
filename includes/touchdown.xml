@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.26-4 -->
+<!-- Version 2025.08.27-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -44,7 +44,7 @@
     <constant id="dynamic-instaheal">false</constant>
     <constant id="instaheal-default">1</constant> <!-- 0: gapple healing; 1: instaheal; 2: flag carrier dependent -->
     <constant id="instaheal-required">8</constant>
-    <constant id="one-pass-default">0</constant> <!-- 0: one pass rule disabled; 1: enabled -->
+    <constant id="one-pass-default">1</constant> <!-- 0: one pass rule disabled; 1: enabled -->
     <!-- Maps can define these if needed, but these are sane defaults -->
     <constant id="team-one-pitch">0</constant>
     <constant id="team-two-pitch">0</constant>
@@ -304,23 +304,29 @@
         </any>
     </all>
     <all id="team-one-scored">
-        <any id="one-pass-enforcement">
-            <variable var="one_pass_rule">0</variable>
-            <variable var="passed_once">1</variable>
-        </any>
         <team>team-one</team>
         <region id="team-two-portal"/>
         <variable var="can_score">1</variable>
         <variable var="player_state">${carry}</variable>
+        <not>
+            <flag-carried>flag</flag-carried>
+        </not>
+        <any id="one-pass-enforcement">
+            <variable var="one_pass_rule">0</variable>
+            <variable var="passed_once">1</variable>
+        </any>
         <match-running/>
         <alive/>
     </all>
     <all id="team-two-scored">
-        <filter id="one-pass-enforcement"/>
         <team>team-two</team>
         <region id="team-one-portal"/>
         <variable var="can_score">1</variable>
         <variable var="player_state">${carry}</variable>
+        <not>
+            <flag-carried>flag</flag-carried>
+        </not>
+        <filter id="one-pass-enforcement"/>
         <match-running/>
         <alive/>
     </all>
@@ -417,7 +423,24 @@
             <variable var="player_state">${carry}</variable>
         </any>
     </all>
-    <relation id="ally-damage">ally</relation>
+    <not id="return-flag-to-carrier">
+        <any>
+            <filter id="has-flag"/>
+            <all>
+                <any>
+                    <all>
+                        <filter id="team-one"/>
+                        <region id="team-two-portal"/>
+                    </all>
+                    <all>
+                        <filter id="team-two"/>
+                        <region id="team-one-portal"/>
+                    </all>
+                </any>
+                <filter id="one-pass-enforcement"/>
+            </all>
+        </any>
+    </not>
     <any id="flag-strip-in-enemy-net">
         <all>
             <filter id="team-one"/>
@@ -428,6 +451,7 @@
             <region id="team-one-portal"/>
         </all>
     </any>
+    <relation id="ally-damage">ally</relation>
     <if constant="team-flag-posts" constant-value="true">
         <flag-dropped id="dropped-from-team-one-post" post="team-one-post">flag</flag-dropped>
         <flag-dropped id="dropped-from-team-two-post" post="team-two-post">flag</flag-dropped>
@@ -620,7 +644,7 @@
     </action>
     <trigger action="reset-player-state" filter="reset-observer-variables" scope="player"/>
     <trigger action="flag-pickup-event" filter="all(has-flag,player_state=${initial})" scope="player"/>
-    <trigger action="pickup-flag" filter="not(any(has-flag,nets))" scope="player"/>
+    <trigger action="pickup-flag" filter="return-flag-to-carrier" scope="player"/>
     <trigger action="flag-entity-pickup-event" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
     <trigger action="reset-kit-after-throw" filter="flag-reset-after-throw" scope="player"/>
@@ -828,18 +852,20 @@
         </trigger>
     </if>
     <!-- Enable or disable one pass rule -->
-    <!-- Only permit triggering if match is not running due to flag capture issues -->
-    <action id="enable-one-pass" expose="true" scope="match" filter="not(match-running)">
-        <message text="`aOne pass rule has been enabled!"/>
+    <action id="enable-one-pass" expose="true" scope="match">
+        <message text=" `e⚠ `aOne pass rule has been enabled!"/>
         <set var="one_pass_rule" value="1"/>
     </action>
-    <action id="disable-one-pass" expose="true" scope="match" filter="not(match-running)">
-        <message text="`cOne pass rule has been disabled."/>
+    <action id="disable-one-pass" expose="true" scope="match">
+        <message text=" `e⚠ `cOne pass rule has been disabled!"/>
         <set var="one_pass_rule" value="0"/>
     </action>
     <!-- Announce if one pass rule is in effect -->
-    <trigger filter="all(match-running,one_pass_rule=1)" scope="match">
-        <action>
+    <trigger scope="match">
+        <filter>
+            <after filter="match-running" duration="3s"/>
+        </filter>
+        <action filter="one_pass_rule=1">
             <message text=" `e⚠ `aOne pass rule is in effect for this match!"/>
         </action>
     </trigger>
@@ -919,14 +945,27 @@
           show-effects="false"
           capture-filter="all(carrying-football,one-pass-enforcement)"
           post="default-post">
-        <!-- I promise we'll change the deny message later but this is funny for now -->
         <unless constant="team-flag-posts" constant-value="true">
-            <net deny-message="Does he know?" points="${score-points}" region="team-one-portal" capture-filter="team-two"/>
-            <net deny-message="Does he know?" points="${score-points}" region="team-two-portal" capture-filter="team-one"/>
+            <net deny-message=""
+                 points="${score-points}"
+                 region="team-one-portal"
+                 capture-filter="all(team-two,team-one-portal)"/>
+            <net deny-message=""
+                 points="${score-points}"
+                 region="team-two-portal"
+                 capture-filter="all(team-one,team-two-portal)"/>
         </unless>
         <if constant="team-flag-posts" constant-value="true">
-            <net deny-message="Does he know?" points="${score-points}" region="team-one-portal" capture-filter="team-two" post="team-one-post"/>
-            <net deny-message="Does he know?" points="${score-points}" region="team-two-portal" capture-filter="team-one" post="team-two-post"/>
+            <net deny-message=""
+                points="${score-points}"
+                region="team-one-portal"
+                capture-filter="all(team-two,team-one-portal)"
+                post="team-one-post"/>
+            <net deny-message=""
+                 points="${score-points}"
+                 region="team-two-portal"
+                 capture-filter="all(team-one,team-two-portal)"
+                 post="team-two-post"/>
         </if>
     </flag>
 </flags>
