@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.27-1 -->
+<!-- Version 2025.08.27-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -44,7 +44,7 @@
     <constant id="dynamic-instaheal">false</constant>
     <constant id="instaheal-default">1</constant> <!-- 0: gapple healing; 1: instaheal; 2: flag carrier dependent -->
     <constant id="instaheal-required">8</constant>
-    <constant id="one-pass-default">1</constant> <!-- 0: one pass rule disabled; 1: enabled -->
+    <constant id="one-pass-default">0</constant> <!-- 0: one pass rule disabled; 1: enabled -->
     <!-- Maps can define these if needed, but these are sane defaults -->
     <constant id="team-one-pitch">0</constant>
     <constant id="team-two-pitch">0</constant>
