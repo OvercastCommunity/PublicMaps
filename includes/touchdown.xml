@@ -1,11 +1,11 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.31-3 -->
+<!-- Version 2025.08.31-4 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
-    <!-- game_state & player_state -->
+    <!-- game_state & player_state values -->
     <constant id="initial">0</constant>
     <constant id="carry">1</constant>
     <constant id="throw">2</constant>
@@ -59,7 +59,7 @@
     <constant id="deny-block-interaction">true</constant>
     <constant id="overtime-default">1</constant> <!-- 0: no overtime; 1: PGM default; 2: Tiebreaker mode -->
     <constant id="mercy-limit">-1</constant>
-    <constant id="indicator-outer-material">sea lantern</constant>
+    <constant id="indicator-outer-material">sea lantern</constant> <!-- Delete to disable physical indicators -->
     <constant id="indicator-inner-material" delete="true"/>
     <constant id="show-tutorial">1</constant> <!-- 0: disable tutorial; 1: enable tutorial -->
     <!-- Experimental or alternate options -->
@@ -528,8 +528,10 @@
             <set var="do_fire" value="1"/>
             <fill region="flag-posts" material="air"/>
             <unless constant="team-flag-posts" constant-value="true">
-                <fill region="flag-indicator-upper" material="air"/>
-                <fill region="flag-indicator-lower" material="air"/>
+                <unless constant="indicator-outer-material" constant-comparison="defined delete">
+                    <fill region="flag-indicator-upper" material="air"/>
+                    <fill region="flag-indicator-lower" material="air"/>
+                </unless>
             </unless>
         </switch-scope>
     </action>
@@ -559,8 +561,10 @@
             <set var="player_state" value="${initial}"/>
         </switch-scope>
         <unless constant="team-flag-posts" constant-value="true">
-            <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
-            <fill region="flag-indicator-lower" material="${indicator-outer-material}"/>
+            <unless constant="indicator-outer-material" constant-comparison="defined delete">
+                <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
+                <fill region="flag-indicator-lower" material="${indicator-outer-material}"/>
+            </unless>
             <unless constant="indicator-inner-material" constant-comparison="defined delete">
                 <fill region="flag-indicator-upper-inner" material="${indicator-inner-material}"/>
                 <fill region="flag-indicator-lower-inner" material="${indicator-inner-material}"/>
