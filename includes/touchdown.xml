@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.31-2 -->
+<!-- Version 2025.08.31-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -877,7 +877,7 @@
     <!-- Tell player why they can't capture the flag if one pass enabled -->
     <trigger scope="player" filter="all(has-flag,in-capture-region,not(one-pass-enforcement))">
         <action>
-            <message text=" `e⚠ `cYou must pass the flag to a teammate before scoring!" actionbar="`l`cYou must pass the flag to a teammate before scoring!"/>
+            <message text=" `e⚠ `cYou must pass the flag to a teammate before scoring!" actionbar="`c`lYou must pass the flag to a teammate before scoring!"/>
             <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
         </action>
     </trigger>
