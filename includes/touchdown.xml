@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.08.27-2 -->
+<!-- Version 2025.08.31-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -910,7 +910,7 @@
     <portal destination="team-one-spawn" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}" sound="false"/>
     <portal destination="team-two-spawn" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
 </portals>
-<flags flag-proximity-metric="none" net-proximity-metric="none">
+<flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
     <post id="default-post"
           yaw="${flag-yaw}"
           respawn-time="${flag-respawn}"
