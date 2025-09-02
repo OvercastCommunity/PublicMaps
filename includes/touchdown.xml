@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.01-1 -->
+<!-- Version 2025.09.01-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -458,8 +458,10 @@
     <relation id="ally-damage">ally</relation>
     <relation id="enemy-damage">enemy</relation>
     <if constant="team-flag-posts" constant-value="true">
-        <flag-dropped id="dropped-from-team-one-post" post="team-one-post">flag</flag-dropped>
-        <flag-dropped id="dropped-from-team-two-post" post="team-two-post">flag</flag-dropped>
+        <any id="dropped-from-team-posts">
+            <flag-dropped post="team-one-post">flag</flag-dropped>
+            <flag-dropped post="team-two-post">flag</flag-dropped>
+        </any>
     </if>
 </filters>
 <actions>
@@ -943,7 +945,7 @@
               recover-time="0s"
               pickup-filter="can-pickup-flag"
               fallback="default-post">
-            <post respawn-filter="not(dropped-from-team-one-post)">${team-one-flag-post}</post>
+            <post respawn-filter="not(dropped-from-team-posts)">${team-one-flag-post}</post>
         </post>
         <post id="team-two-post"
               yaw="${team-one-yaw}"
@@ -951,7 +953,7 @@
               recover-time="0s"
               pickup-filter="can-pickup-flag"
               fallback="default-post">
-            <post respawn-filter="not(dropped-from-team-two-post)">${team-two-flag-post}</post>
+            <post respawn-filter="not(dropped-from-team-posts)">${team-two-flag-post}</post>
         </post>
     </if>
     <flag id="flag"
