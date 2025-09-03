@@ -6,7 +6,7 @@
 <variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
 <variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
 <variant id="tdm" world="tdm">TDM</variant>
-<version>2.1.0</version>
+<version>2.1.1</version>
 <unless variant="tdm">
     <gamemode>ctf</gamemode>
 </unless>
@@ -40,10 +40,15 @@
     <phase>staging</phase>
 </if>
 <unless variant="tdm">
+    <!-- Additional clouds will appear 10 seconds after this time -->
+    <constant id="clouds-appear-notification">7m50s</constant>
+    <constant id="clouds-appear-in-minutes">8</constant>
     <constant id="overtime">1m</constant>
 </unless>
 <if variant="tdm">
-    <constant id="time-limit">10</constant>
+    <constant id="clouds-appear-notification">5m50s</constant>
+    <constant id="clouds-appear-in-minutes">6</constant>
+    <constant id="time-limit">8</constant>
     <constant id="overtime" delete="true"/>
     <constant id="max-overtime" delete="true"/>
     <phase>development</phase>
@@ -95,8 +100,8 @@
 </rules>
 <unless variant="classic,king_ranch,king_ranch_og">
     <broadcasts>
-        <alert after="1s">An additional lane in the clouds will spawn after 8 minutes!</alert>
-        <alert after="8m">An additional lane has spawned in the clouds!</alert>
+        <alert after="1s">An additional lane in the clouds will spawn after ${clouds-appear-in-minutes} minutes!</alert>
+        <alert after="${clouds-appear-in-minutes}m">An additional lane has spawned in the clouds!</alert>
         <unless variant="tdm">
             <alert after="15m">If the match ends in a tie, the game will enter overtime!</alert>
         </unless>
@@ -360,7 +365,7 @@
         <dynamic structure="clouds-lane">
             <trigger>
                 <after duration="10" message="Additional clouds appearing in {0}">
-                    <time>7m50s</time>
+                    <time>${clouds-appear-notification}</time>
                 </after>
             </trigger>
         </dynamic>
