@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.01-2 -->
+<!-- Version 2025.09.03-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -457,12 +457,7 @@
     </any>
     <relation id="ally-damage">ally</relation>
     <relation id="enemy-damage">enemy</relation>
-    <if constant="team-flag-posts" constant-value="true">
-        <any id="dropped-from-team-posts">
-            <flag-dropped post="team-one-post">flag</flag-dropped>
-            <flag-dropped post="team-two-post">flag</flag-dropped>
-        </any>
-    </if>
+    <flag-captured id="flag-captured">flag</flag-captured>
 </filters>
 <actions>
     <action id="give-main-kit" scope="player">
@@ -940,20 +935,22 @@
           pickup-filter="can-pickup-flag">${flag-post}</post>
     <if constant="team-flag-posts" constant-value="true">
         <post id="team-one-post"
+              name="${team-one-name}'s Post"
               yaw="${team-two-yaw}"
               respawn-time="${flag-respawn}"
               recover-time="0s"
               pickup-filter="can-pickup-flag"
               fallback="default-post">
-            <post respawn-filter="not(dropped-from-team-posts)">${team-one-flag-post}</post>
+            <post respawn-filter="flag-captured">${team-one-flag-post}</post>
         </post>
         <post id="team-two-post"
+              name="${team-two-name}'s Post"
               yaw="${team-one-yaw}"
               respawn-time="${flag-respawn}"
               recover-time="0s"
               pickup-filter="can-pickup-flag"
               fallback="default-post">
-            <post respawn-filter="not(dropped-from-team-posts)">${team-two-flag-post}</post>
+            <post respawn-filter="flag-captured">${team-two-flag-post}</post>
         </post>
     </if>
     <flag id="flag"
@@ -966,7 +963,8 @@
           show-messages="false"
           show-effects="false"
           capture-filter="all(carrying-football,one-pass-enforcement)"
-          post="default-post">
+          post="default-post"
+          show-respawn-on-pickup="true">
         <unless constant="team-flag-posts" constant-value="true">
             <net deny-message=""
                  points="${score-points}"
