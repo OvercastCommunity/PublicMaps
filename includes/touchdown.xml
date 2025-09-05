@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.03-3 -->
+<!-- Version 2025.09.04-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -511,8 +511,9 @@
     <action id="pickup-flag" scope="player" filter="all(can_score=1,not(game_state=${throw}))">
         <pickup-flag flag="flag"/>
     </action>
-    <action id="flag-pickup-event" scope="player" filter="game_state=${initial}">
+    <action id="flag-pickup-event" scope="player">
         <set var="player_state" value="${carry}"/>
+        <set var="game_state" value="${carry}"/>
         <set var="flag_carrier" value="1"/>
         <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
         <action id="apply-heal"/>
@@ -524,7 +525,6 @@
             </message>
             <action id="pickup-sounds"/>
             <set var="passed_once" value="0"/>
-            <set var="game_state" value="${carry}"/>
             <set var="do_fire" value="1"/>
             <fill region="flag-posts" material="air"/>
             <unless constant="indicator-outer-material" constant-comparison="defined delete">
@@ -598,7 +598,7 @@
             <action id="flag-fire"/> <!-- Just in case -->
         </switch-scope>
     </action>
-    <action id="flag-steal-event" scope="player">
+    <action id="flag-steal-event" scope="player" filter="game_state=${carry}">
         <set var="player_state" value="${carry}"/>
         <set var="game_state" value="${carry}"/>
         <set var="flag_carrier" value="1"/>
