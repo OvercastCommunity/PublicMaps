@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Metro</name>
-<version>1.8.10</version>
+<version>1.8.11</version>
 <objective>Destroy the enemy monuments</objective>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- yoyo_power -->
@@ -10,7 +10,7 @@
     <team id="blue" color="blue" max="40">Blue</team>
 </teams>
 <broadcasts>
-    <tip after="2s" every="5m">The air on the surface is `ctoxic`r, make sure you have a `egas mask`r on before going out.</tip>
+    <tip filter="toxic_air=1" after="2s" every="5m">The air on the surface is `ctoxic`r, make sure you have a `egas mask`r on before going out.</tip>
     <tip after="2s" every="5m">You get a `egas mask`r after you kill an enemy.</tip>
 </broadcasts>
 <kits>
@@ -44,6 +44,8 @@
         <effect duration="0" amplifier="0">slow digging</effect>
         <effect duration="0" amplifier="0">weakness</effect>
     </kit>
+    <give kit="give-toxins" filter="all(toxic_air=1,not(has-mask),toxic-region,participating)"/>
+    <give kit="remove-toxins" filter="all(any(toxic_air=0,has-mask,nontoxic-region),participating)"/>
 </kits>
 <spawns safe="true">
     <spawn team="red" kit="spawn-kit">
@@ -70,7 +72,7 @@
         <material>iron block</material>
     </all>
     <wearing id="has-mask">
-        <item locked="true" enchantment="protection environmental:3" name="`6Gas Mask" lore="`r`7Anti-Gas I" damage="15" material="stained glass"/>
+        <item locked="true" enchantment="protection environmental:3" name="`6Gas Mask" lore="`r`7Anti-Gas I" damage="15" material="stained glass"/> <!-- prevent creative mode + /hat via metadata? -->
     </wearing>
     <deny id="deny-lava">
         <material>lava</material>
@@ -123,15 +125,15 @@
     </union>
     <apply region="blue-spawn-a-protection" enter="only-blue" message="You may not enter the enemy's spawn"/>
     <apply region="red-spawn-a-protection" enter="only-red" message="You may not enter the enemy's spawn"/>
-    <apply region="toxic-region" kit="give-toxins"/>
-    <apply region="toxic-region" kit="remove-toxins" filter="has-mask"/>
-    <apply region="nontoxic-region" kit="remove-toxins"/>
     <apply region="blue-spawns-protection" block="blue-spawn-check" message="You may not modify the spawns"/>
     <apply region="red-spawns-protection" block="red-spawn-check" message="You may not modify the spawns"/>
     <apply region="lava-lake" block="deny-lava"/>
     <apply region="observer-spawn-protection" block="never"/>
     <apply block="deny(void)" message="You may not place blocks outside the map"/>
 </regions>
+<variables>
+    <variable id="toxic_air" scope="match" default="1"/>
+</variables>
 <destroyables materials="obsidian">
     <destroyables name="Underground Monument">
         <destroyable owner="blue" region="blue-underground"/>
