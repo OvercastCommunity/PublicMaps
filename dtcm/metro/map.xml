@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Metro</name>
-<version>1.8.9</version>
+<version>1.8.10</version>
 <objective>Destroy the enemy monuments</objective>
 <authors>
     <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- yoyo_power -->
@@ -70,7 +70,7 @@
         <material>iron block</material>
     </all>
     <wearing id="has-mask">
-        <item name="`6Gas Mask" enchantment="protection environmental:3" lore="`7Anti-Gas I" damage="15" locked="true">stained glass</item>
+        <item locked="true" enchantment="protection environmental:3" name="`6Gas Mask" lore="`r`7Anti-Gas I" damage="15" material="stained glass"/>
     </wearing>
     <deny id="deny-lava">
         <material>lava</material>
