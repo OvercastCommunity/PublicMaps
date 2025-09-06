@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.06-2 -->
+<!-- Version 2025.09.06-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -476,9 +476,6 @@
             <action id="throw-sounds"/>
         </switch-scope>
     </action>
-    <action id="reset-state-after-throw" scope="player" filter="player_state=${throw}">
-        <set var="player_state" value="${initial}"/>
-    </action>
     <action id="throw-sounds" scope="match">
         <sound key="${entity.snowball.throw}" volume="1" pitch="0.5"/>
         <sound key="${entity.snowball.throw}" volume="1" pitch="0.6"/>
@@ -549,6 +546,9 @@
         <action id="reset-after-capture">
             <set var="game_state" value="${initial}"/>
             <set var="passed_once" value="0"/>
+            <switch-scope inner="player">
+                <action id="reset-player-state"/>
+            </switch-scope>
         </action>
         <unless constant="indicator-outer-material" constant-comparison="defined delete">
             <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
@@ -618,8 +618,10 @@
             <action id="pickup-sounds"/>
         </switch-scope>
     </action>
-    <action id="reset-player-state" scope="player">
-        <set var="player_state" value="${initial}"/>
+    <action id="reset-after-throw" scope="player" filter="player_state=${throw}">
+        <action id="reset-player-state">
+            <set var="player_state" value="${initial}"/>
+        </action>
     </action>
     <action id="flag-entity-pickup-event" scope="player">
         <set var="game_state" value="${initial}"/>
@@ -646,7 +648,7 @@
     <trigger action="pickup-flag" filter="return-flag-to-carrier" scope="player"/>
     <trigger action="flag-entity-pickup-event" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
-    <trigger action="reset-state-after-throw" filter="flag-reset" scope="player"/>
+    <trigger action="reset-after-throw" filter="flag-reset" scope="player"/>
     <trigger action="reset-flag" filter="flag-reset" scope="match"/>
     <trigger action="reset-after-capture" filter="immediately-after-capture" scope="match"/>
     <trigger action="reset-flag" filter="after-capture" scope="match"/>
@@ -657,6 +659,7 @@
     <trigger action="give-main-kit" filter="player_state=${throw}" scope="player"/>
     <trigger action="flag-fire" filter="flag-fire-go" scope="match"/>
     <action id="increment-round" scope="player">
+        <set var="score" value="score+${score-points}"/>
         <set var="player_score" value="player_score+1"/>
         <message text=" `e⚠ `aYou scored a touchdown!!"/>
         <message text=" `2You have scored `e{amount} `2touchdown(s) in this match.">
@@ -962,22 +965,18 @@
           show-respawn-on-pickup="true">
         <unless constant="team-flag-posts" constant-value="true">
             <net deny-message=""
-                 points="${score-points}"
                  region="team-one-portal"
                  capture-filter="all(team-two,team-one-portal)"/>
             <net deny-message=""
-                 points="${score-points}"
                  region="team-two-portal"
                  capture-filter="all(team-one,team-two-portal)"/>
         </unless>
         <if constant="team-flag-posts" constant-value="true">
             <net deny-message=""
-                points="${score-points}"
                 region="team-one-portal"
                 capture-filter="all(team-two,team-one-portal)"
                 post="team-one-post"/>
             <net deny-message=""
-                 points="${score-points}"
                  region="team-two-portal"
                  capture-filter="all(team-one,team-two-portal)"
                  post="team-two-post"/>
@@ -1009,7 +1008,7 @@
     <damage>fall</damage>
     <damage ally="${disable-ally-damage}" enemy="false" other="false">entity attack</damage>
 </disabledamage>
-<damage attacker-action="reset-state-after-throw" victim-action="flag-receive-event"/>
+<damage attacker-action="reset-after-throw" victim-action="flag-receive-event"/>
 <friendlyfire>on</friendlyfire>
 <friendlyfirerefund>${friendly-fire-refund}</friendlyfirerefund>
 <respawn delay="${respawn-timer}" auto="true"/>
