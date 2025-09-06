@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.04-1 -->
+<!-- Version 2025.09.06-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -291,9 +291,7 @@
     <after id="just-before-reset" duration="${flag-prerespawn}" filter="initiate-reset"/>
     <all id="valid-receive">
         <variable var="can_score">1</variable>
-        <attacker>
-            <variable var="player_state">${throw}</variable>
-        </attacker>
+        <variable var="game_state">${throw}</variable>
         <victim>
             <cause>projectile</cause>
         </victim>
@@ -478,7 +476,7 @@
             <action id="throw-sounds"/>
         </switch-scope>
     </action>
-    <action id="reset-kit-after-throw" scope="player" filter="player_state=${throw}">
+    <action id="reset-state-after-throw" scope="player" filter="player_state=${throw}">
         <set var="player_state" value="${initial}"/>
     </action>
     <action id="throw-sounds" scope="match">
@@ -651,7 +649,7 @@
     <trigger action="pickup-flag" filter="return-flag-to-carrier" scope="player"/>
     <trigger action="flag-entity-pickup-event" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
-    <trigger action="reset-kit-after-throw" filter="flag-reset" scope="player"/>
+    <trigger action="reset-state-after-throw" filter="flag-reset" scope="player"/>
     <trigger action="reset-flag" filter="flag-reset" scope="match"/>
     <trigger action="reset-after-capture" filter="immediately-after-capture" scope="match"/>
     <trigger action="reset-flag" filter="after-capture" scope="match"/>
@@ -1014,7 +1012,7 @@
     <damage>fall</damage>
     <damage ally="${disable-ally-damage}" enemy="false" other="false">entity attack</damage>
 </disabledamage>
-<damage victim-action="flag-receive-event"/>
+<damage attacker-action="reset-state-after-throw" victim-action="flag-receive-event"/>
 <friendlyfire>on</friendlyfire>
 <friendlyfirerefund>${friendly-fire-refund}</friendlyfirerefund>
 <respawn delay="${respawn-timer}" auto="true"/>
