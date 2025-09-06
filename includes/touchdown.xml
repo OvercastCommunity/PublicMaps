@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.06-1 -->
+<!-- Version 2025.09.06-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -549,9 +549,6 @@
         <action id="reset-after-capture">
             <set var="game_state" value="${initial}"/>
             <set var="passed_once" value="0"/>
-            <switch-scope inner="player">
-                <set var="player_state" value="${initial}"/>
-            </switch-scope>
         </action>
         <unless constant="indicator-outer-material" constant-comparison="defined delete">
             <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
@@ -699,17 +696,17 @@
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
     <trigger filter="after-round-1" action="reset-counter" scope="match"/>
     <trigger filter="team-one" scope="player">
-        <action scope="player">
+        <action>
             <set var="current_team" value="1"/>
         </action>
     </trigger>
     <trigger filter="team-two" scope="player">
-        <action scope="player">
+        <action>
             <set var="current_team" value="2"/>
         </action>
     </trigger>
     <trigger filter="observing" scope="player">
-        <action scope="player">
+        <action>
             <set var="current_team" value="0"/>
         </action>
     </trigger>
