@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.08-2 -->
+<!-- Version 2025.09.08-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -850,13 +850,13 @@
     </action>
     <!-- Dynamic instaheal -->
     <if constant="dynamic-instaheal" constant-value="true">
-        <trigger filter="all(not(instaheal-min),match-started)" scope="match">
+        <trigger filter="all(not(instaheal-min),match-running)" scope="match">
             <action>
                 <message text=" `e⚠ `fDue to a lack of players, `6❤ `e`lGAPPLE`f healing will be used."/>
                 <set var="instaheal" value="0"/>
             </action>
         </trigger>
-        <trigger filter="all(instaheal-min,match-started)" scope="match">
+        <trigger filter="all(instaheal-min,match-running)" scope="match">
             <action>
                 <message text=" `e⚠ `d❤ `c`lI`6`lN`e`lS`a`lT`b`lA`d`lH`c`lE`6`lA`e`lL`f is now active!"/>
                 <set var="instaheal" value="1"/>
@@ -875,14 +875,16 @@
         <set var="one_pass_rule" value="0"/>
     </action>
     <!-- Announce if one pass rule is in effect -->
-    <trigger scope="match" filter="all(3-seconds,at-least-2v2)">
+    <trigger scope="match" filter="all(at-least-2v2,3-seconds)">
         <action filter="one_pass_rule=1">
             <message text=" `e⚠ `aOne pass rule is in effect for this match!"/>
+            <sound preset="alert"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="all(3-seconds,not(at-least-2v2))">
+    <trigger scope="match" filter="all(not(at-least-2v2),3-seconds)">
         <action filter="one_pass_rule=1">
             <message text=" `e⚠ `cDue to team sizes, one pass rule is not in effect."/>
+            <sound preset="alert"/>
         </action>
     </trigger>
     <!-- Tell player why they can't capture the flag if one pass enabled -->
@@ -947,7 +949,6 @@
           pickup-filter="can-pickup-flag">${flag-post}</post>
     <if constant="team-flag-posts" constant-value="true">
         <post id="team-one-post"
-              name="${team-one-name}'s Post"
               yaw="${team-two-yaw}"
               respawn-time="${flag-respawn}"
               recover-time="0s"
@@ -956,7 +957,6 @@
             <post respawn-filter="flag-captured">${team-one-flag-post}</post>
         </post>
         <post id="team-two-post"
-              name="${team-two-name}'s Post"
               yaw="${team-one-yaw}"
               respawn-time="${flag-respawn}"
               recover-time="0s"
@@ -974,8 +974,7 @@
           show-messages="false"
           show-effects="false"
           capture-filter="all(carrying-football,one-pass-enforcement)"
-          post="default-post"
-          show-respawn-on-pickup="true">
+          post="default-post">
         <unless constant="team-flag-posts" constant-value="true">
             <net region="team-one-portal"
                  capture-filter="all(team-two,team-one-portal)"/>
