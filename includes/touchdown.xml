@@ -323,8 +323,8 @@
             <variable var="passed_once">1</variable>
             <not>
                 <all id="at-least-2v2">
-                    <players filter="team-one" min="1"/>
-                    <players filter="team-two" min="1"/>
+                    <players filter="team-one" min="2"/>
+                    <players filter="team-two" min="2"/>
                 </all>
             </not>
         </any>
