@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.08-1 -->
+<!-- Version 2025.09.08-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -88,12 +88,11 @@
 <include id="gapple-kill-reward"/>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
 <broadcasts>
-    <alert filter="one_pass_rule=1" after="3s">`aOne pass rule is in effect for this match!</alert>
     <tip filter="show_tutorial=1" after="10s" every="70s">You can `6pass`r to your teammates by throwing the Football!</tip>
     <tip filter="show_tutorial=1" after="25s" every="2m">Score by running into the end zone on the enemies' side!</tip>
 </broadcasts>
 <rules>
-    <rule>When one pass rule is in effect, a player must pass the flag to a teammate before it is capturable. End zone strips are exempt from this rule.</rule>
+    <rule>When one pass rule is in effect, a player must pass the flag to a teammate before it is capturable. End zone strips are exempt from this rule. This does not apply when matches are lower than 2v2.</rule>
 </rules>
 <teams>
     <team id="team-one" color="${team-one-color}" max="${team-size}" max-overfill="${max-overfill}">${team-one-name}</team>
@@ -322,6 +321,12 @@
         <any id="one-pass-enforcement">
             <variable var="one_pass_rule">0</variable>
             <variable var="passed_once">1</variable>
+            <not>
+                <all id="at-least-2v2">
+                    <players filter="team-one" min="1"/>
+                    <players filter="team-two" min="1"/>
+                </all>
+            </not>
         </any>
         <match-running/>
         <alive/>
@@ -460,6 +465,7 @@
     <relation id="ally-damage">ally</relation>
     <relation id="enemy-damage">enemy</relation>
     <flag-captured id="flag-captured">flag</flag-captured>
+    <after id="3-seconds" filter="match-running" duration="3s"/>
 </filters>
 <actions>
     <action id="give-main-kit" scope="player">
@@ -544,7 +550,7 @@
         <set var="passed_once" value="0"/>
         <set var="flag_carrier" value="0"/>
         <switch-scope inner="match">
-            <message text="`aThe Flag carrier died!" actionbar="`aFlag carrier died!"/>
+            <message text=" `e⚠ `aThe Flag carrier died!" actionbar="`aFlag carrier died!"/>
         </switch-scope>
     </action>
     <action id="reset-flag" scope="match">
@@ -857,7 +863,7 @@
             </action>
         </trigger>
     </if>
-    <!-- Enable or disable one pass rule -->
+    <!-- Enable or disable one pass rule manually -->
     <action id="enable-one-pass" expose="true" scope="match">
         <message text=" `e⚠ `aOne pass rule has been enabled!"/>
         <sound preset="alert"/>
@@ -868,6 +874,17 @@
         <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
         <set var="one_pass_rule" value="0"/>
     </action>
+    <!-- Announce if one pass rule is in effect -->
+    <trigger scope="match" filter="all(3-seconds,at-least-2v2)">
+        <action filter="one_pass_rule=1">
+            <message text=" `e⚠ `aOne pass rule is in effect for this match!"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="all(3-seconds,not(at-least-2v2))">
+        <action filter="one_pass_rule=1">
+            <message text=" `e⚠ `cDue to team sizes, one pass rule is not in effect."/>
+        </action>
+    </trigger>
     <!-- Tell player why they can't capture the flag if one pass enabled -->
     <trigger scope="player" filter="all(has-flag,in-capture-region,not(one-pass-enforcement))">
         <action>
