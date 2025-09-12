@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.08-3 -->
+<!-- Version 2025.09.11-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -751,7 +751,7 @@
     <action id="message-score-display-player" scope="player">
         <set var="goal_scorer" value="1"/>
         <switch-scope inner="match">
-            <message text=" `l» {player} `7takes it to the end zone!">
+            <message text=" `l» {player}`7 takes it to the end zone!">
                 <replacements>
                     <player id="player" var="goal_scorer"/>
                 </replacements>
