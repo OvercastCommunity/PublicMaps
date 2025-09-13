@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.12-1 -->
+<!-- Version 2025.09.12-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -87,7 +87,7 @@
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
 <stats>
-    <stat value="player_score" name="`6Touchdowns"/>
+    <stat value="player_score" name="Touchdowns"/>
 </stats>
 <time result="score" overtime="1m" max-overtime="1m">${time-limit}</time>
 <broadcasts>
