@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.12-2 -->
+<!-- Version 2025.09.13-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -928,9 +928,10 @@
         <nowhere id="flag-indicator-lower-inner"/>
     </if>
     <if constant="deny-endzone-entry" constant-value="true">
-        <apply enter="deny(team-one)" region="team-one-portal" message="You may not enter your own goal!"/>
-        <apply enter="deny(team-two)" region="team-two-portal" message="You may not enter your own goal!"/>
-        <apply enter="has-flag" region="nets" message="You may not enter the goal without the Flag!"/>
+        <apply enter="deny(team-one)" region="team-one-portal" message="You may not enter your team's own goal!"/>
+        <apply enter="deny(team-two)" region="team-two-portal" message="You may not enter your team's own goal!"/>
+        <apply enter="deny(not(has-flag))" region="nets" message="You may not enter the goal without the flag!"/>
+        <apply enter="deny(all(has-flag,not(one-pass-enforcement)))" region="nets" message="You must pass the flag to a teammate before scoring!"/>
     </if>
     <if constant="deny-block-interaction" constant-value="true">
         <apply block="never" use="never"/>
