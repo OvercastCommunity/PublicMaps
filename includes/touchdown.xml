@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.13-1 -->
+<!-- Version 2025.09.15-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -298,9 +298,9 @@
     <all id="valid-receive">
         <variable var="can_score">1</variable>
         <variable var="game_state">${throw}</variable>
-        <victim>
-            <cause>projectile</cause>
-        </victim>
+        <damager>
+            <entity>snowball</entity>
+        </damager>
         <victim>
             <region id="playing-field"/>
         </victim>
