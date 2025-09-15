@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Basilica</name>
-<version>2.1.8</version>
+<version>2.1.9</version>
 <variant id="5v5">5v5</variant>
 <objective>Capture the enemy flag as many times as possible before time runs out!</objective>
 <time result="score" overtime="1m" max-overtime="3m">12m</time>
@@ -35,17 +35,9 @@
         <effect>night vision</effect>
     </kit>
     <kit id="spawn-kit" parents="default-kit,base-kit"/>
-    <lend>
-        <kit>
-            <effect>slowness</effect>
-        </kit>
-        <filter>
-            <any>
-                <carrying-flag>blue-flag</carrying-flag>
-                <carrying-flag>red-flag</carrying-flag>
-            </any>
-        </filter>
-    </lend>
+    <kit id="flag-carry-kit">
+        <effect>slowness</effect>
+    </kit>
 </kits>
 <spawns>
     <default kit="default-kit">
@@ -73,14 +65,16 @@
     <flag id="blue-flag"
           name="Blue Flag"
           owner="blue-team"
-          color="blue">
+          color="blue"
+          carry-kit="flag-carry-kit">
         <post pickup-filter="red-team" recover-time="15s" respawn-time="10s">23.5,8,12.5</post>
         <net region="red-net" points="1"/>
     </flag>
     <flag id="red-flag"
           name="Red Flag"
           owner="red-team"
-          color="red">
+          color="red"
+          carry-kit="flag-carry-kit">
         <post pickup-filter="blue-team" recover-time="15s" respawn-time="10s">-22.5,8,12.5</post>
         <net region="blue-net" points="1"/>
     </flag>
