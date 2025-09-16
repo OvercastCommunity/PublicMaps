@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.15-3 -->
+<!-- Version 2025.09.16-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -470,6 +470,10 @@
     <flag-captured id="flag-captured">flag</flag-captured>
     <after id="0.1-seconds" filter="match-running" duration="0.1s"/>
     <after id="3-seconds" filter="match-running" duration="3s"/>
+    <all id="tied-match">
+        <rank team="team-one">1</rank>
+        <rank team="team-two">1</rank>
+    </all>
 </filters>
 <actions>
     <action id="give-main-kit" scope="player">
@@ -662,11 +666,11 @@
         </action>
     </action>
     <trigger action="reset-player-state" filter="reset-observer-variables" scope="player"/>
-    <trigger action="flag-pickup-event" filter="all(has-flag,player_state=${initial})" scope="player"/>
+    <trigger action="flag-pickup-event" filter="all(has-flag,not(player_state=${carry}))" scope="player"/>
     <trigger action="pickup-flag" filter="return-flag-to-carrier" scope="player"/>
     <trigger action="flag-entity-pickup-event" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
-    <trigger action="reset-after-throw" filter="flag-reset" scope="player"/>
+    <trigger action="reset-after-throw" filter="just-before-reset" scope="player"/>
     <trigger action="reset-flag" filter="flag-reset" scope="match"/>
     <trigger action="reset-after-capture" filter="immediately-after-capture" scope="match"/>
     <trigger action="reset-flag" filter="after-capture" scope="match"/>
@@ -679,10 +683,13 @@
     <action id="increment-round" scope="player">
         <set var="score" value="score+${score-points}"/>
         <set var="player_score" value="player_score+1"/>
-        <message text=" `e`l» `a`lYou scored a touchdown!"/>
-        <message text=" `2You have scored `e{amount} `2touchdown(s) in this match.">
+        <message text=" `2You have scored `e{amount} `2touchdown{plural} in this match.">
             <replacements>
                 <decimal id="amount" value="player_score"/>
+                <switch id="plural" value="player_score">
+                    <case match="0..1" result=""/>
+                    <case match="1.." result="s"/>
+                </switch>
             </replacements>
         </message>
         <switch-scope inner="match">
@@ -842,7 +849,7 @@
     </action>
     <!-- End match on score in tiebreaker mode (overtime=2) -->
     <trigger scope="match" filter="all(in-overtime,overtime=2)">
-        <action>
+        <action filter="tied-match">
             <set var="timelimit" value="-10"/>
             <message text=" `e⚠ `b`lTIEBREAKER! `7First team to score `awins `7the match."/>
         </action>
