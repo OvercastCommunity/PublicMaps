@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.15-2 -->
+<!-- Version 2025.09.15-3 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -483,7 +483,7 @@
         <set var="flag_carrier" value="0"/>
         <switch-scope inner="match">
             <drop-flag flag="flag"/>
-            <message text=" `e`l» {player} `6threw the `c`lFootball`6!`r" actionbar="`l{player} `6threw!">
+            <message text=" `e`l» {player}`6 threw the `c`lFootball`6!`r" actionbar="`l{player}`6 threw!">
                 <replacements>
                     <player id="player" var="flag_carrier"/>
                 </replacements>
@@ -529,7 +529,7 @@
         <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.2" stay="0.5" fade-out="0.2"/>
         <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
         <switch-scope inner="match">
-            <message text=" `e`l» {player} `6picked up the `c`lFlag`6!`r" actionbar="`l{player} `6picked up!">
+            <message text=" `e`l» {player}`6 picked up the `c`lFlag`6!`r" actionbar="`l{player}`6 picked up!">
                 <replacements>
                     <player id="player" var="flag_carrier"/>
                 </replacements>
@@ -554,7 +554,7 @@
         <set var="passed_once" value="0"/>
         <set var="flag_carrier" value="0"/>
         <switch-scope inner="match">
-            <message text=" `e`l» `aThe Flag carrier died!" actionbar="`aFlag carrier died!"/>
+            <message text=" `e`l» `a`lThe Flag carrier died!" actionbar="`a`lFlag carrier died!"/>
         </switch-scope>
     </action>
     <action id="reset-flag" scope="match">
@@ -576,7 +576,7 @@
         </unless>
         <kill-entities filter="snowball-entity"/>
         <action filter="match-start-delay">
-            <message text=" `e`l» `6The `c`lFlag`6 was `c`lReset`6!" actionbar="`c`lThe Flag was Reset!"/>
+            <message text=" `e`l»`6 The `c`lFlag`6 was `c`lReset`6!" actionbar="`c`lThe Flag was Reset!"/>
             <sound key="${entity.firework_rocket.twinkle}" volume="1" pitch="1"/>
             <sound key="${entity.item.pickup}" volume="0.5" pitch="1.5"/>
         </action>
@@ -600,7 +600,7 @@
             </switch-scope>
         </action>
         <switch-scope inner="match">
-            <message text=" `e`l» {player} `6caught the `c`lFootball`6!`r" actionbar="`l{player} `6caught!">
+            <message text=" `e`l» {player}`6 caught the `c`lFootball`6!`r" actionbar="`l{player}`6 caught!">
                 <replacements>
                     <player id="player" var="flag_carrier"/>
                 </replacements>
@@ -628,7 +628,7 @@
         <action id="apply-heal"/>
         <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="1" fade-out="0.5"/>
         <switch-scope inner="match">
-            <message text=" `e`l» {player} `6stripped the `c`lFlag`6!`r" actionbar="`l{player} `6stripped!">
+            <message text=" `e`l» {player}`6 stripped the `c`lFlag`6!`r" actionbar="`l{player}`6 stripped!">
                 <replacements>
                     <player id="player" var="flag_carrier"/>
                 </replacements>
@@ -679,7 +679,7 @@
     <action id="increment-round" scope="player">
         <set var="score" value="score+${score-points}"/>
         <set var="player_score" value="player_score+1"/>
-        <message text=" `e`l» `aYou scored a touchdown!!"/>
+        <message text=" `e`l» `a`lYou scored a touchdown!"/>
         <message text=" `2You have scored `e{amount} `2touchdown(s) in this match.">
             <replacements>
                 <decimal id="amount" value="player_score"/>
@@ -755,7 +755,7 @@
     <action id="message-score-display-player" scope="player">
         <set var="goal_scorer" value="1"/>
         <switch-scope inner="match">
-            <message text=" `l» {player}`7 takes it to the end zone!">
+            <message text=" `e`l» {player}`7 takes it to the end zone!">
                 <replacements>
                     <player id="player" var="goal_scorer"/>
                 </replacements>
