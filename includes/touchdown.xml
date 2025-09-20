@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.18-1 -->
+<!-- Version 2025.09.19-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -53,6 +53,7 @@
     <constant id="armor-kit">armor-kit</constant>
     <constant id="flag-carrier-kit">flag-carrier-kit</constant>
     <constant id="flag-carrier-effects">flag-carrier-effects</constant>
+    <constant id="flag-drop-kit">flag-drop-kit</constant>
     <constant id="flag-carrier-health">14</constant> <!-- Only relevant for default flag effect kit -->
     <constant id="fire-material">fire</constant>
     <constant id="flag-color">white</constant>
@@ -110,7 +111,6 @@
         <effect duration="${gapple-heal-duration}" amplifier="2">regeneration</effect>
     </kit>
     <kit id="main-kit">
-        <clear items="true" armor="false" effects="false"/>
         <item slot="0" unbreakable="true" name="${melee-weapon-name}" material="${melee-weapon}" enchantment="${melee-weapon-enchantment}" attribute="${melee-weapon-attribute}"/>
         <item slot="8" material="golden apple"/>
         <if constant="enable-night-vision" constant-value="true">
@@ -125,12 +125,12 @@
         <leggings unbreakable="true" locked="true" material="chainmail leggings"/>
         <boots unbreakable="true" locked="true" material="iron boots"/>
     </kit>
-    <kit id="football-kit">
-        <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
-    </kit>
     <kit id="flag-carrier-kit" force="true">
-        <kit id="${main-kit}"/>
-        <kit id="football-kit"/>
+        <action filter="not(carrying-football)">
+            <kit id="football-kit">
+                <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
+            </kit>
+        </action>
         <chestplate unbreakable="true" locked="true" color="FFFFFF" material="leather chestplate"/>
         <leggings unbreakable="true" locked="true" team-color="true" material="leather leggings"/>
         <boots unbreakable="true" team-color="true" locked="true" material="leather boots"/>
@@ -142,6 +142,18 @@
         <effect>slowness</effect>
         <effect duration="3s">fire resistance</effect>
         <max-health>${flag-carrier-health}</max-health>
+    </kit>
+    <kit id="flag-drop-kit" force="true">
+        <action filter="alive"> <!-- ??? need to make issue for error related to this -->
+            <action>
+                <replace-item>
+                    <find prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
+                    <replace material="air"/>
+                </replace-item>
+            </action>
+            <kit id="${armor-kit}"/>
+            <action id="apply-heal"/>
+        </action>
     </kit>
     <kit id="pre-round-kit" force="true">
         <effect>invisibility</effect>
@@ -476,11 +488,6 @@
     </all>
 </filters>
 <actions>
-    <action id="give-main-kit" scope="player">
-        <kit id="${main-kit}"/>
-        <kit id="${armor-kit}"/>
-        <action id="apply-heal"/>
-    </action>
     <action id="snowball-thrown" scope="player" filter="can_score=1">
         <set var="player_state" value="${throw}"/>
         <set var="game_state" value="${throw}"/>
@@ -645,10 +652,6 @@
             <set var="player_state" value="${initial}"/>
         </action>
     </action>
-    <action id="flag-entity-pickup-event" scope="player">
-        <set var="game_state" value="${initial}"/>
-        <action id="pickup-flag"/>
-    </action>
     <action id="apply-heal" scope="player">
         <action filter="instaheal=0">
             <kit id="heal-gapple"/>
@@ -668,7 +671,7 @@
     <trigger action="reset-player-state" filter="reset-observer-variables" scope="player"/>
     <trigger action="flag-pickup-event" filter="all(has-flag,not(player_state=${carry}))" scope="player"/>
     <trigger action="pickup-flag" filter="return-flag-to-carrier" scope="player"/>
-    <trigger action="flag-entity-pickup-event" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
+    <trigger action="pickup-flag" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
     <trigger action="reset-after-throw" filter="just-before-reset" scope="player"/>
     <trigger action="reset-flag" filter="flag-reset" scope="match"/>
@@ -678,7 +681,6 @@
     <trigger action="touchdown-sound" filter="all(can_score=0,not(match-finished))" scope="match"/>
     <trigger action="reset-flag" filter="match-started" scope="match"/>
     <trigger action="go-sounds" filter="match-start-delay" scope="match"/>
-    <trigger action="give-main-kit" filter="player_state=${throw}" scope="player"/>
     <trigger action="flag-fire" filter="flag-fire-go" scope="match"/>
     <action id="increment-round" scope="player">
         <set var="score" value="score+${score-points}"/>
@@ -983,6 +985,7 @@
           shared="true"
           pickup-kit="${flag-carrier-kit}"
           carry-kit="${flag-carrier-effects}"
+          drop-kit="${flag-drop-kit}"
           show-messages="false"
           show-effects="false"
           capture-filter="all(carrying-football,one-pass-enforcement)"
