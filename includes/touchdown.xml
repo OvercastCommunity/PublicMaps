@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.20-1 -->
+<!-- Version 2025.09.21-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -51,6 +51,7 @@
     <constant id="pre-round-time">5s</constant>
     <constant id="main-kit">main-kit</constant>
     <constant id="armor-kit">armor-kit</constant>
+    <constant id="flag-carrier-armor-kit">flag-carrier-armor-kit</constant>
     <constant id="flag-carrier-kit">flag-carrier-kit</constant>
     <constant id="flag-carrier-effects">flag-carrier-effects</constant>
     <constant id="flag-drop-kit">flag-drop-kit</constant>
@@ -111,6 +112,7 @@
         <effect duration="${gapple-heal-duration}" amplifier="2">regeneration</effect>
     </kit>
     <kit id="main-kit">
+        <clear items="true" armor="true" effects="false"/>
         <item slot="0" unbreakable="true" name="${melee-weapon-name}" material="${melee-weapon}" enchantment="${melee-weapon-enchantment}" attribute="${melee-weapon-attribute}"/>
         <item slot="8" material="golden apple"/>
         <if constant="enable-night-vision" constant-value="true">
@@ -118,12 +120,18 @@
         </if>
         <game-mode>adventure</game-mode>
     </kit>
-    <kit id="armor-kit" force="true">
+    <kit id="armor-kit">
         <clear items="false" armor="true" effects="false"/>
         <helmet unbreakable="true" team-color="true" locked="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" locked="true" material="leather chestplate"/>
         <leggings unbreakable="true" locked="true" material="chainmail leggings"/>
         <boots unbreakable="true" locked="true" material="iron boots"/>
+    </kit>
+    <kit id="flag-carrier-armor-kit">
+        <clear items="false" armor="true" effects="false"/>
+        <chestplate unbreakable="true" locked="true" color="FFFFFF" material="leather chestplate"/>
+        <leggings unbreakable="true" locked="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" locked="true" material="leather boots"/>
     </kit>
     <kit id="flag-carrier-kit" force="true">
         <action id="give-football" filter="not(carrying-football)">
@@ -131,9 +139,7 @@
                 <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
             </kit>
         </action>
-        <chestplate unbreakable="true" locked="true" color="FFFFFF" material="leather chestplate"/>
-        <leggings unbreakable="true" locked="true" team-color="true" material="leather leggings"/>
-        <boots unbreakable="true" team-color="true" locked="true" material="leather boots"/>
+        <kit id="${flag-carrier-armor-kit}"/>
     </kit>
     <kit id="flag-carrier-effects">
         <unless constant="enable-night-vision" constant-value="true">
@@ -143,7 +149,7 @@
         <effect duration="3s">fire resistance</effect>
         <max-health>${flag-carrier-health}</max-health>
     </kit>
-    <kit id="flag-drop-kit" force="true">
+    <kit id="flag-drop-kit">
         <action filter="alive"> <!-- ??? need to make issue for error related to this -->
             <action>
                 <replace-item>
@@ -155,12 +161,11 @@
             <action id="apply-heal"/>
         </action>
     </kit>
-    <kit id="pre-round-kit" force="true">
+    <kit id="pre-round-kit">
         <effect>invisibility</effect>
         <effect amplifier="255">slow digging</effect>
     </kit>
     <kit id="pre-round-reset-kit" force="true">
-        <clear items="false" armor="true" effects="false"/>
         <action>
             <set var="player.fire_ticks" value="-20"/>
         </action>
