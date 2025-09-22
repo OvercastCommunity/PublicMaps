@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.21-1 -->
+<!-- Version 2025.09.21-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -258,7 +258,6 @@
     <variable id="show_tutorial" scope="match" default="${show-tutorial}"/>
     <variable id="player_state" scope="player" default="${initial}" exclusive="1"/>
     <variable id="player_score" scope="player" default="0"/>
-    <variable id="current_team" scope="player" default="0"/>
     <variable id="goal_scorer" scope="player" exclusive="1"/>
     <variable id="flag_carrier" scope="player" exclusive="1"/>
     <variable id="instaheal" scope="match" default="${instaheal-default}"/>
@@ -703,14 +702,11 @@
             <set var="can_score" value="0"/>
             <set var="round_status" value="1"/>
             <action id="reset-fire"/>
-            <action id="set-buytime"/>
+            <set var="buytime" value="1"/>
             <kill-entities filter="remove-entities"/>
         </switch-scope>
         <action id="tiebreaker-win"/>
         <action id="message-score-display-player"/>
-    </action>
-    <action id="set-buytime" scope="match">
-        <set var="buytime" value="1"/>
     </action>
     <action id="create-cages" scope="match">
         <fill region="cages" material="stained glass" filter="not-barrier"/>
@@ -720,31 +716,23 @@
         <set var="can_score" value="1"/>
         <set var="buytime" value="0"/>
         <set var="passed_once" value="0"/>
-        <action id="go-message"/>
-    </action>
-    <action id="reset-counter" scope="match">
-        <set var="round_status" value="0"/>
+        <action id="go-message">
+            <message title="`aGo!" fade-in="0.1" stay="0.7" fade-out="0.1"/>
+            <action id="go-sounds">
+                <!-- Based on The Nathan AirChime K5LA train horn, which happens to be in tune with PGM countdown sound -->
+                <sound key="${block.note_block.pling}" volume=".5" pitch="0.841"/>
+                <sound key="${block.note_block.pling}" volume=".5" pitch="1"/>
+                <sound key="${block.note_block.pling}" volume=".5" pitch="1.122"/>
+                <sound key="${block.note_block.pling}" volume=".5" pitch="1.335"/>
+                <sound key="${block.note_block.pling}" volume=".5" pitch="1.682"/>
+            </action>
+        </action>
     </action>
     <trigger filter="team-one-scored" action="increment-round" scope="player"/>
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
     <trigger filter="all(can_score=0,not(match-finished))" action="create-cages" scope="match"/>
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
-    <trigger filter="after-round-1" action="reset-counter" scope="match"/>
-    <trigger filter="team-one" scope="player">
-        <action>
-            <set var="current_team" value="1"/>
-        </action>
-    </trigger>
-    <trigger filter="team-two" scope="player">
-        <action>
-            <set var="current_team" value="2"/>
-        </action>
-    </trigger>
-    <trigger filter="observing" scope="player">
-        <action>
-            <set var="current_team" value="0"/>
-        </action>
-    </trigger>
+    <trigger filter="after-round-1" action="round_status:=0" scope="match"/>
     <action id="message-own-scored" scope="player">
         <message text="`5`l╔══════════════╗"/>
         <message text="`6         » `6`lTOUCHDOWN! `6«"/>
@@ -776,7 +764,7 @@
             </message>
         </switch-scope>
     </action>
-    <action filter="team-one" id="message-score-display-team-one" scope="player">
+    <action id="message-score-display-team-one" filter="team-one" scope="player">
         <message text="                 `f{one-score}`6 `l-`r `f{two-score}">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
@@ -784,7 +772,7 @@
             </replacements>
         </message>
     </action>
-    <action filter="team-two" id="message-score-display-team-two" scope="player">
+    <action id="message-score-display-team-two" filter="team-two" scope="player">
         <message text="                 `f{two-score}`6 `l-`r `f{one-score}">
             <replacements>
                 <decimal id="one-score" value="team_one_score"/>
@@ -799,21 +787,7 @@
             </replacements>
         </message>
     </action>
-    <action id="go-message" scope="match">
-        <message title="`aGo!" fade-in="0.1" stay="0.7" fade-out="0.1"/>
-        <action id="go-sounds">
-            <!-- Based on The Nathan AirChime K5LA train horn, which happens to be in tune with PGM countdown sound -->
-            <sound key="${block.note_block.pling}" volume=".5" pitch="0.841"/>
-            <sound key="${block.note_block.pling}" volume=".5" pitch="1"/>
-            <sound key="${block.note_block.pling}" volume=".5" pitch="1.122"/>
-            <sound key="${block.note_block.pling}" volume=".5" pitch="1.335"/>
-            <sound key="${block.note_block.pling}" volume=".5" pitch="1.682"/>
-        </action>
-    </action>
-    <action id="message-reset-scoring-team" scope="match">
-        <set var="scoring_team" value="0"/>
-    </action>
-    <trigger filter="after-round-0" action="message-reset-scoring-team" scope="match"/>
+    <trigger filter="after-round-0" action="scoring_team:=0" scope="match"/>
     <action id="message-obs-scored" scope="player">
         <message text="`5`l╔══════════════╗"/>
         <message text="`6         » `6`lTOUCHDOWN! `6«"/>
@@ -831,37 +805,23 @@
     <trigger filter="team-one-enemy-goal" action="message-enemy-scored" scope="player"/>
     <trigger filter="team-two-enemy-goal" action="message-enemy-scored" scope="player"/>
     <trigger filter="cant-score-obs" action="message-obs-scored" scope="player"/>
-    <action id="set-team-one" scope="player">
-        <switch-scope inner="match">
-            <set var="scoring_team" value="1"/>
-        </switch-scope>
-    </action>
-    <action id="set-team-two" scope="player">
-        <switch-scope inner="match">
-            <set var="scoring_team" value="2"/>
-        </switch-scope>
-    </action>
-    <trigger filter="team-one-scored" action="set-team-one" scope="player"/>
-    <trigger filter="team-two-scored" action="set-team-two" scope="player"/>
+    <trigger filter="team-one-scored" action="scoring_team:=1" scope="player"/>
+    <trigger filter="team-two-scored" action="scoring_team:=2" scope="player"/>
     <!-- End match if overtime disabled (overtime=0) -->
-    <trigger scope="match" filter="all(in-overtime,overtime=0)">
-        <action>
-            <set var="timelimit" value="0"/>
-        </action>
-    </trigger>
+    <trigger filter="all(in-overtime,overtime=0)" action="timelimit:=0" scope="match"/>
     <!-- Action to remove timelimit -->
     <action id="remove-timelimit" scope="match" expose="true">
         <set var="overtime" value="1"/>
         <set var="timelimit" value="-10"/>
     </action>
     <!-- End match on score in tiebreaker mode (overtime=2) -->
-    <trigger scope="match" filter="all(in-overtime,overtime=2)">
+    <trigger filter="all(in-overtime,overtime=2)" scope="match">
         <action filter="tied-match">
             <set var="timelimit" value="-10"/>
             <message text=" `e⚠ `b`lTIEBREAKER! `7First team to score `awins `7the match."/>
         </action>
     </trigger>
-    <action id="tiebreaker-win" scope="player" filter="all(in-overtime,overtime=2)">
+    <action id="tiebreaker-win" filter="all(in-overtime,overtime=2)" scope="player">
         <switch-scope inner="match">
             <set var="timelimit" value="0"/>
         </switch-scope>
@@ -882,31 +842,31 @@
         </trigger>
     </if>
     <!-- Enable or disable one pass rule manually -->
-    <action id="enable-one-pass" expose="true" scope="match">
+    <action id="enable-one-pass" scope="match" expose="true">
         <message text=" `e⚠ `aOne pass rule has been enabled!"/>
         <sound preset="alert"/>
         <set var="one_pass_rule" value="1"/>
     </action>
-    <action id="disable-one-pass" expose="true" scope="match">
+    <action id="disable-one-pass" scope="match" expose="true">
         <message text=" `e⚠ `cOne pass rule has been disabled!"/>
         <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
         <set var="one_pass_rule" value="0"/>
     </action>
     <!-- Announce if one pass rule is in effect -->
-    <trigger scope="match" filter="all(at-least-2v2,3-seconds)">
+    <trigger filter="all(at-least-2v2,3-seconds)" scope="match">
         <action filter="one_pass_rule=1">
             <message text=" `e⚠ `aOne pass rule is in effect for this match!"/>
             <sound preset="alert"/>
         </action>
     </trigger>
-    <trigger scope="match" filter="all(not(at-least-2v2),3-seconds)">
+    <trigger filter="all(not(at-least-2v2),3-seconds)" scope="match">
         <action filter="one_pass_rule=1">
             <message text=" `e⚠ `cDue to team sizes, one pass rule is not in effect."/>
             <sound preset="alert"/>
         </action>
     </trigger>
     <!-- Tell player why they can't capture the flag if one pass enabled -->
-    <trigger scope="player" filter="all(has-flag,in-capture-region,not(one-pass-enforcement))">
+    <trigger filter="all(has-flag,in-capture-region,not(one-pass-enforcement))" scope="player">
         <action>
             <message text=" `e⚠ `cYou must pass the flag to a teammate before scoring!"/>
             <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
