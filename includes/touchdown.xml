@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.24-1 -->
+<!-- Version 2025.09.25-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -321,7 +321,7 @@
             <region id="playing-field"/>
         </victim>
     </all>
-    <victim id="victim-has-flag">
+    <victim id="valid-steal-target">
         <all>
             <cause>melee</cause>
             <variable var="player_state">${carry}</variable>
@@ -976,7 +976,7 @@
     <mercy>${mercy-limit}</mercy>
 </score>
 <kill-rewards>
-    <kill-reward filter="victim-has-flag" action="flag-steal-event"/>
+    <kill-reward filter="valid-steal-target" action="flag-steal-event"/>
 </kill-rewards>
 <toolrepair>
     <tool>${melee-weapon}</tool>
