@@ -322,7 +322,10 @@
         </victim>
     </all>
     <victim id="victim-has-flag">
-        <variable var="player_state">${carry}</variable>
+        <all>
+            <cause>melee</cause>
+            <variable var="player_state">${carry}</variable>
+        </all>
     </victim>
     <all id="reset-observer-variables">
         <observing/>
