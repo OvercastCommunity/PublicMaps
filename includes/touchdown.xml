@@ -482,6 +482,7 @@
             <region id="team-one-portal"/>
         </all>
     </any>
+    <cause id="melee-damage">melee</cause>
     <relation id="ally-damage">ally</relation>
     <relation id="enemy-damage">enemy</relation>
     <flag-captured id="flag-captured">flag</flag-captured>
@@ -491,7 +492,6 @@
         <rank team="team-one">1</rank>
         <rank team="team-two">1</rank>
     </all>
-    <cause id="damage-caused-by-melee">melee</cause>
 </filters>
 <actions>
     <action id="snowball-thrown" scope="player" filter="can_score=1">
