@@ -263,7 +263,7 @@
     <variable id="instaheal" scope="match" default="${instaheal-default}"/>
     <variable id="one_pass_rule" scope="match" default="${one-pass-default}"/>
     <variable id="passed_once" scope="match" default="0"/>
-    <variable id="last_damage_type" scope="player" default="0"/>  <!-- 0 - Other Damage Type  |  1 - Meele -->
+    <variable id="last_damage_type" scope="player" default="0"/> <!-- 0: non-melee damage; 1: melee damage -->
 </variables>
 <filters>
     <any id="remove-entities">
@@ -322,10 +322,10 @@
             <region id="playing-field"/>
         </victim>
     </all>
-    <victim id="valid-steal-target">
+    <victim id="valid-steal">
         <all>
             <variable var="player_state">${carry}</variable>
-            <variable var="last_damage_type">1</variable> <!-- Meele Damage -->
+            <variable var="last_damage_type">1</variable> <!-- melee damage -->
         </all>
     </victim>
     <all id="reset-observer-variables">
@@ -598,34 +598,42 @@
             <sound key="${entity.item.pickup}" volume="0.5" pitch="1.5"/>
         </action>
     </action>
-    <action id="flag-receive-event" scope="player" filter="valid-receive">
-        <set var="player_state" value="${carry}"/>
-        <set var="game_state" value="${carry}"/>
-        <set var="flag_carrier" value="1"/>
-        <action id="pickup-flag"/>
-        <action id="apply-heal"/>
-        <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="0.7" fade-out="0.5"/>
-        <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
-        <action filter="ally-damage">
+    <action id="damage-receive-event">
+        <action id="flag-receive-event" scope="player" filter="valid-receive">
+            <set var="player_state" value="${carry}"/>
+            <set var="game_state" value="${carry}"/>
+            <set var="flag_carrier" value="1"/>
+            <action id="pickup-flag"/>
+            <action id="apply-heal"/>
+            <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="0.7" fade-out="0.5"/>
+            <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
+            <action filter="ally-damage">
+                <switch-scope inner="match">
+                    <set var="passed_once" value="1"/>
+                </switch-scope>
+            </action>
+            <action filter="enemy-damage">
+                <switch-scope inner="match">
+                    <set var="passed_once" value="0"/>
+                </switch-scope>
+            </action>
             <switch-scope inner="match">
-                <set var="passed_once" value="1"/>
+                <message text=" `e`l»`r {player}`6 caught the `cFootball`6!`r" actionbar="`r{player}`6 caught!">
+                    <replacements>
+                        <player id="player" var="flag_carrier"/>
+                    </replacements>
+                </message>
+                <action id="pickup-sounds"/>
+                <action id="catch-sounds"/>
+                <action id="flag-fire"/> <!-- Just in case -->
             </switch-scope>
         </action>
-        <action filter="enemy-damage">
-            <switch-scope inner="match">
-                <set var="passed_once" value="0"/>
-            </switch-scope>
+        <action filter="melee-damage">
+            <set var="last_damage_type" value="1"/>
         </action>
-        <switch-scope inner="match">
-            <message text=" `e`l»`r {player}`6 caught the `cFootball`6!`r" actionbar="`r{player}`6 caught!">
-                <replacements>
-                    <player id="player" var="flag_carrier"/>
-                </replacements>
-            </message>
-            <action id="pickup-sounds"/>
-            <action id="catch-sounds"/>
-            <action id="flag-fire"/> <!-- Just in case -->
-        </switch-scope>
+        <action filter="not(melee-damage)">
+            <set var="last_damage_type" value="0"/>
+        </action>
     </action>
     <action id="flag-steal-event" scope="player" filter="game_state=${carry}">
         <set var="player_state" value="${carry}"/>
@@ -801,18 +809,6 @@
         </message>
         <message text="`5`l╚══════════════╝"/>
         <sound key="${entity.firework_rocket.twinkle}"/>
-    </action>
-    <action id="victim-actions" scope="player">
-        <action id="flag-receive-event"/>
-        <action id="update-last-damage-type"/>
-    </action>
-    <action id="update-last-damage-type" scope="player">
-        <action filter="damage-caused-by-melee">
-            <set var="last_damage_type" value="1"/>
-        </action>
-        <action filter="not(damage-caused-by-melee)">
-            <set var="last_damage_type" value="0"/>
-        </action>
     </action>
     <trigger filter="team-one-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
@@ -990,7 +986,7 @@
     <mercy>${mercy-limit}</mercy>
 </score>
 <kill-rewards>
-    <kill-reward filter="valid-steal-target" action="flag-steal-event"/>
+    <kill-reward filter="valid-steal" action="flag-steal-event"/>
 </kill-rewards>
 <toolrepair>
     <tool>${melee-weapon}</tool>
@@ -1010,7 +1006,7 @@
     <damage>fall</damage>
     <damage ally="${disable-ally-damage}" enemy="false" other="false">entity attack</damage>
 </disabledamage>
-<damage attacker-action="reset-after-throw" victim-action="victim-actions"/>
+<damage attacker-action="reset-after-throw" victim-action="damage-receive-event"/>
 <friendlyfire>on</friendlyfire>
 <friendlyfirerefund>${friendly-fire-refund}</friendlyfirerefund>
 <respawn delay="${respawn-timer}" auto="true"/>
