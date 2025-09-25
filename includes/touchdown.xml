@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.21-2 -->
+<!-- Version 2025.09.24-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -265,7 +265,7 @@
     <variable id="passed_once" scope="match" default="0"/>
 </variables>
 <filters>
-    <any id="snowball-entity">
+    <any id="remove-entities">
         <entity>snowball</entity>
         <entity>dropped item</entity>
     </any>
@@ -379,9 +379,6 @@
         </not>
     </all>
     <variable id="round-2" var="round_status">2</variable>
-    <any id="remove-entities">
-        <entity>dropped item</entity>
-    </any>
     <all id="on-buytime">
         <variable var="buytime">1</variable>
         <alive/>
@@ -589,7 +586,7 @@
             <fill region="flag-indicator-upper-inner" material="${indicator-inner-material}"/>
             <fill region="flag-indicator-lower-inner" material="${indicator-inner-material}"/>
         </unless>
-        <kill-entities filter="snowball-entity"/>
+        <kill-entities filter="remove-entities"/>
         <action filter="match-start-delay">
             <message text=" `e`l»`6 The `cFlag`6 was `cReset`6!" actionbar="`cThe Flag was Reset!"/>
             <sound key="${entity.firework_rocket.twinkle}" volume="1" pitch="1"/>
