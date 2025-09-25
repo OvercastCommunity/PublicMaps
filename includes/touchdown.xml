@@ -263,6 +263,7 @@
     <variable id="instaheal" scope="match" default="${instaheal-default}"/>
     <variable id="one_pass_rule" scope="match" default="${one-pass-default}"/>
     <variable id="passed_once" scope="match" default="0"/>
+    <variable id="last_damage_type" scope="player" default="0"/>  <!-- 0 - Other Damage Type  |  1 - Meele -->
 </variables>
 <filters>
     <any id="remove-entities">
@@ -323,8 +324,8 @@
     </all>
     <victim id="valid-steal-target">
         <all>
-            <cause>melee</cause>
             <variable var="player_state">${carry}</variable>
+            <variable var="last_damage_type">1</variable> <!-- Meele Damage -->
         </all>
     </victim>
     <all id="reset-observer-variables">
@@ -490,6 +491,7 @@
         <rank team="team-one">1</rank>
         <rank team="team-two">1</rank>
     </all>
+    <cause id="damage-caused-by-melee">melee</cause>
 </filters>
 <actions>
     <action id="snowball-thrown" scope="player" filter="can_score=1">
@@ -800,6 +802,18 @@
         <message text="`5`l╚══════════════╝"/>
         <sound key="${entity.firework_rocket.twinkle}"/>
     </action>
+    <action id="victim-actions" scope="player">
+        <action id="flag-receive-event"/>
+        <action id="update-last-damage-type"/>
+    </action>
+    <action id="update-last-damage-type" scope="player">
+        <action filter="damage-caused-by-melee">
+            <set var="last_damage_type" value="1"/>
+        </action>
+        <action filter="not(damage-caused-by-melee)">
+            <set var="last_damage_type" value="0"/>
+        </action>
+    </action>
     <trigger filter="team-one-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-one-enemy-goal" action="message-enemy-scored" scope="player"/>
@@ -996,7 +1010,7 @@
     <damage>fall</damage>
     <damage ally="${disable-ally-damage}" enemy="false" other="false">entity attack</damage>
 </disabledamage>
-<damage attacker-action="reset-after-throw" victim-action="flag-receive-event"/>
+<damage attacker-action="reset-after-throw" victim-action="victim-actions"/>
 <friendlyfire>on</friendlyfire>
 <friendlyfirerefund>${friendly-fire-refund}</friendlyfirerefund>
 <respawn delay="${respawn-timer}" auto="true"/>
