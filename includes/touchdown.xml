@@ -598,7 +598,7 @@
             <sound key="${entity.item.pickup}" volume="0.5" pitch="1.5"/>
         </action>
     </action>
-    <action id="damage-receive-event">
+    <action id="damage-receive-event" scope="player">
         <action id="flag-receive-event" scope="player" filter="valid-receive">
             <set var="player_state" value="${carry}"/>
             <set var="game_state" value="${carry}"/>
