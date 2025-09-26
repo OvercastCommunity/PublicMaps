@@ -42,10 +42,10 @@
             <item slot="3" unbreakable="true" material="iron pickaxe"/>
             <item slot="4" amount="32">98</item>
             <item slot="5" amount="48">glass</item>
-            <item slot="8" amount="32">arrow</item>
-            <item slot="4" material="potion" damage="8194">
+            <item slot="6" material="potion" damage="8194">
                 <effect duration="3m">speed</effect>
             </item>
+            <item slot="8" amount="32">arrow</item>
             <helmet unbreakable="true" material="gold helmet"/>
             <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
             <leggings unbreakable="true" material="chainmail leggings">
