@@ -1,0 +1,20 @@
+<map>
+<!-- Remove punch bows include -->
+<!-- Created by mameBT -->
+<!-- Version 2025.09.27-1 -->
+<actions>
+    <!-- Remove punch enchantment from any bow carried by any player -->
+    <trigger scope="player">
+        <filter>
+            <carrying ignore-durability="true" ignore-metadata="true" ignore-name="true" ignore-enchantments="true">
+                <item material="bow"/>
+            </carrying>
+        </filter>
+        <action>
+            <enchant-item ignore-metadata="true" enchantment="punch" level="0">
+                <find material="bow"/>
+            </enchant-item>
+        </action>
+    </trigger>
+</actions>
+</map>
