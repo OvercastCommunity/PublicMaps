@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.25-1 -->
+<!-- Version 2025.09.29-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -315,7 +315,7 @@
     <all id="valid-receive">
         <variable var="can_score">1</variable>
         <variable var="game_state">${throw}</variable>
-        <damager>
+        <damager id="snowball-damage">
             <entity>snowball</entity>
         </damager>
         <victim>
@@ -1006,7 +1006,18 @@
     <damage>fall</damage>
     <damage ally="${disable-ally-damage}" enemy="false" other="false">entity attack</damage>
 </disabledamage>
-<damage attacker-action="reset-after-throw" victim-action="damage-receive-event"/>
+<damage attacker-action="reset-after-throw" victim-action="damage-receive-event">
+    <unless constant="disable-ally-damage" constant-value="false">
+        <deny>
+            <all>
+                <not>
+                    <filter id="snowball-damage"/>
+                </not>
+                <filter id="ally-damage"/>
+            </all>
+        </deny>
+    </unless>
+</damage>
 <friendlyfire>on</friendlyfire>
 <friendlyfirerefund>${friendly-fire-refund}</friendlyfirerefund>
 <respawn delay="${respawn-timer}" auto="true"/>
