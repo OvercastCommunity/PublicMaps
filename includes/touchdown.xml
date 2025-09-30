@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.29-1 -->
+<!-- Version 2025.09.29-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -85,6 +85,7 @@
     <constant id="gapple-heal-duration">5s</constant>
     <constant id="disable-ally-damage">true</constant>
     <constant id="friendly-fire-refund">off</constant>
+    <constant id="gapple-slot">8</constant>
 </constants>
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
@@ -114,7 +115,7 @@
     <kit id="main-kit">
         <clear items="true" armor="true" effects="false"/>
         <item slot="0" unbreakable="true" name="${melee-weapon-name}" material="${melee-weapon}" enchantment="${melee-weapon-enchantment}" attribute="${melee-weapon-attribute}"/>
-        <item slot="8" material="golden apple"/>
+        <item slot="${gapple-slot}" material="golden apple"/>
         <if constant="enable-night-vision" constant-value="true">
             <effect>night vision</effect>
         </if>
