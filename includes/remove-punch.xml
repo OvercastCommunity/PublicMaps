@@ -1,14 +1,31 @@
 <map>
 <!-- Remove punch bows include -->
 <!-- Created by mameBT -->
-<!-- Version 2025.09.27-1 -->
+<!-- Version 2025.09.29-1 -->
 <actions>
-    <!-- Remove punch enchantment from any bow carried by any player -->
+    <!-- Remove punch enchantment from any bow carried or held by any player -->
     <trigger scope="player">
         <filter>
-            <carrying ignore-durability="true" ignore-metadata="true" ignore-name="true" ignore-enchantments="true">
-                <item material="bow"/>
-            </carrying>
+            <any>
+                <carrying ignore-durability="true" ignore-metadata="true" ignore-name="true" ignore-enchantments="true">
+                    <item material="bow"/>
+                </carrying>
+                <holding ignore-durability="true" ignore-metadata="true" ignore-name="true" ignore-enchantments="true">
+                    <item material="bow"/>
+                </holding>
+                <carrying ignore-durability="true" ignore-metadata="true" ignore-name="true" ignore-enchantments="false">
+                    <item material="bow" enchantment="punch"/>
+                </carrying>
+                <holding ignore-durability="true" ignore-metadata="true" ignore-name="true" ignore-enchantments="false">
+                    <item material="bow" enchantment="punch"/>
+                </holding>
+                <carrying ignore-durability="true" ignore-metadata="true" ignore-name="true" ignore-enchantments="false">
+                    <item material="bow" enchantment="punch:2"/>
+                </carrying>
+                <holding ignore-durability="true" ignore-metadata="true" ignore-name="true" ignore-enchantments="false">
+                    <item material="bow" enchantment="punch:2"/>
+                </holding>
+            </any>
         </filter>
         <action>
             <enchant-item ignore-metadata="true" enchantment="punch" level="0">
