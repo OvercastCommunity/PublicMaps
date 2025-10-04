@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <name>Urban Jungle</name>
-<variant id="classic" override="true">Urban Jungle: Classic</variant>
-<version>1.0.0</version>
+<variant id="classic">Classic</variant>
+<version>1.0.1</version>
 <objective>Control the center until you have 500 points to win!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
