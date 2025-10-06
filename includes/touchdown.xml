@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.09.29-2 -->
+<!-- Version 2025.10.05-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -106,7 +106,7 @@
 </teams>
 <kits>
     <kit id="heal-instant">
-        <effect duration="0.2s">instant health</effect>
+        <effect duration="0.3s">instant health</effect>
     </kit>
     <kit id="heal-gapple" force="true">
         <effect duration="${gapple-heal-duration}">absorption</effect>
@@ -237,6 +237,7 @@
     <lend kit="pre-round-kit" filter="on-buytime"/>
     <give kit="pre-round-reset-kit" filter="on-buytime"/>
     <give kit="${armor-kit}" filter="not-on-buytime"/>
+    <lend kit="${flag-carrier-effects}" filter="player_state=${carry}"/>
     <give kit="football-kit" filter="dropped-football"/>
 </kits>
 <spawns>
@@ -542,9 +543,9 @@
     <action id="flag-pickup-event" scope="player">
         <set var="player_state" value="${carry}"/>
         <set var="game_state" value="${carry}"/>
-        <set var="flag_carrier" value="1"/>
         <action id="apply-heal"/>
-        <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.2" stay="0.5" fade-out="0.2"/>
+        <set var="flag_carrier" value="1"/>
+        <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="0.7" fade-out="0.5"/>
         <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
         <switch-scope inner="match">
             <message text=" `e`l»`r {player}`6 picked up the `cFlag`6!`r" actionbar="`r{player}`6 picked up!">
@@ -603,9 +604,9 @@
         <action id="flag-receive-event" scope="player" filter="valid-receive">
             <set var="player_state" value="${carry}"/>
             <set var="game_state" value="${carry}"/>
+            <action id="apply-heal"/>
             <set var="flag_carrier" value="1"/>
             <action id="pickup-flag"/>
-            <action id="apply-heal"/>
             <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="0.7" fade-out="0.5"/>
             <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
             <action filter="ally-damage">
@@ -639,6 +640,7 @@
     <action id="flag-steal-event" scope="player" filter="game_state=${carry}">
         <set var="player_state" value="${carry}"/>
         <set var="game_state" value="${carry}"/>
+        <action id="apply-heal"/>
         <set var="flag_carrier" value="1"/>
         <action filter="flag-strip-in-enemy-net">
             <switch-scope inner="match">
@@ -651,8 +653,7 @@
             </switch-scope>
         </action>
         <action id="pickup-flag"/>
-        <action id="apply-heal"/>
-        <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="1" fade-out="0.5"/>
+        <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="0.7" fade-out="0.5"/>
         <switch-scope inner="match">
             <message text=" `e`l»`r {player}`6 stripped the `cFlag`6!`r" actionbar="`r{player}`6 stripped!">
                 <replacements>
@@ -667,7 +668,7 @@
             <set var="player_state" value="${initial}"/>
         </action>
     </action>
-    <action id="apply-heal" scope="player">
+    <action id="apply-heal" scope="player" filter="not(flag_carrier=1)">
         <action filter="instaheal=0">
             <kit id="heal-gapple"/>
         </action>
@@ -960,7 +961,6 @@
           color="${flag-color}"
           shared="true"
           pickup-kit="${flag-carrier-kit}"
-          carry-kit="${flag-carrier-effects}"
           drop-kit="${flag-drop-kit}"
           show-messages="false"
           show-effects="false"
