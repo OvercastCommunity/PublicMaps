@@ -1,8 +1,14 @@
 <map proto="1.5.0">
 <name>Odin</name>
 <variant id="halloween" world="halloween" override="true">BOOdin</variant>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Capture the enemy flag 5 times!</objective>
+<unless variant="halloween">
+    <constant id="gapple-name">Holy Fruit</constant>
+</unless>
+<if variant="halloween">
+    <constant id="gapple-name">Candy Corn</constant>
+</if>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
