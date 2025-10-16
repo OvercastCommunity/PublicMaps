@@ -15,6 +15,7 @@
     </if>
     <if variant="halloween">
         <contributor uuid="15c75bdd-005f-40f6-9e20-1ecf48bb51e5" contribution="Halloween Edition"/> <!-- Kiyara -->
+        <contributor uuid="a90be681-0d8d-4d76-9094-c609a5d4596a" contribution="Halloween Edition"/> <!-- alejitox -->
     </if>
 </contributors>
 <teams>
