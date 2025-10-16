@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.10.05-1 -->
+<!-- Version 2025.10.16-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -252,7 +252,7 @@
     <with-team id="team_two_score" var="score" team="team-two"/>
     <variable id="game_state" scope="match" default="${initial}"/>
     <variable id="can_score" scope="match" default="1"/>
-    <variable id="round_status" scope="match" default="2"/>
+    <variable id="round_status" scope="match" default="1"/> <!-- 0: team scored; 1: flag is active -->
     <variable id="buytime" scope="match" default="0"/>
     <variable id="do_fire" scope="match" default="0"/>
     <variable id="overtime" scope="match" default="${overtime-default}"/>
@@ -366,35 +366,27 @@
         <match-running/>
         <alive/>
     </all>
-    <variable id="round-0" var="round_status">0</variable>
-    <variable id="round-1" var="round_status">1</variable>
     <all id="should-teleport">
         <filter id="one-pass-enforcement"/>
         <variable var="can_score">0</variable>
         <match-running/>
         <alive/>
     </all>
-    <variable id="cant-score" var="can_score">0</variable>
-    <variable id="can-score" var="can_score">1</variable>
-    <after id="after-round-1" duration="0.05s" filter="round-1"/>
-    <after id="after-round-0" duration="0.05s" filter="round-0"/>
+    <after id="team-scored" filter="round_status=0" duration="0.05s"/>
     <all id="during-buytime">
         <after duration="0.05s" filter="on-buytime"/>
         <not>
             <below y="${void-plane}"/>
         </not>
     </all>
-    <variable id="round-2" var="round_status">2</variable>
     <all id="on-buytime">
         <variable var="buytime">1</variable>
         <alive/>
     </all>
-    <after id="not-on-buytime-after" duration="0.05s">
-        <all id="not-on-buytime">
-            <variable var="buytime">0</variable>
-            <alive/>
-        </all>
-    </after>
+    <all id="not-on-buytime">
+        <variable var="buytime">0</variable>
+        <alive/>
+    </all>
     <all id="team-one-buytime">
         <team>team-one</team>
         <filter id="on-buytime"/>
@@ -403,45 +395,40 @@
         <team>team-two</team>
         <filter id="on-buytime"/>
     </all>
-    <after id="cage-time" message="`a» `fNext round begins in {0} `a«" duration="${pre-round-time}">
-        <all>
-            <filter id="round-0"/>
-            <match-running/>
-        </all>
-    </after>
-    <after id="after-capture" duration="${flag-respawn}">
+    <after id="flag-respawn" duration="${flag-respawn}">
         <all id="immediately-after-capture">
-            <filter id="round-0"/>
+            <variable var="round_status">0</variable>
             <match-running/>
         </all>
     </after>
+    <after id="cage-time" filter="immediately-after-capture" message="`a» `fNext round begins in {0} `a«" duration="${pre-round-time}"/>
     <all id="team-one-own-goal">
         <team>team-one</team>
         <variable var="scoring_team">1</variable>
-        <filter id="after-round-0"/>
+        <filter id="team-scored"/>
         <match-running/>
     </all>
     <all id="team-two-own-goal">
         <team>team-two</team>
         <variable var="scoring_team">2</variable>
-        <filter id="after-round-0"/>
+        <filter id="team-scored"/>
         <match-running/>
     </all>
     <all id="team-one-enemy-goal">
         <team>team-one</team>
         <variable var="scoring_team">2</variable>
-        <filter id="after-round-0"/>
+        <filter id="team-scored"/>
         <match-running/>
     </all>
     <all id="team-two-enemy-goal">
         <team>team-two</team>
         <variable var="scoring_team">1</variable>
-        <filter id="after-round-0"/>
+        <filter id="team-scored"/>
         <match-running/>
     </all>
-    <all id="cant-score-obs">
-        <filter id="cant-score"/>
-        <filter id="after-round-1"/>
+    <all id="observed-goal">
+        <variable var="can_score">0</variable>
+        <filter id="team-scored"/>
         <observing/>
         <match-running/>
     </all>
@@ -450,6 +437,7 @@
     </players>
     <all id="can-pickup-flag">
         <alive/> <!-- This shouldn't be possible but it is -->
+        <variable var="round_status">1</variable>
         <any>
             <region id="flag-posts"/>
             <filter id="carrying-football"/>
@@ -692,7 +680,7 @@
     <trigger action="reset-after-throw" filter="just-before-reset" scope="player"/>
     <trigger action="reset-flag" filter="flag-reset" scope="match"/>
     <trigger action="reset-after-capture" filter="immediately-after-capture" scope="match"/>
-    <trigger action="reset-flag" filter="after-capture" scope="match"/>
+    <trigger action="reset-flag" filter="flag-respawn" scope="match"/>
     <trigger action="carrier-died-event" filter="died-carrying" scope="player"/>
     <trigger action="touchdown-sound" filter="all(can_score=0,not(match-finished))" scope="match"/>
     <trigger action="reset-flag" filter="match-started" scope="match"/>
@@ -712,9 +700,9 @@
         </message>
         <switch-scope inner="match">
             <set var="can_score" value="0"/>
-            <set var="round_status" value="1"/>
-            <action id="reset-fire"/>
+            <set var="round_status" value="0"/>
             <set var="buytime" value="1"/>
+            <action id="reset-fire"/>
             <kill-entities filter="remove-entities"/>
         </switch-scope>
         <action id="tiebreaker-win"/>
@@ -744,7 +732,7 @@
     <trigger filter="team-two-scored" action="increment-round" scope="player"/>
     <trigger filter="all(can_score=0,not(match-finished))" action="create-cages" scope="match"/>
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
-    <trigger filter="after-round-1" action="round_status:=0" scope="match"/>
+    <trigger filter="flag-respawn" action="round_status:=1" scope="match"/>
     <action id="message-own-scored" scope="player">
         <message text="`5`l╔══════════════╗"/>
         <message text="`6         » `6`lTOUCHDOWN! `6«"/>
@@ -799,7 +787,7 @@
             </replacements>
         </message>
     </action>
-    <trigger filter="after-round-0" action="scoring_team:=0" scope="match"/>
+    <trigger filter="team-scored" action="scoring_team:=0" scope="match"/>
     <action id="message-obs-scored" scope="player">
         <message text="`5`l╔══════════════╗"/>
         <message text="`6         » `6`lTOUCHDOWN! `6«"/>
@@ -816,7 +804,7 @@
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-one-enemy-goal" action="message-enemy-scored" scope="player"/>
     <trigger filter="team-two-enemy-goal" action="message-enemy-scored" scope="player"/>
-    <trigger filter="cant-score-obs" action="message-obs-scored" scope="player"/>
+    <trigger filter="observed-goal" action="message-obs-scored" scope="player" observers="true"/>
     <trigger filter="team-one-scored" action="scoring_team:=1" scope="player"/>
     <trigger filter="team-two-scored" action="scoring_team:=2" scope="player"/>
     <!-- End match if overtime disabled (overtime=0) -->
