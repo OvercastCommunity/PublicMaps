@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.10.16-1 -->
+<!-- Version 2025.10.16-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -798,7 +798,6 @@
             </replacements>
         </message>
         <message text="`5`l╚══════════════╝"/>
-        <sound key="${entity.firework_rocket.twinkle}"/>
     </action>
     <trigger filter="team-one-own-goal" action="message-own-scored" scope="player"/>
     <trigger filter="team-two-own-goal" action="message-own-scored" scope="player"/>
