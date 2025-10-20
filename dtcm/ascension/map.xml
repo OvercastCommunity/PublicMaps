@@ -5,6 +5,7 @@
 <objective>Destroy the other team's monument, made of colored wool.</objective>
 <gamemode>dtm</gamemode>
 <include id="gapple-kill-reward"/>
+<phase>staging</phase>
 <authors>
     <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- Vicei -->
 </authors>
