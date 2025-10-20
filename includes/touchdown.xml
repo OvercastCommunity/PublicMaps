@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.10.16-3 -->
+<!-- Version 2025.10.20-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -87,6 +87,26 @@
     <constant id="friendly-fire-refund">off</constant>
     <constant id="gapple-slot">8</constant>
 </constants>
+<variables>
+    <with-team id="team_one_score" var="score" team="team-one"/>
+    <with-team id="team_two_score" var="score" team="team-two"/>
+    <variable id="game_state" scope="match" default="${initial}"/>
+    <variable id="can_score" scope="match" default="1"/>
+    <variable id="round_status" scope="match" default="1"/> <!-- 0: team scored; 1: flag is active -->
+    <variable id="buytime" scope="match" default="0"/>
+    <variable id="do_fire" scope="match" default="0"/>
+    <variable id="overtime" scope="match" default="${overtime-default}"/>
+    <variable id="scoring_team" scope="match" default="0"/>
+    <variable id="show_tutorial" scope="match" default="${show-tutorial}"/>
+    <variable id="player_state" scope="player" default="${initial}" exclusive="1"/>
+    <variable id="player_score" scope="player" default="0"/>
+    <variable id="goal_scorer" scope="player" exclusive="1"/>
+    <variable id="flag_carrier" scope="player" exclusive="1"/>
+    <variable id="instaheal" scope="match" default="${instaheal-default}"/>
+    <variable id="one_pass_rule" scope="match" default="${one-pass-default}"/>
+    <variable id="passed_once" scope="match" default="0"/>
+    <variable id="last_damage_type" scope="player" default="0"/> <!-- 0: non-melee damage; 1: melee damage -->
+</variables>
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
 <stats>
@@ -247,26 +267,6 @@
 <consumables>
     <consumable id="use-snowball" on="right click" override="false" action="snowball-thrown" consume="false"/>
 </consumables>
-<variables>
-    <with-team id="team_one_score" var="score" team="team-one"/>
-    <with-team id="team_two_score" var="score" team="team-two"/>
-    <variable id="game_state" scope="match" default="${initial}"/>
-    <variable id="can_score" scope="match" default="1"/>
-    <variable id="round_status" scope="match" default="1"/> <!-- 0: team scored; 1: flag is active -->
-    <variable id="buytime" scope="match" default="0"/>
-    <variable id="do_fire" scope="match" default="0"/>
-    <variable id="overtime" scope="match" default="${overtime-default}"/>
-    <variable id="scoring_team" scope="match" default="0"/>
-    <variable id="show_tutorial" scope="match" default="${show-tutorial}"/>
-    <variable id="player_state" scope="player" default="${initial}" exclusive="1"/>
-    <variable id="player_score" scope="player" default="0"/>
-    <variable id="goal_scorer" scope="player" exclusive="1"/>
-    <variable id="flag_carrier" scope="player" exclusive="1"/>
-    <variable id="instaheal" scope="match" default="${instaheal-default}"/>
-    <variable id="one_pass_rule" scope="match" default="${one-pass-default}"/>
-    <variable id="passed_once" scope="match" default="0"/>
-    <variable id="last_damage_type" scope="player" default="0"/> <!-- 0: non-melee damage; 1: melee damage -->
-</variables>
 <filters>
     <any id="remove-entities">
         <entity>snowball</entity>
@@ -726,19 +726,6 @@
         </action>
         <action id="message-score-display-team"/>
         <message text="`5`l╚══════════════╝"/>
-        <switch-scope inner="match">
-            <action id="goal-title"/>
-        </switch-scope>
-    </action>
-    <action id="message-score-display-player" scope="player">
-        <set var="goal_scorer" value="1"/>
-        <switch-scope inner="match">
-            <message text=" `e`l»`r {player}`7 takes it to the end zone!">
-                <replacements>
-                    <player id="player" var="goal_scorer"/>
-                </replacements>
-            </message>
-        </switch-scope>
     </action>
     <action id="message-score-display-team" scope="player">
         <action filter="any(team-one,observing)">
@@ -758,12 +745,20 @@
             </message>
         </action>
     </action>
-    <action id="goal-title" scope="match">
-        <message title="`f`lTOUCHDOWN!" subtitle="`7{player} takes it to the end zone!" fade-in="0.5" stay="3" fade-out="0.5">
-            <replacements>
-                <player id="player" var="goal_scorer"/>
-            </replacements>
-        </message>
+    <action id="message-score-display-player" scope="player">
+        <set var="goal_scorer" value="1"/>
+        <switch-scope inner="match">
+            <message text=" `e`l»`r {player}`7 takes it to the end zone!">
+                <replacements>
+                    <player id="player" var="goal_scorer"/>
+                </replacements>
+            </message>
+            <message title="`f`lTOUCHDOWN!" subtitle="`7{player} takes it to the end zone!" fade-in="0.5" stay="3" fade-out="0.5">
+                <replacements>
+                    <player id="player" var="goal_scorer"/>
+                </replacements>
+            </message>
+        </switch-scope>
     </action>
     <trigger filter="goal-scored" action="message-score-display" scope="player" observers="true"/>
     <trigger filter="team-one-scored" action="scoring_team:=1" scope="player"/>
