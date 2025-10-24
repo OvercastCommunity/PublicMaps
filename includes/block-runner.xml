@@ -1,13 +1,11 @@
 <!-- Block Runner gamemode include file -->
 <!-- Modified for modern PGM - Original block-runner.xml file from the Overcast Network -->
-<!-- Version 2025.09.29-1 -->
+<!-- Version 2025.10.24-1 -->
 <map proto="1.5.0" game="`eProgress">
 <objective>Be the first to the end!</objective>
 <gamemode>arcade</gamemode>
-<blitz>
-    <lives>1</lives>
-</blitz>
-<players max="8" colors="true"/>
+<blitz/>
+<players min="4" max="8" colors="true"/>
 <broadcasts>
     <alert after="2s">`6`lBlocks falling in 3 seconds</alert>
     <alert after="3s">`6`lBlocks falling in 2 seconds</alert>
@@ -17,7 +15,6 @@
 <time>2m</time>
 <score>
     <limit>4</limit>
-    <kills>0</kills>
     <box points="1" silent="true" region="checkpoint1"/>
     <box points="1" silent="true" region="checkpoint2"/>
     <box points="1" silent="true" region="checkpoint3"/>
@@ -26,23 +23,12 @@
 <regions>
     <apply enter="never">
         <region>
-            <negative>
+            <complement>
+                <everywhere/>
                 <region id="checkpoint1"/>
-            </negative>
-        </region>
-    </apply>
-    <apply enter="never">
-        <region>
-            <negative>
                 <region id="checkpoint2"/>
-            </negative>
-        </region>
-    </apply>
-    <apply enter="never">
-        <region>
-            <negative>
                 <region id="checkpoint3"/>
-            </negative>
+            </complement>
         </region>
     </apply>
 </regions>
