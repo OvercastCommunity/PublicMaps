@@ -44,6 +44,7 @@
             </enchant-item>
         </action>
         <effect>speed</effect>
+        <game-mode>survival</game-mode>
     </kit>
 </kits>
 <spawns>
