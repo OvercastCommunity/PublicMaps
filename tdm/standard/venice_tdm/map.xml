@@ -32,7 +32,6 @@
 </teams>
 <kits>
     <kit id="spawn-kit" parent="base-kit">
-        <clear/>
         <item slot="3" unbreakable="true" material="iron pickaxe">
             <enchantment>efficiency</enchantment>
         </item>
