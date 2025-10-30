@@ -86,11 +86,13 @@
 <score>
     <if has-variant="comp">
         <unless variant="comp">
-            <mercy>5</mercy>
+            <display>circle</display>
+            <limit>5</limit>
         </unless>
     </if>
     <unless has-variant="comp">
-        <mercy>5</mercy>
+        <display>circle</display>
+        <limit>5</limit>
     </unless>
 </score>
 <portals>
