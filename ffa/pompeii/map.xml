@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <name>Pompeii</name>
 <variant id="rage">RAGE</variant>
-<version>1.3.1</version>
+<version>1.3.2</version>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- KRo_oOH -->
     <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
@@ -89,6 +89,7 @@
 </score>
 <toolrepair>
     <tool>stone sword</tool>
+    <tool>iron sword</tool>
     <tool>bow</tool>
 </toolrepair>
 <itemremove>
