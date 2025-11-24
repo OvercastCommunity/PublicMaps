@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Grassy Mound</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <include id="gapple-kill-reward"/>
 <objective>Destroy the other team's Gold monument!</objective>
 <authors>
@@ -58,7 +58,7 @@
     <apply region="blue-spawn" enter="blue-team" message="You may not enter the enemy's spawn"/>
     <apply region="red-spawn" enter="red-team" message="You may not enter the enemy's spawn"/>
     <apply region="team-spawns" block="never" message="You may not modify the spawn area"/>
-    <apply block-place="deny(void)" block-break="deny(void-break)" message="You may not interact with that material here"/>
+    <apply block-place="deny(void)" block-break="deny(all(void, void-break))" message="You may not interact with that material here"/>
     <apply block="deny(enchant-table)" message="You may not break the enchantment table"/>
 </regions>
 <destroyables materials="gold block" mode-changes="true">
