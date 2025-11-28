@@ -53,7 +53,7 @@
 </spawns>
 <regions>
     <!-- Main Area -->
-    <rectangle id="main-area" min="-46,44" max="7,177" />
+    <rectangle id="main-area" min="-46,44" max="7,177"/>
     <!-- Spawns -->
     <union id="spawns">
         <union id="orange-spawn">

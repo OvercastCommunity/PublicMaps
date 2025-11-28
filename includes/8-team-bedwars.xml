@@ -115,11 +115,11 @@
     </kit>
     <kit id="iron-armor-kit" force="true">
         <leggings unbreakable="true" locked="true" material="iron leggings"/>
-        <boots unbreakable="true" locked="true" material="iron boots" />
+        <boots unbreakable="true" locked="true" material="iron boots"/>
     </kit>
     <kit id="diamond-armor-kit" force="true">
         <leggings unbreakable="true" locked="true" material="diamond leggings"/>
-        <boots unbreakable="true" locked="true" material="diamond boots" />
+        <boots unbreakable="true" locked="true" material="diamond boots"/>
     </kit>
     <!-- Projectiles -->
     <kit id="fireball" deduct-items="false">

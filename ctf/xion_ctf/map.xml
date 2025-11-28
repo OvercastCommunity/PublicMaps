@@ -105,8 +105,8 @@
         <cuboid min="37,6,-84" max="36,8,-85"/>
     </union>
     <union id="blue-net">
-        <rectangle min="50,-71" max="65,-67" />
-        <rectangle min="65,-67" max="46,-52" />
+        <rectangle min="50,-71" max="65,-67"/>
+        <rectangle min="65,-67" max="46,-52"/>
     </union>
     <cylinder id="blue-capture-net" base="32.5,6,-84.5" height="6" radius="5"/>
     <!-- Red Side: Regions -->

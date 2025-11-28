@@ -50,7 +50,7 @@
     </spawn>
     <default yaw="-90"> 
         <region>
-            <cylinder base="2274.5,158,-1101.5" radius="3" height="0" />
+            <cylinder base="2274.5,158,-1101.5" radius="3" height="0"/>
         </region>
     </default>
 </spawns>

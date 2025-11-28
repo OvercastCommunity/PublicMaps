@@ -50,14 +50,14 @@
 </kits>
 <maxbuildheight>31</maxbuildheight>
 <regions>
-    <cuboid name="red-spawn" min="-51.5,36,32.5" max="-48.5,36,35.5" />
-    <cuboid name="blue-spawn" min="49.5,36,32.5" max="52.5,36,35.5" />
-    <cylinder name="observer-spawn" base="0.5,45,32.5" radius="3" height="0" />
+    <cuboid name="red-spawn" min="-51.5,36,32.5" max="-48.5,36,35.5"/>
+    <cuboid name="blue-spawn" min="49.5,36,32.5" max="52.5,36,35.5"/>
+    <cylinder name="observer-spawn" base="0.5,45,32.5" radius="3" height="0"/>
     <circle name="red-base" center="-48.5, 32.5" radius="27.5"/>
     <circle name="blue-base" center="49.5, 32.5" radius="27.5"/>
     <circle name="hill" center="0.5,-62.5" radius="9.5"/>
     <rectangle name="square-island" min="-11,-60" max="12,-37"/>
-    <circle name="playable" center="0.5, 0.5" radius="75" />
+    <circle name="playable" center="0.5, 0.5" radius="75"/>
     <apply block="deny-all" message="You may not build near the spawns or hill!">
         <region name="red-base"/>
         <region name="blue-base"/>

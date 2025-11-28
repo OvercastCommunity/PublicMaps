@@ -3,7 +3,7 @@
 <version>1.4.7</version>
 <objective>Hold the flag for 200 seconds to win!</objective>
 <authors>
-    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!-- Qixit -->
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477"/> <!-- Qixit -->
 </authors>
 <teams>
     <team id="blue" color="blue" max="32">Blue</team>
@@ -118,7 +118,7 @@
         </all>
     </allow>
     <deny id="deny-void">
-        <void />
+        <void/>
     </deny>
 </filters>
 <regions>

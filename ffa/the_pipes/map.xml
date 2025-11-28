@@ -19,7 +19,7 @@
 <players min="2" max="80" colors="true"/>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" unbreakable="true" material="stone sword" />
+        <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow">
             <enchantment>infinity</enchantment>
         </item>

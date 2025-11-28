@@ -4,12 +4,12 @@
 <version>1.0.4</version>
 <objective>Get the most kills in 5 minutes!</objective>
 <authors>
-    <author uuid="0347bb56-8ade-410e-9f32-31d54eb10598" /> <!-- JadSaa -->
-    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
+    <author uuid="0347bb56-8ade-410e-9f32-31d54eb10598"/> <!-- JadSaa -->
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
 </authors>
 <contributors>
-    <contributor uuid="205d1aad-c619-499b-9885-b91c372b1c13" /> <!-- Equus -->
-    <contributor uuid="65722be1-29fd-4e7d-a47d-94ed616ed880" /> <!-- KroestV2 -->
+    <contributor uuid="205d1aad-c619-499b-9885-b91c372b1c13"/> <!-- Equus -->
+    <contributor uuid="65722be1-29fd-4e7d-a47d-94ed616ed880"/> <!-- KroestV2 -->
 </contributors>
 <players max="5" max-overfill="5" show-name-tags="false"/>
 <kits>
@@ -51,7 +51,7 @@
 <score>
     <kills>1</kills>
 </score>
-<rage />
+<rage/>
 <time>5m</time>
 <itemremove>
     <item>bow</item>
@@ -64,7 +64,7 @@
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item material="arrow" />
+        <item material="arrow"/>
     </kill-reward>
 </kill-rewards>
 <hunger>
@@ -74,6 +74,6 @@
     <damage>fall</damage>
     <damage>suffocation</damage>
 </disabledamage>
-<respawn delay="2.0s" blackout="true" />
+<respawn delay="2.0s" blackout="true"/>
 <timelock>on</timelock>
 </map>

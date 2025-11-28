@@ -5,11 +5,11 @@
 <objective>Be the sole survivor of the games</objective>
 <created>2015-12-06</created>
 <authors>
-    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" /> <!-- Yoyo_ -->
-    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" /> <!-- Rockymine -->
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- Rockymine -->
 </authors>
 <contributors>
-    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" /> <!-- DoomyBoy -->
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomyBoy -->
 </contributors>
 <broadcasts>
     <alert after="1">`4Move and DIE!</alert>
@@ -75,17 +75,17 @@
 <!--<structures>
     <structure id="drop1" air="false">
         <region>
-            <region id="drop1-region" />
+            <region id="drop1-region"/>
         </region>
     </structure>
     <structure id="drop2" air="false">
         <region>
-            <region id="drop2-region" />
+            <region id="drop2-region"/>
         </region>
     </structure>
     <structure id="portal-structure" air="true">
         <region>
-            <region id="portal-region" />
+            <region id="portal-region"/>
         </region>
     </structure>
     <structures offset="0,-20,0">
@@ -130,9 +130,9 @@
     <time id="after-1s">1s</time>
 </filters>
 <regions>
-    <cuboid id="drop1-region" min="-79,94,144" max="-95,118,127" />
-    <cuboid id="drop2-region" min="240,120,-199" max="257,96,-215" />
-    <cuboid id="portal-region" min="99,109,-126" max="92,118,-133" />
+    <cuboid id="drop1-region" min="-79,94,144" max="-95,118,127"/>
+    <cuboid id="drop2-region" min="240,120,-199" max="257,96,-215"/>
+    <cuboid id="portal-region" min="99,109,-126" max="92,118,-133"/>
     <apply block="block-some"/>
 </regions>
 <blitz>

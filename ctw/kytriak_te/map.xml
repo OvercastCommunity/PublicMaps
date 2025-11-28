@@ -79,11 +79,11 @@
     <!-- Wool room protection -->
     <union name="blue-wool-rooms">
         <rectangle name="purple-wool" min="12,-795" max="37,-782"/><!-- Left for blue-->
-        <rectangle name="pink-wool" min="-150,-795" max="-125,-782" />
+        <rectangle name="pink-wool" min="-150,-795" max="-125,-782"/>
     </union>
     <union name="red-wool-rooms">
         <rectangle name="yellow-wool" min="-150,-1041" max="-125,-1029"/><!-- Left for blue-->
-        <rectangle name="lime-wool" min="12,-1041" max="37,-1029" />
+        <rectangle name="lime-wool" min="12,-1041" max="37,-1029"/>
     </union>
     <apply block="only-blue" enter="only-blue" use="only-blue-usage" message="You may not enter or modify blue's wool rooms!">
         <region name="blue-wool-rooms"/>

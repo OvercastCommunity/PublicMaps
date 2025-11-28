@@ -58,15 +58,15 @@
 <regions>
     <!-- Blue spawn rooms -->
     <union id="blue-spawn-rooms">
-        <cuboid id="blue-spawn-room-low" min="-110,20,242" max="-98,28,257" />
-        <cuboid id="blue-spawn-room-med" min="-126,24,242" max="-114,33,257" />
-        <cuboid id="blue-spawn-room-hi" min="-142,29,242" max="-130,37,257" />
+        <cuboid id="blue-spawn-room-low" min="-110,20,242" max="-98,28,257"/>
+        <cuboid id="blue-spawn-room-med" min="-126,24,242" max="-114,33,257"/>
+        <cuboid id="blue-spawn-room-hi" min="-142,29,242" max="-130,37,257"/>
     </union>
     <!-- Red spawn rooms -->
     <union id="red-spawn-rooms">
-        <cuboid id="red-spawn-room-low" min="-78,20,242" max="-66,28,257" />
-        <cuboid id="red-spawn-room-med" min="-62,24,242" max="-50,33,257" />
-        <cuboid id="red-spawn-room-hi" min="-46,29,242" max="-34,37,257" />
+        <cuboid id="red-spawn-room-low" min="-78,20,242" max="-66,28,257"/>
+        <cuboid id="red-spawn-room-med" min="-62,24,242" max="-50,33,257"/>
+        <cuboid id="red-spawn-room-hi" min="-46,29,242" max="-34,37,257"/>
     </union>
     <negative id="outside-lanes">
         <union id="both-lanes">
@@ -92,8 +92,8 @@
     </union>
     <cuboid id="green-wool-buttons" min="-90,31,-202" max="-86,34,-200"/>
     <union id="green-wool">
-        <circle id="green-wool-circle" center="-88,-192" radius="10" />
-        <rectangle id="green-wool-weirdarea" min="-90,-206" max="-86,-201" />
+        <circle id="green-wool-circle" center="-88,-192" radius="10"/>
+        <rectangle id="green-wool-weirdarea" min="-90,-206" max="-86,-201"/>
     </union>
     <union id="wool-monuments">
         <cuboid id="blue-wool-room" min="-124,23,-125" max="-114,32,-110"/>

@@ -58,8 +58,8 @@
     <time id="flag-respawns">0</time>
 </filters>
 <regions>
-    <cylinder id="blue-net" base="-118,5,337" radius="2" height="2" />
-    <cylinder id="red-net" base="-30,5,211" radius="2" height="2" />
+    <cylinder id="blue-net" base="-118,5,337" radius="2" height="2"/>
+    <cylinder id="red-net" base="-30,5,211" radius="2" height="2"/>
     <apply velocity="0.0,1.8,0.0">
         <region>
             <cuboid min="-61,1,278" max="-64,2,274"/>

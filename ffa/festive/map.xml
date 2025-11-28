@@ -9,7 +9,7 @@
 <rules>
     <rule>Fall damage is disabled.</rule>
 </rules>
-<players max="5" max-overfill="5" show-name-tags="false" />
+<players max="5" max-overfill="5" show-name-tags="false"/>
 <kits>
     <kit id="spawn-kit">
         <item slot="0" name="Sword" material="stone sword"/>
@@ -41,7 +41,7 @@
     </spawn>
     <default yaw="-90">
         <region>
-            <cuboid min="136,27.5,40" max="137,27.5,38" />
+            <cuboid min="136,27.5,40" max="137,27.5,38"/>
         </region>
     </default>
 </spawns>

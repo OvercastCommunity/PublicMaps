@@ -68,11 +68,11 @@
 <regions>
     <union id="blue-wool-rooms">
         <rectangle id="purple-wool" min="12,-795" max="37,-782"/> <!-- Left for blue-->
-        <rectangle id="pink-wool" min="-150,-795" max="-125,-782" />
+        <rectangle id="pink-wool" min="-150,-795" max="-125,-782"/>
     </union>
     <union id="red-wool-rooms">
         <rectangle id="yellow-wool" min="-150,-1041" max="-125,-1029"/> <!-- Left for blue-->
-        <rectangle id="lime-wool" min="12,-1041" max="37,-1029" />
+        <rectangle id="lime-wool" min="12,-1041" max="37,-1029"/>
     </union>
     <union id="bases">
         <rectangle id="blue-base" min="-95,-1107" max="-18,-1038"/>

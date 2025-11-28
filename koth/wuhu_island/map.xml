@@ -28,7 +28,7 @@
 </teams>
 <kits>
     <kit id="default">
-        <double-jump />
+        <double-jump/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" name="`r`e`lSuper Star" prevent-sharing="true" lore="`7Hold this to go faster!" material="nether star"/>

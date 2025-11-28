@@ -53,7 +53,7 @@
 <spawns>
     <spawn filter="score-0" kit="runner-kit">
         <region>
-            <cuboid min="-90.5,99.5,-70.5" max="-100.5,99.5,-65.5" />
+            <cuboid min="-90.5,99.5,-70.5" max="-100.5,99.5,-65.5"/>
         </region>
     </spawn>
     <spawn yaw="-180" filter="score-1" region="checkpoint-1" kit="runner-kit" safe="true"/>

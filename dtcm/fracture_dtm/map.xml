@@ -187,13 +187,13 @@
     <mode after="24m" show-before="24s" material="coal block"/>
 </modes>
 <!-- <beacons>
-  <beacon location="-28.5,0,35.5"  color="blue" particle-count="10" visibility-filter="only-blue" />
-  <beacon location="-28.5,0,137.5" color="red"  particle-count="10" visibility-filter="only-red" />
+  <beacon location="-28.5,0,35.5"  color="blue" particle-count="10" visibility-filter="only-blue"/>
+  <beacon location="-28.5,0,137.5" color="red"  particle-count="10" visibility-filter="only-red"/>
 </beacons> -->
 <kill-rewards>
     <kill-reward>
         <item amount="6" material="wood" damage="1"/>
-        <item amount="8" material="arrow" />
+        <item amount="8" material="arrow"/>
         <item material="golden apple"/>
     </kill-reward>
     <kill-reward>
@@ -219,13 +219,13 @@
         <kit>
             <any count="1">
                 <option weight="70">
-                    <item material="air" />
+                    <item material="air"/>
                 </option>
                 <option weight="25">
-                    <item material="fireball" />
+                    <item material="fireball"/>
                 </option>
                 <option weight="5">
-                    <item material="tnt" />
+                    <item material="tnt"/>
                 </option>
             </any>
         </kit>
@@ -288,7 +288,7 @@
             <material>iron leggings</material>
             <material>iron boots</material>
         </match>
-        <modify unbreakable="true" />
+        <modify unbreakable="true"/>
     </rule>
     <rule>
         <match>

@@ -3,7 +3,7 @@
 <version>2.2.5</version>
 <gamemode>ffa</gamemode>
 <authors>
-    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" /> <!-- Qixit -->
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477"/> <!-- Qixit -->
 </authors>
 <objective>Kill and survive. There are no teams, so watch your back!</objective>
 <score>
@@ -177,7 +177,7 @@
         </regions>
     </default>
 </spawns>
-<respawn auto="false" delay="1s" spectate="true" blackout="false" />
+<respawn auto="false" delay="1s" spectate="true" blackout="false"/>
 <item-mods>
     <rule>
         <match>
@@ -277,90 +277,90 @@
 </disabledamage>
 <kill-rewards>
     <kill-reward>
-        <kit id="killreward-base-kit" />
+        <kit id="killreward-base-kit"/>
         <item material="golden apple"/>
         <item amount="3" material="emerald"/>
         <item amount="20" material="arrow"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="1" />
+            <kill-streak count="1"/>
         </filter>
-        <kit id="kit-00" />
+        <kit id="kit-00"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="2" />
+            <kill-streak count="2"/>
         </filter>
-        <kit id="kit-0" />
+        <kit id="kit-0"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="3" />
+            <kill-streak count="3"/>
         </filter>
-        <kit id="kit-1" />
+        <kit id="kit-1"/>
         <item amount="3" material="emerald"/>
         <item material="web"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="4" />
+            <kill-streak count="4"/>
         </filter>
-        <kit id="kit-2" />
+        <kit id="kit-2"/>
         <item amount="5" material="clay"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="5" />
+            <kill-streak count="5"/>
         </filter>
-        <kit id="kit-3" />
+        <kit id="kit-3"/>
         <item amount="4" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="6" />
+            <kill-streak count="6"/>
         </filter>
-        <kit id="kit-4" />
+        <kit id="kit-4"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="7" />
+            <kill-streak count="7"/>
         </filter>
-        <kit id="kit-5" />
+        <kit id="kit-5"/>
         <item material="emerald"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="8" />
+            <kill-streak count="8"/>
         </filter>
-        <kit id="kit-6" />
+        <kit id="kit-6"/>
         <item amount="3" name="`2`cGrenade" grenade="true" grenade-power="2.0" material="snowball"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="9" />
+            <kill-streak count="9"/>
         </filter>
-        <kit id="kit-7" />
+        <kit id="kit-7"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="10" />
+            <kill-streak count="10"/>
         </filter>
-        <kit id="kit-8" />
+        <kit id="kit-8"/>
         <item material="emerald"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="11" />
+            <kill-streak count="11"/>
         </filter>
-        <kit id="kit-9" />
+        <kit id="kit-9"/>
         <item material="emerald"/>
     </kill-reward>
     <kill-reward>
         <filter>
-            <kill-streak count="12" />
+            <kill-streak count="12"/>
         </filter>
-        <kit id="kit-10" />
+        <kit id="kit-10"/>
     </kill-reward>
 </kill-rewards>
 <itemremove>
@@ -492,43 +492,43 @@
     <!-- top closest to kryta sign -2, 48, 302  -->
     <apply velocity="3.2,2,3.2">
         <region>
-            <cuboid id="jumpad-5" min="-2,47.5,307" max="-0,48.5,305" />
+            <cuboid id="jumpad-5" min="-2,47.5,307" max="-0,48.5,305"/>
         </region>
     </apply>
     <!--  opposite torwards above ^ also opposite kryta sign33,51,325  -->
     <apply velocity="-4,2,-4">
         <region>
-            <cuboid id="jumpad-4" min="32,50.5,324" max="30,51.5,322" />
+            <cuboid id="jumpad-4" min="32,50.5,324" max="30,51.5,322"/>
         </region>
     </apply>
     <!--  botttom below kryta sign 13,31,306  -->
     <apply velocity="-1.5,3,-1.5">
         <region>
-            <cuboid id="jumpad-6" min="11,30.5,303" max="13,31.5,305" />
+            <cuboid id="jumpad-6" min="11,30.5,303" max="13,31.5,305"/>
         </region>
     </apply>
     <!--  above jumppad goes to this one  -->
     <apply velocity="2,2,2">
         <region>
-            <cuboid id="jumpad-15" min="-13,54.5,278" max="-11,57.5,280" />
+            <cuboid id="jumpad-15" min="-13,54.5,278" max="-11,57.5,280"/>
         </region>
     </apply>
     <!--  -22,10,354  -->
     <apply velocity="2,4,-2">
         <region>
-            <cuboid id="jumpad-7" min="-25,8.5,358" max="-23,9.5,356" />
+            <cuboid id="jumpad-7" min="-25,8.5,358" max="-23,9.5,356"/>
         </region>
     </apply>
     <!--  right above the kryta sign  -->
     <apply velocity="-2,6,2">
         <region>
-            <cuboid id="jumpad-8" min="22,56.5,295" max="24,57.5,293" />
+            <cuboid id="jumpad-8" min="22,56.5,295" max="24,57.5,293"/>
         </region>
     </apply>
     <!--  top village  -->
     <apply velocity="3,5,3">
         <region>
-            <cuboid id="jumpad-9" min="13,48.5,242" max="11,49.5,240" />
+            <cuboid id="jumpad-9" min="13,48.5,242" max="11,49.5,240"/>
         </region>
     </apply>
 </regions>
@@ -577,7 +577,7 @@
 <renewables>
     <renewable interval="400s" grow="true" particles="false" sound="false" avoid-players="20">
         <region>
-            <everywhere />
+            <everywhere/>
         </region>
         <renew-filter>
             <any>
@@ -610,7 +610,7 @@
     </renewable>
     <renewable interval="100s" grow="false" particles="false" sound="true" avoid-players="2">
         <region>
-            <everywhere />
+            <everywhere/>
         </region>
         <renew-filter>
             <material>air</material>
@@ -620,7 +620,7 @@
 <block-drops>
     <rule>
         <region>
-            <everywhere />
+            <everywhere/>
         </region>
         <filter>
             <any>

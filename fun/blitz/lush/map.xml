@@ -47,7 +47,7 @@
 <blitz>
     <lives>1</lives>
 </blitz>
-<rage />
+<rage/>
 <kill-rewards>
     <kill-reward>
         <item material="arrow"/>

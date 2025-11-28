@@ -63,7 +63,7 @@
     </apply>
     <apply enter="only-red" message="You may not enter green's spawn!">
         <complement name="red-spawn">
-            <cuboid name="red-spawn-main" min="-22,9,11" max="21,14,26" />
+            <cuboid name="red-spawn-main" min="-22,9,11" max="21,14,26"/>
             <union> <!-- Stairwells -->
                 <cuboid min="-18,10,15" max="-13,14,22"/>
                 <cuboid min="12,10,15" max="17,14,22"/>

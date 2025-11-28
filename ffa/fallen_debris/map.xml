@@ -80,7 +80,7 @@
     </class>
     <class name="Blocker" description="Tough and heavy!" icon="diamond helmet">
         <kit parents="global-kit">
-            <item slot="0" unbreakable="true" material="iron axe" />
+            <item slot="0" unbreakable="true" material="iron axe"/>
             <item slot="1" name="`rPotion of Rage" material="potion">
                 <effect duration="4">strength</effect>
                 <effect amplifier="2" duration="4">regeneration</effect>
@@ -147,13 +147,13 @@
             <item slot="0" projectile="shulker-gun" name="`rShrieking Bone (`aRight-click`r)" material="bone">
                 <attribute operation="add" amount="4">generic.attackDamage</attribute>
             </item>
-            <!-- <item slot="1" amount="24" material="chorus fruit" /> -->
-            <helmet locked="true" unbreakable="true" material="gold helmet" />
+            <!-- <item slot="1" amount="24" material="chorus fruit"/> -->
+            <helmet locked="true" unbreakable="true" material="gold helmet"/>
             <chestplate locked="true" unbreakable="true" material="gold chestplate">
                 <enchantment>thorns</enchantment>
             </chestplate>
-            <leggings locked="true" unbreakable="true" material="chainmail leggings" />
-            <boots color="993333" locked="true" unbreakable="true" material="leather boots" />
+            <leggings locked="true" unbreakable="true" material="chainmail leggings"/>
+            <boots color="993333" locked="true" unbreakable="true" material="leather boots"/>
         </kit>
     </class><!-- Summer Class-->
     <class name="Vicious Rabbit" description="Vicious bites and levitation - Summer Special!" icon="rabbit foot">
@@ -187,14 +187,14 @@
             <head slot="0" projectile="tnt-gun" uuid="6d46f5a1-a833-414c-ba0d-9842cb59316e">
                 <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU2MTJkYzdiODZkNzFhZmMxMTk3MzAxYzE1ZmQ5NzllOWYzOWU3YjFmNDFkOGYxZWJkZjgxMTU1NzZlMmUifX19</skin>
             </head>
-            <item slot="1" projectile="snowball-gun" amount="24" material="snow ball" />
+            <item slot="1" projectile="snowball-gun" amount="24" material="snow ball"/>
             <item slot="2" amount="3" name="`rLingering Potion of Levitation" material="lingering potion">
                 <effect duration="5">levitation</effect>
             </item>
-            <helmet locked="true" color="993333" unbreakable="true" material="leather helmet" />
-            <chestplate locked="true" unbreakable="true" material="gold chestplate" />
-            <leggings locked="true" color="993333" unbreakable="true" material="leather leggings" />
-            <boots locked="true" color="993333" unbreakable="true" material="leather boots" />
+            <helmet locked="true" color="993333" unbreakable="true" material="leather helmet"/>
+            <chestplate locked="true" unbreakable="true" material="gold chestplate"/>
+            <leggings locked="true" color="993333" unbreakable="true" material="leather leggings"/>
+            <boots locked="true" color="993333" unbreakable="true" material="leather boots"/>
         </kit>
     </class> -->
 </classes>
@@ -270,8 +270,8 @@
 </score>
 <time>8m</time>
 <projectiles>
-    <projectile id="tnt-gun" name="exploding gift" projectile="TNTPrimed" velocity="1" damage="8" throwable="false" cooldown="3s" />
-    <projectile id="snowball-gun" name="snowball" projectile="Snowball" velocity="1" damage="8" throwable="true" cooldown="0s" />
+    <projectile id="tnt-gun" name="exploding gift" projectile="TNTPrimed" velocity="1" damage="8" throwable="false" cooldown="3s"/>
+    <projectile id="snowball-gun" name="snowball" projectile="Snowball" velocity="1" damage="8" throwable="true" cooldown="0s"/>
     <projectile id="shulker-gun" name="flaming skull" projectile="WitherSkull" velocity="1" damage="6" throwable="false" cooldown="1s" click="right">
         <effect duration="-1" amplifier="10">wither</effect>
     </projectile>
@@ -292,15 +292,15 @@
                 <class>Necromancer</class>
                 <any>
                     <all>
-                        <sprinting />
+                        <sprinting/>
                         <random>0.6</random>
                     </all>
                     <all>
-                        <walking />
+                        <walking/>
                         <random>0.4</random>
                     </all>
                     <all>
-                        <crouching />
+                        <crouching/>
                         <random>0.2</random>
                     </all>
                 </any>
@@ -400,20 +400,20 @@
         <filter>
             <class>Soldier</class>
         </filter>
-        <item amount="2" material="arrow" />
+        <item amount="2" material="arrow"/>
     </kill-reward>
     <!-- Archer Kill Rewards -->
     <kill-reward>
         <filter>
             <class>Archer</class>
         </filter>
-        <item amount="8" material="arrow" />
+        <item amount="8" material="arrow"/>
     </kill-reward>
     <!-- <kill-reward>
         <filter>
             <all>
                 <class>Archer</class>
-                <kill-streak count="3" repeat="true" />
+                <kill-streak count="3" repeat="true"/>
             </all>
         </filter>
         <item amount="3" material="tipped arrow">
@@ -434,7 +434,7 @@
         <filter>
             <all>
                 <class>Assassin</class>
-                <kill-streak count="3" repeat="true" />
+                <kill-streak count="3" repeat="true"/>
             </all>
         </filter>
         <!-- 16384 + 12 = 16396 -->
@@ -448,7 +448,7 @@
         <filter>
             <all>
                 <class>Blocker</class>
-                <kill-streak count="4" repeat="true" />
+                <kill-streak count="4" repeat="true"/>
             </all>
         </filter>
         <item name="`rPotion of Rage" material="potion">
@@ -461,20 +461,20 @@
         <filter>
             <class>Pyro</class>
         </filter>
-        <item amount="6" material="arrow" />
+        <item amount="6" material="arrow"/>
     </kill-reward>
     <!-- Scientist Kill Rewards -->
     <kill-reward>
         <filter>
             <class>Scientist</class>
         </filter>
-        <item amount="3" material="arrow" /> <!-- was spectral -->
+        <item amount="3" material="arrow"/> <!-- was spectral -->
     </kill-reward>
     <kill-reward>
         <filter>
             <all>
                 <class>Scientist</class>
-                <kill-streak count="2" repeat="true" />
+                <kill-streak count="2" repeat="true"/>
             </all>
         </filter>
         <!-- 16384 + 12 = 16396 -->
@@ -487,13 +487,13 @@
         <filter>
             <class>Necromancer</class>
         </filter>
-        <!-- <item amount="6" material="chorus fruit" /> -->
+        <!-- <item amount="6" material="chorus fruit"/> -->
     </kill-reward>
     <kill-reward>
         <filter>
             <all>
                 <class>Necromancer</class>
-                <kill-streak count="3" repeat="true" />
+                <kill-streak count="3" repeat="true"/>
             </all>
         </filter>
         <!-- jump boost replaces levitation -->
@@ -513,7 +513,7 @@
         <filter>
             <all>
             <class>Vicious Rabbit</class>
-                <kill-streak count="3" repeat="true" />
+                <kill-streak count="3" repeat="true"/>
             </all>
         </filter>
         <!-- 16384 + 11 = 16395 -->
@@ -526,13 +526,13 @@
         <filter>
             <class>Santa</class>
         </filter>
-        <item projectile="snowball-gun" amount="6" material="snow ball" />
+        <item projectile="snowball-gun" amount="6" material="snow ball"/>
     </kill-reward>
     <kill-reward>
         <filter>
             <all>
                 <class>Santa</class>
-                <kill-streak count="3" repeat="true" />
+                <kill-streak count="3" repeat="true"/>
             </all>
         </filter>
         <item amount="1" name="`rLingering Potion of Levitation" material="lingering potion">

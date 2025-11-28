@@ -113,12 +113,12 @@
         <cuboid id="left-side-portal1" min="241,22,-28" max="344,23,-30"/>
         <cuboid id="left-side-portal2" min="372,10,2" max="416,11,0"/>
         <cuboid id="left-side-portal3" min="434,51,-25" max="506,52,-27"/>
-        <cuboid id="left-side-portal4" min="519,27,-20" max="754,19,-20" />
+        <cuboid id="left-side-portal4" min="519,27,-20" max="754,19,-20"/>
     </union>
     <union id="left-side-portals-last3">
-        <cuboid id="last-left-side-portal1" min="520,20,-19" max="624,18,-20" />
-        <cuboid id="last-left-side-portal2" min="625,21,-19" max="689,19,-20" />
-        <cuboid id="last-left-side-portal3" min="690,22,-19" max="755,20,-20" />
+        <cuboid id="last-left-side-portal1" min="520,20,-19" max="624,18,-20"/>
+        <cuboid id="last-left-side-portal2" min="625,21,-19" max="689,19,-20"/>
+        <cuboid id="last-left-side-portal3" min="690,22,-19" max="755,20,-20"/>
     </union>
     <translate offset="0,0,77" id="right-side-portals-last3">
         <region id="left-side-portals-last3"/>

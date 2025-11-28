@@ -196,8 +196,8 @@
         </complement>
         <!-- the entire inside of the box -->
         <union id="box">
-            <cuboid min="2,0,2" max="102,50,102" /> <!-- the original region -->
-            <cuboid min="78,0,78" max="107,50,107" /> <!-- this is the extra 5 blocks behind the monument -->
+            <cuboid min="2,0,2" max="102,50,102"/> <!-- the original region -->
+            <cuboid min="78,0,78" max="107,50,107"/> <!-- this is the extra 5 blocks behind the monument -->
         </union>
         <!-- the attacker drop tube, including walls -->
         <cuboid id="attacker-drop" min="2,9,2" max="12,50,12"/>
@@ -222,8 +222,8 @@
             <above y="48"/>
         </union>
         <union id="defender-bridge-wall">
-            <rectangle min="77,102" max="78,107" />
-            <rectangle min="102,77" max="107,78" />
+            <rectangle min="77,102" max="78,107"/>
+            <rectangle min="102,77" max="107,78"/>
         </union>
         <union id="defender-bridge-gates">
             <cuboid id="gate1" min="102,5,12" max="103,10,17"/>

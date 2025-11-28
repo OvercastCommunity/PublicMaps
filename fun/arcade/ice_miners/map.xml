@@ -4,7 +4,7 @@
 <gamemode>arcade</gamemode>
 <version>1.2.3</version>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>
 <broadcasts>
     <tip after="1m" every="30s">The scorebox is at the bottom of the map!</tip>

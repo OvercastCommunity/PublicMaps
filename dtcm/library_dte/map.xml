@@ -3,7 +3,7 @@
 <version>1.0.9</version>
 <objective>Destroy 70% of the enemy's side!</objective>
 <authors>
-    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
 </authors>
 <rules>
     <rule>Fall damage is disabled.</rule>
@@ -169,7 +169,7 @@
     </portal>
     <portal x="@-0.5" y="@10" z="@66.5" yaw="@-180">
         <region>
-            <cuboid min="-1,93,34" max="0,91,32" />
+            <cuboid min="-1,93,34" max="0,91,32"/>
         </region>
     </portal>
     <portal x="@30" y="@75" z="@-4.5" yaw="@45">

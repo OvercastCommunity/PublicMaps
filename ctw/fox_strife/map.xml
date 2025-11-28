@@ -30,8 +30,8 @@
         <item slot="7" material="water bucket"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
-        <item slot="29" material="iron spade" unbreakable="true" />
-        <item slot="30" material="shears" unbreakable="true" />
+        <item slot="29" material="iron spade" unbreakable="true"/>
+        <item slot="30" material="shears" unbreakable="true"/>
         <item slot="31" material="wood" amount="32" damage="2"/>
         <helmet material="leather helmet" team-color="true" unbreakable="true"/>
         <chestplate material="chainmail chestplate" team-color="true" unbreakable="true"/>

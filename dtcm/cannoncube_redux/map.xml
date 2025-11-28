@@ -388,11 +388,11 @@
     <apply block="deny-all" message="You may not place or break blocks outside of the map">
         <negative>
             <region name="cuboid"/>
-            <region name="heightlimit-tnt" />
+            <region name="heightlimit-tnt"/>
         </negative>
     </apply>
     <apply block-place="deny-building-blocks" message="You may not place building blocks at this level">
-        <region name="heightlimit-tnt" />
+        <region name="heightlimit-tnt"/>
     </apply>    
     <apply block="deny-all" message="You may not modify the spawn area">
         <union>

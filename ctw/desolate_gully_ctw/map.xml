@@ -4,7 +4,7 @@
 <objective>Retrieve the wool and place it on your victory monument!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>
 <teams>
     <team id="blue" color="blue" max="6">Blue</team>

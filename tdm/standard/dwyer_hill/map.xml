@@ -26,7 +26,7 @@
             <enchantment level="10">arrow damage</enchantment>
         </item>
         <item slot="2" material="arrow" amount="2"/>
-        <item slot="3" material="tnt" name="`4Landmine `6| `bFuse: 1s `6| `bPower: 2" lore="`9Use this strategically! It could be helpful..." />
+        <item slot="3" material="tnt" name="`4Landmine `6| `bFuse: 1s `6| `bPower: 2" lore="`9Use this strategically! It could be helpful..."/>
         <helmet material="leather helmet" team-color="true" locked="true" unbreakable="true"/>
         <chestplate material="iron chestplate" locked="true" unbreakable="true"/>
         <leggings material="leather leggings" team-color="true" locked="true" unbreakable="true"/>

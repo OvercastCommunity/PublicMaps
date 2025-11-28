@@ -267,7 +267,7 @@
     <translate id="red-south-spawn-3" offset="128,0,0" region="red-south-spawn"/>
 
     <!-- Enforce map modification happens only at the right phase & stage -->
-    <apply block="deny(not(phase=${running}))" message="Cannot modify the map between rounds" />
+    <apply block="deny(not(phase=${running}))" message="Cannot modify the map between rounds"/>
     <apply region="stage-1" block="deny(not(round=1))" message="You may not modify other round areas"/>
     <apply region="stage-2" block="deny(not(round=2))" message="You may not modify other round areas"/>
     <apply region="stage-3" block="deny(not(round=3))" message="You may not modify other round areas"/>

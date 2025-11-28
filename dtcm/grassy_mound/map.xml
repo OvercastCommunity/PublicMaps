@@ -4,7 +4,7 @@
 <include id="gapple-kill-reward"/>
 <objective>Destroy the other team's Gold monument!</objective>
 <authors>
-    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" /> <!-- mitchiii_ -->
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>
 <teams>
     <team id="blue-team" color="blue" max="10">Blue</team>
@@ -12,7 +12,7 @@
 </teams>
 <kits>
     <kit id="main-kit">
-        <clear />
+        <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" unbreakable="true" material="stone pickaxe"/>
@@ -31,7 +31,7 @@
 <spawns>
     <default yaw="-90">
         <region>
-            <cylinder base="30.5,13,227.5" radius="1.5" height="0.2" />
+            <cylinder base="30.5,13,227.5" radius="1.5" height="0.2"/>
         </region>
     </default>
     <spawn team="blue-team" kit="main-kit" yaw="-90">
@@ -120,7 +120,7 @@
             <material>gold boots</material>
             <material>shears</material>
         </match>
-        <modify unbreakable="true" />
+        <modify unbreakable="true"/>
     </rule>
     <rule>
         <match>

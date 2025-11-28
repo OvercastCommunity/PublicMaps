@@ -64,8 +64,8 @@
 </filters>
 <regions>
     <apply block="never"/>
-    <cylinder id="blue-net" base="52.5,11,7.5" radius="2" height="2" />
-    <cylinder id="red-net" base="-52.5,11,-7.5" radius="2" height="2" />
+    <cylinder id="blue-net" base="52.5,11,7.5" radius="2" height="2"/>
+    <cylinder id="red-net" base="-52.5,11,-7.5" radius="2" height="2"/>
 </regions>
 <time result="score" overtime="2m" max-overtime="1m">12m</time>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false">

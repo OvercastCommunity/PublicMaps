@@ -87,12 +87,12 @@
     <apply block="monument"/>
     <apply kit="shield">
         <region>
-            <rectangle min="-20,-813" max="-9,-812" />
+            <rectangle min="-20,-813" max="-9,-812"/>
         </region>
     </apply>
     <apply kit="boat">
         <region>
-            <rectangle min="-12,-729" max="-19,-730" />
+            <rectangle min="-12,-729" max="-19,-730"/>
         </region>
     </apply>
 </regions>
@@ -111,132 +111,132 @@
 <portals>
     <portal x="@35.5" y="@33" z="@-1273.5" yaw="@0">
         <region>
-            <cuboid min="-12,66,-1288" max="-14,63,-1290" />
+            <cuboid min="-12,66,-1288" max="-14,63,-1290"/>
         </region>
     </portal>
     <portal x="@-65.5" y="@33" z="@-1274.5" yaw="@0">
         <region>
-            <cuboid min="-15,66,-1289" max="-17,63,-1290" />
+            <cuboid min="-15,66,-1289" max="-17,63,-1290"/>
         </region>
     </portal>
     <portal x="@4.5" y="@34" z="@-944.5" yaw="@0">
         <region>
-            <cuboid min="37,36,-977" max="34,33,-978" />
+            <cuboid min="37,36,-977" max="34,33,-978"/>
         </region>
     </portal>
     <portal x="@-35.5" y="@34" z="@-944.5" yaw="@0">
         <region>
-            <cuboid min="-64,36,-977" max="-67,33,-978" />
+            <cuboid min="-64,36,-977" max="-67,33,-978"/>
         </region>
     </portal>
     <portal x="@35.5" y="@33" z="@-979.5" yaw="@180">
         <region>
-            <cuboid min="3,37,-947" max="6,34,-946" />
+            <cuboid min="3,37,-947" max="6,34,-946"/>
         </region>
     </portal>
     <portal x="@-65.5" y="@33" z="@-979.5" yaw="@180">
         <region>
-            <cuboid min="-37,37,-947" max="-34,34,-946" />
+            <cuboid min="-37,37,-947" max="-34,34,-946"/>
         </region>
     </portal>
     <portal x="@35.5" y="@33" z="@-898.5" yaw="@0">
         <region>
-            <cuboid min="6,37,-916" max="3,34,-917" />
+            <cuboid min="6,37,-916" max="3,34,-917"/>
         </region>
     </portal>
     <portal x="@-65.5" y="@33" z="@-898.5" yaw="@0">
         <region>
-            <cuboid min="-34,37,-916" max="-37,34,-917" />
+            <cuboid min="-34,37,-916" max="-37,34,-917"/>
         </region>
     </portal>
     <portal x="@4.5" y="@34" z="@-918.5" yaw="@180">
         <region>
-            <cuboid min="34,36,-901" max="37,33,-900" />
+            <cuboid min="34,36,-901" max="37,33,-900"/>
         </region>
     </portal>
     <portal x="@-35.5" y="@34" z="@-918.5" yaw="@180">
         <region>
-            <cuboid min="-67,36,-901" max="-64,33,-900" />
+            <cuboid min="-67,36,-901" max="-64,33,-900"/>
         </region>
     </portal>
     <portal x="@-2.5" y="@29" z="@-289.5" yaw="@90">
         <region>
-            <cuboid min="37,36,-324" max="34,33,-325" />
+            <cuboid min="37,36,-324" max="34,33,-325"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@29" z="@-289.5" yaw="@-90">
         <region>
-            <cuboid min="-64,36,-324" max="-67,33,-325" />
+            <cuboid min="-64,36,-324" max="-67,33,-325"/>
         </region>
     </portal>
     <portal x="@35.5" y="@33" z="@-326.5" yaw="@180">
         <region>
-            <cuboid min="-0,32,-291" max="-1,29,-288" />
+            <cuboid min="-0,32,-291" max="-1,29,-288"/>
         </region>
     </portal>
     <portal x="@-65.5" y="@33" z="@-326.5" yaw="@180">
         <region>
-            <cuboid min="-30,32,-288" max="-29,29,-291" />
+            <cuboid min="-30,32,-288" max="-29,29,-291"/>
         </region>
     </portal>
     <portal x="@35.5" y="@33" z="@-258.5" yaw="@0">
         <region>
-            <cuboid min="-0,32,-281" max="-1,29,-278" />
+            <cuboid min="-0,32,-281" max="-1,29,-278"/>
         </region>
     </portal>
     <portal x="@-65.5" y="@33" z="@-258.5" yaw="@0">
         <region>
-            <cuboid min="-30,32,-278" max="-29,29,-281" />
+            <cuboid min="-30,32,-278" max="-29,29,-281"/>
         </region>
     </portal>
     <portal x="@-2.5" y="@29" z="@-278" yaw="@90">
         <region>
-            <cuboid min="34,36,-261" max="37,33,-260" />
+            <cuboid min="34,36,-261" max="37,33,-260"/>
         </region>
     </portal>
     <portal x="@-27.5" y="@29" z="@-279.5" yaw="@-90">
         <region>
-            <cuboid min="-67,36,-261" max="-64,33,-260" />
+            <cuboid min="-67,36,-261" max="-64,33,-260"/>
         </region>
     </portal>
     <portal x="@-65.5" y="@33" yaw="@0">
         <region>
-            <cuboid min="38,32,-1275" max="37,31,-978" />
+            <cuboid min="38,32,-1275" max="37,31,-978"/>
         </region>
     </portal>
     <portal x="@35.5" y="@33" yaw="@0">
         <region>
-            <cuboid min="-68,32,-978" max="-67,31,-1275" />
+            <cuboid min="-68,32,-978" max="-67,31,-1275"/>
         </region>
     </portal>
     <portal x="@-35.5" y="@34" yaw="@0">
         <region>
-            <cuboid min="7,33,-945" max="6,32,-918" />
+            <cuboid min="7,33,-945" max="6,32,-918"/>
         </region>
     </portal>
     <portal x="@4.5" y="@34" yaw="@0">
         <region>
-            <cuboid min="-38,33,-918" max="-37,32,-945" />
+            <cuboid min="-38,33,-918" max="-37,32,-945"/>
         </region>
     </portal>
     <portal x="@-65.5" y="@33" yaw="@0">
         <region>
-            <cuboid min="38,32,-900" max="37,31,-325" />
+            <cuboid min="38,32,-900" max="37,31,-325"/>
         </region>
     </portal>
     <portal x="@35.5" y="@33" yaw="@0">
         <region>
-            <cuboid min="-68,32,-325" max="-67,31,-900" />
+            <cuboid min="-68,32,-325" max="-67,31,-900"/>
         </region>
     </portal>
     <portal x="@-65.5" y="@33" yaw="@0">
         <region>
-            <cuboid min="38,32,-260" max="37,31,-211" />
+            <cuboid min="38,32,-260" max="37,31,-211"/>
         </region>
     </portal>
     <portal x="@35.5" y="@33" yaw="@0">
         <region>
-            <cuboid min="-68,32,-211" max="-67,31,-260" />
+            <cuboid min="-68,32,-211" max="-67,31,-260"/>
         </region>
     </portal>
 </portals>

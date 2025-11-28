@@ -139,32 +139,32 @@
     <team id="juggernaut-team">juggernaut</team>
 </filters>
 <regions>
-    <cuboid id="monument" min="176,34,-24" max="180,40,-19" />
-    <cuboid id="parkour-1a" min="22,47,-15" max="29,58,-7" />
-    <cuboid id="parkour-1b" min="22,63,-15" max="29,74,-7" />
-    <cuboid id="parkour-1c" min="22,31,-15" max="29,42,-7" />
-    <cuboid id="parkour-2a" min="22,49,-33" max="29,54,-25" />
-    <cuboid id="parkour-2b" min="22,60,-33" max="29,65,-25" />
-    <cuboid id="parkour-2c" min="22,31,-33" max="29,36,-25" />
-    <cuboid id="parkour-3a" min="47,49,-45" max="56,60,-37" />
-    <cuboid id="parkour-3b" min="47,67,-45" max="56,78,-37" />
-    <cuboid id="parkour-3c" min="47,31,-45" max="56,42,-37" />
-    <cuboid id="parkour-4a" min="60,49,-25" max="69,56,-18" />
-    <cuboid id="parkour-4b" min="60,75,-25" max="69,82,-18" />
-    <cuboid id="parkour-4c" min="60,23,-25" max="69,30,-18" />
+    <cuboid id="monument" min="176,34,-24" max="180,40,-19"/>
+    <cuboid id="parkour-1a" min="22,47,-15" max="29,58,-7"/>
+    <cuboid id="parkour-1b" min="22,63,-15" max="29,74,-7"/>
+    <cuboid id="parkour-1c" min="22,31,-15" max="29,42,-7"/>
+    <cuboid id="parkour-2a" min="22,49,-33" max="29,54,-25"/>
+    <cuboid id="parkour-2b" min="22,60,-33" max="29,65,-25"/>
+    <cuboid id="parkour-2c" min="22,31,-33" max="29,36,-25"/>
+    <cuboid id="parkour-3a" min="47,49,-45" max="56,60,-37"/>
+    <cuboid id="parkour-3b" min="47,67,-45" max="56,78,-37"/>
+    <cuboid id="parkour-3c" min="47,31,-45" max="56,42,-37"/>
+    <cuboid id="parkour-4a" min="60,49,-25" max="69,56,-18"/>
+    <cuboid id="parkour-4b" min="60,75,-25" max="69,82,-18"/>
+    <cuboid id="parkour-4c" min="60,23,-25" max="69,30,-18"/>
     <cuboid id="gate-1" min="22,31,-16" max="29,33,-15.5"/>
     <cuboid id="gate-2" min="22,31,-34" max="29,33,-33.5"/>
     <cuboid id="gate-3" min="57.5,31,-45" max="58,33,-38"/>
     <cuboid id="gate-4" min="67.5,23,-24" max="68,25,-19"/>
     <cuboid id="gate-5" min="119.5,31,-25" max="120,33,-18"/>
-    <apply region="gate-1" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!" /> 
-    <apply region="gate-2" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!" /> 
-    <apply region="gate-3" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!" /> 
-    <apply region="gate-4" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!" /> 
-    <apply region="gate-5" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!" /> 
-    <cuboid id="throne" min="176,34,-24" max="180,40,-19" />
-    <apply kit="fast-break" region="throne" />
-    <apply block-break="only-some" />
+    <apply region="gate-1" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
+    <apply region="gate-2" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
+    <apply region="gate-3" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
+    <apply region="gate-4" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
+    <apply region="gate-5" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
+    <cuboid id="throne" min="176,34,-24" max="180,40,-19"/>
+    <apply kit="fast-break" region="throne"/>
+    <apply block-break="only-some"/>
 </regions>
 <time result="juggernaut">150s</time>
 <blitz>
@@ -178,13 +178,13 @@
 <destroyables sparks="true">
     <destroyable owner="juggernaut" materials="iron fence" name="Juggernaut Cage" show="false" mode-changes="true">
         <region>
-            <cuboid min="-3,35,-1" max="-2,38,2" />
+            <cuboid min="-3,35,-1" max="-2,38,2"/>
         </region>
     </destroyable>
     <destroyable owner="juggernaut" name="Monument" region="monument" materials="sponge" required="true"/>
 </destroyables>
 <modes>
-    <mode after="15s" material="air" name="Juggernaut will be released" show-before="10s" />
+    <mode after="15s" material="air" name="Juggernaut will be released" show-before="10s"/>
 </modes>
 <projectiles>
     <projectile id="slowball" name="Slowball" projectile="Egg" velocity="3.5" damage="0" throwable="true" click="right">

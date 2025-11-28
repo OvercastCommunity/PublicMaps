@@ -53,13 +53,13 @@
 </itemremove>
 <spawns>
     <spawn yaw="-45" kit="red" team="red">
-        <cylinder base="59,7,70" radius="2" height="0" />
+        <cylinder base="59,7,70" radius="2" height="0"/>
     </spawn>
     <spawn yaw="135" kit="blue" team="blue">
-        <cylinder base="124,7,-70" radius="2" height="0" />
+        <cylinder base="124,7,-70" radius="2" height="0"/>
     </spawn>
     <default yaw="-90">
-        <cylinder base="0,33,0" radius="1" height="0" />
+        <cylinder base="0,33,0" radius="1" height="0"/>
     </default>
 </spawns>
 <filters>
@@ -75,20 +75,20 @@
     </filter>
 </filters>
 <regions>
-    <rectangle name="playable" min="-oo,-oo" max="oo,oo" />
-    <rectangle name="red-spawn" min="65,76" max="51,62" />
-    <rectangle name="blue-spawn" min="120,-75" max="134,-61" />
+    <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    <rectangle name="red-spawn" min="65,76" max="51,62"/>
+    <rectangle name="blue-spawn" min="120,-75" max="134,-61"/>
     <apply block="deny-all">
-        <region name="playable" />
+        <region name="playable"/>
     </apply>
     <apply enter="only-blue" message="`fYou may not enter `1Blue Spawn!">
-        <region name="blue-spawn" />
+        <region name="blue-spawn"/>
     </apply>
     <apply enter="only-red" message="`fYou may not enter `4Red Spawn!">
         <region name="red-spawn"/>
     </apply>
     <apply lend-kit="spawn-protection" filter="only-blue">
-        <region name="blue-spawn" />
+        <region name="blue-spawn"/>
     </apply>
     <apply lend-kit="spawn-protection" filter="only-red">
         <region name="red-spawn"/>
@@ -102,35 +102,35 @@
     <hills>
         <hill name="Middle" capture-time="5s" points="1">
             <capture>
-                <cuboid min="89,6,-3" max="96,9,4" />
+                <cuboid min="89,6,-3" max="96,9,4"/>
             </capture>
             <progress>
-                <cuboid min="89,5,-3" max="96,6,4" />
+                <cuboid min="89,5,-3" max="96,6,4"/>
             </progress>
             <captured>
-                <cuboid min="87,11,-4" max="98,9,5" />
+                <cuboid min="87,11,-4" max="98,9,5"/>
             </captured>
         </hill>
         <hill name="Point A" capture-time="5s" points="1">
             <capture>
-                <cuboid min="112,13,31" max="117,15,36" />
+                <cuboid min="112,13,31" max="117,15,36"/>
             </capture>
             <progress>
-                <cuboid min="112,12,31" max="117,13,36" />
+                <cuboid min="112,12,31" max="117,13,36"/>
             </progress>
             <captured>
-                <cuboid min="121,20,40" max="108,11,27" />
+                <cuboid min="121,20,40" max="108,11,27"/>
             </captured>
         </hill>
         <hill name="Point B" capture-time="5s" points="1">
             <capture>
-                <cuboid min="68,13,-35" max="73,16,-30" />
+                <cuboid min="68,13,-35" max="73,16,-30"/>
             </capture>
             <progress>
-                <cuboid min="68,12,-35" max="73,13,-30" />
+                <cuboid min="68,12,-35" max="73,13,-30"/>
             </progress>
             <captured>
-                <cuboid min="64,20,-39" max="77,11,-26" />
+                <cuboid min="64,20,-39" max="77,11,-26"/>
             </captured>
         </hill>
     </hills>

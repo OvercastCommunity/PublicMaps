@@ -3,8 +3,8 @@
 <version>1.1.4</version>
 <objective>Be the player with the most kills after 8 minutes. There are no teams, so watch your back!</objective>
 <authors>
-    <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" /> <!-- KRo_oOH -->
-    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
+    <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- KRo_oOH -->
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
 </authors>
 <contributors>
     <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="The trees"/> <!-- DoomRobotBoy -->
@@ -21,7 +21,7 @@
         <effect>jump</effect>
         <helmet locked="true" unbreakable="true" damage="0" material="leaves"/>
         <chestplate locked="true" unbreakable="true" color="667F33" material="leather chestplate"/>
-        <double-jump power="3" recharge-before-landing="true" />
+        <double-jump power="3" recharge-before-landing="true"/>
     </kit>
 </kits>
 <spawns>
@@ -46,7 +46,7 @@
     </spawn>
     <default>
         <region>
-            <cylinder base="0.5,32,0.5" radius="2" height="0" />
+            <cylinder base="0.5,32,0.5" radius="2" height="0"/>
         </region>
     </default>
 </spawns>
@@ -56,12 +56,12 @@
 <regions>
     <apply velocity="-6,2,0">
         <region>
-            <cylinder base="83.5,22,13.5" radius="2" height="3" />
+            <cylinder base="83.5,22,13.5" radius="2" height="3"/>
         </region>
     </apply>
     <apply velocity="6,2,0">
         <region>
-            <cylinder base="-82.5,22,-12.5" radius="2" height="3" />
+            <cylinder base="-82.5,22,-12.5" radius="2" height="3"/>
         </region>
     </apply>
     <apply block="lily"/>

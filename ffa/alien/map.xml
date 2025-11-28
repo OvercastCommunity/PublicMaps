@@ -5,7 +5,7 @@
 <created>2016-03-05</created>
 <gamemode>ffa</gamemode>
 <authors>
-    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
 </authors>
 <score>
     <kills>1</kills>
@@ -57,8 +57,8 @@
     </default>
 </spawns>
 <regions>
-    <cuboid id="roof" min="-25,17,-25" max="25,30,25" />
-    <apply enter="never" region="roof" message="You cannot leave the playing field!" />
+    <cuboid id="roof" min="-25,17,-25" max="25,30,25"/>
+    <apply enter="never" region="roof" message="You cannot leave the playing field!"/>
     <apply block="never"/>
 </regions>
 <gamerules>

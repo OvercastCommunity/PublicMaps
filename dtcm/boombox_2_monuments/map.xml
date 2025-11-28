@@ -394,22 +394,22 @@
 
     <union name="portals">
         <!-- blue -->
-        <cuboid name="south-portal" min="85,4,92" max="87,9,97" />
-        <cuboid name="east-portal" min="92,4,85" max="97,9,87" />
+        <cuboid name="south-portal" min="85,4,92" max="87,9,97"/>
+        <cuboid name="east-portal" min="92,4,85" max="97,9,87"/>
 
         <!-- red -->
-        <cuboid name="north-portal" min="17,4,7" max="19,9,12" />
-        <cuboid name="west-portal" min="7,4,17" max="12,9,19" />
+        <cuboid name="north-portal" min="17,4,7" max="19,9,12"/>
+        <cuboid name="west-portal" min="7,4,17" max="12,9,19"/>
 
         <!-- portal back to blue spawn -->
         <union name="blue-portals">
-            <cuboid name="south-spawn-portal" min="44,50,74" max="49,55,75" />
-            <cuboid name="east-spawn-portal" min="74,50,44" max="75,55,49" />
+            <cuboid name="south-spawn-portal" min="44,50,74" max="49,55,75"/>
+            <cuboid name="east-spawn-portal" min="74,50,44" max="75,55,49"/>
         </union>
 
         <union name="red-portals">
-            <cuboid name="north-spawn-portal" min="55,50,19" max="60,55,20" />
-            <cuboid name="west-spawn-portal" min="19,50,55" max="20,55,60" />
+            <cuboid name="north-spawn-portal" min="55,50,19" max="60,55,20"/>
+            <cuboid name="west-spawn-portal" min="19,50,55" max="20,55,60"/>
         </union>
     </union>
 
@@ -575,30 +575,30 @@
 
 <portals>
     <portal yaw="@0">
-        <region name="south-portal" />
-        <destination><region name="south-destination" /></destination>
+        <region name="south-portal"/>
+        <destination><region name="south-destination"/></destination>
     </portal>
     <portal yaw="@-90">
-        <region name="east-portal" />
-        <destination><region name="east-destination" /></destination>
+        <region name="east-portal"/>
+        <destination><region name="east-destination"/></destination>
     </portal>
 
     <portal yaw="@180">
-        <region name="north-portal" />
-        <destination><region name="north-destination" /></destination>
+        <region name="north-portal"/>
+        <destination><region name="north-destination"/></destination>
     </portal>
     <portal yaw="@90">
-        <region name="west-portal" />
-        <destination><region name="west-destination" /></destination>
+        <region name="west-portal"/>
+        <destination><region name="west-destination"/></destination>
     </portal>
 
     <portal yaw="@135">
-        <region name="blue-portals" />
-        <destination><region name="blue-spawn-region" /></destination>
+        <region name="blue-portals"/>
+        <destination><region name="blue-spawn-region"/></destination>
     </portal>
     <portal yaw="@-45">
-        <region name="red-portals" />
-        <destination><region name="red-spawn-region" /></destination>
+        <region name="red-portals"/>
+        <destination><region name="red-spawn-region"/></destination>
     </portal>
 </portals>
 
