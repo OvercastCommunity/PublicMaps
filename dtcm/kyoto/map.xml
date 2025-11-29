@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Kyoto</name>
-<version>1.1.6</version>
+<version>1.1.7</version>
 <objective>Destroy the other team's two monuments to win!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -64,10 +64,9 @@
         <cuboid id="white-spawn-area" min="-9,74,-44" max="6,90,-33"/>
         <cuboid id="yellow-spawn-area" min="6,74,160" max="-9,90,150"/>
     </union>
-    <complement id="void-area">
-        <everywhere/>
-        <cuboid min="47,58,-59" max="-51,88,175"/>
-    </complement>
+    <negative id="void-area">
+        <cuboid min="48,58,-59" max="-51,88,176"/>
+    </negative>
     <apply enter="white-team" region="white-spawn-area" message="You may not enter the enemy's spawn!"/>
     <apply enter="yellow-team" region="yellow-spawn-area" message="You may not enter the enemy's spawn!"/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You can only break iron blocks in spawn!"/>
@@ -118,6 +117,7 @@
 <itemkeep>
     <item>wood</item>
     <item>glass</item>
+    <item>golden apple</item>
 </itemkeep>
 <kill-rewards>
     <kill-reward>
