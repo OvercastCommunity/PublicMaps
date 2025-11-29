@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Red Agony</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Be the first to the end!</objective>
 <gamemode>arcade</gamemode>
 <authors>
@@ -31,7 +31,7 @@
     </default>
 </spawns>
 <regions>
-    <point id="start-tunnel">17,1.5,0</point>
+    <point id="start-tunnel">17,1,0</point>
 </regions>
 <score>
     <limit>1</limit>
