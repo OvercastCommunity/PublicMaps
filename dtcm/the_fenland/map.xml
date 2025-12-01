@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <name>The Fenland</name>
 <created>2012-09-29</created>
-<version>1.2.18</version>
+<version>1.2.19</version>
 <include id="gapple-kill-reward"/>
 <objective>Break the obsidian from the enemy team's monument.</objective>
 <authors>
@@ -53,6 +53,7 @@
     <deny id="no-beacon">
         <material>beacon</material>
     </deny>
+    <material id="only-air">air</material>
 </filters>
 <regions>
     <union id="spawn-protections">
@@ -74,7 +75,18 @@
     <apply region="playable-inverse" block="never" message="You may not build outside the playing area!"/>
     <apply region="observers-platform" enter="never" message="Don't enter the observers spawn area!"/>
     <apply use="no-beacon"/>
+    <union id="spawn-floors">
+        <cuboid id="red-floor" min="-36,11,-4" max="-49,12,5"/>
+        <mirror region="red-floor" origin="0.5,0,0.5" normal="1,0,0"/>
+    </union>
 </regions>
+<actions>
+    <trigger filter="match-running" scope="match">
+        <action>
+            <fill region="spawn-floors" material="36" filter="only-air"/>
+        </action>
+    </trigger>
+</actions>
 <destroyables name="Monument" materials="obsidian" repairable="false" mode-changes="true">
     <destroyable owner="blue-team">
         <region>
