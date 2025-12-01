@@ -4,7 +4,7 @@
 <variant id="halloween" world="halloween">Halloween</variant>
 <variant id="blitz" world="blitz">Blitz</variant>
 <!-- <variant id="tournament" world="tournament">TE</variant> -->
-<version>1.3.3</version>
+<version>1.3.4</version>
 <objective>Leak lava from the enemy's obsidian core and destroy both of their antennas.</objective>
 <if variant="default">
     <created>2012-02-26</created>
@@ -117,6 +117,7 @@
     <not id="before-5m">
         <time id="after-5m">5m</time>
     </not>
+    <material id="only-air">air</material>
 </filters>
 <regions>
     <!-- Recent changes to implement spawn and chest protection -->
@@ -162,7 +163,21 @@
           </region>
         </apply>
     </if>
+    <union id="spawn-tunnel-interiors">
+        <union id="red-tunnel-interior">
+            <cuboid min="295,72,124" max="299,75,136"/>
+            <cuboid min="299,71,136" max="239,75,141"/>
+        </union>
+        <mirror region="red-tunnel-interior" origin="299,9,108" normal="0,0,1"/>
+    </union>
 </regions>
+<actions>
+    <trigger filter="match-running" scope="match">
+        <action>
+            <fill region="spawn-tunnel-interiors" material="36" filter="only-air"/>
+        </action>
+    </trigger>
+</actions>
 <cores material="obsidian" leak="0" mode-changes="true">
     <core team="blue-team">
         <region>
