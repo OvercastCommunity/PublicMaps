@@ -1,6 +1,6 @@
 <map proto="1.5" game="Elytra Race" min-server-version="1.9">
 <name>Spinal Vertigo</name>
-<version>2.0.2</version>
+<version>2.0.3</version>
 <objective>Fly a complete lap to win!</objective>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
@@ -323,10 +323,9 @@
     <apply region="gflag-18" velocity="0,0,-4" kit="speed-2"/>
 </regions>
 <filters>
-    <!-- <not id="needs-reset">
+     <not id="needs-reset">
         <gliding/>
-    </not> -->
-    <grounded id="needs-reset"/>
+    </not> 
     <all id="point-1">
         <variable var="current_point">1</variable>
         <filter id="needs-reset"/>
