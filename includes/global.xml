@@ -17,4 +17,8 @@
         </player-kit>
     </spawns>
 </if>
+
+<if has-variant="tournament,te,ranked,comp,5v5,5v5-ac,7v7">
+    <phase>staging</phase>
+</if>
 </map>
