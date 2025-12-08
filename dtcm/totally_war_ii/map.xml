@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Totally War II</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <objective>Destroy and leak both of the enemy team's obsidian core.</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -126,8 +126,8 @@
     <!-- Applied -->
     <apply region="purple-base-e" enter="only-purple" message="You may not enter `5Purple`r's base!"/>
     <apply region="red-base-e" enter="only-red" message="You may not enter the `4Red`r's base!"/>
-    <apply region="purple-no-tnt-regions" block="anti-grief-purple" message="TNT is not allowed in this area!"/>
-    <apply region="red-no-tnt-regions" block="anti-grief-red" message="TNT is not allowed in this area!"/>
+    <apply region="purple-no-tnt-regions" block-place="anti-grief-purple" message="TNT is not allowed in this area!"/>
+    <apply region="red-no-tnt-regions" block-place="anti-grief-red" message="TNT is not allowed in this area!"/>
     <apply region="no-water-regions" block="deny-water" message="Water is not allowed around the core!"/>
     <apply region="bases-b" block="never" message="`7You may not edit the spawn area!"/>
     <apply region="above-55" block="never" message="You may not edit above the height limit! (`455 Blocks`r)"/>
