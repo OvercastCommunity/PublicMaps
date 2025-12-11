@@ -5,6 +5,9 @@
 <version>2.1.8</version>
 <objective>Eliminate the other team.</objective>
 <gamemode>blitz</gamemode>
+<if variant="creeper">
+    <created>2014-09-13</created>
+</if>
 <authors>
     <author uuid="a6a99e23-34c4-4957-8974-b78b4da9ce7c"/> <!-- AMo AKA AntonyMo -->
 </authors>

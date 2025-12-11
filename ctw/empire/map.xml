@@ -4,6 +4,9 @@
 <version>2.3.12</version>
 <objective>Capture both wools and return them safely to your victory monument.</objective>
 <include id="gapple-kill-reward"/>
+<if variant="halloween">
+    <created>2014-10-06</created>
+</if>
 <authors>
     <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
 </authors>

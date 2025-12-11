@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Checkmate</name>
 <version>0.4.3</version>
+<created>2014-07-29</created>
 <objective>Capture the wool from the enemy corner and return it to the monument in your corner</objective>
 <authors>
     <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
@@ -248,7 +249,7 @@
     <!--                    -->
     <!-- Fleecy Box Portals -->
     <!--                    -->
-    <!-- 
+    <!--
         Each of these portals encompasses not just the doorway,
         but the entire area that it teleports you into. So, once
         you enter the portal, you stay inside it until another

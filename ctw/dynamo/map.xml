@@ -1,9 +1,12 @@
 <map proto="1.5.0">
 <name>Dynamo</name>
 <version>1.6.2</version>
-<include id="gapple-kill-reward"/>
 <variant id="halloween" world="halloween" override="true">DynaboOo</variant>
 <objective>Grab the wool from the enemy's wool room and place it on your victory monument.</objective>
+<include id="gapple-kill-reward"/>
+<if variant="halloween">
+    <created>2014-10-25</created>
+</if>
 <authors>
     <author uuid="6968cbde-c2b7-479c-a8da-f33f109f013b" contribution="Map design and XML"/> <!-- Brottweiler -->
     <author uuid="053ca59c-92f9-4c80-8c42-9ff175dff97e" contribution="Map design"/> <!-- xDino_Saurus -->

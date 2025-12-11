@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Royal Garden CTW</name>
 <version>1.7.2</version>
+<created>2014-06-15</created>
 <include id="gapple-kill-reward"/>
 <include id="water-lanes"/>
 <objective>Capture the opposing team's wools and place them at your victory monuments.</objective>

@@ -30,6 +30,7 @@
     <constant id="yellow-team-name">Yellow Reindeers</constant>
 </if>
 <if variant="halloween">
+    <created>2014-10-01</created>
     <constant id="pink-team-name">Vampires</constant>
     <constant id="yellow-team-name">Living Dead</constant>
 </if>

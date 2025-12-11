@@ -6,6 +6,9 @@
 <variant id="christmas" world="christmas" override="true">Candy Cane Valley</variant>
 <objective>Capture the opposing team's wool and place it at your victory monument.</objective>
 <include id="gapple-kill-reward"/>
+<if variant="halloween">
+    <created>2014-10-08</created>
+</if>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>

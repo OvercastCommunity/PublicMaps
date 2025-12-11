@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Ender Blast</name>
 <version>1.0.5</version>
+<created>2014-09-08</created>
 <objective>Destroy 75% of the enemy's endstone cuboid to enter the wool room inside of it, then return the wool back to your side</objective>
 <authors>
     <author uuid="ca2306d1-1198-4d46-8c44-a82f5b3c8a4e" contribution="Original author and map layout"/> <!-- BeanButt -->

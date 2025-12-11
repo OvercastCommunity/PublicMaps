@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Blocks: Destroy the Dynamite</name>
 <version>1.0.11</version>
+<created>2014-07-01</created>
 <objective>Destroy both of the enemy tnt blocks to win!</objective>
 <authors>
     <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->

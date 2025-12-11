@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Haunted Corridors</name>
 <version>1.1.2</version>
+<created>2014-10-26</created>
 <objective>The team with the most amount of kills after 10 minutes wins!</objective>
 <include id="gapple-kill-reward"/>
 <authors>

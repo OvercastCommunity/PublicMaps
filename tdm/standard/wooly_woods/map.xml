@@ -10,6 +10,9 @@
 <if variant="default">
     <created>2012-12-14</created>
 </if>
+<if variant="rage">
+    <created>2014-06-19</created>
+</if>
 <authors>
     <author uuid="2b7f4dfc-8711-4f07-8347-c5e8873d2189"/> <!-- kp10708 -->
     <author uuid="340ffc4d-d41a-49b1-b772-3834fd91a3b1"/> <!-- JoeltheMole -->

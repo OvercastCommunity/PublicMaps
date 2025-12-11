@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Airship Ascendance</name>
 <version>0.6.3</version>
+<created>2014-07-18</created>
 <objective>Leak lava from the enemy's obsidian Engine Core</objective>
 <include id="gapple-kill-reward"/>
 <authors>

@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>The 9th Law</name>
 <version>1.2.2</version>
+<created>2014-11-12</created>
 <objective>Capture both of the enemy team's wools!</objective>
 <include id="gapple-kill-reward"/>
 <authors>

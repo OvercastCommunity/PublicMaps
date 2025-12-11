@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Riverside</name>
 <version>1.0.8</version>
+<created>2014-12-16</created>
 <objective>Destroy enemy team's obsidian monument!</objective>
 <include id="gapple-kill-reward"/>
 <authors>

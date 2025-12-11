@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Blocks II</name>
 <version>1.0.7</version>
+<created>2014-06-30</created>
 <objective>Leak lava from the enemy's obsidian core into the void.</objective>
 <include id="gapple-kill-reward"/>
 <authors>

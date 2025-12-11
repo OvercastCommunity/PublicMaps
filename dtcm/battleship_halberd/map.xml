@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Battleship Halberd</name>
 <version>1.3.4</version>
+<created>2014-11-10</created>
 <objective>Destroy the enemies monument and break the core!</objective>
 <include id="gapple-kill-reward"/>
 <authors>

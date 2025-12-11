@@ -2,6 +2,7 @@
 <include id="gapple-kill-reward"/>
 <name>Donut Wars</name>
 <version>1.3.12</version>
+<created>2014-11-08</created>
 <objective>Leak the enemy team's core and destroy their two monuments!</objective>
 <authors>
     <author uuid="1935c8bf-3fdc-44d6-b358-85a7206ad8ac" contribution="Map Creator"/> <!-- Without_Regret -->

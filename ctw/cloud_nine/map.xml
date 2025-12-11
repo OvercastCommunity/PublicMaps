@@ -4,6 +4,7 @@
 <version>1.3.0</version>
 <objective>Collect wool dyes from the shrines, and the string from killing players. Craft the colored wool and place it on your monument!</objective>
 <if variant="rage">
+    <created>2014-07-16</created>
     <phase>staging</phase>
     <rage/>
 </if>

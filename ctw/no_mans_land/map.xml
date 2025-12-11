@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>No Man's Land</name>
 <version>1.0.5</version>
+<created>2014-10-12</created>
 <objective>Capture the enemy team's wools and return them safely to your victory monument.</objective>
 <include id="gapple-kill-reward"/>
 <authors>

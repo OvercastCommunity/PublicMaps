@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>The Dome</name>
 <version>1.0.5</version>
+<created>2014-12-31</created>
 <objective>Eliminate the other team before the time is up!</objective>
 <gamemode>br</gamemode>
 <authors>

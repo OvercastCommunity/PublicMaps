@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Relic</name>
 <version>1.2.2</version>
+<created>2014-11-08</created>
 <objective>Destroy the enemy team's core and two endstone monuments to win!</objective>
 <include id="gapple-kill-reward"/>
 <authors>

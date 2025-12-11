@@ -1,6 +1,7 @@
 ﻿<map proto="1.5.0">
 <name>Sandstone Temples</name>
 <version>1.1.7</version>
+<created>2014-08-11</created>
 <objective>Eliminate the other team before 6 minutes is up.</objective>
 <gamemode>br</gamemode>
 <authors>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <map proto="1.3.5">
-<name>Renaissance</name>
+<name>Renaissance</name> <!-- formerly "The Factory" -->
 <version>0.12.1</version>
 <objective>The attackers must destroy the endstone pillar. The defenders must stop them before 15 minutes runs out.</objective>
 <gamemode>ad</gamemode>
@@ -26,7 +26,7 @@
 </spawns>
 <destroyables owner="defenders" show-progress="true" repairable="true" sparks="true">
     <destroyable name="Endstone Pillar" id="pillar" materials="ender stone" completion="100%">
-        <region name="pillar"/> 
+        <region name="pillar"/>
     </destroyable>
 </destroyables>
 <kits>

@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Assault</name>
 <version>2.6.5</version>
+<created>2014-07-02</created>
 <objective>Capture the other team's flag and return it to your base.</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->

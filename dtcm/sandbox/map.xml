@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Sandbox</name>
 <version>0.6.6</version>
+<created>2014-10-19</created>
 <objective>Destroy all of the enemy's redstone monument.</objective>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->

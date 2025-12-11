@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Portal</name>
 <version>1.0.3</version>
+<created>2014-07-15</created>
 <objective>Be the team with the most kills after 6 minutes.</objective>
 <authors>
     <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->

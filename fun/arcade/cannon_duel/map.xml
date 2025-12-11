@@ -2,6 +2,7 @@
 <map proto="1.3.3">
 <name>Cannon Duel</name>
 <version>0.5.1</version>
+<created>2014-07-13</created>
 <objective>Kill them before they kill you</objective>
 <authors>
     <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
@@ -26,17 +27,17 @@
         <item slot="18" amount="64">tnt</item>
         <item slot="27" amount="64">tnt</item>
         <item slot="0">diamond pickaxe</item>
-        
+
         <item slot="10" amount="64">tnt</item>
         <item slot="19" amount="64">tnt</item>
         <item slot="28" amount="64">tnt</item>
         <item slot="1" amount="16">dispenser</item>
-        
+
         <item slot="11" amount="64">tnt</item>
         <item slot="20" amount="64">tnt</item>
         <item slot="29" amount="64">tnt</item>
         <item slot="2" amount="64">step</item>
-        
+
         <!-- slot="12" -->
         <!-- slot="21" -->
         <!-- slot="30" -->
@@ -46,17 +47,17 @@
         <item slot="22" amount="16">ladder</item>
         <item slot="31">workbench</item>
         <item slot="4" amount="64">nether fence</item>
-        
+
         <item slot="14" amount="16">piston base</item>
         <item slot="23" amount="16">lever</item>
         <item slot="32" amount="16">stone plate</item>
         <item slot="5" amount="16">stone button</item>
-        
+
         <item slot="15">water bucket</item>
         <item slot="24">water bucket</item>
         <item slot="33">water bucket</item>
         <item slot="6">water bucket</item>
-        
+
         <item slot="16" amount="16">diode</item>
         <item slot="25" amount="16">redstone torch on</item>
         <item slot="34" amount="16">redstone block</item>
@@ -79,7 +80,7 @@
         <item slot="21" damage="14" amount="64">stained clay</item>
         <item slot="30" damage="14" amount="64">stained clay</item>
         <item slot="3" damage="14" amount="64">stained clay</item>
-        
+
         <helmet locked="true" color="dd5566" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
         <chestplate locked="true" color="dd5566" unbreakable="true">leather chestplate</chestplate>
         <leggings locked="true" color="dd5566" unbreakable="true">leather leggings</leggings>
@@ -91,7 +92,7 @@
         <item slot="21" damage="11" amount="64">stained clay</item>
         <item slot="30" damage="11" amount="64">stained clay</item>
         <item slot="3" damage="11" amount="64">stained clay</item>
-        
+
         <helmet locked="true" color="5e55dd" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
         <chestplate locked="true" color="5e55dd" unbreakable="true">leather chestplate</chestplate>
         <leggings locked="true" color="5e55dd" unbreakable="true">leather leggings</leggings>

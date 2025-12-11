@@ -4,6 +4,9 @@
 <version>1.0.4</version>
 <objective>Eliminate the other team before 5 minutes is up</objective>
 <gamemode>br</gamemode>
+<if variant="halloween">
+    <created>2014-10-07</created>
+</if>
 <authors>
     <author uuid="82d03646-d1a1-4383-a533-9509b130f751"/> <!-- iLifting -->
 </authors>

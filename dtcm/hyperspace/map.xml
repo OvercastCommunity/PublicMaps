@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Hyperspace</name>
 <version>1.4.6</version>
+<created>2014-11-08</created>
 <objective>Destroy the other team's monument</objective>
 <authors>
     <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->

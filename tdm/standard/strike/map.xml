@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Strike</name>
 <version>1.0.3</version>
+<created>2014-08-31</created>
 <objective>Get the most kills after 6 minutes!</objective>
 <authors>
     <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ItsMiiOlly -->

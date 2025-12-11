@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Easter Egg Hunt</name>
 <version>1.0.3</version>
+<created>2014-09-14</created>
 <objective>Capture all 10 eggs (wools) and return them to the victory monument!</objective>
 <authors>
     <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
@@ -42,7 +43,7 @@
     <cuboid id="portal" min="-17,39,471" max="-8,48,480"/>
     <negative id="void-region">
         <union>
-            <cuboid min="-50,0,-10" max="50,oo,480"/> 
+            <cuboid min="-50,0,-10" max="50,oo,480"/>
             <cuboid min="50,0,81" max="329,oo,173"/>
             <cuboid min="328,0,81" max="419,oo,190"/>
             <cuboid min="-54,0,288" max="-50,oo,316"/>
@@ -51,10 +52,10 @@
             <cuboid min="-412,0,1" max="-323,oo,16"/>
             <cuboid min="-412,0,-44" max="-397,oo,16"/>
             <cuboid min="-338,0,-73" max="-323,oo,16"/>
-            <cuboid min="-383,0,-73" max="-323,oo,-58"/> 
+            <cuboid min="-383,0,-73" max="-323,oo,-58"/>
         </union>
     </negative>
-    <cuboid id="wool-monument-blocker" min="-4,22,-10" max="6,27,-8.25"/> 
+    <cuboid id="wool-monument-blocker" min="-4,22,-10" max="6,27,-8.25"/>
     <apply block="never" region="spawn" message="You may not modify this area"/>
     <apply block="never" region="portal" message="You may not modify this area"/>
     <apply enter="never" region="wool-monument-blocker" message="You may not block the wool monuments"/>

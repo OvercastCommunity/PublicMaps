@@ -2,6 +2,7 @@
 <name>The End</name>
 <slug>the_end_rage</slug>
 <version>1.0.7</version>
+<created>2014-06-24</created>
 <objective>Eliminate the enemy team within 5 minutes </objective>
 <gamemode>br</gamemode>
 <authors>

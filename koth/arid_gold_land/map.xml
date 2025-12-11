@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Arid Gold Land</name>
 <version>1.1.0</version>
+<created>2014-12-07</created>
 <objective>Control the center hills and capture points</objective>
 <authors>
     <author uuid="260004f0-996b-4539-ba21-df4ee6336b63" contribution="Map Building and XML"/> <!-- Captain_Elliott -->
@@ -113,7 +114,7 @@
     <not id="nohill">
         <any>
             <objective team="red-team">bcp</objective>
-            <objective team="blue-team">rcp</objective>		
+            <objective team="blue-team">rcp</objective>
         </any>
     </not>
     <all id="bluehillfilter">

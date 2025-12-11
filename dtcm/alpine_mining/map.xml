@@ -2,7 +2,7 @@
 <name>Alpine Mining</name>
 <version>1.2.18</version>
 <objective>Destroy the enemy's 2 monuments!</objective>
-<created>2014-06-22</created>
+<created>2014-12-17</created>
 <include id="gapple-kill-reward"/>
 <include id="iron-bulkcrafting"/>
 <authors>
