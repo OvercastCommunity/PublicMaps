@@ -1,6 +1,7 @@
 <map proto="1.5.0" game="Juggernaut">
 <name>Juggernaut's Hamlet</name>
 <version>1.1.5</version>
+<created>2016-06-27</created>
 <objective>Run from the Juggernaut!</objective>
 <gamemode>arcade</gamemode>
 <authors>
@@ -157,11 +158,11 @@
     <cuboid id="gate-3" min="57.5,31,-45" max="58,33,-38"/>
     <cuboid id="gate-4" min="67.5,23,-24" max="68,25,-19"/>
     <cuboid id="gate-5" min="119.5,31,-25" max="120,33,-18"/>
-    <apply region="gate-1" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
-    <apply region="gate-2" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
-    <apply region="gate-3" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
-    <apply region="gate-4" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
-    <apply region="gate-5" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/> 
+    <apply region="gate-1" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/>
+    <apply region="gate-2" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/>
+    <apply region="gate-3" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/>
+    <apply region="gate-4" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/>
+    <apply region="gate-5" enter="juggernaut-team" message="`6`lYou must do the parkour as a Runner!"/>
     <cuboid id="throne" min="176,34,-24" max="180,40,-19"/>
     <apply kit="fast-break" region="throne"/>
     <apply block-break="only-some"/>

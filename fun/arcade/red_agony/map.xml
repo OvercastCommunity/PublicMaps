@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Red Agony</name>
 <version>1.0.6</version>
+<created>2016-02-06</created>
 <objective>Be the first to the end!</objective>
 <gamemode>arcade</gamemode>
 <authors>
@@ -40,7 +41,7 @@
     </box>
 </score>
 <blitz>
-    <lives>1</lives>    
+    <lives>1</lives>
 </blitz>
 <time>1m</time>
 <itemremove>

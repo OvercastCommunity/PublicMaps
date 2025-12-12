@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Trigo</name>
 <version>1.0.5</version>
+<created>2016-02-09</created>
 <objective>Have the most kills after 10 minutes to win.</objective>
 <gamemode>rage</gamemode>
 <gamemode>ffa</gamemode>

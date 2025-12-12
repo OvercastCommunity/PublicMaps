@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Polylith</name>
 <version>1.0.3</version>
+<created>2016-02-05</created>
 <objective>Destroy the enemy's core!</objective>
 <authors>
     <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
@@ -95,7 +96,7 @@
         </region>
     </apply>
 </regions>
-    <!-- Prevent control points break 
+    <!-- Prevent control points break
     <apply block-break="only-iron" block-place="never" message="You may not break the hill">
         <region>
             <cylinder base="47.5,1,391.5" radius="6" height="1"/>

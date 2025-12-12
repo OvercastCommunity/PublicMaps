@@ -1,6 +1,7 @@
 <map proto="1.5.0" internal="true">
 <name>Netherrage</name>
 <version>1.0.4</version>
+<created>2016-02-17</created>
 <objective>Be the last team standing!</objective>
 <authors>
     <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Infection idea + XML Help"/> <!-- AtlasGames -->

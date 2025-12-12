@@ -1,6 +1,7 @@
 <map proto="1.5.0" game="Wool Story Bro">
 <name>Humble Jungle</name>
 <version>1.0.5</version>
+<created>2016-06-11</created>
 <objective>Get the most points before time runs out!</objective>
 <gamemode>arcade</gamemode>
 <include id="void-death"/>

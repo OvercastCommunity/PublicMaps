@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Lunar Crescent</name>
 <version>1.0.3</version>
+<created>2016-08-12</created>
 <objective>Destroy the enemy monuments and capture their wool!</objective>
 <authors>
     <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- samthecat43 -->
