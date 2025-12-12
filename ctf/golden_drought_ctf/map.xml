@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Golden Drought CTF</name>
 <version>1.4.4</version>
+<created>2015-04-22</created>
 <objective>Capture the flags from the enemy flag rooms and place them on your flag monument while defending your own flags.</objective>
 <include id="gapple-kill-reward"/>
 <phase>staging</phase>

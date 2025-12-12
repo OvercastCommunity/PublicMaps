@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Underpass</name>
 <version>1.0.4</version>
+<created>2015-08-22</created>
 <objective>Take the enemy's wool back to your side and place it on your victory monument.</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -115,7 +116,7 @@
     <kill-reward>
         <item amount="10" material="arrow"/>
     </kill-reward>
-</kill-rewards>	
+</kill-rewards>
 <hunger>
     <depletion>off</depletion>
 </hunger>

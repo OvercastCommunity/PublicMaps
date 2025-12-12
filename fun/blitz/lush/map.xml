@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Lush</name>
 <version>1.1.2</version>
+<created>2015-02-20</created>
 <objective>Eliminate the other team before 5 minutes is up!</objective>
 <gamemode>rage</gamemode>
 <authors>

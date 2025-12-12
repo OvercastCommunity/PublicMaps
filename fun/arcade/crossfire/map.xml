@@ -1,6 +1,7 @@
 <map proto="1.5.0" game="Rush">
 <name>Crossfire</name>
 <version>1.5.12</version>
+<created>2015-04-12</created>
 <objective>Runners must get to the other side of the map without getting killed by the Defenders.</objective>
 <gamemode>arcade</gamemode>
 <gamemode>ad</gamemode>

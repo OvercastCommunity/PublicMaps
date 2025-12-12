@@ -8,6 +8,9 @@
 <variant id="halloween" world="halloween" override="true">Deserted Sanctuary</variant>
 <variant id="christmas" world="christmas" override="true">Christmas Sanctuary</variant>
 <constant id="damage-resistance">7.5s</constant>
+<if variant="default">
+    <created>2015-05-24</created>
+</if>
 <unless variant="5v5,7v7,5v5-ac,7v7-ac">
     <include id="kotf"/>
     <constant id="mid-post-filter">always</constant>
@@ -25,7 +28,11 @@
     <constant id="team-2-name">Red</constant>
     <constant id="flag-color">purple</constant>
 </unless>
+<if variant="christmas">
+    <created>2015-11-27</created>
+</if>
 <if variant="halloween">
+    <created>2015-09-30</created>
     <constant id="team-1-color">dark purple</constant>
     <constant id="team-1-name">Purple</constant>
     <constant id="team-2-color">gold</constant>

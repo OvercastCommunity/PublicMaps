@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Java: Rage</name>
 <version>1.0.4</version>
+<created>2015-05-02</created>
 <objective>Eliminate the enemy team!</objective>
 <gamemode>br</gamemode>
 <authors>

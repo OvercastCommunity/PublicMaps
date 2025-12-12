@@ -1,6 +1,7 @@
 <map proto="1.5.0" game="Capture Progress">
 <name>Trinus</name>
 <version>1.4.4</version>
+<created>2015-05-07</created>
 <objective>Grab the flag and capture the center point!</objective>
 <gamemode>koth</gamemode>
 <authors>

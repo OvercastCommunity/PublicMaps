@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Ouroboros</name>
 <version>6.4.9</version>
+<created>2015-02-20</created>
 <include id="gapple-kill-reward"/>
 <objective>Capture the other team's wools to win the game!</objective>
 <authors>

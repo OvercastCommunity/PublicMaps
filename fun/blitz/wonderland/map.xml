@@ -1,6 +1,7 @@
 <map proto="1.5.0">
-<name>Wonderland</name> 
-<version>1.0.3</version> 
+<name>Wonderland</name>
+<version>1.0.3</version>
+<created>2015-05-30</created>
 <objective>Eliminate the enemy team before time runs out!</objective>
 <gamemode>br</gamemode>
 <authors>

@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Chinatown</name>
 <version>1.1.1</version>
+<created>2015-10-12</created>
 <objective>Eliminate the enemy team within 5 minutes!</objective>
 <authors>
     <author uuid="a37e4da3-1c6c-4dc9-b085-63783406a963"/> <!-- candcshow -->

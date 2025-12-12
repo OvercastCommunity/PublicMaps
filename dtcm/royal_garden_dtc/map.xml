@@ -4,6 +4,9 @@
 <variant id="christmas" world="christmas" override="true">Royal Christmas DTC</variant>
 <variant id="halloween" world="halloween" override="true">Spooky Garden DTC</variant>
 <objective>Leak the enemy team's core!</objective>
+<if variant="halloween">
+    <created>2015-10-02</created>
+</if>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
@@ -78,7 +81,7 @@
 <regions>
     <union id="spawns">
         <!--
-            Neither of these include the full cylinder 
+            Neither of these include the full cylinder
             of the start of the spawn area but that's fine
         -->
         <rectangle id="blue-spawn" min="-59,-152" max="-38,-93"/>

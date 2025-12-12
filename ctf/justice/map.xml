@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Justice</name>
 <version>0.9.4</version>
+<created>2015-02-22</created>
 <objective>Capture the enemy's flag as many times as possible in 12 minutes!</objective>
 <constant id="damage-resistance">4s</constant>
 <constant id="respawn-timer">2s</constant>

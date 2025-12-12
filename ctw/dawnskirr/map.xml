@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Dawnskirr</name>
 <version>1.2.4</version>
+<created>2015-04-03</created>
 <objective>Capture the enemy's wool and bring it to your monument!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -103,7 +104,7 @@
         </union>
     </union>
     <union id="victory-monuments">
-        <cylinder id="b-monument" base="2064.5,0,-1557.5" radius="2" height="13"/> 
+        <cylinder id="b-monument" base="2064.5,0,-1557.5" radius="2" height="13"/>
         <cylinder id="r-monument" base="2064.5,0,-1457.5" radius="2" height="13"/>
     </union>
     <union id="woolrooms">

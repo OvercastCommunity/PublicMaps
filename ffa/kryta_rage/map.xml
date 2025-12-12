@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Kryta: Rage</name>
 <version>1.0.3</version>
+<created>2015-07-29</created>
 <objective>Kill and survive. There are no teams, so watch your back!</objective>
 <players min="2" max="64"/>
 <time>8m</time>

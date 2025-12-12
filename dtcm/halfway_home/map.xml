@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Halfway Home</name>
 <version>0.3.4</version>
+<created>2015-05-13</created>
 <objective>Detonate all 3 blast zones under your enemy's pillboxes to win</objective>
 <authors>
     <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
@@ -55,7 +56,7 @@
             <point yaw="170">-16.5,72,99.5</point>
         </regions>
     </spawn>
-    <default region="obs-spawn" yaw="270"/>               
+    <default region="obs-spawn" yaw="270"/>
 </spawns>
 <filters>
     <any id="blast-zone">

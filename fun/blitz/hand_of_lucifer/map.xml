@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Hand of Lucifer</name>
 <version>1.2.1</version>
+<created>2015-10-02</created>
 <phase>staging</phase>
 <objective>Eliminate the other team!</objective>
 <gamemode>br</gamemode>

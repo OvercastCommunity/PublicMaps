@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Crippled Divide</name>
 <version>1.0.6</version>
+<created>2015-06-02</created>
 <objective>Destroy the enemy's obsidian monuments and leak their core!</objective>
 <constants>
     <constant id="eff.team-1">blue-team</constant>

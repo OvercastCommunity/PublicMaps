@@ -1,6 +1,7 @@
 <map proto="1.5.0" game="`f`lRush">
 <name>Rainbow Road</name>
 <version>1.0.3</version>
+<created>2015-12-31</created>
 <objective>Runners must run to the end of the track and destroy the sponge monument without getting killed by the defenders.</objective>
 <gamemode>ad</gamemode>
 <gamemode>blitz</gamemode>
@@ -25,10 +26,10 @@
     <kit id="gamemode-kit" force="true">
         <game-mode>survival</game-mode>
     </kit>
-    <kit id="runners-kit" force="true"> 
+    <kit id="runners-kit" force="true">
         <game-mode>adventure</game-mode>
         <helmet color="191919" locked="true" material="leather helmet"/>
-        <chestplate color="4C4C4C" locked="true" material="leather chestplate"/> 
+        <chestplate color="4C4C4C" locked="true" material="leather chestplate"/>
         <leggings color="4C4C4C" locked="true" material="leather leggings"/>
         <boots color="191919" locked="true" material="leather boots"/>
         <effect>speed</effect>
@@ -36,7 +37,7 @@
     <kit id="defenders-kit" force="true">
         <game-mode>adventure</game-mode>
         <helmet color="F27FA5" locked="true" material="leather helmet"/>
-        <chestplate color="667F33" locked="true" material="leather chestplate"/> 
+        <chestplate color="667F33" locked="true" material="leather chestplate"/>
         <leggings color="7F3FB2" locked="true" material="leather leggings"/>
         <boots color="4C7F99" locked="true" material="leather boots"/>
         <effect amplifier="2">speed</effect>

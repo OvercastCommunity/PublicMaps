@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Secluded Wharf</name>
 <version>1.0.4</version>
+<created>2015-04-09</created>
 <objective>Eliminate the other team before 5 minutes are up</objective>
 <gamemode>br</gamemode>
 <authors>

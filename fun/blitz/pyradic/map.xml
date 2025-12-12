@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Pyradic</name>
 <version>1.0.2</version>
+<created>2015-05-29</created>
 <objective>Eliminate the opposing team!</objective>
 <gamemode>br</gamemode>
 <authors>
@@ -9,7 +10,7 @@
 <broadcasts>
     <alert after="30s">There was a crashing sound coming from the enchantment room! Be careful!</alert>
 </broadcasts>
-<teams> 
+<teams>
     <team id="blue" color="blue" show-name-tags="false" max="10" max-overfill="12">Blue</team>
     <team id="red" color="dark red" show-name-tags="false" max="10" max-overfill="12">Red</team>
 </teams>

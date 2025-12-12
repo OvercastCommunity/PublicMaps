@@ -2,6 +2,7 @@
 <name>Mistforge</name>
 <phase>staging</phase>
 <version>1.0.0</version>
+<created>2015-06-18</created>
 <objective>Capture all 6 sequential control points.</objective>
 <authors>
     <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!--  Avoire  -->

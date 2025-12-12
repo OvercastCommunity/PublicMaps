@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Roar</name>
 <version>1.0.5</version>
+<created>2015-01-17</created>
 <objective>Destroy the enemy's core and monument.</objective>
 <include id="gapple-kill-reward"/>
 <authors>

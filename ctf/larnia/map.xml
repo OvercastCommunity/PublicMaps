@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Larnia</name>
 <version>1.6.3</version>
+<created>2015-06-16</created>
 <objective>Capture or defend the green flag!</objective>
 <time result="defenders-team">15m</time>
 <include id="conquest"/>
@@ -94,7 +95,7 @@
     <union id="spawns">
         <rectangle id="green-spawn" min="365,-122" max="355,-133"/>
         <rectangle id="red-spawn" min="267,-122" max="260,-130"/>
-        <rectangle id="second-red-spawn" min="304,-167" max="296,-172"/> 
+        <rectangle id="second-red-spawn" min="304,-167" max="296,-172"/>
     </union>
     <apply region="void-region" block="not(void)" message="You may not modify the void area!"/>
     <apply region="red-net" block="never" message="You may not modify the net area!"/>

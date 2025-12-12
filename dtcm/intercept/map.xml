@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <time result="objectives">1h</time>
 <name>Intercept</name>
+<created>2015-10-11</created>
 <version>0.1.6</version>
 <objective>Destroy the enemy's emerald monument before the timer runs out</objective>
 <phase>staging</phase>
@@ -190,7 +191,7 @@
         <drops>
             <item amount="9">diamond</item>
             <item amount="9">exp bottle</item>
-            <item amount="32">tnt</item> 
+            <item amount="32">tnt</item>
         </drops>
         <wrongtool>true</wrongtool>
     </rule>

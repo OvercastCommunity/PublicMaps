@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Metro</name>
 <version>1.8.12</version>
+<created>2015-01-26</created>
 <objective>Destroy the enemy monuments</objective>
 <include id="lava-buckets"/>
 <authors>

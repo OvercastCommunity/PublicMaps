@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Pixel Run</name>
 <version>1.0.4</version>
+<created>2015-12-17</created>
 <objective>Runners must get from one side of the map to the other without getting killed by the Defenders.</objective>
 <gamemode>ad</gamemode>
 <authors>
@@ -107,7 +108,7 @@
     <union id="defender-portals-from-spawn">
         <translate id="defender-portal-from-spawn-right" offset="0,0,8">
             <cuboid id="defender-portal-from-spawn-left" min="257,52,17" max="262,57,16"/>
-        </translate> 
+        </translate>
     </union>
     <union id="left-side-portals">
         <cuboid id="left-side-portal1" min="241,22,-28" max="344,23,-30"/>

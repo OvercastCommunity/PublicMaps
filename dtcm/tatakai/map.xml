@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Tatakai</name>
 <version>1.0.5</version>
+<created>2015-05-15</created>
 <objective>Leak the enemy team's core to win!</objective>
 <include id="gapple-kill-reward"/>
 <authors>

@@ -3,6 +3,9 @@
 <version>2.1.0</version>
 <variant id="tdm">TDM</variant>
 <variant id="lifesteal">Lifesteal</variant>
+<if variant="default">
+    <created>2015-04-12</created>
+</if>
 <unless variant="lifesteal,tdm">
     <objective>Kill all the player's in the enemy team's before the time runs out!</objective>
     <blitz>

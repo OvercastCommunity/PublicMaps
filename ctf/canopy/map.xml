@@ -2,21 +2,17 @@
 <name>Canopy</name>
 <version>0.2.13</version>
 <variant id="hybrid">Hybrid</variant>
-<constant id="flag-points">1</constant>
-<if variant="hybrid">
-    <constant id="flag-points">150</constant>
-    <phase>staging</phase>
-</if>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
 <if variant="default">
+    <created>2015-03-08</created>
     <objective>Capture the enemy's flag as many times as possible in 15 minutes to win!</objective>
+    <constant id="flag-points">1</constant>
 </if>
 <if variant="hybrid">
     <objective>Capture the enemy's flag and kill enemies to score, first to 450 points wins!</objective>
-</if>
-<if variant="default">
-    <time overtime="1m" max-overtime="2m">15m</time>
+    <constant id="flag-points">150</constant>
+    <phase>staging</phase>
 </if>
 <authors>
     <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
@@ -31,6 +27,7 @@
     </if>
 </rules>
 <if variant="default">
+    <time overtime="1m" max-overtime="2m">15m</time>
     <score>
         <mercy>3</mercy>
     </score>
@@ -42,8 +39,8 @@
     </score>
 </if>
 <teams>
-    <team id="blue" color="blue" max="16">Blue</team>
-    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -70,28 +67,22 @@
 </kits>
 <spawns>
     <default>
-        <region yaw="0">
+        <region>
             <point>66,58,0</point>
         </region>
     </default>
-    <spawn team="blue" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region yaw="-90">
             <cuboid min="-30.5,16,-6.5" max="-30.5,16,8.5"/>
         </region>
     </spawn>
-    <spawn team="red" kit="spawn-kit">
+    <spawn team="red-team" kit="spawn-kit">
         <region yaw="90">
             <cuboid min="162.5,16,7.5" max="162.5,16,-7.5"/>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <deny id="only-blue">
-        <team>red</team>
-    </deny>
-    <deny id="only-red">
-        <team>blue</team>
-    </deny>
     <not id="no-flag">
         <any>
             <carrying-flag>blue-flag</carrying-flag>
@@ -99,20 +90,18 @@
         </any>
     </not>
     <all id="blue-no-flag">
-        <team>blue</team>
+        <team>blue-team</team>
         <not>
             <carrying-flag>red-flag</carrying-flag>
         </not>
     </all>
     <all id="red-no-flag">
-        <team>red</team>
+        <team>red-team</team>
         <not>
             <carrying-flag>blue-flag</carrying-flag>
         </not>
     </all>
-    <not id="no-beacon">
-        <material>beacon</material>
-    </not>
+    <material id="only-beacon">beacon</material>
     <any id="only-plants">
         <material>vine</material>
         <material>long grass</material>
@@ -204,14 +193,14 @@
             </union>
         </region>
     </apply>
-    <apply block="only-plants" use="no-beacon" block-physics="deny-physics"/>
+    <apply block="only-plants" use="deny(only-beacon)" block-physics="deny-physics"/>
 </regions>
 <portals bidirectional="true" yaw="180">
     <portal x="0" y="39" z="-4" region="north-portal-below"/>
     <portal x="0" y="39" z="4" region="south-portal-below"/>
 </portals>
 <flags flag-proximity-metric="none" net-proximity-metric="closest player">
-    <flag id="red-flag" name="Red Flag" owner="red" color="red" pickup-filter="only-blue">
+    <flag id="red-flag" name="Red Flag" owner="red-team" color="red" pickup-filter="blue-team">
         <post>156,38,5</post>
     </flag>
     <net points="${flag-points}" flag="red-flag" return="blue-flag">
@@ -219,7 +208,7 @@
             <cylinder base="-24, 38, -4" radius="3" height="2"/>
         </region>
     </net>
-    <flag id="blue-flag" name="Blue Flag" owner="blue" color="blue" pickup-filter="only-red">
+    <flag id="blue-flag" name="Blue Flag" owner="blue-team" color="blue" pickup-filter="red-team">
         <post>-25,38,-5</post>
     </flag>
     <net points="${flag-points}" flag="blue-flag" return="red-flag">
@@ -241,7 +230,7 @@
 </itemremove>
 <kill-rewards>
     <kill-reward>
-        <item amount="6">arrow</item>
+        <item amount="6" material="arrow"/>
     </kill-reward>
 </kill-rewards>
 <disabledamage>

@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Paradiso</name>
 <version>1.1.4</version>
+<created>2015-05-31</created>
 <objective>Be the player with the most kills after 8 minutes. There are no teams, so watch your back!</objective>
 <authors>
     <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- KRo_oOH -->

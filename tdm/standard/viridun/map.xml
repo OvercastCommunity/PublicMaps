@@ -5,21 +5,23 @@
 <variant id="ctf" world="ctf">CTF</variant>
 <version>1.6.3</version>
 <constant id="objective">Be the team with the least amount of deaths after 10 minutes</constant>
+<if variant="default">
+    <created>2012-09-04</created>
+</if>
 <if variant="rage">
     <constant id="objective">Be the team with the least amount of deaths after 8 minutes. Arrows kill in one hit!</constant>
 </if>
 <if variant="ffa">
+    <created>2015-04-25</created>
     <constant id="objective">Kill the most players in 10 minutes!</constant>
     <include id="gapple-kill-reward"/>
 </if>
 <if variant="ctf">
+    <created>2015-02-22</created>
     <constant id="objective">Capture the enemy flag located at the corresponding colored beacon and return it to your flag</constant>
     <include id="gapple-kill-reward"/>
 </if>
 <objective>${objective}</objective>
-<if variant="default">
-    <created>2012-09-04</created>
-</if>
 <authors>
     <author uuid="27cf0cdd-c294-4163-a536-18e11360cc7b" contribution="Map design and layout"/> <!-- OurLoneHero -->
 </authors>

@@ -1,7 +1,7 @@
 <map proto="1.5.0">
-<name>Yggdrasil</name> 
+<name>Yggdrasil</name>
 <version>1.0.4</version>
-<created>2013-06-14</created> 
+<created>2013-03-06</created>
 <objective>Get the most kills for your team within the allowed time.</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -48,7 +48,7 @@
             <cylinder base="2262.5,101,-1178.5" radius="2" height="0"/>
         </region>
     </spawn>
-    <default yaw="-90"> 
+    <default yaw="-90">
         <region>
             <cylinder base="2274.5,158,-1101.5" radius="3" height="0"/>
         </region>

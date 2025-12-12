@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Nartica</name>
 <version>1.4.5</version>
+<created>2015-12-19</created>
 <objective>Capture both of the enemy's flags.</objective>
 <edition>ranked</edition>
 <authors>

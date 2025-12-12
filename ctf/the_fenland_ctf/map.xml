@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>The Fenland CTF</name>
 <version>1.0.4</version>
+<created>2015-02-20</created>
 <objective>Capture the enemy flag and bring it back to your side</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -138,4 +139,4 @@
 <hunger>
     <depletion>off</depletion>
 </hunger>
-</map> 
+</map>

@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Lasa</name>
 <version>1.3.6</version>
+<created>2015-05-07</created>
 <objective>Attackers have 15 minutes to destroy the Monument. The Red defenders must hold them back.</objective>
 <gamemode>ad</gamemode>
 <gamemode>dtm</gamemode>

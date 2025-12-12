@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Horseshoe Ranch</name>
 <version>2.1.2</version>
+<created>2015-12-17</created>
 <objective>Capture the other team's wool!</objective>
 <authors>
     <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc" contribution="Layout, aesthetics and XML"/>
