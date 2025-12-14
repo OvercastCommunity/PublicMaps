@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Warzone</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
 <objective>Break your enemy's obsidian and emerald monuments!</objective>
 <gamemode>dtm</gamemode>
 <include id="gapple-kill-reward"/>
@@ -24,7 +24,7 @@
     <author uuid="bc5473ef-d2fe-4cc5-83e6-08d7bfa3e0a5"/> <!-- Jennyc01 -->
 </authors>
 <contributors>
-    <contributor uuid="64e840c8-4fb5-4659-a36b-ff93e2f6113a" contribution="XML, submission handling and minor suggestions"/> <!-- Javg_ -->
+    <contributor uuid="64e840c8-4fb5-4659-a36b-ff93e2f6113a" contribution="XML for PGM"/> <!-- Javg_ -->
 </contributors>
 <teams>
     <team id="blue-team" color="blue" max="28" max-overfill="32">Blue</team>
