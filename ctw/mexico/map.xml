@@ -1,5 +1,6 @@
 <map proto="1.5.0">
-<name>Fiesta Mexicana</name>
+<name>Mexico</name>
+<slug>fiesta_mexicana</slug>
 <version>1.2.9</version>
 <objective>Capture both wools!</objective>
 <gamemode>ctw</gamemode>
