@@ -1,5 +1,5 @@
 <map proto="1.5.0">
-<name>Mexico</name>
+<name>México</name>
 <slug>fiesta_mexicana</slug>
 <version>1.2.9</version>
 <objective>Capture both wools!</objective>
@@ -9,6 +9,10 @@
     <author uuid="cc26d4cd-22c3-48ed-aff0-91693f3d771c"/> <!-- WalkerKill -->
     <author uuid="d44b24ef-698b-45b7-acd3-cd804d079af8"/> <!-- Gabylol14 -->
 </authors>
+<contributors>
+    <contributor uuid="38ef938a-7020-4c04-9d12-4875ed0598ca" contribution="Map edits"/> <!-- Kazoha -->
+    <contributor uuid="f6f5dce8-a158-461d-b26d-dc8acfaeedd7" contribution="Map edits"/> <!-- Shuliett -->
+</contributors>
 <teams>
     <team id="orange-team" color="gold" max="16">Orange</team>
     <team id="yellow-team" color="yellow" max="16">Yellow</team>
@@ -254,3 +258,4 @@
 </hunger>
 <maxbuildheight>35</maxbuildheight>
 </map>
+
