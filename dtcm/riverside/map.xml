@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Riverside</name>
-<version>1.0.8</version>
+<version>1.0.9</version>
 <created>2014-12-16</created>
 <objective>Destroy enemy team's obsidian monument!</objective>
 <include id="gapple-kill-reward"/>
@@ -47,7 +47,7 @@
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
         <region yaw="-45">
-            <cylinder base="-71.5,24,113.5" radius="3" height="0"/>
+            <cylinder base="-71.5,24,113.5" radius="1" height="0"/>
         </region>
     </spawn>
 </spawns>
