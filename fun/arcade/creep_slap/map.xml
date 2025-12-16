@@ -1,6 +1,6 @@
 <map proto="1.5.0" game="Creep Slap!">
 <name>Creep Slap</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <objective>Ignite and throw the Creepers! Least deaths win!</objective>
 <created>2016-05-03</created>
 <gamemode>arcade</gamemode>
@@ -38,6 +38,11 @@
     <cuboid id="red-spawn" min="9,1,-10" max="10,2,11"/>
     <cuboid id="creeper-area" min="-6,1,-11" max="7,2,12"/>
     <apply block="never"/>
+    <apply enter="never">
+        <region>
+            <rectangle min="8,-11" max="-7,12"/>
+        </region>
+    </apply>
 </regions>
 <score>
     <kills>1</kills>
