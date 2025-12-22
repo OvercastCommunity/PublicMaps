@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Grassy Mound</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Destroy the other team's monument!</objective>
 <constants>
     <constant id="eff.modes-preset">every-5m</constant>
@@ -87,6 +87,7 @@
     </negative>
     <cuboid id="blue-monument" min="77,18,289" max="74,23,292"/>
     <cuboid id="red-monument" min="69,18,166" max="66,23,163"/>
+    <apply region="outside-spawns" kit="leaving-spawn"/>
     <apply region="blue-spawn-protection" enter="blue-team" message="You may not enter the enemy spawn!"/>
     <apply region="red-spawn-protection" enter="red-team" message="You may not enter the enemy spawn!"/>
     <apply region="team-spawns" block-place="not(player)" block-break="gold-block" message="You may not modify the spawn area!"/>
