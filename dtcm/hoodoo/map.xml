@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Hoodoo</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <objective>Invaders must destroy the beacon before time runs out!</objective>
 <created>2013-08-09</created>
 <phase>development</phase>
@@ -53,10 +53,7 @@
 </world>
 <gamerules>
     <doTileDrops>false</doTileDrops>
-    <doMobSpawning>true</doMobSpawning>
     <mobGriefing>true</mobGriefing>
-    <!-- Must be enabled even though <timelock> is off, please fix!! -->
-    <doDaylightCycle>true</doDaylightCycle>
 </gamerules>
 <!-- delete enderchest contents when a player leaves or switches teams -->
 <enderchest fallback="DELETE"/>
