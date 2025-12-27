@@ -1,6 +1,6 @@
 <map proto="1.5.0" game="Elytra Race" min-server-version="1.9">
 <name>Spinal Vertigo</name>
-<version>2.0.3</version>
+<version>2.0.4</version>
 <created>2016-06-20</created>
 <objective>Fly a complete lap to win!</objective>
 <authors>
@@ -416,7 +416,7 @@
     </trigger>
     <trigger scope="player" filter="point-4">
         <action>
-            <teleport x="28" y="110.5" z="70" yaw="180"/>
+            <teleport x="28" y="110.5" z="70" yaw="-45"/>
         </action>
     </trigger>
     <trigger scope="player" filter="point-5">
