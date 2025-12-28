@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Halcyon</name>
-<version>2.3.1</version>
+<version>2.3.2</version>
 <objective>Destroy the enemy team's monuments!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -8,7 +8,7 @@
 </authors>
 <teams>
     <team id="red-team" color="dark red" max="16">Red</team>
-    <team id="purple-team" color="dark purple" max="16">Purple</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -34,7 +34,7 @@
             <cylinder base="14.5,74,-762.5" height="0" radius="2"/>
         </region>
     </spawn>
-    <spawn team="purple-team" kit="spawn-kit">
+    <spawn team="blue-team" kit="spawn-kit">
         <region>
             <cylinder base="14.5,74,-872.5" height="0" radius="2"/>
         </region>
@@ -59,17 +59,17 @@
         <rectangle id="playable" min="52,-892" max="-24,-742"/>
     </negative>
     <apply region="red-spawn" enter="red-team" message="You may not enter `4Red`c's spawn area!"/>
-    <apply region="purple-spawn" enter="purple-team" message="You may not enter `5Purple`c's spawn area!"/>
+    <apply region="purple-spawn" enter="blue-team" message="You may not enter `5Purple`c's spawn area!"/>
     <apply region="spawns" block="never" message="You may not modify the spawn area."/>
     <apply region="playable-inverse" block="never" message="You may not build outside of the playing field!"/>
 </regions>
 <destroyables materials="obsidian">
-    <destroyable name="Left" owner="purple-team">
+    <destroyable name="Left" owner="blue-team">
         <region>
             <block>-13,74,-861</block>
         </region>
     </destroyable>
-    <destroyable name="Right" owner="purple-team">
+    <destroyable name="Right" owner="blue-team">
         <region>
             <block>41,74,-861</block>
         </region>
