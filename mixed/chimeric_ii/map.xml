@@ -1,0 +1,357 @@
+<map proto="1.5.0">
+<name>Chimeric II</name>
+<version>1.0.2</version>
+<phase>staging</phase>
+<objective>Capture the other team's wool and return it to your base, and destroy their monument.</objective>
+<created>2016-09-05</created>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81"/> <!-- _DISTRACTION_ -->
+    <author uuid="af56fc4a-51d2-4a6e-b020-2c6d272b9cbf"/> <!-- Ale -->
+</authors>
+<broadcasts>
+    <alert after="1s" every="2m">You must capture your team's wool before mining the monument!</alert>
+    <alert after="7s" every="2m">The monument can only be mined with pickaxes from the wool room!</alert> 
+    <tip after="14s" every="2m">The wool room is located on the top of the map, behind each teams' spawns!</tip>
+    <tip after="21s" every="2m">The monument is located on the center lane of each teams' sides!</tip>
+</broadcasts>
+<teams>
+    <team id="green" color="dark green" max="18">Green</team>
+    <team id="purple" color="dark purple" max="18">Purple</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" unbreakable="true" enchantment="dig speed:3" lore="`rCannot be used to|`rmine the monument!" material="stone pickaxe"/>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2" material="stone axe"/>
+        <item slot="4" amount="32" material="cooked fish"/>
+        <item slot="5" amount="2" material="golden apple"/>
+        <item slot="6" amount="64" material="wood"/>
+        <item slot="7" amount="32" material="glass"/>
+        <item slot="28" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" enchantment="protection projectile" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" enchantment="protection projectile" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" enchantment="protection projectile" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" enchantment="protection projectile" material="leather boots"/>
+        <effect duration="5" amplifier="5">regeneration</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="woolroom" force="true">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" unbreakable="true" enchantment="dig speed:3" lore="`rCannot be used to|`rmine the monument!" material="stone pickaxe"/>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2" material="stone axe"/>
+        <item slot="4" amount="32" material="cooked fish"/>
+        <item slot="5" amount="2" material="golden apple"/>
+        <item slot="6" amount="64" material="wood"/>
+        <item slot="7" damage="247" prevent-sharing="true" lore="`rUse this pickaxe to|`rmine the monument!|`rYou keep it|`rwhen you die." material="iron pickaxe"/>
+        <item slot="28" material="arrow"/>
+        <chestplate material="iron chestplate"/>
+        <effect duration="5" amplifier="5">regeneration</effect>
+    </kit>
+    <kit id="purple-in-wool" parents="woolroom" force="true">
+        <item slot="8" material="wool" damage="5"/>
+    </kit>
+    <kit id="green-in-wool" parents="woolroom" force="true">
+        <item slot="8" material="wool" damage="2"/>
+    </kit>
+    <kit id="defender">
+        <item slot="8" amount="64" material="wood" damage="1"/>
+        <item slot="9" amount="64" material="fence"/>
+        <item slot="10" amount="64" material="wood" damage="1"/>
+        <item slot="11" amount="64" material="wood button"/>
+        <item slot="12" amount="64" material="wood plate"/>
+        <item slot="13" amount="64" material="wood door"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="green" kit="spawn" yaw="-90">
+        <region>
+            <cylinder base="-81,27,0" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="purple" kit="spawn" yaw="90">
+        <region>
+            <cylinder base="81,27,0" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <point>-0,85,1</point>
+        </region>
+    </default>
+</spawns>
+<item-mods>
+    <rule>
+        <match>
+            <!-- Base kit -->
+            <material>stone sword</material>
+            <material>bow</material>
+            <material>stone pickaxe</material>
+            <material>stone axe</material>
+            <material>cooked fish</material>
+            <material>golden apple</material>
+            <!-- Defender kit -->
+            <material>fence</material>
+            <material>wood button</material>
+            <material>wood plate</material>
+            <material>wood door</material>
+            <!-- Building blocks -->
+            <material>wood</material>
+            <material>glass</material>
+            <!-- Woolroom kit -->
+            <material>iron sword</material>
+        </match>
+        <modify show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+                <material>quartz block</material>
+            </can-destroy>
+        </modify>
+    </rule>
+    <rule>
+        <!-- Allow building with these blocks -->
+        <match>
+            <material>wood</material>
+            <material>glass</material>
+            <material>fence</material>
+            <material>wood button</material>
+            <material>wood plate</material>
+            <material>wooden door</material>
+        </match>
+        <modify show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </modify>
+    </rule>
+    <rule>
+        <!-- Only iron pickaxes can destroy the monument -->
+        <match>
+            <material>iron pickaxe</material>
+        </match>
+        <modify show-can-destroy="true">
+            <can-destroy>
+                <material>diamond block</material>
+            </can-destroy>
+        </modify>
+    </rule>
+    <rule>
+        <!-- Allow placing these wool blocks on bedrock -->
+        <match>
+            <material>wool:5</material> <!-- Lime -->
+            <material>wool:2</material> <!-- Magenta -->
+        </match>
+        <modify show-can-place-on="true">
+            <can-place-on>
+                <material>bedrock</material>
+            </can-place-on>
+        </modify>
+    </rule>
+</item-mods>
+<filters>
+    <any id="only-green-until-wool-gone">
+        <team id="only-green">green</team>
+        <objective>greenwool</objective>
+    </any>
+    <any id="only-purple-until-wool-gone">
+        <team id="only-purple">purple</team>
+        <objective>purplewool</objective>
+    </any>
+</filters>
+<regions>
+    <apply kit="defender" message="You have received the Defender kit!">
+        <region>
+            <union>
+                <cuboid min="-84,26,5" max="-77,32,-5"/>
+                <cuboid min="84,26,5" max="77,32,-5"/>
+            </union>
+        </region>
+    </apply>
+    <apply kit="purple-in-wool">
+        <region>
+            <cuboid min="-146,57,-8" max="-153,62,8"/>
+        </region>
+    </apply>
+    <apply kit="green-in-wool">
+        <region>
+            <cuboid min="146,57,-8" max="153,62,8"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not edit the spawn!">
+        <region>
+            <union>
+                <cuboid min="-83,7,-9" max="-77,12,9"/>
+                <cuboid min="83,7,9" max="77,12,-9"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="never" message="You have reached the build height limit over the central area.">
+        <region>
+            <cuboid min="-68,27,-oo" max="68,oo,oo"/>
+        </region>
+    </apply>
+    <apply block="always">
+        <region>
+            <union>
+                <!-- Center -->
+                <rectangle min="-21,9" max="21,17"/>
+                <rectangle min="-21,-9" max="21,-17"/>
+                <!-- Ends -->
+                <union id="buildable-green">
+                    <rectangle min="-72,-10" max="-101,10"/>
+                    <rectangle min="-101,-10" max="-102,-1"/>
+                    <rectangle min="-101,10" max="-102,1"/>
+                    <rectangle min="-102,-10" max="-124,-2"/>
+                    <rectangle min="-102,10" max="-124,2"/>
+                </union>
+                <mirror id="buildable-purple" origin="0,0,0" normal="1,0,0" region="buildable-green"/>
+                <!-- Further out there is barrier blocks at y=0 so the void filter is used. -->
+            </union>
+        </region>
+    </apply>
+    <apply block="always" enter="only-green-until-wool-gone" message="The wool must be captured before you can enter the monument lane!">
+        <region>
+            <rectangle min="-37,-3" max="-21,3"/>
+        </region>
+    </apply>
+    <apply block="always" enter="only-purple-until-wool-gone" message="The wool must be captured before you can enter the monument lane!">
+        <region>
+            <rectangle min="37,-3" max="21,3"/>
+        </region>
+    </apply>
+    <apply enter="only-purple" block="only-purple" message="You may not enter the other team's wool room!">
+        <region>
+            <rectangle min="-oo,-oo" max="-141,oo"/>
+        </region>
+    </apply>
+    <apply enter="only-green" block="only-green" message="You may not enter the other team's wool room!">
+        <region>
+            <rectangle min="141,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+    <apply block="deny(void)" message="You may not build outside the map!"/>
+</regions>
+<destroyables name="Monument" repairable="false" sparks="true" show-progress="true" materials="diamond block">
+    <destroyable id="purple-monument" owner="purple">
+        <region>
+            <cuboid min="23,19,-2" max="27,15,2"/>
+        </region>
+    </destroyable>
+    <destroyable id="green-monument" owner="green">
+        <region>
+            <cuboid min="-23,19,-2" max="-27,15,2"/>
+        </region>
+    </destroyable>
+</destroyables>
+<wools craftable="false">
+    <wool team="green" color="magenta" id="purplewool" location="134,57,0">
+        <monument>
+            <block>-71,9,5</block>
+        </monument>
+    </wool>
+    <wool team="purple" color="lime" id="greenwool" location="-134,57,0">
+        <monument>
+            <block>70,9,-6</block>
+        </monument>
+    </wool>
+</wools>
+<portals>
+    <!-- Green Team -->
+    <portal x="@-88" y="@51" z="@0" yaw="@90">
+        <region>
+            <cuboid min="-78,27,3" max="-82,31,4"/>
+        </region>
+    </portal>
+    <portal x="@-78" y="@8" z="@0" yaw="@-90">
+        <region>
+            <cuboid min="-78,27,-3" max="-82,31,-4"/>
+        </region>
+    </portal>
+    <!-- Purple Team -->
+    <portal x="@88" y="@51" z="@0" yaw="@-90">
+        <region>
+            <cuboid min="78,27,-3" max="82,31,-4"/>
+        </region>
+    </portal>
+    <portal x="@78" y="@8" z="@0" yaw="@90">
+        <region>
+            <cuboid min="78,27,3" max="82,31,4"/>
+        </region>
+    </portal>
+</portals>
+<crafting>
+    <disable>workbench</disable>
+    <disable>stick</disable>
+    <disable>iron pickaxe</disable>
+</crafting>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>stone pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemkeep>
+    <item>iron pickaxe</item>
+</itemkeep>
+<itemremove>
+    <!-- All mined blocks should be on itemremove -->
+    <item>golden apple</item>
+    <item>beacon</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>obsidian</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>diamond block</item>
+    <item>double step</item>
+    <item>step</item>
+    <item>smooth stairs</item>
+    <item>quartz stairs</item>
+    <item>stained clay</item>
+    <item>stone</item>
+    <item>smooth brick</item>
+    <item>nether fence</item>
+    <item>iron fence</item>
+    <item>glass</item>
+    <item>stained glass</item>
+    <item>wool</item>
+    <item>stained glass pane</item>
+    <item>coal block</item>
+    <item>web</item>
+    <item>glowstone</item>
+    <item>wood</item>
+    <item>cobblestone</item>
+    <item>fence</item>
+    <item>wood button</item>
+    <item>wood plate</item>
+    <item>wooden door</item>
+    <item>quartz block</item>
+</itemremove>
+<timelock>on</timelock>
+<maxbuildheight>66</maxbuildheight>
+</map> 
