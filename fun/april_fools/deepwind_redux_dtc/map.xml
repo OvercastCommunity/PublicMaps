@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Deepwind Redux DTC</name>
-<version>1.0.3</version>
+<version>1.0.4</version>
 <objective>Leak the opposing team's cores!</objective>
 <include id="gapple-kill-reward"/>
 <phase>staging</phase>
@@ -67,7 +67,7 @@
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
     <apply block-place="deny(void)" region="not-build-area" message="You may not edit the void!"/>
 </regions>
-<cores material="obsidian" leak="3">
+<cores material="obsidian" leak="3" mode-changes="true">
     <core team="red-team" name="Core A">
         <region>
             <cuboid min="24,19,70" max="30,13,76"/>
