@@ -1,9 +1,17 @@
 <map proto="1.5.0">
 <name>Chimeric II</name>
-<version>1.0.2</version>
+<variant id="christmas" world="christmas" override="true">Chimeric Freeze II</variant> <!-- historical naming scheme -->
+<version>1.1.0</version>
 <phase>staging</phase>
 <objective>Capture the other team's wool and return it to your base, and destroy their monument.</objective>
-<created>2016-09-05</created>
+<if variant="default">
+    <created>2016-09-05</created>
+    <constant id="monument-name">Monument</constant>
+</if>
+<if variant="christmas">
+    <created>2016-12-08</created>
+    <constant id="monument-name">Crystalized Monument</constant>
+</if>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81"/> <!-- _DISTRACTION_ -->
@@ -16,8 +24,14 @@
     <tip after="21s" every="2m">The monument is located on the center lane of each teams' sides!</tip>
 </broadcasts>
 <teams>
-    <team id="green" color="dark green" max="18">Green</team>
-    <team id="purple" color="dark purple" max="18">Purple</team>
+    <if variant="default">
+        <team id="green" color="dark green" max="18">Green</team>
+        <team id="purple" color="dark purple" max="18">Purple</team>
+    </if>
+    <if variant="christmas">
+        <team id="green" color="dark green" max="18" plural="true">Polar Greens</team>
+        <team id="purple" color="dark purple" max="18" plural="true">Arctic Purples</team>
+    </if>
 </teams>
 <kits>
     <kit id="spawn">
@@ -25,10 +39,12 @@
         <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
         <item slot="2" unbreakable="true" enchantment="dig speed:3" lore="`rCannot be used to|`rmine the monument!" material="stone pickaxe"/>
         <item slot="3" unbreakable="true" enchantment="dig speed:2" material="stone axe"/>
-        <item slot="4" amount="32" material="cooked fish"/>
-        <item slot="5" amount="2" material="golden apple"/>
-        <item slot="6" amount="64" material="wood"/>
-        <item slot="7" amount="32" material="glass"/>
+        <item slot="4" amount="2" material="golden apple"/>
+        <item slot="5" amount="64" material="wood"/>
+        <item slot="6" amount="32" material="glass"/>
+        <if variant="christmas">
+            <item slot="7" unbreakable="true" material="wood spade"/>
+        </if>
         <item slot="28" material="arrow"/>
         <helmet unbreakable="true" team-color="true" enchantment="protection projectile" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" enchantment="protection projectile" material="leather chestplate"/>
@@ -42,10 +58,12 @@
         <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
         <item slot="2" unbreakable="true" enchantment="dig speed:3" lore="`rCannot be used to|`rmine the monument!" material="stone pickaxe"/>
         <item slot="3" unbreakable="true" enchantment="dig speed:2" material="stone axe"/>
-        <item slot="4" amount="32" material="cooked fish"/>
-        <item slot="5" amount="2" material="golden apple"/>
-        <item slot="6" amount="64" material="wood"/>
-        <item slot="7" damage="247" prevent-sharing="true" lore="`rUse this pickaxe to|`rmine the monument!|`rYou keep it|`rwhen you die." material="iron pickaxe"/>
+        <item slot="4" amount="2" material="golden apple"/>
+        <item slot="5" amount="64" material="wood"/>
+        <item slot="6" damage="247" prevent-sharing="true" lore="`rUse this pickaxe to|`rmine the monument!|`rYou keep it|`rwhen you die." material="iron pickaxe"/>
+        <if variant="christmas">
+            <item slot="7" unbreakable="true" material="wood spade"/>
+        </if>
         <item slot="28" material="arrow"/>
         <chestplate material="iron chestplate"/>
         <effect duration="5" amplifier="5">regeneration</effect>
@@ -90,7 +108,6 @@
             <material>bow</material>
             <material>stone pickaxe</material>
             <material>stone axe</material>
-            <material>cooked fish</material>
             <material>golden apple</material>
             <!-- Defender kit -->
             <material>fence</material>
@@ -106,6 +123,7 @@
         <modify show-can-destroy="false">
             <can-destroy>
                 <material>fence</material>
+                <material>quartz block</material>
                 <material>wood button</material>
                 <material>wood plate</material>
                 <material>wooden door</material>
@@ -126,7 +144,10 @@
                 <material>web</material>
                 <material>glowstone</material>
                 <material>wood</material>
-                <material>quartz block</material>
+                <if variant="christmas">
+                    <material>packed ice</material>
+                    <material>snow block</material>
+                </if>
             </can-destroy>
         </modify>
     </rule>
@@ -253,7 +274,7 @@
     </apply>
     <apply block="deny(void)" message="You may not build outside the map!"/>
 </regions>
-<destroyables name="Monument" repairable="false" sparks="true" show-progress="true" materials="diamond block">
+<destroyables name="${monument-name}" repairable="false" sparks="true" show-progress="true" materials="diamond block">
     <destroyable id="purple-monument" owner="purple">
         <region>
             <cuboid min="23,19,-2" max="27,15,2"/>
@@ -351,7 +372,16 @@
     <item>wood plate</item>
     <item>wooden door</item>
     <item>quartz block</item>
+    <if variant="christmas">
+        <item>packed ice</item>
+        <item>snow block</item>
+        <item>wood spade</item>
+        <item>snow ball</item>
+    </if>
 </itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <timelock>on</timelock>
 <maxbuildheight>66</maxbuildheight>
 </map> 
