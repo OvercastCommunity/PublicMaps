@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Battle of Tenjin II</name>
-<version>1.1</version>
+<version>1.1.1</version>
 <objective>Break and leak lava from both of the opposing team's cores.</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -51,7 +51,7 @@
     </default>
     <spawn team="blue-team" kit="spawn-kit">
         <region yaw="180">
-            <cuboid min="-2,25,-58" max="4,25,-54"/>
+            <cuboid min="-2,25,-58" max="3,25,-56"/>
         </region>
     </spawn>
     <spawn team="red-team" kit="spawn-kit">
