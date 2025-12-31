@@ -1,9 +1,9 @@
 <map proto="1.5.0">
 <name>Boletum</name>
-<unless variant="classic">
+<if variant="default">
     <slug>boletum_remix</slug>
-</unless>
-<version>1.2.3</version>
+</if>
+<version>1.2.4</version>
 <variant id="classic" world="classic" slug="boletum">Classic</variant>
 <include id="gapple-kill-reward"/>
 <objective>Leak the enemy's obsidian core and defend your own.</objective>
@@ -23,7 +23,12 @@
 <kits>
     <kit id="spawn-kit">
         <clear/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
+        <unless variant="classic">
+            <item slot="0" unbreakable="true" material="iron sword"/>
+        </unless>
+        <if variant="classic">
+            <item slot="0" unbreakable="true" material="stone sword"/>
+        </if>
         <item slot="1" unbreakable="true" material="bow">
             <enchantment>infinity</enchantment>
         </item>
@@ -157,3 +162,4 @@
     <depletion>off</depletion>
 </hunger>
 </map>
+
