@@ -1,8 +1,8 @@
 <map proto="1.5.0">
 <name>Chimeric</name>
-<variant id="halloween" world="halloween">Horror</variant>
-<variant id="christmas" world="christmas">Freeze</variant>
-<version>1.2.0</version>
+<variant id="halloween" world="halloween" override="true" slug="Chimeric: Horror">Chimeric Horror</variant>
+<variant id="christmas" world="christmas" override="true" slug="Chimeric: Freeze">Chimeric Freeze</variant>
+<version>1.2.1</version>
 <objective>Destroy the other team's monument, then capture their wool and return it to your base.</objective>
 <if variant="default">
     <created>2016-04-17</created>
@@ -16,6 +16,19 @@
     <created>2016-12-08</created>
     <constant id="monument-name">Ice Cold Monument</constant>
 </if>
+<constants>
+    <constant id="eff.modes-preset">every-10m</constant>
+    <constant id="eff.efficiency-tool">stone pickaxe</constant>
+    <constant id="eff.team-1">red</constant>
+    <constant id="eff.team-2">blue</constant>
+    <constant id="eff.t1-m1-region">blue-monument-region</constant>
+    <constant id="eff.t2-m1-region">red-monument-region</constant>
+    <constant id="observers-kit" delete="true"></constant>
+</constants>
+<if variant="halloween">
+    <constant id="observers-kit">default-kit</constant>
+</if>
+<include id="efficiency-variables"/>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81"/> <!-- _DISTRACTION_ -->
@@ -42,16 +55,19 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
+        <clear/>
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" unbreakable="true" material="stone pickaxe"/>
-        <item slot="3" unbreakable="true" enchantment="dig speed:2" material="stone axe"/>
-        <item slot="4" amount="2" material="golden apple"/>
-        <item slot="5" amount="64" material="wood"/>
-        <item slot="6" amount="32" material="glass"/>
+        <item slot="3" unbreakable="true" material="stone axe">
+            <enchantment level="2">efficiency</enchantment>
+        </item>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="5" amount="32" material="glass"/>
         <if variant="christmas">
-            <item slot="7" unbreakable="true" material="wood spade"/>
+            <item slot="6" unbreakable="true" material="wood spade"/>
         </if>
+        <item slot="8" amount="2" material="golden apple"/>
         <item slot="28" amount="32" material="arrow"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
@@ -62,6 +78,9 @@
     </kit>
     <kit id="home-kit">
         <effect amplifier="2">haste</effect>
+    </kit>
+    <kit id="default-kit">
+        <effect>night vision</effect>
     </kit>
 </kits>
 <spawns>
@@ -75,7 +94,7 @@
             <cylinder base="80,8,0" radius="1" height="0"/>
         </region>
     </spawn>
-    <default yaw="180">
+    <default kit="${observers-kit}" yaw="180">
         <region>
             <point>-0,85,1</point>
         </region>
@@ -101,6 +120,9 @@
         <filter id="only-red"/>
         <filter id="no-chests"/>
     </all>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
 </filters>
 <regions>
     <apply block="never" message="You may not build below the map!">
@@ -173,19 +195,14 @@
             <rectangle min="21,-oo" max="oo,oo"/>
         </region>
     </apply>
+    <apply use="deny-beacon"/>
     <apply block="deny(void)" message="You may not build outside the map!"/>
+    <cylinder id="blue-monument-region" base="47.5,12,0.5" radius="2" height="3"/>
+    <cylinder id="red-monument-region" base="-47.5,12,-0.5" radius="2" height="3"/>
 </regions>
-<destroyables name="${monument-name}" repairable="false" sparks="true" show-progress="true" materials="ender stone;emerald block;stained glass">
-    <destroyable id="blue-monument" owner="blue">
-        <region>
-            <cylinder base="47.5,12,0.5" radius="2" height="3"/>
-        </region>
-    </destroyable>
-    <destroyable id="red-monument" owner="red">
-        <region>
-            <cylinder base="-47.5,12,-0.5" radius="2" height="3"/>
-        </region>
-    </destroyable>
+<destroyables name="${monument-name}" repairable="false" sparks="true" show-progress="true" materials="ender stone;emerald block;stained glass" mode-changes="true">
+    <destroyable id="blue-monument" region="blue-monument-region" owner="blue"/>
+    <destroyable id="red-monument" region="red-monument-region" owner="red"/>
 </destroyables>
 <wools craftable="false">
     <wool team="red" color="cyan" location="134,57,0">
@@ -216,25 +233,38 @@
     <tool>bow</tool>
     <tool>stone pickaxe</tool>
     <tool>stone axe</tool>
-    <tool>arrow</tool>
-    <tool>wood spade</tool>
+    <if variant="halloween">
+        <tool>wood spade</tool>
+    </if>
 </toolrepair>
 <itemremove>
-    <item>golden apple</item>
-    <item>beacon</item>
     <item>leather helmet</item>
     <item>leather chestplate</item>
-    <item>obsidian</item>
     <item>leather leggings</item>
     <item>leather boots</item>
-    <item>log</item>
-    <item>wood</item>
-    <item>glass</item>
+    <item>obsidian</item>
+    <item>beacon</item>
+    <item>emerald block</item>
     <item>ender stone</item>
 </itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>glass</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+        <item amount="16" material="arrow"/>
+        <item amount="16" material="wood"/>
+        <item amount="8" material="glass"/>
+</kill-reward>
 <hunger>
     <depletion>off</depletion>
 </hunger>
 <maxbuildheight>66</maxbuildheight>
-<respawn delay="4s"/>
+<gamerules>
+    <keepInventory>false</keepInventory>
+    <!-- It must always be disabled, and the player drops nothing when Killed. To remove this, level.dat must be edited. -->
+</gamerules>
+<respawn delay="3s"/>
 </map>
