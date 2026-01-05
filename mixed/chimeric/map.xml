@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <name>Chimeric</name>
-<variant id="halloween" world="halloween" override="true" slug="Chimeric: Horror">Chimeric Horror</variant>
-<variant id="christmas" world="christmas" override="true" slug="Chimeric: Freeze">Chimeric Freeze</variant>
+<variant id="halloween" world="halloween">Horror</variant>
+<variant id="christmas" world="christmas">Freeze</variant>
 <version>1.2.1</version>
 <objective>Destroy the other team's monument, then capture their wool and return it to your base.</objective>
 <if variant="default">
@@ -17,13 +17,13 @@
     <constant id="monument-name">Ice Cold Monument</constant>
 </if>
 <constants>
-    <constant id="eff.modes-preset">every-10m</constant>
+    <constant id="eff.modes-preset">every-5m</constant>
     <constant id="eff.efficiency-tool">stone pickaxe</constant>
     <constant id="eff.team-1">red</constant>
     <constant id="eff.team-2">blue</constant>
     <constant id="eff.t1-m1-region">blue-monument-region</constant>
     <constant id="eff.t2-m1-region">red-monument-region</constant>
-    <constant id="observers-kit" delete="true"></constant>
+    <constant id="observers-kit" delete="true"/>
 </constants>
 <if variant="halloween">
     <constant id="observers-kit">default-kit</constant>
@@ -59,9 +59,7 @@
         <item slot="0" unbreakable="true" material="stone sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
         <item slot="2" unbreakable="true" material="stone pickaxe"/>
-        <item slot="3" unbreakable="true" material="stone axe">
-            <enchantment level="2">efficiency</enchantment>
-        </item>
+        <item slot="3" unbreakable="true" material="stone axe" enchantment="efficiency:2"/>
         <item slot="4" amount="64" material="wood"/>
         <item slot="5" amount="32" material="glass"/>
         <if variant="christmas">
@@ -120,9 +118,7 @@
         <filter id="only-red"/>
         <filter id="no-chests"/>
     </all>
-    <deny id="deny-beacon">
-        <material>beacon</material>
-    </deny>
+    <material id="only-beacon">beacon</material>
 </filters>
 <regions>
     <apply block="never" message="You may not build below the map!">
@@ -195,7 +191,7 @@
             <rectangle min="21,-oo" max="oo,oo"/>
         </region>
     </apply>
-    <apply use="deny-beacon"/>
+    <apply use="deny(only-beacon)"/>
     <apply block="deny(void)" message="You may not build outside the map!"/>
     <cylinder id="blue-monument-region" base="47.5,12,0.5" radius="2" height="3"/>
     <cylinder id="red-monument-region" base="-47.5,12,-0.5" radius="2" height="3"/>
@@ -233,7 +229,7 @@
     <tool>bow</tool>
     <tool>stone pickaxe</tool>
     <tool>stone axe</tool>
-    <if variant="halloween">
+    <if variant="christmas">
         <tool>wood spade</tool>
     </if>
 </toolrepair>
@@ -261,9 +257,5 @@
     <depletion>off</depletion>
 </hunger>
 <maxbuildheight>66</maxbuildheight>
-<gamerules>
-    <keepInventory>false</keepInventory>
-    <!-- It must always be disabled, and the player drops nothing when Killed. To remove this, level.dat must be edited. -->
-</gamerules>
-<respawn delay="3s"/>
+<respawn delay="4s"/>
 </map>
