@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <name>Chimeric</name>
-<variant id="halloween" world="halloween">Horror</variant>
-<variant id="christmas" world="christmas">Freeze</variant>
+<variant id="halloween" world="halloween" override="true">Chimeric Horror</variant>
+<variant id="christmas" world="christmas" override="true">Chimeric Freeze</variant>
 <version>1.2.1</version>
 <objective>Destroy the other team's monument, then capture their wool and return it to your base.</objective>
 <if variant="default">
