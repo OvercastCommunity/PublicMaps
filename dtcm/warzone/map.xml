@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Warzone</name>
-<version>1.0.7</version>
+<version>1.0.8</version>
 <objective>Break your enemy's obsidian and emerald monuments!</objective>
 <include id="gapple-kill-reward"/>
 <include id="iron-bulkcrafting"/>
