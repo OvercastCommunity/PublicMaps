@@ -1,0 +1,34 @@
+<map proto="1.5.0">
+<name>Pseudo</name>
+<version>1.2.2</version>
+<objective>Kill the enemy's squadron!</objective>
+<created>2014-08-13</created>
+<include id="gs"/>
+<authors>
+    <author uuid="bf331953-4f92-43ee-8abc-7544b8234936" contribution="Creator, XML"/> <!-- ParaSpider -->
+</authors>
+<contributors>
+    <contributor uuid="f866f386-3d9d-493c-8de8-87b493cab8be" contribution="Server"/> <!-- alexanderjoe10 -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="8">Red</team>
+    <team id="blue-team" color="blue" max="8">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red-team" yaw="-90">
+        <region>
+           <cylinder base="-36,1,0" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" yaw="90">
+        <region>
+            <cylinder base="37,1,0" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <default>
+        <region>
+            <cylinder base="0,1,-21" radius="1" height="0"/>
+        </region>
+    </default>
+</spawns>
+</map>
