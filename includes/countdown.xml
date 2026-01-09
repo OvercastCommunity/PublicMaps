@@ -3,7 +3,7 @@
 <actions>
     <trigger scope="${countdown-scope}" filter="countdown-start">  <!-- countdown 3 -->
         <action>
-            <message title="`43"/>
+            <message title="`e3"/>
             <sound key="${block.note_block.pling}" pitch="1.19"/>
         </action>
     </trigger>
@@ -21,7 +21,7 @@
             <after duration="2s" filter="countdown-start"/>
         </filter>
         <action>
-            <message title="`21"/>
+            <message title="`e1"/>
             <sound key="${block.note_block.pling}" pitch="1.19"/>
         </action>
     </trigger>
@@ -30,7 +30,7 @@
             <after duration="3s" filter="countdown-start"/>
         </filter>
         <action>
-            <message title="`aGO!" fade-in="0.1" stay="0.5" fade-out="0.1"/>
+            <message title="{translate: 'broadcast.go', color: 'green'}" fade-in="0.1" stay="0.5" fade-out="0.1"/>
             <sound key="${block.note_block.pling}" pitch="1.59"/>
         </action>
     </trigger>
