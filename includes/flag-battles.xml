@@ -4,7 +4,7 @@
 <!-- Version yyyy-mm-dd so I don't forget -->
 <!-- Version 2026.01.07-1 -->
 <game>Flag Battles</game>
-<objective>Score flag in enemy portals to reduce thier healthbar. Last team standing wins!</objective>
+<objective>Score flags in enemy portals to reduce their healthbar. Last team standing wins!</objective>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
 
