@@ -1,0 +1,1088 @@
+<map>
+<!-- 🚩 Flag Battles Include 🚩 -->
+<!-- Gamemode devloped by Technodono -->
+<!-- Version yyyy-mm-dd so I don't forget -->
+<!-- Version 2026.01.07-1 -->
+<game>Flag Battles</game>
+<objective>Score flag in enemy portals to reduce thier healthbar. Last team standing wins!</objective>
+<include id="gapple-kill-reward"/>
+<constants fallback="true">
+
+    <!-- Match Settings -->
+    <!-- These can be changed as maps see fit  -->
+    <constant id="match-timelimit">360</constant> <!-- How long the match should last before entering sudden death (seconds) --> <!-- default = 360 (6m) -->
+    <constant id="sudden-death-timelimit">240</constant> <!-- How long should sudden death last (seconds) --> <!-- default = 240 (4m) -->
+    <constant id="starting-score">10</constant> <!-- Starting hearts for each team [❤❤❤❤❤❤❤❤❤❤] -->
+    <constant id="starting-score-plus-one">11</constant> <!-- One higher than the number of starting hearts used for when the full scorebar is enabled -->
+    <constant id="show-full-score-bar">1</constant> <!-- When enabled this renders the grey hearts underneath the team life bars. Due to the way scoring works there will always be an extra grey heart after each teams total health -->
+    <constant id="flag-normal-score-amount">2</constant> <!-- Damage flags deal when scoring in portals -->
+    <constant id="flag-bonus-score-amount">3</constant> <!--  Damage flags deal when scoring in portals in sudden death -->
+    <constant id="player-bonus-score-amount">1</constant> <!-- Damage players deal when scoring in portals in sudden-death  -->
+    <constant id="kill-teams">0</constant> <!-- When teams are killed and this feature is enabled players are sent to obs instead of swapping teams (Used primarily for comp) -->
+    <constant id="enable-fall-damage">0</constant> <!-- Enables fall damage when set to [1] -->
+    <constant id="recover-time">15s</constant> <!-- flag recovery time -->
+    <constant id="respawn-time">7s</constant> <!-- flag respawn time -->
+    
+    <!-- Set the default leaves given in the default kits, brekable filters & loot chests (does not work with custom kits, filters, rewards e.c.t). -->
+    <constant id="default-leaves-1">0</constant> <!-- set this to the table below -->
+    <!-- oak - 0, birch - 1, spruce - 2, jungle - 3 -->
+    <constant id="default-leaves-2">4</constant> <!-- add 4 to the previous number -->
+    <constant id="default-leaves-3">8</constant> <!-- add 4 to the previous number -->
+    <constant id="default-leaves-4">12</constant> <!-- add 4 to the previous number -->
+    <!-- NOTE: it's needed to define all ID's becuase minecraft's funny with leave data values -->
+    
+
+    <!-- Block/Item settings -->
+    <!-- If you plan to modify kits in any way it is reccomended to change these -->
+    <constant id="default-kit">spawn-kit</constant>
+    <constant id="breakable-blocks">breakable-blocks</constant> <!-- Filter containing all the blocks that can be broken  -->
+    <constant id="deny-use">deny-use</constant> <!-- Filter containing all the blocks that players cab't interact with  -->
+    <constant id="use-default-kill-rewards">1</constant> <!-- Disable this if you'd like your map to use custom kill rewards -->
+
+    <!-- Lootables settings -->
+    <!-- to enable the default lootable chests maps need to pass the ID of the regions containing the diffent loot chests to the following constants -->
+    <constant id="outer-island-chest-region">nowhere</constant> <!-- These spawn on the outer islands and give players defensive blocks like endstone] -->
+    <constant id="outer-island-chest-refill-timer">10s</constant> <!-- time it takes for these chests to refill-->
+    <constant id="central-island-chest-region">nowhere</constant> <!-- These spawn on the central island and give players offensive items like fireballs & tnt -->
+    <constant id="central-island-chest-refill-timer">20s</constant> <!-- time it takes for these chests to refill-->
+    <!-- Score message -->
+    <constant id="score-message">{player} dealt `d`l{calcdamage} `rdamage to</constant> <!-- Message for when players deal damage to teams. use {player} to get the player name and {damage} to get the damage dealt -->
+
+    <!-- Teams & Regions  -->
+    <!-- a default set of team neames & colours has been provided which can be modified if needed -->
+    <constant id="team-one-name">Red</constant>
+    <constant id="team-one-colour">red</constant>
+    <constant id="team-one-chat-display">`cRed Team</constant>
+    <constant id="team-two-name">Yellow</constant>
+    <constant id="team-two-colour">yellow</constant>
+    <constant id="team-two-chat-display">`eYellow Team</constant>
+    <constant id="team-three-name">Green</constant>
+    <constant id="team-three-colour">green</constant>
+    <constant id="team-three-chat-display">`aGreen Team</constant>
+    <constant id="team-four-name">Blue</constant>
+    <constant id="team-four-colour">blue</constant>
+    <constant id="team-four-chat-display">`9Blue Team</constant>
+
+    <!-- Maps need to define all the below constants 
+    
+        #think about moving FLAGS posts to regions
+
+        <constant id="team-size"></constant>
+        <constant id="build-limit"></constant>            
+        <constant id="obs-yaw"></constant>
+        <constant id="obs-pitch"></constant>
+
+        <constant id="team-one-yaw"></constant>
+        <constant id="team-one-pitch"></constant>
+        <constant id="team-one-flag-post-1-yaw"></constant>
+        <constant id="team-one-flag-post-2-yaw"></constant>
+        
+        <constant id="team-two-yaw"></constant>
+        <constant id="team-two-pitch"></constant>
+        <constant id="team-two-flag-post-1-yaw"></constant>
+        <constant id="team-two-flag-post-2-yaw"></constant>
+        
+        <constant id="team-three-yaw"></constant>
+        <constant id="team-three-pitch"></constant>
+        <constant id="team-three-flag-post-1-yaw"></constant>
+        <constant id="team-three-flag-post-2-yaw"></constant>
+        
+        <constant id="team-four-yaw"></constant>
+        <constant id="team-four-pitch"></constant>
+        <constant id="team-four-flag-post-1-yaw"></constant>
+        <constant id="team-four-flag-post-2-yaw"></constant>
+-->
+
+<constant id="symmetry-mode">0</constant> <!-- Change to any of the below below modes to activate this feature (by default this feature is off [0] )  -->
+<constant id="map-center">0.0,0.0,0.0</constant> <!-- When symmetry mode is enabled set this to the coordinate of the middle of your map -->
+
+<!--
+______________________________________________________________________
+Symmetry Module - For map regions
+Instead of defining every team's portal, spawnroom, e.c.t. regions can be calucated using symmetry.
+Set the symmetry mode appropaite for your maps layout and specify all regions for team-one ONLY!
+The rest of the regions will then be handled by the symmetry module
+
+[NOTE]: This currently only supports the one default layout but can be expanded in the future
+______________________________________________________________________
+[1] Plus Symmetry mode
+
+                                  N   <<< (Team one island)
+                                  |
+    (Team four island) >>>  W ━━━ + ━━━ E <<< (Team two island)
+                                  |
+                                  S   <<< (Team three island)
+______________________________________________________________________
+
+    -->
+
+
+    <!-- Internal: Only edit these if you know what you are doing! -->
+    <constant id="no-players">999</constant> 
+    <constant id="no-message">0</constant> 
+    <constant id="team-lives-message">1</constant> 
+    <constant id="team-deathswap-message">2</constant> 
+    <constant id="flag-drop-buffer">0.1</constant> <!-- The ammount of time after dropping a flag before a player is considered not to be holding any flags --> <!-- default = 0.1s -->
+    <constant id="auto-kill-timer">0.1</constant>
+    <!-- (Time | Seconds) If a team is empty but not dead how long should the game wait to auto-kill said team -->
+    <!-- [setting this to other values may cause unintended behaviour when the team kill mode is disabled] -->
+    <constant id="dead-team-alias">-----</constant>
+</constants>
+<rules>
+    <rule>No camping with any of the flags!</rule>
+    <rule>No intentional crossteaming allowed!</rule>
+    <unless constant="enable-fall-damage" constant-value="1" constant-comparison="equals">
+        <rule>Fall damage is disabled!</rule>
+    </unless>
+</rules>
+<stats>
+    <stat name="`6Most damage dealt to enemy teams" value="team_damage_dealt_tracker"/>
+</stats>
+<!--  Teams and Kits  -->
+<teams>
+    <team id="team-one" color="${team-one-colour}" max="${team-size}">${team-one-name}</team> 
+    <team id="team-two" color="${team-two-colour}" max="${team-size}">${team-two-name}</team>
+    <team id="team-three" color="${team-three-colour}" max="${team-size}">${team-three-name}</team>
+    <team id="team-four" color="${team-four-colour}" max="${team-size}">${team-four-name}</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear effects="true"/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="2" unbreakable="true" material="gold axe"/>
+        <item slot="1" amount="6" projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+        <item slot="3" amount="48" damage="${default-leaves-1}" material="leaves"/>
+        <item slot="4" amount="24" material="wood"/>
+        <item slot="8" material="golden apple"/>
+        <leggings unbreakable="true" locked="true" material="chainmail leggings">
+            <enchantment level="2">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" locked="true" material="iron boots"/>
+        <potion duration="2" amplifier="10">regeneration</potion>
+        <potion duration="2" amplifier="10">damage_resistance</potion>
+        <game-mode>survival</game-mode>
+        <helmet team-color="true" locked="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" locked="true" unbreakable="true" material="leather chestplate"/>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <max-health>10</max-health>
+    </kit>
+    <kit id="reset-health" force="true">
+        <max-health>20</max-health>
+    </kit>
+        <kit id="tutorial-kit">
+        <book show-other="false">
+            <title>`b`lHow to Play</title>
+            <author>Technodono</author>
+            <pages>
+                <page>
+                    `3➠ `lFlag Battles
+                    `9➥ Overview`0
+
+                    In a battle of fates
+                    four team duel it out
+                    to be the last one
+                    alive!
+
+                    Man your stations,
+                    defend your portals
+                    and eliminate your
+                    foes in this fast 
+                    paced brawl.
+                </page>
+                <page>
+                    `3➠ `lTeam vs Team
+                    `2➥ Objectives`0
+
+                    Each team has a
+                    `5portal `0located
+                    on their starting 
+                    island.
+
+                    Players must defend
+                    `0their `5portal `0to
+                    prevent enemy `6flag
+                    `0carriers from scoring
+                </page>
+                <page>
+                    `3➠ `lTeam vs Team
+                    `2➥ Objectives Cont.`0
+
+                    players that score 
+                    `6flags `0in your `5portal 
+                    `0will deal damage `0to your teams heathbar`0, run out of team hearts and your team is `4`leliminated`r`0!
+
+                </page>
+                <page>
+                    `3➠ `lTeam vs Team
+                    `c➥ Sudden Death`0
+
+                    In sudden death all players are able to score in `5portals `0and deal damage.
+
+                    As an additional bouns, players who score a `6flag `0in 
+                    sudden death deal 
+                    `cextra damage`0 ontop of normal flag damage.
+
+                </page>
+
+            </pages>
+        </book>
+    </kit>
+    <give kit="tutorial-kit" filter="all(observing)"/>
+</kits>
+<!--  Spawns and respawns  -->
+<spawns>
+    <spawn team="team-one" kit="${default-kit}" yaw="${team-one-yaw}" pitch="${team-one-pitch}" region="team-one-spawnpoint"/>
+    <spawn team="team-two" kit="${default-kit}"  yaw="${team-two-yaw}" pitch="${team-two-pitch}" region="team-two-spawnpoint"/>
+    <spawn team="team-three" kit="${default-kit}" yaw="${team-three-yaw}" pitch="${team-three-pitch}" region="team-three-spawnpoint"/>
+    <spawn team="team-four" kit="${default-kit}"  yaw="${team-four-yaw}" pitch="${team-four-pitch}" region="team-four-spawnpoint"/>
+    <default yaw="${obs-yaw}" pitch="${obs-pitch}" region="obs-spawnpoint"/>
+</spawns>
+<projectiles>
+    <projectile id="arrow" name="crossbow bolt" velocity="4" damage="7" throwable="true" cooldown="2.5s"/>
+    <projectile id="throwable-fireball" name="fireball" projectile="Fireball" velocity=".6" click="right" power="3" damage="1" cooldown="1s"/>
+</projectiles>
+<!-- spawn region stuff  -->
+<variables>
+    <!-- Team lives -->
+    <score id="team_lives"/>
+    <with-team id="team_one_lives" var="team_lives" team="team-one"/>
+    <with-team id="team_two_lives" var="team_lives" team="team-two"/>
+    <with-team id="team_three_lives" var="team_lives" team="team-three"/>
+    <with-team id="team_four_lives" var="team_lives" team="team-four"/>
+    
+    <!-- Messages -->
+    <variable id="notify_mesage_to_player" scope="player">${no-message}</variable>
+    <variable id="notify_mesage_to_team" scope="team">${no-message}</variable>
+    <with-team id="notify_team_one" var="notify_mesage_to_team" team="team-one"/>
+    <with-team id="notify_team_two" var="notify_mesage_to_team" team="team-two"/>
+    <with-team id="notify_team_three" var="notify_mesage_to_team" team="team-three"/>
+    <with-team id="notify_team_four" var="notify_mesage_to_team" team="team-four"/>
+
+    <!-- Match Variables -->
+    <variable id="blitz_enabled" scope="match">0</variable>
+    <variable id="team_kill_enabled" scope="match"/>
+
+    <variable id="team_is_dead" scope="team">0</variable>
+
+    <variable id="team_removal_timer" scope="team"/>
+    <variable id="lowest_playercount" scope="match">0</variable>
+    <variable id="teams_remaining" scope="match">4</variable>
+    
+    <variable id="team_death_message_sent" scope="team">0</variable>
+    <variable id="team_kill_trigger" scope="team">0</variable>
+    <variable id="team_swap_trigger" scope="team">0</variable>
+    <variable id="raw_team_playercount" scope="team">0</variable>
+
+    <variable id="team_playercount" scope="team">0</variable>
+    <with-team id="team_one_playercount" var="team_playercount" team="team-one"/>
+    <with-team id="team_two_playercount" var="team_playercount" team="team-two"/>
+    <with-team id="team_three_playercount" var="team_playercount" team="team-three"/>
+    <with-team id="team_four_playercount" var="team_playercount" team="team-four"/>
+
+    <variable id="tmp_team_playercount" scope="team">0</variable>
+    <with-team id="tmp_team_one_playercount" var="tmp_team_playercount" team="team-one"/>
+    <with-team id="tmp_team_two_playercount" var="tmp_team_playercount" team="team-two"/>
+    <with-team id="tmp_team_three_playercount" var="tmp_team_playercount" team="team-three"/>
+    <with-team id="tmp_team_four_playercount" var="tmp_team_playercount" team="team-four"/>
+
+    <variable id="team_teleport_activated" scope="team">0</variable>
+    <with-team id="team_one_teleport_activated" var="team_teleport_activated" team="team-one"/>
+    <with-team id="team_two_teleport_activated" var="team_teleport_activated" team="team-two"/>
+    <with-team id="team_three_teleport_activated" var="team_teleport_activated" team="team-three"/>
+    <with-team id="team_four_teleport_activated" var="team_teleport_activated" team="team-four"/>
+
+    <timelimit id="match_timelimit"/>
+    
+    <!-- Player & Team Variables -->
+    <variable id="selected_player" scope="player" exclusive="1"/>
+    <variable id="was_selected_player" scope="player"/>
+    <variable id="player_identifier" scope="player" exclusive="1"/>
+    <variable id="calculated_damage" scope="player">1</variable>
+    <variable id="calculated_damage_display" scope="match" exclusive="1">1</variable>
+    <variable id="team_damage_dealt_tracker" scope="player">0</variable>
+    
+    
+</variables>
+<!--  Filters  -->
+<filters>
+    <team id="team-one">team-one</team>
+    <team id="team-two">team-two</team>
+    <team id="team-three">team-three</team>
+    <team id="team-four">team-four</team>
+    <variable id="team-one-one-life" var="team_one_lives">1</variable>
+    <variable id="team-two-one-life" var="team_two_lives">1</variable>
+    <variable id="team-three-one-life" var="team_three_lives">1</variable>
+    <variable id="team-four-one-life" var="team_four_lives">1</variable>
+    <variable id="team-alive" var="team_lives">[1,oo]</variable>
+    <variable id="team-one-alive" var="team_one_lives">[1,oo]</variable>
+    <variable id="team-two-alive" var="team_two_lives">[1,oo]</variable>
+    <variable id="team-three-alive" var="team_three_lives">[1,oo]</variable>
+    <variable id="team-four-alive" var="team_four_lives">[1,oo]</variable>
+    <variable id="team-kill-enabled" var="team_kill_enabled">1</variable>
+
+    <any id="is-empty-team">
+        <variable var="raw_team_playercount">0</variable>
+        <variable var="team_is_dead">1</variable>
+    </any>
+    <any id="tmp-is-empty-team">
+        <variable var="tmp_team_playercount">0</variable>
+        <variable var="team_is_dead">1</variable>
+    </any>
+    <any id="has-any-flag">
+        <carrying-flag>team-one-flag-1</carrying-flag>
+        <carrying-flag>team-one-flag-2</carrying-flag>
+        <carrying-flag>team-two-flag-1</carrying-flag>
+        <carrying-flag>team-two-flag-2</carrying-flag>
+        <carrying-flag>team-three-flag-1</carrying-flag>
+        <carrying-flag>team-three-flag-2</carrying-flag>
+        <carrying-flag>team-four-flag-1</carrying-flag>
+        <carrying-flag>team-four-flag-2</carrying-flag>
+    </any>
+    <not id="blitz-disabled">
+        <variable id="blitz-enabled" var="blitz_enabled">1</variable>
+    </not>
+    <deny id="deny-use">
+        <any>
+            <material>spruce_fence_gate</material>
+            <material>birch_fence_gate</material>
+            <material>jungle_fence_gate</material>
+            <material>dark_oak_fence_gate</material>
+            <material>acacia_fence_gate</material>
+            <material>dropper</material>
+            <material>hopper</material>
+            <material>dispenser</material>
+            <material>note_block</material>
+            <material>furnace</material>
+        </any>
+    </deny>
+    <any id="breakable-blocks">
+        <material>fence</material>
+        <material>workbench</material>
+        <material>wood_button</material>
+        <material>leaves:${default-leaves-1}</material>
+        <material>leaves:${default-leaves-2}</material>
+        <material>leaves:${default-leaves-3}</material>
+        <material>leaves:${default-leaves-4}</material>
+        <material>wood_plate</material>
+        <material>fence_gate</material>
+        <material>wooden_door</material>
+        <material>wood:0</material>
+        <material>wood_step:0</material>
+        <material>wood_step:8</material>
+        <material>wood_double_step:0</material>
+        <material>wood_stairs:0</material>
+        <material>ladder</material>
+        <material>chest</material>
+        <material>tnt</material>
+        <material>fire</material>
+    </any>
+    <any id="only-explosives">
+        <material>tnt</material>
+    </any>
+    <all id="only-utility-loot-chests">
+        <blocks region="${outer-island-chest-region}">
+            <material>chest</material>
+        </blocks>
+    </all>
+    <all id="only-siege-loot-chests">
+        <blocks region="${central-island-chest-region}">
+            <material>chest</material>
+        </blocks>
+    </all>
+    <any id="is-in-valid-portal">
+        <all>
+            <region id="team-one-portal"/>
+            <filter id="team-one-alive"/>
+        </all>
+        <all>
+            <region id="team-two-portal"/>
+            <filter id="team-two-alive"/>
+        </all>
+        <all>
+            <region id="team-three-portal"/>
+            <filter id="team-three-alive"/>
+        </all>
+        <all>
+            <region id="team-four-portal"/>
+            <filter id="team-four-alive"/>
+        </all>
+    </any>
+
+    <countdown id="recently-had-flag" duration="${flag-drop-buffer}" filter="not(has-any-flag)"/>
+    <countdown id="game-countdown" duration="${match-timelimit}" message="`aTime Remaining: {0}">
+        <all>
+            <match-running/>
+            <score>1..</score>
+        </all>
+    </countdown>
+    <after id="sudden-death-enabled" duration="${match-timelimit}">
+        <match-running/>
+    </after>
+    <countdown id="suddendeath-countdown" duration="${sudden-death-timelimit}" message="`cSudden Death Ends In: {0}">
+        <all>
+            <filter id="sudden-death-enabled"/>
+            <score>1..</score>
+        </all>
+    </countdown>
+    <after id="sudden-death-enabled-2" duration="4.5s" filter="sudden-death-enabled"/>
+    <after id="match-loaded" duration="0.2s" filter="always"/> <!-- small delay to ensure action consistently runs on match start -->
+    <pulse id="constant-pulse-filter" period="0.1s" duration="0.05s" filter="match-running"/>
+</filters>
+<actions>
+<!-- exposed -->
+    <action id="force-last-life" scope="team" expose="true">
+        <action id="team_lives := 1"/>
+    </action>
+    <action id="force-kill-team" scope="team" expose="true">
+        <action id="team_lives := 0"/>
+    </action>
+<!-- triggers -->
+    <trigger filter="match-loaded" scope="match">
+        <action>
+            <switch-scope inner="team" observers="true">
+                <action id="team_lives := (${starting-score})"/>
+                <action id="teams_remaining := 4"/>
+                <action id="team_removal_timer := ceil(${auto-kill-timer}/2)"/>
+                <action id="match_timelimit := (${match-timelimit} + ${sudden-death-timelimit})"/>
+                <action id="team_kill_enabled := ${kill-teams}"/>
+            </switch-scope>
+        </action>
+    </trigger>
+
+    <trigger scope="team" action="notify-team-lives"><filter><variable var="notify_mesage_to_team">${team-lives-message}</variable></filter></trigger>
+    <trigger scope="team" action="team_lives := 0"><filter><variable var="team_removal_timer">..0</variable></filter></trigger>
+    <trigger scope="team" action="team_lives := 0"><filter><score>..-1</score></filter></trigger>
+
+
+    <trigger scope="team" action="teleport-team" >
+        <filter>
+        <all>
+            <score>0</score>
+            <filter id="constant-pulse-filter"/>
+            <filter id="team_teleport_activated = 0"/>
+        </all>
+        </filter>
+    </trigger>
+    <trigger scope="team" action="kill-team">
+        <filter>
+                <after duration="3s" message="Returning to OBS in: {0}"><all><filter id="team_kill_trigger = 1"/></all></after>
+        </filter>
+    </trigger>
+    <trigger scope="team" action="send-players-to-new-teams">
+        <filter>
+            <all>
+                <after duration="3s" message="Swapping teams in: {0}"><filter id="team_swap_trigger = 1"/></after>
+            </all>
+        </filter>
+    </trigger>
+
+    <trigger scope="team" action="notify-team-death"> <!-- late notifications for when cop mode is enabled -->
+        <filter><after duration="0.2s" filter="all(team-kill-enabled,team_death_message_sent=0,team_is_dead=1)"></after></filter>
+    </trigger>
+    <trigger scope="player" action="notify-team-death-for-players"> <!-- late notifications for when cop mode is enabled -->
+        <filter><after duration="0.4s"><variable var="notify_mesage_to_player">${team-deathswap-message}</variable></after></filter>
+    </trigger>
+    <trigger scope="match" action="notify-match-settings"> <!-- late notifications for when cop mode is enabled -->
+        <filter><after duration="3s"><filter id="match-loaded"/></after></filter>
+    </trigger>
+
+    <!-- Track team count numbers -->
+    <trigger scope="match" action="check-teams">
+        <filter>
+            <pulse period="2s" duration="0.1s" filter="match-running"/>
+        </filter>
+    </trigger>
+    
+    <!-- logic for teams scoring in portals & scoring messages -->
+    <trigger scope="player" filter="team-one-portal">
+        <action>
+            <action id="caluate-damage-dealt-to-team"/>
+            <action filter="calculated_damage=1..">
+                <set var="team_one_lives" value="team_one_lives - calculated_damage"/> 
+                <switch-scope inner="match">
+                    <message text="${score-message} ${team-one-chat-display}">
+                        <replacements>
+                            <decimal id="calcdamage"  value="calculated_damage_display"/>
+                            <player id="player" var="player_identifier" fallback="A player"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
+                <set var="notify_team_one" value="1"/>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="team-two-portal">
+        <action>
+            <action id="caluate-damage-dealt-to-team"/>
+            <action filter="calculated_damage=1..">
+                <set var="team_two_lives" value="team_two_lives - calculated_damage"/> 
+                <switch-scope inner="match">
+                    <message text="${score-message} ${team-two-chat-display}">
+                        <replacements>
+                            <player id="player" var="player_identifier" fallback="A player"/>
+                            <decimal id="calcdamage" value="calculated_damage_display"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
+                <set var="notify_team_two" value="1"/>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="team-three-portal">
+        <action>
+            <action id="caluate-damage-dealt-to-team"/>
+            <action filter="calculated_damage=1..">
+                <set var="team_three_lives" value="team_three_lives - calculated_damage"/> 
+                <switch-scope inner="match">
+                    <message text="${score-message} ${team-three-chat-display}">
+                        <replacements>
+                            <player id="player" var="player_identifier" fallback="A player"/>
+                            <decimal id="calcdamage" value="calculated_damage_display"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
+                <set var="notify_team_three" value="1"/>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="team-four-portal">
+        <action>
+            <action id="caluate-damage-dealt-to-team"/>
+            <action filter="calculated_damage=1..">
+                <set var="team_four_lives" value="team_four_lives - calculated_damage"/> 
+                <switch-scope inner="match">
+                    <message text="${score-message} ${team-four-chat-display}">
+                        <replacements>
+                            <player id="player" var="player_identifier" fallback="A player"/>
+                            <decimal id="calcdamage" value="calculated_damage_display"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
+                <set var="notify_team_four" value="1"/>
+            </action>
+        </action>
+    </trigger>
+
+    <trigger scope="match" filter="sudden-death-enabled" action="notify-sudden-death"/>
+    <trigger scope="match" filter="sudden-death-enabled-2" action="notify-sudden-death-2"/>
+
+     <!-- Actions -->
+    <action id="caluate-damage-dealt-to-team" scope="player">
+        <set var="player_identifier" value="1"/>
+        <set var="calculated_damage" value="0"/>
+        <action filter="any(recently-had-flag,has-any-flag)">
+            <set var="calculated_damage" value="${flag-normal-score-amount}"/>
+        </action>
+        <action filter="sudden-death-enabled">
+            <action filter="any(recently-had-flag,has-any-flag)">
+                <set var="calculated_damage" value="${flag-bonus-score-amount}"/>
+            </action>
+            <action filter="not(any(recently-had-flag,has-any-flag))">
+                <set var="calculated_damage" value="${player-bonus-score-amount}"/>
+            </action>
+        </action>
+        <set var="calculated_damage_display" value="calculated_damage"/>
+        <set var="team_damage_dealt_tracker" value="team_damage_dealt_tracker + calculated_damage"/>
+    </action>
+    <action id="tmp-get-team-playercounts"  scope="match">
+        <switch-scope inner="team">
+            <set var="tmp_team_playercount" value="0"/>
+        </switch-scope>
+        <switch-scope inner="player">
+            <set var="tmp_team_playercount" value="tmp_team_playercount+1"/>
+        </switch-scope>
+        <switch-scope inner="team" filter="tmp-is-empty-team">
+            <action id="tmp_team_playercount := ${no-players}"/>
+        </switch-scope>
+    </action>
+    <!-- Ensure teams start with or have enough players -->
+    <action id="check-teams" scope="match">
+        <action id="get-team-playercounts">
+            <switch-scope inner="team">
+                <set var="raw_team_playercount" value="0"/>
+                <set var="team_playercount" value="0"/>
+            </switch-scope>
+            <switch-scope inner="player">
+                <set var="raw_team_playercount" value="raw_team_playercount+1"/>
+                <set var="team_playercount" value="team_playercount+1"/>
+            </switch-scope>
+            <switch-scope inner="team">
+                <action filter="is-empty-team">
+                    <action id="team_playercount := ${no-players}"/>
+                </action>
+            </switch-scope>
+        </action>
+        <switch-scope inner="team">
+            <action filter="team_playercount = ${no-players}">
+                <set var="team_removal_timer" value="team_removal_timer - 1"/>
+            </action>
+            <action filter="team_playercount = 1..998">
+                <action id="team_removal_timer := ceil(${auto-kill-timer}/2)"/>
+            </action>
+        </switch-scope>
+    </action>
+
+    <action id="notify-team-death-for-players" scope="player">
+        <set var="notify_mesage_to_player" value="${no-message}"/>
+        <if variant="comp">
+            <action filter="teams_remaining = 2..">
+                <message title="`c`lTeam Eliminated!" subtitle="`7Try harder next time."/>
+            </action>
+        </if>
+        <action filter="teams_remaining = ..1">
+            <message title="`c`lTeam Eliminated!" subtitle="`7Try harder next time."/>
+        </action>
+        <sound key="mob.enderdragon.hit" pitch="1" volume="2"/>
+        <sound key="mob.wither.spawn" preset="OBJECTIVE_BAD"/>
+    </action>
+
+    <action id="notify-team-lives" scope="team">
+        <set var="notify_mesage_to_team" value="${no-message}"/>
+        <sound key="mob.enderdragon.hit" pitch="1" volume="2"/>
+        <sound key="mob.wither.hurt" pitch="0.75" volume="0.3"/>
+        <action filter="score = 1">
+            <sound key="random.anvil_land" pitch="0.7" volume="0.3"/>
+            <sound key="game.potion.smash" pitch="0.7" volume="2"/>
+        </action>
+        <message text="`8`l──────────────────"/>
+        <message text="`6⧩ `7[Your Team`7 Has `d{lives} `7Lives Remaining]">
+            <replacements>
+                <decimal id="lives" value="team_lives"/>
+            </replacements>
+        </message>
+        <message text="`8`l──────────────────"/>
+    </action>
+    
+    <action id="notify-match-settings" scope="match" >
+        <message text="`8`l──────────────────────────"/>
+        <message text="`6`l☰ `7[`6Match settings`7]"/>
+        <message text="`7`l⊣ `rFlag scoring damage `7>>> `d${flag-normal-score-amount}"/>
+        <message text="`7`l⊣ `rFlag scoring damage `c| Sudden Death | `7>>> `d${flag-bonus-score-amount}"/>
+        <message text="`7`l⊣ `rPlayer scoring damage `c| Sudden Death | `7>>> `d${player-bonus-score-amount}"/>
+        <message text="`8`l──────────────────────────"/>
+    </action>
+
+    <action id="notify-sudden-death" scope="match">
+        <message text="`8`l──────────────────"/>
+        <message text="`4`l! `7[`cSudden Death `7Enabled]"/>
+        <message text="`7`l⊣ `rFlag scoring damage `7>>> `d${flag-bonus-score-amount}"/>
+        <message text="`7`l⊣ `rPlayer scoring damage `7>>> `d${player-bonus-score-amount}"/>
+        <message text="`8`l──────────────────"/>
+        <switch-scope inner="player">
+            <action filter="participating">
+                <sound key="mob.enderdragon.hit" pitch="1" volume="2"/>
+                <sound key="mob.enderdragon.growl" pitch="1" volume="1"/>
+                <message title="`c`lSudden Death!" subtitle="Players that score in portals deal `d${player-bonus-score-amount} `rdamage"/>
+
+            </action>
+        </switch-scope>
+    </action>
+    <action id="notify-sudden-death-2" scope="match">
+        <switch-scope inner="player">
+            <action filter="participating">
+                <sound key="mob.enderdragon.hit" pitch="1.5" volume="2"/>
+                <message title="`c`lSudden Death!" subtitle="Scoring `6flags `rnow deal `d${flag-bonus-score-amount} `rdamage" fade-in="0"/>
+            </action>
+        </switch-scope>
+    </action>
+    <action id="notify-team-death" scope="team">
+            <action id="team_death_message_sent := 1"/>
+            <action filter="team-one">
+                <switch-scope inner="match">
+                    <message text="`8`l──────────────────"/>
+                    <message text="`c✘ `7[${team-one-chat-display} `7Has Been Eliminated]"/>
+                    <message text="`8`l──────────────────"/>
+                </switch-scope>
+            </action>
+            <action filter="team-two">
+                <switch-scope inner="match">
+                    <message text="`8`l──────────────────"/>
+                    <message text="`c✘ `7[${team-two-chat-display} `7Has Been Eliminated]"/>
+                    <message text="`8`l──────────────────"/>
+                </switch-scope>
+            </action>
+            <action filter="team-three">
+                <switch-scope inner="match">
+                    <message text="`8`l──────────────────"/>
+                    <message text="`c✘ `7[${team-three-chat-display} `7Has Been Eliminated]"/>
+                    <message text="`8`l──────────────────"/>
+                </switch-scope>
+            </action>
+            <action filter="team-four">
+                <switch-scope inner="match">
+                    <message text="`8`l──────────────────"/>
+                    <message text="`c✘ `7[${team-four-chat-display} `7Has Been Eliminated]"/>
+                    <message text="`8`l──────────────────"/>
+                </switch-scope>
+            </action>
+    </action>
+
+    <action id="teleport-team" scope="team">
+        <set var="team_teleport_activated" value="1"/>
+        <set var="teams_remaining" value="teams_remaining-1"/>
+        <action filter="teams_remaining=..1"> <!-- If only 1 team is alive force kill the other team-->
+            <set var="team_kill_enabled" value="1"/>
+        </action>
+        <switch-scope inner="player">
+            <action id="notify_mesage_to_player := ${team-deathswap-message}"/>
+        </switch-scope>
+        <action filter="team-one">
+            <switch-scope inner="player">
+                <teleport x="-53.5" y="8" z="-53.5" yaw="-90"/>
+            </switch-scope>
+            <switch-scope inner="match">
+                <fill region="team-one-portal" material="air"/>
+                <fill region="team-one-portal-indicator" material="air"/>
+            </switch-scope>
+        </action>
+        <action filter="team-two">
+            <switch-scope inner="player">
+                <teleport x="54.5" y="8" z="-53.5" yaw="0"/>
+            </switch-scope>
+            <switch-scope inner="match">
+                <fill region="team-two-portal" material="air"/>
+                <fill region="team-two-portal-indicator" material="air"/>
+            </switch-scope>
+        </action>
+        <action filter="team-three">
+            <switch-scope inner="player">
+                <teleport x="54.5" y="8" z="54.5" yaw="90"/>
+            </switch-scope>
+            <switch-scope inner="match">
+                <fill region="team-three-portal" material="air"/>
+                <fill region="team-three-portal-indicator" material="air"/>
+            </switch-scope>
+        </action>
+        <action filter="team-four">
+            <switch-scope inner="player">
+                <teleport x="-53.5" y="8" z="54.5" yaw="180"/>
+            </switch-scope>
+            <switch-scope inner="match">
+                <fill region="team-four-portal" material="air"/>
+                <fill region="team-four-portal-indicator" material="air"/>
+            </switch-scope>
+        </action>
+        <!-- if team kill is enabled-->
+        <action filter="team-kill-enabled">
+            <action id="team_kill_trigger := 1"/>
+        </action>
+        <!-- if team kill is disabled-->
+        <action filter="not(team-kill-enabled)">
+            <set var="blitz_enabled" value="1"/>
+            <action id="notify-team-death"/>
+            <team-alias alias="${dead-team-alias}"/>
+            <action id="team_swap_trigger := 1"/>
+        </action>        
+    </action>
+    
+    <action id="send-players-to-new-teams" scope="team">
+        <switch-scope inner="match">
+            <action id="tmp-get-team-playercounts"/>
+        </switch-scope>
+        <switch-scope inner="player">
+            <action id="was_selected_player := 0"/>
+        </switch-scope>
+        <repeat times="tmp_team_playercount">
+            <set var="tmp_team_playercount" value="${no-players}"/>
+            <switch-scope inner="player" filter="was_selected_player=..0">
+                <action id="selected_player := 1"/>
+            </switch-scope>
+            <switch-scope inner="player" filter="selected_player = 1..">
+                <set var="lowest_playercount" value="min(tmp_team_one_playercount,tmp_team_two_playercount,tmp_team_three_playercount,tmp_team_four_playercount)"/>
+                <action id="was_selected_player := 1"/>
+                <action filter="tmp_team_one_playercount - lowest_playercount = 0">
+                    <set var="tmp_team_one_playercount" value="tmp_team_one_playercount + 1"/>
+                    <message title="`c`lTeam Eliminated!" subtitle="`7Your new team is: ${team-one-chat-display}."/>
+                    <kit force="true"><team-switch team="team-one" show-title="false"/></kit>
+                    <set var="lowest_playercount" value="-999"/>
+                </action>
+                <action filter="tmp_team_two_playercount - lowest_playercount = 0">
+                    <set var="tmp_team_two_playercount" value="tmp_team_two_playercount + 1"/>
+                    <message title="`c`lTeam Eliminated!" subtitle="`7Your new team is: ${team-two-chat-display}."/>
+                    <kit force="true"><team-switch team="team-two" show-title="false"/></kit>
+                    <set var="lowest_playercount" value="-999"/>
+                </action>
+                <action filter="tmp_team_three_playercount - lowest_playercount = 0">
+                    <set var="tmp_team_three_playercount" value="tmp_team_three_playercount + 1"/>
+                    <message title="`c`lTeam Eliminated!" subtitle="`7Your new team is: ${team-three-chat-display}."/>
+                    <kit force="true"><team-switch team="team-three" show-title="false"/></kit>
+                    <set var="lowest_playercount" value="-999"/>
+                </action>
+                <action filter="tmp_team_four_playercount - lowest_playercount = 0">
+                    <set var="tmp_team_four_playercount" value="tmp_team_four_playercount + 1"/>
+                    <message title="`c`lTeam Eliminated!" subtitle="`7Your new team is: ${team-four-chat-display}."/>
+                    <kit force="true"><team-switch team="team-four" show-title="false"/></kit>
+                    <set var="lowest_playercount" value="-999"/>
+                </action>
+            </switch-scope>
+            <switch-scope inner="match">
+                <action id="get-team-playercounts"/>
+            </switch-scope>
+        </repeat>
+        <set var="team_is_dead" value="1"/>
+    </action>
+
+
+    <action id="kill-team" scope="team">
+        <!--send players to observers-->
+        <set var="team_is_dead" value="1"/>
+        <set var="blitz_enabled" value="1"/>
+        <switch-scope inner="player">
+        <teleport x="0.5" y="-100" z="0.5" yaw="90"/>
+            <kit id="join-obs">
+                <effect duration="2" amplifier="100">instant_damage</effect>
+            </kit>
+        </switch-scope>
+        <team-alias alias="${dead-team-alias}"/>
+    </action>
+
+</actions>
+<regions>
+    <!-- Block -->
+    <apply block="never" region="team-spawnrooms"/>
+    <apply block="never" region="all-loot-chests" message="You may not destroy the loot chests!"/>
+    <apply block="only-explosives" region="maxbuild" message="You may only place TNT here!"/>
+    <apply block-break="breakable-blocks" use="deny-use"/>
+    <apply block="never" region="void-area" message="You may not modify the void area!"/>
+
+    <!-- Enter -->
+    <apply enter="deny(team-one)" region="team-one-portal" message="Cannot score in your own goal!"/>
+    <apply enter="deny(team-two)" region="team-two-portal" message="Cannot score in your own goal!"/>
+    <apply enter="deny(team-three)" region="team-three-portal" message="Cannot score in your own goal!"/>
+    <apply enter="deny(team-four)"  region="team-four-portal" message="Cannot score in your own goal!"/>
+
+    <apply enter="team-one-alive" block-place="never" region="team-one-portal" message="This goal is already destroyed!"/>
+    <apply enter="team-two-alive" block-place="never" region="team-two-portal" message="This goal is already destroyed!"/>
+    <apply enter="team-three-alive" block-place="never" region="team-three-portal" message="This goal is already destroyed!"/>
+    <apply enter="team-four-alive" block-place="never" region="team-four-portal" message="This goal is already destroyed!"/>
+ 
+    <apply enter="deny(not(team-one))" region="team-one-spawnroom" message="Cannot enter another team's spawn!"/>
+    <apply enter="deny(not(team-two))" region="team-two-spawnroom" message="Cannot enter another team's spawn!"/>
+    <apply enter="deny(not(team-three))" region="team-three-spawnroom" message="Cannot enter another team's spawn!"/>
+    <apply enter="deny(not(team-four))" region="team-four-spawnroom" message="Cannot enter another team's spawn!"/>
+    
+    <!-- Apply Kits -->
+    <apply kit="spawn-kit" region="team-one-portal" filter="not(team-one)"/>
+    <apply kit="spawn-kit" region="team-two-portal" filter="not(team-two)"/>
+    <apply kit="spawn-kit" region="team-three-portal" filter="not(team-three)"/>
+    <apply kit="spawn-kit" region="team-four-portal" filter="not(team-four)"/>
+
+    <!--  Goal regions  -->
+    <negative id="void-area">
+        <region id="map-buildable-area"/>
+    </negative>
+    <union id="all-portals">
+        <region id="team-one-portal"/>
+        <region id="team-two-portal"/>
+        <region id="team-three-portal"/>
+        <region id="team-four-portal"/>
+    </union>
+    <!-- maps will need to specify this themselves
+    <region id="team-one-portal-indicator"/>
+    <region id="team-two-portal-indicator"/>
+    <region id="team-three-portal-indicator"/>
+    <region id="team-four-portal-indicator"/>
+    -->
+    <union id="all-loot-chests">
+        <region id="${outer-island-chest-region}"/>
+        <region id="${central-island-chest-region}"/>
+    </union>
+    <union id="team-spawnrooms">
+        <region id="team-one-spawnroom"/>
+        <region id="team-two-spawnroom"/>
+        <region id="team-three-spawnroom"/>
+        <region id="team-four-spawnroom"/>
+    </union>
+    <union id="team-spawnroom-doors">
+        <region id="team-one-spawnroom-door"/>
+        <region id="team-two-spawnroom-door"/>
+        <region id="team-three-spawnroom-door"/>
+        <region id="team-four-spawnroom-door"/>
+    </union>
+    <above id="maxbuild" y="20"/>
+    <if constant="symmetry-mode" constant-value="1" constant-comparison="equals">
+        <mirror normal="1,0,1" origin="${map-center}" region="team-one-portal" id="team-two-portal"/>
+        <mirror normal="0,0,1" origin="${map-center}" region="team-one-portal" id="team-three-portal"/>
+        <mirror normal="-1,0,1" origin="${map-center}" region="team-one-portal" id="team-four-portal"/> 
+        <mirror normal="1,0,1" origin="${map-center}" region="team-one-portal-indicator" id="team-two-portal-indicator"/>
+        <mirror normal="0,0,1" origin="${map-center}" region="team-one-portal-indicator" id="team-three-portal-indicator"/>
+        <mirror normal="-1,0,1" origin="${map-center}" region="team-one-portal-indicator" id="team-four-portal-indicator"/> 
+        <mirror normal="1,0,1" origin="${map-center}" region="team-one-spawnpoint" id="team-two-spawnpoint"/>
+        <mirror normal="0,0,1" origin="${map-center}" region="team-one-spawnpoint" id="team-three-spawnpoint"/>
+        <mirror normal="-1,0,1" origin="${map-center}" region="team-one-spawnpoint" id="team-four-spawnpoint"/>
+        <mirror normal="1,0,1" origin="${map-center}" region="team-one-spawnroom" id="team-two-spawnroom"/>
+        <mirror normal="0,0,1" origin="${map-center}" region="team-one-spawnroom" id="team-three-spawnroom"/>
+        <mirror normal="-1,0,1" origin="${map-center}" region="team-one-spawnroom" id="team-four-spawnroom"/> 
+        <mirror normal="1,0,1" origin="${map-center}" region="team-one-spawnroom-door" id="team-two-spawnroom-door"/>
+        <mirror normal="0,0,1" origin="${map-center}" region="team-one-spawnroom-door" id="team-three-spawnroom-door"/>
+        <mirror normal="-1,0,1" origin="${map-center}" region="team-one-spawnroom-door" id="team-four-spawnroom-door"/> 
+        <mirror normal="1,0,1" origin="${map-center}" region="team-one-flag-1-post" id="team-two-flag-1-post"/>
+        <mirror normal="0,0,1" origin="${map-center}" region="team-one-flag-1-post" id="team-three-flag-1-post"/>
+        <mirror normal="-1,0,1" origin="${map-center}" region="team-one-flag-1-post" id="team-four-flag-1-post"/>
+        <mirror normal="1,0,1" origin="${map-center}" region="team-one-flag-2-post" id="team-two-flag-2-post"/>
+        <mirror normal="0,0,1" origin="${map-center}" region="team-one-flag-2-post" id="team-three-flag-2-post"/>
+        <mirror normal="-1,0,1" origin="${map-center}" region="team-one-flag-2-post" id="team-four-flag-2-post"/> 
+    </if>
+
+
+    <!-- Symmetry Module -->
+</regions>
+<portals>
+    <!-- portals to spawn -->
+    <portal forward="all(all-portals,team-one,participating)" destination="team-one-spawnpoint"/>
+    <portal forward="all(all-portals,team-four,participating)" destination="team-four-spawnpoint"/>
+    <portal forward="all(all-portals,team-three,participating)" destination="team-three-spawnpoint"/>
+    <portal forward="all(all-portals,team-two,participating)" destination="team-two-spawnpoint"/>
+    <portal forward="all(all-portals,observing)" destination="obs-spawnpoint"/>
+</portals>
+<structures>
+    <!-- dynamically fills in the spawndoors --> 
+    <structure id="team-one-spawnroom-door-structure" region="team-one-spawnroom-door" clear="true"/>
+    <structure id="team-two-spawnroom-door-structure" region="team-two-spawnroom-door" clear="true"/>
+    <structure id="team-three-spawnroom-door-structure" region="team-three-spawnroom-door" clear="true"/>
+    <structure id="team-four-spawnroom-door-structure" region="team-four-spawnroom-door" clear="true"/>
+    <dynamic structure="team-one-spawnroom-door-structure" trigger="team_one_teleport_activated = 1"/>
+    <dynamic structure="team-two-spawnroom-door-structure" trigger="team_two_teleport_activated = 1"/>
+    <dynamic structure="team-three-spawnroom-door-structure" trigger="team_three_teleport_activated = 1"/>
+    <dynamic structure="team-four-spawnroom-door-structure" trigger="team_four_teleport_activated = 1"/>
+
+
+</structures>
+<!-- Tools and Misc item stuff -->
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>gold axe</tool>
+    <tool>bow</tool>
+    <tool>wood sword</tool>
+    <tool>wood axe</tool>
+    <tool>wood pickaxe</tool>
+    <tool>wood hoe</tool>
+    <tool>wood spade</tool>
+</toolrepair>
+<itemremove>
+    <item>banner</item>
+    <item>leather helmet</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>leather chestplate</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>leaves</item>
+    <item>firework charge</item>
+    <item>fireball</item>
+    <item>sapling</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>wood sword</item>
+    <item>wood axe</item>
+    <item>wood pickaxe</item>
+    <item>wood hoe</item>
+    <item>wood spade</item>
+</itemkeep>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>56</maxbuildheight>
+<!-- Goal and Flag settings -->
+<unless constant="use-default-kill-rewards" constant-value="0" constant-comparison="equals">
+    <kill-rewards>
+        <kill-reward>
+            <item amount="3" projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+            <item amount="12" material="leaves" damage="${default-leaves-1}"/>
+            <item amount="6" material="wood"/>
+        </kill-reward>
+    </kill-rewards>
+</unless>
+<if constant="show-full-score-bar" constant-value="1" constant-comparison="equals">
+<score display="heart">
+    <limit>${starting-score-plus-one}</limit>
+</score>
+</if>
+<unless constant="show-full-score-bar" constant-value="1" constant-comparison="equals">
+    <score display="heart"/>
+</unless>
+
+
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+    <join-filter><filter id="blitz-disabled"/></join-filter>
+    <filter><variable var="team_is_dead">1</variable></filter>
+</blitz>
+<time result="score" show="false">-10</time>
+<respawn auto="true"/>
+<tnt>
+    <instantignite>on</instantignite>
+    <fuse>2s</fuse>
+</tnt>
+<lootables>
+    <loot id="utility-pool">
+        <any count="6..8" unique="false">
+            <item material="ender stone"/>
+        </any>
+        <any count="1..3" unique="false">
+            <item projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+        </any>
+        <any count="3..6" unique="false">
+            <item damage="${default-leaves-1}" material="leaves"/>
+        </any>
+    </loot>
+    <loot id="siege-pool">
+        <any count="1">
+            <item material="tnt" amount="2"/>
+            <item projectile="throwable-fireball" name="`6Fireball" lore="`r`7Right-click to fire!" material="fireball"/>
+        </any>
+        <any count="2..4" unique="false">
+            <item projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+        </any>
+        <any count="3..6" unique="false">
+            <item damage="${default-leaves-1}" material="leaves"/>
+        </any>
+    </loot>
+    <fill loot="utility-pool" filter="only-utility-loot-chests" refill-interval="${outer-island-chest-refill-timer}" refill-clear="true"/> 
+    <fill loot="siege-pool" filter="only-siege-loot-chests" refill-interval="${central-island-chest-refill-timer}" refill-clear="true"/>
+</lootables>
+<flags show-sidebar="false" required="false" stats="false" carry-message="Score this in the enemy's goals!" pickup-kit="flag-pickup" drop-kit="reset-health">
+    <flag id="team-one-flag-1" name="${team-one-name} Flag" color="${team-one-colour}" pickup-filter="team-one"> 
+        <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="0"><region id="team-one-flag-1-post"/></post>
+    </flag>
+    <flag id="team-one-flag-2" name="${team-one-name} Flag II" color="${team-one-colour}" pickup-filter="team-one">
+        <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="0"><region id="team-one-flag-2-post"/></post>
+    </flag>
+    <flag id="team-two-flag-1" name="${team-two-name} Flag" color="${team-two-colour}" pickup-filter="team-two">
+        <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="90"><region id="team-two-flag-1-post"/></post>
+    </flag>
+    <flag id="team-two-flag-2" name="${team-two-name} Flag II" color="${team-two-colour}" pickup-filter="team-two">
+        <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="90"><region id="team-two-flag-2-post"/></post>
+    </flag>
+    <flag id="team-three-flag-1" name="${team-three-name} Flag" color="${team-three-colour}" pickup-filter="team-three">
+        <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="180"><region id="team-three-flag-1-post"/></post>
+    </flag>
+    <flag id="team-three-flag-2" name="${team-three-name} Flag II" color="${team-three-colour}" pickup-filter="team-three">
+        <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="180"><region id="team-three-flag-2-post"/></post>
+    </flag>
+    <flag id="team-four-flag-1" name="${team-four-name} Flag" color="${team-four-colour}" pickup-filter="team-four">
+        <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="-90"><region id="team-four-flag-1-post"/></post>
+    </flag>
+    <flag id="team-four-flag-2" name="${team-four-name} Flag II" color="${team-four-colour}" pickup-filter="team-four">
+        <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="-90"><region id="team-four-flag-2-post"/></post>
+    </flag>
+    <flags points="0">
+        <net owner="team-one" region="team-one-portal" capture-filter="all(not(team-one),team-one-alive)"/>
+        <net owner="team-two" region="team-two-portal" capture-filter="all(not(team-two),team-two-alive)"/>
+        <net owner="team-three" region="team-three-portal" capture-filter="all(not(team-three),team-three-alive)"/>
+        <net owner="team-four" region="team-four-portal" capture-filter="all(not(team-four),team-four-alive)"/>
+    </flags>
+</flags>
+<modifybowprojectile pickup-filter="never"/>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<unless constant="enable-fall-damage" constant-value="1" constant-comparison="equals">
+    <disabledamage>
+        <damage>fall</damage>
+    </disabledamage>
+</unless>
+</map>
