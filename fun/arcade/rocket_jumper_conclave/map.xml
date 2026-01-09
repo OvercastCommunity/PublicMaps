@@ -1,0 +1,113 @@
+<map proto="1.5.0" game="Rocket Jumper">
+<name>Conclave</name>
+<version>1.1.0</version>
+<created>2016-03-27</created>
+<objective>Rocket jump your way to the finish line!</objective>
+<include id="void-death"/>
+<constant id="void-plane">25</constant>
+<authors>
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
+</authors>
+<contributors>
+    <contributor contribution="XML Template" uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
+</contributors>
+<players max="8"/>
+<spawns>
+    <spawn kit="spawn-kit" region="checkpoint-0-recovery" yaw="-90" filter="checkpoint=0"/>
+    <spawn kit="spawn-kit" region="checkpoint-1-recovery" yaw="180" filter="checkpoint=1"/>
+    <spawn kit="spawn-kit" region="checkpoint-2-recovery" yaw="-150" filter="checkpoint=2"/>
+    <spawn kit="spawn-kit" region="checkpoint-3-recovery" yaw="180" filter="checkpoint=3"/>
+    <spawn kit="spawn-kit" region="checkpoint-4-recovery" yaw="-90" filter="checkpoint=4"/>
+    <spawn kit="spawn-kit" region="checkpoint-5-recovery-left" yaw="0" filter="all(checkpoint=5, random)"/>
+    <spawn kit="spawn-kit" region="checkpoint-5-recovery-right" yaw="90" filter="all(checkpoint=5, not(random))"/>
+    <default region="checkpoint-0-recovery" yaw="-90"/>
+</spawns>
+<respawn auto="true" delay="0s"/>
+<time>5m</time>
+<score>
+    <limit>6</limit>
+</score>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <clear/>
+        <boots material="chainmail boots" unbreakable="true" locked="true"/>
+        <item slot="0" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <item slot="1" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <item slot="2" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <item slot="3" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <item slot="4" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <item slot="5" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <item slot="6" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <item slot="7" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <item slot="8" material="fireball" name="`rFireball" amount="64" projectile="throwable-fireball" grenade="true" grenade-power="1"/>
+        <effect amplifier="1">invisibility</effect>
+        <effect amplifier="2">speed</effect>
+        <effect amplifier="20">resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="throwable-fireball" name="Fireball" projectile="Fireball" click="right" velocity="0.8" damage="0" cooldown="1s"/>
+</projectiles>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<filters>
+    <random id="random">0.5</random>
+</filters>
+<regions>
+    <cylinder id="checkpoint-1" base="-19.5,49,67.5" radius="3" height="3"/>
+    <cylinder id="checkpoint-2" base="-10.5,53,38.5" radius="3" height="3"/>
+    <cylinder id="checkpoint-3" base="-24.5,53,11.5" radius="3" height="3"/>
+    <cylinder id="checkpoint-4" base="-5.5,56,-3.5" radius="3" height="3"/>
+    <union id="checkpoint-5">
+        <cylinder id="checkpoint-5-left" base="19.5,55,-10.5" radius="2" height="3"/>
+        <cylinder id="checkpoint-5-right" base="19.5,55,5.5" radius="2" height="3"/>
+    </union>
+    <cylinder id="checkpoint-6" base="35.5,34,60.5" radius="2" height="3"/>
+    <block id="checkpoint-0-recovery" location="-38,53,74"/>
+    <block id="checkpoint-1-recovery" location="-19,49,68"/>
+    <block id="checkpoint-2-recovery" location="-11,53,40"/>
+    <block id="checkpoint-3-recovery" location="-23,54,13"/>
+    <block id="checkpoint-4-recovery" location="-8,56,-2"/>
+    <union id="checkpoint-5-recovery">
+        <block id="checkpoint-5-recovery-left" location="64,39,-1"/>
+        <block id="checkpoint-5-recovery-right" location="115,39,53"/>
+    </union>
+    <apply block="never"/>
+</regions>
+<portals>
+    <portal region="checkpoint-5-left" destination="checkpoint-5-recovery-left" yaw="@0"/>
+    <portal region="checkpoint-5-right" destination="checkpoint-5-recovery-right" yaw="@90"/>
+</portals>
+<variables>
+    <variable id="checkpoint" scope="player"/>
+</variables>
+<actions>
+    <trigger scope="player" filter="all(match-running, checkpoint-1, checkpoint=0)" action="increment-score"/>
+    <trigger scope="player" filter="all(match-running, checkpoint-2, checkpoint=1)" action="increment-score"/>
+    <trigger scope="player" filter="all(match-running, checkpoint-3, checkpoint=2)" action="increment-score"/>
+    <trigger scope="player" filter="all(match-running, checkpoint-4, checkpoint=3)" action="increment-score"/>
+    <trigger scope="player" filter="all(match-running, checkpoint-5, checkpoint=4)" action="increment-score"/>
+    <trigger scope="player" filter="all(match-running, checkpoint-6, checkpoint=5)" action="increment-score"/>
+    <action id="increment-score" scope="player">
+        <set var="checkpoint" value="checkpoint + 1"/>
+        <message text="`aCheckpoint `c{0} `areached!">
+            <replacements>
+                <decimal id="0" value="checkpoint"/>
+            </replacements>
+        </message>
+        <set var="score" value="checkpoint"/>
+        <sound preset="SCORE"/>
+    </action>
+</actions>
+<disabledamage>
+    <damage ally="true" self="false" enemy="true" other="false">block explosion</damage>
+    <damage>fall</damage>
+    <damage>entity attack</damage>
+</disabledamage>
+<itemkeep>
+    <item>chainmail boots</item>
+    <item>fireball</item>
+</itemkeep>
+</map>
