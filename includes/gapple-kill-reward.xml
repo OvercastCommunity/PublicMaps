@@ -1,7 +1,7 @@
 <map>
 <!-- Golden apple kill reward include file -->
 <!-- Author: Pablete1234 -->
-<!-- Version 2025.07.24-1 -->
+<!-- Version 2026.01.10 -->
 <!--
     This include file prevents golden apple consumption from being interrupted
     after killing another play and receiving a golden apple as a kill reward.
@@ -11,6 +11,7 @@
     <constant id="gapple-lore" delete="true"/>
     <constant id="gapple-slot" delete="true"/>
     <constant id="gapple-locked" delete="true"/>
+    <constant id="gapple-reward-filter">always</constant>
 </constants>
 <variables>
     <variable id="missing_gaps" scope="player"/>
@@ -31,7 +32,7 @@
     <trigger scope="player" filter="pulse-give-gap" action="give-gap"/>
 </actions>
 <kill-rewards>
-    <kill-reward>
+    <kill-reward filter="${gapple-reward-filter}">
         <action>
             <set var="missing_gaps" value="missing_gaps+1"/>
             <action filter="not(holding-gap)">
