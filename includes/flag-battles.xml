@@ -24,12 +24,17 @@
     <constant id="respawn-time">7s</constant> <!-- flag respawn time -->
     
     <!-- Set the default leaves given in the default kits, brekable filters & loot chests (does not work with custom kits, filters, rewards e.c.t). -->
+    <!-- [1.8.9] -->
     <constant id="default-leaves-1">0</constant> <!-- set this to the table below -->
     <!-- oak - 0, birch - 1, spruce - 2, jungle - 3 -->
     <constant id="default-leaves-2">4</constant> <!-- add 4 to the previous number -->
     <constant id="default-leaves-3">8</constant> <!-- add 4 to the previous number -->
     <constant id="default-leaves-4">12</constant> <!-- add 4 to the previous number -->
     <!-- NOTE: it's needed to define all ID's becuase minecraft's funny with leave data values -->
+
+    <!-- If on modern pgm edit this constant aswell -->
+    <!-- [1.21+] -->
+    <constant id="default-leaves-modern">oak leaves</constant> <!-- add 4 to the previous number -->
     
 
     <!-- Block/Item settings -->
@@ -38,7 +43,7 @@
     <constant id="breakable-blocks">breakable-blocks</constant> <!-- Filter containing all the blocks that can be broken  -->
     <constant id="deny-use">deny-use</constant> <!-- Filter containing all the blocks that players cab't interact with  -->
     <constant id="use-default-kill-rewards">1</constant> <!-- Disable this if you'd like your map to use custom kill rewards -->
-
+    
     <!-- Lootables settings -->
     <!-- to enable the default lootable chests maps need to pass the ID of the regions containing the diffent loot chests to the following constants -->
     <constant id="outer-island-chest-region">nowhere</constant> <!-- These spawn on the outer islands and give players defensive blocks like endstone] -->
@@ -149,8 +154,14 @@ ______________________________________________________________________
     <kit id="spawn-kit">
         <clear effects="true"/>
         <item slot="0" unbreakable="true" material="stone sword"/>
+        <unless min-server-version="1.14">
+            <item slot="1" amount="6" projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+        </unless>
+        <if min-server-version="1.14">
+            <item slot="1" material="crossbow"/>
+            <item slot="17" amount="6" material="arrow"/>
+        </if>
         <item slot="2" unbreakable="true" material="gold axe"/>
-        <item slot="1" amount="6" projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
         <item slot="3" amount="48" damage="${default-leaves-1}" material="leaves"/>
         <item slot="4" amount="24" material="wood"/>
         <item slot="8" material="golden apple"/>
@@ -360,10 +371,12 @@ ______________________________________________________________________
         <material>fence</material>
         <material>workbench</material>
         <material>wood_button</material>
-        <material>leaves:${default-leaves-1}</material>
-        <material>leaves:${default-leaves-2}</material>
-        <material>leaves:${default-leaves-3}</material>
-        <material>leaves:${default-leaves-4}</material>
+        <unless min-server-version="1.13">
+            <material>leaves:${default-leaves-1}</material>
+            <material>leaves:${default-leaves-2}</material>
+            <material>leaves:${default-leaves-3}</material>
+            <material>leaves:${default-leaves-4}</material>
+        </unless>
         <material>wood_plate</material>
         <material>fence_gate</material>
         <material>wooden_door</material>
@@ -376,6 +389,18 @@ ______________________________________________________________________
         <material>chest</material>
         <material>tnt</material>
         <material>fire</material>
+        <material>sign post</material>
+        <material>wall sign</material>
+        <if min-server-version="1.13">
+            <material>${default-leaves-modern}</material>
+        </if>
+        <if min-server-version="1.14">
+            <material>composter</material>
+            <material>barrel</material>
+        </if>
+        <if min-server-version="1.20">
+            <material>chiseled bookshelf</material>
+        </if>
     </any>
     <any id="only-explosives">
         <material>tnt</material>
@@ -972,6 +997,9 @@ ______________________________________________________________________
     <item>firework charge</item>
     <item>fireball</item>
     <item>sapling</item>
+    <if min-server-version="1.14">
+        <item>crossbow</item>
+    </if>
 </itemremove>
 <itemkeep>
     <item>golden apple</item>
@@ -989,7 +1017,12 @@ ______________________________________________________________________
 <unless constant="use-default-kill-rewards" constant-value="0" constant-comparison="equals">
     <kill-rewards>
         <kill-reward>
-            <item amount="3" projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+            <unless min-server-version="1.14">
+                <item amount="3" projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+            </unless>
+            <if min-server-version="1.14">
+                <item amount="3" material="arrow"/>
+            </if>
             <item amount="12" material="leaves" damage="${default-leaves-1}"/>
             <item amount="6" material="wood"/>
         </kill-reward>
@@ -1003,8 +1036,6 @@ ______________________________________________________________________
 <unless constant="show-full-score-bar" constant-value="1" constant-comparison="equals">
     <score display="heart"/>
 </unless>
-
-
 <blitz>
     <lives>1</lives>
     <broadcastLives>false</broadcastLives>
@@ -1035,7 +1066,12 @@ ______________________________________________________________________
             <item projectile="throwable-fireball" name="`6Fireball" lore="`r`7Right-click to fire!" material="fireball"/>
         </any>
         <any count="2..4" unique="false">
-            <item projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+            <unless min-server-version="1.14">
+                <item projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
+            </unless>
+            <if min-server-version="1.14">
+                <item material="arrow"/>
+            </if>
         </any>
         <any count="3..6" unique="false">
             <item damage="${default-leaves-1}" material="leaves"/>
@@ -1076,6 +1112,19 @@ ______________________________________________________________________
         <net owner="team-four" region="team-four-portal" capture-filter="all(not(team-four),team-four-alive)"/>
     </flags>
 </flags>
+<!-- prevent sticks from dropping on modern leaves (without itemremove) -->
+<if min-server-version="1.13">
+    <block-drops>
+        <rule>
+            <filter>
+                <material>${default-leaves-modern}</material>
+            </filter>
+            <drops>
+                <item chance="0" material="${default-leaves-modern}"/>
+            </drops>
+        </rule>
+    </block-drops>
+</if>
 <modifybowprojectile pickup-filter="never"/>
 <gamerules>
     <doFireTick>false</doFireTick>
