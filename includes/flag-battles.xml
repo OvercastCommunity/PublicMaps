@@ -114,28 +114,6 @@
         ____________________________________________________
 -->
 
-<!--
-
-
--->
-
-        
-
-
-
-<!--
-______________________________________________________________________
-Symmetry Module - For map regions
-Instead of defining every team's portal, spawnroom, e.c.t. regions can be calucated using symmetry.
-Set the symmetry mode appropaite for your maps layout and specify all regions for team-one ONLY!
-The rest of the regions will then be handled by the symmetry module
-
-[NOTE]: This currently only supports the one default layout but can be expanded in the future
-
-
-    -->
-
-
     <!-- Internal: Only edit these if you know what you are doing! -->
     <constant id="no-players">999</constant> 
     <constant id="no-message">0</constant> 
@@ -146,8 +124,6 @@ The rest of the regions will then be handled by the symmetry module
     <!-- (Time | Seconds) If a team is empty but not dead how long should the game wait to auto-kill said team -->
     <!-- [setting this to other values may cause unintended behaviour when the team kill mode is disabled] -->
     <constant id="dead-team-alias">-----</constant>
-
-
 </constants>
 <rules>
     <rule>No camping with any of the flags!</rule>
