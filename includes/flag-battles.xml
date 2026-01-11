@@ -158,7 +158,9 @@ ______________________________________________________________________
             <item slot="1" amount="6" projectile="arrow" name="`rCrossbow" lore="`r`7Right-click to fire!" material="firework charge"/>
         </unless>
         <if min-server-version="1.14">
-            <item slot="1" material="crossbow"/>
+            <item slot="1" unbreakable="true" material="crossbow">
+                <enchantment level="1">quick_charge</enchantment>
+            </item>
             <item slot="17" amount="6" material="arrow"/>
         </if>
         <item slot="2" unbreakable="true" material="gold axe"/>
@@ -984,6 +986,9 @@ ______________________________________________________________________
     <tool>wood pickaxe</tool>
     <tool>wood hoe</tool>
     <tool>wood spade</tool>
+    <if min-server-version="1.14">
+        <tool>crossbow</tool>
+    </if>
 </toolrepair>
 <itemremove>
     <item>banner</item>
@@ -997,9 +1002,6 @@ ______________________________________________________________________
     <item>firework charge</item>
     <item>fireball</item>
     <item>sapling</item>
-    <if min-server-version="1.14">
-        <item>crossbow</item>
-    </if>
 </itemremove>
 <itemkeep>
     <item>golden apple</item>
