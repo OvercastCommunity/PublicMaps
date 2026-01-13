@@ -124,6 +124,14 @@
             <rectangle id="light-blue-wool" min="207,81" max="191,68"/>
         </union>
     </union>
+    <union id="no-monu">
+        <!-- Blue -->
+        <cuboid min="275,10,85" max="276,13,86"/>
+        <cuboid min="271,10,85" max="272,13,86"/>
+        <!-- Red -->
+        <cuboid min="275,10,-106" max="276,13,-107"/>
+        <cuboid min="271,10,-106" max="272,13,-107"/>
+    </union>
     <complement id="void-area">
         <everywhere/>
         <!-- Blue -->
@@ -135,6 +143,7 @@
         <!-- Mid -->
         <rectangle min="235,-25" max="312,4"/>
     </complement>
+    <apply enter="never" region="no-monu" message="Do not block the wool monuments"/>
     <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter the enemy spawn!"/>
     <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter the enemy spawn!"/>
     <apply enter="only-blue" region="blue-wools" message="You may not enter your own wool rooms!"/>
