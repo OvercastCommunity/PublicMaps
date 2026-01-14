@@ -1,0 +1,630 @@
+<map proto="1.5.0" max-server-version="1.8.9">
+<name>New Discoveries</name>
+<version>1.0</version>
+<created>2025-12-20</created>
+<objective>Score against the enemy team via parkour completion times!</objective>
+<game>2 Player Parkour</game>
+<phase>development</phase>
+<respawn auto="true"/>
+<score/>
+<time>1h</time>
+<authors>
+    <author uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="Map builder, XML"/>
+    <author uuid="d37bd0ab-17b3-4be0-9e89-c3afa8cdf946" contribution="Map builder"/>
+</authors>
+<teams>
+    <team id="red-team" color="dark red" min="2" max="16">Red</team>
+    <team id="yellow-team" color="yellow" min="2" max="16">Yellow</team>
+</teams>
+<spawns>
+    <spawn team="red-team" kit="spawn-kit" filter="checkpoint=0" region="red-spawn-point" yaw="45"/>
+    <spawn team="red-team" yaw="0" kit="spawn-kit" filter="checkpoint=1" region="red-checkpoint-1-dest"/>
+    <spawn team="red-team" yaw="90" kit="spawn-kit" filter="checkpoint=2" region="red-checkpoint-2-dest"/>
+    <spawn team="red-team" yaw="-90" kit="spawn-kit" filter="checkpoint=3" region="red-checkpoint-3-dest"/>
+    <spawn team="red-team" yaw="-90" kit="spawn-kit" filter="checkpoint=4" region="red-checkpoint-4-dest"/>
+    <spawn team="yellow-team" kit="spawn-kit" filter="checkpoint=0" region="yellow-spawn-point" yaw="-135"/>
+    <spawn team="yellow-team" yaw="180" kit="spawn-kit" filter="checkpoint=1" region="yellow-checkpoint-1-dest"/>
+    <spawn team="yellow-team" yaw="-90" kit="spawn-kit" filter="checkpoint=2" region="yellow-checkpoint-2-dest"/>
+    <spawn team="yellow-team" yaw="90" kit="spawn-kit" filter="checkpoint=3" region="yellow-checkpoint-3-dest"/>
+    <spawn team="yellow-team" yaw="90" kit="spawn-kit" filter="checkpoint=4" region="yellow-checkpoint-4-dest"/>
+    <default kit="obs-kit">
+        <regions>
+            <point yaw="0">10.5,64,-17.5</point>
+            <point yaw="180">-8.5,64,124.5</point>
+        </regions>
+    </default>
+</spawns>
+<respawn auto="true" delay="0"/>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" material="gold plate" name="`eGo to last Parkour Checkpoint" lore="`9ⓘ `7Right click to be teleported to your `elast checkpoint`7!" consumable="zzuf-tp-pk"/>
+        <item slot="7" material="iron plate" name="`7Go to Spawn" lore="`9ⓘ `7Right click to be teleported to your team's `fspawn`7!" consumable="zzuf-tp-spawn"/>
+        <item slot="5" material="emerald" amount="1"/>
+        <item slot="6" material="wood plate" name="`6Go to previous Parkour Checkpoint" lore="`9ⓘ `7Right click to be teleported to your `6previous checkpoint`7!" consumable="zzuf-tp-last"/>
+        <item slot="8" material="golden apple" amount="64"/>
+        <item slot="9" material="arrow"/>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="obs-kit">
+        <action>
+            <set var="checkpoint" value="0"/>
+        </action>
+    </kit>
+</kits>
+<filters>
+    <deny id="deny-physics">
+        <any>
+            <material>double plant</material>
+            <material>ladder</material>
+        </any>
+    </deny>
+    <players id="red-helper-1-filter" min="1">
+        <region id="red-helper-1-trigger"/>
+    </players>
+    <players id="red-helper-2-filter" min="1">
+        <region id="red-helper-2-trigger"/>
+    </players>
+    <players id="yellow-helper-1-filter" min="1">
+        <region id="yellow-helper-1-trigger"/>
+    </players>
+    <players id="yellow-helper-2-filter" min="1">
+        <region id="yellow-helper-2-trigger"/>
+    </players>
+    <after id="been-playing" duration="3s">
+        <alive/>
+    </after>
+    <after id="after-5" duration="5s" message="`fTeleporting you to your team's `7spawn`f in {0}" filter="checkpoint=5"/>
+</filters>
+<regions>
+    <apply block-physics="deny-physics" block="deny(participating)"/>
+    <apply use="never">
+        <region>
+            <union>
+                <block>21,46,49</block>
+                <block>20,46,49</block>
+                <block>22,46,57</block>
+                <block>21,46,57</block>
+            </union>
+        </region>
+    </apply>
+    <apply velocity="0,1.2,0">
+        <region>
+            <cylinder id="red-afk" base="0.5,60,-7.5" height="1" radius="3"/>
+            <cylinder id="yellow-afk" base="1.5,60,114.5" height="1" radius="3"/>
+        </region>
+    </apply>
+    <cylinder id="red-afk-top" base="0.5,66,-7.5" height="5" radius="3"/>
+    <cylinder id="yellow-afk-top" base="1.5,60,114.5" height="5" radius="3"/>
+    <union id="checkpoints">
+        <cylinder id="red-checkpoint-1" base="-2.5,64,7.5" height="2" radius="1"/>
+        <point id="red-checkpoint-1-dest">-2.5,64,7.5</point>
+        <point id="red-checkpoint-1-dest-special">-2.5,64,2.5</point>
+        <cylinder id="red-checkpoint-2" base="-3.5,54,31.5" height="2" radius="1.5"/>
+        <point id="red-checkpoint-2-dest">-3.5,54,31.5</point>
+        <cylinder id="red-checkpoint-3" base="-16.5,65,47.5" height="2" radius="1.5"/>
+        <point id="red-checkpoint-3-dest">-16.5,65,47.5</point>
+        <cylinder id="red-checkpoint-4" base="-32.5,46,67.5" height="2" radius="1.5"/>
+        <point id="red-checkpoint-4-dest">-32.5,46,67.5</point>
+        <cylinder id="yellow-checkpoint-1" base="4.5,64,99.5" height="2" radius="1"/>
+        <point id="yellow-checkpoint-1-dest">4.5,64,99.5</point>
+        <point id="yellow-checkpoint-1-dest-special">4.5,64,104.5</point>
+        <cylinder id="yellow-checkpoint-2" base="5.5,54,75.5" height="2" radius="1.5"/>
+        <point id="yellow-checkpoint-2-dest">5.5,54,75.5</point>
+        <cylinder id="yellow-checkpoint-3" base="18.5,65,59.5" height="2" radius="1.5"/>
+        <point id="yellow-checkpoint-3-dest">18.5,65,59.5</point>
+        <cylinder id="yellow-checkpoint-4" base="34.5,46,39.5" height="2" radius="1.5"/>
+        <point id="yellow-checkpoint-4-dest">34.5,46,39.5</point>
+    </union>
+    <point id="red-end-room">-4.5,64.06250,95.5</point>
+    <block id="red-finish">-5,66,82</block>
+    <point id="yellow-end-room">6.5,64.06250,11.5</point>
+    <block id="yellow-finish">6,66,24</block>
+    <union id="throne-rooms">
+        <rectangle min="1,9" max="12,29"/>
+        <rectangle min="-10,78" max="1,98"/>
+    </union>
+    <block id="red-helper-1-trigger">-3,69,16</block>
+    <block id="red-helper-1">-6,68,17</block>
+    <block id="red-helper-2-trigger">-3,67,56</block>
+    <union id="red-helper-2">
+        <block>-1,66,52</block>
+        <block>-1,66,49</block>
+    </union>
+    <cylinder id="red-spawn-point" base="9.5,64,-7.5" height="0" radius="2"/>
+    <block id="yellow-helper-1-trigger">4,69,90.5</block>
+    <block id="yellow-helper-1">7,68,89</block>
+    <block id="yellow-helper-2-trigger">4,67,50</block>
+    <union id="yellow-helper-2">
+        <block>2,66,54</block>
+        <block>2,66,57</block>
+    </union>
+    <cylinder id="yellow-spawn-point" base="-7.5,64,114.5" height="0" radius="2"/>
+    <apply leave="deny(participating)">
+        <region>
+            <below y="74"/>
+        </region>
+    </apply>
+    <apply velocity="0,2,0">
+        <region>
+            <union>
+                <cylinder base="-3.5,46,67.5" height="1" radius="1.5"/>
+                <cylinder base="5.5,46,39.5" height="1" radius="1.5"/>
+            </union>
+        </region>
+    </apply>
+</regions>
+<variables>
+    <variable id="should_get_emerald" default="1" scope="player"/>
+    <variable id="checkpoint" default="0" scope="player"/>
+    <variable id="timer_minutes" default="0" scope="player"/>
+    <variable id="timer_seconds" default="-1" scope="player"/>
+    <variable id="runner_minutes" default="0" scope="match" exclusive="1"/>
+    <variable id="runner_seconds" default="0" scope="match" exclusive="1"/>
+    <variable id="runner" scope="player" exclusive="1"/>
+    <score id="team_score"/>
+</variables>
+<actions>
+    <trigger scope="player" filter="any(red-afk,yellow-afk)">
+        <action filter="should_get_emerald=1">
+            <kit deduct-items="false">
+                <item material="emerald"/>
+            </kit>
+            <if max-server-version="1.8.9">
+                <message title="`e+1 `aEmerald" stay="0.5"/>
+            </if>
+            <if min-server-version="1.21.8">
+                <message title="{'text':'','extra':[{'color':'yellow','text':'+1'},{'color':'white','sprite':'item/emerald'}]}" stay="0.5"/>
+            </if>
+            <sound key="random.pop" volume="0.2"/>
+            <set var="should_get_emerald" value="0"/>
+        </action>
+    </trigger>
+    <trigger scope="player">
+        <filter>
+            <pulse period="1s" duration="0.25s" filter="checkpoint=1.."/>
+        </filter>
+        <action>
+            <action filter="not(timer_seconds=60)">
+                <set var="timer_seconds" value="timer_seconds+1"/>
+            </action>
+            <action filter="timer_seconds=60">
+                <set var="timer_seconds" value="0"/>
+                <set var="timer_minutes" value="timer_minutes+1"/>
+            </action>
+            <action filter="timer_seconds=0..">
+                <message actionbar="`f{minutes}:{seconds}">
+                    <replacements>
+                        <replacement id="minutes">minutes</replacement>
+                        <replacement id="seconds">seconds</replacement>
+                    </replacements>
+                </message>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="checkpoint=0">
+        <action>
+            <set var="timer_seconds" value="-1"/>
+            <set var="timer_minutes" value="0"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(any(red-finish,yellow-finish),checkpoint=4)">
+        <action>
+            <set var="runner" value="1"/>
+            <set var="runner_minutes" value="timer_minutes"/>
+            <set var="runner_seconds" value="timer_seconds"/>
+            <switch-scope outer="player" inner="match">
+                <message text="`f[`6PK`f] {player}`7 finished the parkour in `a`l{minutes}:{seconds}`7!">
+                    <replacements>
+                        <replacement id="minutes">runner-minutes</replacement>
+                        <replacement id="seconds">runner-seconds</replacement>
+                        <replacement id="player">player</replacement>
+                    </replacements>
+                </message>
+                <sound key="random.levelup"/>
+            </switch-scope>
+            <message text=" » `e+300 `aEmeralds"/>
+            <set var="checkpoint" value="5"/>
+            <set var="team_score" value="team_score+1"/>
+            <kit force="true">
+                <item material="emerald" amount="300"/>
+            </kit>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="after-5">
+        <action>
+            <action filter="red-team">
+                <teleport yaw="45" x="9.5" y="64" z="-7.5"/>
+            </action>
+            <action filter="yellow-team">
+                <teleport yaw="-135" x="-7.5" y="64" z="114.5"/>
+            </action>
+            <set var="checkpoint" value="0"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="any(red-afk-top,yellow-afk-top)">
+        <action>
+            <set var="should_get_emerald" value="1"/>
+        </action>
+    </trigger>
+    <action id="zzuf-speed-action" scope="player">
+        <kit force="true">
+            <effect>speed</effect>
+        </kit>
+        <message text=" » `eSpeed I`7 artifact `aactivated`7!"/>
+        <sound/>
+    </action>
+    <action id="zzuf-boost-action" scope="player">
+        <kit force="true">
+            <effect>jump boost</effect>
+        </kit>
+        <message text=" » `aJump Boost I`7 artifact `aactivated`7!"/>
+        <sound/>
+    </action>
+    <action id="zzuf-fireres-action" scope="player">
+        <kit>
+            <effect>fire resistance</effect>
+        </kit>
+        <message text=" » `cFire Resistance`7 artifact `aactivated`7!"/>
+        <sound/>
+    </action>
+    <action id="zzuf-super-action" scope="player">
+        <kit force="true">
+            <effect amplifier="2">jump boost</effect>
+            <effect amplifier="2">speed</effect>
+        </kit>
+        <message text=" » `9Super`7 artifact `aactivated`7!"/>
+        <sound/>
+    </action>
+    <action id="zzuf-remove-effects-action" scope="player">
+        <kit force="true">
+            <effect duration="0">jump boost</effect>
+            <effect duration="0">speed</effect>
+            <effect duration="0">fire resistance</effect>
+        </kit>
+        <message text=" » `7Effects `ccleared`7!"/>
+        <sound key="game.player.swim.splash"/>
+    </action>
+    <action id="zzuf-wither-action" scope="player">
+        <kit force="true">
+            <effect duration="2">wither</effect>
+        </kit>
+        <sound key="random.eat"/>
+    </action>
+    <action id="zzuf-tp-pk-action" scope="player">
+        <action filter="checkpoint=0">
+            <message text="`4No checkpoint found!"/>
+            <sound key="note.bass" pitch="0"/>
+        </action>
+        <action filter="all(red-team,checkpoint=1)">
+             <teleport x="-2.5" y="64" z="7.5"/>
+             <message actionbar="`eTeleported to Checkpoint #1!"/>
+             <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(red-team,checkpoint=2)">
+            <teleport yaw="90" x="-3.5" y="54" z="31.5"/>
+            <message actionbar="`eTeleported to Checkpoint #2!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(red-team,checkpoint=3)">
+            <teleport yaw="-90" x="-16.5" y="65" z="47.5"/>
+            <message actionbar="`eTeleported to Checkpoint #3!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(red-team,checkpoint=4)">
+            <teleport yaw="-90" x="-32.5" y="46" z="67.5"/>
+            <message actionbar="`eTeleported to Checkpoint #4!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(yellow-team,checkpoint=1)">
+             <teleport yaw="180" x="4.5" y="64" z="99.5"/>
+             <message actionbar="`eTeleported to Checkpoint #1!"/>
+             <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(yellow-team,checkpoint=2)">
+            <teleport yaw="-90" x="5.5" y="54" z="75.5"/>
+            <message actionbar="`eTeleported to Checkpoint #2!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(yellow-team,checkpoint=3)">
+            <teleport yaw="90" x="18.5" y="65" z="59.5"/>
+            <message actionbar="`eTeleported to Checkpoint #3!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(yellow-team,checkpoint=4)">
+            <teleport yaw="90" x="34.5" y="46" z="39.5"/>
+            <message actionbar="`eTeleported to Checkpoint #4!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+    </action>
+    <action id="zzuf-tp-last-action" scope="player">
+        <action filter="checkpoint=0..1">
+            <message text="`4No checkpoint found!"/>
+            <sound key="note.bass" pitch="0"/>
+        </action>
+        <action filter="all(red-team,checkpoint=2)">
+            <teleport yaw="0" x="-2.5" y="64" z="2.5"/>
+            <message actionbar="`6Teleported to Checkpoint #1!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(red-team,checkpoint=3)">
+            <teleport yaw="90" x="-3.5" y="54" z="31.5"/>
+            <message actionbar="`6Teleported to Checkpoint #2!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(red-team,checkpoint=4)">
+            <teleport yaw="-90" x="-16.5" y="65" z="47.5"/>
+            <message actionbar="`6Teleported to Checkpoint #3!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(yellow-team,checkpoint=2)">
+            <teleport yaw="180" x="4.5" y="64" z="104.5"/>
+            <message actionbar="`6Teleported to Checkpoint #1!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(yellow-team,checkpoint=3)">
+            <teleport yaw="-90" x="5.5" y="54" z="75.5"/>
+            <message actionbar="`6Teleported to Checkpoint #2!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+        <action filter="all(yellow-team,checkpoint=4)">
+            <teleport yaw="90" x="18.5" y="65" z="59.5"/>
+            <message actionbar="`6Teleported to Checkpoint #3!"/>
+            <sound key="mob.endermen.portal"/>
+        </action>
+    </action>
+    <action id="zzuf-tp-spawn-action" scope="player">
+        <message actionbar="`7Teleported to your team's spawn!"/>
+        <action filter="red-team">
+            <teleport yaw="45" pitch="0" x="9.5" y="64" z="-7.5"/>
+        </action>
+        <action filter="yellow-team">
+            <teleport yaw="-135" pitch="0" x="-7.5" y="64" z="114.5"/>
+        </action>
+        <sound key="mob.endermen.portal"/>
+    </action>
+    <action id="checkpoint-msg" scope="player">
+        <message text=" » `aGot Checkpoint `e#{current-checkpoint}`a!">
+            <replacements><replacement id="current-checkpoint">current-checkpoint</replacement></replacements>
+        </message>
+        <sound key="random.wood_click"/>
+    </action>
+    <action id="checkpoint-wrong-msg" scope="player">
+        <message actionbar="`4Invalid checkpoint! You're still on Checkpoint `e#{current-checkpoint}"/>
+    </action>
+    <trigger scope="player" filter="checkpoints">
+        <action>
+            <set var="player.fire_ticks" value="0"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(any(red-checkpoint-1,yellow-checkpoint-1),been-playing)">
+        <action>
+            <action filter="any(checkpoint=0,checkpoint=2..)">
+                <set var="checkpoint" value="-1"/>
+                <set var="checkpoint" value="1"/>
+                <action id="checkpoint-msg"/>
+            </action>
+            <set var="timer_seconds" value="-1"/>
+            <set var="timer_minutes" value="0"/>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(any(red-checkpoint-2,yellow-checkpoint-2),been-playing)">
+        <action>
+            <action filter="checkpoint=1">
+                <set var="checkpoint" value="2"/>
+                <action id="checkpoint-msg"/>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(any(red-checkpoint-3,yellow-checkpoint-3),been-playing)">
+        <action>
+            <action filter="checkpoint=2">
+                <set var="checkpoint" value="3"/>
+                <action id="checkpoint-msg"/>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="player" filter="all(any(red-checkpoint-4,yellow-checkpoint-4),been-playing)">
+        <action>
+            <action filter="checkpoint=3">
+                <set var="checkpoint" value="4"/>
+                <action id="checkpoint-msg"/>
+            </action>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="red-helper-1-filter">
+        <action>
+            <fill region="red-helper-1" material="ladder:3"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="not(red-helper-1-filter)">
+        <action>
+            <fill region="red-helper-1" material="air"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="red-helper-2-filter">
+        <action>
+            <fill region="red-helper-2" material="redstone block"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="not(red-helper-2-filter)">
+        <action>
+            <fill region="red-helper-2" material="air"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="yellow-helper-1-filter">
+        <action>
+            <fill region="yellow-helper-1" material="ladder:1"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="not(yellow-helper-1-filter)">
+        <action>
+            <fill region="yellow-helper-1" material="air"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="yellow-helper-2-filter">
+        <action>
+            <fill region="yellow-helper-2" material="redstone block"/>
+        </action>
+    </trigger>
+    <trigger scope="match" filter="not(yellow-helper-2-filter)">
+        <action>
+            <fill region="yellow-helper-2" material="air"/>
+        </action>
+    </trigger>
+</actions>
+<replacements scope="player">
+    <decimal id="current-checkpoint" value="checkpoint"/>
+    <decimal id="minutes" value="timer_minutes" format="00"/>
+    <decimal id="seconds" value="timer_seconds" format="00"/>
+    <player id="player" var="runner"/>
+</replacements>
+<replacements scope="match">
+    <decimal id="runner-minutes" value="runner_minutes" format="00"/>
+    <decimal id="runner-seconds" value="runner_seconds" format="00"/>
+</replacements>
+<consumables>
+    <consumable id="zzuf-speed" action="zzuf-speed-action" on="right click" consume="false"/>
+    <consumable id="zzuf-boost" action="zzuf-boost-action" on="right click" consume="false"/>
+    <consumable id="zzuf-fireres" action="zzuf-fireres-action" on="right click" consume="false"/>
+    <consumable id="zzuf-super" action="zzuf-super-action" on="right click" consume="false"/>
+    <consumable id="zzuf-wither" action="zzuf-wither-action" on="right click" consume="false"/>
+    <consumable id="zzuf-tp-pk" action="zzuf-tp-pk-action" on="right click" consume="false"/>
+    <consumable id="zzuf-tp-spawn" action="zzuf-tp-spawn-action" on="right click" consume="false"/>
+    <consumable id="zzuf-tp-last" action="zzuf-tp-last-action" on="right click" consume="false"/>
+    <consumable id="zzuf-remove-effects" action="zzuf-remove-effects-action" on="right click" consume="false"/>
+</consumables>
+<shops>
+    <shop id="zzuf-shop" name="Item Shop">
+        <category id="shop-bow" name="`bBows" material="bow">
+            <item material="arrow" name="`bArrow" unbreakable="true" amount="1" price="0" prevent-sharing="true"/>
+            <item material="bow" name="`aPunch III" enchantments="infinity;punch:3;power:1" unbreakable="true" amount="1" price="560" currency="emerald" prevent-sharing="true" show-enchantments="false"/>
+            <item material="bow" name="`ePunch IV" enchantments="infinity;punch:4;power:2" unbreakable="true" amount="1" price="840" currency="emerald" prevent-sharing="true" show-enchantments="false"/>
+            <item material="bow" name="`cPunch VI" enchantments="infinity;punch:6;power:4" unbreakable="true" amount="1" price="1060" currency="emerald" prevent-sharing="true" show-enchantments="false"/>
+        </category>
+        <category id="shop-kb" name="`cKnockback Items" material="red rose">
+            <item name="`cKnockback I" material="red rose" damage="0" lore="`9ⓘ `7Punch your teammates to help them get places!" amount="1" price="60" currency="emerald" prevent-sharing="true" show-enchantments="false">
+                <enchantment level="1">knockback</enchantment>
+            </item>
+            <item name="`6Knockback II" material="red rose" damage="4" lore="`9ⓘ `7Punch your teammates to help them get places!" amount="1" price="120" currency="emerald" prevent-sharing="true" show-enchantments="false">
+                <enchantment level="2">knockback</enchantment>
+            </item>
+            <item name="`fKnockback III" material="red rose" damage="3" lore="`9ⓘ `7Punch your teammates to help them get places!" amount="1" price="180" currency="emerald" prevent-sharing="true" show-enchantments="false">
+                <enchantment level="3">knockback</enchantment>
+            </item>
+            <item name="`dKnockback IV" material="red rose" damage="2" lore="`9ⓘ `7Punch your teammates to help them get places!" amount="1" price="240" currency="emerald" prevent-sharing="true" show-enchantments="false">
+                <enchantment level="4">knockback</enchantment>
+            </item>
+            <item name="`9Knockback V" material="red rose" damage="1" lore="`9ⓘ `7Punch your teammates to help them get places!" amount="1" price="300" currency="emerald" prevent-sharing="true" show-enchantments="false">
+                <enchantment level="5">knockback</enchantment>
+            </item>
+        </category>
+        <category id="shop-artifact" name="`eArtifacts" material="351" damage="11">
+            <item name="`eSpeed I`f Artifact" material="351" damage="11" lore="`9ⓘ `7Grants you `fSpeed I`7 for `eInfinity" amount="1" price="300" currency="emerald" consumable="zzuf-speed" prevent-sharing="true"/>
+            <item name="`aJump Boost I`f Artifact" material="351" damage="10" lore="`9ⓘ `7Grants you `fJump Boost I`7 for `eInfinity" amount="1" price="900" currency="emerald" consumable="zzuf-boost" prevent-sharing="true"/>
+            <item name="`cFire Resistance`f Artifact" material="351" damage="1" lore="`9ⓘ `7Grants you `fFire Resistance`7 for `eInfinity" amount="1" price="1200" currency="emerald" consumable="zzuf-fireres" prevent-sharing="true"/>
+            <item name="`9Super`f Artifact" material="351" damage="4" lore="`9ⓘ `7Grants you `fJump Boost II`7 and `fSpeed II`7 for `eInfinity" amount="1" price="2400" currency="emerald" consumable="zzuf-super" prevent-sharing="true"/>
+        </category>
+        <category id="shop-special" name="`6Special Items" material="349" damage="3">
+            <item name="`2Fugu" material="349" damage="3" lore="`9ⓘ `7Grants you `fWither`7 for `e2 seconds|`8Professionally prepared by zzuf" amount="1" price="70" currency="emerald" consumable="zzuf-wither" prevent-sharing="true"/>
+            <item material="milk bucket" lore="`9ⓘ `7Removes all your effects!" amount="1" price="60" currency="emerald" prevent-sharing="true" consumable="zzuf-remove-effects"/>
+            <item material="gold plate" name="`6Go to last Parkour Checkpoint" lore="`9ⓘ `7Right click to be teleported to your `elast checkpoint`7!" consumable="zzuf-tp-pk"/>
+            <item material="iron plate" name="`7Go to Spawn" lore="`9ⓘ `7Right click to be teleported to your team's `fspawn`7!" consumable="zzuf-tp-spawn"/>
+            <item material="wood plate" name="`6Go to previous Parkour Checkpoint" lore="`9ⓘ `7Right click to be teleported to your `6previous checkpoint`7!" consumable="zzuf-tp-last"/>
+            <item material="golden apple" amount="64"/>
+        </category>
+    </shop>
+</shops>
+<item-mods>
+    <rule>
+        <match>
+            <item>emerald</item>
+        </match>
+        <modify name="`fLegal Tender Emerald" lore="`9ⓘ `7Use this at spawn shops to buy interesting items!||`8ZZUF●D●G●REX●ET●IMP|`8Issued DECEMBER 2025"/>
+    </rule>
+</item-mods>
+<shopkeepers>
+    <shopkeeper name="`6`nItems" shop="zzuf-shop" mob="IronGolem">
+        <point yaw="135" pitch="10">12.5,66,1.5</point>
+    </shopkeeper>
+    <shopkeeper name="`6`nItems" shop="zzuf-shop" mob="IronGolem">
+        <point yaw="-45" pitch="10">-10.5,66,105.5</point>
+    </shopkeeper>
+</shopkeepers>
+<portals sound="true">
+    <portal destination="red-checkpoint-2-dest" yaw="@90">
+        <region>
+            <cuboid min="-1,70,26" max="-4,73,27"/>
+        </region>
+    </portal>
+    <portal destination="red-checkpoint-4-dest" yaw="@-90">
+        <region>
+            <cuboid min="-32,70,60" max="-35,73,61"/>
+        </region>
+    </portal>
+    <portal destination="red-end-room" yaw="@180">
+        <region>
+            <cuboid min="-34,61,69" max="-35,65,66"/>
+        </region>
+    </portal>
+    <portal destination="yellow-checkpoint-2-dest" yaw="@-90">
+        <region>
+            <cuboid min="3,70,81" max="6,73,80"/>
+        </region>
+    </portal>
+    <portal destination="yellow-checkpoint-4-dest" yaw="@90">
+        <region>
+            <cuboid min="34,70,47" max="37,73,46"/>
+        </region>
+    </portal>
+    <portal destination="yellow-end-room" yaw="@0">
+        <region>
+            <cuboid min="36,61,38" max="37,65,41"/>
+        </region>
+    </portal>
+</portals>
+<itemkeep>
+    <item>gold plate</item>
+    <item>iron plate</item>
+    <item>wood plate</item>
+    <item>emerald</item>
+    <item>golden apple</item>
+    <item>349</item>
+    <item>red rose</item>
+    <item>milk bucket</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>351</item>
+</itemkeep>
+<itemremove>
+    <item>minecart</item>
+    <item>powered minecart</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<friendlyfire>on</friendlyfire>
+<friendlyfirerefund>off</friendlyfirerefund>
+<gamerules>
+    <randomTickSpeed>0</randomTickSpeed>
+</gamerules>
+<enderchest>
+    <dropoff region="red-spawn-point" filter="red-team"/>
+    <dropoff region="yellow-spawn-point" filter="yellow-team"/>
+</enderchest>
+<damage>
+    <all>
+        <allow>
+            <any>
+                <relation>ally</relation>
+                <relation>self</relation>
+            </any>
+        </allow>
+        <not>
+            <region id="throne-rooms"/>
+        </not>
+    </all>
+</damage>
+</map>
