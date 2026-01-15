@@ -1,4 +1,4 @@
-<map proto="1.5.0" max-server-version="1.8.9">
+<map proto="1.5.0" max-server-version="1.8.9"> <!-- 1.9+ breaks fun bow mechanics -->
 <name>New Discoveries</name>
 <version>1.0</version>
 <created>2025-12-20</created>
@@ -9,8 +9,8 @@
 <score/>
 <time>1h</time>
 <authors>
-    <author uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="Map builder, XML"/>
-    <author uuid="d37bd0ab-17b3-4be0-9e89-c3afa8cdf946" contribution="Map builder"/>
+    <author uuid="9d4779a8-d35f-45d2-b51c-95de7a77e128" contribution="Map builder, XML"/> <!-- zzuf -->
+    <author uuid="d37bd0ab-17b3-4be0-9e89-c3afa8cdf946" contribution="Map builder"/> <!-- Metacognitive -->
 </authors>
 <teams>
     <team id="red-team" color="dark red" min="2" max="16">Red</team>
