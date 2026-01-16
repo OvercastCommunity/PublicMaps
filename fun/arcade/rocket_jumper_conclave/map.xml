@@ -1,6 +1,6 @@
 <map proto="1.5.0" game="Rocket Jumper">
 <name>Conclave</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <created>2016-03-27</created>
 <objective>Rocket jump your way to the finish line!</objective>
 <include id="void-death"/>
@@ -105,6 +105,7 @@
     <damage ally="true" self="false" enemy="true" other="false">block explosion</damage>
     <damage>fall</damage>
     <damage>entity attack</damage>
+    <damage>projectile</damage>
 </disabledamage>
 <itemkeep>
     <item>chainmail boots</item>
