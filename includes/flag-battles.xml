@@ -2,7 +2,7 @@
 <!-- 🚩 Flag Battles Include 🚩 -->
 <!-- Gamemode devloped by Technodono -->
 <!-- Version yyyy-mm-dd so I don't forget -->
-<!-- Version 2026.01.07-1 -->
+<!-- Version 2026.01.24-1 -->
 <game>Flag Battles</game>
 <objective>Score flags in enemy portals to reduce their healthbar. Last team standing wins!</objective>
 <include id="gapple-kill-reward"/>
@@ -123,7 +123,6 @@
     <constant id="auto-kill-timer">0.1</constant>
     <!-- (Time | Seconds) If a team is empty but not dead how long should the game wait to auto-kill said team -->
     <!-- [setting this to other values may cause unintended behaviour when the team kill mode is disabled] -->
-    <constant id="dead-team-alias">-----</constant>
 </constants>
 <rules>
     <rule>No camping with any of the flags!</rule>
@@ -442,7 +441,7 @@
         </all>
     </any>
 
-    <countdown id="recently-had-flag" duration="${flag-drop-buffer}" filter="not(has-any-flag)"/>
+    <countdown id="recently-had-flag" duration="${flag-drop-buffer}" filter="all(match-running, not(has-any-flag))"/>
     <countdown id="game-countdown" duration="${match-timelimit}" message="`aTime Remaining: {0}">
         <all>
             <match-running/>
@@ -800,7 +799,6 @@
         <action filter="not(team-kill-enabled)">
             <set var="blitz_enabled" value="1"/>
             <action id="notify-team-death"/>
-            <team-alias alias="${dead-team-alias}"/>
             <action id="team_swap_trigger := 1"/>
         </action>        
     </action>
@@ -863,7 +861,6 @@
                 <effect duration="2" amplifier="100">instant_damage</effect>
             </kit>
         </switch-scope>
-        <team-alias alias="${dead-team-alias}"/>
     </action>
 
 </actions>
