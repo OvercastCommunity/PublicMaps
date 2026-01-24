@@ -2,7 +2,7 @@
 <!-- 🚩 Flag Battles Include 🚩 -->
 <!-- Gamemode devloped by Technodono -->
 <!-- Version yyyy-mm-dd so I don't forget -->
-<!-- Version 2026.01.24-1 -->
+<!-- Version 2026.01.24-2 -->
 <game>Flag Battles</game>
 <objective>Score flags in enemy portals to reduce their healthbar. Last team standing wins!</objective>
 <include id="gapple-kill-reward"/>
@@ -52,7 +52,7 @@
     <constant id="outer-island-chest-refill-timer">10s</constant> <!-- time it takes for these chests to refill-->
     <constant id="central-island-chest-refill-timer">20s</constant> <!-- time it takes for these chests to refill-->
     <!-- Score message -->
-    <constant id="score-message">{player} dealt `d`l{calcdamage} `rdamage to</constant> <!-- Message for when players deal damage to teams. use {player} to get the player name and {damage} to get the damage dealt -->
+    <constant id="score-message">{player} scored dealing `d`l{calcdamage} `rdamage to</constant> <!-- Message for when players deal damage to teams. use {player} to get the player name and {damage} to get the damage dealt -->
 
     <!-- Teams & Regions  -->
     <!-- a default set of team neames & colours has been provided which can be modified if needed -->
@@ -160,6 +160,9 @@
         <item slot="3" unbreakable="true" material="gold axe"/>
         <item slot="4" amount="48" damage="${default-leaves-1}" material="leaves"/>
         <item slot="5" amount="24" material="wood"/>
+        <item slot="7" material="compass">
+            <enchantment level="1">infinity</enchantment>
+        </item>
         <item slot="8" material="golden apple"/>
         <leggings unbreakable="true" locked="true" material="chainmail leggings">
             <enchantment level="2">projectile_protection</enchantment>
@@ -247,7 +250,7 @@
 </spawns>
 <projectiles>
     <projectile id="arrow" name="crossbow bolt" velocity="4" damage="7" throwable="true" cooldown="2.5s"/>
-    <projectile id="throwable-fireball" name="fireball" projectile="Fireball" velocity=".6" click="right" power="3" damage="1" cooldown="1s"/>
+    <projectile id="throwable-fireball" name="fireball" projectile="Fireball" velocity=".6" click="right" power="3.5" damage="1" cooldown="1s"/>
 </projectiles>
 <!-- spawn region stuff  -->
 <variables>
@@ -989,6 +992,7 @@
     <item>leather chestplate</item>
     <item>arrow</item>
     <item>wood</item>
+    <item>compass</item>
     <item>leaves</item>
     <item>firework charge</item>
     <item>fireball</item>
@@ -1043,7 +1047,7 @@
 </tnt>
 <lootables>
     <loot id="utility-pool">
-        <any count="3..4" unique="false">
+        <any count="4..6" unique="false">
             <item amount="2" material="ender stone"/>
         </any>
         <any count="1..3" unique="false">
@@ -1055,7 +1059,7 @@
             </if>
         </any>
         <maybe filter="50-percent-chance">
-            <item material="golden apple"/>
+            <item material="tnt"/>
         </maybe>
         <any count="3..6" unique="false">
             <item damage="${default-leaves-1}" material="leaves"/>
@@ -1081,7 +1085,7 @@
     <fill loot="utility-pool" filter="only-utility-loot-chests" refill-interval="${outer-island-chest-refill-timer}" refill-clear="true"/> 
     <fill loot="siege-pool" filter="only-siege-loot-chests" refill-interval="${central-island-chest-refill-timer}" refill-clear="true"/>
 </lootables>
-<flags show-sidebar="false" required="false" stats="false" carry-message="Score this in the enemy's goals!" pickup-kit="flag-pickup" drop-kit="reset-health">
+<flags show-sidebar="false" show-messages="false" required="false" stats="false" carry-message="Score this in the enemy's goals!" pickup-kit="flag-pickup" drop-kit="reset-health">
     <flag id="team-one-flag-1" name="${team-one-name} Flag" color="${team-one-colour}" pickup-filter="team-one"> 
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="0"><region id="team-one-flag-1-post"/></post>
     </flag>
@@ -1113,6 +1117,16 @@
         <net owner="team-four" region="team-four-portal" capture-filter="all(not(team-four),team-four-alive)"/>
     </flags>
 </flags>
+<compass order="closest" show-distance="true">
+    <flag holder-filter="team-one">team-one-flag-1</flag>
+    <flag holder-filter="team-one">team-one-flag-2</flag>
+    <flag holder-filter="team-two">team-two-flag-1</flag>
+    <flag holder-filter="team-two">team-two-flag-2</flag>
+    <flag holder-filter="team-three">team-three-flag-1</flag>
+    <flag holder-filter="team-three">team-three-flag-2</flag>
+    <flag holder-filter="team-four">team-four-flag-1</flag>
+    <flag holder-filter="team-four">team-four-flag-2</flag>
+</compass>
 <!-- prevent sticks from dropping on modern leaves (without itemremove) -->
 <if min-server-version="1.13">
     <block-drops>
