@@ -2,7 +2,7 @@
 <!-- 🚩 Flag Battles Include 🚩 -->
 <!-- Gamemode devloped by Technodono -->
 <!-- Version yyyy-mm-dd so I don't forget -->
-<!-- Version 2026.01.24-2 -->
+<!-- Version 2026.01.31-1 -->
 <game>Flag Battles</game>
 <objective>Score flags in enemy portals to reduce their healthbar. Last team standing wins!</objective>
 <include id="gapple-kill-reward"/>
@@ -22,6 +22,7 @@
     <constant id="enable-fall-damage">0</constant> <!-- Enables fall damage when set to [1] -->
     <constant id="recover-time">15s</constant> <!-- flag recovery time -->
     <constant id="respawn-time">7s</constant> <!-- flag respawn time -->
+    <constant id="use-default-boradcasts">1</constant> <!-- Disable this if you'd like your map to show custom match tips -->
     
     <!-- Set the default leaves given in the default kits, brekable filters & loot chests (does not work with custom kits, filters, rewards e.c.t). -->
     <!-- [1.8.9] -->
@@ -131,6 +132,13 @@
         <rule>Fall damage is disabled!</rule>
     </unless>
 </rules>
+<if constant="use-default-boradcasts" constant-value="1" constant-comparison="equals">
+    <broadcasts>
+        <tip after="1s" every="3m">Scoring flags in enemy goals will reduce their lives!</tip>
+        <tip after="70s" every="3m">Supplies can be found in loot chests around the map!</tip>
+        <tip after="120s" every="3m">All players can pickup and score with flags from eliminated teams!</tip>
+    </broadcasts>
+</if>
 <stats>
     <stat name="`6Most damage dealt to enemy teams" value="team_damage_dealt_tracker"/>
 </stats>
@@ -201,7 +209,7 @@
                     paced brawl.
                 </page>
                 <page>
-                    `3➠ `lTeam vs Team
+                    `3➠ `lFlag Battles
                     `2➥ Objectives`0
 
                     Each team has a
@@ -215,16 +223,19 @@
                     `0carriers from scoring
                 </page>
                 <page>
-                    `3➠ `lTeam vs Team
+                    `3➠ `lFlag Battles
                     `2➥ Objectives Cont.`0
 
                     players that score 
                     `6flags `0in your `5portal 
                     `0will deal damage `0to your teams heathbar`0, run out of team hearts and your team is `4`leliminated`r`0!
 
+                    when a team is 
+                    `4`leliminated `0anyone can pickup their `6flags`0.
+
                 </page>
                 <page>
-                    `3➠ `lTeam vs Team
+                    `3➠ `lFlag Battles
                     `c➥ Sudden Death`0
 
                     In sudden death all players are able to score in `5portals `0and deal damage.
@@ -316,24 +327,36 @@
 </variables>
 <!--  Filters  -->
 <filters>
-    <team id="team-one">team-one</team>
-    <team id="team-two">team-two</team>
-    <team id="team-three">team-three</team>
-    <team id="team-four">team-four</team>
+
     <variable id="team-one-one-life" var="team_one_lives">1</variable>
     <variable id="team-two-one-life" var="team_two_lives">1</variable>
     <variable id="team-three-one-life" var="team_three_lives">1</variable>
     <variable id="team-four-one-life" var="team_four_lives">1</variable>
     <variable id="team-alive" var="team_lives">[1,oo]</variable>
-    <variable id="team-one-alive" var="team_one_lives">[1,oo]</variable>
-    <variable id="team-two-alive" var="team_two_lives">[1,oo]</variable>
-    <variable id="team-three-alive" var="team_three_lives">[1,oo]</variable>
-    <variable id="team-four-alive" var="team_four_lives">[1,oo]</variable>
+
+
     <variable id="team-kill-enabled" var="team_kill_enabled">1</variable>
     <variable id="team-one-teleport-activated" var="team_one_teleport_activated">1</variable>
     <variable id="team-two-teleport-activated" var="team_two_teleport_activated">1</variable>
     <variable id="team-three-teleport-activated" var="team_three_teleport_activated">1</variable>
     <variable id="team-four-teleport-activated" var="team_four_teleport_activated">1</variable>
+
+    <any id="team-one-pickup-filter">
+        <all><team id="team-one">team-one</team><variable id="team-one-alive" var="team_one_lives">[1,oo]</variable></all>
+        <not><filter id="team-one-alive"/></not>
+    </any>
+    <any id="team-two-pickup-filter">
+        <all><team id="team-two">team-two</team><variable id="team-two-alive" var="team_two_lives">[1,oo]</variable></all>
+        <not><filter id="team-two-alive"/></not>
+    </any>
+    <any id="team-three-pickup-filter">
+        <all><team id="team-three">team-three</team><variable id="team-three-alive" var="team_three_lives">[1,oo]</variable></all>
+        <not><filter id="team-three-alive"/></not>
+    </any>
+    <any id="team-four-pickup-filter">
+        <all><team id="team-four">team-four</team><variable id="team-four-alive" var="team_four_lives">[1,oo]</variable></all>
+        <not><filter id="team-four-alive"/></not>
+    </any>
 
     <random id="50-percent-chance">0.5</random>
 
@@ -601,6 +624,8 @@
 
     <trigger scope="match" filter="sudden-death-enabled" action="notify-sudden-death"/>
     <trigger scope="match" filter="sudden-death-enabled-2" action="notify-sudden-death-2"/>
+    <trigger scope="player" filter="has-any-flag" action="flag-holding-title"/>
+    <trigger scope="player" filter="all(has-any-flag,constant-pulse-filter)" action="flag-holding-actionbar"/>
 
      <!-- Actions -->
     <action id="caluate-damage-dealt-to-team" scope="player">
@@ -657,7 +682,12 @@
             </action>
         </switch-scope>
     </action>
-
+    <action id="flag-holding-title" scope="player">
+        <message subtitle="`b`lScore this flag in the enemy portals!" fade-in="0" fade-out="1" stay="1"/>
+    </action>
+    <action id="flag-holding-actionbar" scope="player">
+        <message actionbar="`b`lScore this flag in the enemy portals!"/>
+    </action>
     <action id="notify-team-death-for-players" scope="player">
         <set var="notify_mesage_to_player" value="${no-message}"/>
         <if variant="comp">
@@ -671,7 +701,6 @@
         <sound key="mob.enderdragon.hit" pitch="1" volume="2"/>
         <sound key="mob.wither.spawn" preset="OBJECTIVE_BAD"/>
     </action>
-
     <action id="notify-team-lives" scope="team">
         <set var="notify_mesage_to_team" value="${no-message}"/>
         <sound key="mob.enderdragon.hit" pitch="1" volume="2"/>
@@ -688,7 +717,6 @@
         </message>
         <message text="`8`l──────────────────"/>
     </action>
-    
     <action id="notify-match-settings" scope="match" >
         <message text="`8`l──────────────────────────"/>
         <message text="`6`l☰ `7[`6Match settings`7]"/>
@@ -697,7 +725,6 @@
         <message text="`7`l⊣ `rPlayer scoring damage `c| Sudden Death | `7>>> `d${player-bonus-score-amount}"/>
         <message text="`8`l──────────────────────────"/>
     </action>
-
     <action id="notify-sudden-death" scope="match">
         <message text="`8`l──────────────────"/>
         <message text="`4`l! `7[`cSudden Death `7Enabled]"/>
@@ -727,6 +754,7 @@
                 <switch-scope inner="match">
                     <message text="`8`l──────────────────"/>
                     <message text="`c✘ `7[${team-one-chat-display} `7Has Been Eliminated]"/>
+                    <message text="`6⚑ `7[${team-one-chat-display} `7Flags Unlocked]"/>
                     <message text="`8`l──────────────────"/>
                 </switch-scope>
             </action>
@@ -734,6 +762,7 @@
                 <switch-scope inner="match">
                     <message text="`8`l──────────────────"/>
                     <message text="`c✘ `7[${team-two-chat-display} `7Has Been Eliminated]"/>
+                    <message text="`6⚑ `7[${team-two-chat-display} `7Flags Unlocked]"/>
                     <message text="`8`l──────────────────"/>
                 </switch-scope>
             </action>
@@ -741,6 +770,7 @@
                 <switch-scope inner="match">
                     <message text="`8`l──────────────────"/>
                     <message text="`c✘ `7[${team-three-chat-display} `7Has Been Eliminated]"/>
+                    <message text="`6⚑ `7[${team-three-chat-display} `7Flags Unlocked]"/>
                     <message text="`8`l──────────────────"/>
                 </switch-scope>
             </action>
@@ -748,11 +778,11 @@
                 <switch-scope inner="match">
                     <message text="`8`l──────────────────"/>
                     <message text="`c✘ `7[${team-four-chat-display} `7Has Been Eliminated]"/>
+                    <message text="`6⚑ `7[${team-four-chat-display} `7Flags Unlocked]"/>
                     <message text="`8`l──────────────────"/>
                 </switch-scope>
             </action>
     </action>
-
     <action id="teleport-team" scope="team">
         <set var="team_teleport_activated" value="1"/>
         <set var="teams_remaining" value="teams_remaining-1"/>
@@ -1085,29 +1115,29 @@
     <fill loot="utility-pool" filter="only-utility-loot-chests" refill-interval="${outer-island-chest-refill-timer}" refill-clear="true"/> 
     <fill loot="siege-pool" filter="only-siege-loot-chests" refill-interval="${central-island-chest-refill-timer}" refill-clear="true"/>
 </lootables>
-<flags show-sidebar="false" show-messages="false" required="false" stats="false" carry-message="Score this in the enemy's goals!" pickup-kit="flag-pickup" drop-kit="reset-health">
-    <flag id="team-one-flag-1" name="${team-one-name} Flag" color="${team-one-colour}" pickup-filter="team-one"> 
+<flags show-sidebar="false" show-messages="false" required="false" stats="false" pickup-kit="flag-pickup" drop-kit="reset-health" shared="true">
+    <flag id="team-one-flag-1" name="${team-one-name} Flag" color="${team-one-colour}" pickup-filter="team-one-pickup-filter"> 
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="0"><region id="team-one-flag-1-post"/></post>
     </flag>
-    <flag id="team-one-flag-2" name="${team-one-name} Flag II" color="${team-one-colour}" pickup-filter="team-one">
+    <flag id="team-one-flag-2" name="${team-one-name} Flag II" color="${team-one-colour}" pickup-filter="team-one-pickup-filter">
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="0"><region id="team-one-flag-2-post"/></post>
     </flag>
-    <flag id="team-two-flag-1" name="${team-two-name} Flag" color="${team-two-colour}" pickup-filter="team-two">
+    <flag id="team-two-flag-1" name="${team-two-name} Flag" color="${team-two-colour}" pickup-filter="team-two-pickup-filter">
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="90"><region id="team-two-flag-1-post"/></post>
     </flag>
-    <flag id="team-two-flag-2" name="${team-two-name} Flag II" color="${team-two-colour}" pickup-filter="team-two">
+    <flag id="team-two-flag-2" name="${team-two-name} Flag II" color="${team-two-colour}" pickup-filter="team-two-pickup-filter">
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="90"><region id="team-two-flag-2-post"/></post>
     </flag>
-    <flag id="team-three-flag-1" name="${team-three-name} Flag" color="${team-three-colour}" pickup-filter="team-three">
+    <flag id="team-three-flag-1" name="${team-three-name} Flag" color="${team-three-colour}" pickup-filter="team-three-pickup-filter">
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="180"><region id="team-three-flag-1-post"/></post>
     </flag>
-    <flag id="team-three-flag-2" name="${team-three-name} Flag II" color="${team-three-colour}" pickup-filter="team-three">
+    <flag id="team-three-flag-2" name="${team-three-name} Flag II" color="${team-three-colour}" pickup-filter="team-three-pickup-filter">
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="180"><region id="team-three-flag-2-post"/></post>
     </flag>
-    <flag id="team-four-flag-1" name="${team-four-name} Flag" color="${team-four-colour}" pickup-filter="team-four">
+    <flag id="team-four-flag-1" name="${team-four-name} Flag" color="${team-four-colour}" pickup-filter="team-four-pickup-filter">
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="-90"><region id="team-four-flag-1-post"/></post>
     </flag>
-    <flag id="team-four-flag-2" name="${team-four-name} Flag II" color="${team-four-colour}" pickup-filter="team-four">
+    <flag id="team-four-flag-2" name="${team-four-name} Flag II" color="${team-four-colour}" pickup-filter="team-four-pickup-filter">
         <post recover-time="${recover-time}" respawn-time="${respawn-time}" yaw="-90"><region id="team-four-flag-2-post"/></post>
     </flag>
     <flags points="0">
