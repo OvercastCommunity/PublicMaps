@@ -2,7 +2,7 @@
 <!-- Legacy PvP mechanics include file -->
 <!-- Created by mameBT -->
 <!-- Based on Overcast Network's global include -->
-<!-- Version 2025.07.21-1 -->
+<!-- Version 2026.02.01-1 -->
 <if min-server-version="1.21.8">
     <!-- Increase default attack speed -->
     <spawns>
@@ -285,10 +285,5 @@
             </modify>
         </rule>
     </item-mods>
-
-    <!-- Disable shield crafting -->
-    <crafting>
-        <disable>shield</disable>
-    </crafting>
 </if>
 </map>
