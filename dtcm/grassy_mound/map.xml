@@ -1,27 +1,19 @@
 <map proto="1.5.0">
 <name>Grassy Mound</name>
-<version>1.1.1</version>
-<objective>Destroy the other team's monument!</objective>
-<constants>
-    <constant id="eff.modes-preset">every-5m</constant>
-    <constant id="eff.efficiency-tool">stone pickaxe</constant>
-    <constant id="eff.team-1">blue-team</constant>
-    <constant id="eff.team-2">red-team</constant>
-    <constant id="eff.t1-m1-region">red-monument</constant>
-    <constant id="eff.t2-m1-region">blue-monument</constant>
-</constants>
-<include id="efficiency-variables"/>
+<version>1.2.0</version>
+<variant id="default" world="dtm"/>
+<variant id="ctf" world="ctf" override="true">Grassy Mound CTF</variant>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
 </authors>
 <teams>
-    <team id="blue-team" color="blue" max="10">Blue</team>
-    <team id="red-team" color="dark red" max="10">Red</team>
+    <team id="blue" color="blue" max="10">Blue</team>
+    <team id="red" color="dark red" max="10">Red</team>
 </teams>
 <spawns>
-    <spawn team="blue-team" region="blue-spawn" yaw="-90" kit="main-kit"/>
-    <spawn team="red-team" region="red-spawn" yaw="90" kit="main-kit"/>
+    <spawn team="blue" region="blue-spawn" yaw="-90" kit="main-kit"/>
+    <spawn team="red" region="red-spawn" yaw="90" kit="main-kit"/>
     <default region="obs-spawn" yaw="-90"/>
 </spawns>
 <kits>
@@ -81,24 +73,68 @@
     <cylinder id="red-spawn" base="106.5,8.5,174.5" radius="1" height="1"/>
     <negative id="outside-spawns">
         <union id="team-spawns">
-            <cuboid id="blue-spawn-protection" min="32,0,286" max="42,255,273"/>
-            <cuboid id="red-spawn-protection" min="111,0,169" max="101,255,182"/>
+            <cuboid id="blue-spawn-protection" min="32,0,286" max="42,26,273"/>
+            <cuboid id="red-spawn-protection" min="111,0,169" max="101,26,182"/>
         </union>
     </negative>
-    <cuboid id="blue-monument" min="77,18,289" max="74,23,292"/>
-    <cuboid id="red-monument" min="69,18,166" max="66,23,163"/>
     <apply region="outside-spawns" kit="leaving-spawn"/>
-    <apply region="blue-spawn-protection" enter="blue-team" message="You may not enter the enemy spawn!"/>
-    <apply region="red-spawn-protection" enter="red-team" message="You may not enter the enemy spawn!"/>
+    <apply region="blue-spawn-protection" enter="blue" message="You may not enter the enemy spawn!"/>
+    <apply region="red-spawn-protection" enter="red" message="You may not enter the enemy spawn!"/>
     <apply region="team-spawns" block-place="not(player)" block-break="gold-block" message="You may not modify the spawn area!"/>
     <apply block="deny(enchant-table)" message="You may not break the enchantment table!"/>
     <apply block-place="deny(void)"/>
 </regions>
 <maxbuildheight>23</maxbuildheight>
-<destroyables name="Monument" materials="emerald block" show-progress="true" mode-changes="true">
-    <destroyable region="blue-monument" owner="blue-team"/>
-    <destroyable region="red-monument" owner="red-team"/>
-</destroyables>
+<if variant="default">
+    <created>2018-09-29</created>
+    <objective>Destroy the other team's monument!</objective>
+    <constants>
+        <constant id="eff.modes-preset">every-5m</constant>
+        <constant id="eff.efficiency-tool">stone pickaxe</constant>
+        <constant id="eff.team-1">blue</constant>
+        <constant id="eff.team-2">red</constant>
+        <constant id="eff.t1-m1-region">red-monument</constant>
+        <constant id="eff.t2-m1-region">blue-monument</constant>
+    </constants>
+    <include id="efficiency-variables"/>
+    <regions>
+        <cuboid id="blue-monument" min="77,18,289" max="74,23,292"/>
+        <cuboid id="red-monument" min="69,18,166" max="66,23,163"/>
+    </regions>
+    <destroyables name="Monument" materials="emerald block" show-progress="true" mode-changes="true">
+        <destroyable region="blue-monument" owner="blue"/>
+        <destroyable region="red-monument" owner="red"/>
+    </destroyables>
+</if>
+<if variant="ctf">
+    <created>2019-03-01</created>
+    <objective>Capture the most flags!</objective>
+    <regions>
+        <union id="post-protection">
+            <cuboid id="blue-post-protection" min="74,14,289" size="3,6,3"/>
+            <cuboid id="red-post-protection" min="66,14,163" size="3,6,3"/>
+        </union>
+        <cylinder id="blue-capture" base="75.5,14,290.5" radius="3" height="3"/>
+        <cylinder id="red-capture" base="67.5,14,164.5" radius="3" height="4"/>
+        <apply region="post-protection" block="never"/>
+    </regions>
+    <flags>
+        <flag id="blue-flag" name="Flag" color="blue" owner="blue">
+            <post pickup-filter="red" yaw="180" recover-time="20s" respawn-time="8s">75,15,290</post>
+            <net points="1" region="red-capture" capture-filter="red"/>
+            <net points="1" region="red-spawn-protection" capture-filter="red"/>
+        </flag>
+        <flag id="red-flag" name="Flag" color="red" owner="red">
+            <post pickup-filter="blue" yaw="0" recover-time="20s" respawn-time="8s">67,15,164</post>
+            <net points="1" region="blue-capture" capture-filter="blue"/>
+            <net points="1" region="blue-spawn-protection" capture-filter="blue"/>
+        </flag>
+    </flags>
+    <score>
+        <mercy>3</mercy>
+    </score>
+    <time result="score" overtime="1m" max-overtime="5m">10m</time>
+</if>
 <block-drops>
     <rule wrong-tool="true" filter="gold-block" kit="gold-kit"/>
     <rule experience="8">
