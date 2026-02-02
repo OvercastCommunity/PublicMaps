@@ -15,10 +15,12 @@
 <!-- Tension gamemode include file -->
 <!-- For Minecraft 1.21.10 - Might get a 1.8 port too -->
 <!-- Created by zzuf -->
-<!-- Version 2025.12.10-1 -->
+<!-- Version 2026.02.01-1 -->
 <include id="bridge"/>
 <game>Tension</game>
 <constants>
+    <!-- Disable legacy PvP -->
+    <constant id="legacy-pvp">false</constant>
     <!-- Misc -->
     <constant id="main-kit">tension-kit</constant>
     <constant id="arrow-type">tipped arrow</constant>
