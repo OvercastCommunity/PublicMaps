@@ -1,4 +1,10 @@
 <map>
+<!-- Legacy PvP for majority of maps -->
+<!-- We want to be able to disable this on a per map basis
+     but the way XML processing works causes that to be broken
+     right now, so that's a todo -->
+<include id="legacy-pvp"/>
+
 <!-- Sound keys include for all maps -->
 <include id="sound-keys"/>
 
@@ -21,6 +27,6 @@
 <if has-variant="tournament,te,ranked,comp,5v5,5v5-ac,7v7">
     <if variant="tournament,te,ranked,comp,5v5,5v5-ac,7v7">
         <phase>staging</phase>
-    </if>    
+    </if>
 </if>
 </map>
