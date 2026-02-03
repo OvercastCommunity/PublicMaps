@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2025.10.20-1 -->
+<!-- Version 2026.02.02-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -280,7 +280,11 @@
     <! - If a flag-carrier disconnects, the snowball in their inventory drops onto the ground,
     <! - meaning if a player picks up that snowball, it should be treated as a flag pickup. -->
     <all id="flag-pickup-via-entity">
-        <carrying id="carrying-football">
+        <constant id="ignore-metadata" delete="true"/>
+        <if min-server-version="1.21.10">
+            <constant id="ignore-metadata">true</constant>
+        </if>
+        <carrying id="carrying-football" ignore-metadata="${ignore-metadata}">
             <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
         </carrying>
         <not>
