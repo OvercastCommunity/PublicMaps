@@ -1,12 +1,16 @@
 <map>
-<!-- Legacy PvP for majority of maps -->
-<!-- We want to be able to disable this on a per map basis
-     but the way XML processing works causes that to be broken
-     right now, so that's a todo -->
-<include id="legacy-pvp"/>
-
 <!-- Sound keys include for all maps -->
 <include id="sound-keys"/>
+
+<!-- Legacy PvP for majority of maps -->
+<unless constant="legacy-pvp" constant-comparison="defined">
+    <include id="legacy-pvp"/>
+</unless>
+<if constant="legacy-pvp" constant-comparison="defined">
+    <if constant="legacy-pvp" constant-value="true">
+        <include id="legacy-pvp"/>
+    </if>
+</if>
 
 <variables>
     <!-- Add maxbuildheight variable to pre-proto 1.5 maps -->
