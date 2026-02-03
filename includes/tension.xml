@@ -15,10 +15,8 @@
 <!-- Tension gamemode include file -->
 <!-- For Minecraft 1.21.10 - Might get a 1.8 port too -->
 <!-- Created by zzuf -->
-<!-- Version 2026.02.01-1 -->
-<include id="bridge"/>
-<game>Tension</game>
-<constants>
+<!-- Version 2026.02.03-1 -->
+ <constants>
     <!-- Disable legacy PvP -->
     <constant id="legacy-pvp">false</constant>
     <!-- Misc -->
@@ -26,6 +24,8 @@
     <constant id="arrow-type">tipped arrow</constant>
     <constant id="arrow-item-kit">custom-arrow-item-kit</constant>
 </constants>
+<include id="bridge"/>
+<game>Tension</game>
 <broadcasts>
     <tip after="3s" every="3m">{"text":"","extra":[{"color":"#FFFB87","text":"Get a "},{"color":"white","sprite":"block/iron_block"},{"color":"white","italic":false,"text":" Pier Cap"},{"color":"#FFFB87","text":" at middle, and `n3`r kills for a "},{"color":"white","sprite":"item/wind_charge"},{"color":"#53AFFF","italic":false,"text":" Wind Charge"},{"color":"#FFFB87","text":"!"}]}</tip>
 </broadcasts>
