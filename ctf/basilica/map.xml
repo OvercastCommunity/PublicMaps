@@ -1,17 +1,18 @@
 <map proto="1.5.0">
 <name>Basilica</name>
-<version>2.1.9</version>
+<version>2.1.10</version>
 <variant id="5v5">5v5</variant>
+<variant id="draft">Draft</variant>
 <objective>Capture the enemy flag as many times as possible before time runs out!</objective>
 <time result="score" overtime="1m" max-overtime="3m">12m</time>
 <constant id="damage-resistance">2s</constant>
-<unless variant="5v5">
+<unless variant="5v5,draft">
     <constant id="team-size">12</constant>
     <constant id="max-overfill" delete="true"/>
     <constant id="respawn-timer">3s</constant>
     <include id="conquest"/>
 </unless>
-<if variant="5v5">
+<if variant="5v5,draft">
     <constant id="team-size">5</constant>
     <constant id="max-overfill">5</constant>
     <constant id="respawn-timer">4.5s</constant>
@@ -34,7 +35,11 @@
     <kit id="default-kit">
         <effect>night vision</effect>
     </kit>
-    <kit id="spawn-kit" parents="default-kit,base-kit"/>
+    <kit id="spawn-kit" parents="default-kit,base-kit">
+        <if variant="draft">
+            <item slot="2" name="Boosting Stick" material="stick"/>
+        </if>
+    </kit>
     <kit id="flag-carry-kit">
         <effect>slowness</effect>
     </kit>
@@ -118,4 +123,29 @@
         <item material="golden apple"/>
     </spawner>
 </spawners>
+<if variant="draft">
+    <phase>development</phase>
+    <toolrepair>
+        <tool>stick</tool>
+    </toolrepair>
+    <friendlyfire>on</friendlyfire>
+    <damage>
+        <allow>
+            <all>
+                <relation>ally</relation>
+                <attacker>
+                    <holding>
+                        <item name="Boosting Stick" material="stick"/>
+                    </holding>
+                </attacker>
+                <not>
+                    <cause>projectile</cause>
+                </not>
+            </all>
+        </allow>
+        <deny>
+            <relation>ally</relation>
+        </deny>
+    </damage>
+</if>
 </map>
