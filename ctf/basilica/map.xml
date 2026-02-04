@@ -37,7 +37,7 @@
     </kit>
     <kit id="spawn-kit" parents="default-kit,base-kit">
         <if variant="draft">
-            <item slot="2" name="Boosting Stick" material="stick"/>
+            <item slot="3" name="Boosting Stick" material="stick"/>
         </if>
     </kit>
     <kit id="flag-carry-kit">
