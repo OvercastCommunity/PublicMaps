@@ -1,17 +1,18 @@
 <map proto="1.5.0">
 <name>Bastille</name>
-<version>3.0.2</version>
+<version>3.0.3</version>
 <variant id="5v5">5v5</variant>
+<variant id="draft">Draft</variant>
 <objective>Capture the enemy flag.</objective>
 <time result="score" overtime="1m" max-overtime="3m">12m</time>
 <constant id="damage-resistance">2s</constant>
-<unless variant="5v5">
+<unless variant="5v5,draft">
     <constant id="team-size">12</constant>
     <constant id="max-overfill" delete="true"/>
     <constant id="respawn-timer">4s</constant>
     <include id="conquest"/>
 </unless>
-<if variant="5v5">
+<if variant="5v5,draft">
     <constant id="team-size">5</constant>
     <constant id="max-overfill">5</constant>
     <constant id="respawn-timer">6.5s</constant>
@@ -28,17 +29,14 @@
     <team id="red-team" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
 </teams>
 <kits>
-    <lend>
-        <kit>
-            <effect>slowness</effect>
-        </kit>
-        <filter>
-            <any>
-                <carrying-flag>blue-flag</carrying-flag>
-                <carrying-flag>red-flag</carrying-flag>
-            </any>
-        </filter>
-    </lend>
+    <kit id="spawn-kit" parent="base-kit">
+        <if variant="draft">
+            <item slot="3" name="Boosting Stick" material="stick"/>
+        </if>
+    </kit>
+    <kit id="flag-carry-kit">
+        <effect>slowness</effect>
+    </kit>
 </kits>
 <spawns>
     <default>
@@ -66,14 +64,16 @@
     <flag id="blue-flag"
           name="Blue Flag"
           owner="blue-team"
-          color="blue">
+          color="blue"
+          carry-kit="flag-carry-kit">
         <post pickup-filter="red-team" recover-time="15s" respawn-time="10s">-42.5,9,-6.5</post>
         <net region="red-net" points="1"/>
     </flag>
     <flag id="red-flag"
           name="Red Flag"
           owner="red-team"
-          color="red">
+          color="red"
+          carry-kit="flag-carry-kit">
         <post pickup-filter="blue-team" recover-time="15s" respawn-time="10s">43.5,9,-6.5</post>
         <net region="blue-net" points="1"/>
     </flag>
@@ -108,4 +108,29 @@
         <item material="arrow"/>
     </spawner>
 </spawners>
+<if variant="draft">
+    <phase>development</phase>
+    <toolrepair>
+        <tool>stick</tool>
+    </toolrepair>
+    <friendlyfire>on</friendlyfire>
+    <damage>
+        <allow>
+            <all>
+                <relation>ally</relation>
+                <attacker>
+                    <holding>
+                        <item name="Boosting Stick" material="stick"/>
+                    </holding>
+                </attacker>
+                <not>
+                    <cause>projectile</cause>
+                </not>
+            </all>
+        </allow>
+        <deny>
+            <relation>ally</relation>
+        </deny>
+    </damage>
+</if>
 </map>
