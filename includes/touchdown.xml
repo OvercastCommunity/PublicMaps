@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2026.02.02-1 -->
+<!-- Version 2026.02.04-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -166,6 +166,9 @@
         <unless constant="enable-night-vision" constant-value="true">
             <effect>night vision</effect>
         </unless>
+        <if min-server-version="1.21.10">
+            <effect>glowing</effect>
+        </if>
         <effect>slowness</effect>
         <effect duration="3s">fire resistance</effect>
         <max-health>${flag-carrier-health}</max-health>
@@ -280,11 +283,7 @@
     <! - If a flag-carrier disconnects, the snowball in their inventory drops onto the ground,
     <! - meaning if a player picks up that snowball, it should be treated as a flag pickup. -->
     <all id="flag-pickup-via-entity">
-        <constant id="ignore-metadata" delete="true"/>
-        <if min-server-version="1.21.10">
-            <constant id="ignore-metadata">true</constant>
-        </if>
-        <carrying id="carrying-football" ignore-metadata="${ignore-metadata}">
+        <carrying id="carrying-football">
             <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
         </carrying>
         <not>
