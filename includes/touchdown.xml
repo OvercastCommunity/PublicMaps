@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2026.02.04-1 -->
+<!-- Version 2026.02.05-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -174,8 +174,11 @@
         <max-health>${flag-carrier-health}</max-health>
     </kit>
     <kit id="flag-drop-kit">
-        <action filter="alive"> <!-- ??? need to make issue for error related to this -->
-            <action>
+        <!-- 05/02/2026 can't reproduce issue that required `alive` filtering for the entire
+             kit, but this specific action requires this for the projectile to actually
+             work on modern for some reason. keep alive filtering just in case. -->
+        <action filter="alive">
+            <action filter="not(player_state=${throw})">
                 <replace-item>
                     <find prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
                     <replace material="air"/>
@@ -280,8 +283,8 @@
         <material>barrier</material>
     </not>
     <!-- flag-pickup-via-entity handles cases where the flag carrier disconnects mid-game.
-    <! - If a flag-carrier disconnects, the snowball in their inventory drops onto the ground,
-    <! - meaning if a player picks up that snowball, it should be treated as a flag pickup. -->
+         If a flag-carrier disconnects, the snowball in their inventory drops onto the ground,
+         meaning if a player picks up that snowball, it should be treated as a flag pickup. -->
     <all id="flag-pickup-via-entity">
         <carrying id="carrying-football">
             <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
@@ -551,7 +554,7 @@
         <action id="reset-after-capture">
             <set var="game_state" value="${initial}"/>
             <set var="passed_once" value="0"/>
-            <switch-scope inner="player">
+            <switch-scope inner="player" observers="true">
                 <action id="reset-player-state"/>
             </switch-scope>
         </action>
@@ -654,7 +657,7 @@
             </action>
         </action>
     </action>
-    <trigger action="reset-player-state" filter="reset-observer-variables" scope="player"/>
+    <trigger action="reset-player-state" filter="reset-observer-variables" scope="player" observers="true"/>
     <trigger action="flag-pickup-event" filter="all(has-flag,not(player_state=${carry}))" scope="player"/>
     <trigger action="pickup-flag" filter="return-flag-to-carrier" scope="player"/>
     <trigger action="pickup-flag" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
