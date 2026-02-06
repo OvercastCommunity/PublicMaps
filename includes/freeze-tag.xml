@@ -1,7 +1,7 @@
 <map proto="1.5.0">
 <!-- Freeze Tag gamemode include file -->
 <!-- Created by mitchiii -->
-<!-- Version 2025.05.17 -->
+<!-- Version 2026.02.06 -->
 <objective>Taggers must freeze at least half of all Runners before time runs out!</objective>
 <game>Freeze Tag</game>
 <include id="void-death"/>
@@ -213,15 +213,15 @@
             <set var="runners_score" value="runners_score - 1"/>
             <kit id="runners-frozen-kit"/>
             <switch-scope inner="match">
-                <action filter="participating">
-                    <sound key="${entity.zombie_villager.cure}" volume="0.5" pitch="1.5"/>
-                </action>
-                <message text="{p1} `7froze {p2}">
-                    <replacements>
-                        <player id="p1" var="last_attacker" style="color"/>
-                        <player id="p2" var="last_victim" style="color"/>
-                    </replacements>
-                </message>
+                <switch-scope inner="team">
+                    <sound key="${entity.zombie_villager.cure}" volume="0.3" pitch="1.5"/>
+                    <message text="{p1} `7froze {p2}">
+                        <replacements>
+                            <player id="p1" var="last_attacker" style="color"/>
+                            <player id="p2" var="last_victim" style="color"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
             </switch-scope>
         </action>
         <action filter="all(attacker-is-unfrozen-runner, victim-is-frozen-runner)">
@@ -231,15 +231,15 @@
             <set var="runners_score" value="runners_score + 1"/>
             <kit id="runners-kit"/>
             <switch-scope inner="match">
-                <action filter="participating">
-                    <sound key="${block.glass.break}" volume="0.5"/>
-                </action>
-                <message text="{p1} `7unfroze {p2}">
-                    <replacements>
-                        <player id="p1" var="last_attacker" style="color"/>
-                        <player id="p2" var="last_victim" style="color"/>
-                    </replacements>
-                </message>
+                <switch-scope inner="team">
+                    <sound key="${block.glass.break}" volume="0.3"/>
+                    <message text="{p1} `7unfroze {p2}">
+                        <replacements>
+                            <player id="p1" var="last_attacker" style="color"/>
+                            <player id="p2" var="last_victim" style="color"/>
+                        </replacements>
+                    </message>
+                </switch-scope>
             </switch-scope>
         </action>
     </action>
