@@ -2,15 +2,8 @@
 <!-- Sound keys include for all maps -->
 <include id="sound-keys"/>
 
-<!-- Legacy PvP for majority of maps -->
-<unless constant="legacy-pvp" constant-comparison="defined">
-    <include id="legacy-pvp"/>
-</unless>
-<if constant="legacy-pvp" constant-comparison="defined">
-    <if constant="legacy-pvp" constant-value="true">
-        <include id="legacy-pvp"/>
-    </if>
-</if>
+<!-- Legacy PvP for modern -->
+<include id="legacy-pvp"/>
 
 <variables>
     <!-- Add maxbuildheight variable to pre-proto 1.5 maps -->
