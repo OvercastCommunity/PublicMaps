@@ -19,9 +19,6 @@
             <attribute operation="multiply" amount="-1">waypoint_transmit_range</attribute>
         </player-kit>
     </spawns>
-    <gamerules>
-        <commandBlocksEnabled>false</commandBlocksEnabled>
-    </gamerules>
 </if>
 
 <if has-variant="tournament,te,ranked,comp,5v5,5v5-ac,7v7">
