@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2026.02.05-1 -->
+<!-- Version 2026.02.07-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -157,7 +157,7 @@
     <kit id="flag-carrier-kit" force="true">
         <action id="give-football" filter="not(carrying-football)">
             <kit id="football-kit">
-                <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
+                <item consumable="use-snowball" name="`4`lFootball" material="snowball"/>
             </kit>
         </action>
         <kit id="${flag-carrier-armor-kit}"/>
@@ -180,7 +180,7 @@
         <action filter="alive">
             <action filter="not(player_state=${throw})">
                 <replace-item>
-                    <find prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
+                    <find consumable="use-snowball" name="`4`lFootball" material="snowball"/>
                     <replace material="air"/>
                 </replace-item>
             </action>
@@ -287,7 +287,7 @@
          meaning if a player picks up that snowball, it should be treated as a flag pickup. -->
     <all id="flag-pickup-via-entity">
         <carrying id="carrying-football">
-            <item prevent-sharing="true" consumable="use-snowball" name="`4`lFootball" material="snowball"/>
+            <item consumable="use-snowball" name="`4`lFootball" material="snowball"/>
         </carrying>
         <not>
             <carrying-flag id="has-flag">flag</carrying-flag>
@@ -566,7 +566,9 @@
             <fill region="flag-indicator-upper-inner" material="${indicator-inner-material}"/>
             <fill region="flag-indicator-lower-inner" material="${indicator-inner-material}"/>
         </unless>
-        <kill-entities filter="remove-entities"/>
+        <action id="kill-entities" scope="match">
+            <kill-entities filter="remove-entities"/>
+        </action>
         <action filter="match-start-delay">
             <message text=" `e`l»`6 The `cFlag`6 was `cReset`6!" actionbar="`cThe Flag was Reset!"/>
             <sound key="${entity.firework_rocket.twinkle}" volume="1" pitch="1"/>
@@ -671,6 +673,13 @@
     <trigger action="reset-flag" filter="match-started" scope="match"/>
     <trigger action="go-sounds" filter="match-start-delay" scope="match"/>
     <trigger action="flag-fire" filter="flag-fire-go" scope="match"/>
+    <trigger filter="dropped-football" scope="player">
+        <action>
+            <switch-scope inner="match">
+                <action id="kill-entities"/>
+            </switch-scope>
+        </action>
+    </trigger>
     <action id="increment-round" scope="player">
         <set var="score" value="score+${score-points}"/>
         <set var="player_score" value="player_score+1"/>
@@ -688,7 +697,7 @@
             <set var="round_status" value="0"/>
             <set var="buytime" value="1"/>
             <action id="reset-fire"/>
-            <kill-entities filter="remove-entities"/>
+            <action id="kill-entities"/>
         </switch-scope>
         <action id="tiebreaker-win"/>
         <action id="message-score-display-player"/>
