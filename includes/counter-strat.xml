@@ -8,12 +8,10 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2026.02.01-1 -->
+<!-- Version 2025.07.27-1 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
-    <!-- Disable legacy PvP -->
-    <constant id="legacy-pvp">false</constant>
     <!-- Counter-Strat -->
     <constant id="cs-mode">point</constant> <!-- Valid options: point, hostage (unfinished). Use anything else to disable sub-gamemode specific messages -->
     <constant id="cs-team-size">5</constant>
