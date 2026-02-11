@@ -199,7 +199,7 @@
     <stage title="Left Monument">
         <message>
             <line>This is the Left Monument.</line>
-            <line>You have to break all `5obsidian`r blocks to destory this monument.</line>
+            <line>You have to break all `5obsidian`r blocks to destroy this monument.</line>
         </message>
         <teleport>
             <point yaw="-90" pitch="0">7,28,-114</point>
@@ -208,7 +208,7 @@
     <stage title="Right Monument">
         <message>
             <line>This is the Right Monument.</line>
-            <line>You have to break all `5obsidian`r blocks to destory this monument.</line>
+            <line>You have to break all `5obsidian`r blocks to destroy this monument.</line>
         </message>
         <teleport>
             <point yaw="-90" pitch="0">21,32,-160</point>
