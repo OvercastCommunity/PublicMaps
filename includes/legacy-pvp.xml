@@ -2,15 +2,17 @@
 <!-- Legacy PvP mechanics include file -->
 <!-- Created by mameBT -->
 <!-- Based on Overcast Network's global include -->
-<!-- Version 2026.02.01-1 -->
-<if min-server-version="1.21.8">
-    <!-- Increase default attack speed -->
+<!-- Version 2026.02.11-1 -->
+<if min-server-version="1.21.11">
+    <!--
+    Increase default attack speed
     <spawns>
         <player-kit>
-            <!-- TODO: verify if rounding errors still problematic -->
-            <attribute operation="multiply" amount="4.001">attack_speed</attribute> <!-- exactly 4 causes rounding errors -->
+            TODO: verify if rounding errors still problematic
+            <attribute operation="multiply" amount="4.001">attack_speed</attribute>
         </player-kit>
     </spawns>
+    -->
 
     <!-- Modify speed, durability, protection, etc. of axes and armour -->
     <item-mods>
