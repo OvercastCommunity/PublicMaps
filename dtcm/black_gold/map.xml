@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Black Gold</name>
-<version>1.0.9</version>
+<version>1.0.10</version>
 <created>2012-10-20</created>
 <objective>Leak lava from the enemy core!</objective>
 <authors>
@@ -9,7 +9,7 @@
     <author uuid="8eb34538-a6e0-4bc0-b695-b993f3f14aaa"/> <!-- Puyi2912 -->
     <author uuid="f845d896-45f4-4a96-93ca-faf22f675993"/> <!-- GGranchelli16 -->
     <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- roro28gutier -->
-    <author uuid="5df77c0e-1bc5-4fff-b41b-6763f29d4125"/> <!-- G_Marturet --> 
+    <author uuid="5df77c0e-1bc5-4fff-b41b-6763f29d4125"/> <!-- G_Marturet -->
 </authors>
 <contributors>
     <contributor uuid="ef259cb1-4d48-4196-8923-669ead918a93" contribution="XML Coding"/> <!-- Calvinator1717 -->
@@ -56,7 +56,7 @@
 <regions>
     <union id="spawn-rooms">
         <cuboid id="blue-spawn-room" min="-215,9,267" max="-195,16,283"/>
-        <cuboid id="red-spawn-room" min="-449,9,282" max="-468,19,267"/>
+        <cuboid id="red-spawn-room" min="-449,9,282" max="-468,16,267"/>
     </union>
     <union id="spawn-roof">
         <cuboid min="-228,18,292" max="-195,10,257"/>
