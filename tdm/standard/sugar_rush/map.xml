@@ -47,7 +47,7 @@
     <apply block="never"/>
 </regions>
 <time>10m</time>
-<score> 
+<score>
     <kills>1</kills>
 </score>
 <toolrepair>
@@ -63,7 +63,7 @@
     <item>leather leggings</item>
     <item>iron boots</item>
     <item>glass bottle</item>
-    <item>iron spade:15</item>
+    <item>iron spade</item>
     <item>potion</item>
 </itemremove>
 <kill-rewards>
