@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2026.02.07-1 -->
+<!-- Version 2026.02.16-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -962,6 +962,9 @@
     <item>banner</item>
     <item>golden apple</item>
 </itemremove>
+<itemkeep>
+    <item>snowball</item>
+</itemkeep>
 <disabledamage>
     <damage>fall</damage>
     <damage ally="${disable-ally-damage}" enemy="false" other="false">entity attack</damage>
