@@ -8,7 +8,7 @@
 -->
 <!-- One in the Quiver gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.05.26-1 -->
+<!-- Version 2025.02.18-1 -->
 <constants fallback="true">
     <constant id="time-limit">3</constant> <!-- Time limit in minutes -->
     <constant id="base-kit">default-players-kit</constant> <!-- The base kit that all classes will have -->
@@ -111,7 +111,7 @@
     <if min-server-version="1.21">
         <class name="Wind-and-fire Wheels" description="Wind charges! No Bow!" longdescription="Wind-and-fire wheels and double jumps!" icon="wind charge">
             <kit parents="${base-kit}">
-                <item slot="slot.weapon.offhand" name="`c`lFire `fWheel`r" lore="`8Multiple Hit Kill" enchantment="vanishing curse" show-enchantments="false" material="blaze powder"/>
+                <item slot="slot.weapon.offhand" name="`c`lFire `fWheel`r" lore="`8Multiple Hit Kill" enchantment="vanishing curse;fire aspect" show-enchantments="false" material="blaze powder" components="piercing_weapon={deals_knockback:true,dismounts:true,sound:'item.firecharge.use',hit_sound:'block.fire.extinguish'}"/>
                 <item slot="0" name="`9`lWind `fWheel`r" lore="`8One Hit Kill" enchantment="vanishing curse" show-enchantments="false" material="wind charge" projectile="wind-wheel"/>
                 <effect duration="oo" amplifier="2" ambient="true">strength</effect>
             </kit>
