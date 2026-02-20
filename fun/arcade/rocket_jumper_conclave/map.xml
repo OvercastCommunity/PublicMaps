@@ -1,10 +1,11 @@
 <map proto="1.5.0" game="Rocket Jumper">
 <name>Conclave</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <created>2016-03-27</created>
 <objective>Rocket jump your way to the finish line!</objective>
 <include id="void-death"/>
 <constant id="void-plane">25</constant>
+<constant id="laps">2</constant>
 <authors>
     <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
 </authors>
@@ -25,7 +26,7 @@
 <respawn auto="true" delay="0s"/>
 <time>5m</time>
 <score>
-    <limit>6</limit>
+    <limit>${laps}</limit>
 </score>
 <kits>
     <kit id="spawn-kit" force="true">
@@ -81,6 +82,7 @@
     <portal region="checkpoint-5-right" destination="checkpoint-5-recovery-right" yaw="@90"/>
 </portals>
 <variables>
+    <variable id="callout" scope="player" exclusive="1"/>
     <variable id="checkpoint" scope="player"/>
 </variables>
 <actions>
@@ -89,7 +91,7 @@
     <trigger scope="player" filter="all(match-running, checkpoint-3, checkpoint=2)" action="increment-score"/>
     <trigger scope="player" filter="all(match-running, checkpoint-4, checkpoint=3)" action="increment-score"/>
     <trigger scope="player" filter="all(match-running, checkpoint-5, checkpoint=4)" action="increment-score"/>
-    <trigger scope="player" filter="all(match-running, checkpoint-6, checkpoint=5)" action="increment-score"/>
+    <trigger scope="player" filter="all(match-running, checkpoint-6, checkpoint=5)" action="complete-lap"/>
     <action id="increment-score" scope="player">
         <set var="checkpoint" value="checkpoint + 1"/>
         <message text="`aCheckpoint `c{0} `areached!">
@@ -97,8 +99,23 @@
                 <decimal id="0" value="checkpoint"/>
             </replacements>
         </message>
-        <set var="score" value="checkpoint"/>
         <sound preset="SCORE"/>
+    </action>
+    <action id="complete-lap" scope="player">
+        <set var="callout" value="1"/>
+        <switch-scope inner="match">
+            <message text="{translate: 'scorebox.scored', with: ['{0}', {translate: 'misc.point', with: ['`31']}, '{0}']}">
+                <replacements>
+                    <player id="0" var="callout" style="color"/>
+                </replacements>
+            </message>
+        </switch-scope>
+        <set var="checkpoint" value="0"/>
+        <set var="score" value="score + 1"/>
+        <sound preset="SCORE"/>
+        <action filter="not(score=${laps})">
+            <teleport region="checkpoint-0-recovery" yaw="-90"/>
+        </action>
     </action>
 </actions>
 <disabledamage>
