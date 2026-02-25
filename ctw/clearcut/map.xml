@@ -170,10 +170,7 @@
 </wools>
 <actions>
     <!-- show the build area and clear it on the game starting -->
-    <trigger scope="match">
-        <filter>
-            <match-started/>
-        </filter>
+    <trigger scope="match" filter="match-started">
         <action>
             <fill material="air" region="floor" filter="stained-glass-filter"/>
         </action>
