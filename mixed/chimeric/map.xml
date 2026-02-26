@@ -2,7 +2,7 @@
 <name>Chimeric</name>
 <variant id="halloween" world="halloween" override="true">Chimeric Horror</variant>
 <variant id="christmas" world="christmas" override="true">Chimeric Freeze</variant>
-<version>1.2.1</version>
+<version>1.2.2</version>
 <objective>Destroy the other team's monument, then capture their wool and return it to your base.</objective>
 <if variant="default">
     <created>2016-04-17</created>
@@ -241,6 +241,7 @@
     <item>beacon</item>
     <item>emerald block</item>
     <item>ender stone</item>
+    <item>coal block</item>
 </itemremove>
 <itemkeep>
     <item>wood</item>
