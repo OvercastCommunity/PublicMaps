@@ -3,6 +3,12 @@
 <version>2.2.1</version>
 <variant id="christmas" world="christmas" override="true">Coldcut</variant>
 <objective>Capture and place both of the enemy's wools!</objective>
+<if variant="default">
+    <constant id="wood-damage">2</constant>
+</if>
+<if variant="christmas">
+    <constant id="wood-damage">1</constant>
+</if>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
@@ -33,12 +39,7 @@
             <enchantment>efficiency</enchantment>
         </item>
         <item slot="30" unbreakable="true" material="iron spade"/>
-        <if variant="default">
-            <item slot="4" amount="64" damage="2" material="wood"/>
-        </if>
-        <if variant="christmas">
-            <item slot="4" amount="64" damage="1" material="wood"/>
-        </if>
+        <item slot="4" amount="64" damage="${wood-damage}" material="wood"/>
         <item slot="5" amount="48" material="glass"/>
         <item slot="8" material="golden apple"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
@@ -209,21 +210,13 @@
 <block-drops>
     <rule>
         <filter>
-            <any>
-                <if variant="default">
-                    <material>wood:2</material>
-                </if>
-                <if variant="christmas">
-                    <material>wood:1</material>
-                </if>
-                <material>glass</material>
-            </any>
+            <material>wood:${wood-damage}</material>
         </filter>
         <drops>
-            <item chance="0" material="glass"/>
+            <item chance="0" damage="${wood-damage}" material="wood"/>
         </drops>
     </rule>
-    <rule wrong-tool="false">
+    <rule>
         <filter>
             <any>
                 <material>stone:0</material>
@@ -237,22 +230,12 @@
 </block-drops>
 <itemkeep>
     <item>golden apple</item>
-    <if variant="default">
-        <item>wood:2</item>
-    </if>
-    <if variant="christmas">
-        <item>wood:1</item>
-    </if>
+    <item>wood:${wood-damage}</item>
     <item>glass</item>
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <if variant="default">
-            <item amount="24" damage="2" material="wood"/>
-        </if>
-        <if variant="christmas">
-            <item amount="24" damage="1" material="wood"/>
-        </if>
+        <item amount="24" damage="${wood-damage}" material="wood"/>
         <item amount="16" material="glass"/>
     </kill-reward>
 </kill-rewards>
