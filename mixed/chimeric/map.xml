@@ -2,7 +2,7 @@
 <name>Chimeric</name>
 <variant id="halloween" world="halloween" override="true">Chimeric Horror</variant>
 <variant id="christmas" world="christmas" override="true">Chimeric Freeze</variant>
-<version>1.2.2</version>
+<version>1.2.3</version>
 <objective>Destroy the other team's monument, then capture their wool and return it to your base.</objective>
 <if variant="default">
     <created>2016-04-17</created>
@@ -191,7 +191,7 @@
             <rectangle min="21,-oo" max="oo,oo"/>
         </region>
     </apply>
-    <apply use="deny(only-beacon)"/>
+    <apply use="deny(only-beacon)" block="deny(only-beacon)"/>
     <apply block="deny(void)" message="You may not build outside the map!"/>
     <cylinder id="blue-monument-region" base="47.5,12,0.5" radius="2" height="3"/>
     <cylinder id="red-monument-region" base="-47.5,12,-0.5" radius="2" height="3"/>
@@ -242,6 +242,9 @@
     <item>emerald block</item>
     <item>ender stone</item>
     <item>coal block</item>
+    <item>iron fence</item>
+    <item>quartz block</item>
+    <item>smooth brick</item>
 </itemremove>
 <itemkeep>
     <item>wood</item>
