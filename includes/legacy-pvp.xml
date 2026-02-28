@@ -19,42 +19,6 @@ u<!-- Created by mameBT -->
         </rule>
         <rule>
             <match>
-                <material>wooden sword</material>
-            </match>
-            <modify components="blocks_attacks={disable_cooldown_scale:0,damage_reductions:[{base:-0.5,factor:0.5}],item_damage:{threshold:0,base:0,factor:0}}"/>
-        </rule>
-        <rule>
-            <match>
-                <material>stone sword</material>
-            </match>
-            <modify components="blocks_attacks={disable_cooldown_scale:0,damage_reductions:[{base:-0.5,factor:0.5}],item_damage:{threshold:0,base:0,factor:0}}"/>
-        </rule>
-        <rule>
-            <match>
-                <material>copper sword</material>
-            </match>
-            <modify components="blocks_attacks={disable_cooldown_scale:0,damage_reductions:[{base:-0.5,factor:0.5}],item_damage:{threshold:0,base:0,factor:0}}"/>
-        </rule>
-        <rule>
-            <match>
-                <material>iron sword</material>
-            </match>
-            <modify components="blocks_attacks={disable_cooldown_scale:0,damage_reductions:[{base:-0.5,factor:0.5}],item_damage:{threshold:0,base:0,factor:0}}"/>
-        </rule>
-        <rule>
-            <match>
-                <material>diamond sword</material>
-            </match>
-            <modify components="blocks_attacks={disable_cooldown_scale:0,damage_reductions:[{base:-0.5,factor:0.5}],item_damage:{threshold:0,base:0,factor:0}}"/>
-        </rule>
-        <rule>
-            <match>
-                <material>netherite sword</material>
-            </match>
-            <modify components="blocks_attacks={disable_cooldown_scale:0,damage_reductions:[{base:-0.5,factor:0.5}],item_damage:{threshold:0,base:0,factor:0}}"/>
-        </rule>
-        <rule>
-            <match>
                 <material>wood axe</material>
             </match>
             <modify>
