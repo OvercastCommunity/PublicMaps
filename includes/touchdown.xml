@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2026.02.16-1 -->
+<!-- Version 2026.03.01-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -429,24 +429,16 @@
             <variable var="player_state">${carry}</variable>
         </any>
     </all>
-    <not id="return-flag-to-carrier">
-        <any>
-            <filter id="has-flag"/>
-            <all>
-                <any id="in-capture-region">
-                    <all>
-                        <filter id="team-one"/>
-                        <region id="team-two-portal"/>
-                    </all>
-                    <all>
-                        <filter id="team-two"/>
-                        <region id="team-one-portal"/>
-                    </all>
-                </any>
-                <filter id="one-pass-enforcement"/>
-            </all>
-        </any>
-    </not>
+    <any id="in-capture-region">
+        <all>
+            <filter id="team-one"/>
+            <region id="team-two-portal"/>
+        </all>
+        <all>
+            <filter id="team-two"/>
+            <region id="team-one-portal"/>
+        </all>
+    </any>
     <any id="flag-strip-in-enemy-net">
         <all>
             <filter id="team-one"/>
@@ -661,7 +653,6 @@
     </action>
     <trigger action="reset-player-state" filter="reset-observer-variables" scope="player" observers="true"/>
     <trigger action="flag-pickup-event" filter="all(has-flag,not(player_state=${carry}))" scope="player"/>
-    <trigger action="pickup-flag" filter="return-flag-to-carrier" scope="player"/>
     <trigger action="pickup-flag" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
     <trigger action="reset-after-throw" filter="just-before-reset" scope="player"/>
@@ -924,7 +915,8 @@
           show-messages="false"
           show-effects="false"
           capture-filter="all(carrying-football,one-pass-enforcement)"
-          post="default-post">
+          post="default-post"
+          allow-manual-drop="false">
         <unless constant="team-flag-posts" constant-value="true">
             <net region="team-one-portal"
                  capture-filter="all(team-two,team-one-portal)"/>
