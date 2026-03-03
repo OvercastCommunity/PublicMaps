@@ -1,11 +1,11 @@
 <map proto="1.5.0">
 <name>2D</name>
-<version>1.0.2</version>
+<version>1.1.0</version>
 <objective>Capture the enemy wool and place it at your spawn!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
     <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
 </authors>
 <contributors>
     <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Aesthetics"/> <!-- moo88888888 -->
@@ -18,155 +18,192 @@
     <team id="red" max="8" color="dark red">Red</team>
     <team id="blue" max="8" color="blue">Blue</team>
 </teams>
+<spawns>
+    <spawn team="red" region="red-spawn-point" yaw="-90"/>
+    <spawn team="blue" region="blue-spawn-point" yaw="90"/>
+    <default region="obs-spawn-point" yaw="-30"/>
+</spawns>
+<kits>
+    <kit id="shared">
+        <effect amplifier="2">jump</effect>
+        <effect duration="4">damage resistance</effect>
+        <effect duration="2" amplifier="5">heal</effect>
+        <double-jump recharge-time="2s"/>
+    </kit>
+</kits>
 <classes family="2D" sticky="false">
     <class name="Soldier" default="true" description="Heavy melee" icon="stone sword">
-        <kit>
-            <item slot="0" material="stone sword"/>
-            <item slot="1" enchantment="arrow infinite;arrow damage" material="bow"/>
-            <item slot="2" amount="2" material="golden apple"/>
+        <kit parent="shared">
+            <item slot="0" material="stone sword" unbreakable="true"/>
+            <item slot="1" material="bow" unbreakable="true">
+                <enchantment>infinity</enchantment>
+            </item>
+            <item slot="8" material="golden apple" amount="2"/>
             <item slot="28" material="arrow"/>
-            <leggings material="iron leggings"/>
-            <helmet material="leather helmet"/>
-            <chestplate attributes="generic.maxHealth:add:4" enchantment="protection projectile" material="leather chestplate"/>
-            <boots material="leather boots"/>
-            <effect amplifier="2" ambient="true">jump</effect>
-            <effect duration="4">damage resistance</effect>
-            <effect duration="2" amplifier="5">heal</effect>
-            <double-jump/>
+            <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+            <chestplate material="leather chestplate" unbreakable="true" team-color="true">
+                <enchantment>projectile protection</enchantment>
+            </chestplate>
+            <leggings material="iron leggings" unbreakable="true"/>
+            <boots material="leather boots" unbreakable="true" team-color="true"/>
         </kit>
     </class>
     <class name="Alchemist" description="Witchcraft" icon="potion">
-        <kit>
-            <item slot="0" material="wood sword"/>
-            <item slot="1" enchantment="arrow infinite" material="bow"/>
-            <item slot="2" amount="2" material="golden apple"/>
-            <item slot="3" amount="2" damage="16385" potions="regeneration:300:0:false" material="potion"/>
-            <item slot="4" amount="3" damage="16388" potions="poison:100:0:false" material="potion"/>
-            <item slot="5" amount="2" damage="16424" potions="blindness:100:3:false;confusion:100:5:false" material="potion"/>
+        <kit parent="shared">
+            <item slot="0" material="wood sword" unbreakable="true"/>
+            <item slot="1" material="bow" unbreakable="true">
+                <enchantment>infinity</enchantment>
+            </item>
+            <item slot="2" material="potion" damage="16385" amount="2">
+                <effect amplifier="1" duration="15s">regeneration</effect>
+            </item>
+            <item slot="3" material="potion" damage="16388" amount="3">
+                <effect amplifier="2" duration="5s">poison</effect>
+            </item>
+            <item slot="4" material="potion" damage="16424" amount="2">
+                <effect amplifier="4" duration="5s">blindness</effect>
+                <effect amplifier="4" duration="5s">confusion</effect>
+            </item>
+            <item slot="8" material="golden apple" amount="2"/>
             <item slot="28" material="arrow"/>
-            <leggings material="chainmail leggings"/>
-            <helmet material="leather helmet"/>
-            <chestplate material="gold chestplate"/>
-            <boots material="leather boots"/>
-            <effect amplifier="2" ambient="true">jump</effect>
-            <effect duration="4">damage resistance</effect>
-            <effect duration="2" amplifier="5">heal</effect>
-            <double-jump/>
+            <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+            <chestplate material="gold chestplate" unbreakable="true"/>
+            <leggings material="chainmail leggings" unbreakable="true"/>
+            <boots material="leather boots" unbreakable="true" team-color="true"/>
         </kit>
     </class>
     <class name="Runner" description="Speed and Agility" icon="feather">
-        <kit>
-            <item slot="0" material="stone axe"/>
-            <item slot="1" enchantment="arrow infinite" material="bow"/>
-            <item slot="2" amount="2" material="golden apple"/>
-            <item slot="3" attributes="generic.movementSpeed:add:0.03" material="feather"/>
+        <kit parent="shared">
+            <item slot="0" material="stone axe" unbreakable="true"/>
+            <item slot="1" material="bow" unbreakable="true">
+                <enchantment>infinity</enchantment>
+            </item>
+            <item slot="2" material="feather" attributes="generic.movementSpeed:add:0.03"/>
+            <item slot="8" material="golden apple" amount="2"/>
             <item slot="28" material="arrow"/>
-            <chestplate material="chainmail chestplate"/>
-            <effect amplifier="2" ambient="true">jump</effect>
-            <effect duration="4">damage resistance</effect>
-            <effect duration="2" amplifier="5">heal</effect>
-            <double-jump/>
+            <chestplate material="chainmail chestplate" unbreakable="true"/>
+            <boots material="leather boots" unbreakable="true" team-color="true"/>
         </kit>
     </class>
     <class name="Bomber" description="Explosive" icon="tnt">
-        <kit>
-            <item slot="0" material="wood sword"/>
-            <item slot="1" enchantment="arrow infinite" material="bow"/>
-            <item slot="2" amount="2" material="golden apple"/>
-            <item slot="3" amount="6" grenade="true" material="snow ball"/>
-            <item slot="5" amount="1" damage="50" material="monster egg"/>
+        <kit parent="shared">
+            <item slot="0" material="wood sword" unbreakable="true"/>
+            <item slot="1" material="bow" unbreakable="true">
+                <enchantment>infinity</enchantment>
+            </item>
+            <item slot="2" amount="12" grenade="true" material="snow ball"/>
+            <item slot="3" amount="3" damage="50" material="monster egg"/>
+            <item slot="8" material="golden apple" amount="2"/>
             <item slot="28" material="arrow"/>
-            <helmet material="leather helmet"/>
-            <chestplate enchantment="protection explosions:2" material="chainmail chestplate"/>
-            <leggings material="iron leggings"/>
-            <effect amplifier="2" ambient="true">jump</effect>
-            <effect duration="4">damage resistance</effect>
-            <effect duration="2" amplifier="5">heal</effect>
-            <double-jump/>
+            <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+            <chestplate material="chainmail chestplate" unbreakable="true">
+                <enchantment level="2">protection explosions</enchantment>
+            </chestplate>
+            <leggings material="iron leggings" unbreakable="true"/>
+            <boots material="leather boots" unbreakable="true" team-color="true"/>
         </kit>
     </class>
     <class name="Archer" description="Percision" icon="bow">
-        <kit>
-            <item slot="0" attributes="generic.attackDamage:add:2" material="wood sword"/>
-            <item slot="1" enchantment="arrow infinite;arrow damage:2" attributes="generic.movementSpeed:add:-0.05" material="bow"/>
-            <item slot="2" amount="2" material="golden apple"/>
+        <kit parent="shared">
+            <item slot="0" material="wood sword" unbreakable="true"/>
+            <item slot="1" material="bow" unbreakable="true">
+                <enchantment>infinity</enchantment>
+                <enchantment level="2">power</enchantment>
+            </item>
+            <item slot="8" material="golden apple" amount="2"/>
             <item slot="28" material="arrow"/>
-            <helmet material="leather helmet"/>
-            <chestplate enchantment="protection projectile:2" material="chainmail chestplate"/>
-            <leggings material="leather leggings"/>
-            <boots material="chainmail boots"/>
-            <effect amplifier="2" ambient="true">jump</effect>
-            <effect duration="4">damage resistance</effect>
-            <effect duration="2" amplifier="5">heal</effect>
-            <double-jump/>
+            <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+            <chestplate material="chainmail chestplate" unbreakable="true">
+                <enchantment level="2">projectile protection</enchantment>
+            </chestplate>
+            <leggings material="leather leggings" unbreakable="true" team-color="true"/>
+            <boots material="leather boots" unbreakable="true" team-color="true"/>
         </kit>
     </class>
     <class name="Spider" description="Sticky and Silky" icon="web">
-        <kit>
-            <item slot="0" material="wood sword"/>
-            <item slot="1" enchantment="arrow infinite" material="bow"/>
-            <item slot="2" amount="2" material="golden apple"/>
-            <item slot="3" amount="3" material="web"/>
+        <kit parent="shared">
+            <item slot="0" material="wood sword" unbreakable="true"/>
+            <item slot="1" material="bow" unbreakable="true">
+                <enchantment>infinity</enchantment>
+            </item>
+            <item slot="3" material="web" amount="3"/>
+            <item slot="8" material="golden apple" amount="2"/>
             <item slot="28" material="arrow"/>
-            <chestplate material="chainmail chestplate"/>
-            <leggings material="iron leggings"/>
-            <effect amplifier="2" ambient="true">jump</effect>
-            <effect duration="4">damage resistance</effect>
-            <effect duration="2" amplifier="5">heal</effect>
-            <double-jump/>
+            <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+            <chestplate material="chainmail chestplate" unbreakable="true"/>
+            <leggings material="iron leggings" unbreakable="true"/>
+            <boots material="leather boots" unbreakable="true" team-color="true"/>
+            <effect amplifier="3">jump</effect>
         </kit>
     </class>
 </classes>
-<spawns>
-    <spawn team="red" yaw="-90">
-        <region>
-            <point>-196.5,9,-1.5</point>
-        </region>
-    </spawn>
-    <spawn team="blue" yaw="90">
-        <region>
-            <point>-3.5,9,-1.5</point>
-        </region>
-    </spawn>
-    <default yaw="-30">
-        <region>
-            <point>-100.5,5,-1.5</point>
-        </region>
-    </default>
-</spawns>
+<kill-rewards>
+    <kill-reward>
+        <kit>
+            <double-jump recharge-time="2s"/>
+        </kit>
+    </kill-reward>
+    <kill-reward filter="only-alchemist">
+        <item material="potion" damage="16385">
+            <effect amplifier="1" duration="15s">regeneration</effect>
+        </item>
+        <item material="potion" damage="16388">
+            <effect amplifier="2" duration="5s">poison</effect>
+        </item>
+    </kill-reward>
+    <kill-reward filter="all(only-alchemist, kill-streak)">
+        <item material="potion" damage="16385">
+            <effect amplifier="1" duration="15s">regeneration</effect>
+        </item>
+        <item material="potion" damage="16388">
+            <effect amplifier="2" duration="5s">poison</effect>
+        </item>
+        <item material="potion" damage="16424">
+            <effect amplifier="4" duration="5s">blindness</effect>
+            <effect amplifier="4" duration="5s">confusion</effect>
+        </item>
+    </kill-reward>
+    <kill-reward filter="only-runner">
+        <kit>
+            <effect duration="3s">speed</effect>
+        </kit>
+    </kill-reward>
+    <kill-reward filter="only-bomber">
+        <item amount="6" grenade="true" material="snow ball"/>
+    </kill-reward>
+    <kill-reward filter="all(only-bomber, kill-streak)">
+        <item amount="2" damage="50" material="monster egg"/>
+    </kill-reward>
+    <kill-reward filter="only-archer">
+        <kit>
+            <effect duration="3s">strength</effect>
+        </kit>
+    </kill-reward>
+    <kill-reward filter="only-spider">
+        <item material="web" amount="2"/>
+    </kill-reward>
+</kill-rewards>
 <filters>
-    <team id="only-red">red</team>
-    <team id="only-blue">blue</team>
-    <material id="only-web">web</material>
+    <material id="allowed-blocks">web</material>
+    <kill-streak id="kill-streak" repeat="true" count="3"/>
+    <class id="only-soldier">Soldier</class>
+    <class id="only-alchemist">Alchemist</class>
+    <class id="only-runner">Runner</class>
+    <class id="only-bomber">Bomber</class>
+    <class id="only-archer">Archer</class>
+    <class id="only-spider">Spider</class>
 </filters>
 <regions>
-    <complement id="all">
-        <everywhere/>
-        <block>-199,11,-2</block>
-        <block>-2,11,-2</block>
-    </complement>
-    <cuboid id="map" min="-201,0,2" max="1,42,-3"/>
-    <cuboid id="blue-wool-room" min="-9,23,-4" max="-3,30,1"/> <!-- Blue defends -->
-    <cuboid id="red-wool-room" min="-191,23,-4" max="-197,30,1"/> <!-- Red defends -->
-    <union id="blue-webs"> <!-- Allows for Red -->
-        <block>-8,25,-2</block>
-        <block>-8,26,-2</block>
-    </union>
-    <union id="red-webs"> <!-- Allows for Blue -->
-        <block>-193,25,-2</block>
-        <block>-193,26,-2</block>
-    </union>
-    <!-- Applied -->
-    <apply region="all" block="only-web"/>
-    <apply region="red-wool-room" enter="only-blue" message="You may not enter Blue's wool room!"/>
-    <apply region="blue-wool-room" enter="only-red" message="You may not enter Red's wool room!"/>
-    <apply region="red-webs" block-break="only-blue" block-place="never"/>
-    <apply region="blue-webs" block-break="only-red" block-place="never"/>
-    <apply leave="never">
-        <region>
-            <below y="42"/>
-        </region>
-    </apply>
+    <point id="red-spawn-point">-196.5,9,-1.5</point>
+    <point id="blue-spawn-point">-3.5,9,-1.5</point>
+    <point id="obs-spawn-point">-100.5,5,-1.5</point>
+    <cuboid id="blue-wool-room" min="-13,23,-4" max="-3,30,1"/>
+    <cuboid id="red-wool-room" min="-187,23,-4" max="-197,30,1"/>
+    <apply region="red-wool-room" enter="blue" message="You may not enter this wool room!"/>
+    <apply region="blue-wool-room" enter="red" message="You may not enter this wool room!"/>
+    <apply region="red-wool-room" block="all(blue, allowed-blocks)" message="You may not modify this wool room!"/>
+    <apply region="blue-wool-room" block="all(red, allowed-blocks)" message="You may not modify this wool room!"/>
+    <apply block="allowed-blocks"/>
 </regions>
 <wools>
     <wool team="blue" color="red" location="-194.5,25,-1.5">
