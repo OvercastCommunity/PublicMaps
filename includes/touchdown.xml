@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2026.03.01-1 -->
+<!-- Version 2026.03.03-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -297,15 +297,17 @@
         <variable var="player_state">${carry}</variable>
         <dead/>
     </all>
-    <all id="dropped-football">
-        <filter id="has-flag"/>
-        <variable var="player_state">${carry}</variable>
-        <not>
-            <filter id="carrying-football"/>
-        </not>
-        <alive/>
-        <variable var="can_score">1</variable>
-    </all>
+    <pulse id="dropped-football" duration="0.05s" period="0.1s">
+        <all>
+            <filter id="has-flag"/>
+            <variable var="player_state">${carry}</variable>
+            <not>
+                <filter id="carrying-football"/>
+            </not>
+            <alive/>
+            <variable var="can_score">1</variable>
+        </all>
+    </pulse>
     <after id="flag-fire-go" filter="do_fire=1" duration="1s"/>
     <after id="match-start-delay" filter="match-started" duration="0.1s"/>
     <all id="initiate-reset">
