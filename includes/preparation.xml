@@ -1,0 +1,36 @@
+<map>
+<!-- Hooks for adding walls or other toggleable map features -->
+<!-- Author: Pablete1234 -->
+<!-- Version 2026.03.06 -->
+<variables>
+    <variable id="preparation_step" scope="match" default="0"/>
+</variables>
+<structures>
+    <structure id="preparation-wall-struct" region="preparation-wall" air="true" clear="false"/>
+    <dynamic trigger="preparation_step=2" offset="0,0,0" structure="preparation-wall-struct"/>
+</structures>
+<actions>
+    <action id="toggle-wall" expose="true" scope="player">
+         <action filter="match-started">
+             <set var="preparation_step" value="min(2, preparation_step + 1)"/>
+        </action>
+        <action filter="not(match-started)">
+             <set var="preparation_step" value="(preparation_step + 1) % 2"/>
+        </action>
+        <message text="Wall {state}">
+            <replacements>
+                <switch id="state" value="preparation_step">
+                    <case match="0" result="`4disabled"/>
+                    <case match="1" result="`aenabled"/>
+                    <case match="2" result="`cremoved `r(cannot be re-enabled)"/>
+                </switch>
+            </replacements>
+        </message>
+    </action>
+    <fill id="preparation-place-wall" material="bedrock" region="preparation-wall"/>
+    <trigger filter="all(match-running,preparation_step=1)" scope="match" action="preparation-place-wall"/>
+</actions>
+<modes>
+    <mode id="wall" name="Wall falls" after="5m" show-before="5m" filter="all(match-running,preparation_step=1)" action="preparation_step:=0"/>
+</modes>
+</map>
