@@ -6,7 +6,7 @@
 <variant id="king_ranch" world="king_ranch" override="true">King Ranch</variant>
 <variant id="king_ranch_og" world="king_ranch_og" override="true">King Ranch: OG</variant>
 <variant id="tdm" world="tdm">TDM</variant>
-<version>2.1.1</version>
+<version>2.1.2</version>
 <unless variant="tdm">
     <gamemode>ctf</gamemode>
 </unless>
@@ -208,23 +208,23 @@
         </region>
     </apply>
     <!-- To center sides jump pads -->
-    <apply velocity="-6.7, 1.8, 0">
+    <apply velocity="-3.9, 1.8, 0">
         <region>
             <cuboid id="n-1" min="-25,12,63" max="-28,14,60"/>
         </region>
     </apply>
-    <apply velocity="6.7, 1.8, 0">
+    <apply velocity="3.9, 1.8, 0">
         <region>
             <cuboid id="n-2" min="8,12,60" max="11,14,63"/>
         </region>
     </apply>
     <!-- To top center jump pads -->
-    <apply velocity="10, 2.2, 0">
+    <apply velocity="3.9, 2.2, 0">
         <region>
             <cuboid id="n-3" min="-51,23,60" max="-48,25,63"/>
         </region>
     </apply>
-    <apply velocity="-10, 2.2, 0">
+    <apply velocity="-3.9, 2.2, 0">
         <region>
             <cuboid id="n-4" min="34,23,63" max="32,25,60"/>
         </region>
@@ -294,12 +294,12 @@
         </region>
     </apply>
     <!-- Side island to side jump pads -->
-    <apply velocity="0, 1.5, -7">
+    <apply velocity="0, 1.5, -3.5">
         <region>
             <cuboid id="r-9" min="37,21,91" max="40,23,89"/>
         </region>
     </apply>
-    <apply velocity="0, 1.5, 7">
+    <apply velocity="0, 1.5, 3.5">
         <region>
             <translate region="r-9" offset="-94,0,-57"/>
         </region>
@@ -338,10 +338,10 @@
                 <cuboid id="team-2-to-platform" min="34,29,145" max="32,31,142"/>
             </union>
         </union>
-        <apply velocity="@-30,2,-1" region="team-1-rocket-to-lower"/>
-        <apply velocity="@30,2,1" region="team-2-rocket-to-lower"/>
-        <apply velocity="@2.6,1,0" region="team-1-to-platform"/>
-        <apply velocity="@-2.6,1,0" region="team-2-to-platform"/>
+        <apply velocity="-3.9, 2, -1" region="team-1-rocket-to-lower"/>
+        <apply velocity="3.9, 2, 1" region="team-2-rocket-to-lower"/>
+        <apply velocity="2.6, 1, 0" region="team-1-to-platform"/>
+        <apply velocity="-2.6, 1, 0" region="team-2-to-platform"/>
         <!-- Regions for lane structures -->
         <union id="lanes">
             <union id="smooth-stone">
