@@ -123,7 +123,7 @@
         </region>
     </apply>
     <!-- To top center jump pads -->
-    <apply velocity="3,9, 2.2, 0">
+    <apply velocity="3.9, 2.2, 0">
         <region>
             <cuboid id="n-3" min="-51,23,60" max="-48,25,63"/>
         </region>
