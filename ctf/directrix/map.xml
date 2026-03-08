@@ -283,12 +283,12 @@
         </region>
     </apply>
     <!-- Tower side to side jump pads -->
-    <apply velocity="0, 2, 9">
+    <apply velocity="0, 2, 3.9">
         <region>
             <cuboid id="r-8" min="40,15,28" max="37,17,30"/>
         </region>
     </apply>
-    <apply velocity="0, 2, -9">
+    <apply velocity="0, 2, -3.9">
         <region>
             <translate region="r-8" offset="-94,0,65"/>
         </region>
