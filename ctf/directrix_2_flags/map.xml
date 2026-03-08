@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Directrix: 2 Flags</name>
-<version>1.2.3</version>
+<version>1.2.4</version>
 <variant id="halloween" world="halloween" override="true">DirecTricks: 2 Flags</variant>
 <gamemode>ctf</gamemode>
 <gamemode>rage</gamemode>
@@ -112,23 +112,23 @@
         </region>
     </apply>
     <!-- To center sides jump pads -->
-    <apply velocity="-6.7, 1.8, 0">
+    <apply velocity="-3.9, 1.8, 0">
         <region>
             <cuboid id="n-1" min="-25,12,63" max="-28,14,60"/>
         </region>
     </apply>
-    <apply velocity="6.7, 1.8, 0">
+    <apply velocity="3.9, 1.8, 0">
         <region>
             <cuboid id="n-2" min="8,12,60" max="11,14,63"/>
         </region>
     </apply>
     <!-- To top center jump pads -->
-    <apply velocity="10, 2.2, 0">
+    <apply velocity="3,9, 2.2, 0">
         <region>
             <cuboid id="n-3" min="-51,23,60" max="-48,25,63"/>
         </region>
     </apply>
-    <apply velocity="-10, 2.2, 0">
+    <apply velocity="-3.9, 2.2, 0">
         <region>
             <cuboid id="n-4" min="34,23,63" max="32,25,60"/>
         </region>
@@ -165,23 +165,23 @@
         </region>
     </apply>
     <!-- Tower side to side jump pads -->
-    <apply velocity="0, 2, 9">
+    <apply velocity="0, 2, 3.9">
         <region>
             <cuboid id="r-8" min="40,15,28" max="37,17,30"/>
         </region>
     </apply>
-    <apply velocity="0, 2, -9">
+    <apply velocity="0, 2, -3.9">
         <region>
             <translate region="r-8" offset="-94,0,65"/>
         </region>
     </apply>
     <!-- Side island to side jump pads -->
-    <apply velocity="0, 1.5, -7">
+    <apply velocity="0, 1.5, -3.9">
         <region>
             <cuboid id="r-9" min="37,21,91" max="40,23,89"/>
         </region>
     </apply>
-    <apply velocity="0, 1.5, 7">
+    <apply velocity="0, 1.5, 3.9">
         <region>
             <translate region="r-9" offset="-94,0,-57"/>
         </region>
@@ -228,13 +228,13 @@
         </union>
     </union>
     <apply velocity="@-2,1,0" region="red-to-rocket-flag"/>
-    <apply velocity="@0,1,5" region="red-rocket-flag"/>
+    <apply velocity="@0,1,3.9" region="red-rocket-flag"/>
     <apply velocity="@3,1.8,0" region="red-to-cloud"/>
     <apply velocity="@1.5,1,0" region="red-away-rocket-flag"/>
     <apply velocity="@0,1.8,0" region="red-spawn-jump"/>
     <apply velocity="@-2.6,1,0" region="red-to-platform"/>
     <apply velocity="@2,1,0" region="blue-to-rocket-flag"/>
-    <apply velocity="@0,1,-5" region="blue-rocket-flag"/>
+    <apply velocity="@0,1,-3.9" region="blue-rocket-flag"/>
     <apply velocity="@-3,1.8,0" region="blue-to-cloud"/>
     <apply velocity="@-1.5,1,0" region="blue-away-rocket-flag"/>
     <apply velocity="@0,1.8,0" region="blue-spawn-jump"/>
