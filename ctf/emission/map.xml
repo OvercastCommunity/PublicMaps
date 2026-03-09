@@ -1,0 +1,109 @@
+<map proto="1.5.0">
+<name>Emission</name>
+<version>1.2.0</version>
+<objective>Control all five flags to win!</objective>
+<created>2015-03-19</created>
+<include id="gapple-kill-reward"/>
+<include id="void-death"/>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomyBoy -->
+</authors>
+<contributors>
+    <contributor uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="Providing the working code"/> <!-- mitchiii -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" min="5" max="14">Red</team>
+    <team id="blue" color="blue" min="5" max="14">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" region="red-spawn" yaw="0" kit="players"/>
+    <spawn team="blue" region="blue-spawn" yaw="180" kit="players"/>
+    <default region="obs-spawn" yaw="-90" kit="obs"/>
+</spawns>
+<kits>
+    <kit id="players">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" material="arrow" amount="36"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true" locked="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true" locked="true"/>
+        <leggings material="chainmail leggings" unbreakable="true" locked="true">
+            <enchantment level="3">projectile protection</enchantment>
+        </leggings>
+        <boots material="iron boots" unbreakable="true" locked="true"/>
+        <effect duration="3" amplifier="5">resistance</effect>
+        <effect>night vision</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="obs">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <max-health>12</max-health>
+        <effect duration="6s" amplifier="2">absorption</effect>
+        <if min-server-version="1.9">
+            <effect>glowing</effect>
+        </if>
+        <action>
+            <set var="score" value="score + 1"/>
+        </action>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <max-health>20</max-health>
+        <if min-server-version="1.9">
+            <effect duration="0s" amplifier="0">glowing</effect>
+        </if>
+        <action>
+            <set var="score" value="score - 1"/>
+        </action>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow" amount="12"/>
+    </kill-reward>
+</kill-rewards>
+<regions>
+    <block id="obs-spawn">-725.5,22,-130.5</block>
+    <cuboid id="red-spawn" min="-693,6,-202" max="-691,6,-200"/>
+    <cuboid id="blue-spawn" min="-672,6,-59" max="-674,6,-61"/>
+    <apply block="never" use="never"/>
+</regions>
+<time>7m</time>
+<score limit="5" display="circle"/>
+<flags color="yellow" shared="true" pickup-kit="flag-pickup" drop-kit="flag-drop" allow-manual-drop="false">
+    <flag name="Center Flag" id="center-flag">
+        <post respawn-time="3s" recover-time="0s">-682.5,10,-130.5</post>
+    </flag>
+    <flag name="South Flag" id="south-flag">
+        <post respawn-time="3s" recover-time="0s">-712.5,3,-90.5</post>
+    </flag>
+    <flag name="North Flag" id="north-flag">
+        <post respawn-time="3s" recover-time="0s">-652.5,3,-170.5</post>
+    </flag>
+    <flag name="West Flag" id="west-flag">
+        <post respawn-time="3s" recover-time="0s">-712.5,10,-130.5</post>
+    </flag>
+    <flag name="East Flag" id="east-flag">
+        <post respawn-time="3s" recover-time="0s">-652.5,10,-130.5</post>
+    </flag>
+</flags>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
+</itemremove>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
