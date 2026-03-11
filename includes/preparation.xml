@@ -30,7 +30,11 @@
     <fill id="preparation-place-wall" material="bedrock" region="preparation-wall"/>
     <trigger filter="all(match-running,preparation_step=1)" scope="match" action="preparation-place-wall"/>
 </actions>
+<regions>
+  <resize id="extended-wall" min="0.2,0,0.2" max="0.2,1,0.2" relative="true" region="preparation-wall"/>
+  <apply region="extended-wall" enter="deny(preparation_step=1)" message="A force prevents you from entering here"/>
+</regions>
 <modes>
-    <mode id="wall" name="Wall falls" after="5m" show-before="5m" filter="all(match-running,preparation_step=1)" action="preparation_step:=0"/>
+    <mode id="wall" name="Wall falls" after="5m" show-before="5m" filter="all(match-running,preparation_step=1)" action="preparation_step:=2"/>
 </modes>
 </map>
