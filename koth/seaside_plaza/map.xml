@@ -1,16 +1,16 @@
 <map proto="1.5.0">
 <name>Seaside Plaza</name>
-<version>1.4.4</version>
+<version>1.4.5</version>
 <variant id="5v5">5v5</variant>
 <unless variant="5v5">
     <include id="conquest"/>
-    <constant id="team-size">5</constant>
-    <constant id="max-overfill">5</constant>
+    <constant id="team-size">7</constant>
+    <constant id="max-overfill" delete="true"/>
 </unless>
 <if variant="5v5">
     <include id="conquest-comp"/>
-    <constant id="team-size">7</constant>
-    <constant id="max-overfill" delete="true"/>
+    <constant id="team-size">5</constant>
+    <constant id="max-overfill">5</constant>
 </if>
 <constant id="damage-resistance">2s</constant>
 <constant id="respawn-timer">3s</constant>
