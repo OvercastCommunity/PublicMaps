@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Emission</name>
-<version>1.2.0</version>
+<version>1.2.1</version>
 <objective>Control all five flags to win!</objective>
 <created>2015-03-19</created>
 <include id="gapple-kill-reward"/>
@@ -47,7 +47,7 @@
         <if min-server-version="1.9">
             <effect>glowing</effect>
         </if>
-        <action>
+        <action filter="match-running">
             <set var="score" value="score + 1"/>
         </action>
     </kit>
@@ -56,7 +56,7 @@
         <if min-server-version="1.9">
             <effect duration="0s" amplifier="0">glowing</effect>
         </if>
-        <action>
+        <action filter="match-running">
             <set var="score" value="score - 1"/>
         </action>
     </kit>
@@ -100,6 +100,7 @@
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
     <item>iron boots</item>
+    <item>arrow</item>
     <item>banner</item>
 </itemremove>
 <timelock>on</timelock>
