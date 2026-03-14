@@ -49,7 +49,7 @@
         </rule>
         <rule>
             <match>
-                <material>netherrite spear</material>
+                <material>netherite spear</material>
             </match>
             <modify components="attack_range={min_reach:2,max_reach:4.5,hitbox_margin:0.1}"/>
         </rule>
