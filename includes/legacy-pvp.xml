@@ -2,15 +2,56 @@
 <!-- Legacy PvP mechanics include file -->
 <!-- Created by mameBT -->
 <!-- Based on Overcast Network's global include -->
-<!-- Version 2026.03.09-1 -->
+<!-- Version 2026.03.14-1 -->
 <if min-server-version="1.21.11">
     <item-mods>
         <rule>
-            <!-- This overwrites certain modern items for now -->
             <match>
                 <all-materials/>
             </match>
             <modify components="attack_range={max_reach:3.0095,hitbox_margin:0.1}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>wooden spear</material>
+            </match>
+            <modify components="attack_range={min_reach:2,max_reach:4.5,hitbox_margin:0.1}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>golden spear</material>
+            </match>
+            <modify components="attack_range={min_reach:2,max_reach:4.5,hitbox_margin:0.1}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>stone spear</material>
+            </match>
+            <modify components="attack_range={min_reach:2,max_reach:4.5,hitbox_margin:0.1}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>copper spear</material>
+            </match>
+            <modify components="attack_range={min_reach:2,max_reach:4.5,hitbox_margin:0.1}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>iron spear</material>
+            </match>
+            <modify components="attack_range={min_reach:2,max_reach:4.5,hitbox_margin:0.1}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>diamond spear</material>
+            </match>
+            <modify components="attack_range={min_reach:2,max_reach:4.5,hitbox_margin:0.1}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>netherrite spear</material>
+            </match>
+            <modify components="attack_range={min_reach:2,max_reach:4.5,hitbox_margin:0.1}"/>
         </rule>
         <rule>
             <match>
