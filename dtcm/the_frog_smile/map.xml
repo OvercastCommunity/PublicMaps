@@ -1,0 +1,109 @@
+<map proto="1.5.0">
+<name>The Frog Smile</name>
+<version>1.1.0</version>
+<objective>Destroy both of the enemy team's monuments</objective>
+<created>2014-04-13</created>
+<constants>
+    <constant id="eff.modes-preset">every-5m</constant>
+    <constant id="eff.efficiency-tool">diamond pickaxe</constant>
+    <constant id="eff.team-1">red</constant>
+    <constant id="eff.team-2">blue</constant>
+    <constant id="eff.t1-m1-region">blue-monument-a</constant>
+    <constant id="eff.t1-m2-region">blue-monument-b</constant>
+    <constant id="eff.t2-m1-region">red-monument-a</constant>
+    <constant id="eff.t2-m2-region">red-monument-b</constant>
+</constants>
+<include id="efficiency-variables"/>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="3b0c8577-a58c-441c-91e6-6e61898a17ce"/> <!-- isaac7226 -->
+    <author uuid="a985ca9d-f505-46ef-b106-e91242535664"/> <!-- Gabriel7226 -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="12">Red</team>
+    <team id="blue" color="blue" max="12">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" region="red-spawn" yaw="90" kit="spawn"/>
+    <spawn team="blue" region="blue-spawn" yaw="-90" kit="spawn"/>
+    <default region="obs-spawn" yaw="-189"/>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="2" material="diamond pickaxe" unbreakable="true"/>
+        <item slot="3" material="iron axe" unbreakable="true">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="4" material="wood" damage="2" amount="64"/>
+        <item slot="31" material="wood" damage="2" amount="64"/>
+        <item slot="5" material="stained glass" amount="64" team-color="true"/>
+        <item slot="7" material="ladder" amount="24"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <item slot="30" material="iron spade" unbreakable="true">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true"/>
+        <effect duration="3s" amplifier="255">damage resistance</effect>
+        <effect duration="3s">absorption</effect>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward>
+        <item material="iron ingot" amount="3"/>
+    </kill-reward>
+</kill-rewards>
+<regions>
+    <cuboid id="obs-spawn" min="-1528,98,-560" max="-1524,98,-559"/>
+    <cylinder id="red-spawn" base="-1393,6,-667" height="1" radius="2"/>
+    <cylinder id="blue-spawn" base="-1661,6,-667" height="1" radius="2"/>
+    <union id="spawn-protection">
+        <circle id="red-spawn-protection" center="-1392,-666" radius="8"/>
+        <circle id="blue-spawn-protection" center="-1660,-666" radius="8"/>
+    </union>
+    <cuboid id="red-monument-a" min="-1435,8,-636" size="1,2,1"/>
+    <cuboid id="red-monument-b" min="-1435,8,-698" size="1,2,1"/>
+    <cuboid id="blue-monument-a" min="-1619,8,-636" size="1,2,1"/>
+    <cuboid id="blue-monument-b" min="-1619,8,-698" size="1,2,1"/>
+    <apply region="spawn-protection" block="never" message="You may not modify the spawn!"/>
+    <apply region="red-spawn-protection" enter="red" message="You may not enter the enemy spawn!"/>
+    <apply region="blue-spawn-protection" enter="blue" message="You may not enter the enemy spawn!"/>
+    <apply block-place="not(void)" message="You may not build in the void!"/>     
+</regions>
+<destroyables materials="obsidian" mode-changes="true">
+    <destroyables owner="red">
+        <destroyable name="North Monument" region="red-monument-b"/>
+        <destroyable name="South Monument" region="red-monument-a"/>
+    </destroyables>
+    <destroyables owner="blue">
+        <destroyable name="North Monument" region="blue-monument-b"/>
+        <destroyable name="South Monument" region="blue-monument-a"/>
+    </destroyables>
+</destroyables>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>ladder</item>
+    <item>arrow</item>
+    <item>seeds</item>
+</itemremove>
+<maxbuildheight>25</maxbuildheight>
+</map>
