@@ -1,0 +1,208 @@
+<map proto="1.5.0">
+<name>Tebulas II</name>
+<version>1.1.0</version>
+<objective>Be the first to team to capture three wools from the other teams!</objective>
+<created>2014-07-29</created>
+<authors>
+    <author uuid="23518e31-4110-41ce-9732-333888ae822d"/> <!-- crikimaruc -->
+    <author uuid="ddc786c1-ffb5-41da-9dd5-9ea538848612"/> <!-- AntandRocky -->
+</authors>
+<contributors>
+    <contributor uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="XML Writing"/> <!-- BlockDrop74 -->
+    <contributor uuid="456ed6a0-fe31-4e5b-9296-874cb8a8fd9f" contribution="Building, Forum poster"/> <!-- XxNarwhalexX -->
+    <contributor uuid="14aad06f-6fc0-4b26-be7b-187c3be8eb89" contribution="Building"/> <!-- 68pingy -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Building"/> <!-- ItsMiiOlly -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+    <team id="cyan" color="dark aqua" max="12">Cyan</team>
+    <team id="lime" color="green" max="12">Lime</team>
+    <team id="orange" color="gold" max="12">Orange</team>
+    <team id="purple" color="dark purple" max="12">Purple</team>
+</teams>
+<spawns>
+    <spawn team="cyan" region="cyan-spawn" yaw="90" kit="main"/>
+    <spawn team="lime" region="lime-spawn" yaw="0" kit="main"/>
+    <spawn team="orange" region="orange-spawn" yaw="180" kit="main"/>
+    <spawn team="purple" region="purple-spawn" yaw="-90" kit="main"/>
+    <default region="observer-spawn" kit="observers"/>
+</spawns>
+<kits>
+    <kit id="main">
+        <item slot="0" unbreakable="true" lore="`aOne-hit kill!" material="iron sword">
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="1" unbreakable="true" lore="`aOne-shot, one-hit kill!" material="bow">
+            <enchantment>power</enchantment>
+            <enchantment>sharpness</enchantment>
+        </item>
+        <item slot="2" material="arrow" amount="2"/>
+        <item slot="8" material="string"/>
+        <helmet material="iron helmet" unbreakable="true" locked="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true" locked="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true" locked="true"/>
+        <effect duration="3s" amplifier="255">damage resistance</effect>
+        <effect duration="3s">absorption</effect>
+        <max-health>6</max-health>
+        <walk-speed>1.2</walk-speed>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="observers">
+        <effect>night vision</effect>
+    </kit>
+</kits>
+<rage/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kill-rewards>
+    <kill-reward>
+        <item material="string"/>
+    </kill-reward>
+</kill-rewards>
+<regions>
+    <cuboid id="cyan-spawn" min="41,62,-112" max="39,62,-114"/>
+    <cuboid id="lime-spawn" min="-27,62,-182" max="-29,62,-180"/>
+    <cuboid id="orange-spawn" min="-29,62,-44" max="-27,62,-46"/>
+    <cuboid id="purple-spawn" min="-97,62,-114" max="-95,62,-112"/>
+    <cuboid id="observer-spawn" min="-27,197,-112" max="-29,197,-114"/>
+    <cuboid id="cyan-woolroom" min="56,0,-120" max="66,256,-106"/>
+    <cuboid id="lime-woolroom" min="-35,0,-197" max="-21,256,-207"/>
+    <cuboid id="orange-woolroom" min="-21,0,-29" max="-35,256,-19"/>
+    <cuboid id="purple-woolroom" min="-112,0,-106" max="-122,256,-120"/>
+    <point id="cyan-spawner">61,65,-113</point>
+    <point id="lime-spawner">-28,65,-202</point>
+    <point id="orange-spawner">-28,65,-24</point>
+    <point id="purple-spawner">-117,65,-113</point>
+    <block id="cyan-lime" location="45,63,-114"/>
+    <block id="cyan-orange" location="45,63,-113"/>
+    <block id="cyan-purple" location="45,63,-112"/>
+    <block id="lime-cyan" location="-30,63,-187"/>
+    <block id="lime-orange" location="-28,63,-187"/>
+    <block id="lime-purple" location="-27,63,-187"/>
+    <block id="orange-cyan" location="-27,63,-40"/>
+    <block id="orange-lime" location="-28,63,-40"/>
+    <block id="orange-purple" location="-30,63,-40"/>
+    <block id="purple-cyan" location="-102,63,-112"/>
+    <block id="purple-lime" location="-102,63,-113"/>
+    <block id="purple-orange" location="-102,63,-114"/>
+    <apply block-break="never"/>
+    <apply region="cyan-woolroom" enter="not(cyan)"/>
+    <apply region="lime-woolroom" enter="not(lime)"/>
+    <apply region="orange-woolroom" enter="not(orange)"/>
+    <apply region="purple-woolroom" enter="not(purple)"/>
+    <apply velocity="@0.0,2.1,0.0">
+        <region>
+            <union>
+                <cuboid min="-1,53.5,-124" max="-5,54.5,-120"/>
+                <cuboid min="-17,53.5,-152" max="-21,54.5,156"/>
+                <cuboid min="10,53.5,-161" max="14,54,-165"/>
+                <cuboid min="11,53.5,-102" max="15,54.5,-106"/>
+                <cuboid min="20,53.5,-75" max="23,54.5,-71"/>
+                <cuboid min="-17,53.5,-86" max="-21,54.5,-90"/>
+                <cuboid min="-39,53.5,-74" max="-35,54.5,-70"/>
+                <cuboid min="-66,53.5,-65" max="-70,54.5,-61"/>
+                <cuboid min="-55,53.5,-120" max="-51,54.5,-106"/>
+                <cuboid min="-67,53.5,-124" max="-71,54.5,-120"/>
+                <cuboid min="-76,53.5,-151" max="-80,54.5,-155"/>
+                <cuboid min="-39,53.5,-140" max="-35,54.5,-136"/>
+                <cuboid min="-63,63.5,-170" max="-67,64.5,-174"/>
+                <cuboid min="-36,63.5,-121" max="-40,64.5,-125"/>
+                <cuboid min="-20,63.5,-121" max="-16,64.5,-125"/>
+                <cuboid min="29,63.5,-148" max="33,64.5,-152"/>
+                <cuboid min="-20,63.5,-105" max="-16,64.5,-101"/>
+                <cuboid min="7,63.5,-56" max="11,64.5,-52"/>
+                <cuboid min="-36,63.5,-105" max="-40,64.5,-101"/>
+                <cuboid min="-85,63.5,-78" max="-89,64.5,-74"/>
+            </union>
+        </region>
+    </apply>
+</regions>
+<wools craftable="true">
+    <wools color="cyan" location="61,62,-113">
+        <wool team="lime" monument="lime-cyan"/>
+        <wool team="orange" monument="orange-cyan"/>
+        <wool team="purple" monument="purple-cyan"/>
+    </wools>
+    <wools color="lime" location="-28,62,-202">
+        <wool team="cyan" monument="cyan-lime"/>
+        <wool team="orange" monument="orange-lime"/>
+        <wool team="purple" monument="purple-lime"/>
+    </wools>
+    <wools color="orange" location="-28,62,-24">
+        <wool team="cyan" monument="cyan-orange"/>
+        <wool team="lime" monument="lime-orange"/>
+        <wool team="purple" monument="purple-orange"/>
+    </wools>
+    <wools color="purple" location="-117,62,-113">
+        <wool team="cyan" monument="cyan-purple"/>
+        <wool team="lime" monument="lime-purple"/>
+        <wool team="orange" monument="orange-purple"/>
+    </wools>
+</wools>
+<spawners>
+    <spawner spawn-region="cyan-spawner" player-region="cyan-woolroom" max-entities="1" delay="6s">
+        <item material="ink sack" damage="6"/> <!-- cyan dye -->
+    </spawner>
+    <spawner spawn-region="cyan-spawner" player-region="cyan-woolroom" max-entities="1" delay="1s">
+        <potion damage="2">
+            <effect amplifier="2" duration="10s">speed</effect>
+        </potion>
+    </spawner>
+    <spawner spawn-region="lime-spawner" player-region="lime-woolroom" max-entities="1" delay="6s">
+        <item material="ink sack" damage="10"/> <!-- lime dye -->
+    </spawner>
+    <spawner spawn-region="lime-spawner" player-region="lime-woolroom" max-entities="1" delay="1s">
+        <potion damage="2">
+            <effect amplifier="2" duration="10s">speed</effect>
+        </potion>
+    </spawner>
+    <spawner spawn-region="orange-spawner" player-region="orange-woolroom" max-entities="1" delay="6s">
+        <item material="ink sack" damage="14"/> <!-- orange dye -->
+    </spawner>
+    <spawner spawn-region="orange-spawner" player-region="orange-woolroom" max-entities="1" delay="1s">
+        <potion damage="2">
+            <effect amplifier="2" duration="10s">speed</effect>
+        </potion>
+    </spawner>
+    <spawner spawn-region="purple-spawner" player-region="purple-woolroom" max-entities="1" delay="6s">
+        <item material="ink sack" damage="5"/> <!-- purple dye -->
+    </spawner>
+    <spawner spawn-region="purple-spawner" player-region="purple-woolroom" max-entities="1" delay="1s">
+        <potion damage="2">
+            <effect amplifier="2" duration="10s">speed</effect>
+        </potion>
+    </spawner>
+</spawners>
+<item-mods>
+    <rule>
+        <match>
+            <material>wool</material>
+        </match>
+        <modify show-can-place-on="false">
+            <can-place-on>
+                <material>wool</material>
+            </can-place-on>
+        </modify>
+    </rule>
+</item-mods>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+</itemremove>
+<itemkeep>
+    <item>string</item>
+</itemkeep>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<timelock>on</timelock>
+</map>
