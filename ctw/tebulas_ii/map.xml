@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Tebulas II</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Be the first to team to capture three wools from the other teams!</objective>
 <created>2014-07-29</created>
 <authors>
@@ -39,7 +39,6 @@
             <enchantment>sharpness</enchantment>
         </item>
         <item slot="2" material="arrow" amount="2"/>
-        <item slot="8" material="string"/>
         <helmet material="iron helmet" unbreakable="true" locked="true"/>
         <chestplate material="leather chestplate" team-color="true" unbreakable="true" locked="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true" locked="true"/>
@@ -60,6 +59,7 @@
 <kill-rewards>
     <kill-reward>
         <item material="string"/>
+        <item material="arrow"/>
     </kill-reward>
 </kill-rewards>
 <regions>
@@ -76,19 +76,21 @@
     <point id="lime-spawner">-28,65,-202</point>
     <point id="orange-spawner">-28,65,-24</point>
     <point id="purple-spawner">-117,65,-113</point>
-    <block id="cyan-lime" location="45,63,-114"/>
-    <block id="cyan-orange" location="45,63,-113"/>
-    <block id="cyan-purple" location="45,63,-112"/>
-    <block id="lime-cyan" location="-30,63,-187"/>
-    <block id="lime-orange" location="-28,63,-187"/>
-    <block id="lime-purple" location="-27,63,-187"/>
-    <block id="orange-cyan" location="-27,63,-40"/>
-    <block id="orange-lime" location="-28,63,-40"/>
-    <block id="orange-purple" location="-30,63,-40"/>
-    <block id="purple-cyan" location="-102,63,-112"/>
-    <block id="purple-lime" location="-102,63,-113"/>
-    <block id="purple-orange" location="-102,63,-114"/>
-    <apply block-break="never"/>
+    <union id="wool-monuments">
+        <block id="cyan-lime" location="45,63,-114"/>
+        <block id="cyan-orange" location="45,63,-113"/>
+        <block id="cyan-purple" location="45,63,-112"/>
+        <block id="lime-cyan" location="-30,63,-187"/>
+        <block id="lime-orange" location="-28,63,-187"/>
+        <block id="lime-purple" location="-27,63,-187"/>
+        <block id="orange-cyan" location="-27,63,-40"/>
+        <block id="orange-lime" location="-28,63,-40"/>
+        <block id="orange-purple" location="-30,63,-40"/>
+        <block id="purple-cyan" location="-102,63,-112"/>
+        <block id="purple-lime" location="-102,63,-113"/>
+        <block id="purple-orange" location="-102,63,-114"/>
+    </union>
+    <apply block-break="never" block-place="wool-monuments"/>
     <apply region="cyan-woolroom" enter="not(cyan)"/>
     <apply region="lime-woolroom" enter="not(lime)"/>
     <apply region="orange-woolroom" enter="not(orange)"/>
@@ -97,14 +99,14 @@
         <region>
             <union>
                 <cuboid min="-1,53.5,-124" max="-5,54.5,-120"/>
-                <cuboid min="-17,53.5,-152" max="-21,54.5,156"/>
+                <cuboid min="-17,53.5,-152" max="-21,54.5,-156"/>
                 <cuboid min="10,53.5,-161" max="14,54,-165"/>
                 <cuboid min="11,53.5,-102" max="15,54.5,-106"/>
-                <cuboid min="20,53.5,-75" max="23,54.5,-71"/>
+                <cuboid min="20,53.5,-75" max="24,54.5,-71"/>
                 <cuboid min="-17,53.5,-86" max="-21,54.5,-90"/>
                 <cuboid min="-39,53.5,-74" max="-35,54.5,-70"/>
                 <cuboid min="-66,53.5,-65" max="-70,54.5,-61"/>
-                <cuboid min="-55,53.5,-120" max="-51,54.5,-106"/>
+                <cuboid min="-55,53.5,-102" max="-51,54.5,-106"/>
                 <cuboid min="-67,53.5,-124" max="-71,54.5,-120"/>
                 <cuboid min="-76,53.5,-151" max="-80,54.5,-155"/>
                 <cuboid min="-39,53.5,-140" max="-35,54.5,-136"/>
