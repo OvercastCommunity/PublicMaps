@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>The Frog Smile</name>
-<version>1.1.0</version>
+<version>1.1.1</version>
 <objective>Destroy both of the enemy team's monuments</objective>
 <created>2014-04-13</created>
 <constants>
@@ -55,6 +55,9 @@
         <effect duration="3s">absorption</effect>
     </kit>
 </kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <kill-rewards>
     <kill-reward>
         <item material="iron ingot" amount="3"/>
