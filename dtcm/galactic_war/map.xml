@@ -1,0 +1,106 @@
+<map proto="1.5.0">
+<name>Galactic War</name>
+<version>1.4.0</version>
+<objective>Destroy the enemy team's core</objective>
+<created>2014-03-23</created>
+<include id="gapple-kill-reward"/>
+<include id="lava-buckets"/>
+<include id="iron-bulkcrafting"/>
+<authors>
+    <author uuid="714ff88f-25d9-4754-9caa-d0f3cf24f230"/> <!-- thegoodguy -->
+    <author uuid="a77ca382-3fc8-4130-943f-453f62443591"/> <!-- B_korner -->
+</authors>
+<contributors>
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML"/> <!-- dinner1111 -->
+    <contributor uuid="60b8bb6e-a9cb-425f-912e-e30e4c84f067" contribution="XML"/> <!-- pigdevil2010 -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="40">Red</team>
+    <team id="blue" color="blue" max="40">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" region="red-spawn" yaw="-90" kit="spawn"/>
+    <spawn team="blue" region="blue-spawn" yaw="90" kit="spawn"/>
+    <default region="obs-spawn" angle="-476.5,70.5,-209.5" kit="obs"/>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="2" material="diamond pickaxe" unbreakable="true"/>
+        <item slot="3" material="iron axe" unbreakable="true">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="4" material="log" damage="2" amount="64"/>
+        <item slot="5" material="stained glass" amount="64" team-color="true"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" material="shears" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!"/>
+        <item slot="28" material="arrow"/>
+        <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+        <chestplate material="chainmail chestplate" unbreakable="true">
+            <enchantment level="4">blast protection</enchantment>
+        </chestplate>
+        <leggings material="leather leggings" unbreakable="true" team-color="true"/>
+        <boots material="leather boots" unbreakable="true" team-color="true"/>
+        <effect>night vision</effect>
+    </kit>
+    <kit id="obs">
+        <effect>night vision</effect>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<regions>
+    <cylinder id="obs-spawn" base="-476.5,69,-216.5" radius="4" height="1"/>
+    <block id="red-spawn" location="-634,44.5,-314"/>
+    <block id="blue-spawn" location="-314,44.5,-313"/>
+    <union id="spawn-protection">
+        <sphere id="red-base" origin="-621,36,-314" radius="11"/>
+        <sphere id="blue-base" origin="-328,36,-313" radius="11"/>
+        <cuboid id="blue-spawn-area" min="-322,47,-318" max="-311,37,-307"/>
+        <cuboid id="red-spawn-area" min="-626,47,-308" max="-638,37,-319"/>
+    </union>
+    <cuboid id="red-core" min="-592,39,-317" max="-587,35,-312"/>
+    <cuboid id="blue-core" min="-358,39,-311" max="-363,35,-316"/>
+    <apply region="spawn-protection" block="never" message="You may not modify the spawn area!"/>
+    <apply region="red-base" enter="red" message="You may not enter the enemy spawn!"/>
+    <apply region="blue-base" enter="blue" message="You may not enter the enemy spawn!"/>
+</regions>
+<cores material="obsidian" leak="5" mode-changes="true" show-progress="true">
+    <core team="red" region="red-core"/>
+    <core team="blue" region="blue-core"/>
+</cores>
+<modes>
+    <mode after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode after="20m" material="packed ice" name="`bPACKED ICE CORE MODE"/>
+</modes>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>shears</tool>
+    <tool>water bucket</tool>
+    <tool>bucket</tool>
+</toolrepair>
+<itemkeep>
+    <item>log</item>
+    <item>wood</item>
+    <item>stained glass</item>
+    <item>golden apple</item>
+</itemkeep>
+<maxbuildheight>105</maxbuildheight>
+</map>
