@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Banana Split</name>
-<version>2.2.4</version>
+<version>2.2.5</version>
 <created>2013-08-28</created>
 <objective>Capture the other team's wools!</objective>
 <include id="gapple-kill-reward"/>
@@ -17,18 +17,17 @@
 </teams>
 <kits>
     <kit id="spawn-kit">
-        <item slot="0" material="stone sword"/>
-        <item slot="1" material="bow"/>
-        <item slot="2" material="iron axe"/>
-        <item slot="3" damage="2" amount="32" material="log"/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" enchantment="infinity" material="bow"/>
+        <item slot="2" unbreakable="true" material="iron axe"/>
+        <item slot="3" damage="2" amount="64" material="wood"/>
         <item slot="4" team-color="true" amount="64" material="wool"/>
-        <item slot="5" material="shears"/>
+        <item slot="5" unbreakable="true" material="shears"/>
         <item slot="6" amount="32" material="vine"/>
-        <item slot="7" amount="64" name="`rBanana Bread" material="bread"/>
-        <item slot="8" material="iron ingot"/>
+        <item slot="7" material="iron ingot"/>
+        <item slot="8" material="golden apple"/>
         <item slot="9" enchantment="knockback" material="stick"/>
-        <item slot="28" amount="64" material="arrow"/>
-        <item slot="19" amount="64" material="arrow"/>
+        <item slot="28" material="arrow"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" team-color="true" material="leather leggings"/>
@@ -194,7 +193,6 @@
     <tool>shears</tool>
 </toolrepair>
 <itemremove>
-    <item>vine</item>
     <item>stick</item>
     <item>yellow flower</item>
     <item>red rose</item>
@@ -203,14 +201,21 @@
     <item>leather boots</item>
     <item>leather leggings</item>
     <item>arrow</item>
-    <item>bread</item>
-    <item>log:2</item>
     <item>golden apple</item>
 </itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>vine</item>
+    <item>wool:11</item>
+    <item>wool:14</item>
+    <item>iron ingot</item>
+    <item>golden apple</item>
+</itemkeep>
 <kill-rewards>
     <kill-reward>
         <item material="iron ingot"/>
-        <item amount="5" material="arrow"/>
+        <item damage="2" amount="8" material="wood"/>
+        <item team-color="true" amount="8" material="wool"/>
     </kill-reward>
 </kill-rewards>
 <tnt>
@@ -219,5 +224,8 @@
     <friendly-defuse>off</friendly-defuse>
     <blockdamage>off</blockdamage>
 </tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 <maxbuildheight>38</maxbuildheight>
 </map>
