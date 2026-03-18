@@ -1,7 +1,17 @@
 <map proto="1.5.0">
 <name>Kyoto</name>
-<version>1.1.7</version>
+<version>1.1.8</version>
 <objective>Destroy the other team's two monuments to win!</objective>
+<constants>
+    <constant id="eff.team-1">white-team</constant>
+    <constant id="eff.team-2">yellow-team</constant>
+    <constant id="eff.t1-m1-region">yellow-east-monument</constant>
+    <constant id="eff.t1-m2-region">yellow-west-monument</constant>
+    <constant id="eff.t2-m1-region">white-east-monument</constant>
+    <constant id="eff.t2-m2-region">white-west-monument</constant>
+    <constant id="eff.modes-preset">every-5m</constant>
+</constants>
+<include id="efficiency-variables"/>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="c1d94f18-6ea3-495a-8d1b-7d9eaf393f64"/> <!-- KyotoSquid -->
@@ -65,39 +75,30 @@
         <cuboid id="yellow-spawn-area" min="6,74,160" max="-9,90,150"/>
     </union>
     <negative id="void-area">
-        <cuboid min="48,58,-59" max="-51,88,176"/>
+        <cuboid id="buildable-area" min="48,58,-59" max="-51,88,176"/>
     </negative>
     <apply enter="white-team" region="white-spawn-area" message="You may not enter the enemy's spawn!"/>
     <apply enter="yellow-team" region="yellow-spawn-area" message="You may not enter the enemy's spawn!"/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You can only break iron blocks in spawn!"/>
     <apply block="never" region="void-area" message="You may not interact with blocks outside the playing field."/>
+    <cuboid id="white-east-monument" min="43,65,-28" max="39,69,-30"/>
+    <cuboid id="white-west-monument" min="-43,65,-28" max="-47,69,-30"/>
+    <cuboid id="yellow-east-monument" min="43,65,144" max="39,69,146"/>
+    <cuboid id="yellow-west-monument" min="-43,65,144" max="-47,69,146"/>
 </regions>
-<destroyables materials="gold block;obsidian">
-    <destroyables name="Left Monument">
-        <destroyable owner="white-team">
-            <region>
-                <cuboid min="43,65,-28" max="39,69,-30"/>
-            </region>
-        </destroyable>
-        <destroyable owner="yellow-team">
-            <region>
-                <cuboid min="-43,65,144" max="-47,69,146"/>
-            </region>
-        </destroyable>
+<destroyables materials="gold block;obsidian" mode-changes="true">
+    <destroyables name="East Monument">
+        <destroyable owner="white-team" region="white-east-monument"/>
+        <destroyable owner="yellow-team" region="yellow-east-monument"/>
     </destroyables>
-    <destroyables name="Right Monument">
-        <destroyable owner="white-team">
-            <region>
-                <cuboid min="-43,65,-28" max="-47,69,-30"/>
-            </region>
-        </destroyable>
-        <destroyable owner="yellow-team">
-            <region>
-                <cuboid min="43,65,144" max="39,69,146"/>
-            </region>
-        </destroyable>
+    <destroyables name="West Monument">
+        <destroyable owner="white-team" region="white-west-monument"/>
+        <destroyable owner="yellow-team" region="yellow-west-monument"/>
     </destroyables>
 </destroyables>
+<renewables>
+    <renewable region="spawns" renew-filter="only-iron"/>
+</renewables>
 <toolrepair>
     <tool>iron sword</tool>
     <tool>bow</tool>
@@ -113,6 +114,9 @@
     <item>leather boots</item>
     <item>gold block</item>
     <item>obsidian</item>
+    <item>seeds</item>
+    <item>string</item>
+    <item>beacon</item>
 </itemremove>
 <itemkeep>
     <item>wood</item>
