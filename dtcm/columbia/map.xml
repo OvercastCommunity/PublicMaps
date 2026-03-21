@@ -1,0 +1,189 @@
+<map proto="1.5.0">
+<name>Columbia</name>
+<version>1.0.7</version>
+<objective>Destroy the enemy's core and monument!</objective>
+<constant id="void-plane">80</constant> <!-- void death include -->
+<constant id="override-health">false</constant> <!-- void death include -->
+<include id="void-death"/>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_ -->
+</authors>
+<contributors>
+    <contributor uuid="5c0d744e-2561-4e24-966c-2f5ca4a8f8eb"/> <!-- SamSafari -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="24" plural="true">The Founders</team>
+    <team id="red" color="dark red" max="24" plural="true">Vox Populi</team>
+</teams>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="28" amount="64" material="arrow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="gold axe"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="31" amount="64" material="wood"/>
+        <item slot="5" amount="64" material="glass"/>
+        <item slot="7" material="bucket"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="-90">
+            <point>354.5,9,314.5</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-135">
+            <point>436.5,145,417.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="45">
+            <point>304.5,145,211.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="red-team">red</team>
+    <team id="blue-team">blue</team>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+</filters>
+<regions>
+    <union id="gold-regen">
+        <cuboid id="blue-gold-regen" min="472,149,391" max="463,143,382"/>
+        <cuboid id="red-gold-regen" min="269,149,238" max="278,143,247"/>
+    </union>
+    <union id="spawn-islands">
+        <union id="blue-spawn-islands">
+            <!--island-->
+            <rectangle min="428,426" max="477,406"/>
+            <!--bridge-->
+            <rectangle min="451,407" max="442,396"/>
+        </union>
+        <union id="red-spawn-islands">
+            <!--island-->
+            <rectangle min="313,203" max="264,223"/>
+            <!--bridge-->
+            <rectangle min="290,222" max="299,233"/>
+        </union>
+    </union>
+    <union id="monuments">
+        <cuboid id="blue-monument" min="394,147,379" max="393,150,378"/>
+        <cuboid id="red-monument" min="347,150,251" max="348,147,250"/>
+    </union>
+    <union id="cores">
+        <cuboid id="blue-core" min="453,161,312" max="458,164,317"/>
+        <cuboid id="red-core" min="288,161,312" max="283,164,317"/>
+    </union>
+    <negative id="no-build">
+        <cuboid id="playable" min="502,112,445" max="242,171,184"/>
+    </negative>
+    <apply use="deny-beacon"/>
+    <apply block="never" region="spawn-islands"/>
+    <apply block="never" message="You may not build outside of the map!" region="no-build"/>
+    <apply enter="deny(red-team)" region="blue-spawn-islands" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="deny(blue-team)" region="red-spawn-islands" message="You may not enter the enemy team's spawn!"/>
+</regions>
+<renewables>
+    <renewable region="gold-regen" rate="3.5" grow="true" particles="true" sound="true">
+        <renew-filter>
+            <material>gold block</material>
+        </renew-filter>
+    </renewable>
+</renewables>
+<cores material="obsidian" leak="3" modes="lapis-mode">
+    <core team="blue" region="blue-core"/>
+    <core team="red" region="red-core"/>
+</cores>
+<destroyables name="Monument" materials="obsidian" modes="beacon-mode">
+    <destroyable owner="blue" region="blue-monument"/>
+    <destroyable owner="red" region="red-monument"/>
+</destroyables>
+<modes>
+    <mode id="lapis-mode" after="20m" material="emerald block" name="`9LAPIS CORE MODE"/>
+    <mode id="beacon-mode" after="25m" material="beacon" name="`bBEACON MONUMENT MODE"/>
+</modes>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>gold axe</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>beacon</item>
+    <item>lapis block</item>
+    <item>iron block</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>glass</item>
+    <item>arrow</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="32">wood</item>
+        <item amount="16">glass</item>
+        <item amount="16">arrow</item>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<crafting>
+    <!-- gold bulkcrafting -->
+    <shaped override="false">
+        <result material="gold helmet" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">gold block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="gold chestplate" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>III</row>
+            <row>III</row>
+        </shape>
+        <ingredient symbol="I">gold block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="gold leggings" amount="9"/>
+        <shape>
+            <row>III</row>
+            <row>I.I</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">gold block</ingredient>
+    </shaped>
+    <shaped override="false">
+        <result material="gold boots" amount="9"/>
+        <shape>
+            <row>I.I</row>
+            <row>I.I</row>
+        </shape>
+        <ingredient symbol="I">gold block</ingredient>
+    </shaped>
+</crafting>
+</map>

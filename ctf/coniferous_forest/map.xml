@@ -1,0 +1,152 @@
+<map proto="1.4.2">
+<name>Coniferous Forest</name>
+<version>1.2.8</version>
+<objective>Be the first team to 400 points by capturing and holding flags and by killing the enemy!</objective>
+<created>2015-03-06</created>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<broadcasts>
+    <alert after="1s">Capturing the enemy team's flag will obtain 50 points!</alert>
+    <alert after="3s">Holding the King Flag inside your net will obtain 1 point per second!</alert>
+    <tip after="30s">To capture the flag, step into your net. It's marked by a beacon!</tip>
+</broadcasts>
+<teams>
+    <team id="blue-team" color="blue" max="32">Blue</team>
+    <team id="red-team" color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parent="default-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <chestplate unbreakable="true" locked="true" material="iron chestplate"/>
+        <leggings team-color="true" unbreakable="true" material="leather leggings"/>
+        <boots team-color="true" unbreakable="true" material="leather boots"/>
+        <effect duration="5s" amplifier="255">damage resistance</effect>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <chestplate unbreakable="true" locked="true" material="gold chestplate">
+            <enchantment>protection</enchantment>
+        </chestplate>
+        <effect>slowness</effect>
+        <effect amplifier="-1">health boost</effect>
+    </kit>
+    <kit id="reset-health" force="true">
+        <chestplate unbreakable="true" locked="true" material="iron chestplate"/>
+        <effect duration="0s" amplifier="0">slowness</effect>
+        <effect amplifier="0">health boost</effect>
+    </kit>
+</kits>
+<spawns>
+    <default kit="default-kit">
+        <region yaw="0">
+            <cuboid min="-578.5,62,10.5" max="-580.5,62,10.5"/>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit">
+        <regions yaw="-135">
+            <cuboid min="-668.5,50,76.5" max="-667.5,50,75.5"/>
+            <cuboid min="-665.5,48,134.5" max="-664.5,48,133.5"/>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <regions yaw="135">
+            <cuboid min="-490.5,50,76.5" max="-491.5,50,75.5"/>
+            <cuboid min="-494.5,48,134.5" max="-493.5,48,133.5"/>
+        </regions>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
+<regions>
+    <union id="spawns">
+        <cuboid id="blue-spawn" min="-656.5,53,72.5" max="-657.5,59,79.5"/>
+        <cuboid id="red-spawn" min="-502.5,53,72.5" max="-501.5,59,79.5"/>
+    </union>
+    <union id="nets">
+        <cylinder id="blue-net" base="-631.5,49,117.5" radius="4" height="4"/>
+        <cylinder id="red-net" base="-527.5,49,117.5" radius="4" height="4"/>
+    </union>
+    <cuboid id="entry-denied" min="-578,55,131" max="-578,57,132"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="never" region="entry-denied" message="You may not enter this area!"/>
+    <apply block="never"/>
+</regions>
+<flags pickup-kit="flag-pickup" drop-kit="reset-health">
+    <flag id="blue-flag" name="Blue Flag" color="light blue">
+        <post return-time="30s" owner="blue-team" pickup-filter="only-red" yaw="179">-654.5,48,145.5</post>
+    </flag>
+    <flag id="red-flag" name="Red Flag" color="red">
+        <post return-time="30s" owner="red-team" pickup-filter="only-blue" yaw="179">-504.5,48,145.5</post>
+    </flag>
+    <net points="50" region="blue-net" flag="red-flag" return="blue-flag">
+        <capture-filter>
+            <all>
+                <filter id="only-blue"/>
+                <not>
+                    <flag-carried>blue-flag</flag-carried>
+                </not>
+            </all>
+        </capture-filter>
+    </net>
+    <net points="50" region="red-net" flag="blue-flag" return="red-flag">
+        <capture-filter>
+            <all>
+                <filter id="only-red"/>
+                <not>
+                    <flag-carried>red-flag</flag-carried>
+                </not>
+            </all>
+        </capture-filter>
+    </net>
+    <post id="king-post">-579.5,35,32.5</post>
+    <post id="blue-post" respawn-time="5s" owner="blue-team" yaw="-90" points-rate="1" pickup-filter="only-red">-631.5,49,117.5</post>
+    <post id="red-post" respawn-time="5s" owner="red-team" yaw="90" points-rate="1" pickup-filter="only-blue">-527.5,49,117.5</post>
+    <flag name="King Flag" color="silver" shared="true" post="king-post">
+        <net owner="blue-team" region="blue-net" post="blue-post" capture-filter="only-blue"/>
+        <net owner="red-team" region="red-net" post="red-post" capture-filter="only-red"/>
+    </flag>
+</flags>
+<score>
+    <limit>400</limit>
+    <kills>2</kills>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>gold chestplate</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

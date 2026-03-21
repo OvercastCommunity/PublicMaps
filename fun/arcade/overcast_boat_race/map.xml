@@ -1,0 +1,189 @@
+<map proto="1.4.0">
+    <version>1.0</version>
+    <phase>development</phase>
+    <name>Overcast Boat Race</name>
+    <objective>Race and win!</objective>
+    <authors>
+        <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+        <!-- rockymine -->
+    </authors>
+    <teams>
+        <team id="player-1" color="white" max="1">Player 1</team>
+        <team id="player-2" color="white" max="1">Player 2</team>
+        <team id="player-3" color="white" max="1">Player 3</team>
+        <team id="player-4" color="white" max="1">Player 4</team>        
+        <team id="player-5" color="white" max="1">Player 5</team>
+        <team id="player-6" color="white" max="1">Player 6</team>
+        <team id="player-7" color="white" max="1">Player 7</team>
+        <team id="player-8" color="white" max="1">Player 8</team>      
+    </teams>
+    <spawns>
+        <spawn team="player-1">
+            <regions yaw="-180">
+                <block>140.5,58,116.5</block>
+            </regions>
+        </spawn>
+        <spawn team="player-2">
+            <regions yaw="-180">
+                <block>134.5,58,116.5</block>
+            </regions>
+        </spawn>
+        <spawn team="player-3">
+            <regions yaw="-180">
+                <block>128.5,58,116.5</block>
+            </regions>
+        </spawn>
+        <spawn team="player-4">
+            <regions yaw="-180">
+                <block>122.5,58,116.5</block>
+            </regions>
+        </spawn>
+        <spawn team="player-5">
+            <regions yaw="-180">
+                <block>116.5,58,116.5</block>
+            </regions>
+        </spawn>
+        <spawn team="player-6">
+            <regions yaw="-180">
+                <block>110.5,58,116.5</block>
+            </regions>
+        </spawn>
+        <spawn team="player-7">
+            <regions yaw="-180">
+                <block>104.5,58,116.5</block>
+            </regions>
+        </spawn>
+        <spawn team="player-8">
+            <regions yaw="-180">
+                <block>98.5,58,116.5</block>
+            </regions>
+        </spawn>
+        <default>
+            <regions yaw="-180">
+                <block>119.5,56,22.5</block>
+            </regions>
+        </default>
+    </spawns>
+    <kits>
+        <kit id="boat-kit">
+            <item slot="1">boat</item>
+        </kit>
+    </kits>
+    <destroyables name="Boat Holder" materials="gold block" mode-changes="true" show="false">
+        <destroyable owner="player-1">
+            <region>
+                <cuboid min="95,55,114" max="143,57,114"/>
+            </region>
+        </destroyable>
+    </destroyables>
+    <modes>
+        <mode after="10s" material="air" name="Race starts"/>
+    </modes>
+    <regions>
+        <apply block="never">
+            <region>
+                <everywhere/>
+            </region>
+        </apply>
+        <apply kit="boat-kit">
+            <region>
+                <region id="portal"/>
+            </region>
+        </apply>
+        <cuboid id="scorebox" min="96,32,21" max="143,35,26"/>
+        <cuboid id="portal-1" min="138,5,-81" max="143,1,116"/>
+        <cuboid id="portal-2" min="132,5,-81" max="137,1,116"/>
+        <cuboid id="portal-3" min="126,5,-81" max="131,1,116"/>
+        <cuboid id="portal-4" min="120,5,-81" max="125,1,116"/>
+        <cuboid id="portal-5" min="114,5,-81" max="119,1,116"/>
+        <cuboid id="portal-6" min="108,5,-81" max="113,1,116"/>
+        <cuboid id="portal-7" min="102,5,-81" max="107,1,116"/>
+        <cuboid id="portal-8" min="96,5,-81" max="101,1,116"/>
+        <union id="portal">
+            <region id="portal-1"/>
+            <region id="portal-2"/>
+            <region id="portal-3"/>
+            <region id="portal-4"/>
+            <region id="portal-5"/>
+            <region id="portal-6"/>
+            <region id="portal-7"/>
+            <region id="portal-8"/>
+        </union>
+    </regions>
+    <score>
+        <box value="1" region="scorebox"/>
+        <limit>1</limit>
+        <kills>0</kills>
+        <deaths>0</deaths>
+    </score>
+    <portals>
+        <portal yaw="@-180">
+            <region>
+                <region id="portal-1"/>
+            </region>
+            <destination>
+                <block>140.5,58,116.5</block>
+            </destination>        
+        </portal>
+        <portal yaw="@-180">
+            <region>
+                <region id="portal-2"/>
+            </region>
+            <destination>
+                <block>134.5,58,116.5</block>
+            </destination>        
+        </portal>
+        <portal yaw="@-180">
+            <region>
+                <region id="portal-3"/>
+            </region>
+            <destination>
+                <block>128.5,58,116.5</block>
+            </destination>        
+        </portal>
+        <portal yaw="@-180">
+            <region>
+                <region id="portal-4"/>
+            </region>
+            <destination>
+                <block>122.5,58,116.5</block>
+            </destination>        
+        </portal>
+        <portal yaw="@-180">
+            <region>
+                <region id="portal-5"/>
+            </region>
+            <destination>
+                <block>116.5,58,116.5</block>
+            </destination>        
+        </portal>
+        <portal yaw="@-180">
+            <region>
+                <region id="portal-6"/>
+            </region>
+            <destination>
+                <block>110.5,58,116.5</block>
+            </destination>        
+        </portal>
+        <portal yaw="@-180">
+            <region>
+                <region id="portal-7"/>
+            </region>
+            <destination>
+                <block>104.5,58,116.5</block>
+            </destination>        
+        </portal>
+        <portal yaw="@-180">
+            <region>
+                <region id="portal-8"/>
+            </region>
+            <destination>
+                <block>98.5,58,116.5</block>
+            </destination>        
+        </portal>
+    </portals>
+    <itemremove>
+        <item>stick</item>
+        <item>wood</item>
+    </itemremove>    
+</map>

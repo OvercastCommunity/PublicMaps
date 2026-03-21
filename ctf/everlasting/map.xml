@@ -1,0 +1,119 @@
+<map proto="1.4.2">
+<name>Everlasting</name>
+<version>1.1.1</version>
+<created>2016-07-31</created>
+<objective>Capture the enemy's flag as many times as possible in 12 minutes!</objective>
+<time result="score" overtime="2m" max-overtime="6m">12m</time>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<teams>
+    <team id="cyan" color="dark aqua" max="16">Cyan</team>
+    <team id="purple" color="dark purple" max="16">Purple</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="20" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="2">protection_projectile</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect amplifier="1" duration="5">heal</effect>
+        <effect amplifier="1" duration="5">damage resistance</effect>
+    </kit>
+    <kit id="flag-pickup" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0" amplifier="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <block>-656,4,-254</block>
+        </region>
+    </default>
+    <spawn team="cyan" kit="spawn-kit">
+        <region yaw="0">
+            <point>-655.5,4,-327</point>
+        </region>
+    </spawn>
+    <spawn team="purple" kit="spawn-kit">
+        <region yaw="180">
+            <point>-655.5,4,-180</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-cyan">cyan</team>
+    <team id="only-purple">purple</team>
+    <any id="only-plants">
+        <material>long grass</material>
+        <material>double plant</material>
+        <material>red rose</material>
+    </any>
+</filters>
+<regions>
+    <union id="nets">
+        <union id="cyan-net">
+            <cylinder base="-655.5,4,-326.5" height="3" radius="2.5"/>
+            <cylinder base="-655.5,2,-305.5" height="3" radius="2"/>
+        </union>
+        <union id="purple-net">
+            <cylinder base="-655.5,4,-181.5" height="3" radius="2.5"/>
+            <cylinder base="-655.5,2,-201.5" height="3" radius="2"/>
+        </union>
+    </union>
+    <apply block="only-plants"/>
+</regions>
+<flags pickup-kit="flag-pickup" drop-kit="flag-drop">
+    <flag id="cyan-flag"
+          name="Cyan Flag"
+          color="cyan"
+          carry-message="Return the `3`lCyan Flag `rto the `5Purple Beacon`r, or your own flag post!">
+        <post return-time="20s" owner="cyan" pickup-filter="only-purple" yaw="0">-655.5,2,-305.5</post>
+        <net points="1" region="purple-net"/>
+    </flag>
+    <flag id="purple-flag"
+          name="Purple Flag"
+          color="purple"
+          carry-message="Return the `5`lPurple Flag `rto the `3Cyan Beacon`r, or your own flag post!">
+        <post return-time="20s" owner="purple" pickup-filter="only-cyan" yaw="-180">-655.5,2,-201.5</post>
+        <net points="1" region="cyan-net"/>
+    </flag>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>red rose</item>
+    <item>seeds</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item material="golden apple"/>
+    <item amount="10" material="arrow"/>
+</kill-reward>
+<respawn auto="true"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

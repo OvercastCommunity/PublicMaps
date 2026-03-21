@@ -1,0 +1,217 @@
+<map proto="1.5.0">
+<name>BackSPOOK</name>
+<version>2.0.3</version>
+<phase>staging</phase>
+<objective>Capture the two enemy's wools!</objective>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<contributors>
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML and Map Fixing"/> <!-- ollyj -->
+</contributors>
+<teams>
+    <team id="yellow" color="yellow" max="36">Yellow</team>
+    <team id="purple" color="dark purple" max="36">Purple</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="28" material="arrow"/>
+        <item slot="2" enchantment="dig speed" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="diamond axe"/>
+        <item slot="4" unbreakable="true" material="diamond spade"/>
+        <item slot="5" amount="64" damage="1" material="wood"/>
+        <item slot="6" team-color="true" amount="32" material="stained clay"/>
+        <item slot="7" amount="32" material="cooked beef"/>
+        <item slot="29" amount="16" material="torch"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="17" amount="2" material="web"/>
+        <chestplate team-color="true" material="leather chestplate"/>
+        <boots enchantment="protection fall:2" unbreakable="true" material="iron boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="yellow" kit="spawn-kit">
+        <regions>
+            <cylinder base="0.5,9,-77.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="purple" kit="spawn-kit" yaw="-180">
+        <regions>
+            <cylinder base="0.5,9,78.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <default yaw="-90">
+        <regions>
+            <cylinder base="0.5,50,0.5" radius="3" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <any id="breakable-woolroom">
+        <material>stained glass</material>
+        <material>web</material>
+    </any>
+    <any id="only-purple-web">
+        <material>web</material>
+        <material>stained glass</material>
+        <team id="only-purple">purple</team>
+    </any>
+    <any id="only-yellow-web">
+        <material>web</material>
+        <material>stained glass</material>
+        <team id="only-yellow">yellow</team>
+    </any>
+    <all id="allow-iron-regen">
+        <material id="iron-only">iron block</material>
+        <cause>world</cause>
+    </all>
+</filters>
+<regions>
+    <union id="denied-area">
+        <rectangle id="denied-area-yellow" min="-28,-142" max="29,-72"/>
+        <rectangle id="denied-area-purple" min="-28,73" max="29,141"/>
+    </union>
+    <union id="yellow-wool-rooms">
+        <union id="magenta-wool">
+            <rectangle min="39,-123" max="43,-136"/>
+            <rectangle min="34,-122" max="39,-135"/>
+            <rectangle min="29,-121" max="34,-134"/>
+        </union>
+        <union id="pink-wool">
+            <rectangle min="-38,-123" max="-43,-136"/>
+            <rectangle min="-33,-122" max="-38,-135"/>
+            <rectangle min="-28,-121" max="-33,-134"/>
+        </union>
+    </union>
+    <union id="purple-wool-rooms">
+        <union id="blue-wool">
+            <rectangle min="39,124" max="43,137"/>
+            <rectangle min="34,123" max="39,136"/>
+            <rectangle min="29,122" max="34,135"/>
+        </union>
+        <union id="lightblue-wool">
+            <rectangle min="-38,124" max="-43,137"/>
+            <rectangle min="-33,123" max="-38,136"/>
+            <rectangle min="-28,122" max="-33,135"/>
+        </union>
+    </union>
+    <union id="spawns">
+        <union id="purple-spawn">
+            <rectangle min="-16,73" max="12,109"/>
+            <rectangle id="purple-entrance" min="3,73" max="-2,69"/>
+        </union>
+        <union id="yellow-spawn">
+            <rectangle min="-13,-109" max="16,-72"/>
+            <rectangle id="yellow-entrance" min="-2,-72" max="3,-68"/>
+        </union>
+    </union>
+    <apply block="deny-void" message="You may not build in the void!">
+        <region>
+            <negative>
+                <rectangle min="-43,-136" max="44,137"/>
+            </negative>
+            <region id="denied-area"/>
+        </region>
+    </apply>
+    <apply block="never" use="never">
+        <region>
+            <cylinder base="0,30,0" radius="10" height="30"/>
+        </region>
+    </apply>
+    <apply block="breakable-woolroom">
+        <region>
+            <region id="yellow-wool-rooms"/>
+            <region id="purple-wool-rooms"/>
+        </region>
+    </apply>
+    <apply enter="only-purple" message="Only purple may enter this area!">
+        <region>
+            <region id="yellow-wool-rooms"/>
+            <region id="purple-entrance"/>
+        </region>
+    </apply>
+    <apply enter="only-yellow" message="Only yellow may enter this area!">
+        <region>
+            <region id="purple-wool-rooms"/>
+            <region id="yellow-entrance"/>
+        </region>
+    </apply>
+    <apply region="yellow-wool-rooms" use="only-purple" block-break="only-purple-web"/>
+    <apply region="purple-wool-rooms" use="only-yellow" block-break="only-yellow-web"/>
+    <apply region="spawns" block-break="iron-only" block-place="allow-iron-regen" message="You may only break iron!"/>
+</regions>
+<wools>
+    <wools team="yellow">
+        <wool color="blue" location="36.5,17,130.5">
+            <monument>
+                <block>-5,10,-78</block>
+            </monument>
+        </wool>
+        <wool color="light blue" location="-35.5,17,130.5">
+            <monument>
+                <block>5,10,-78</block>
+            </monument>
+        </wool>
+    </wools>
+    <wools team="purple">
+        <wool color="magenta" location="36.5,17,-129.5">
+            <monument>
+                <block>-5,10,78</block>
+            </monument>
+        </wool>
+        <wool color="pink" location="-35.5,17,-129.5">
+            <monument>
+                <block>5,10,78</block>
+            </monument>
+        </wool>
+    </wools>
+</wools>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>stained clay</item>
+    <item>cooked beef</item>
+    <item>web</item>
+    <item>string</item>
+    <item>wood</item>
+    <item>emerald block</item>
+    <item>beacon</item>
+    <item>diamond axe</item>
+    <item>diamond spade</item>
+    <item>ladder</item>
+</itemremove>
+<toolrepair>
+    <tool>arrow</tool>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<renewables>
+    <renewable rate="0.5" grow="true" particles="true" sound="false">
+        <region>
+            <union id="iron">
+                <rectangle id="purple-iron" min="11,84" max="-11,104"/>
+                <rectangle id="yellow-iron" min="-11,-84" max="11,-104"/>
+            </union>
+        </region>
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" damage="1" material="wood"/>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>28</maxbuildheight>
+</map>

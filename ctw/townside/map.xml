@@ -1,0 +1,432 @@
+<map proto="1.5.0">
+<name>Townside</name>
+<variant id="halloween" world="halloween" override="true">TownSPOOK</variant>
+<variant id="christmas" world="christmas" override="true">TownFROST</variant>
+<version>2.0.7</version>
+<include id="gapple-kill-reward"/>
+<include id="iron-bulkcrafting"/>
+<objective>Capture the wool!</objective>
+<if variant="default">
+    <created>2021-10-01</created>
+</if>
+<if variant="halloween">
+    <created>2021-10-09</created>
+    <world>
+        <timeset>13000</timeset>
+    </world>
+</if>
+<if variant="christmas">
+    <created>2021-11-30</created>
+</if>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+    <if variant="christmas">
+        <author uuid="ec5ec930-5cf3-4f8a-ad9f-09056aeed71b"/> <!-- Tundren -->
+        <author uuid="b2539be1-8f98-4375-b653-9d91cd04c30e"/> <!-- Mewzzy -->
+    </if>
+</authors>
+<contributors>
+    <contributor uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- Chicky -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+    <if variant="halloween">
+        <contributor uuid="d1e3251c-def5-4328-a7e9-09335934d316" contribution="Feedback"/> <!-- byRobo -->
+        <contributor uuid="cc01304f-907b-4c80-b9c2-8f61872969d1" contribution="Interior"/> <!-- Just_ -->
+        <contributor uuid="ec5ec930-5cf3-4f8a-ad9f-09056aeed71b" contribution="Building help"/> <!-- Tundren -->
+        <contributor uuid="b2539be1-8f98-4375-b653-9d91cd04c30e" contribution="Building help"/> <!-- Mewzzy -->
+    </if>
+    <unless variant="halloween">
+        <contributor uuid="d1e3251c-def5-4328-a7e9-09335934d316"/> <!-- byRobo -->
+        <contributor uuid="cc01304f-907b-4c80-b9c2-8f61872969d1"/> <!-- Just_ -->
+        <contributor uuid="1ce939c1-ad66-4ef2-90b3-dd6d46d00368"/> <!-- dardonet -->
+    </unless>
+    <contributor uuid="e2d2c2c6-cea9-4510-9ab2-a091b5605b30" contribution="XML"/> <!-- Ruediger_LP -->
+</contributors>
+<teams>
+    <unless variant="halloween">
+        <team id="blue-team" color="blue" max="30">Blue</team>
+        <team id="red-team" color="red" max="30">Red</team>
+    </unless>
+    <if variant="halloween">
+        <team id="blue-team" color="gold" max="30">Orange</team>
+        <team id="red-team" color="dark purple" max="30">Purple</team>
+    </if>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true">
+            <enchantment>arrow infinite</enchantment>
+        </item>
+        <item slot="2" material="iron pickaxe" unbreakable="true">
+            <enchantment level="2">dig speed</enchantment>
+        </item>
+        <item slot="3" material="iron axe" unbreakable="true">
+            <enchantment>dig speed</enchantment>
+        </item>
+        <item slot="4" material="wood" amount="48"/>
+        <unless variant="halloween">
+            <item slot="5" material="smooth brick" amount="48" damage="3"/>
+        </unless>
+        <if variant="halloween">
+            <item slot="5" material="nether brick" amount="48" damage="3"/>
+            <item slot="7" material="pumpkin pie" amount="16" name="`rTUP" lore="`r`6Totally Useless Pie"/>
+        </if>
+        <item slot="6" material="ladder" amount="32"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28">arrow</item>
+        <item slot="29" material="stone spade" unbreakable="true">
+            <enchantment>dig speed</enchantment>
+        </item>
+        <item slot="30" material="shears" unbreakable="true"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
+        <leggings material="leather leggings" team-color="true" unbreakable="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true"/>
+        <effect amplifier="255">damage resistance</effect>
+    </kit>
+    <kit force="true" id="reset-resistance-kit">
+        <effect duration="0" amplifier="0">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point"/>
+    <spawn team="red-team" kit="spawn-kit" yaw="180" region="red-spawn-point"/>
+    <default yaw="90" region="obs-spawn-point"/>
+</spawns>
+<constants>
+    <unless variant="halloween">
+        <constant id="team-1-wool-damage">11</constant>
+        <constant id="team-2-wool-damage">14</constant>
+        <constant id="team-1-wool-color">red</constant>
+        <constant id="team-2-wool-color">blue</constant>
+    </unless>
+    <if variant="halloween">
+        <constant id="team-1-wool-damage">1</constant>
+        <constant id="team-2-wool-damage">10</constant>
+        <constant id="team-1-wool-color">purple</constant>
+        <constant id="team-2-wool-color">orange</constant>
+    </if>
+</constants>
+<wools craftable="false">
+    <wool team="blue-team" color="${team-1-wool-color}" monument="blue-team-red-wool" location="-23,19.2,-143"/>
+    <wool team="red-team" color="${team-2-wool-color}" monument="red-team-blue-wool" location="24,19.2,144"/>
+</wools>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <any id="block-break-void-filter">
+        <all>
+            <any>
+                <material>leaves</material>
+                <material>log</material>
+                <if variant="halloween">
+                    <material>leaves_2</material>
+                    <material>log_2</material>
+                    <material>fence</material>
+                    <material>carpet</material>
+                    <material>fire</material>
+                    <material>dark oak fence</material>
+                    <material>acacia fence</material>
+                    <material>wool</material>
+                    <material>stained clay</material>
+                    <material>wood step</material>
+                    <material>coal block</material>
+                    <material>netherrack</material>
+                    <material>quartz block</material>
+                    <material>quartz stairs</material>
+                    <material>step</material>
+                </if>
+                <if variant="christmas">
+                    <material>stained glass pane</material>
+                    <material>skull</material>
+                    <material>snow</material>
+                </if>
+            </any>
+            <void/>
+        </all>
+        <not id="block-place-void-filter">
+            <void/>
+        </not>
+    </any>
+    <all id="red-woolroom-filter">
+        <team>blue-team</team>
+        <filter id="woolrooms-filter"/>
+    </all>
+    <all id="blue-woolroom-filter">
+        <team>red-team</team>
+        <filter id="woolrooms-filter"/>
+    </all>
+    <any id="woolrooms-filter">
+        <material>web</material>
+        <material>wood</material>
+        <unless variant="christmas">
+            <material>stained clay</material>
+        </unless>
+        <if variant="christmas">
+            <material>smooth brick:3</material>
+            <material>ladder</material>
+        </if>
+    </any>
+    <all id="only-iron-cause-world">
+        <material id="only-iron">iron block</material>
+        <cause>world</cause>
+    </all>
+    <material id="only-air">air</material>
+</filters>
+<regions>
+    <cylinder id="blue-spawn-point" base="-68.5,12.5,20.5" radius="1" height="0"/>
+    <cylinder id="red-spawn-point" base="69.5,12.5,-19.5" radius="1" height="0"/>
+    <cylinder id="obs-spawn-point" base="0.5,4.5,0.5" radius="1" height="0"/>
+    <block id="blue-team-red-wool">-69,10,25</block>
+    <block id="red-team-blue-wool">69,10,-25</block>
+    <unless variant="christmas">
+        <point id="blue-wool-spawn">24,19.2,144</point>
+        <point id="red-wool-spawn">-23,19.2,-143</point>
+    </unless>
+    <if variant="christmas">
+        <point id="blue-wool-spawn">24,19.2,145</point>
+        <point id="red-wool-spawn">-23,19.2,-144</point>
+    </if>
+    <negative id="not-spawns">
+        <union id="spawns">
+            <rectangle id="blue-spawn" min="-77,13" max="-60,78"/>
+            <rectangle id="red-spawn" min="61,-77" max="78,-12"/>
+        </union>
+    </negative>
+    <unless variant="christmas">
+        <rectangle id="blue-woolroom" min="15,124" max="32,151"/>
+        <rectangle id="red-woolroom" min="-31,-150" max="-14,-123"/>
+    </unless>
+    <if variant="christmas">
+        <rectangle id="blue-woolroom" min="15,125" max="32,152"/>
+        <rectangle id="red-woolroom" min="-31,-151" max="-14,-124"/>
+    </if>
+    <negative id="not-build-area">
+        <union id="build-area">
+            <rectangle min="-31,-24" max="-14,14"/>
+            <rectangle min="15,-13" max="32,25"/>
+        </union>
+    </negative>
+    <rectangle id="obs-spawn" min="-4,-5" max="5,6"/>
+    <!-- applicators -->
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="blue-woolroom" message="You may not enter your own wool room!"/>
+    <apply enter="only-blue" region="red-woolroom" message="You may not enter your own wool room!"/>
+    <apply block-place="only-iron-cause-world" block-break="only-iron" region="spawns" message="You may not edit spawn!"/>
+    <apply block="blue-woolroom-filter" region="blue-woolroom" message="You may not edit the wool room!"/>
+    <apply block="red-woolroom-filter" region="red-woolroom" message="You may not edit the wool room!"/>
+    <apply block="never" region="obs-spawn" message="You may not edit the observer spawn!"/>
+    <apply block-place="block-place-void-filter" block-break="block-break-void-filter" region="not-build-area" message="You may not edit the void!"/>
+    <apply kit="reset-resistance-kit" region="not-spawns"/>
+</regions>
+<spawners>
+    <spawner player-region="blue-woolroom" spawn-region="blue-wool-spawn" delay="3s">
+        <item material="wool" damage="${team-1-wool-damage}" amount="3"/>
+    </spawner>
+    <spawner player-region="red-woolroom" spawn-region="red-wool-spawn" delay="3s">
+        <item material="wool" damage="${team-2-wool-damage}" amount="3"/>
+    </spawner>
+</spawners>
+<itemkeep>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>wood</item>
+    <item>smooth brick</item>
+    <item>ladder</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>stone spade</item>
+    <item>shears</item>
+</itemkeep>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+    <tool>stone spade</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>seeds</item>
+    <item>dirt</item>
+    <item>sapling</item>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>apple</item>
+    <item>string</item>
+    <item>smooth brick</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <if variant="halloween">
+        <item>pumpkin pie</item>
+        <item>glowstone dust</item>
+        <item>fence</item>
+        <item>dark oak fence</item>
+        <item>acacia fence</item>
+        <item>wood step</item>
+        <item>coal block</item>
+        <item>netherrack</item>
+        <item>quartz block</item>
+        <item>quartz stairs</item>
+        <item>step</item>
+    </if>
+    <if variant="christmas">
+        <item>skull item</item>
+        <item>red rose</item>
+        <item>long grass</item>
+        <item>flower pot</item>
+        <item>clay ball</item>
+        <item>stone</item>
+        <item>cobblestone</item>
+        <item>quartz block</item>
+        <item>snowball</item>
+        <item>dirt</item>
+        <item>step</item>
+        <item>stained clay</item>
+        <item>wool:13</item>
+        <item>wool:15</item>
+        <item>brick</item>
+        <item>sandstone stairs</item>
+        <item>carpet</item>
+        <item>quartz stairs</item>
+    </if>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <unless variant="halloween">
+                    <material>smooth brick</material>
+                </unless>
+                <if variant="halloween">
+                    <material>nether brick</material>
+                </if>
+                <material>ladder</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+    <if variant="christmas">
+        <rule>
+            <filter>
+                <material>snow block</material>
+            </filter>
+            <drops>
+                <item material="snow block"/>
+            </drops>
+        </rule>
+    </if>
+</block-drops>
+<item-mods>
+    <rule>
+        <match>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+            <material>iron sword</material>
+            <material>iron pickaxe</material>
+            <material>iron axe</material>
+            <material>iron spade</material>
+            <material>shears</material>
+            <material>diamond chestplate</material>
+            <material>bow</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<crafting>
+    <shaped override="false">
+        <if variant="default">
+            <result material="gold sword" unbreakable="true" enchantments="sharpness" name="`r`eBanana on a Stick" lore="`r`7forged by the xml author :)|`r`e`k∞`r`bRuediger_LP`r: hi!"/>
+        </if>
+        <if variant="halloween">
+            <result material="gold sword" unbreakable="true" enchantments="sharpness" name="`r`k∞`r`ePumpkin on a Stick" lore="`r`6forged by the xml author :)|`r`e`k∞`r`bRuediger_LP`r: hi!"/>
+        </if>
+        <if variant="christmas">
+            <result material="gold sword" unbreakable="true" enchantments="sharpness" name="`r`b Frozen Banana on a Stick" lore="`r`7forged by the xml author :)|`r`e`k∞`r`bRuediger_LP`r: hi!"/>
+        </if>
+        <shape>
+            <row>H</row>
+            <row>H</row>
+            <row>S</row>
+        </shape>
+        <unless variant="halloween">
+            <ingredient symbol="H">hay block</ingredient>
+        </unless>
+        <if variant="halloween">
+            <ingredient symbol="H">jack o lantern</ingredient>
+        </if>
+        <if variant="christmas">
+            <ingredient symbol="H">snow block</ingredient>
+        </if>
+        <ingredient symbol="S">stick</ingredient>
+    </shaped>
+    <shaped override="false">
+        <if variant="default">
+            <result material="gold helmet" unbreakable="true" enchantments="thorns;protection;protection_projectile" name="`r`eBanana Crown" lore="`r`7[Server]: for some time now he thought|`r`7[Server]: he could rule the world|`r`7[Server]: with his secrets hidden everywhere|`r`e`k∞`r`bRuediger_LP`r: wait what?!"/>
+        </if>
+        <if variant="halloween">
+            <result material="gold helmet" unbreakable="true" enchantments="thorns;protection;protection_projectile" name="`6`ePumpkin Crown" lore="`r`7[Server]: for some time now he thought|`r`7[Server]: he could rule the world|`r`7[Server]: with his secrets hidden everywhere|`r`e`k∞`r`bRuediger_LP`r: wait what?!"/>
+        </if>
+        <if variant="christmas">
+            <result material="gold helmet" unbreakable="true" enchantments="thorns;protection;protection_projectile" name="`r`b Frozen Banana Crown" lore="`r`7[Server]: for some time now he thought|`r`7[Server]: he could rule the world|`r`7[Server]: with his secrets hidden everywhere|`r`e`k∞`r`bRuediger_LP`r: wait what?!"/>
+        </if>
+        <shape>
+            <row>HHH</row>
+            <row>H.H</row>
+        </shape>
+        <if variant="default">
+            <ingredient symbol="H">hay block</ingredient>
+        </if>
+        <if variant="halloween">
+            <ingredient symbol="H">jack o lantern</ingredient>
+        </if>
+        <if variant="christmas">
+            <ingredient symbol="H">snow block</ingredient>
+        </if>
+    </shaped>
+</crafting>
+<renewables>
+    <renewable sound="false" region="spawns" renew-filter="only-iron" replace-filter="only-air"/>
+</renewables>
+<broadcasts>
+    <if variant="default">
+        <tip after="1s" every="5m">`r`7Welcome to `9`lTownside`r`7! `8Wool Room `7is diagonally opposite of spawn!</tip>
+        <tip after="2s" every="5m">`r`7Welcome to `9`lTownside`r`7! `8Iron Blocks `7are opposite of spawn!</tip>
+    </if>
+    <if variant="halloween">
+        <tip after="1s" every="5m">`r`7Welcome to `9`lTownSPOOK`r`7! `8Wool Room `7is diagonally opposite of spawn!</tip>
+        <tip after="2s" every="5m">`r`7Welcome to `9`lTownSPOOK`r`7! `8Iron Blocks `7are opposite of spawn!</tip>
+    </if>
+    <if variant="christmas">
+        <tip after="1s" every="5m">`r`7Welcome to `9`lTownFROST`r`7! `8Wool Room `7is diagonally opposite of spawn!</tip>
+        <tip after="2s" every="5m">`r`7Welcome to `9`lTownFROST`r`7! `8Iron Blocks `7are opposite of spawn!</tip>
+    </if>
+</broadcasts>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>27</maxbuildheight>
+<kill-rewards>
+    <kill-reward>
+        <item material="wood" amount="32"/>
+        <unless variant="halloween">
+            <item material="smooth brick" damage="3" amount="16"/>
+        </unless>
+        <if variant="halloween">
+            <item material="nether brick" amount="16"/>
+        </if>
+    </kill-reward>
+</kill-rewards>
+</map>

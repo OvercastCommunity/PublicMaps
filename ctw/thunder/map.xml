@@ -1,0 +1,413 @@
+<map proto="1.5.0">
+<name>Thunder</name>
+<version>2.1.6</version>
+<include id="gapple-kill-reward"/>
+<variant id="christmas" world="christmas" override="true">Thundersnow</variant>
+<variant id="christmas_te" world="christmas_te" override="true">Thundersnow: TE</variant>
+<objective>Capture the other teams' wools and take them to your victory monument to win.</objective>
+<if variant="default">
+    <created>2014-08-14</created>
+</if>
+<if variant="christmas">
+    <created>2021-11-18</created>
+</if>
+<unless variant="christmas_te">
+    <constant id="team-size">12</constant>
+    <constant id="max-overfill" delete="true"/>
+</unless>
+<if variant="christmas_te">
+    <time result="objectives">15m</time>
+    <constant id="team-size">4</constant>
+    <constant id="max-overfill">4</constant>
+</if>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<contributors>
+    <contributor uuid="9bfbc560-244a-4e28-ab70-185f39740ec1" contribution="Old XML"/> <!-- Zan -->
+    <contributor uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f" contribution="Provided feedback for update"/> <!-- Pugzy -->
+    <contributor uuid="f70b7a8f-93b2-480f-9d54-88e21485a042" contribution="Provided feedback for update"/> <!-- Diamyx -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="${team-size}" max-overfill="${max-overfill}">Blue</team>
+    <team id="green" color="green" max="${team-size}" max-overfill="${max-overfill}">Green</team>
+    <team id="red" color="dark red" max="${team-size}" max-overfill="${max-overfill}">Red</team>
+    <team id="yellow" color="yellow" max="${team-size}" max-overfill="${max-overfill}">Yellow</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="4" unbreakable="true" material="iron spade"/>
+        <item slot="5" amount="48" team-color="true" material="stained clay"/>
+        <item slot="6" amount="24" team-color="true" material="stained glass"/>
+        <item slot="8" material="golden apple"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <unless variant="christmas_te">
+            <leggings unbreakable="true" material="chainmail leggings"/>
+            <boots unbreakable="true" material="iron boots"/>
+        </unless>
+        <if variant="christmas_te">
+            <leggings unbreakable="true" material="iron leggings"/>
+            <boots unbreakable="true" team-color="true" material="leather boots"/>
+        </if>
+        <effect duration="3">heal</effect>
+        <effect duration="5" amplifier="5">damage resistance</effect>
+    </kit>
+    <if variant="christmas_te">
+        <kit id="wool-armour" force="true">
+            <chestplate unbreakable="true" material="diamond chestplate"/>
+        </kit>
+        <kit id="wool-kit">
+            <item amount="3" material="golden apple"/>
+        </kit>
+    </if>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <cylinder base="0.5,7,0.5" radius="1" height="0"/>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region angle="0,7,0">
+            <cylinder base="-93.5,7,-15.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="green" kit="spawn-kit">
+        <region angle="0,7,0">
+            <cylinder base="94.5,7,16.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region angle="0,7,0">
+            <cylinder base="-15.5,7,94.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="yellow" kit="spawn-kit">
+        <region angle="0,7,0">
+            <cylinder base="16.5,7,-93.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <not id="not-blue">
+        <team id="only-blue">blue</team>
+    </not>
+    <not id="not-green">
+        <team id="only-green">green</team>
+    </not>
+    <not id="not-red">
+        <team id="only-red">red</team>
+    </not>
+    <not id="not-yellow">
+        <team id="only-yellow">yellow</team>
+    </not>
+    <not id="no-void">
+        <void/>
+    </not>
+    <if variant="christmas,christmas_te">
+        <any id="block-break-void-filter">
+            <all>
+                <any>
+                    <material>leaves</material>
+                    <material>log</material>
+                    <material>snow</material>
+                </any>
+                <void/>
+            </all>
+            <not id="block-place-void-filter">
+                <void/>
+            </not>
+        </any>
+    </if>
+    <all id="wool-edit">
+        <filter id="no-void"/>
+        <any>
+            <material>web</material>
+            <material>stained clay</material>
+            <material>stained glass</material>
+            <material>wool</material>
+            <material>wood</material>
+        </any>
+    </all>
+    <all id="blue-wool-edit">
+        <not>
+            <any>
+                <filter id="only-blue"/>
+                <material>stained clay:11</material>
+            </any>
+        </not>
+        <filter id="wool-edit"/>
+    </all>
+    <all id="green-wool-edit">
+        <not>
+            <any>
+                <filter id="only-green"/>
+                <material>stained clay:13</material>
+            </any>
+        </not>
+        <filter id="wool-edit"/>
+    </all>
+    <all id="red-wool-edit">
+        <not>
+            <any>
+                <filter id="only-red"/>
+                <material>stained clay:14</material>
+            </any>
+        </not>
+        <filter id="wool-edit"/>
+    </all>
+    <all id="yellow-wool-edit">
+        <not>
+            <any>
+                <filter id="only-yellow"/>
+                <material>stained clay:4</material>
+            </any>
+        </not>
+        <filter id="wool-edit"/>
+    </all>
+</filters>
+<regions>
+    <union id="wools">
+        <rectangle id="blue-wool" min="-105,19" max="-119,2"/>
+        <rectangle id="green-wool" min="106,-18" max="120,-1"/>
+        <rectangle id="red-wool" min="19,106" max="2,120"/>
+        <rectangle id="yellow-wool" min="-18,-105" max="-1,-119"/>
+    </union>
+    <union id="spawns-and-monuments">
+        <rectangle id="blue-spawn-protect" min="-81,-9" max="-99,-21"/>
+        <rectangle id="green-spawn-protect" min="82,10" max="100,22"/>
+        <rectangle id="red-spawn-protect" min="-9,82" max="-21,100"/>
+        <rectangle id="yellow-spawn-protect" min="10,-81" max="22,-99"/>
+        <rectangle id="blue-monument-protect" min="-73,-13" max="-70,-20"/>
+        <rectangle id="green-monument-protect" min="74,14" max="71,21"/>
+        <rectangle id="red-monument-protect" min="-13,74" max="-20,71"/>
+        <rectangle id="yellow-monument-protect" min="14,-73" max="21,-70"/>
+    </union>
+    <union id="signs-and-observer-spawn">
+        <rectangle id="observer-spawn" min="2,2" max="-1,-1"/>
+        <cuboid id="blue-sign" min="-2,7,1" max="-5,9,0"/>
+        <cuboid id="green-sign" min="3,7,0" max="6,9,1"/>
+        <cuboid id="red-sign" min="1,7,3" max="0,9,6"/>
+        <cuboid id="yellow-sign" min="0,7,-2" max="1,9,-5"/>
+    </union>
+    <negative id="deny-blocks">
+        <union>
+            <rectangle id="center-island" min="-16,17" max="17,-16"/>
+            <rectangle id="blue-main-and-spawn" min="-16,21" max="-88,-21"/>
+            <rectangle id="green-main-and-spawn" min="17,-20" max="89,22"/>
+            <rectangle id="red-main-and-spawn" min="21,17" max="-21,89"/>
+            <rectangle id="yellow-main-and-spawn" min="-20,-16" max="22,-88"/>
+            <unless variant="christmas_te">
+                <rectangle id="blue-two-islands" min="-56,16" max="-113,45"/>
+                <rectangle id="green-two-islands" min="57,-15" max="114,-44"/>
+                <rectangle id="red-two-islands" min="16,57" max="45,114"/>
+                <rectangle id="yellow-two-islands" min="-15,-56" max="-44,-113"/>
+            </unless>
+        </union>
+    </negative>
+    <union id="wool-capture-points">
+        <point>-18,8,73</point>
+        <point>-18,8,71</point>
+        <point>-18,8,71</point>
+        <point>-73,8,-18</point>
+        <point>-72,8,-18</point>
+        <point>-71,8,-18</point>
+        <point>18,8,-73</point>
+        <point>18,8,-72</point>
+        <point>18,8,-71</point>
+        <point>73,8,18</point>
+        <point>72,8,18</point>
+        <point>71,8,18</point>
+    </union>
+    <apply enter="never" region="wool-capture-points" message="You may not block this area!"/>
+    <!-- spawns -->
+    <apply enter="only-blue" region="blue-spawn-protect" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-green" region="green-spawn-protect" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-red" region="red-spawn-protect" message="You may not enter the enemy's spawn!"/>
+    <apply enter="only-yellow" region="yellow-spawn-protect" message="You may not enter the enemy's spawn!"/>
+    <apply block="never" region="spawns-and-monuments" message="You may not block/break spawns or monuments!"/>
+    <apply block="never" region="signs-and-observer-spawn" message="You may not obstruct spawn!"/>
+    <!-- wool rooms enter -->
+    <apply enter="not-blue" region="blue-wool" message="You may not enter your own wool room!"/>
+    <apply enter="not-green" region="green-wool" message="You may not enter your own wool room!"/>
+    <apply enter="not-red" region="red-wool" message="You may not enter your own wool room!"/>
+    <apply enter="not-yellow" region="yellow-wool" message="You may not enter your own wool room!"/>
+    <!-- wool rooms blocks -->
+    <apply block="blue-wool-edit" use="not-blue" region="blue-wool" message="You many not modify the wool room!"/>
+    <apply block="green-wool-edit" use="not-green" region="green-wool" message="You many not modify the wool room!"/>
+    <apply block="red-wool-edit" use="not-red" region="red-wool" message="You many not modify the wool room!"/>
+    <apply block="yellow-wool-edit" use="not-yellow" region="yellow-wool" message="You many not modify the wool room!"/>
+    <!-- void -->
+    <unless variant="christmas,christmas_te">
+        <apply block="no-void" region="deny-blocks" message="You may not edit the void!"/>
+    </unless>
+    <if variant="christmas,christmas_te">
+        <apply block-place="block-place-void-filter" block-break="block-break-void-filter" region="deny-blocks" message="You may not edit the void!"/>
+    </if>
+    <if variant="christmas_te">
+        <apply kit="wool-armour" region="wools"/>
+        <apply kit="wool-kit" region="wools"/>
+    </if>
+</regions>
+<wools craftable="false">
+    <wool team="blue" color="green" location="113.5,10,-7.5">
+        <monument>
+            <block>-72,8,-18</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="red" location="8.5,10,113.5">
+        <monument>
+            <block>-71,8,-18</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="yellow" location="-7.5,10,-112.5">
+        <monument>
+            <block>-73,8,-18</block>
+        </monument>
+    </wool>
+    <wool team="green" color="blue" location="-112.5,10,8.5">
+        <monument>
+            <block>72,8,18</block>
+        </monument>
+    </wool>
+    <wool team="green" color="red" location="8.5,10,113.5">
+        <monument>
+            <block>73,8,18</block>
+        </monument>
+    </wool>
+    <wool team="green" color="yellow" location="-7.5,10,-112.5">
+        <monument>
+            <block>71,8,18</block>
+        </monument>
+    </wool>
+    <wool team="red" color="blue" location="-112.5,10,8.5">
+        <monument>
+            <block>-18,8,73</block>
+        </monument>
+    </wool>
+    <wool team="red" color="green" location="113.5,10,-7.5">
+        <monument>
+            <block>-18,8,71</block>
+        </monument>
+    </wool>
+    <wool team="red" color="yellow" location="-7.5,10,-112.5">
+        <monument>
+            <block>-18,8,72</block>
+        </monument>
+    </wool>
+    <wool team="yellow" color="blue" location="-112.5,10,8.5">
+        <monument>
+            <block>18,8,-71</block>
+        </monument>
+    </wool>
+    <wool team="yellow" color="green" location="113.5,10,-7.5">
+        <monument>
+            <block>18,8,-73</block>
+        </monument>
+    </wool>
+    <wool team="yellow" color="red" location="8.5,10,113.5">
+        <monument>
+            <block>18,8,-72</block>
+        </monument>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <unless variant="christmas_te">
+        <item>chainmail leggings</item>
+        <item>iron boots</item>
+    </unless>
+    <if variant="christmas_te">
+        <item>iron leggings</item>
+        <item>leather boots</item>
+    </if>
+    <item>sapling</item>
+    <item>torch</item>
+    <item>string</item>
+    <item>snowball</item>
+    <item>seeds</item>
+</itemremove>
+<block-drops>
+    <rule>
+        <filter>
+            <material>snow block</material>
+        </filter>
+        <drops>
+            <item material="snow block"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>double step:9</material>
+        </filter>
+        <drops>
+            <item material="sandstone"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <any>
+                <material>stained clay</material>
+                <material>stained glass</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="glass"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemkeep>
+    <item>golden apple</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>wood</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8" team-color="true" material="stained clay"/>
+        <item amount="4" damage="1" material="wood"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<crafting>
+    <disable>wood button</disable>
+</crafting>
+<maxbuildheight>25</maxbuildheight>
+<damage>
+    <deny>
+        <all>
+            <relation>enemy</relation>
+            <attacker>
+                <filter id="wools"/>
+            </attacker>
+            <victim>
+                <filter id="wools"/>
+            </victim>
+        </all>
+    </deny>
+</damage>
+</map>

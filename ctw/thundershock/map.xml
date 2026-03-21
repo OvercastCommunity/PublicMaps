@@ -1,0 +1,294 @@
+<map proto="1.5.0">
+<name>Thundershock</name>
+<version>1.0.5</version>
+<created>2016-10-26</created>
+<objective>Capture the other teams' wools and take them to your victory monument to win.</objective>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="8" max-overfill="9">Blue</team>
+    <team id="green" color="green" max="8" max-overfill="9">Green</team>
+    <team id="red" color="dark red" max="8" max-overfill="9">Red</team>
+    <team id="yellow" color="yellow" max="8" max-overfill="9">Yellow</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment level="2">efficiency</enchantment>
+        </item>
+        <item slot="4" amount="32" team-color="true" material="stained clay"/>
+        <item slot="30" unbreakable="true" material="stone spade"/>
+        <item slot="5" amount="32" damage="1" material="wood"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="grilled pork"/>
+        <helmet unbreakable="true" material="iron helmet"/>
+        <chestplate unbreakable="true" material="chainmail chestplate">
+            <enchantment level="2">projectile_protection</enchantment>
+        </chestplate>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="5" amplifier="5">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="45">
+        <region>
+            <block>-55.5,6.5,-239.5</block>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit" yaw="-90">
+        <region>
+            <block>30.5,13.5,-292.5</block>
+        </region>
+    </spawn>
+    <spawn team="green" kit="spawn-kit">
+        <region>
+            <block>-2.5,13.5,-153.5</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" yaw="90">
+        <region>
+            <block>-141.5,13.5,-186.5</block>
+        </region>
+    </spawn>
+    <spawn team="yellow" kit="spawn-kit" yaw="-180">
+        <region>
+            <block>-108.5,13.5,-325.5</block>
+        </region>
+    </spawn>	
+</spawns>
+<filters>
+    <deny id="deny-blue">
+        <team id="only-blue">blue</team>
+    </deny>
+    <deny id="deny-green">
+        <team id="only-green">green</team>
+    </deny>	
+    <deny id="deny-red">
+        <team id="only-red">red</team>
+    </deny>
+    <deny id="deny-yellow">
+        <team id="only-yellow">yellow</team>
+    </deny>
+    <not id="no-void">
+        <void/>
+    </not>
+    <deny id="not-wool">
+        <material>wool</material>
+    </deny>
+    <all id="only-some">
+        <any>
+            <material>web</material>
+            <material>leaves</material>
+            <material>fence</material>
+        </any>
+    </all>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="18,-282" max="51,-299"/>
+        <rectangle id="green-spawn" min="-13,-166" max="4,-133"/>
+        <rectangle id="red-spawn" min="-129,-197" max="-162,-180"/>
+        <rectangle id="yellow-spawn" min="-98,-313" max="-115,-346"/>
+    </union>
+    <union id="wools">
+        <rectangle id="blue-wool" min="63,-240" max="84,-256"/>
+        <rectangle id="green-wool" min="-55,-121" max="-38,-100"/>
+        <rectangle id="red-wool" min="-174,-239" max="-195,-222"/>
+        <rectangle id="yellow-wool" min="-56,-358" max="-73,-379"/>
+    </union>
+    <union id="bridges">
+        <union id="front-wool">
+            <rectangle id="blue-front-wool" min="17,-229" max="27,-245"/>
+            <rectangle id="green-front-wool" min="-66,-167" max="-50,-157"/>
+            <rectangle id="red-front-wool" min="-128,-250" max="-138,-234"/>
+            <rectangle id="yellow-front-wool" min="-45,-312" max="-61,-322"/>
+        </union>
+        <union id="front-mid">
+            <rectangle id="blue-front-mid" min="-18,-245" max="-5,-227"/>
+            <rectangle id="green-front-mid" min="-50,-202" max="-68,-189"/>
+            <rectangle id="red-front-mid" min="-93,-234" max="-106,-252"/>
+            <rectangle id="yellow-front-mid" min="-61,-277" max="-43,-290"/>
+        </union>
+        <union id="to-bridges">
+            <union id="blue-to-x">
+                <rectangle id="blue-to-green" min="-15,-216" max="-27,-228"/>
+                <rectangle id="blue-to-yellow" min="-20,-250" max="-32,-262"/>
+            </union>
+            <union id="green-to-x">
+                <rectangle id="green-to-blue" min="-45,-204" max="-33,-216"/>
+                <rectangle id="green-to-red" min="-79,-199" max="-67,-211"/>
+            </union>
+            <union id="red-to-x">
+                <rectangle id="red-to-green" min="-91,-229" max="-79,-217"/>
+                <rectangle id="red-to-yellow" min="-96,-263" max="-84,-251"/>
+            </union>
+            <union id="yellow-to-x">
+                <rectangle id="yellow-to-blue" min="-32,-280" max="-44,-268"/>
+                <rectangle id="yellow-to-red" min="-66,-275" max="-78,-263"/>
+            </union>
+        </union>
+    </union>
+    <negative id="no-bridge">
+        <region id="bridges"/>
+    </negative>
+    <union id="blue-deny">
+        <region id="blue-wool"/>
+        <region id="green-spawn"/>
+        <region id="red-spawn"/>
+        <region id="yellow-spawn"/>
+    </union>
+    <union id="green-deny">
+        <region id="green-wool"/>
+        <region id="blue-spawn"/>
+        <region id="red-spawn"/>
+        <region id="yellow-spawn"/>
+    </union>
+    <union id="red-deny">
+        <region id="red-wool"/>
+        <region id="blue-spawn"/>
+        <region id="green-spawn"/>
+        <region id="yellow-spawn"/>
+    </union>
+    <union id="yellow-deny">
+        <region id="yellow-wool"/>
+        <region id="blue-spawn"/>
+        <region id="green-spawn"/>
+        <region id="red-spawn"/>
+    </union>
+    <apply enter="deny-blue" region="blue-deny" message="You may not enter this area!"/>
+    <apply enter="deny-green" region="green-deny" message="You may not enter this area!"/>
+    <apply enter="deny-red" region="red-deny" message="You may not enter this area!"/>
+    <apply enter="deny-yellow" region="yellow-deny" message="You may not enter this area!"/>
+    <apply block="not-wool" message="You may not place safeties!"/>
+    <apply block-break="only-some" block-place="never" region="wools"/>
+    <apply block="never" region="spawns" message="You may not modify this area!"/>
+    <apply block-place="no-void" region="no-bridge" message="You may not place blocks in the void area!"/>
+</regions>
+<wools>
+    <!-- blue -->
+    <wools team="blue">
+        <wool color="lime" location="-48.5,12,-107.5">
+            <monument>
+                <block>43,13,-293</block>
+            </monument>
+        </wool>
+        <wool color="red" location="-187.5,12,-232.5">
+            <monument>
+                <block>43,13,-292</block>
+            </monument>
+        </wool>
+        <wool color="yellow" location="-62.5,12,-371.5">
+            <monument>
+                <block>43,13,-291</block>
+            </monument>
+        </wool>
+    </wools>
+    <!-- green -->
+    <wools team="green">
+        <wool color="blue" location="76.5,12,-246.5">
+            <monument>
+                <block>-5,13,-141</block>
+            </monument>
+        </wool>
+        <wool color="red" location="-187.5,12,-232.5">
+            <monument>
+                <block>-3,13,-141</block>
+            </monument>
+        </wool>
+        <wool color="yellow" location="-62.5,12,-371.5">
+            <monument>
+                <block>-4,13,-141</block>
+            </monument>
+        </wool>
+    </wools>
+    <!-- red -->
+    <wools team="red">
+        <wool color="blue" location="76.5,12,-246.5">
+            <monument>
+                <block>-155,13,-188</block>
+            </monument>
+        </wool>
+        <wool color="lime" location="-48.5,12,-107.5">
+            <monument>
+                <block>-155,13,-189</block>
+            </monument>
+        </wool>
+        <wool color="yellow" location="-62.5,12,-371.5">
+            <monument>
+                <block>-155,13,-187</block>
+            </monument>
+        </wool>
+    </wools>
+    <!-- yellow -->
+    <wools team="yellow">
+        <wool color="blue" location="76.5,12,-246.5">
+            <monument>
+                <block>-109,13,-339</block>
+            </monument>
+        </wool>
+        <wool color="lime" location="-48.5,12,-107.5">
+            <monument>
+                <block>-108,13,-339</block>
+            </monument>
+        </wool>
+        <wool color="red" location="-187.5,12,-232.5">
+            <monument>
+                <block>-107,13,-339</block>
+            </monument>
+        </wool>
+    </wools>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>stone spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>stained clay</item>
+    <item>wood</item>
+    <item>grilled pork</item>
+    <item>iron helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>sandstone</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>wood plate</item>
+    <item>book</item>
+    <item>gold plate</item>
+    <item>sandstone stairs</item>
+    <item>step</item>
+    <item>dirt</item>
+    <item>sand</item>
+    <item>wood step</item>
+    <item>gold ore</item>
+    <item>fence gate</item>
+    <item>dark oak stairs</item>
+    <item>fence</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="4" damage="1" material="wood"/>
+        <item amount="8" team-color="true" material="stained clay"/>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>18</maxbuildheight>
+</map>

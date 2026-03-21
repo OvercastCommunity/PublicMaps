@@ -1,0 +1,67 @@
+<map proto="1.5.0">
+<name>Sentio</name> 
+<version>1.0.3</version>
+<created>2015-02-20</created>
+<objective>Eliminate the other team before the time is up!</objective>
+<gamemode>br</gamemode>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<teams>
+   <team id="red" color="red" max="12" max-overfill="14">Red</team>
+   <team id="blue" color="blue" max="12" max-overfill="14">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" enchantment="damage all:10" material="iron sword"/>
+        <item slot="1" enchantment="arrow damage:10" material="bow"/>
+        <item slot="8" material="arrow"/>
+        <item slot="3" amount="8" material="apple"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="5" amplifier="25">heal</effect>
+        <effect duration="5" amplifier="25">damage resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="spawn-kit">
+        <regions>
+            <point>-562.5,6,-228.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="spawn-kit">
+        <regions yaw="180">
+            <point>-592.5,6,-74.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="155">
+            <point>-577.5,7,-151.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<time>5m</time>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<rage/>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>apple</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<timelock>on</timelock>
+</map>

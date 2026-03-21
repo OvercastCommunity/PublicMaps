@@ -1,0 +1,73 @@
+<map proto="1.5.0">
+<name>Fruhling</name>
+<version>1.1</version>
+<include id="conquest"/>
+<constant id="damage-resistance">5s</constant>
+<constant id="respawn-timer">2s</constant>
+<objective>To win capture the enemy team's flag 3 times.</objective>
+<created>2015-03-21</created>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<broadcasts>
+    <alert after="1s">Capturing the enemy team's flag will obtain 1 point!</alert>
+    <tip after="1m" every="2m" count="3">To capture the flag step in your net. It's located at your flag!</tip>
+</broadcasts>
+<teams>
+    <team id="blue-team" color="blue" max="12">Blue</team>
+    <team id="red-team" color="dark red" max="12">Red</team>
+</teams>
+<kits>
+    <kit id="flag-kit" force="true">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="reset-kit" force="true">
+        <effect duration="0s" amplifier="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="0">
+            <block>-712.5,21,-281.5</block>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="base-kit">
+        <region yaw="90">
+            <block>-721.5,12,-317.5</block>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="base-kit">
+        <region yaw="90">
+            <block>-721.5,12,-243.5</block>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
+<regions>
+    <cuboid id="blue-net" min="-695.5,12,-325.5" max="-691.5,15,-335.5"/>
+    <cuboid id="red-net" min="-695.5,12,-235.5" max="-691.5,15,-225.5"/>
+    <apply block="never"/>
+</regions>
+<flags pickup-kit="flag-kit" drop-kit="reset-kit" flag-proximity-metric="none" net-proximity-metric="none" required="false">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue-team"
+          color="blue">
+        <post pickup-filter="only-red" recover-time="30s" respawn-time="13s">-693.5,12,-333.5</post>
+    </flag>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red-team"
+          color="red">
+        <post pickup-filter="only-blue" recover-time="30s" respawn-time="13s">-693.5,12,-227.5</post>
+    </flag>
+    <net flag="blue-flag" region="red-net" return="red-flag" points="1"/>
+    <net flag="red-flag" region="blue-net" return="blue-flag" points="1"/>
+</flags>
+<score>
+    <limit>3</limit>
+</score>
+</map>

@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<name>Wild West</name>
+<version>1.0.0</version>
+<phase>development</phase>
+<objective>Leak the lava from the enemy's core.</objective>
+<authors>
+    <author uuid="0fdf1faa-6a98-4f27-983c-968648e12720"/>
+    <!-- AMSGamingTQ -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+    <!-- rockymine -->
+</authors>
+<teams>
+    <team id="red-team" color="dark red" max="16">Red</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <helmet material="iron helmet"/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" enchantment="dig speed:1" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="stone axe"/>
+        <item slot="4" amount="16" material="log"/>
+        <item slot="5" amount="32" material="bread"/>
+        <item slot="19" amount="3" material="stick"/>
+        <item slot="28" amount="64" material="arrow"/>
+        <effect duration="5" amplifier="1">instant_health</effect>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <chestplate color="993333" unbreakable="true" material="leather chestplate"/>
+        <leggings color="993333" unbreakable="true" material="leather leggings"/>
+        <boots color="993333" unbreakable="true" material="leather boots"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <chestplate color="334CB2" unbreakable="true" material="leather chestplate"/>
+        <leggings color="334CB2" unbreakable="true" material="leather leggings"/>
+        <boots color="334CB2" unbreakable="true" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="blue-kit">
+        <regions yaw="90">
+            <cuboid min="16,14,84" max="15,14,85"/>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="red-kit">
+        <regions yaw="-90">
+            <cuboid min="-16,14,-84" max="-15,14,-85"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <point>-57,67,0</point>
+        </regions>
+    </default>
+</spawns>
+<respawn delay="3s"/>
+<filters>
+    <not id="deny-explosions">
+        <cause>explosion</cause>
+    </not>
+	<team id="only-red">red-team</team>
+	<team id="only-blue">blue-team</team>
+</filters>
+<regions>
+	<rectangle id="map" min="-39,124" max="40,-123"/>
+    <rectangle id="red-spawn" min="-7,-75" max="-19,-90"/>
+    <rectangle id="blue-spawn" min="8,76" max="20,91"/>
+	<union id="spawns">
+		<region id="red-spawn"/>
+		<region id="blue-spawn"/>
+	</union>	
+	<apply block="never" region="spawns"/>
+	<apply enter="only-blue" region="blue-spawn"/>
+	<apply enter="only-red" region="red-spawn"/>
+    <apply block="deny-explosions" region="red-spawn"/>
+    <apply block="deny-explosions" region="blue-spawn"/>
+    <apply block="never" message="You may not edit blocks outside the map!">
+        <region>
+            <negative>
+                <region id="map"/>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<cores>
+    <core name="Core" team="red-team" leak="5" mode-changes="false">
+        <region>
+            <cuboid min="18,20,-79" max="23,26,-84"/>
+        </region>
+    </core>
+    <core name="Core" team="blue-team" leak="5" mode-changes="false">
+        <region>
+            <cuboid min="-17,20,85" max="-22,26,80"/>
+        </region>
+    </core>
+</cores>
+<itemremove>
+  <item>leather chestplate</item>
+  <item>leather leggings</item>
+  <item>leather boots</item>
+  <item>obsidian</item>
+</itemremove>
+<toolrepair>
+    <tool>iron helmet</tool>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<timelock>on</timelock>
+<renewables>
+	<renewable rate="1" grow="true" particles="true" sound="true" avoid-entities="true">
+		<region>
+			<region id="map"/>
+		</region>
+		<renew>iron block</renew>
+		<replace>air</replace>
+		<replace>wood</replace>
+		<replace>sand</replace>
+		<replace>sandstone</replace>
+		<replace>log</replace>
+		<replace>stained clay</replace>
+	</renewable>
+</renewables>
+<killreward>
+	<item amount="8">wood</item>
+	<item>golden apple</item>
+	<item amount="8">arrow</item>
+</killreward>
+<maxbuildheight>35</maxbuildheight>
+</map>

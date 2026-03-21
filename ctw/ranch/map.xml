@@ -1,0 +1,173 @@
+<map proto="1.5.0">
+<name>Ranch</name>
+<version>1.0.6</version>
+<created>2017-01-16</created>
+<objective>Capture the enemy team's wools!</objective>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+    <author uuid="6d256510-f2ec-4a5b-b678-fc01c5abd7b3"/> <!-- Sp33dfr3ak -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="32">Blue</team>
+    <team id="red" color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
+        <item slot="28" material="arrow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="29" unbreakable="true" material="iron spade"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="30" unbreakable="true" material="shears"/>
+        <item slot="4" amount="64" damage="2" material="wood"/>
+        <item slot="5" amount="32" damage="2" material="glass"/>
+        <item slot="7" material="golden apple"/>
+        <item slot="8" amount="64" material="grilled pork"/>
+        <item slot="34" amount="32" material="fence"/>
+        <item slot="35" amount="32" material="workbench"/>
+        <item slot="26" amount="32" material="wood button"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="5">heal</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region>
+            <block>-711.5,73,-562.5</block>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region>
+            <block>-711.5,8,-685.5</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit" yaw="-180">
+        <region>
+            <block>-711.5,8,-438.5</block>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <all id="only-world-iron">
+        <material id="only-iron">iron block</material>
+        <cause>world</cause>
+    </all>
+    <all id="only-some">
+        <any>
+            <material>web</material>
+            <material>leaves</material>
+        </any>
+    </all>
+    <not id="no-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <negative id="non-bridge">
+        <rectangle min="-766,-607" max="-657,-517"/>
+    </negative>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="-698,-645" max="-725,-694"/>
+        <rectangle id="red-spawn" min="-725,-479" max="-698,-430"/>
+    </union>
+    <union id="wool-rooms">
+        <union id="blue-wools">
+            <rectangle id="purple-wool" min="-677,-688" max="-650,-712"/>
+            <rectangle id="yellow-wool" min="-773,-688" max="-746,-712"/>
+        </union>	
+        <union id="red-wools">
+            <rectangle id="green-wool" min="-650,-436" max="-677,-412"/>
+            <rectangle id="magenta-wool" min="-746,-436" max="-773,-412"/>
+        </union>
+    </union>
+    <union id="blue-deny">
+        <region id="red-spawn"/>
+        <region id="blue-wools"/>
+    </union>
+    <union id="red-deny">
+        <region id="blue-spawn"/>
+        <region id="red-wools"/>
+    </union>
+    <union id="iron-break">
+        <rectangle min="-725,-479" max="-698,-430"/>
+        <rectangle min="-698,-645" max="-725,-694"/>
+    </union>
+    <apply block-break="only-some" block-place="never" region="wool-rooms"/>
+    <apply block-break="only-iron" block-place="only-world-iron" region="spawns" message="You may only break iron in the spawn areas!"/>
+    <apply block-place="no-void" region="non-bridge" message="You may not place blocks in the void area!"/>
+    <apply enter="only-blue" message="Only Blue may enter this region!" region="red-deny"/>
+    <apply enter="only-red" message="Only Red may enter this region!" region="blue-deny"/>
+</regions>	
+<wools team="blue">
+    <wool color="magenta" location="-759.5,15,-425.5">
+        <monument>
+            <block>-713,8,-693</block>
+        </monument>
+    </wool>
+    <wool color="green" location="-663.5,15,-425.5">
+        <monument>
+            <block>-711,8,-693</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="purple" location="-663.5,15,-698.5">
+        <monument>
+            <block>-711,8,-432</block>
+        </monument>
+    </wool>
+    <wool color="yellow" location="-759.5,15,-698.5">
+        <monument>
+            <block>-713,8,-432</block>
+        </monument>
+    </wool>
+</wools>
+<renewables>
+    <renewable rate="2.5" grow="true" particles="true" sound="true" avoid-players="4" renew-filter="only-iron" region="iron-break"/>
+</renewables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron spade</tool>
+    <tool>shears</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>wood</item>
+    <item>glass</item>
+    <item>grilled pork</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>red rose</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>chest</item>
+    <item>step</item>
+    <item>wood button</item>
+    <item>shears</item>
+    <item>carpet</item>
+    <item>long grass</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<kill-reward>
+    <item damage="2" amount="8" material="wood"/>
+</kill-reward>
+<maxbuildheight>30</maxbuildheight>
+</map>
