@@ -9,7 +9,7 @@
     <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
 </authors>
 <teams>
-    <team id="red-team" color="red" max="16">Red</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
     <team id="blue-team" color="blue" max="16">Blue</team>
 </teams>
 <kits>
@@ -106,8 +106,8 @@
     <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="red-team" region="blue-wool-rooms" message="You may not enter your own wool rooms!"/>
     <apply enter="blue-team" region="red-wool-rooms" message="You may not enter your own wool rooms!"/>
-    <apply block="red-wool-room-blocks" region="blue-wool-rooms" message="You may not modify the wool rooms!"/>
-    <apply block="blue-wool-room-blocks" region="red-wool-rooms" message="You may not modify the wool rooms!"/>
+    <apply block="red-wool-room-blocks" use="red-team" region="blue-wool-rooms" message="You may not modify the wool rooms!"/>
+    <apply block="blue-wool-room-blocks" use="blue-team" region="red-wool-rooms" message="You may not modify the wool rooms!"/>
     <apply block="never" region="spawns" message="You may not edit spawn!"/>
     <apply block="deny(void)" region="restricted-void" message="You may not modify the void area!"/>
 </regions>
@@ -140,7 +140,7 @@
     <tool>stone sword</tool>
     <tool>bow</tool>
     <tool>arrow</tool>
-    <tool>stone pickaxe</tool> 
+    <tool>stone pickaxe</tool>
     <tool>stone axe</tool>
     <tool>stone spade</tool>
     <tool>shears</tool>
