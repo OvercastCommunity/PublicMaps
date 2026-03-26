@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Citadel</name>
-<version>1.3.9</version>
+<version>1.3.10</version>
 <objective>Attackers must capture the wool before the time limit runs out</objective>
 <gamemode>ctw</gamemode>
 <gamemode>ad</gamemode>
@@ -186,7 +186,7 @@
     <apply block-place="deny-safeties" message="No wool safeties are allowed!"/>
 </regions>
 <!-- TODO: replace fake destroyable with something nicer that works with /mode command -->
-<destroyables name="Drop" materials="stained glass:14;sign" completion="0%" show="false" mode-changes="true">
+<destroyables name="Drop" materials="stained glass:14;wall sign" completion="0%" show="false" mode-changes="true">
     <destroyable owner="attackers">
         <region>
             <cuboid min="90,23,-43" max="87,26,-42"/>
