@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Howdy Partner</name>
-<version>1.1.3</version>
+<version>1.1.4</version>
 <objective>Capture both of the enemy's flags.</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -89,21 +89,21 @@
 <flags flag-proximity-metric="none" net-proximity-metric="none">
     <!-- Blue's objective flags -->
     <flag id="magenta-flag" name="Magenta Flag" color="magenta" owner="red-team" pickup-kit="flag-pickup" drop-kit="flag-dropped">
-        <post pickup-filter="only-blue" recover-time="15s" respawn-time="5s" yaw="180">-427.5,6,-430.5</post>
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="15s" yaw="180">-427.5,6,-430.5</post>
     </flag>
     <flag id="purple-flag" name="Purple Flag" color="purple" owner="red-team" pickup-kit="flag-pickup" drop-kit="flag-dropped">
-        <post pickup-filter="only-blue" recover-time="15s" respawn-time="5s" yaw="0">-427.5,6,-510.5</post>
+        <post pickup-filter="only-blue" recover-time="15s" respawn-time="15s" yaw="0">-427.5,6,-510.5</post>
     </flag>
     <!-- Red's objective flags -->
     <flag id="green-flag" name="Green Flag" color="lime" owner="blue-team" pickup-kit="flag-pickup" drop-kit="flag-dropped">
-        <post pickup-filter="only-red" recover-time="15s" respawn-time="5s" yaw="0">-351.5,6,-510.5</post>
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="15s" yaw="0">-351.5,6,-510.5</post>
     </flag>
     <flag id="yellow-flag" name="Yellow Flag" color="yellow" owner="blue-team" pickup-kit="flag-pickup" drop-kit="flag-dropped">
-        <post pickup-filter="only-red" recover-time="15s" respawn-time="5s" yaw="180">-351.5,6,-430.5</post>
+        <post pickup-filter="only-red" recover-time="15s" respawn-time="15s" yaw="180">-351.5,6,-430.5</post>
     </flag>
     <flags points="1">
-        <net region="blue-net" flag="magenta-flag purple-flag" respawn-together="true"/>
-        <net region="red-net" flag="green-flag yellow-flag" respawn-together="true"/>
+        <net region="blue-net" flag="magenta-flag purple-flag"/>
+        <net region="red-net" flag="green-flag yellow-flag"/>
     </flags>
 </flags>
 <score>
