@@ -1,30 +1,41 @@
 <map proto="1.5.0">
 <name>Frozen Market</name>
-<version>1.0.2</version>
-<objective>Get the most kills in 5 minutes!</objective>
+<version>1.0.3</version>
+<objective>Get the most kills in ${time-limit} minutes!</objective>
 <created>2016-04-05</created>
-<include id="gapple-kill-reward"/>
+<variant id="oitq">One in the Quiver</variant>
+<constant id="time-limit">5</constant>
 <authors>
     <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b"/> <!-- _3Each -->
 </authors>
 <rules>
     <rule>Fall damage is off.</rule>
 </rules>
-<players max="5" max-overfill="5" show-name-tags="false"/>
-<kits>
-    <kit id="spawn-kit">
-        <item slot="0" name="Sword" material="stone sword"/>
-        <item slot="1" name="Bow" material="bow"/>
-        <item slot="2" amount="16" material="arrow"/>
-        <helmet color="E5E533" unbreakable="true" locked="true" material="leather helmet"/>
-        <chestplate unbreakable="true" color="E5E533" locked="true" material="leather chestplate"/>
-        <leggings color="E5E533" unbreakable="true" locked="true" material="leather leggings"/>
-        <boots color="E5E533" unbreakable="true" locked="true" material="leather boots"/>
-        <game-mode>adventure</game-mode>
-    </kit>
-</kits>
+<players max="5"/>
+<if variant="default">
+    <gamemode>ffa</gamemode>
+    <include id="gapple-kill-reward"/>
+    <constant id="spawn-kit">spawn-kit</constant>
+    <kits>
+        <kit id="spawn-kit">
+            <item slot="0" unbreakable="true" name="Sword" material="stone sword"/>
+            <item slot="1" unbreakable="true" name="Bow" material="bow"/>
+            <item slot="2" amount="16" material="arrow"/>
+            <helmet color="E5E533" unbreakable="true" locked="true" material="leather helmet"/>
+            <chestplate unbreakable="true" color="E5E533" locked="true" material="leather chestplate"/>
+            <leggings color="E5E533" unbreakable="true" locked="true" material="leather leggings"/>
+            <boots color="E5E533" unbreakable="true" locked="true" material="leather boots"/>
+            <game-mode>adventure</game-mode>
+        </kit>
+    </kits>
+</if>
+<if variant="oitq">
+    <include id="oitq"/>
+    <constant id="spawn-kit" delete="true"/>
+    <constant id="time-limit">3</constant>
+</if>
 <spawns>
-    <spawn kit="spawn-kit" spread="true">
+    <spawn kit="${spawn-kit}" spread="true">
         <regions>
             <point yaw="-101">-74,13,29</point>
             <point yaw="-44">-74,12,-2</point>
@@ -47,29 +58,31 @@
 <regions>
     <apply block="never"/>
 </regions>
-<score>
-    <kills>1</kills>
-</score>
-<time>5m</time>
-<itemremove>
-    <item>iron sword</item>
-    <item>bow</item>
-    <item>arrow</item>
-    <item>stone sword</item>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
-    <item>golden apple</item>
-</itemremove>
-<kill-rewards>
-    <kill-reward>
-        <item amount="3" material="arrow"/>
-    </kill-reward>
-</kill-rewards>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
+<if variant="default">
+    <score>
+        <kills>1</kills>
+    </score>
+    <time>5m</time>
+    <itemremove>
+        <item>iron sword</item>
+        <item>bow</item>
+        <item>arrow</item>
+        <item>stone sword</item>
+        <item>leather helmet</item>
+        <item>leather chestplate</item>
+        <item>leather leggings</item>
+        <item>leather boots</item>
+        <item>golden apple</item>
+    </itemremove>
+    <kill-rewards>
+        <kill-reward>
+            <item amount="3" material="arrow"/>
+        </kill-reward>
+    </kill-rewards>
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+</if>
 <disabledamage>
     <damage>fall</damage>
     <damage>suffocation</damage>
