@@ -1,0 +1,159 @@
+<map proto="1.5.0">
+<name>Dry Outpost</name>
+<version>1.1.0</version>
+<objective>Capture the wool and return it to your victory monument</objective>
+<created>2019-02-28</created>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="4">Blue</team>
+    <team id="red" color="dark red" max="4">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="stone pickaxe" unbreakable="true"/>
+        <item slot="3" material="stone axe" unbreakable="true">
+            <enchantment level="2">efficiency</enchantment>
+        </item>
+        <item slot="4" material="wood" amount="64" damage="4"/>
+        <item slot="5" material="stained clay" amount="16" team-color="true"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow" amount="32"/>
+        <item slot="30" material="stone spade" unbreakable="true">
+            <enchantment level="2">efficiency</enchantment>
+        </item>
+        <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+        <chestplate material="chainmail chestplate" unbreakable="true"/>
+        <leggings material="leather leggings" unbreakable="true" team-color="true"/>
+        <boots unbreakable="true" material="iron boots"/>
+    </kit>
+    <kit id="gold-kit" deduct-items="false">
+        <item material="gold ingot" amount="9"/>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward>
+        <item material="arrow" amount="8"/>
+        <item material="wood" amount="16" damage="4"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="3" repeat="true"/>
+        </filter>
+        <item material="flint and steel" damage="61"/>
+        <item material="tnt"/>
+    </kill-reward>
+</kill-rewards>
+<spawns>
+    <spawn team="blue" kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-258.5,7.5,-116.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <regions>
+            <point yaw="90">-166.5,7.5,-116.5</point>
+        </regions>
+    </spawn>
+    <default region="obs-spawn" yaw="0"/>
+</spawns>
+<filters>
+    <any id="woolroom-blacklist">
+        <material>chest</material>
+        <material>redstone wire</material>
+        <material>redstone torch on</material>
+    </any>
+    <material id="gold-ore">gold ore</material>
+    <material id="web">web</material>
+</filters>
+<regions>
+    <block id="obs-spawn">-212.5,5,-152.5</block>
+    <union id="spawn-protection">
+        <rectangle id="blue-spawn-protection" min="-261,-113" max="-237,-121"/>
+        <rectangle id="red-spawn-protection" min="-164,-113" max="-188,-121"/>
+    </union>
+    <rectangle id="blue-woolroom" min="-231,-164" max="-219,-152"/>
+    <rectangle id="red-woolroom" min="-194,-152" max="-206,-164"/>
+    <rectangle id="middle-wall" min="-219,-164" max="-206,-145"/>
+    <apply region="middle-wall" block="never" use="never" message="You may not modify this area"/>
+    <apply region="middle-wall" enter="never" message="You may not cross this area"/>
+    <apply region="blue-spawn-protection" enter="blue" message="You may not enter the other team's spawn"/>
+    <apply region="red-spawn-protection" enter="red" message="You may not enter the other team's spawn"/>
+    <apply region="spawn-protection" block-place="never" block-break="web" message="You may not modify the spawn area"/>
+    <apply region="blue-woolroom" enter="red" block="all(red, not(woolroom-blacklist))" use="red" message="You may not do that in this woolroom"/>
+    <apply region="red-woolroom" enter="blue" block="all(blue, not(woolroom-blacklist))" use="blue" message="You may not do that in this woolroom"/>
+    <apply region="everywhere" block-place="not(void)" message="You may not build in the void"/>
+</regions>
+<maxbuildheight>17</maxbuildheight>
+<wools>
+    <wool team="blue" color="red" location="-199.5,4,-158">
+        <monument>
+            <block>-254.5,6,-116.5</block>
+        </monument>
+    </wool>
+    <wool team="red" color="blue" location="-225.5,4,-158">
+        <monument>
+            <block>-170.5,6,-116.5</block>
+        </monument>
+    </wool>
+</wools>
+<block-drops>
+    <rule wrong-tool="true" filter="gold-ore" kit="gold-kit"/>
+</block-drops>
+<renewables>
+    <renewable interval="3" grow="true" renew-filter="gold-ore"/>
+</renewables>
+<item-mods>
+    <rule>
+        <match>
+            <material>bow</material>
+            <material>gold sword</material>
+            <material>gold pickaxe</material>
+            <material>gold axe</material>
+            <material>gold spade</material>
+            <material>gold helmet</material>
+            <material>gold chestplate</material>
+            <material>gold leggings</material>
+            <material>gold boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+    <rule>
+        <match>
+            <material>gold boots</material>
+        </match>
+        <modify>
+            <enchantment level="1">protection fall</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>apple</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>stained clay</item>
+    <item>golden apple</item>
+</itemkeep>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>stone pickaxe</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
