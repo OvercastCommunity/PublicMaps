@@ -2,8 +2,8 @@
 <!-- Sound keys include for all maps -->
 <include id="sound-keys"/>
 
-<!-- Legacy PvP for modern -->
-<include id="legacy-pvp"/>
+<!-- Modified combat mechanics for OCC modern -->
+<include id="overcast-pvp"/>
 
 <variables>
     <!-- Add maxbuildheight variable to pre-proto 1.5 maps -->

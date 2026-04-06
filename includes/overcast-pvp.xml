@@ -1,8 +1,8 @@
 <map>
-<!-- Legacy PvP mechanics include file -->
+<!-- Overcast PvP mechanics file -->
 <!-- Created by mameBT -->
-<!-- Based on Overcast Network's global include -->
-<!-- Version 2026.03.14-1 -->
+<!-- Based on Overcast Network's legacy global include -->
+<!-- Version 2026.04.06-1 -->
 <if min-server-version="1.21.11">
     <item-mods>
         <rule>
@@ -10,6 +10,48 @@
                 <all-materials/>
             </match>
             <modify components="attack_range={max_reach:3.0095,hitbox_margin:0.1}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>wooden sword</material>
+            </match>
+            <modify components="weapon={disable_blocking_for_seconds:5}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>golden sword</material>
+            </match>
+            <modify components="weapon={disable_blocking_for_seconds:5}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>stone sword</material>
+            </match>
+            <modify components="weapon={disable_blocking_for_seconds:5}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>copper sword</material>
+            </match>
+            <modify components="weapon={disable_blocking_for_seconds:5}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>iron sword</material>
+            </match>
+            <modify components="weapon={disable_blocking_for_seconds:5}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>diamond sword</material>
+            </match>
+            <modify components="weapon={disable_blocking_for_seconds:5}"/>
+        </rule>
+        <rule>
+            <match>
+                <material>netherite sword</material>
+            </match>
+            <modify components="weapon={disable_blocking_for_seconds:5}"/>
         </rule>
         <rule>
             <match>
@@ -324,8 +366,5 @@
             </modify>
         </rule>
     </item-mods>
-    <disabledamage>
-        <damage>entity sweep attack</damage>
-    </disabledamage>
 </if>
 </map>
