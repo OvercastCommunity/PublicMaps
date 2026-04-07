@@ -83,7 +83,9 @@
         <helmet locked="true" unbreakable="true" team-color="true" material="leather helmet"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <effect amplifier="255">resistance</effect>
-        <attribute operation="add" amount="1">attack_knockback</attribute>
+        <if min-server-version="1.21.11">
+            <attribute operation="add" amount="1">attack_knockback</attribute>
+        </if>
     </kit>
     <kit id="wool-kit" force="true">
         <item amount="32" team-color="true" material="${game-block}"/> <!-- amount="oo" behaves weirdly with higher ping -->
