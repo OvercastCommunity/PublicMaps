@@ -1,62 +1,54 @@
 <map proto="1.5.0">
 <name>The Campgrounds</name>
-<version>1.0.3</version>
-<objective>Capture the enemy flag.</objective>
-<gamemode>ctf</gamemode>
-<gamemode>rage</gamemode>
+<version>2.0</version>
+<constant id="respawn-timer">4s</constant>
+<constant id="override-itemkeep">true</constant>
+<constant id="damage-resistance">5s</constant>
+<include id="conquest"/>
+<objective>Capture the enemy team's flag as many times as possible within 12 minutes!</objective>
+<time result="score" overtime="1m" max-overtime="2m">12m</time>
 <authors>
     <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
 </authors>
 <teams>
-    <team id="red" color="dark red" max="16">Red</team>
-    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
 </teams>
 <kits>
-    <kit id="spawn-kit">
-        <clear/>
-        <item slot="0" name="`aDagger" unbreakable="true" material="stone sword">
-            <enchantment>sharpness</enchantment>
-        </item>
-        <item slot="1" name="`bInstagib" unbreakable="true" material="bow">
-            <enchantment>power</enchantment>
-        </item>
-        <item slot="8" amount="3" material="arrow"/>
-        <helmet unbreakable="true" team-color="true" locked="true" material="leather helmet"/>
-        <chestplate unbreakable="true" color="191919" locked="true" material="leather chestplate"/>
-        <leggings unbreakable="true" color="191919" locked="true" material="leather leggings"/>
-        <boots unbreakable="true" color="191919" locked="true" material="leather boots"/>
-        <effect duration="3" amplifier="5">damage resistance</effect>
-        <effect duration="3">absorption</effect>
-        <effect amplifier="2">speed</effect>
-        <game-mode>adventure</game-mode>
+    <kit id="spawn-kit" parent="base-kit">
+        <item slot="3" unbreakable="true" material="shears"/>
+        <item slot="4" amount="12" material="leaves"/>
+        <action>
+            <enchant-item ignore-metadata="true" enchantment="projectile_protection" level="2">
+                <find material="chainmail leggings"/>
+            </enchant-item>
+        </action>
+        <effect>speed</effect>
+        <game-mode>survival</game-mode>
     </kit>
     <kit id="flag-kit">
+        <!-- Just cancel out base kit speed -->
         <effect>slowness</effect>
     </kit>
 </kits>
 <spawns>
     <default>
-        <regions yaw="90">
+        <region yaw="90">
             <cuboid min="-51,24,274" max="-52,24,273"/>
-        </regions>
+        </region>
     </default>
-    <spawn team="red" kit="spawn-kit">
-        <regions yaw="90">
-            <cylinder base="-68,1,240" radius="2" height="0"/>
-        </regions>
-    </spawn>
-    <spawn team="blue" kit="spawn-kit">
-        <regions yaw="-90">
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="-90">
             <cylinder base="-80,1,308" radius="2" height="0"/>
-        </regions>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="90">
+            <cylinder base="-68,1,240" radius="2" height="0"/>
+        </region>
     </spawn>
 </spawns>
-<filters>
-    <team id="red-only">red</team>
-    <team id="blue-only">blue</team>
-    <time id="flag-respawns">0</time>
-</filters>
 <regions>
     <cylinder id="blue-net" base="-118,5,337" radius="2" height="2"/>
     <cylinder id="red-net" base="-30,5,211" radius="2" height="2"/>
@@ -75,49 +67,42 @@
         </region>
     </apply>
 </regions>
-<flags flag-proximity-metric="closest player">
-    <flag id="red-flag" name="Blue Flag" owner="red">
-        <post pickup-filter="blue-only" recover-time="30s" respawn-time="15s">-29.5,6,210.5</post>
+<flags flag-proximity-metric="none" net-proximity-metric="none">
+    <flag id="blue-flag" name="Blue Flag" owner="red-team" color="blue" carry-kit="flag-kit">
+        <post pickup-filter="blue-team" recover-time="20s" respawn-time="15s">-29.5,6,210.5</post>
     </flag>
-    <flag id="blue-flag" name="Red Flag" owner="blue">
-        <post pickup-filter="red-only" recover-time="30s" respawn-time="15s">-118.5,6,337.5</post>
+    <flag id="red-flag" name="Red Flag" owner="blue-team" color="red" carry-kit="flag-kit">
+        <post pickup-filter="red-team" recover-time="20s" respawn-time="15s">-118.5,6,337.5</post>
     </flag>
     <flags points="1">
-        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
-        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+        <net region="blue-net" flag="blue-flag"/>
+        <net region="red-net" flag="red-flag"/>
     </flags>
 </flags>
-<time result="score" overtime="1m" max-overtime="2m">10m</time>
 <score>
     <mercy>3</mercy>
 </score>
 <toolrepair>
-    <tool>stone sword</tool>
-    <tool>iron sword</tool>
-    <tool>bow</tool>
-    <tool>bow</tool>
+    <tool>shears</tool>
 </toolrepair>
 <itemremove>
-    <item>leather helmet</item>
-    <item>leather chestplate</item>
-    <item>leather leggings</item>
-    <item>leather boots</item>
+    <item>sapling</item>
 </itemremove>
 <itemkeep>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>shears</item>
+    <item>golden apple</item>
     <item>arrow</item>
+    <item>leaves</item>
 </itemkeep>
+<maxbuildheight>18</maxbuildheight>
 <kill-rewards>
     <kill-reward>
-        <item amount="3" material="arrow"/>
+        <item amount="6" material="leaves"/>
     </kill-reward>
 </kill-rewards>
-<rage/>
-<timelock>on</timelock>
 <disabledamage>
     <damage>fall</damage>
 </disabledamage>
-<hunger>
-    <depletion>off</depletion>
-</hunger>
-<respawn delay="4s" auto="true"/>
 </map>
