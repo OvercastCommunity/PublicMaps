@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2025.07.30-1 -->
+<!-- Version 2026.04.09-1 -->
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
@@ -122,14 +122,14 @@
                 <page>
                     `2» `lBRIDGE
                     `2» gamemode`0
-                    
+
                     Each team has a
                     `6portal`0, usually located
                     below or behind their
                     spawn point, and
                     sometimes marked with
                     a `1Beacon`0.
-                    
+
                     Fall into the enemy
                     team's `6portal`0 to `nscore`0,
                     or defend your own!
@@ -623,7 +623,7 @@
     <portal destination="team-one-spawn-point" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-two-pitch}" sound="false"/>
     <portal destination="team-two-spawn-point" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
     <!-- Void -->
-    <portal y="@-150" sound="false" region="void-level" observers="always"/>
+    <portal y="@-150" sound="false" region="void-level" observers="never"/>
 </portals>
 <score>
     <limit>${score-limit}</limit>
