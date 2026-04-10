@@ -1,0 +1,190 @@
+<map proto="1.5.0">
+<name>Sentient</name> 
+<version>1.1.0</version> 
+<objective>Capture the 2 enemy wools whilst defending yours!</objective>
+<created>2014-03-17</created>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83"/> <!-- lonelyhornet -->
+</authors>
+<contributors>
+    <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Help with aesthetics, and feedback"/> <!-- Tywnis -->
+    <contributor uuid="5986da63-a546-49c5-812d-d5c41a42510a" contribution="Gameplay advice, tips and help"/> <!-- Lyzak -->
+    <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML validation and help"/> <!-- Orky48 -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML and Map fixing"/> <!-- ItsMiiOlly -->
+</contributors>
+<teams>
+   <team id="red" color="dark red" max="20">Red</team>
+   <team id="blue" color="blue" max="20">Blue</team>
+</teams>
+<spawns>
+    <spawns team="red" kit="spawn-kit">
+        <spawn region="red-spawn-point" yaw="0"/>
+        <spawn region="red-spawn-point" yaw="180"/>
+    </spawns>
+    <spawns team="blue" kit="spawn-kit">
+        <spawn region="blue-spawn-point" yaw="0"/>
+        <spawn region="blue-spawn-point" yaw="180"/>
+    </spawns>
+    <default region="obs-spawn-point" yaw="180"/>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="28" material="arrow" amount="64"/>
+        <item slot="2" material="iron pickaxe" unbreakable="true">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
+        <item slot="4" material="wood" amount="64"/>
+        <item slot="31" material="wood" amount="64"/>
+        <item slot="5" material="glass" amount="64"/>
+        <item slot="6" material="bucket"/>
+        <item slot="8" material="golden apple"/>
+        <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+        <chestplate material="leather chestplate" unbreakable="true" team-color="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
+        <boots material="leather boots" unbreakable="true" team-color="true"/>
+        <effect duration="5s" amplifier="255">damage resistance</effect>
+    </kit>
+</kits>
+<filters>
+    <cause id="player">player</cause>
+    <material id="iron-block">iron block</material>
+    <material id="redstone-block">redstone block</material>
+    <material id="tnt">tnt</material>
+    <material id="chest">chest</material>
+    <material id="sand">sand</material>
+</filters>
+<regions>
+    <cuboid id="red-spawn-point" min="79,18,151" max="79,18,149"/>
+    <cuboid id="blue-spawn-point" min="234,18,151" max="237,18,149"/>
+    <cylinder id="obs-spawn-point" base="157,50,206" radius="2" height="2"/>
+    <union id="spawns">
+        <union id="red-spawn">
+            <cuboid min="71,8,130" max="86,oo,171"/>
+            <cuboid min="57,8,140" max="100,oo,161"/>
+        </union>
+        <union id="blue-spawn">
+            <cuboid min="228,8,130" max="243,oo,171"/>
+            <cuboid min="214,8,140" max="257,oo,161"/>
+        </union>
+    </union>
+    <union id="wool-rooms">
+        <!-- the rooms red has to get -->
+        <union id="red-woolrooms">
+            <rectangle id="purple-wool" min="268,112" max="280,130"/>
+            <rectangle id="orange-wool" min="268,170" max="280,188"/>
+        </union>
+        <!-- the rooms blue has to get -->
+        <union id="blue-woolrooms">
+            <rectangle id="lightblue-wool" min="46,187" max="33,170"/>
+            <rectangle id="cyan-wool" min="46,130" max="33,112"/>
+        </union>
+    </union>
+    <block id="orange-monument" location="73,18,150"/>
+    <block id="purple-monument" location="83,18,150"/>
+    <block id="cyan-monument" location="230,18,150"/>
+    <block id="lime-monument" location="240,18,150"/>
+    <union id="redstone-blocks">
+        <cuboid id="red-redstone" min="71,13,171" max="85,14,129"/>
+        <cuboid id="blue-redstone" min="228,13,171" max="242,14,129"/>
+    </union>
+    <union id="red-iron-portal-west">
+        <block location="70,17,153"/>
+        <block location="70,17,147"/>
+    </union>
+    <union id="red-iron-portal-east">
+        <block location="86,17,147"/>
+        <block location="86,17,153"/>
+    </union>
+    <union id="blue-iron-portal-west">
+        <block location="227,17,147"/>
+        <block location="227,17,153"/>
+    </union>
+    <union id="blue-iron-portal-east">
+        <block location="243,17,153"/>
+        <block location="243,17,147"/>
+    </union>
+    <block id="red-sw-portal-stone" location="72,14,171"/>
+    <block id="red-se-portal-stone" location="84,14,171"/>
+    <block id="red-nw-portal-stone" location="72,14,129"/>
+    <block id="red-ne-portal-stone" location="84,14,129"/>
+    <block id="blue-sw-portal-stone" location="229,14,171"/>
+    <block id="blue-se-portal-stone" location="241,14,171"/>
+    <block id="blue-nw-portal-stone" location="229,14,129"/>
+    <block id="blue-ne-portal-stone" location="241,14,129"/>
+    <negative id="void-area">
+        <union id="playable">
+            <rectangle min="34,113" max="280,130"/>
+            <rectangle min="34,171" max="280,188"/>
+            <rectangle min="104,130" max="210,171"/>
+        </union>
+    </negative>
+    <rectangle id="whole-map" min="32,111" max="281,189"/>
+    <apply region="red-woolrooms" block="all(red, not(chest))" enter="red"/>
+    <apply region="blue-woolrooms" block="all(blue, not(chest))" enter="blue"/>
+    <!-- <apply region="red-redstone" block-break="all(blue, redstone-block)" message="You may only break iron blocks in spawns!"/>
+    <apply region="blue-redstone" block-break="all(red, redstone-block)" message="You may only break iron blocks in spawns!"/> -->
+    <apply region="spawns" block-break="any(iron-block, not(player))" block-place="not(player)" block-physics="always" message="You may only break iron blocks in spawns!"/>
+    <apply region="red-spawn" enter="red" message="You may not enter the enemy spawn!"/>
+    <apply region="blue-spawn" enter="blue" message="You may not enter the enemy spawn!"/>
+    <apply region="void-area" block-place="never" message="You may not edit the void area!"/>
+</regions>
+<maxbuildheight>32</maxbuildheight>
+<wools craftable="false">
+    <wool team="red" color="orange" location="278.5,24,179.5" monument="orange-monument"/>
+    <wool team="red" color="purple" location="278.5,24,121.5" monument="purple-monument"/>
+    <wool team="blue" color="cyan" location="35.5,24,121.5" monument="cyan-monument"/>
+    <wool team="blue" color="lime" location="35.5,24,179.5" monument="lime-monument"/>
+</wools>
+<destroyables materials="redstone block" required="false" repairable="false" sparks="true" show-info="false" show-sidebar="false">
+    <destroyable name="South-West Iron Portal" owner="red" region="red-sw-portal-stone"/>
+    <destroyable name="South-East Iron Portal" owner="red" region="red-se-portal-stone"/>
+    <destroyable name="North-West Iron Portal" owner="red" region="red-nw-portal-stone"/>
+    <destroyable name="North-East Iron Portal" owner="red" region="red-ne-portal-stone"/>
+    <destroyable name="South-West Iron Portal" owner="blue" region="blue-sw-portal-stone"/>
+    <destroyable name="South-East Iron Portal" owner="blue" region="blue-se-portal-stone"/>
+    <destroyable name="North-West Iron Portal" owner="blue" region="blue-nw-portal-stone"/>
+    <destroyable name="North-East Iron Portal" owner="blue" region="blue-ne-portal-stone"/>
+</destroyables>
+<portals>
+    <portal region="red-iron-portal-west" x="@65" y="@21" z="@150"/>
+    <portal region="red-iron-portal-east" x="@248" y="@21" z="@150"/>
+    <portal region="blue-iron-portal-west" x="@222" y="@21" z="@150"/>
+    <portal region="blue-iron-portal-east" x="@248" y="@21" z="@150"/>
+</portals>
+<toolrepair>
+	<tool>iron sword</tool>
+	<tool>bow</tool>
+	<tool>iron pickaxe</tool>
+	<tool>iron axe</tool>
+</toolrepair>
+<itemkeep>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>glass</item>
+</itemkeep>
+<itemremove>
+    <item>redstone block</item>
+    <item>potion</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+</map>
