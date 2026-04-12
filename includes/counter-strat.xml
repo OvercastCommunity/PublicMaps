@@ -8,7 +8,7 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2026.03.12-1 -->
+<!-- Version 2026.04.12-1 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
@@ -469,5 +469,10 @@
             </modify>
         </rule>
     </item-mods>
+</if>
+<if min-server-version="1.21.6">
+    <gamerules>
+        <locator_bar>false</locator_bar>
+    </gamerules>
 </if>
 </map>

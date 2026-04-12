@@ -6,7 +6,7 @@
 <!-- Item Sumo gamemode include file -->
 <!-- Contains two versions: score-based Item Sumo (non-Blitz) and life-based Item Sumo (Blitz) -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2025.07.18-3 -->
+<!-- Version 2026.04.12-1 -->
 <include id="void-death"/>
 <variant id="lifesteal">Lifesteal</variant>
 <variant id="scaffolding" min-server-version="1.21">Scaffolding</variant>
@@ -38,8 +38,6 @@
     <constant id="hill-points">0</constant>
     <constant id="hill-block-on">emerald block</constant>
     <constant id="hill-block-off">coal block</constant>
-    <!-- void-death include -->
-    <constant id="affect-obs">always</constant>
     <!-- Lifesteal variant -->
     <constant id="initial-lives">3</constant>
 </constants>
