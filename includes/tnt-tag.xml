@@ -2,7 +2,7 @@
 <!-- TNT Tag gamemode include file -->
 <!-- Created by mitchiii -->
 <!-- Support from Pablete1234 <3 -->
-<!-- Version 2026.01.03 -->
+<!-- Version 2026.04.12 -->
 <objective>Pass the TNT to another player before it explodes!</objective>
 <game>TNT Tag</game>
 <include id="countdown"/>
@@ -134,8 +134,12 @@
         <variable id="was-tnt" var="is_tnt">2</variable>
     </attacker>
     <victim id="victim-is-hider">
-        <variable id="is-hider" var="is_tnt">0</variable>
+        <any id="is-hider">
+            <variable var="is_tnt">0</variable>
+            <variable var="is_tnt">2</variable>
+        </any>
     </victim>
+    <pulse id="transitioning-to-hider" filter="is_tnt=2" period="0.1s" duration="0.05s"/>
 </filters>
 <regions>
     <apply block="${block-filter}"/>
@@ -158,7 +162,7 @@
     <variable id="last_victim" scope="player" exclusive="1"/>
 </variables>
 <actions>
-    <action id="pick-next-tnt" scope="match" untrigger-filter="never">
+    <action scope="match" id="pick-next-tnt" untrigger-filter="never">
         <set var="players" value="0"/>
         <switch-scope inner="player" filter="participating">
             <set var="players" value="players + 1"/>
@@ -179,7 +183,7 @@
             </switch-scope>
         </repeat>
     </action>
-    <action id="distribute-kits" scope="match">
+    <action scope="match" id="distribute-kits">
         <switch-scope inner="player" filter="participating">
             <action filter="is_tnt=0">
                 <kit id="hider-kit"/>
@@ -189,7 +193,7 @@
             </action>
         </switch-scope>
     </action>
-    <action id="round-begin-message" scope="match">
+    <action scope="match" id="round-begin-message">
         <message text=" "/>
         <action filter="round_deathmatch=0">
             <message text="`b`l» Round {num} has started!">
@@ -295,13 +299,13 @@
             </action>
         </action>
     </trigger>
-    <action id="become-hider" scope="player" filter="all(attacker-is-tnt, victim-is-hider, round-running)">
+    <action scope="player" id="become-hider" filter="all(attacker-is-tnt, victim-is-hider, round-running)">
         <set var="last_attacker" value="1"/>
         <set var="is_tnt" value="2"/>
         <kit id="clear-kit"/>
         <kit id="hider-kit"/>
     </action>
-    <action id="become-tnt" scope="player" filter="all(not(game-damage), round-running)">
+    <action scope="player" id="become-tnt" filter="all(not(game-damage), round-running)">
         <kit force="true">
             <health>20</health>
         </kit>
@@ -339,11 +343,8 @@
             </switch-scope>
         </action>
     </action>
-    <trigger filter="is_tnt=2" scope="player">
-        <action>
-            <set var="is_tnt" value="0"/>
-        </action>
-    </trigger>
+    <trigger scope="player" filter="is_tnt=2" action="is_tnt := 0"/>
+    <trigger scope="player" filter="transitioning-to-hider" action="is_tnt := 0"/> <!-- try cover weird edge cases where is_tnt=2 is not caught by trigger above -->
 </actions>
 <damage attacker-action="become-hider" victim-action="become-tnt">
     <deny>
