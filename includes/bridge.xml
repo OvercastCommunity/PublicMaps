@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2026.04.12-1 -->
+<!-- Version 2026.04.12-2 -->
 <include id="void-death"/>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -178,7 +178,8 @@
     <all id="during-buytime">
         <after duration="0.05" filter="on-buytime"/>
         <not>
-            <below y="${void-plane}"/>
+            <!-- from void-death include -->
+            <region id="void-plane"/>
         </not>
     </all>
     <variable id="round-2" var="round_status">2</variable>
