@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Skirmish</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <created>2016-02-05</created>
 <objective>Conquer all the points and eliminate your foes.</objective>
 <include id="gapple-kill-reward"/>
@@ -22,7 +22,11 @@
     <spawn kit="spawn" region="ruins-spawn" yaw="-45" filter="owns-ruins"/>
     <default region="obs-spawn" yaw="90"/>
 </spawns>
-<respawn delay="5s" auto="true" spectate="true"/>
+<respawns auto="true" spectate="true">
+    <respawn delay="2s" filter="score=0"/>
+    <respawn delay="6s" filter="score=1"/>
+    <respawn delay="4s" filter="score=2.."/>
+</respawns>
 <kits>
     <kit id="spawn" force="true">
         <item slot="0" material="iron sword" unbreakable="true"/>
@@ -33,7 +37,6 @@
         <chestplate material="leather chestplate" team-color="true" unbreakable="true"/>
         <leggings material="leather leggings" team-color="true" unbreakable="true"/>
         <boots material="leather boots" team-color="true" unbreakable="true"/>
-        <effect duration="5s" amplifier="5">damage resistance</effect>
         <game-mode>adventure</game-mode>
     </kit>
 </kits>
@@ -48,11 +51,11 @@
     <captured id="owns-village">village</captured>
     <captured id="owns-ruins">ruins</captured>
     <time id="judgement-time-short">3m</time>
-    <time id="judgement-time-shorter">6m</time>
-    <time id="judgement-time-shortest">8m</time>
+    <time id="judgement-time-shorter">5m</time>
+    <time id="judgement-time-shortest">7m</time>
     <any id="allowed-to-win">
         <all>
-            <filter id="red-team"/>
+            <team>red-team</team>
             <any>
                 <after duration="45s" filter="all(match-running, red-owns-all, not(judgement-time-short))" message="`4Red`r wins in {0}"/>
                 <after duration="25s" filter="all(red-owns-all, judgement-time-short, not(judgement-time-shorter))" message="`4Red`r wins in {0}"/>
@@ -71,7 +74,7 @@
             </any>
         </all>
         <all>
-            <filter id="blue-team"/>
+            <team>blue-team</team>
             <any>
                 <after duration="45s" filter="all(match-running, blue-owns-all, not(judgement-time-short))" message="`9Blue`r wins in {0}"/>
                 <after duration="25s" filter="all(blue-owns-all, judgement-time-short, not(judgement-time-shorter))" message="`9Blue`r wins in {0}"/>
@@ -106,7 +109,8 @@
     <cylinder id="ruins-progress" base="-38.5,0,0.5" radius="13" height="40"/>
     <apply block="never"/>
 </regions>
-<control-points capture-rule="lead" incremental="true" show-progress="true" capture-time="4s">
+<score scoreboard-filter="never"/>
+<control-points capture-rule="lead" incremental="true" show-progress="true" capture-time="4s" points="0" owner-points="1">
     <control-point id="forest" name="Forest" capture="forest-capture" progress="forest-progress"/>
     <control-point id="village" name="Village" capture="village-capture" progress="village-progress"/>
     <control-point id="ruins" name="Ruins" capture="ruins-capture" progress="ruins-progress"/>
