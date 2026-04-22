@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
-<!-- XML by zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet, honeyfuggle & mameBT -->
-<!-- Version 2026.03.03-1 -->
+<!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
+<!-- Version 2026.04.21-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -916,7 +916,7 @@
           drop-kit="${flag-drop-kit}"
           show-messages="false"
           show-effects="false"
-          capture-filter="all(carrying-football,one-pass-enforcement)"
+          capture-filter="all(carrying-football,alive,one-pass-enforcement)"
           post="default-post"
           allow-manual-drop="false">
         <unless constant="team-flag-posts" constant-value="true">
