@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.04.21-1 -->
+<!-- Version 2026.04.23-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -90,6 +90,7 @@
 <variables>
     <with-team id="team_one_score" var="score" team="team-one"/>
     <with-team id="team_two_score" var="score" team="team-two"/>
+    <variable id="prev_score" scope="team"/>
     <variable id="game_state" scope="match" default="${initial}"/>
     <variable id="can_score" scope="match" default="1"/>
     <variable id="round_status" scope="match" default="1"/> <!-- 0: team scored; 1: flag is active -->
@@ -186,6 +187,10 @@
             </action>
             <kit id="${armor-kit}"/>
             <action id="apply-heal"/>
+        </action>
+        <action filter="score-prev_score=1..">
+            <set var="prev_score" value="score"/>
+            <action id="increment-round"/>
         </action>
     </kit>
     <kit id="pre-round-kit">
@@ -345,12 +350,7 @@
             <variable var="player_state">${throw}</variable>
         </any>
     </all>
-    <all id="team-one-scored">
-        <team>team-one</team>
-        <region id="team-two-portal"/>
-        <variable var="can_score">1</variable>
-        <variable var="player_state">${carry}</variable>
-        <filter id="not-carried"/>
+    <all id="should-teleport">
         <any id="one-pass-enforcement">
             <variable var="one_pass_rule">0</variable>
             <variable var="passed_once">1</variable>
@@ -361,26 +361,10 @@
                 </all>
             </not>
         </any>
-        <match-running/>
-        <alive/>
-    </all>
-    <all id="team-two-scored">
-        <team>team-two</team>
-        <region id="team-one-portal"/>
-        <variable var="can_score">1</variable>
-        <variable var="player_state">${carry}</variable>
-        <filter id="not-carried"/>
-        <filter id="one-pass-enforcement"/>
-        <match-running/>
-        <alive/>
-    </all>
-    <all id="should-teleport">
-        <filter id="one-pass-enforcement"/>
         <variable var="can_score">0</variable>
         <match-running/>
         <alive/>
     </all>
-    <after id="team-scored" filter="round_status=0" duration="0.05s"/>
     <all id="during-buytime">
         <after duration="0.05s" filter="on-buytime"/>
         <not>
@@ -412,7 +396,7 @@
     <after id="cage-time" filter="immediately-after-capture" message="`a» `fNext round begins in {0} `a«" duration="${pre-round-time}"/>
     <all id="goal-scored">
         <variable var="can_score">0</variable>
-        <filter id="team-scored"/>
+        <after filter="round_status=0" duration="0.05s"/>
         <match-running/>
         <any>
             <observing/>
@@ -454,7 +438,6 @@
     <cause id="melee-damage">melee</cause>
     <relation id="ally-damage">ally</relation>
     <relation id="enemy-damage">enemy</relation>
-    <flag-captured id="flag-captured">flag</flag-captured>
     <after id="0.1-seconds" filter="match-running" duration="0.1s"/>
     <after id="3-seconds" filter="match-running" duration="3s"/>
     <all id="tied-match">
@@ -673,8 +656,15 @@
             </switch-scope>
         </action>
     </trigger>
-    <action id="increment-round" scope="player">
-        <set var="score" value="score+${score-points}"/>
+    <action id="increment-round" filter="score-prev_score=0" scope="player">
+        <switch-scope inner="match">
+            <action filter="team-one">
+                <set var="scoring_team" value="1"/>
+            </action>
+            <action filter="team-two">
+                <set var="scoring_team" value="2"/>
+            </action>
+        </switch-scope>
         <set var="player_score" value="player_score+1"/>
         <message text=" `2You have scored `e{amount} `2touchdown{plural} in this match.">
             <replacements>
@@ -716,8 +706,6 @@
             </action>
         </action>
     </action>
-    <trigger filter="team-one-scored" action="increment-round" scope="player"/>
-    <trigger filter="team-two-scored" action="increment-round" scope="player"/>
     <trigger filter="all(can_score=0,not(match-finished))" action="create-cages" scope="match"/>
     <trigger filter="cage-time" action="remove-cages" scope="match"/>
     <trigger filter="flag-respawn" action="round_status:=1" scope="match"/>
@@ -769,8 +757,6 @@
         </switch-scope>
     </action>
     <trigger filter="goal-scored" action="message-score-display" scope="player" observers="true"/>
-    <trigger filter="team-one-scored" action="scoring_team:=1" scope="player"/>
-    <trigger filter="team-two-scored" action="scoring_team:=2" scope="player"/>
     <!-- End match if overtime disabled (overtime=0) -->
     <trigger filter="all(in-overtime,overtime=0)" action="timelimit:=0" scope="match"/>
     <!-- Action to remove timelimit -->
@@ -897,7 +883,7 @@
               recover-time="0s"
               pickup-filter="can-pickup-flag"
               fallback="default-post">
-            <post respawn-filter="flag-captured">${team-one-flag-post}</post>
+            <post respawn-filter="not(scoring_team=0)">${team-one-flag-post}</post>
         </post>
         <post id="team-two-post"
               yaw="${team-one-yaw}"
@@ -905,7 +891,7 @@
               recover-time="0s"
               pickup-filter="can-pickup-flag"
               fallback="default-post">
-            <post respawn-filter="flag-captured">${team-two-flag-post}</post>
+            <post respawn-filter="not(scoring_team=0)">${team-two-flag-post}</post>
         </post>
     </if>
     <flag id="flag"
@@ -921,17 +907,21 @@
           allow-manual-drop="false">
         <unless constant="team-flag-posts" constant-value="true">
             <net region="team-one-portal"
-                 capture-filter="all(team-two,team-one-portal)"/>
+                 capture-filter="all(team-two,team-one-portal)"
+                 points="${score-points}"/>
             <net region="team-two-portal"
-                 capture-filter="all(team-one,team-two-portal)"/>
+                 capture-filter="all(team-one,team-two-portal)"
+                 points="${score-points}"/>
         </unless>
         <if constant="team-flag-posts" constant-value="true">
             <net region="team-one-portal"
                  capture-filter="all(team-two,team-one-portal)"
-                 post="team-one-post"/>
+                 post="team-one-post"
+                 points="${score-points}"/>
             <net region="team-two-portal"
                  capture-filter="all(team-one,team-two-portal)"
-                 post="team-two-post"/>
+                 post="team-two-post"
+                 points="${score-points}"/>
         </if>
     </flag>
 </flags>
