@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.04.23-1 -->
+<!-- Version 2026.04.23-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -657,14 +657,12 @@
         </action>
     </trigger>
     <action id="increment-round" filter="score-prev_score=0" scope="player">
-        <switch-scope inner="match">
-            <action filter="team-one">
-                <set var="scoring_team" value="1"/>
-            </action>
-            <action filter="team-two">
-                <set var="scoring_team" value="2"/>
-            </action>
-        </switch-scope>
+        <action filter="team-one">
+            <set var="scoring_team" value="1"/>
+        </action>
+        <action filter="team-two">
+            <set var="scoring_team" value="2"/>
+        </action>
         <set var="player_score" value="player_score+1"/>
         <message text=" `2You have scored `e{amount} `2touchdown{plural} in this match.">
             <replacements>
