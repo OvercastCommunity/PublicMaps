@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.04.24-1 -->
+<!-- Version 2026.04.25-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -509,7 +509,9 @@
     </action>
     <action id="carrier-died-event" scope="player" filter="died-carrying">
         <set var="player_state" value="${initial}"/>
-        <set var="game_state" value="${death}"/>
+        <action filter="not-carried">
+            <set var="game_state" value="${death}"/>
+        </action>
         <set var="passed_once" value="0"/>
         <set var="flag_carrier" value="0"/>
         <switch-scope inner="match">
