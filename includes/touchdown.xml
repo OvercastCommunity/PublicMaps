@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.04.23-2 -->
+<!-- Version 2026.04.24-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -88,9 +88,11 @@
     <constant id="gapple-slot">8</constant>
 </constants>
 <variables>
+    <variable id="prev_score" scope="team"/>
     <with-team id="team_one_score" var="score" team="team-one"/>
     <with-team id="team_two_score" var="score" team="team-two"/>
-    <variable id="prev_score" scope="team"/>
+    <with-team id="team_one_prev_score" var="prev_score" team="team-one"/>
+    <with-team id="team_two_prev_score" var="prev_score" team="team-two"/>
     <variable id="game_state" scope="match" default="${initial}"/>
     <variable id="can_score" scope="match" default="1"/>
     <variable id="round_status" scope="match" default="1"/> <!-- 0: team scored; 1: flag is active -->
@@ -99,7 +101,7 @@
     <variable id="overtime" scope="match" default="${overtime-default}"/>
     <variable id="scoring_team" scope="match" default="0"/>
     <variable id="show_tutorial" scope="match" default="${show-tutorial}"/>
-    <variable id="player_state" scope="player" default="${initial}" exclusive="1"/>
+    <variable id="player_state" scope="player" default="${initial}"/>
     <variable id="player_score" scope="player" default="0"/>
     <variable id="goal_scorer" scope="player" exclusive="1"/>
     <variable id="flag_carrier" scope="player" exclusive="1"/>
@@ -198,9 +200,7 @@
         <effect amplifier="255">slow digging</effect>
     </kit>
     <kit id="pre-round-reset-kit" force="true">
-        <action>
-            <set var="player.fire_ticks" value="-20"/>
-        </action>
+        <action id="player.fire_ticks:=-20"/>
         <effect duration="0s">absorption</effect>
         <effect duration="1s" amplifier="20">regeneration</effect>
     </kit>
@@ -425,16 +425,6 @@
             <region id="team-one-portal"/>
         </all>
     </any>
-    <any id="flag-strip-in-enemy-net">
-        <all>
-            <filter id="team-one"/>
-            <region id="team-two-portal"/>
-        </all>
-        <all>
-            <filter id="team-two"/>
-            <region id="team-one-portal"/>
-        </all>
-    </any>
     <cause id="melee-damage">melee</cause>
     <relation id="ally-damage">ally</relation>
     <relation id="enemy-damage">enemy</relation>
@@ -558,7 +548,6 @@
             <set var="game_state" value="${carry}"/>
             <action id="apply-heal"/>
             <set var="flag_carrier" value="1"/>
-            <action id="pickup-flag"/>
             <message subtitle="`f`lYou are the `b`lFlag `f`lcarrier!" fade-in="0.5" stay="0.7" fade-out="0.5"/>
             <sound key="${entity.player.levelup}" volume="0.7" pitch="1.5"/>
             <action filter="ally-damage">
@@ -581,6 +570,7 @@
                 <action id="catch-sounds"/>
                 <action id="flag-fire"/> <!-- Just in case -->
             </switch-scope>
+            <action id="pickup-flag"/>
         </action>
         <action filter="melee-damage">
             <set var="last_damage_type" value="1"/>
@@ -594,12 +584,12 @@
         <set var="game_state" value="${carry}"/>
         <action id="apply-heal"/>
         <set var="flag_carrier" value="1"/>
-        <action filter="flag-strip-in-enemy-net">
+        <action filter="in-capture-region">
             <switch-scope inner="match">
                 <set var="passed_once" value="1"/>
             </switch-scope>
         </action>
-        <action filter="not(flag-strip-in-enemy-net)">
+        <action filter="not(in-capture-region)">
             <switch-scope inner="match">
                 <set var="passed_once" value="0"/>
             </switch-scope>
@@ -865,8 +855,8 @@
     <portal destination="team-one-spawn" forward="should-teleport" filter="team-one" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}"/>
     <portal destination="team-two-spawn" forward="should-teleport" filter="team-two" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
     <!-- Buytime -->
-    <portal destination="team-one-spawn" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}" sound="false"/>
-    <portal destination="team-two-spawn" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}" sound="false"/>
+    <portal destination="team-one-spawn" filter="team-one-buytime" region="not-cages" yaw="@${team-one-yaw}" pitch="@${team-one-pitch}"/>
+    <portal destination="team-two-spawn" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
 </portals>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
     <post id="default-post"
@@ -905,19 +895,19 @@
           allow-manual-drop="false">
         <unless constant="team-flag-posts" constant-value="true">
             <net region="team-one-portal"
-                 capture-filter="all(team-two,team-one-portal)"
+                 capture-filter="team-two"
                  points="${score-points}"/>
             <net region="team-two-portal"
-                 capture-filter="all(team-one,team-two-portal)"
+                 capture-filter="team-one"
                  points="${score-points}"/>
         </unless>
         <if constant="team-flag-posts" constant-value="true">
             <net region="team-one-portal"
-                 capture-filter="all(team-two,team-one-portal)"
+                 capture-filter="team-two"
                  post="team-one-post"
                  points="${score-points}"/>
             <net region="team-two-portal"
-                 capture-filter="all(team-one,team-two-portal)"
+                 capture-filter="team-one"
                  post="team-two-post"
                  points="${score-points}"/>
         </if>
