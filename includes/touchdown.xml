@@ -511,12 +511,12 @@
         <set var="player_state" value="${initial}"/>
         <action filter="not-carried">
             <set var="game_state" value="${death}"/>
+            <switch-scope inner="match">
+                <message text=" `e`l»`a The Flag carrier died!" actionbar="`aFlag carrier died!"/>
+            </switch-scope>
         </action>
         <set var="passed_once" value="0"/>
         <set var="flag_carrier" value="0"/>
-        <switch-scope inner="match">
-            <message text=" `e`l»`a The Flag carrier died!" actionbar="`aFlag carrier died!"/>
-        </switch-scope>
     </action>
     <action id="reset-flag" scope="match">
         <!-- I think this makes more sense to be called reset-arena -->
