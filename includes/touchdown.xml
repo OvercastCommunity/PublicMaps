@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.04.25-1 -->
+<!-- Version 2026.04.26-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -368,7 +368,7 @@
     <all id="during-buytime">
         <after duration="0.05s" filter="on-buytime"/>
         <not>
-            <below y="${void-plane}"/>
+            <region id="void-plane"/>
         </not>
     </all>
     <all id="on-buytime">
