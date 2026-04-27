@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.04.26-1 -->
+<!-- Version 2026.04.27-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -59,24 +59,16 @@
     <constant id="fire-material">fire</constant>
     <constant id="flag-color">white</constant>
     <constant id="deny-block-interaction">true</constant>
-    <constant id="overtime-default">1</constant> <!-- 0: no overtime; 1: PGM default; 2: Tiebreaker mode -->
+    <constant id="overtime-default">2</constant> <!-- 0: no overtime; 1: PGM default; 2: Tiebreaker mode -->
     <constant id="mercy-limit">-1</constant>
     <constant id="indicator-outer-material">sea lantern</constant> <!-- Delete to disable physical indicators -->
     <constant id="indicator-inner-material" delete="true"/>
     <constant id="show-tutorial">1</constant> <!-- 0: disable tutorial; 1: enable tutorial -->
     <!-- Experimental or alternate options -->
     <constant id="team-flag-posts">false</constant>
-    <constant id="gridiron-engine">false</constant>
-    <unless constant="gridiron-engine" constant-value="true">
-        <constant id="score-display">circle</constant>
-        <constant id="score-points">1</constant>
-        <constant id="score-limit">5</constant>
-    </unless>
-    <if constant="gridiron-engine" constant-value="true">
-        <constant id="score-display" delete="true"/>
-        <constant id="score-points">7</constant>
-        <constant id="score-limit">-1</constant>
-    </if>
+    <constant id="score-display">circle</constant>
+    <constant id="score-points">1</constant>
+    <constant id="score-limit">5</constant>
     <constant id="melee-weapon">stone sword</constant>
     <constant id="melee-weapon-name" delete="true"/> <!-- optional: custom name -->
     <constant id="melee-weapon-enchantment" delete="true"/> <!-- optional: enchantment ("knockback", etc) -->
