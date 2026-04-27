@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Emission</name>
-<version>1.2.1</version>
+<version>1.3.0</version>
 <objective>Control all five flags to win!</objective>
 <created>2015-03-19</created>
 <include id="gapple-kill-reward"/>
@@ -13,8 +13,8 @@
     <contributor uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="Providing the working code"/> <!-- mitchiii -->
 </contributors>
 <teams>
-    <team id="red" color="dark red" min="5" max="14">Red</team>
-    <team id="blue" color="blue" min="5" max="14">Blue</team>
+    <team id="red" color="dark red" max="14">Red</team>
+    <team id="blue" color="blue" max="14">Blue</team>
 </teams>
 <spawns>
     <spawn team="red" region="red-spawn" yaw="0" kit="players"/>
@@ -66,6 +66,16 @@
         <item material="arrow" amount="12"/>
     </kill-reward>
 </kill-rewards>
+<filters>
+    <players id="player-count-prerequisite" min="10" filter="participating"/>
+    <all id="first-place">
+        <rank>1</rank>
+        <score>1..</score>
+    </all>
+    <after id="alternate-win-invisible-timer" duration="30s" filter="all(match-running, first-place, not(player-count-prerequisite))"/>
+    <after id="alternate-win-red-timer" duration="45s" filter="all(match-running, alternate_win_team=${red})" message="`4Red `rwins in {0}"/>
+    <after id="alternate-win-blue-timer" duration="45s" filter="all(match-running, alternate_win_team=${blue})" message="`9Blue `rwins in {0}"/>
+</filters>
 <regions>
     <block id="obs-spawn">-725.5,22,-130.5</block>
     <cuboid id="red-spawn" min="-693,6,-202" max="-691,6,-200"/>
@@ -91,6 +101,68 @@
         <post respawn-time="3s" recover-time="0s">-652.5,10,-130.5</post>
     </flag>
 </flags>
+<constants>
+    <constant id="red">1</constant>
+    <constant id="blue">2</constant>
+</constants>
+<variables>
+    <variable id="alternate_win_team" scope="match"/>
+</variables>
+<replacements>
+    <switch id="current_winner_judgement" scope="match" value="alternate_win_team">
+        <case match="${red}" result="`4`lRed's judgement"/>
+        <case match="${blue}" result="`9`lBlue's judgement"/>
+    </switch>
+    <switch id="current_winner" scope="match" value="alternate_win_team">
+        <case match="${red}" result="`4Red"/>
+        <case match="${blue}" result="`9Blue"/>
+    </switch>
+    <switch id="current_loser" scope="match" value="alternate_win_team">
+        <case match="${red}" result="`9Blue"/>
+        <case match="${blue}" result="`4Red"/>
+    </switch>
+</replacements>
+<actions>
+    <trigger scope="team" filter="all(match-running, not(alternate-win-invisible-timer))" action="alternate_win_team := 0"/>
+    <trigger scope="team" filter="all(match-running, red, alternate-win-invisible-timer)" action="alternate_win_team := ${red}"/>
+    <trigger scope="team" filter="all(match-running, blue, alternate-win-invisible-timer)" action="alternate_win_team := ${blue}"/>
+    <trigger scope="match" filter="all(match-running, alternate-win-red-timer)" action="timelimit := 0"/>
+    <trigger scope="match" filter="all(match-running, alternate-win-blue-timer)" action="timelimit := 0"/>
+    <trigger scope="match" filter="all(match-running, not(alternate_win_team=0))">
+        <action>
+            <sound key="${entity.lightning_bolt.thunder}"/>
+            <message text=" "/>
+            <message text="`6» » » {0} `6« « «">
+                <replacements>
+                    <replacement id="0">current_winner_judgement</replacement>
+                </replacements>
+            </message>
+            <switch-scope inner="team" filter="any(all(red, alternate_win_team=${red}), all(blue, alternate_win_team=${blue}))">
+                <message text="`bHold more flags than {0} until the timer runs out to win.">
+                    <replacements>
+                        <replacement id="0">current_loser</replacement>
+                    </replacements>
+                </message>
+            </switch-scope>
+            <switch-scope inner="team" filter="any(all(red, alternate_win_team=${blue}), all(blue, alternate_win_team=${red}))">
+                <message text="`bEliminate {0}'s flag carriers or collect more flags to prevent {0} from winning.">
+                    <replacements>
+                        <replacement id="0">current_loser</replacement>
+                    </replacements>
+                </message>
+            </switch-scope>
+            <switch-scope inner="player" filter="observing">
+                <message text="{0} `bmust hold more flags then {1} until the timer runs out to win.">
+                    <replacements>
+                        <replacement id="0">current_winner</replacement>
+                        <replacement id="1">current_loser</replacement>
+                    </replacements>
+                </message>
+            </switch-scope>
+            <message text=" "/>
+        </action>
+    </trigger>
+</actions>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
