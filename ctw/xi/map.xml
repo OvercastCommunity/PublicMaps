@@ -1,8 +1,7 @@
 <map proto="1.5.0">
 <name>Xi</name>
-<version>1.2.7</version>
+<version>1.2.8</version>
 <include id="gapple-kill-reward"/>
-<phase>staging</phase>
 <objective>Capture both enemy wools.</objective>
 <authors>
     <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade"/> <!-- chle_ -->
@@ -152,19 +151,6 @@
     <item>chainmail leggings</item>
     <item>leather boots</item>
 </itemremove>
-<block-drops>
-    <rule>
-        <filter>
-            <any>
-                <material>wood</material>
-                <material>stained glass</material>
-            </any>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</block-drops>
 <itemkeep>
     <item>wood</item>
     <item>stained glass</item>
