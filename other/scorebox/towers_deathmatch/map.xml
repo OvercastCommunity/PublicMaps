@@ -2,7 +2,7 @@
 <name>Towers: Deathmatch</name>
 <version>1.1.0</version>
 <created>2025-06-15</created>
-<objective>Mata al equipo contrario.</objective>
+<objective>Get the most kills in 5 minutes!</objective>
 <gamemode>tdm</gamemode>
 <phase>development</phase>
 <include id="gapple-kill-reward"/>
