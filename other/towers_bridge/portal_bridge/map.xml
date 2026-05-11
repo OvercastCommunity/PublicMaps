@@ -12,11 +12,11 @@
     <author uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592"/> <!-- nicolieeee -->
 </authors>
 <broadcasts>
-    <alert after="2s">`8[`6Bigotes Bot`8] `FEl centro se abre en 5 minutos.</alert>
-    <alert after="4m">`8[`6Bigotes Bot`8] `FEl centro se abre en 1 minuto.</alert>
-    <alert after="4m57s">`8[`6Bigotes Bot`8] `FEl centro se abre en 3 segundos.</alert>
-    <alert after="4m58s">`8[`6Bigotes Bot`8] `FEl centro se abre en 2 segundos.</alert>
-    <alert after="4m59s">`8[`6Bigotes Bot`8] `FEl centro se abre en 1 segundo.</alert>
+    <alert after="2s">`8[`6Bigotes Bot`8] `FThe center will unlock in 5 minutes.</alert>
+    <alert after="4m">`8[`6Bigotes Bot`8] `FThe center will unlock in 1 minute.</alert>
+    <alert after="4m57s">`8[`6Bigotes Bot`8] `FThe center will unlock in 3 seconds.</alert>
+    <alert after="4m58s">`8[`6Bigotes Bot`8] `FThe center will unlock in 2 seconds.</alert>
+    <alert after="4m59s">`8[`6Bigotes Bot`8] `FThe center will unlock in 1 second.</alert>
 </broadcasts>
 <spawns>
     <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
@@ -51,7 +51,7 @@
         <cuboid min="-1, 11, -1" max="2, 12, 2"/>
     </union>
     <cuboid id="mid-portal" min="-1, 10, -1" max="2, 10.5, 2"/>
-    <apply region="mid-portal" block="never" message="No puedes modificar esta zona."/>
+    <apply region="mid-portal" block="never" message="You may not modify this area."/>
 </regions>
 <portals pitch="@0">
     <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
@@ -66,7 +66,7 @@
     <trigger filter="5minutes" scope="match">
         <action>
             <fill material="air" region="mid-portal-roof"/>
-            <message text="`8[`6Bigotes Bot`8] `7¡`FEl portal del centro está abierto, ten cuidado`7!"/>
+            <message text="`8[`6Bigotes Bot`8] `7!`FThe center portal has been unlocked, be careful`7!"/>
             <sound preset="OBJECTIVE_MODE"/>
         </action>
     </trigger>
