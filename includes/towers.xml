@@ -1,22 +1,18 @@
 <map>
 <unless variant="ranked">
     <rules>
-        <rule>Solo madera en la defensa</rule>
-        <rule>No se permite la TNT</rule>
+        <rule>Only wood blocks allowed in defense</rule>
+        <rule>TNT is not allowed</rule>
     </rules>
 </unless>
 <if variant="ranked">
     <rules>
-        <rule>Armadura bloqueada</rule>
-        <rule>Tiempo de reaparición aumentado</rule>
-        <rule>No se permiten cofres</rule>
+        <rule>Armor is locked</rule>
+        <rule>Respawn time is increased</rule>
+        <rule>Chests are not allowed</rule>
     </rules>
-    <broadcasts>
-        <alert after="2s">Todos atacan y todos defienden.</alert>
-        <alert after="4s">Si te ensordeces en Discord seras sancionado.</alert>
-    </broadcasts>
 </if>
-<objective>Anota 10 puntos para ganar.</objective>
+<objective>Score 10 points to win!</objective>
 <gamemode>scorebox</gamemode>
 <game>The Towers</game>
 <if variant="default">
@@ -255,21 +251,21 @@
     <time overtime="1s">${time-limit}</time>
 </unless>
 <regions>
-    <apply region="spawns" block="never" message="No puedes modificar esta zona."/>
-    <apply block="never" message="No puedes salir del mapa." region="map-boundaries"/>
+    <apply region="spawns" block="never" message="You may not modify this area."/>
+    <apply block="never" message="You may not build outside of the map's boundaries!" region="map-boundaries"/>
     <apply region="blue-scorebox" kit="heal" filter="only-red"/>
     <apply region="red-scorebox" kit="heal" filter="only-blue"/>
     <if variant="default,tournament,nano">
-        <apply region="red-chests" use="only-red" message="No puedes abrir cofres enemigos"/>
-        <apply region="red-chests" block="never" message="No puedes modificar esta zona."/>
-        <apply region="blue-chests" use="only-blue" message="No puedes abrir cofres enemigos"/>
-        <apply region="blue-chests" block="never" message="No puedes modificar esta zona."/>
+        <apply region="red-chests" use="only-red" message="You may not open enemy chests."/>
+        <apply region="red-chests" block="never" message="You may not modify this area."/>
+        <apply region="blue-chests" use="only-blue" message="You may not open enemy chests."/>
+        <apply region="blue-chests" block="never" message="You may not modify this area."/>
     </if>
     <if variant="ranked">
-        <apply region="red-chests" use="never" message="No puedes abrir cofres."/>
-        <apply region="red-chests" block="never" message="No puedes modificar esta zona."/>
-        <apply region="blue-chests" use="never" message="No puedes abrir cofres."/>
-        <apply region="blue-chests" block="never" message="No puedes modificar esta zona."/>
+        <apply region="red-chests" use="never" message="You may not open chests."/>
+        <apply region="red-chests" block="never" message="You may not modify this area."/>
+        <apply region="blue-chests" use="never" message="You may not open chests."/>
+        <apply region="blue-chests" block="never" message="You may not modify this area."/>
         <apply region="blue-defense-area" filter="only-blue" kit="defense-materials"/>
         <apply region="red-defense-area" filter="only-red" kit="defense-materials"/>
     </if>
