@@ -1,7 +1,7 @@
 <map>
 <gamemode>scorebox</gamemode>
 <game>Towers Bridge</game>
-<objective>Anota 10 puntos para ganar.</objective>
+<objective>Score 10 points to win!</objective>
 <include id="gapple-kill-reward"/>
 <include id="void-death"/>
 <teams>
@@ -140,7 +140,7 @@
     <apply block="deny(not(brick))"/>
     <apply region="blue-scorebox" kit="goal-kit" filter="only-red"/>
     <apply region="red-scorebox" kit="goal-kit" filter="only-blue"/>
-    <apply region="spawns" block="never" message="No puedes modificar esta zona."/>
-    <apply block="never" message="No puedes salir del mapa." region="map-boundaries"/>
+    <apply region="spawns" block="never" message="You are not allowed to modify terrain here!"/>
+    <apply block="never" message="You may not build outside of the map's boundaries!" region="map-boundaries"/>
 </regions>
 </map>
