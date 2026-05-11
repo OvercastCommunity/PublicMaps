@@ -2,7 +2,7 @@
 <name>Mini Fast</name>
 <version>1.0.0</version>
 <created>2023-04-02</created>
-<objective>Anota 15 puntos para ganar.</objective>
+<objective>Score 15 points to win!</objective>
 <gamemode>scorebox</gamemode>
 <phase>staging</phase>
 <game>The Towers</game>
