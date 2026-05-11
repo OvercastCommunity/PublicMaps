@@ -2,7 +2,7 @@
 <name>Towers: FFA</name>
 <version>1.1.0</version>
 <created>2025-06-15</created>
-<objective>Mata a todos.</objective>
+<objective>Get the most kills after 5 minutes!</objective>
 <gamemode>ffa</gamemode>
 <phase>development</phase>
 <include id="gapple-kill-reward"/>
