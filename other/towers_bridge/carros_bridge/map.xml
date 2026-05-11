@@ -18,7 +18,7 @@
     <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML "/> <!-- nicolieeee -->
 </contributors>
 <broadcasts>
-    <alert after="2s">No puedes tapar el centro.</alert>
+    <alert after="2s">You may not cover the center.</alert>
 </broadcasts>
 <spawns>
     <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="90"/>
