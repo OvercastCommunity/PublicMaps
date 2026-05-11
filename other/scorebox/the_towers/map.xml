@@ -1,95 +1,124 @@
 <map proto="1.4.2">
 <name>The Towers</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <created>2013-04-02</created>
-<objective>Score 10 points to win.</objective>
-<gamemode>scorebox</gamemode>
 <phase>staging</phase>
+<include id="gapple-kill-reward"/>
+<include id="void-death"/>
+<include id="towers"/>
+<variant id="tournament" world="tournament">TE</variant>
 <authors>
-    <author uuid="f48faa1f-aab2-44d5-94d2-8b0404f3a227"/> <!-- Quijx -->
+    <author uuid="f48faa1f-aab2-44d5-94d2-8b0404f3a227" contribution="Builder"/> <!-- Quijx -->
 </authors>
 <contributors>
-    <contributor uuid="1c898c77-b0cc-474a-8ce4-b5521f2b18e7" contribution="XML"/> <!-- Prodigy4532 -->
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
 </contributors>
-<teams>
-    <team id="blue-team" color="dark blue" max="8">Blue</team>
-    <team id="red-team" color="dark red" max="8">Red</team>
-</teams>
-<kits>
-    <kit id="spawn-kit">
-        <item slot="0" unbreakable="true" material="stone sword"/>
-        <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="28" amount="64" material="arrow"/>
-        <item slot="2" amount="64" material="quartz block"/>
-        <item slot="3" amount="64" material="nether brick"/>
-        <item slot="8" amount="64" material="baked potato"/>
-        <item slot="9" material="lapis block"/>
-        <helmet team-color="true" material="leather helmet"/>
-        <chestplate team-color="true" material="leather chestplate"/>
-        <leggings team-color="true" enchantment="protection projectile:2" material="leather leggings"/>
-        <boots team-color="true" material="leather boots"/>
-        <effect duration="5" amplifier="255">regeneration</effect>
-        <effect duration="5" amplifier="255">damage resistance</effect>
-        <effect duration="5" amplifier="2">speed</effect>
-        <effect duration="3" amplifier="100">haste</effect>
-    </kit>
-</kits>
+<constants>
+    <constant id="void-plane">-20</constant>
+</constants>
+<maxbuildheight>38</maxbuildheight>
 <spawns>
     <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
     <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
     <default yaw="180">
         <regions>
-            <point>0.5,25,1152.5</point>
+            <point>0.5,17,0.5</point>
         </regions>
     </default>
 </spawns>
-<filters>
-    <team id="only-blue">blue-team</team>
-    <team id="only-red">red-team</team>
-</filters>
 <regions>
-    <point id="blue-spawn-point">-83.5,20,1152.5</point>
-    <point id="red-spawn-point">84.5,20,1152.5</point>
+    <unless variant="default">
+        <point id="blue-spawn-point">-65.5, 12, 0.5</point>
+        <point id="red-spawn-point">66.5, 12, 0.5</point>
+    </unless>
+    <if variant="default">
+        <point id="blue-spawn-point">-72.5, 12, 0.5</point>
+        <point id="red-spawn-point">73.5, 12, 0.5</point>
+    </if>
+    <union id="blue-chests">
+        <cuboid id="blue-chestroom-1" min="-54,11,4" max="-49,15,11"/>
+        <cuboid id="blue-chestroom-2" min="-54,11,-10" max="-49,15,-3"/>
+        <cylinder id="blue-chest-1" base="-51.5,12,14.5" radius="1.2" height="2"/>
+        <if variant="default">
+            <cylinder id="blue-chest-2" base="-51.5,12,-13.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-3" base="-37.5,12,-13.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-4" base="-23.5,12,14.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-5" base="-23.5,12,-13.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-6" base="-51.5,17,14.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-7" base="-37.5,17,14.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-8" base="-23.5,17,14.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-9" base="-23.5,17,-13.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-10" base="-37.5,26,0.5" radius="1.2" height="2"/>
+        </if>
+    </union>
+    <union id="red-chests">
+        <cuboid id="red-chestroom-1" min="50,11,4" max="55,15,11"/>
+        <cuboid id="red-chestroom-2" min="50,11,-10" max="55,15,-3"/>
+        <cylinder id="red-chest-1" base="52.5,12,-13.5" radius="1.2" height="2"/>
+        <if variant="default">
+            <cylinder id="red-chest-2" base="52.5,12,14.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-3" base="38.5,12,14.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-4" base="24.5,12,14.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-5" base="24.5,12,-13.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-6" base="52.5,17,-13.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-7" base="38.5,17,-13.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-8" base="24.5,17,-13.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-9" base="24.5,17,14.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-10" base="38.5,26,0.5" radius="1.2" height="2"/>
+        </if>
+    </union>
+    <union id="itemspawner">
+        <if variant="default">
+            <cuboid id="iron-spawner" min="0.5,24,-13.5" max="0.5,24.5,-13.5"/>
+            <cuboid id="lapis-spawner" min="0.5,24,0.5" max="0.5,24.5,0.5"/>
+            <cuboid id="xp-spawner" min="0.5,24,14.5" max="0.5,24.5,14.5"/>
+        </if>
+        <unless variant="default">
+            <cuboid id="iron-spawner" min="0.5,24,0.5" max="0.5,24.5,0.5"/>
+        </unless>
+    </union>
     <union id="spawns">
-        <cuboid id="blue-spawn-room" min="-87,0,1149" max="-80,25,1156"/>
-        <cuboid id="blue-pathway" min="-80,0,1149" max="-74,24,1156"/>
-        <cuboid id="red-spawn-room" min="88,0,1156" max="81,25,1149"/>
-        <cuboid id="red-pathway" min="80,0,1156" max="75,24,1149"/>
+        <unless variant="default">
+            <!-- team blue -->
+            <cuboid id="blue-spawn-room" min="-69,10,-3" max="-62,22,4"/>
+            <cuboid id="blue-scorebox-room" min="-67,20,2" max="-64,25,-1"/>
+            <cuboid id="blue-pathway-1" min="-62,12,0" max="-51,14,1"/>
+            <cuboid id="blue-pathway-2" min="-52,12,-3" max="-51,14,4"/>
+            <!-- team red -->
+            <cuboid id="red-spawn-room" min="63,10,-3" max="70,22,4"/>
+            <cuboid id="red-scorebox-room" min="65,20,-1" max="68,25,2"/>
+            <cuboid id="red-pathway-1" min="53,12,0" max="63,14,1"/>
+            <cuboid id="red-pathway-2" min="52,12,-3" max="53,14,4"/>
+        </unless>
+        <if variant="default">
+            <!-- team blue -->
+            <cuboid id="blue-spawn-room" min="-76,10,-3" max="-69,22,4"/>
+            <cuboid id="blue-scorebox-room" min="-74,20,2" max="-71,25,-1"/>
+            <cuboid id="blue-pathway-1" min="-69,12,0" max="-51,14,1"/>
+            <cuboid id="blue-pathway-2" min="-52,12,-3" max="-51,14,4"/>
+            <!-- team red -->
+            <cuboid id="red-spawn-room" min="70,10,-3" max="77,22,4"/>
+            <cuboid id="red-scorebox-room" min="72,20,-1" max="75,25,2"/>
+            <cuboid id="red-pathway-1" min="53,12,0" max="70,14,1"/>
+            <cuboid id="red-pathway-2" min="52,12,-3" max="53,14,4"/>
+        </if>
     </union>
     <union id="scoreboxes">
-        <cuboid id="blue-scorebox" min="-82,33,1150" max="-86,27,1154"/>
-        <cuboid id="red-scorebox" min="82,33,1154" max="86,27,1150"/>
+        <unless variant="default">
+            <cuboid id="blue-scorebox" min="-67,20,2" max="-64,20.5,-1"/>
+            <cuboid id="red-scorebox" min="65,20,2" max="68,20.5,-1"/>
+        </unless>
+        <if variant="default">
+            <cuboid id="blue-scorebox" min="-74,20,2" max="-71,20.5,-1"/>
+            <cuboid id="red-scorebox" min="72,20,2" max="75,20.5,-1"/>
+        </if>
     </union>
-    <!-- applications -->
-    <apply region="blue-scorebox" enter="only-red" message="You may not enter your own scorebox!"/>
-    <apply region="red-scorebox" enter="only-blue" message="You may not enter your own scorebox!"/>
-    <apply region="blue-spawn-room" enter="only-blue" message="You may not enter the enemy's spawn!"/>
-    <apply region="red-spawn-room" enter="only-red" message="You may not enter the enemy's spawn!"/>
-    <apply region="spawns" block="never" message="You may not build here!"/>
-    <apply block="never" message="You may not build in the void!">
-        <region>
-            <rectangle min="88,oo" max="oo,-oo"/>
-            <rectangle min="-87,oo" max="-oo,-oo"/>
-            <rectangle min="oo,1170" max="-oo,oo"/>
-            <rectangle min="oo,1135" max="-oo,-oo"/>
-        </region>
-    </apply>
+    <union id="map-boundaries">
+        <negative><rectangle min="-81,-22" max="82,23"/></negative>
+    </union>
 </regions>
-<score>
-    <limit>10</limit>
-    <box value="1" filter="only-red" region="blue-scorebox"/>
-    <box value="1" filter="only-blue" region="red-scorebox"/>
-</score>
 <portals pitch="@0">
-    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90"/>
-    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90"/>
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
 </portals>
-<toolrepair>
-    <tool>stone sword</tool>
-    <tool>bow</tool>
-    <tool>leather helmet</tool>
-    <tool>leather chestplate</tool>
-    <tool>leather leggings</tool>
-    <tool>leather boots</tool>
-</toolrepair>
 </map>

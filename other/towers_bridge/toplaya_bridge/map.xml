@@ -1,0 +1,51 @@
+<map proto="1.4.2">
+<name>Toplaya Bridge</name>
+<version>1.1.2</version>
+<created>2024-05-22</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">13</constant>
+</constants>
+<maxbuildheight>32</maxbuildheight>
+<authors>
+    <author uuid="6e33b007-ff1e-4b16-abe0-8ba98aedc570"/> <!-- Maxcense -->
+    <author uuid="be2a4bd6-a28f-4294-9c43-dbac3d248e8e"/> <!-- Namize -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>45.5,27,18.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">10.5,32,18.5</point>
+    <point id="red-spawn-point">80.5,32,18.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="8,25,16" max="13,31,21"/>
+        <cuboid id="red-scoreroom" min="78,25,16" max="83,31,21"/>
+        <cuboid id="sky" min="18,30,-oo" max="73,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="9,25,17" max="12,25.5,20"/>
+        <cuboid id="red-scorebox" min="79,25,17" max="82,25.5,20"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="28,32,-oo" max="61,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="4,8" max="87,29"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+</portals>
+</map>

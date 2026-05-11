@@ -1,0 +1,132 @@
+<map proto="1.4.2">
+<name>HCF Fast</name>
+<version>1.0</version>
+<created>2024-05-22</created>
+<objective>Score 5 points to win.</objective>
+<gamemode>scorebox</gamemode>
+<phase>development</phase>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592"/> <!-- nicolieeee -->
+</authors>
+<teams>
+    <team id="blue-team" color="dark blue" max="5">Blue</team>
+    <team id="red-team" color="dark red" max="5">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="stone sword" />
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" enchantment="efficiency:2" material="iron pickaxe"/>
+        <item slot="3" amount="64" material="brick"/>
+        <item slot="4" amount="1" material="golden apple"/>
+        <item slot="8" amount="6" material="arrow"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings team-color="true" unbreakable="true" enchantment="protection projectile:3" material="chainmail leggings"/>
+        <boots team-color="true" unbreakable="true" material="iron boots"/>
+        <clear/>
+    </kit>
+    <kit id="instakill">
+        <max-health>1</max-health>
+    </kit>
+</kits>
+<maxbuildheight>25</maxbuildheight>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0,19,0</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <material id="brick">brick</material>
+</filters>
+<regions>
+    <point id="blue-spawn-point">-74.5,11,-0.5</point>
+    <point id="red-spawn-point">75.5,11,-0.5</point>
+    <point id="void2">0, -64, 0</point>
+    <union id="spawns">
+        <cuboid id="blue-spawn-room" min="-86,13,-1" max="-81,19,4"/>
+        <cuboid id="blue-bridge-sky" min="-20,13,-3" max="-5,oo,1"/>
+        <cuboid id="red-bridge-sky" min="5,14,-3" max="21,oo,1"/>
+        <cuboid id="red-spawn-room" min="82,14,-1" max="87,20,4"/>
+        <cuboid id="sky" min="-67,19,-22" max="67,oo,24"/>
+        <cuboid id="mid-sky" min="-3,18,-19" max="2,oo,17"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-83,19,-3" max="-79,19.5,1"/>
+        <cuboid id="red-scorebox" min="79,19,-3" max="83,19.5,1"/>
+    </union>
+    <union id="void">
+        <cuboid id="void1" min="-oo,-oo,-oo" max="oo,0,oo"/>
+    </union>
+    <!-- applications -->
+    <apply region="spawns" block="never" message="You may not build here!"/>
+    <apply block="never" message="You may not build in the void!">
+        <region>
+            <rectangle min="89,oo" max="oo,-oo"/>
+            <rectangle min="-88,oo" max="-oo,-oo"/>
+            <rectangle min="oo,21" max="-oo,oo"/>
+            <rectangle min="oo,-22" max="-oo,-oo"/>
+        </region>
+    </apply>
+    <apply block="deny(not(brick))"/>
+    <apply region="void1" lend-kit="instakill"/>
+</regions>
+<score>
+    <limit>5</limit>
+    <box value="1" filter="only-red" region="blue-scorebox"/>
+    <box value="1" filter="only-blue" region="red-scorebox"/>
+</score>
+<time overtime="2m" max-overtime="5m">15m</time>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90"/>
+    <portal region="void1" destination="void2" sound="false"/>
+</portals>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>brick</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" material="brick"/>
+       	<item amount="4" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<renewables>
+    <renewable region = "everywhere" interval="10s" particles="false" avoid-players="0">
+        <renew-filter>
+            <any>
+                <material>air</material>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <material>brick</material>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+<respawn delay="3s" auto="true" blackout="true"/>=
+</map>

@@ -1,0 +1,58 @@
+<map proto="1.4.2">
+<name>Moai Bridge</name>
+<version>1.1.0</version>
+<created>2025-06-15</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">15</constant>
+</constants>
+<maxbuildheight>32</maxbuildheight>
+<authors>
+    <author uuid="6e33b007-ff1e-4b16-abe0-8ba98aedc570"/> <!-- ImV12 -->
+    <author uuid="59c0c853-dd33-44d8-b124-dd4c10a660e6"/> <!-- Ministre -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML and adapt to Bridge format"/> <!-- nicolieeee -->
+</contributors>
+<broadcasts>
+    <alert after="2s">No puedes construir en el parkour.</alert>
+</broadcasts>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5,27,0.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">-34.5,32,0.5</point>
+    <point id="red-spawn-point">35.5,32,0.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="-37,25,-2" max="-32,31,3"/>
+        <cuboid id="red-scoreroom" min="33,25,-2" max="38,31,3"/>
+        <cuboid id="sky" min="-27,30,-oo" max="28,oo,oo"/>
+        <cuboid id="parkour1" min="3,21,3" max="10,30,10"/>
+        <cuboid id="parkour2" min="-9,21,3" max="-2,30,10"/>
+        <cuboid id="parkour3" min="3,21,-9" max="10,30,-2"/>
+        <cuboid id="parkour4" min="-9,21,-9" max="-2,30,-2"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-33,25,-1" max="-36,25.5,2"/>
+        <cuboid id="red-scorebox" min="34,25,-1" max="37,25.5,2"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-8,34,-oo" max="9,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-43,-17" max="44,18"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+</portals>
+</map>

@@ -1,0 +1,108 @@
+<map proto="1.4.2">
+<name>Mini Towers</name>
+<version>1.0.0</version>
+<created>2023-04-02</created>
+<phase>staging</phase>
+<include id="gapple-kill-reward"/>
+<include id="void-death"/>
+<include id="towers"/>
+<variant id="ranked" world="ranked">Ranked</variant>
+<variant id="nano" world="ranked">Nano</variant>
+<variant id="tournament" world="tournament">TE</variant>
+<authors>
+    <author uuid="f48faa1f-aab2-44d5-94d2-8b0404f3a227" contribution="Original Map Builder"/> <!-- Quijx -->
+    <author uuid="4ebe234d-5d47-445a-848c-00b39711c572" contribution="Idea and first Draft"/> <!-- Joseile -->
+    <author uuid="0a1424ce-0d7f-4f18-8470-f8f12c521f82" contribution="Builder"/> <!-- Katanya04 -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
+</contributors>
+<constants>
+    <constant id="void-plane">-20</constant>
+</constants>
+<maxbuildheight>38</maxbuildheight>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="0" />
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="180"/>
+    <default yaw="180">
+        <regions>
+            <point>14.5,17,2.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">14.5, 12, -49.5</point>
+    <point id="red-spawn-point">14.5, 12, 54.5</point>
+    <union id="red-chests">
+        <cuboid id="red-chestroom-1" min="17,11,38" max="24,15,43"/>
+        <cuboid id="red-chestroom-2" min="5,11,38" max="12,15,43"/>
+        <cylinder id="red-chest-1" base="2.5,12,40.5" radius="1.2" height="2"/>
+        <if variant="default">
+            <cylinder id="red-chest-2" base="26.5,12,40.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-3" base="2.5,12,26.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-4" base="26.5,12,26.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-5" base="26.5,17,26.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-6" base="2.5,17,26.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-7" base="2.5,17,40.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-8" base="26.5,17,40.5" radius="1.2" height="2"/>
+            <cylinder id="red-chest-9" base="14.5,26,26.5" radius="1.2" height="2"/>
+        </if>
+    </union>
+    <union id="blue-chests">
+        <cuboid id="blue-chestroom-1" min="5,11,-38" max="12,15,-33"/>
+        <cuboid id="blue-chestroom-2" min="17,11,-38" max="24,15,-33"/>
+        <cylinder id="blue-chest-1" base="26.5,12,-35.5" radius="1.2" height="2"/>
+        <if variant="default">
+            <cylinder id="blue-chest-2" base="2.5,12,-35.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-3" base="26.5,12,-21.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-4" base="2.5,12,-21.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-5" base="26.5,17,-21.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-6" base="2.5,17,-21.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-7" base="26.5,17,-35.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-8" base="2.5,17,-35.5" radius="1.2" height="2"/>
+            <cylinder id="blue-chest-9" base="14.5,26,-21.5" radius="1.2" height="2"/>
+        </if>
+    </union>
+    <union id="itemspawner">
+        <if variant="default">
+            <cuboid id="iron-spawner" min="2.5,24,2.5" max="2.5,24.5,2.5"/>
+            <cuboid id="lapis-spawner" min="14.5,24,2.5" max="14.5,24.5,2.5"/>
+            <cuboid id="xp-spawner" min="26.5,24,2.5" max="26.5,24.5,2.5"/>
+        </if>
+        <unless variant="default">
+            <cuboid id="iron-spawner" min="14.5,24,2.5" max="14.5,24.5,2.5"/>
+        </unless>
+    </union>
+    <union id="spawns">
+        <!-- team blue -->
+        <cuboid id="blue-spawn-room" min="18,10,-53" max="11,22,-46"/>
+        <cuboid id="blue-scorebox-room" min="13,20,-51" max="16,25,-48"/>
+        <cuboid id="blue-pathway-1" min="14,12,-47" max="15,14,-35"/>
+        <cuboid id="blue-pathway-2" min="11,12,-35" max="18,14,-36"/>
+        <!-- team red -->
+        <cuboid id="red-spawn-room" min="18,10,51" max="11,22,58"/>
+        <cuboid id="red-scorebox-room" min="13,20,53" max="16,25,56"/>
+        <cuboid id="red-pathway-1" min="14,12,51" max="15,14,40"/>
+        <cuboid id="red-pathway-2" min="11,12,40" max="18,14,41"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="13,20,-51" max="16,20.5,-48"/>
+        <cuboid id="red-scorebox" min="13,20,53" max="16,20.5,56"/>
+    </union>
+    <union id="map-boundaries">
+        <negative><rectangle min="-6,-58" max="35,63"/></negative>
+    </union>
+    <union id="bases">
+        <rectangle id="blue-base" min="-oo,-oo" max="oo,-16"/>
+        <rectangle id="blue-defense" min="-oo,-oo" max="oo,-32"/>
+        <cuboid id="blue-defense-area" min="9,17,-55" max="20,42,-44"/>
+        <rectangle id="red-base" min="-oo,21" max="oo,oo"/>
+        <rectangle id="red-defense" min="-oo,36" max="oo,oo"/>
+        <cuboid id="red-defense-area" min="9,17,49" max="20,42,60"/>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@180" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@0" observers="never"/>
+</portals>
+</map>

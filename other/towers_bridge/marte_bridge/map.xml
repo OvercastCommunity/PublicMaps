@@ -1,0 +1,83 @@
+<map proto="1.4.2">
+<name>Marte Bridge</name>
+<version>1.0.1</version>
+<created>2025-02-15</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">19</constant>
+</constants>
+<maxbuildheight>36</maxbuildheight>
+<kits>
+    <kit id="jump-kit">
+        <effect duration="4s" amplifier="1">jump boost</effect>
+    </kit>
+</kits>
+<authors>
+    <author uuid="233d04a2-6bd3-440e-979d-969f415e9ad1"/> <!-- Salgadoh -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5, 62, 42.5</point>
+        </regions>
+    </default>
+</spawns>
+<itemremove>
+    <item>seeds</item>
+    <item>ladder</item>
+    <item>dead_bush</item>
+</itemremove>
+<regions>
+    <point id="red-spawn-point">38.5,36,0.5</point>
+    <point id="blue-spawn-point">-37,36,0.5</point>
+    <union id="spawns">
+        <cuboid id="red-scoreroom" min="36,29,3" max="41,36,-2"/>
+        <cuboid id="blue-scoreroom" min="-40,29,-2" max="-35,36,3"/>
+        <cuboid id="sky" min="-31,34,-oo" max="32,oo,oo"/>
+        <cuboid id="stairs1" min="-2,33,-7" max="3,35,-5"/>
+        <cuboid id="stairs2" min="-2,33,6" max="3,35,8"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="red-scorebox" min="37,29,-1" max="40,29.5,2"/>
+        <cuboid id="blue-scorebox" min="-39,29,-1" max="-36,29.5,2"/>
+    </union>
+    <union id="map-boundaries">
+        <negative><rectangle min="-45,-25" max="45,25"/></negative>
+    </union>
+    <apply kit="jump-kit">
+        <region>
+            <cuboid id="jump-area" min="-1,36,-1" max="2,39,2"/>
+        </region>
+    </apply>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+</portals>
+<spawners>
+    <spawner delay="6s">
+        <spawn-region>
+            <point id="brick-spawner1">0.5,30,-9.5</point>
+        </spawn-region>
+        <player-region>
+            <cuboid id="brick-spawner-area1" min="-2,30,-7" max="3,32,-12"/>
+        </player-region>
+        <item amount="4" material="brick"/>
+    </spawner>
+    <spawner delay="6s">
+        <spawn-region>
+            <point id="brick-spawner2">0.5,30,10.5</point>
+        </spawn-region>
+        <player-region>
+            <cuboid id="brick-spawner-area2" min="-2,30,8" max="3,32,13"/>
+        </player-region>
+        <item amount="4" material="brick"/>
+    </spawner>
+</spawners>
+</map>

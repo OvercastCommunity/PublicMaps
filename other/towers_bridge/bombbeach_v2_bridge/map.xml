@@ -1,0 +1,51 @@
+<map proto="1.4.2">
+<name>BombBeach V2 Bridge</name>
+<version>2.0.0</version>
+<created>2025-12-27</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">0</constant>
+</constants>
+<maxbuildheight>17</maxbuildheight>
+<authors>
+    <author uuid="e5951644-77cd-40d0-85be-33594f0cae17"/> <!-- Alkaziaq -->
+    <author uuid="1b63d602-29f8-4acb-b1cf-a86d8f8378cd"/> <!-- ppits -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="-90"/>
+    <default yaw="180">
+        <regions>
+            <point>-8.5, 13, 0.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">25.5,17,0.5</point>
+    <point id="red-spawn-point">-42.5,17,0.5</point>
+    <union id="spawns">
+        <cuboid id="red-scoreroom" min="-60,11,-20" max="-40,17,20"/>
+        <cuboid id="blue-scoreroom" min="23,11,-20" max="40,17,20"/>
+        <cuboid id="sky" min="-36,16,-oo" max="19,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="red-scorebox" min="-44,11,-1" max="-41,11.5,2"/>
+        <cuboid id="blue-scorebox" min="23,11,-1" max="27,11.5,2"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-6,22,-oo" max="6,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-52,-20" max="37,20"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@-90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@90" observers="never"/>
+</portals>
+</map>

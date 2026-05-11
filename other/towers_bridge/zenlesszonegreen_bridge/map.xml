@@ -1,0 +1,70 @@
+<map proto="1.4.2">
+<name>ZenlessZoneGreen Bridge</name>
+<version>1.1.0</version>
+<created>2024-07-22</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">0</constant>
+</constants>
+<maxbuildheight>17</maxbuildheight>
+<authors>
+    <author uuid="795d527c-1330-4e3e-94ec-719b63b6a8c6"/> <!-- iGreenBrothres_ -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0, 12, 0</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">-34.5,17,0.5</point>
+    <point id="red-spawn-point">35.5,17,0.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="-32,10,3" max="-37,16,-2"/>
+        <cuboid id="red-scoreroom" min="33,10,-2" max="38,16,3"/>
+        <cuboid id="sky" min="-28,15,-oo" max="28,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-33,10,-2" max="-37,10.5,2"/>
+        <cuboid id="red-scorebox" min="33,10,-2" max="37,10.5,2"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-10,17,-oo" max="10,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-45,-25" max="45,25"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+</portals>
+<spawners>
+    <spawner delay="6s">
+        <spawn-region>
+            <cuboid id="gap-spawner1" min="0.5,12,22" max="0.5,12.5,22"/>
+        </spawn-region>
+        <player-region>
+            <cuboid id="gap-spawner1-area" min="-1,12,21" max="2,12.5,23"/>
+        </player-region>
+        <item amount="1" material="golden apple"/>
+    </spawner>
+    <spawner delay="6s">
+        <spawn-region>
+            <cuboid id="gap-spawner2" min="0.5,12,-21" max="0.5,12.5,-21"/>
+        </spawn-region>
+        <player-region>
+            <cuboid id="gap-spawner2-area" min="-1,12,-22" max="2,12.5,-20"/>
+        </player-region>
+        <item amount="1" material="golden apple"/>
+    </spawner>
+</spawners>
+</map>

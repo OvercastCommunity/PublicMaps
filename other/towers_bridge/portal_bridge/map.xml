@@ -1,0 +1,74 @@
+<map proto="1.4.2">
+<name>Portal Bridge</name>
+<version>1.1.0</version>
+<created>2025-12-22</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">0</constant>
+</constants>
+<maxbuildheight>17</maxbuildheight>
+<authors>
+    <author uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592"/> <!-- nicolieeee -->
+</authors>
+<broadcasts>
+    <alert after="2s">`8[`6Bigotes Bot`8] `FEl centro se abre en 5 minutos.</alert>
+    <alert after="4m">`8[`6Bigotes Bot`8] `FEl centro se abre en 1 minuto.</alert>
+    <alert after="4m57s">`8[`6Bigotes Bot`8] `FEl centro se abre en 3 segundos.</alert>
+    <alert after="4m58s">`8[`6Bigotes Bot`8] `FEl centro se abre en 2 segundos.</alert>
+    <alert after="4m59s">`8[`6Bigotes Bot`8] `FEl centro se abre en 1 segundo.</alert>
+</broadcasts>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5, 12, 0.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">-34.5,17,0.5</point>
+    <point id="red-spawn-point">35.5,17,0.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="-32,10,3" max="-37,16,-2"/>
+        <cuboid id="red-scoreroom" min="33,10,-2" max="38,16,3"/>
+        <cuboid id="sky" min="-28,15,-oo" max="28,oo,oo"/>
+        <cuboid id="center" min="-1,10,-1" max="2,12,2"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-33,10,-2" max="-37,10.5,2"/>
+        <cuboid id="red-scorebox" min="33,10,-2" max="37,10.5,2"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-6,17,-oo" max="7,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-45,-25" max="45,25"/></negative>
+    </union>
+    <union id="mid-portal-roof">
+        <cuboid min="-1, 11, -1" max="2, 12, 2"/>
+    </union>
+    <cuboid id="mid-portal" min="-1, 10, -1" max="2, 10.5, 2"/>
+    <apply region="mid-portal" block="never" message="No puedes modificar esta zona."/>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+    <portal y="@-110" region="mid-portal" sound="false" observers="never"/>
+</portals>
+<filters>
+    <time id="5minutes">5m</time>
+    <time id="countdown">4m55s</time>
+</filters>
+<actions>
+    <trigger filter="5minutes" scope="match">
+        <action>
+            <fill material="air" region="mid-portal-roof"/>
+            <message text="`8[`6Bigotes Bot`8] `7¡`FEl portal del centro está abierto, ten cuidado`7!"/>
+            <sound preset="OBJECTIVE_MODE"/>
+        </action>
+    </trigger>
+</actions>
+</map>

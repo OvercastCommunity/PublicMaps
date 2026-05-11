@@ -1,0 +1,87 @@
+<map proto="1.4.2">
+<name>Towers: FFA</name>
+<version>1.1.0</version>
+<created>2025-06-15</created>
+<objective>Mata a todos.</objective>
+<gamemode>ffa</gamemode>
+<phase>development</phase>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="f48faa1f-aab2-44d5-94d2-8b0404f3a227" contribution="Builder"/> <!-- Quijx -->
+    <author uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="Edits and XML"/> <!-- nicolieeee -->
+</authors>
+<players max="50" max-overfill="100" colors="true"/>
+<kits>
+    <kit id="spawn-kit">
+        <max-health>20</max-health>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" amount="1" material="golden apple"/>
+        <item slot="8" amount="8" material="arrow"/>
+        <helmet team-color="true" unbreakable="true" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" material="leather chestplate"/>
+        <leggings team-color="true" unbreakable="true" enchantment="protection projectile:2" material="chainmail leggings"/>
+        <boots team-color="true" unbreakable="true" material="iron boots"/>
+        <game-mode>adventure</game-mode>
+        <clear/>
+    </kit>
+    <kit id="instakill">
+        <max-health>1</max-health>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+       	<item amount="4" material="arrow"/>
+        <kit>
+            <effect duration="1s" amplifier="1">damage resistance</effect>
+            <effect duration="0.5s" amplifier="10">regeneration</effect>
+        </kit>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn delay="1s" auto="true" blackout="true"/>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<spawns>
+    <spawn kit="spawn-kit" region="spawns" safe="true" spread="true"/>
+    <default yaw="180">
+        <regions>
+            <point>14.5,17,2.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="void2">14, -64, 2</point>
+    <cuboid id="spawns" min="1,12,-18" max="27,18,33"/>
+    <union id="void">
+        <cuboid id="void1" min="-oo,-oo,-oo" max="oo,0,oo"/>
+    </union>
+    <!-- applications -->
+    <apply region="void1" lend-kit="instakill"/>
+</regions>
+<time>5m</time>
+<score>
+    <kills>1</kills>
+</score>
+<portals pitch="@0">
+    <portal region="void1" destination="void2" sound="false" observers="never"/>
+</portals>
+</map>

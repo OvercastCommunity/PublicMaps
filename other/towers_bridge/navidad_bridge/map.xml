@@ -1,0 +1,51 @@
+<map proto="1.4.2">
+<name>Navidad Bridge</name>
+<version>1.1.0</version>
+<created>2025-11-27</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">1</constant>
+</constants>
+<maxbuildheight>17</maxbuildheight>
+<authors>
+    <author uuid="40fd24ca-55bd-4fe3-9920-48cbcbd4c086"/>
+    <author uuid="64b292be-faf3-4964-b826-2d0051a245cb"/>
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML "/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="-90"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5, 12, 99.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">30.5,17,99.5</point>
+    <point id="red-spawn-point">-30.5,17,99.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="28,10,97" max="33,16,102"/>
+        <cuboid id="red-scoreroom" min="-33,10,97" max="-28,16,102"/>
+        <cuboid id="sky" min="-23,15,-oo" max="23,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="29,10,98" max="32,10.5,101"/>
+        <cuboid id="red-scorebox" min="-32,10,98" max="-29,10.5,101"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-6,19,-oo" max="7,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-40,78" max="40,120"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@-90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@90" observers="never"/>
+</portals>
+</map>

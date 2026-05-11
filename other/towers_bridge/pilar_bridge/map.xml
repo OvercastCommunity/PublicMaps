@@ -1,0 +1,47 @@
+<map proto="1.4.2">
+<name>Pilar Bridge</name>
+<version>1.1.0</version>
+<created>2024-07-22</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">0</constant>
+</constants>
+<maxbuildheight>17</maxbuildheight>
+<authors>
+    <author uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592"/> <!-- nicolieeee -->
+</authors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0, 18, 0</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">-34.5,17,0.5</point>
+    <point id="red-spawn-point">35.5,17,0.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="-32,10,3" max="-37,16,-2"/>
+        <cuboid id="red-scoreroom" min="33,10,-2" max="38,16,3"/>
+        <cuboid id="sky" min="-28,15,-oo" max="28,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-33,10,-2" max="-37,10.5,2"/>
+        <cuboid id="red-scorebox" min="33,10,-2" max="37,10.5,2"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-10,18,-oo" max="10,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-45,-25" max="45,25"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+</portals>
+</map>

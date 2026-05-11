@@ -1,0 +1,56 @@
+<map proto="1.4.2">
+<name>Fortress Bridge</name>
+<version>1.1.0</version>
+<created>2025-06-11</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">0</constant>
+</constants>
+<maxbuildheight>15</maxbuildheight>
+<authors>
+    <author uuid="a4d4cce1-f0dc-4a99-b0af-b1cf9a81423e"/> <!-- wDrey -->
+    <author uuid="f009541b-0fa8-4cc4-8bb5-0de7f7f78d0f"/> <!-- wKeith -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML and adapt to Bridge format"/> <!-- nicolieeee -->
+</contributors>
+<broadcasts>
+    <alert after="2s">No puedes construir en el 2do nivel ni en las escaleras.</alert>
+</broadcasts>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="180"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="0"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5, 10, 0.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">-6.5,15,35.5</point>
+    <point id="red-spawn-point">8.5,15,-35.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="-9,8,33" max="-4,14,38"/>
+        <cuboid id="red-scoreroom" min="6,8,-38" max="11,14,-33"/>
+        <cuboid id="blue-staircase" min="-3,10,6" max="3,15,10"/>
+        <cuboid id="red-staircase" min="-1,10,-10" max="5,15,-6"/>
+        <cuboid id="sky" min="-15,13,-29" max="15,15,29"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-5,8,34" max="-8,8.5,37"/>
+        <cuboid id="red-scorebox" min="7,8,-37" max="10,8.5,-34"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-oo,19,-19" max="oo,oo,10"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-17,-45" max="17,45"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@0" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@180" observers="never"/>
+</portals>
+</map>

@@ -1,0 +1,51 @@
+<map proto="1.4.2">
+<name>Mario Bridge</name>
+<version>1.1.0</version>
+<created>2024-05-29</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">15</constant>
+</constants>
+<maxbuildheight>32</maxbuildheight>
+<authors>
+    <author uuid="6e33b007-ff1e-4b16-abe0-8ba98aedc570"/> <!-- Maxcence -->
+    <author uuid="52ddf96c-5266-40a2-aed8-796e3d481b1e"/> <!-- Lykh -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="-90"/>
+    <default yaw="180">
+        <regions>
+            <point>70.5,27,60.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">104.5,33,60.5</point>
+    <point id="red-spawn-point">36.5,33,60.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="103,25,58" max="108,31,63"/>
+        <cuboid id="red-scoreroom" min="33,25,58" max="38,31,63"/>
+        <cuboid id="sky" min="42,30,-oo" max="99,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="104,25,59" max="107,25.5,62"/>
+        <cuboid id="red-scorebox" min="34,25,59" max="37,25.5,62"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="64,34,-oo" max="76,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="29,39" max="112,82"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@-90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@90" observers="never"/>
+</portals>
+</map>

@@ -1,0 +1,46 @@
+<map proto="1.4.2">
+<name>Sakai Bridge</name>
+<version>1.2.0</version>
+<created>2024-05-29</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">10</constant>
+</constants>
+<maxbuildheight>29</maxbuildheight>
+<authors>
+    <author uuid="90102fca-dd25-44e0-90c0-8739b8eb2b0f"/> <!-- Dashyz -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>45, 24, 25</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">10.5,29,25.5</point>
+    <point id="red-spawn-point">80.5,29,25.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="8,22,23" max="13.5,28,27.5"/>
+        <cuboid id="red-scoreroom" min="78.5,22,23" max="82.5,28,27.5"/>
+        <cuboid id="sky" min="17,27,-oo" max="73,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="9,22,24" max="12,22.5,27"/>
+        <cuboid id="red-scorebox" min="79,22,24" max="82,22.5,27"/>
+    </union>
+    <union id="map-boundaries">
+        <negative><rectangle min="3,3" max="88,47"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+</portals>
+</map>

@@ -1,0 +1,54 @@
+<map proto="1.4.2">
+<name>Alius Bridge</name>
+<version>1.1.0</version>
+<created>2025-06-15</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">15</constant>
+</constants>
+<maxbuildheight>32</maxbuildheight>
+<authors>
+    <author uuid="2e0d93e1-cd4c-4803-ab24-32e10576eedf"/> <!-- Vearz -->
+    <author uuid="387aeb3e-1505-49fd-8696-c0108d452358"/> <!-- Snaz48 -->
+    <author uuid="4f3d78b2-a6f6-4dc2-93f7-ff6b5f7c98dd"/> <!-- opKarbone -->
+    <author uuid="734715dc-34d2-457b-9858-4bcf8eb62bf5"/> <!-- Nexio -->
+    <author uuid="403b7153-24c8-4691-9a25-b0432c3d754a"/> <!-- V12 -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML and adapt to Bridge format"/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5,27,0.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">-34.5,32,0.5</point>
+    <point id="red-spawn-point">35.5,32,0.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="-37,25,-2" max="-32,31,3"/>
+        <cuboid id="red-scoreroom" min="33,25,-2" max="38,31,3"/>
+        <cuboid id="sky" min="-27,30,-oo" max="28,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-33,25,-1" max="-36,25.5,2"/>
+        <cuboid id="red-scorebox" min="34,25,-1" max="37,25.5,2"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-6,34,-oo" max="7,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-42,17" max="43,-16"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+</portals>
+</map>

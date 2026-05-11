@@ -1,0 +1,50 @@
+<map proto="1.4.2">
+<name>Treehouse Bridge</name>
+<version>1.1.0</version>
+<created>2025-11-27</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">1</constant>
+</constants>
+<maxbuildheight>19</maxbuildheight>
+<authors>
+    <author uuid="40fd24ca-55bd-4fe3-9920-48cbcbd4c086"/>
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML "/> <!-- nicolieeee -->
+</contributors>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="-90"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5, 14, -231.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">30.5,19,-231.5</point>
+    <point id="red-spawn-point">-30.5,19,-231.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="28,12,-234" max="33,18,-229"/>
+        <cuboid id="red-scoreroom" min="-33,12,-234" max="-28,18,-229"/>
+        <cuboid id="sky" min="-23,17,-oo" max="23,oo,oo"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="29,12,-233" max="32,12.5,-230"/>
+        <cuboid id="red-scorebox" min="-32,12,-233" max="-29,12.5,-230"/>
+    </union>
+    <union id="secondfloor">
+        <cuboid min="-8,18,-oo" max="8,oo,oo"/>
+    </union>
+    <apply region="secondfloor" kit="kill"/>
+    <union id="map-boundaries">
+        <negative><rectangle min="-40,-253" max="40,-209"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@-90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@90" observers="never"/>
+</portals>
+</map>

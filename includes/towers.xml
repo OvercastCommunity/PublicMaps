@@ -1,0 +1,290 @@
+<map>
+<unless variant="ranked">
+    <rules>
+        <rule>Solo madera en la defensa</rule>
+        <rule>No se permite la TNT</rule>
+    </rules>
+</unless>
+<if variant="ranked">
+    <rules>
+        <rule>Armadura bloqueada</rule>
+        <rule>Tiempo de reaparición aumentado</rule>
+        <rule>No se permiten cofres</rule>
+    </rules>
+    <broadcasts>
+        <alert after="2s">Todos atacan y todos defienden.</alert>
+        <alert after="4s">Si te ensordeces en Discord seras sancionado.</alert>
+    </broadcasts>
+</if>
+<objective>Anota 10 puntos para ganar.</objective>
+<gamemode>scorebox</gamemode>
+<game>The Towers</game>
+<if variant="default">
+    <constant id="blue-team-size">50</constant>
+    <constant id="red-team-size">50</constant>
+    <constant id="respawn-delay">0.5s</constant>
+    <constant id="max-item-spawner">64</constant>
+    <constant id="time-limit">60m</constant>
+    <constant id="armor-locked">false</constant>
+</if>
+<if variant="tournament,nano">
+    <constant id="blue-team-size">8</constant>
+    <constant id="red-team-size">8</constant>
+    <constant id="respawn-delay">0.5s</constant>
+    <constant id="max-item-spawner">32</constant>
+    <constant id="time-limit">40m</constant>
+    <constant id="armor-locked">true</constant>
+</if>
+<if variant="ranked">
+    <constant id="blue-team-size">8</constant>
+    <constant id="red-team-size">8</constant>
+    <constant id="respawn-delay">4s</constant>
+    <constant id="max-item-spawner">32</constant>
+    <constant id="time-limit">15m</constant>
+    <constant id="armor-locked">true</constant>
+</if>
+<teams>
+    <team id="red-team" color="dark red" max="${red-team-size}">Red</team>
+    <team id="blue-team" color="blue" max="${blue-team-size}">Blue</team>
+</teams>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <all id="red-scored">
+        <team>red-team</team>
+        <region id="blue-scorebox"/>
+    </all>
+    <all id="blue-scored">
+        <team>blue-team</team>
+        <region id="red-scorebox"/>
+        <participating/>
+    </all>
+</filters>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <max-health>20</max-health>
+        <health>20</health>
+        <effect duration="2" amplifier="255">regeneration</effect>
+        <effect duration="2" amplifier="255">damage resistance</effect>
+        <helmet team-color="true" unbreakable="true" locked="${armor-locked}" material="leather helmet"/>
+        <chestplate team-color="true" unbreakable="true" locked="${armor-locked}" material="leather chestplate"/>
+        <leggings team-color="true" unbreakable="true" locked="${armor-locked}" enchantment="protection projectile:2" material="chainmail leggings"/>
+        <boots team-color="true" unbreakable="true" locked="${armor-locked}" enchantment="feather falling:1" material="iron boots"/>
+        <if variant="default,tournament,nano">
+            <item slot="0" unbreakable="true" material="stone sword" />
+            <item slot="1" unbreakable="true" material="stone pickaxe"/>
+            <item slot="2" unbreakable="true" material="stone axe"/>
+            <item slot="3" amount="16" material="arrow"/>
+            <item slot="4" unbreakable="true" material="bow"/>
+            <item slot="5" amount="16" material="slime block"/>
+            <item slot="6" amount="64" material="stained glass" team-color="true"/>
+            <item slot="7" amount="64" material="wood"/>
+        </if>
+        <if variant="ranked">
+            <item slot="0" unbreakable="true" material="stone sword" />
+            <item slot="1" unbreakable="true" material="stone pickaxe"/>
+            <item slot="2" unbreakable="true" material="stone axe"/>
+            <item slot="3" amount="16" material="arrow"/>
+            <item slot="4" unbreakable="true" material="bow"/>
+            <item slot="5" amount="4" material="slime block"/>
+            <item slot="6" amount="32" material="stained glass" team-color="true"/>
+            <item slot="7" amount="32" material="wood"/>
+        </if>
+    </kit>
+    <kit id="heal">
+        <max-health>20</max-health>
+        <health>20</health>
+        <effect duration="2" amplifier="255">regeneration</effect>
+        <effect duration="1" amplifier="255">damage resistance</effect>
+        <action>
+            <set var="player_score" value="player_score+1"/>
+        </action>
+        <action>
+            <message actionbar="`7Points: `a{amount}">
+                <replacements>
+                    <decimal id="amount" value="player_score"/>
+                </replacements>
+            </message>
+        </action>
+    </kit>
+    <kit id="defense-materials">
+        <item slot="9" amount="8" material="sign"/>
+        <item slot="10" amount="8" material="workbench"/>
+        <item slot="11" amount="8" material="fence"/>
+        <item slot="12" amount="4" material="fence gate"/>
+    </kit>
+</kits>
+<variables>
+    <variable id="player_score" scope="player" default="0"/>
+</variables>
+<stats>
+    <stat name="Points" value="player_score"/>
+</stats>
+<block-drops>
+    <rule wrong-tool="false">
+        <filter>
+            <any>
+                <material>QUARTZ_BLOCK:1</material>
+                <material>STEP:7</material>
+                <material>QUARTZ_STAIRS</material>
+            </any>
+        </filter>
+        <drops>
+            <item material="QUARTZ_BLOCK"/>
+        </drops>
+    </rule>
+    <rule wrong-tool="false">
+        <filter>
+            <any>
+                <material>DARK_OAK_FENCE</material>
+            </any>
+        </filter>
+        <drops>
+            <item material="FENCE"/>
+        </drops>
+    </rule>
+    <rule wrong-tool="false">
+        <filter>
+            <any>
+                <material>STEP:6</material>
+                <material>NETHER_BRICK_STAIRS</material>
+            </any>
+        </filter>
+        <drops>
+            <item material="NETHER_BRICK"/>
+        </drops>
+    </rule>
+</block-drops>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>stone pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>bow</tool>
+    <tool>leather helmet</tool>
+    <tool>leather chestplate</tool>
+    <tool>chainmail leggings</tool>
+    <tool>iron boots</tool>
+</toolrepair>
+<itemremove>
+    <item>EMERALD_BLOCK</item>
+    <item>WOOL:11</item>
+    <item>WOOL:14</item>
+    <item>String</item>
+    <item>NETHER_FENCE</item>
+    <item>feather</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+    <item>Arrow</item>
+    <item>Slime block</item>
+    <item>Stained glass</item>
+    <item>wood</item>
+    <item>QUARTZ_BLOCK</item>
+    <item>nether brick</item>
+    <item>COBBLESTONE</item>
+    <item>COAL_BLOCK</item>
+    <item>TNT</item>
+</itemkeep>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<crafting>
+    <if constant="armor-locked" value="true">
+        <disable>leather helmet</disable>
+        <disable>leather chestplate</disable>
+        <disable>chainmail leggings</disable>
+        <disable>iron boots</disable>
+    </if>
+    <unless variant="default">
+        <disable>iron block</disable>
+        <disable>hopper</disable>
+        <disable>furnace</disable>
+        <disable>slime_ball</disable>
+        <disable>nether_fence</disable>
+        <smelt>
+            <result amount="1" material="COBBLESTONE"/>
+            <ingredient>COBBLESTONE</ingredient>
+        </smelt>
+    </unless>
+</crafting>
+<tnt>
+    <instantignite>on</instantignite>
+    <yield>0</yield>
+    <power>3</power>
+</tnt>
+<disabledamage>
+    <damage>BLOCK_EXPLOSION</damage>
+</disabledamage>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<world>
+    <timeset>6000</timeset>
+</world>
+<kill-rewards>
+    <unless variant="ranked">
+        <kill-reward>
+            <kit deduct-items="true">
+                <item amount="8" material="Slime Block"/>
+                <item amount="64" material="Wood"/>
+                <item amount="16" material="arrow"/>
+            </kit>
+        </kill-reward>
+    </unless>
+    <if variant="ranked">
+        <kill-reward>
+            <kit deduct-items="true">
+                <item amount="6" material="Slime Block"/>
+                <item amount="20" material="arrow"/>
+            </kit>
+            <item amount="16" material="Wood"/>
+        </kill-reward>
+    </if>
+</kill-rewards>
+<score>
+    <limit>10</limit>
+    <box value="1" filter="only-red" region="blue-scorebox"/>
+    <box value="1" filter="only-blue" region="red-scorebox"/>
+</score>
+<respawn delay="${respawn-delay}" auto="true"/>
+<unless variant="default">
+    <time overtime="1s">${time-limit}</time>
+</unless>
+<regions>
+    <apply region="spawns" block="never" message="No puedes modificar esta zona."/>
+    <apply block="never" message="No puedes salir del mapa." region="map-boundaries"/>
+    <apply region="blue-scorebox" kit="heal" filter="only-red"/>
+    <apply region="red-scorebox" kit="heal" filter="only-blue"/>
+    <if variant="default,tournament,nano">
+        <apply region="red-chests" use="only-red" message="No puedes abrir cofres enemigos"/>
+        <apply region="red-chests" block="never" message="No puedes modificar esta zona."/>
+        <apply region="blue-chests" use="only-blue" message="No puedes abrir cofres enemigos"/>
+        <apply region="blue-chests" block="never" message="No puedes modificar esta zona."/>
+    </if>
+    <if variant="ranked">
+        <apply region="red-chests" use="never" message="No puedes abrir cofres."/>
+        <apply region="red-chests" block="never" message="No puedes modificar esta zona."/>
+        <apply region="blue-chests" use="never" message="No puedes abrir cofres."/>
+        <apply region="blue-chests" block="never" message="No puedes modificar esta zona."/>
+        <apply region="blue-defense-area" filter="only-blue" kit="defense-materials"/>
+        <apply region="red-defense-area" filter="only-red" kit="defense-materials"/>
+    </if>
+</regions>
+<spawners>
+    <spawner spawn-region="iron-spawner" player-region="everywhere" max-entities="${max-item-spawner}" delay="6s">
+        <item amount="1" material="iron ingot"/>
+    </spawner>
+    <if variant="default">
+        <spawner spawn-region="lapis-spawner" player-region="everywhere" max-entities="${max-item-spawner}" delay="6s">
+            <item amount="1" material="ink sack" damage="4"/>
+        </spawner>
+        <spawner spawn-region="xp-spawner" player-region="everywhere" max-entities="${max-item-spawner}" delay="6s">
+            <item amount="5" material="exp bottle"/>
+        </spawner>
+    </if>
+</spawners>
+</map>

@@ -1,0 +1,89 @@
+<map proto="1.4.2">
+<name>Green Towers</name>
+<version>1.0.0</version>
+<created>2025-09-25</created>
+<phase>staging</phase>
+<include id="gapple-kill-reward"/>
+<include id="void-death"/>
+<include id="towers"/>
+<variant id="tournament">TE</variant>
+<variant id="ranked" world="ranked">Ranked</variant>
+<variant id="nano" world="ranked">Nano</variant>
+<constants>
+    <constant id="void-plane">-20</constant>
+</constants>
+<authors>
+    <author uuid="795d527c-1330-4e3e-94ec-719b63b6a8c6" contribution="Builder"/> <!-- iGreenBrothres_ -->
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML"/> <!-- nicolieeee -->
+</contributors>
+<maxbuildheight>38</maxbuildheight>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="-90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="90"/>
+    <default yaw="180">
+        <regions>
+            <point>0.5,17,0.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">-50.5, 12, 0.5</point>
+    <point id="red-spawn-point">51.5, 12, 0.5</point>
+    <union id="itemspawner">
+        <if variant="default">
+            <cuboid id="iron-spawner" min="0.5,24,-13.5" max="0.5,24.5,-13.5"/>
+            <cuboid id="lapis-spawner" min="0.5,24,0.5" max="0.5,24.5,0.5"/>
+            <cuboid id="xp-spawner" min="0.5,24,14.5" max="0.5,24.5,14.5"/>
+        </if>
+        <unless variant="default">
+            <cuboid id="iron-spawner" min="0.5,24,0.5" max="0.5,24.5,0.5"/>
+        </unless>
+    </union>
+    <union id="red-chests">
+        <cuboid id="red-chestroom-1" min="36,11,-11" max="41,15,-2"/>
+        <cuboid id="red-chestroom-2" min="36,11,3" max="41,15,12"/>
+        <cylinder id="red-chest-1" base="38.5,12,14.5" radius="1.2" height="2"/>
+    </union>
+    <union id="blue-chests">
+        <cuboid id="blue-chestroom-1" min="-40,11,-11" max="-35,15,-2"/>
+        <cuboid id="blue-chestroom-2" min="-40,11,3" max="-35,15,12"/>
+        <cylinder id="blue-chest-1" base="-37.5,12,-13.5" radius="1.2" height="2"/>
+    </union>
+    <!-- por si se quiere usar el tiempo de preparación desde PGM y no desde un plugin -->
+    <rectangle id="preparation" min="-9,-16" max="37,20"/>
+    <!-- Protections -->
+    <union id="spawns">
+        <!-- team blue -->
+        <cuboid id="blue-spawn-room" min="-54,10,-3" max="-47,22,4"/>
+        <cuboid id="blue-scorebox-room" min="-52,20,-1" max="-49,25,2"/>
+        <cuboid id="blue-pathway-1" min="-37,12,0" max="-47,14,1"/>
+        <cuboid id="blue-pathway-2" min="-38,12,-2" max="-37,14,3"/>
+        <!-- team red -->
+        <cuboid id="red-spawn-room" min="48,10,-3" max="55,22,4"/>
+        <cuboid id="red-scorebox-room" min="50,20,-1" max="53,25,2"/>
+        <cuboid id="red-pathway-1" min="38,12,0" max="48,14,1"/>
+        <cuboid id="red-pathway-2" min="38,12,-2" max="39,14,3"/>
+    </union>
+    <!-- scoreboxes -->
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="-52,20,-1" max="-49,20.5,2"/>
+        <cuboid id="red-scorebox" min="50,20,-1" max="53,20.5,2"/>
+    </union>
+    <union id="bases">
+        <rectangle id="blue-defense" min="-oo,-oo" max="-41,oo"/>
+        <rectangle id="red-defense" min="42,-oo" max="oo,oo"/>
+        <cuboid id="blue-defense-area" min="-56,17,-5" max="-45,42,6"/>
+        <cuboid id="red-defense-area" min="46,17,-5" max="57,42,6"/>
+    </union>
+    <!-- map boundaries -->
+    <union id="map-boundaries">
+        <negative><rectangle min="-59,-22" max="60,23"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@-90" observers="never"/>
+</portals>
+</map>

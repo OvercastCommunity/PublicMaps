@@ -1,0 +1,53 @@
+<map proto="1.4.2">
+<name>Carros Bridge</name>
+<version>1.1.0</version>
+<created>2025-11-27</created>
+<phase>development</phase>
+<include id="towers-bridge"/>
+<constants>
+    <constant id="void-plane">3</constant>
+</constants>
+<maxbuildheight>21</maxbuildheight>
+<authors>
+    <author uuid="40fd24ca-55bd-4fe3-9920-48cbcbd4c086"/>
+    <author uuid="3d8d4bfe-8f4f-4f62-a467-b26144c34c17"/>
+    <author uuid="f3052dec-7a17-4a43-9f22-9e174ab3cf07"/>
+    <author uuid="795d527c-1330-4e3e-94ec-719b63b6a8c6"/>
+</authors>
+<contributors>
+    <contributor uuid="0cd8d8fe-8baf-4603-9ea3-4214283b9592" contribution="XML "/> <!-- nicolieeee -->
+</contributors>
+<broadcasts>
+    <alert after="2s">No puedes tapar el centro.</alert>
+</broadcasts>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point" yaw="90"/>
+    <spawn team="red-team" kit="spawn-kit" region="red-spawn-point" yaw="-90"/>
+    <default yaw="180">
+        <regions>
+            <point>-5.5, 16, -306.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <point id="blue-spawn-point">31.5,21,-306.5</point>
+    <point id="red-spawn-point">-30.5,21,-306.5</point>
+    <union id="spawns">
+        <cuboid id="blue-scoreroom" min="28,14,-309" max="33,15,-304"/>
+        <cuboid id="red-scoreroom" min="-33,14,-309" max="-28,15,-304"/>
+        <cuboid id="sky" min="-23,19,-oo" max="23,oo,oo"/>
+        <cuboid id="center" min="2,13,-305" max="-1,16,-308"/>
+    </union>
+    <union id="scoreboxes">
+        <cuboid id="blue-scorebox" min="29,14,-308" max="32,14.5,-305"/>
+        <cuboid id="red-scorebox" min="-32,14,-308" max="-29,14.5,-305"/>
+    </union>
+    <union id="map-boundaries">
+        <negative><rectangle min="-40,-321" max="40,-292"/></negative>
+    </union>
+</regions>
+<portals pitch="@0">
+    <portal filter="only-red" region="blue-scorebox" destination="red-spawn-point" yaw="@-90" observers="never"/>
+    <portal filter="only-blue" region="red-scorebox" destination="blue-spawn-point" yaw="@90" observers="never"/>
+</portals>
+</map>
