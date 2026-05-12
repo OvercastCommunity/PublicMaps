@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.04.27-1 -->
+<!-- Version 2026.05.11-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -853,29 +853,6 @@
     <portal destination="team-two-spawn" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
 </portals>
 <flags flag-proximity-metric="none" net-proximity-metric="none" required="false">
-    <post id="default-post"
-          yaw="${flag-yaw}"
-          respawn-time="${flag-respawn}"
-          recover-time="0s"
-          pickup-filter="can-pickup-flag">${flag-post}</post>
-    <if constant="team-flag-posts" constant-value="true">
-        <post id="team-one-post"
-              yaw="${team-two-yaw}"
-              respawn-time="${flag-respawn}"
-              recover-time="0s"
-              pickup-filter="can-pickup-flag"
-              fallback="default-post">
-            <post respawn-filter="not(scoring_team=0)">${team-one-flag-post}</post>
-        </post>
-        <post id="team-two-post"
-              yaw="${team-one-yaw}"
-              respawn-time="${flag-respawn}"
-              recover-time="0s"
-              pickup-filter="can-pickup-flag"
-              fallback="default-post">
-            <post respawn-filter="not(scoring_team=0)">${team-two-flag-post}</post>
-        </post>
-    </if>
     <flag id="flag"
           name="Flag"
           color="${flag-color}"
@@ -885,7 +862,6 @@
           show-messages="false"
           show-effects="false"
           capture-filter="all(carrying-football,alive,one-pass-enforcement)"
-          post="default-post"
           allow-manual-drop="false">
         <unless constant="team-flag-posts" constant-value="true">
             <net region="team-one-portal"
@@ -905,6 +881,16 @@
                  post="team-two-post"
                  points="${score-points}"/>
         </if>
+        <post yaw="${flag-yaw}"
+              respawn-time="${flag-respawn}"
+              recover-time="0s"
+              pickup-filter="can-pickup-flag">
+            <post>${flag-post}</post>
+            <if constant="team-flag-posts" constant-value="true">
+                <post id="team-one-post" yaw="${team-two-yaw}" respawn-filter="not(scoring_team=0)">${team-one-flag-post}</post>
+                <post id="team-two-post" yaw="${team-one-yaw}" respawn-filter="not(scoring_team=0)">${team-two-flag-post}</post>
+            </if>
+        </post>
     </flag>
 </flags>
 <score display="${score-display}">
