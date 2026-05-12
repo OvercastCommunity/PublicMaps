@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.05.11-1 -->
+<!-- Version 2026.05.12-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -863,32 +863,13 @@
           show-effects="false"
           capture-filter="all(carrying-football,alive,one-pass-enforcement)"
           allow-manual-drop="false">
-        <unless constant="team-flag-posts" constant-value="true">
-            <net region="team-one-portal"
-                 capture-filter="team-two"
-                 points="${score-points}"/>
-            <net region="team-two-portal"
-                 capture-filter="team-one"
-                 points="${score-points}"/>
-        </unless>
-        <if constant="team-flag-posts" constant-value="true">
-            <net region="team-one-portal"
-                 capture-filter="team-two"
-                 post="team-one-post"
-                 points="${score-points}"/>
-            <net region="team-two-portal"
-                 capture-filter="team-one"
-                 post="team-two-post"
-                 points="${score-points}"/>
-        </if>
-        <post yaw="${flag-yaw}"
-              respawn-time="${flag-respawn}"
-              recover-time="0s"
-              pickup-filter="can-pickup-flag">
-            <post>${flag-post}</post>
+        <net region="team-one-portal" capture-filter="team-two" points="${score-points}"/>
+        <net region="team-two-portal" capture-filter="team-one" points="${score-points}"/>
+        <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="can-pickup-flag">
+            <post respawn-filter="never">${flag-post}</post>
             <if constant="team-flag-posts" constant-value="true">
-                <post id="team-one-post" yaw="${team-two-yaw}" respawn-filter="not(scoring_team=0)">${team-one-flag-post}</post>
-                <post id="team-two-post" yaw="${team-one-yaw}" respawn-filter="not(scoring_team=0)">${team-two-flag-post}</post>
+                <post id="team-one-post" yaw="${team-two-yaw}" respawn-filter="scoring_team=2">${team-one-flag-post}</post>
+                <post id="team-two-post" yaw="${team-one-yaw}" respawn-filter="scoring_team=1">${team-two-flag-post}</post>
             </if>
         </post>
     </flag>
