@@ -2,7 +2,7 @@
 <!-- Overcast PvP mechanics file -->
 <!-- Created by mameBT -->
 <!-- Based on Overcast Network's legacy global include -->
-<!-- Version 2026.05.12-2 -->
+<!-- Version 2026.05.12-1 -->
 <if min-server-version="1.21.11">
     <item-mods>
         <rule>
@@ -102,7 +102,8 @@
                 <material>wood axe</material>
             </match>
             <modify>
-                <attribute amount="4" slot="mainhand">attack_damage</attribute>
+                <attribute amount="3.0" slot="mainhand">attack_damage</attribute>
+                <attribute amount="-3.2" slot="mainhand">attack_speed</attribute>
             </modify>
         </rule>
         <rule>
@@ -110,7 +111,8 @@
                 <material>gold axe</material>
             </match>
             <modify>
-                <attribute amount="4" slot="mainhand">attack_damage</attribute>
+                <attribute amount="3.0" slot="mainhand">attack_damage</attribute>
+                <attribute amount="-3.0" slot="mainhand">attack_speed</attribute>
             </modify>
         </rule>
         <rule>
@@ -118,7 +120,8 @@
                 <material>stone axe</material>
             </match>
             <modify>
-                <attribute amount="5" slot="mainhand">attack_damage</attribute>
+                <attribute amount="4.0" slot="mainhand">attack_damage</attribute>
+                <attribute amount="-3.2" slot="mainhand">attack_speed</attribute>
             </modify>
         </rule>
         <rule>
@@ -126,7 +129,8 @@
                 <material>copper axe</material>
             </match>
             <modify>
-                <attribute amount="5" slot="mainhand">attack_damage</attribute>
+                <attribute amount="4.0" slot="mainhand">attack_damage</attribute>
+                <attribute amount="-3.2" slot="mainhand">attack_speed</attribute>
             </modify>
         </rule>
         <rule>
@@ -134,7 +138,8 @@
                 <material>iron axe</material>
             </match>
             <modify>
-                <attribute amount="6" slot="mainhand">attack_damage</attribute>
+                <attribute amount="5.0" slot="mainhand">attack_damage</attribute>
+                <attribute amount="-3.1" slot="mainhand">attack_speed</attribute>
             </modify>
         </rule>
         <rule>
@@ -142,7 +147,8 @@
                 <material>diamond axe</material>
             </match>
             <modify>
-                <attribute amount="7" slot="mainhand">attack_damage</attribute>
+                <attribute amount="6.0" slot="mainhand">attack_damage</attribute>
+                <attribute amount="-3.0" slot="mainhand">attack_speed</attribute>
             </modify>
         </rule>
         <rule>
@@ -150,7 +156,8 @@
                 <material>netherite axe</material>
             </match>
             <modify>
-                <attribute amount="8" slot="mainhand">attack_damage</attribute>
+                <attribute amount="7.0" slot="mainhand">attack_damage</attribute>
+                <attribute amount="-3.0" slot="mainhand">attack_speed</attribute>
             </modify>
         </rule>
     </item-mods>
