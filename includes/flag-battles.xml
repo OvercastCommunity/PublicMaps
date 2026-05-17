@@ -2,7 +2,7 @@
 <!-- 🚩 Flag Battles Include 🚩 -->
 <!-- Gamemode devloped by Technodono -->
 <!-- Version yyyy-mm-dd so I don't forget -->
-<!-- Version 2026.03.02-1 -->
+<!-- Version 2026.05.17-1 -->
 <game>Flag Battles</game>
 <objective>Score flags in enemy portals to reduce their healthbar. Last team standing wins!</objective>
 <include id="gapple-kill-reward"/>
@@ -13,7 +13,6 @@
     <constant id="match-timelimit">360</constant> <!-- How long the match should last before entering sudden death (seconds) --> <!-- default = 360 (6m) -->
     <constant id="sudden-death-timelimit">240</constant> <!-- How long should sudden death last (seconds) --> <!-- default = 240 (4m) -->
     <constant id="starting-score">10</constant> <!-- Starting hearts for each team [❤❤❤❤❤❤❤❤❤❤] -->
-    <constant id="starting-score-plus-one">11</constant> <!-- One higher than the number of starting hearts used for when the full scorebar is enabled -->
     <constant id="show-full-score-bar">1</constant> <!-- When enabled this renders the grey hearts underneath the team life bars. Due to the way scoring works there will always be an extra grey heart after each teams total health -->
     <constant id="flag-normal-score-amount">2</constant> <!-- Damage flags deal when scoring in portals -->
     <constant id="flag-bonus-score-amount">3</constant> <!--  Damage flags deal when scoring in portals in sudden death -->
@@ -455,7 +454,6 @@
     <trigger filter="match-loaded" scope="match">
         <action>
             <switch-scope inner="team" observers="true">
-                <action id="team_lives := (${starting-score})"/>
                 <action id="teams_remaining := 4"/>
                 <action id="team_removal_timer := ceil(${auto-kill-timer}/2)"/>
                 <action id="match_timelimit := (${match-timelimit} + ${sudden-death-timelimit})"/>
@@ -1023,7 +1021,8 @@
 </unless>
 <if constant="show-full-score-bar" constant-value="1" constant-comparison="equals">
 <score display="heart">
-    <limit>${starting-score-plus-one}</limit>
+    <initial>${starting-score}</initial>
+    <limit>${starting-score}</limit>
 </score>
 </if>
 <unless constant="show-full-score-bar" constant-value="1" constant-comparison="equals">
