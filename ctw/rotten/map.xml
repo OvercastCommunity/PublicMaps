@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Rotten</name> <!-- built in; Original: February 2015, Rework: November 2021 -->
-<version>2.0.6</version>
+<version>2.0.7</version>
 <objective>Capture the enemy team's wool!</objective>
 <created>2015-02-08</created>
 <include id="gapple-kill-reward"/>
@@ -72,7 +72,10 @@
         <void/>
     </not>
     <deny id="deny-web">
-        <material>web</material>
+        <all>
+            <material>web</material>
+            <not><region id="bedrock-walls"/></not>
+        </all>
     </deny>
     <blocks id="woolrooms-blocks-filter" region="woolrooms-blocks">
         <any>
@@ -129,6 +132,10 @@
     <union id="gold-regen">
         <cuboid min="11,2,-47" max="0,6,-62"/> <!-- blue gold -->
         <cuboid min="-11,2,47" max="0,6,62"/> <!-- red gold -->
+    </union>
+    <union id="bedrock-walls">
+        <rectangle min="22,92" max="9,94"/>
+        <rectangle min="-22,-92" max="-9,-94"/>
     </union>
     <!-- applicators -->
     <apply kit="reset-resistance-kit" region="not-spawns"/>
