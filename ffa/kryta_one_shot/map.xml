@@ -422,7 +422,7 @@
         </region>
     </apply>
     <!--  opposite torwards above ^ also opposite kryta sign33,51,325  -->
-    <apply velocity="-4, 2, -4">
+    <apply velocity="-3.9, 2, -3.9">
         <region>
             <cuboid id="jumpad-4" min="32,50.5,324" max="30,51.5,322"/>
         </region>
@@ -440,19 +440,19 @@
         </region>
     </apply>
     <!--  -22,10,354  -->
-    <apply velocity="2, 4, -2">
+    <apply velocity="2, 3.9, -2">
         <region>
             <cuboid id="jumpad-7" min="-25,8.5,358" max="-23,9.5,356"/>
         </region>
     </apply>
     <!--  right above the kryta sign  -->
-    <apply velocity="-2, 6, 2">
+    <apply velocity="-2, 3.9, 2">
         <region>
             <cuboid id="jumpad-8" min="22,56.5,295" max="24,57.5,293"/>
         </region>
     </apply>
     <!--  top village  -->
-    <apply velocity="3, 5, 3">
+    <apply velocity="3, 3.9, 3">
         <region>
             <cuboid id="jumpad-9" min="13,48.5,242" max="11,49.5,240"/>
         </region>

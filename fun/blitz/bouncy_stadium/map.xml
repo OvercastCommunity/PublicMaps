@@ -77,22 +77,22 @@
             <cylinder base="-36.5,12,37.5" radius="2" height="2"/>
         </region>
     </apply>
-    <apply velocity="-0.5,1.4,-5">
+    <apply velocity="-0.5,1.4,-3.9">
         <region>
             <cylinder base="-50.5,10,17.5" radius="2" height="2"/>
         </region>
     </apply>
-    <apply velocity="5,1.4,0.5">
+    <apply velocity="3.9,1.4,0.5">
         <region>
             <cylinder base="-16.5,10,51.5" radius="2" height="2"/>
         </region>
     </apply>
-    <apply velocity="0.5,1.4,5">
+    <apply velocity="0.5,1.4,3.9">
         <region>
             <cylinder base="51.5,10,-16.5" radius="2" height="2"/>
         </region>
     </apply>
-    <apply velocity="-5,1.4,-0.5">
+    <apply velocity="-3.9,1.4,-0.5">
         <region>
             <cylinder base="17.5,10,-50.5" radius="2" height="2"/>
         </region>

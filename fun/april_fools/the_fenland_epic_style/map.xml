@@ -128,7 +128,7 @@
     <apply use="red-woolroom-filter-use" region="red-woolroom" message="You may not steal from the wool room!"/>
     <apply use="blue-woolroom-filter-use" region="blue-woolroom" message="You may not steal from the wool room!"/>
     <apply kit="reset-resistance-kit" region="not-spawns-enter"/>
-    <apply velocity="0,5,0" region="mid-jump-pad"/>
+    <apply velocity="0,3.9,0" region="mid-jump-pad"/>
     <apply velocity="-2,2,2" region="blue-jump-pad"/>
     <apply velocity="2,2,-2" region="red-jump-pad"/>
 </regions>

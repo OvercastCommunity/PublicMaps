@@ -20,7 +20,7 @@
 <regions>
     <cuboid id="spawn" min="6.5,7,4.5" max="-6.5,7,1.5"/>
     <cuboid id="finish-line" min="-7,14,-2" max="7,18,-1"/>
-    <apply velocity="0,2.45,13.75">
+    <apply velocity="0,2.45,3.9">
         <region>
             <cuboid min="-7,6,-44" max="7,9,-41"/>
         </region>

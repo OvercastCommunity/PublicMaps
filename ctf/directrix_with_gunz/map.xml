@@ -87,23 +87,23 @@
         </region>
     </apply>
     <!-- To center sides jump pads -->
-    <apply velocity="-6.7, 1.8, 0">
+    <apply velocity="-3.9, 1.8, 0">
         <region>
             <cuboid id="n-1" min="-25,12,63" max="-28,14,60"/>
         </region>
     </apply>
-    <apply velocity="6.7, 1.8, 0">
+    <apply velocity="3.9, 1.8, 0">
         <region>
             <cuboid id="n-2" min="8,12,60" max="11,14,63"/>
         </region>
     </apply>
     <!-- To top center jump pads -->
-    <apply velocity="10, 2.2, 0">
+    <apply velocity="3.9, 2.2, 0">
         <region>
             <cuboid id="n-3" min="-51,23,60" max="-48,25,63"/>
         </region>
     </apply>
-    <apply velocity="-10, 2.2, 0">
+    <apply velocity="-3.9, 2.2, 0">
         <region>
             <cuboid id="n-4" min="34,23,63" max="32,25,60"/>
         </region>

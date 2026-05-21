@@ -124,8 +124,8 @@
     <apply region="not-map" block="never" message="`eYou may not edit outside the main area!"/>
     <apply region="red-ship" kit="haste" filter="only-blue"/>
     <apply region="blue-ship" kit="haste" filter="only-red"/>
-    <apply region="red-pad" velocity="@-5,2.75,-12" kit="velocity"/>
-    <apply region="blue-pad" velocity="@5,2.75,12" kit="velocity"/>
+    <apply region="red-pad" velocity="@-3.9,2.75,-3.9" kit="velocity"/>
+    <apply region="blue-pad" velocity="@3.9,2.75,3.9" kit="velocity"/>
 </regions>
 <destroyables name="Ship" show-progress="true" completion="75%" repairable="true">
     <destroyable id="red-ship-monument" region="red-ship" materials="wood;quartz block;stained glass:8;stained glass:15;stained clay:9;stained clay:14" owner="red"/>

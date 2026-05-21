@@ -71,7 +71,7 @@
         <cuboid min="-290.5,6,-303.5" max="-298,11,-295"/> Spawn Area
     </union>
     <cuboid id="spawn-hole" min="-297,0,-302" max="-290,30,-295"/> -->
-    <apply velocity="0.0,8,0.0">
+    <apply velocity="0.0,3.9,0.0">
         <region>
             <block>-291,6,-302</block>
             <block>-291,6,-296</block>
@@ -79,7 +79,7 @@
             <block>-297,6,-302</block>
         </region>
     </apply>
-    <apply velocity="0.0,10,0.0">
+    <apply velocity="0.0,3.9,0.0">
         <region>
             <block>-272,6,-284</block>
             <block>-195,3,-279</block>

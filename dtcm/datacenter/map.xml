@@ -95,8 +95,8 @@
         <cuboid id="red-pad" min="-33,53,40" max="-13,56,38"/> <!-- -z -->
     </union>
     <!-- Applied -->
-    <apply region="yellow-pad" velocity="@0,2,12" kit="velocity"/>
-    <apply region="red-pad" velocity="@0,2,-12" kit="velocity"/>
+    <apply region="yellow-pad" velocity="@0,2,3.9" kit="velocity"/>
+    <apply region="red-pad" velocity="@0,2,-3.9" kit="velocity"/>
     <apply region="yellow-spawn" enter="yellow-team" message="You may not enter the enemy's spawn area!"/>
     <apply region="red-spawn" enter="red-team" message="You may not enter the enemy's spawn area!"/>
     <apply region="ships" block-place="deny-fire" message="You may not burn down the ship!"/>

@@ -61,12 +61,12 @@
             <cuboid min="-216,1,-48" max="-218,2,-46" id="orange-pad-a"/>
         </region>
     </apply>
-    <apply velocity="@-0.2,1.35,-30">
+    <apply velocity="@-0.2,1.35,-3.9">
         <region>
             <cuboid min="-218,2,-55" max="-219,5,-57" id="orange-pad-b"/>
         </region>
     </apply>
-    <apply velocity="@0,-0.3,-7">
+    <apply velocity="@0,-0.3,-3.9">
         <region>
             <cuboid min="-222,10,-82" max="-218,14,-83" id="orange-chicago-midway"/>
         </region>
@@ -76,12 +76,12 @@
             <cuboid min="-249,1,-117" max="-251,2,-119" id="blue-pad-a"/>
         </region>
     </apply>
-    <apply velocity="@0.2,1.35,30">
+    <apply velocity="@0.2,1.35,3.9">
         <region>
             <cuboid min="-249,2,-110" max="-248,5,-108" id="blue-pad-b"/>
         </region>
     </apply>
-    <apply velocity="@0,-0.3,7">
+    <apply velocity="@0,-0.3,3.9">
         <region>
             <cuboid min="-245,10,-82" max="-249,14,-83" id="blue-chicago-midway"/>
         </region>

@@ -55,12 +55,12 @@
     <material id="lily">water lily</material>
 </filters>
 <regions>
-    <apply velocity="-6,2,0">
+    <apply velocity="-3.9,2,0">
         <region>
             <cylinder base="83.5,22,13.5" radius="2" height="3"/>
         </region>
     </apply>
-    <apply velocity="6,2,0">
+    <apply velocity="3.9,2,0">
         <region>
             <cylinder base="-82.5,22,-12.5" radius="2" height="3"/>
         </region>

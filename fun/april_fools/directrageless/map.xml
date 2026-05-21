@@ -86,23 +86,23 @@
         </region>
     </apply>
     <!-- To center sides jump pads -->
-    <apply velocity="-6.7,1.8,0">
+    <apply velocity="-3.9,1.8,0">
         <region>
             <cuboid id="n-1" min="-25,12,63" max="-28,14,60"/>
         </region>
     </apply>
-    <apply velocity="6.7,1.8,0">
+    <apply velocity="3.9,1.8,0">
         <region>
             <cuboid id="n-2" min="8,12,60" max="11,14,63"/>
         </region>
     </apply>
     <!-- To top center jump pads -->
-    <apply velocity="10,2.2,0">
+    <apply velocity="3.9,2.2,0">
         <region>
             <cuboid id="n-3" min="-51,23,60" max="-48,25,63"/>
         </region>
     </apply>
-    <apply velocity="-10,2.2,0">
+    <apply velocity="-3.9,2.2,0">
         <region>
             <cuboid id="n-4" min="34,23,63" max="32,25,60"/>
         </region>
@@ -161,23 +161,23 @@
         </region>
     </apply>
     <!-- Tower side to side jump pads -->
-    <apply velocity="0,2,9">
+    <apply velocity="0,2,3.9">
         <region>
             <cuboid id="r-8" min="40,15,28" max="37,17,30"/>
         </region>
     </apply>
-    <apply velocity="0,2,-9">
+    <apply velocity="0,2,-3.9">
         <region>
             <translate region="r-8" offset="-94,0,65"/>
         </region>
     </apply>
     <!-- Side island to side jump pads -->
-    <apply velocity="0,1.5,-7">
+    <apply velocity="0,1.5,-3.9">
         <region>
             <cuboid id="r-9" min="37,21,91" max="40,23,89"/>
         </region>
     </apply>
-    <apply velocity="0,1.5,7">
+    <apply velocity="0,1.5,3.9">
         <region>
             <translate region="r-9" offset="-94,0,-57"/>
         </region>
@@ -215,8 +215,8 @@
             <cuboid id="blue-to-platform" min="-51,29,-22" max="-50,31,-19"/>
         </union>
     </union>
-    <apply velocity="@30,2,1" region="red-rocket-to-lower"/>
-    <apply velocity="@-30,2,-1" region="blue-rocket-to-lower"/>
+    <apply velocity="@3.9,2,1" region="red-rocket-to-lower"/>
+    <apply velocity="@-3.9,2,-1" region="blue-rocket-to-lower"/>
     <apply velocity="@-2.6,1,0" region="red-to-platform"/>
     <apply velocity="@2.6,1,0" region="blue-to-platform"/>
   <!-- Monuments for lanes -->

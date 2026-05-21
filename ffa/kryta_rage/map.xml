@@ -273,17 +273,17 @@
     <!-- top closest to kryta sign -2, 48, 302 -->
     <apply velocity="3.2, 2, 3.2" region="jumppad-5"/>
     <!-- opposite torwards above ^ also opposite kryta sign 33,51,325 -->
-    <apply velocity="-4, 2, -4" region="jumppad-4"/>
+    <apply velocity="-3.9, 2, -3.9" region="jumppad-4"/>
     <!-- botttom below kryta sign 13,31,306 -->
     <apply velocity="-1.5, 3, -1.5" region="jumppad-6"/>
     <!-- above jumppad goes to this one -->
     <apply velocity="2, 2, 2" region="jumppad-15"/>
     <!-- -22,10,354 -->
-    <apply velocity="2, 4, -2" region="jumppad-7"/>
+    <apply velocity="2, 3.9, -2" region="jumppad-7"/>
     <!-- right above the kryta sign -->
-    <apply velocity="-2, 6, 2" region="jumppad-8"/>
+    <apply velocity="-2, 3.9, 2" region="jumppad-8"/>
     <!-- top village -->
-    <apply velocity="3, 5, 3" region="jumppad-9"/>
+    <apply velocity="3, 3.9, 3" region="jumppad-9"/>
 </regions>
 <renewables>
     <renewable interval="600s" grow="true" particles="false" sound="false" avoid-players="20">

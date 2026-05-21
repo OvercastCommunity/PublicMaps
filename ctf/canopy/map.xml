@@ -126,12 +126,12 @@
         </region>
     </apply>
     <!-- mountain to circle platform -->
-    <apply velocity="10, 2.5, 0" filter="blue-no-flag">
+    <apply velocity="3.9, 2.5, 0" filter="blue-no-flag">
         <region>
             <cuboid id="b-5" min="-16,32,13" max="-14,34,16"/>
         </region>
     </apply>
-    <apply velocity="-10, 2.5, 0" filter="red-no-flag">
+    <apply velocity="-3.9, 2.5, 0" filter="red-no-flag">
         <region>
             <cuboid id="r-5" min="146,32,-12" max="148,34,-15"/>
         </region>
@@ -170,12 +170,12 @@
         </region>
     </apply>
     <!-- circle platform to bridge -->
-    <apply velocity="5, 3, 0" filter="blue-no-flag">
+    <apply velocity="3.9, 3, 0" filter="blue-no-flag">
         <region>
             <translate id="b-2" region="b-1" offset="41,11,0"/>
         </region>
     </apply>
-    <apply velocity="-5, 3, 0" filter="red-no-flag">
+    <apply velocity="-3.9, 3, 0" filter="red-no-flag">
         <region>
             <mirror id="r-2" region="b-2" origin="66,0,0.5" normal="1,0,0"/>
         </region>

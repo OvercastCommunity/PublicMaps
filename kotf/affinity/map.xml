@@ -58,8 +58,8 @@
 <regions>
     <cuboid id="blue-jumppad" min="146,21,189" max="148,22,192"/>
     <cuboid id="red-jumppad" min="231,21,189" max="233,22,192"/>
-    <apply region="blue-jumppad" velocity="130,3.5,0"/>
-    <apply region="red-jumppad" velocity="-130,3.5,0"/>
+    <apply region="blue-jumppad" velocity="3.9,3.5,0"/>
+    <apply region="red-jumppad" velocity="-3.9,3.5,0"/>
     <apply block="never" use="never"/>
 </regions>
 <flags>

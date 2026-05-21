@@ -304,24 +304,24 @@
     <apply region="yflag-69" velocity="-2,0,0" kit="speed-1"/>
 
     <!-- Green flag pads -->
-    <apply region="gflag-1" velocity="0,0,-4" kit="speed-2"/>
-    <apply region="gflag-2" velocity="2,0,-4" kit="speed-2"/>
-    <apply region="gflag-3" velocity="0,0.5,4" kit="speed-2"/>
+    <apply region="gflag-1" velocity="0,0,-3.9" kit="speed-2"/>
+    <apply region="gflag-2" velocity="2,0,-3.9" kit="speed-2"/>
+    <apply region="gflag-3" velocity="0,0.5,3.9" kit="speed-2"/>
     <apply region="gflag-4" velocity="-2,0,3.5" kit="speed-2"/>
     <apply region="gflag-5" velocity="-2.5,0,2.5" kit="speed-2"/>
     <apply region="gflag-6" velocity="-2.5,0,2.5" kit="speed-2"/>
-    <apply region="gflag-7" velocity="0,0,-4" kit="speed-2"/>
+    <apply region="gflag-7" velocity="0,0,-3.9" kit="speed-2"/>
     <apply region="gflag-8" velocity="2.5,1,-2.5" kit="speed-2"/>
     <apply region="gflag-9" velocity="2.5,1,-2.5" kit="speed-2"/>
     <apply region="gflag-10" velocity="2.5,1,-2.5" kit="speed-2"/>
     <apply region="gflag-11" velocity="-2,0,2" kit="speed-2"/>
     <apply region="gflag-12" velocity="3,0.5,3" kit="speed-2"/>
-    <apply region="gflag-13" velocity="4,0.5,0" kit="speed-2"/>
+    <apply region="gflag-13" velocity="3.9,0.5,0" kit="speed-2"/>
     <apply region="gflag-14" velocity="2,1,-2" kit="speed-2"/>
     <apply region="gflag-15" velocity="-2,0.5,-2" kit="speed-2"/>
     <apply region="gflag-16" velocity="-3,0.5,0" kit="speed-2"/>
     <apply region="gflag-17" velocity="1.5,0,3.5" kit="speed-2"/>
-    <apply region="gflag-18" velocity="0,0,-4" kit="speed-2"/>
+    <apply region="gflag-18" velocity="0,0,-3.9" kit="speed-2"/>
 </regions>
 <filters>
      <not id="needs-reset">
