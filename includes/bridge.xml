@@ -2,7 +2,7 @@
 <!-- [#####|#####] -->
 <!-- Bridge gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2026.04.25-1 -->
+<!-- Version 2026.05.20-1 -->
 <include id="void-death"/>
 <respawn auto="true" delay="0s"/>
 <modifybowprojectile pickup-filter="never"/>
@@ -300,6 +300,7 @@
 </variables>
 <actions>
     <action id="increment-round" scope="player">
+        <set var="score" value="score+1"/>
         <set var="player_score" value="player_score+1"/>
         <action filter="goal_scorer_enabled=1">
             <message text=" `2You have scored `e{amount} `2goal(s) in this match.">
@@ -595,8 +596,8 @@
     <portal destination="team-two-spawn-point" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
 </portals>
 <score display="circle">
-    <box filter="team-one" region="team-two-portal" points="1" silent="true"/>
-    <box filter="team-two" region="team-one-portal" points="1" silent="true"/>
+    <box filter="team-one" region="team-two-portal" points="0" silent="true"/>
+    <box filter="team-two" region="team-one-portal" points="0" silent="true"/>
     <limit>${score-limit}</limit>
     <mercy>${mercy-limit}</mercy>
 </score>
