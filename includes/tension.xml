@@ -14,15 +14,15 @@
 -->
 <!-- Tension gamemode include file -->
 <!-- Created by zzuf -->
-<!-- Version 2026.02.19-2 -->
-<include id="bridge"/>
+<!-- Version 2026.05.20-1 -->
 <game>Tension</game>
-<constants>
+<constants fallback="true">
     <!-- Misc -->
     <constant id="main-kit">tension-kit</constant>
     <constant id="arrow-type">tipped arrow</constant>
     <constant id="arrow-item-kit">custom-arrow-item-kit</constant>
 </constants>
+<include id="bridge"/>
 <broadcasts>
     <tip after="3s" every="3m">{"text":"","extra":[{"color":"#FFFB87","text":"Get a "},{"color":"white","sprite":"block/iron_block"},{"color":"white","italic":false,"text":" Pier Cap"},{"color":"#FFFB87","text":" at middle, and `n3`r kills for a "},{"color":"white","sprite":"item/wind_charge"},{"color":"#53AFFF","italic":false,"text":" Wind Charge"},{"color":"#FFFB87","text":"!"}]}</tip>
 </broadcasts>
