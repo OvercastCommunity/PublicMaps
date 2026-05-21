@@ -3,7 +3,6 @@
 <version>1.4.18</version>
 <created>2016-07-06</created>
 <objective>Capture both wools!</objective>
-<phase>staging</phase>
 <maxbuildheight>25</maxbuildheight>
 <include id="iron-bulkcrafting"/>
 <include id="gapple-kill-reward"/>
