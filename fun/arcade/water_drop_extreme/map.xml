@@ -1,0 +1,91 @@
+<map proto="1.5.0">
+<name>Water Drop Extreme</name>
+<version>1.0.3</version>
+<objective>Get to the bottom faster than the other players.</objective>
+<!-- Arcade map & Players must reach the end to score a point & win -->
+<gamemode>arcade</gamemode>
+<game>Water Drop Extreme</game>
+<!-- Map authors -->
+<authors>
+    <author uuid="e41edd14-9b0e-4501-a0c5-7fda64d2b2f3" contribution="Built map"/> <!-- JonnyBallgame -->
+    <author uuid="3141839d-38a7-4c15-8222-64255e0c0a66" contribution="Built map"/> <!-- XxAngelRavenxX -->
+    <author uuid="f54a1b17-3167-4162-948a-9c95d65a18a5" contribution="XML"/> <!-- applenick -->
+</authors>
+<contributors>
+    <contributor uuid="ec5ec930-5cf3-4f8a-ad9f-09056aeed71b" contribution="Building help" /> <!-- Tundren --> 
+    <contributor uuid="b2539be1-8f98-4375-b653-9d91cd04c30e" contribution="Armor stands" /> <!-- Mewzzy -->
+</contributors>
+<players max="64" max-overfill="85" colors="true"/>
+<!-- Kits -->
+<kits>
+    <kit id="spawn-kit" force="true">
+        <item slot="0" material="water bucket"/>
+        <item slot="1" material="water bucket"/>
+        <item slot="2" material="water bucket"/>
+        <item slot="3" material="water bucket"/>
+        <item slot="4" material="water bucket"/>
+    </kit>
+</kits>
+<!-- Spawns -->
+<spawns>
+    <spawn kit="spawn-kit">
+        <regions>
+            <cylinder base="710,224,743" radius="3" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point>710.5,242,793.5</point>
+        </regions>
+    </default>
+</spawns>
+<!-- Filters -->
+<filters>
+   <all id="water-place">
+        <any>
+            <material>water</material>
+            <material>stationary water</material>
+        </any>
+        <not>
+            <cause>world</cause>
+        </not>
+    </all>
+</filters>
+<!-- Regions -->
+<regions>
+    <cuboid id="portal-entrance" min="712,80,997" max="708,84,998"/>
+    <point id="portal-exit">710,160,1044</point>
+    <cuboid id="the-end" min="711,0,1124" max="709,3,1122"/>
+    <apply block="water-place" block-physics="never"/>
+</regions>
+<!-- Scorebox to finish match -->
+<score>
+    <box points="1" region="the-end" silent="true"/>
+    <limit>1</limit>
+</score>
+<!-- Portals -->
+<portals>    
+    <portal region="portal-entrance" destination="portal-exit" yaw="@0"/>
+</portals>
+<!-- Item-Mod to allow only Water Buckets to be placed -->
+<item-mods>
+    <rule>
+        <match>
+            <material>water bucket</material>
+        </match>
+        <modify>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </modify>
+    </rule>
+</item-mods>
+<!-- Misc -->
+<itemremove>
+    <item>water bucket</item>
+    <item>bucket</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
