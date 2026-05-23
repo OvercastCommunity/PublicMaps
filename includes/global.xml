@@ -1,4 +1,9 @@
 <map>
+<if min-server-version="1.21.11">
+    <!-- Workaround for item matching -->
+    <trims enabled="false"/>
+</if>
+
 <!-- Sound keys include for all maps -->
 <include id="sound-keys"/>
 
