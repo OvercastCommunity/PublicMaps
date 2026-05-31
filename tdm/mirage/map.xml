@@ -1,0 +1,137 @@
+<map proto="1.5.1">
+<name>Mirage</name>
+<version>1.0.0</version>
+<objective>Score points by killing your opponents or redeeming emeralds in the score box!</objective>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="bbfac3db-dd46-4996-b936-0e2432f33285"/> <!-- Valky -->
+</authors>
+<contributors>
+    <contributor uuid="770d4106-52cb-4c04-a771-4987330be3ec" contribution="Advice on Aesthetics and XML Testing"/> <!-- NonSense -->
+</contributors>
+<created>2025-07-06</created>
+<time result="score" overtime="1m" max-overtime="7m">10m</time>
+<teams>
+    <team id="blue-team" color="blue" max="5" max-overfill="5">Blue</team>
+    <team id="red-team" color="dark red" max="5" max-overfill="5">Red</team>
+</teams>
+<respawn delay="6s" auto="true" blackout="true"/>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" material="golden apple"/>
+        <item slot="8" amount="8" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings">
+            <enchantment level="4">projectile_protection</enchantment>
+        </leggings>
+        <boots unbreakable="true" material="iron boots"/>
+        <effect duration="oo">night vision</effect>
+        <effect duration="1" amplifier="255">resistance</effect>
+        <effect duration="1" amplifier="255">regeneration</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+	
+    <kit id="emerald-helmet-kit" force="true">
+        <helmet material="emerald_block" locked="true" lore="`rThis block marks you as `2`lEmerald Carrier`r.">
+            <enchantment level="1">protection</enchantment>
+        </helmet>
+    </kit>
+    <kit id="leather-helmet-kit" force="true">
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn region="blue-spawn" team="blue-team" yaw="180" kit="spawn-kit"/>
+    <spawn region="red-spawn" team="red-team" yaw="0" kit="spawn-kit"/>
+    <default region="observer-spawn" yaw="-90"/>
+</spawns>
+<filters>
+    <carrying id="carrying-emerald">
+        <item material="emerald" name="`2`lEMERALD`r" lore="`aRedeem for `r`e3 points `r`aeach."/>
+    </carrying>
+    <not id="not-carrying-emerald">
+        <filter id="carrying-emerald"/>
+    </not>	
+</filters>
+<actions>
+    <!-- Highlighting Emerald Carriers -->
+    <action id="mark-carrier" scope="player" filter="carrying-emerald" untrigger-filter="not-carrying-emerald">
+        <kit id="emerald-helmet-kit"/>
+		<message text="`e`kxxxxxxx `r`aYou are being marked as `2`lEMERALD CARRIER`r`a!`r`e`kxxxxxxx`r"/>
+		<sound preset="custom" volume="10"/>
+    </action>
+    <action id="unmark-carrier" scope="player" filter="not-carrying-emerald">
+        <kit id="leather-helmet-kit"/>
+    </action>
+    <trigger filter="carrying-emerald" action="mark-carrier" scope="player"/>
+    <trigger filter="not-carrying-emerald" action="unmark-carrier" scope="player"/>
+</actions>
+<regions>
+    <cylinder id="observer-spawn" base="44.5,38,49.5" radius="0.1" height="0"/>
+    <cylinder id="blue-spawn" base="18.5,20,88.5" radius="0.1" height="0"/>
+    <cylinder id="red-spawn" base="18.5,20,10.5" radius="0.1" height="0"/>
+    <cuboid id="blue-scorebox" min="40,25,82" max="45,oo,83"/>
+    <cuboid id="red-scorebox" min="40,25,17" max="45,oo,16"/>
+    <point id="emerald-spawn-drop">18.5,17.1,49.5</point>	
+    <cuboid id="arrow-spawn-drop" min="55.6,18,49.6" max="55.4,18.1,49.4"/>
+    <cuboid id="arrow-spawn-activation" min="50,16,44" max="59,20,55"/>
+	<rectangle id="entire-map" min="-oo,-oo" max="oo,oo"/>
+    <apply block="never" use="never" region="entire-map"/>	
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>banner</item>
+	<item>emerald block</item>
+</itemremove>
+<itemkeep>
+    <item>arrow</item>
+</itemkeep>
+<kill-reward>
+    <item amount="4" material="arrow"/>
+</kill-reward>
+<timelock>on</timelock>
+<score>
+    <deaths>0</deaths>
+    <kills>1</kills>
+    <box points="0" filter="red-team" region="blue-scorebox">
+        <redeemables>
+            <item points="3">emerald</item>
+        </redeemables>
+    </box>
+    <box points="0" filter="blue-team" region="red-scorebox">
+        <redeemables>
+            <item points="3">emerald</item>
+        </redeemables>
+    </box>
+</score>
+<portals>
+    <!-- Warps out of own scoreboxes, to prevent getting stuck -->
+    <portal region="blue-scorebox" destination="blue-spawn" yaw="@180" filter="blue-team"/>
+    <portal region="red-scorebox" destination="red-spawn" yaw="@0" filter="red-team"/>
+    <!-- Warps out of enemy scoreboxes-->
+    <portal region="red-scorebox" destination="blue-spawn" yaw="@180" filter="blue-team"/>
+    <portal region="blue-scorebox" destination="red-spawn" yaw="@0" filter="red-team"/>
+</portals>
+<spawners>
+	<spawner id="emerald-spawner" spawn-region="emerald-spawn-drop" player-region="entire-map" delay="30s">
+        <item material="emerald" name="`2`lEMERALD`r" lore="`aRedeem for `r`e3 points `r`aeach."/>
+    </spawner>
+    <spawner id="arrow-spawner" spawn-region="arrow-spawn-drop" player-region="arrow-spawn-activation" delay="8s">
+        <item amount="2" material="arrow"/>
+    </spawner>
+</spawners>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
