@@ -122,7 +122,7 @@
     <negative id="no-build">
         <rectangle id="map" min="224,27" max="80,-141"/>
     </negative>
-    <rectangle id="void-gap" min="80,-42" max="223,-72"/>
+    <rectangle id="void-gap" min="80,-42" max="224,-72"/>
     <union id="spawns">
         <!-- Blue Spawns -->
         <cuboid id="blue-west" min="105,54,-136" max="89,15,-109"/>
