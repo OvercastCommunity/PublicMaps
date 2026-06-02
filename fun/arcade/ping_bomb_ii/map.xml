@@ -16,7 +16,7 @@
 </teams>
 <kits>
     <kit id="spawn" parents="obs">
-        <if max-server-version="1.8">
+        <if max-server-version="1.8.9">
             <item slot="0" amount="12" material="sandstone"/>
         </if>
         <if min-server-version="1.9">
