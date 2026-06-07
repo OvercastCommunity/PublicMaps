@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>A Watery Grave</name>
-<version>1.2.5</version>
+<version>1.2.6</version>
 <objective>Break the enchanting table inside of the enemy team's obsidian core.</objective>
 <authors>
     <author uuid="9a96b43e-e5d7-47e4-9679-ccbfe3fffc10"/> <!-- Skirmisher47 -->
@@ -82,10 +82,12 @@
         <cuboid min="-7,85,5" max="-1,24,15"/>
         <cuboid min="124,85,14" max="120,24,6"/>
     </union>
+    <cuboid id="build-limit" min="-oo,41,-oo" max="oo,oo,oo"/>
     <apply region="red-spawn" enter="only-red" message="You may not enter the enemy's spawn!"/>
     <apply region="blue-spawn" enter="only-blue" message="You may not enter the enemy's spawn!"/>
     <apply region="spawn-areas" block="never" message="You may not modifiy the spawn area!"/>
     <apply region="spawn-drops" block="never" message="You may not modify the spawn drops!"/>
+    <apply region="build-limit" block="never" message="You may not modify above the height limit!"/>
     <!-- The following region applications should NOT be confused with DTC, 
     they are meant for decorative, non-functional obsidian cores covering the actual monument -->
     <apply block-break="only-obsidian-only-blue" message="You may not break your own obsidian core!">
