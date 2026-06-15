@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Pigland</name>
-<version>1.1.1</version>
+<version>1.1.2</version>
 <objective>Capture both wools!</objective>
 <gamemode>ctw</gamemode>
 <created>2019-12-07</created> <!-- created during december 7th/8th 2019 -->
@@ -28,10 +28,7 @@
         <item slot="30" material="iron spade" unbreakable="true"/>
         <chestplate material="chainmail chestplate" unbreakable="true"/>
         <boots material="iron boots" unbreakable="true"/>
-        <effect amplifier="100">damage resistance</effect>
-    </kit>
-    <kit force="true" id="reset-resistance-kit">
-        <effect duration="0" amplifier="0">damage resistance</effect>
+        <effect amplifier="100" duration="4s">damage resistance</effect>
     </kit>
     <kit id="red-kit" parents="spawn-kit">
         <leggings material="leather leggings" color="FF4F3F" unbreakable="true"/>
@@ -266,7 +263,6 @@
     <apply block="blues-woolrooms-filter" region="blues-woolrooms" message="You may not edit the wool room!"/>
     <apply block="reds-woolrooms-filter" region="reds-woolrooms" message="You may not edit the wool room!"/>
     <apply block="deny(void)" region="not-build-area" message="You may not edit the void!"/>
-    <apply kit="reset-resistance-kit" region="not-spawns"/>
     <apply block-physics="deny-block-physics-woolrooms" region="woolrooms"/>
     <apply use="deny-flower-pot"/>
 </regions>
