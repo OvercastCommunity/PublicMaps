@@ -1,0 +1,179 @@
+<map proto="1.5.0">
+<name>Trail Mix</name>
+<version>1.0.1</version>
+<objective>Capture the two wools of the enemy team!</objective>
+<created>2017-02-03</created> <!-- earliest GitHub issue in Stratus map submissions -->
+<phase>staging</phase>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Map making and XML"/> <!-- Obelistics -->
+</authors>
+<contributors>
+    <contributor uuid="84d0f14a-1aae-447f-838c-8ac742667d67" contribution="Remastered XML"/> <!-- limefox3054 -->
+</contributors>
+<broadcasts>
+    <tip after="5s" every="5m">You can find water and defense supplies on the islands next to spawn!</tip>
+    <tip after="10s" every="5m">Iron only regenerates at the centre of the map!</tip>
+</broadcasts>
+<teams>
+    <team id="cyan-team" color="dark aqua" dye-color="blue" max="16">Cyan</team>
+    <team id="orange-team" color="gold" max="16">Orange</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true" enchantment="infinity"/>
+        <item slot="2" material="iron pickaxe" unbreakable="true" enchantment="efficiency"/>
+        <item slot="29" material="shears" unbreakable="true"/>
+        <item slot="3" material="iron axe" unbreakable="true" enchantment="efficiency"/>
+        <item slot="30" material="iron spade" unbreakable="true"/>
+        <item slot="4" material="wood" amount="64" damage="2"/>
+        <item slot="5" material="stained clay" amount="64" team-color="true"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <helmet material="leather helmet" unbreakable="true" team-color="true"/>
+        <chestplate material="leather chestplate" unbreakable="true" team-color="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
+        <boots material="leather boots" unbreakable="true" team-color="true"/>
+        <effect duration="5s" amplifier="5">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="cyan-team" kit="spawn-kit" yaw="180" region="cyan-spawn-point"/>
+    <spawn team="orange-team" kit="spawn-kit" yaw="180" region="orange-spawn-point"/>
+    <default yaw="180" region="obs-spawn-point"/>
+</spawns>
+<filters>
+    <deny id="water-control">
+        <all>
+            <cause>world</cause>
+            <not>
+                <any>
+                    <material>water</material>
+                    <material>stationary water</material>
+                </any>
+            </not>
+        </all>
+    </deny>
+    <any id="void-control">
+        <all> <!-- void-break -->
+            <any>
+                <material>stained glass:1</material>
+                <material>stained glass:4</material>
+                <material>stained glass:14</material>
+            </any>
+            <void/>
+        </all>
+        <not id="deny-void">
+            <void/>
+        </not>
+    </any>
+    <material id="chest">chest</material>
+    <material id="only-iron">iron block</material>
+</filters>
+<regions>
+    <cylinder id="cyan-spawn-point" base="1093.5,56,-548.5" radius="0.5" height="0"/>
+    <cylinder id="orange-spawn-point" base="963.5,56,-548.5" radius="0.5" height="0"/>
+    <cylinder id="obs-spawn-point" base="1028.5,28,-551.5" radius="3" height="0"/>
+    <block id="cyan-team-yellow-wool">1092,15,-544</block>
+    <block id="cyan-team-red-wool">1094,15,-544</block>
+    <block id="orange-team-blue-wool">964,15,-544</block>
+    <block id="orange-team-light-blue-wool">962,15,-544</block>
+    <union id="spawn-regions">
+        <rectangle id="cyan-spawn" min="1087,-566" max="1100,-542"/>
+        <rectangle id="orange-spawn" min="957,-566" max="970,-542"/>
+    </union>
+    <union id="wool-rooms">
+        <union id="cyan-wool-rooms"> <!-- orange capture, cyan defend -->
+            <rectangle id="blue-wool-room" min="1087,-659" max="1100,-672"/>
+            <rectangle id="light-blue-wool-room" min="1113,-607" max="1126,-594"/>
+        </union>
+        <union id="orange-wool-rooms"> <!-- cyan capture, orange defend -->
+            <rectangle id="yellow-wool-room" min="944,-594" max="931,-607"/>
+            <rectangle id="red-wool-room" min="957,-659" max="970,-672"/>
+        </union>
+    </union>
+    <negative id="void-area">
+        <union id="buildable-area">
+            <rectangle min="1113,-594" max="1126,-646"/> <!-- cyan team region -->
+            <rectangle min="1087,-555" max="1100,-672"/>
+            <rectangle min="1061,-568" max="1074,-646"/>
+            <rectangle min="1087,-568" max="1074,-581"/>
+            <rectangle min="1113,-594" max="1100,-607"/>
+            <rectangle min="1087,-607" max="1074,-620"/>
+            <rectangle min="1113,-633" max="1100,-646"/>
+            <rectangle min="1087,-633" max="1074,-646"/>
+            <union id="centre-iron"> <!-- middle region -->
+                <rectangle min="1061,-620" max="996,-633"/>
+                <rectangle min="1022,-620" max="1035,-594"/>
+                <rectangle min="996,-594" max="1061,-581"/>
+            </union>
+            <rectangle min="944,-594" max="931,-646"/> <!-- orange team region -->
+            <rectangle min="970,-555" max="957,-672"/>
+            <rectangle min="996,-568" max="983,-646"/>
+            <rectangle min="970,-568" max="983,-581"/>
+            <rectangle min="944,-594" max="957,-607"/>
+            <rectangle min="970,-607" max="983,-620"/>
+            <rectangle min="944,-633" max="957,-646"/>
+            <rectangle min="970,-633" max="983,-646"/>
+        </union>
+    </negative>
+    <apply block="water-control" region="wool-rooms"/>
+    <apply enter="cyan-team" region="cyan-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="orange-team" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="cyan-team" region="orange-wool-rooms" message="You may not enter your team's wool rooms!"/>
+    <apply enter="orange-team" region="cyan-wool-rooms" message="You may not enter your team's wool rooms!"/>
+    <apply block="never" region="spawn-regions" message="You may not break or place blocks in the spawns!"/>
+    <apply block="deny(chest)" region="wool-rooms" message="You may not break or place chests in the wool rooms!"/>
+    <apply block="cyan-team" region="orange-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
+    <apply block="orange-team" region="cyan-wool-rooms" message="You may not interfere with your team's wool rooms!"/>
+    <apply block-break="void-control" block-place="deny-void" region="void-area" message="You may not edit the void!"/>
+</regions>
+<wools craftable="false">
+    <wool team="cyan-team" color="yellow" monument="cyan-team-yellow-wool" location="963,12,-666"/>
+    <wool team="cyan-team" color="red" monument="cyan-team-red-wool" location="937,12,-601"/>
+    <wool team="orange-team" color="blue" monument="orange-team-blue-wool" location="1093,12,-666"/>
+    <wool team="orange-team" color="light blue" monument="orange-team-light-blue-wool" location="1119,12,-601"/>
+</wools>
+<renewables>
+    <renewable region="centre-iron" renew-filter="only-iron"/>
+</renewables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>shears</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>string</item>
+    <item>redstone</item>
+    <item>redstone torch on</item>
+    <item>long grass</item>
+    <item>seeds</item>
+</itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>stained clay</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="wood" amount="16" damage="2"/>
+        <item material="stained clay" amount="16" team-color="true"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>25</maxbuildheight>
+</map>

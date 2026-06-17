@@ -1,0 +1,165 @@
+<map proto="1.5.0">
+<name>Grande</name>
+<version>1.0.2</version>
+<objective>Destroy the monument and leak the cores before the other team gets yours.</objective>
+<created>2017-02-03</created> <!-- earliest GitHub issue in Stratus map submissions -->
+<phase>staging</phase>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9"/> <!-- Obelistics -->
+</authors>
+<contributors>
+    <contributor uuid="cc67ec01-4b98-4e65-b0ed-49c14c6cb88b" contribution="XML help"/> <!-- Diabolicx -->
+    <contributor uuid="84d0f14a-1aae-447f-838c-8ac742667d67" contribution="Remastered XML"/> <!-- limefox3054 -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="22">Blue</team>
+    <team id="red-team" color="dark red" max="22">Red</team>
+</teams>
+<kits>
+    <kit id="default-kit">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn-kit" parents="default-kit">
+        <clear/>
+        <item slot="0" material="iron sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="2" material="diamond pickaxe" unbreakable="true"/>
+        <item slot="3" material="iron axe" unbreakable="true"/>
+        <item slot="4" material="wood" amount="64" damage="2"/>
+        <item slot="31" material="wood" amount="64" damage="2"/>
+        <item slot="5" material="stained clay" amount="64" team-color="true"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow" amount="48"/>
+        <helmet material="leather helmet" team-color="true" unbreakable="true"/>
+        <chestplate material="leather chestplate" enchantment="blast protection" team-color="true" unbreakable="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
+        <boots material="leather boots" team-color="true" unbreakable="true"/>
+        <effect amplifier="5">damage resistance</effect>
+    </kit>
+    <kit id="leaving-spawn-kit" force="true">
+        <effect duration="3s" amplifier="5">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="spawn-kit" region="blue-spawn-point"/>
+    <spawn team="red-team" kit="spawn-kit" yaw="180" region="red-spawn-point"/>
+    <default kit="default-kit" yaw="90" region="obs-spawn-point"/>
+</spawns>
+<filters>
+    <effect id="has-spawn-effects">damage resistance</effect>
+    <material id="only-iron">iron block</material>
+    <deny id="deny-chests">
+        <any>
+            <material>chest</material>
+            <material>trapped chest</material>
+        </any>
+    </deny>
+</filters>
+<regions>
+    <cylinder id="blue-spawn-point" base="138.5,69,-657.5" radius="1" height="0"/>
+    <cylinder id="red-spawn-point" base="138.5,69,-531.5" radius="1" height="0"/>
+    <cylinder id="obs-spawn-point" base="196.5,48,-594.5" radius="2.5" height="0"/>
+    <union id="objective-regions">
+        <cuboid id="blue-west-monument" min="110,14,-626" max="107,21,-623"/>
+        <cuboid id="blue-east-monument" min="167,14,-626" max="170,21,-623"/>
+        <cuboid id="red-west-monument" min="110,14,-563" max="107,21,-566"/>
+        <cuboid id="red-east-monument" min="167,14,-563" max="170,21,-566"/>
+        <cuboid id="blue-core" min="136,31,-622" max="141,36,-627"/>
+        <cuboid id="red-core" min="141,31,-567" max="136,36,-562"/>
+    </union>
+    <negative id="outside-spawn-regions">
+        <union id="spawn-regions">
+            <cuboid id="blue-spawn" min="131,7,-646" max="146,oo,-662"/>
+            <cuboid id="red-spawn" min="131,7,-543" max="146,oo,-527"/>
+        </union>
+    </negative>
+    <union id="chest-control-region">
+        <cuboid min="116,0,-632" max="131,45,-647"/> <!-- blue side -->
+        <cuboid min="146,0,-632" max="161,45,-647"/>
+        <cuboid min="146,0,-557" max="161,45,-542"/> <!-- red side -->
+        <cuboid min="116,0,-557" max="131,45,-542"/>
+    </union>
+    <negative id="void-area">
+        <complement id="buildable-area">
+            <cuboid min="101,0,-542" max="176,oo,-647"/>
+            <cuboid min="161,0,-647" max="176,7,-632"/> <!-- blue side void -->
+            <cuboid min="116,0,-647" max="101,7,-632"/>
+           <cuboid min="101,0,-557" max="116,7,-542"/> <!-- red side void -->
+            <cuboid min="161,0,-542" max="176,7,-557"/>
+        </complement>
+    </negative>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply block="never" region="spawn-regions" message="You may not modify the spawns!"/>
+    <apply block="never" region="void-area" message="You may not build in the void area!"/>
+    <apply block="deny-chests" region="chest-control-region" message="You may not modify chests in this area!"/>
+    <apply kit="leaving-spawn-kit" region="outside-spawn-regions" filter="has-spawn-effects"/>
+</regions>
+<destroyables materials="ender stone" show-progress="true" sparks="true" repairable="false">
+    <destroyable name="West Monument" owner="blue-team" region="blue-west-monument"/>
+    <destroyable name="East Monument" owner="blue-team" region="blue-east-monument"/>
+    <destroyable name="West Monument" owner="red-team" region="red-west-monument"/>
+    <destroyable name="East Monument" owner="red-team" region="red-east-monument"/>
+</destroyables>
+<cores material="obsidian" mode-changes="true">
+    <core team="blue-team" region="blue-core"/>
+    <core team="red-team" region="red-core"/>
+</cores>
+<modes>
+    <mode after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode after="20m" material="glass" name="`fGLASS CORE MODE"/>
+</modes>
+<renewables>
+    <renewable region="buildable-area" renew-filter="only-iron"/>
+</renewables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>step</item>
+    <item>prismarine crystals</item>
+    <item>ender stone</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+</itemremove>
+<itemkeep>
+    <item>wood</item>
+    <item>stained clay</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>wood</material>
+                <material>stained clay</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0" material="wood"/>
+        </drops>
+    </rule>
+</block-drops>
+<kill-rewards>
+    <kill-reward>
+        <item material="stained clay" amount="16" team-color="true"/>
+        <item material="wood" amount="24" damage="2"/>
+        <item material="arrow" amount="8"/>
+    </kill-reward>
+</kill-rewards>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>45</maxbuildheight>
+</map>

@@ -1,0 +1,115 @@
+<map proto="1.5.0">
+<name>Fumeen II</name>
+<version>1.2.4</version>
+<constant id="damage-resistance">5s</constant>
+<constant id="respawn-timer">2s</constant>
+<include id="conquest"/>
+<objective>Capture the enemy's flag as many times as possible.</objective>
+<time result="score" overtime="1m" max-overtime="2m">12m</time>
+<authors>
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomyBoy -->
+    <author uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9"/> <!-- Obelistics -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="12">Blue</team>
+    <team id="red" color="dark red" max="12">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit" parent="base-kit">
+        <action>
+            <replace-item ignore-metadata="true">
+                <find material="iron boots"/>
+                <replace unbreakable="true" enchantment="feather_falling:2" material="iron boots"/>
+            </replace-item>
+        </action>
+    </kit>
+    <kit id="flag-pickup">
+        <effect>slowness</effect>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <effect duration="0">slowness</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region yaw="180">
+            <point>-182.5,17,247</point>
+        </region>
+    </default>
+    <spawn team="blue" kit="spawn-kit">
+        <region yaw="-45">
+            <point>-218.5,40,178.5</point>
+        </region>
+    </spawn>
+    <spawn team="red" kit="spawn-kit">
+        <region yaw="45">
+            <point>-146.5,40,178.5</point>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="-222,182" max="-215,175"/>
+        <rectangle id="red-spawn" min="-150,182" max="-143,175"/>
+    </union>
+    <union id="nets">
+        <cuboid id="blue-net" min="-230,12,189" max="-233,17,186"/>
+        <cuboid id="red-net" min="-135,12,186" max="-132,17,189"/>
+    </union>
+    <cuboid id="blue-flag-jump" min="-238,6,181" max="-236,8,183"/>
+    <cuboid id="red-flag-jump" min="-127,6,181" max="-129,8,183"/>
+    <apply velocity="0.2,1.4,0.2" region="blue-flag-jump"/>
+    <apply velocity="-0.2,1.4,0.2" region="red-flag-jump"/>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!" region="blue-spawn"/>
+    <apply enter="only-red" message="You may not enter the enemy spawn!" region="red-spawn"/>
+    <apply block="never"/>
+    <!--
+    <cuboid id="blue-south-jump" min="-203,12,186" max="-206,14,187"/>
+    <cuboid id="red-south-jump" min="-159,12,186" max="-162,14,-187"/>
+    <apply velocity="0.0,0.7,1.8" region="blue-south-jump"/>
+    <apply velocity="0.0,0.7,1.8" region="red-south-jump"/>
+    -->
+</regions>
+<spawners>
+    <spawner delay="8s">
+        <spawn-region>
+            <point>-182.5,4.1,224.5</point>
+        </spawn-region>
+        <player-region>
+            <cylinder base="-182.5,3,224.5" radius="3" height="6"/>
+        </player-region>
+        <item material="golden apple"/>
+    </spawner>
+</spawners>
+<flags flag-proximity-metric="none" net-proximity-metric="none">
+    <flag id="blue-flag"
+          name="Blue Flag"
+          owner="blue"
+          color="blue"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-red" recover-time="10s">
+            <block>-232,12,187</block>
+        </post>
+    </flag>
+    <net points="1" region="red-net" flag="blue-flag"/>
+    <flag id="red-flag"
+          name="Red Flag"
+          owner="red"
+          color="red"
+          pickup-kit="flag-pickup"
+          drop-kit="flag-drop">
+        <post pickup-filter="only-blue" recover-time="10s">
+            <block>-134,12,187</block>
+        </post>
+    </flag>
+    <net points="1" region="blue-net" flag="red-flag"/>
+</flags>
+<score>
+    <mercy>3</mercy>
+</score>
+</map>
