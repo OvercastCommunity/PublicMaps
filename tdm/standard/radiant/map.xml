@@ -1,9 +1,9 @@
 <map proto="1.5.0" min-server-version="1.21.11">
 <name>Radiant</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <created>2026-02-14</created>
 <objective>Be on the team with the highest amount of kills after 3 minutes!</objective>
-<gamemode>crystal</gamemode>
+<game>crystal</game>
 <gamemode>tdm</gamemode>
 <include id="gapple-kill-reward"/>
 <include id="void-death"/>
