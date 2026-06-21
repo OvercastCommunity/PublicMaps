@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Venice</name>
-<version>1.5</version>
+<version>1.5.1</version>
 <variant id="christmas" world="christmas" override="true">Festive Venice</variant>
 <unless variant="christmas">
     <slug>venice_tdm</slug>
@@ -79,6 +79,7 @@
     <item>boat</item>
     <item>ladder</item>
     <item>wood</item>
+    <item>iron pickaxe</item>
 </itemkeep>
 <kill-rewards>
     <kill-reward>
