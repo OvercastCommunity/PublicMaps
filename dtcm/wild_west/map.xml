@@ -90,7 +90,7 @@
         </enchant-item>
     </action>
     <trigger scope="player" filter="all(efficiency-filter,any(all(not(eff_level=1),eff-carrying-lvl-1),all(not(eff_level=2),eff-carrying-lvl-2),all(not(eff_level=3),eff-carrying-lvl-3)))" action="activate-eff-mode"/>
-    <trigger scope="player" filter="all(not(efficiency-filter),any(eff-carrying-lvl-1,eff-carrying-lvl-2,eff-carrying-lvl-3))" action="deactivate-eff-mode"/>
+    <trigger scope="player" filter="all(not(efficiency-filter),any(eff-carrying-lvl-2,eff-carrying-lvl-3))" action="deactivate-eff-mode"/>
     <set id="eff-increase-level" var="eff_level" value="eff_level+1" scope="match"/>
 </actions>
 <regions>
