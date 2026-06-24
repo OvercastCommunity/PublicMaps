@@ -1,0 +1,405 @@
+<map proto="1.5.1">
+<name>Arch</name>
+<version>1.0.15</version>
+<objective>Capture both wools and destroy the end stone monument!</objective>
+<created>2016-12-11</created>
+<phase>staging</phase>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="74e59389-2b3e-490d-954a-a7af1fb1eded"/> <!-- Dowly_ -->
+</authors>
+<contributors>
+    <contributor uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="XML"/> <!-- GoldenOre -->
+    <contributor uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="XML"/> <!-- Matic0B -->
+    <contributor uuid="8f6695e0-5a11-4feb-b44f-3b01ad7d7d85"/> <!-- barrecca -->
+    <contributor uuid="21a798e3-e1be-4eea-9104-615191d87139"/> <!-- _Banana_Juice_ -->
+    <contributor uuid="62b6d081-8df8-4c09-aa15-71141ca7df76"/> <!-- Arzanex -->
+    <contributor uuid="72be230a-0615-4b8e-960e-fe6f8afbc1b0"/> <!-- ZodiacNeo -->
+    <contributor uuid="a576ef17-2c05-4a4a-8cf1-50f62ef4aacd" contribution="Observer Spawn"/> <!-- WidPato -->
+    <contributor uuid="e82603df-417d-4a95-bd1f-1720648be0b4" contribution="Eff Mode XML Template"/> <!-- Pablete1234 -->
+    <contributor uuid="6863869b-4b8c-4445-b778-a8e016775ae4" contribution="Water Lane XML Template"/> <!-- Cazadorian -->
+</contributors>
+<rules>
+    <rule>Underbridging is not allowed.</rule>
+</rules>
+<teams>
+    <team id="red-team" color="dark red" max="22">Red</team>
+    <team id="blue-team" color="blue" dye-color="light blue" max="22">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="infinity" material="bow"/>
+        <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        <item slot="3" unbreakable="true" enchantment="efficiency" material="iron axe"/>
+        <item slot="4" amount="48" damage="2" material="wood"/>
+        <item slot="5" amount="16" material="glass"/>
+        <item slot="7" material="bucket"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <effect duration="4s" amplifier="5">damage resistance</effect>
+    </kit>
+    <!-- separate kits for armor colors are intentional -->
+    <kit id="red-kit" parent="spawn-kit">
+        <chestplate unbreakable="true" color="993333" material="leather chestplate"/>
+        <boots unbreakable="true" color="993333" material="leather boots"/>
+    </kit>
+    <kit id="blue-kit" parent="spawn-kit">
+        <chestplate unbreakable="true" color="6699D8" material="leather chestplate"/>
+        <boots unbreakable="true" color="6699D8" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red-kit" yaw="-90">
+        <region>
+            <point>-27,15.2,3</point>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit" yaw="90">
+        <region>
+            <point>121,15.2,3</point>
+        </region>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <point>47,48.2,3</point>
+        </region>
+    </default>
+</spawns>
+<filters>
+    <!-- used with deny inline filters to prevent block destruction caused by water flow -->
+    <all id="not-water-cause-world">
+        <not>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+        </not>
+        <cause>world</cause>
+    </all>
+    <material id="chest">chest</material>
+    <material id="only-iron">iron block</material>
+    <material id="only-air">air</material>
+    <material id="only-cobweb">web</material>
+    <material id="trap-door">trap door</material>
+    <material id="wall-sign">wall sign</material>
+    <carrying id="eff-carrying" ignore-metadata="true" ignore-enchantments="false">
+        <item material="iron pickaxe" enchantment="efficiency:2"/>
+    </carrying>
+    <carrying id="no-eff-carrying" ignore-metadata="true" ignore-enchantments="false">
+        <item material="iron pickaxe"/>
+    </carrying>
+    <any id="efficiency-filter">
+        <all>
+            <team>red-team</team>
+            <resize min="5,6,5" max="5,4,5" region="blue-monument"/>
+        </all>
+        <all>
+            <team>blue-team</team>
+            <resize min="5,6,5" max="5,4,5" region="red-monument"/>
+        </all>
+    </any>
+    <not id="water-lane-filter">
+        <all>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+            <cause>world</cause>
+        </all>
+    </not>
+    <time id="after-25m">25m</time>
+    <time id="after-45m">45m</time>
+</filters>
+<variables>
+    <variable id="eff_mode" scope="match"/>
+    <variable id="water_lane_mode" scope="match"/>
+</variables>
+<actions>
+    <action id="activate-eff-mode" scope="player" expose="true">
+        <enchant-item enchantment="efficiency" level="2" ignore-metadata="true">
+            <find material="iron pickaxe"/>
+        </enchant-item>
+    </action>
+    <action id="deactivate-eff-mode" scope="player" expose="true">
+        <enchant-item enchantment="efficiency" level="0" ignore-metadata="true">
+            <find material="iron pickaxe"/>
+        </enchant-item>
+    </action>
+    <action id="activate-water-lane-mode" scope="match" expose="true">
+        <set var="water_lane_mode" value="1"/> <!-- water lanes start -->
+        <fill region="water-lane-fill-region" material="water" filter="only-air"/> <!-- place water lanes -->
+        <fill region="void-guideline" material="air" filter="only-cobweb"/> <!-- remove legacy void guidelines -->
+    </action>
+    <trigger scope="player" filter="all(efficiency-filter,any(all(not(eff_mode=0),no-eff-carrying),all(not(eff_mode=1),eff-carrying)))" action="activate-eff-mode"/>
+    <trigger scope="player" filter="all(not(efficiency-filter),eff-carrying)" action="deactivate-eff-mode"/>
+    <trigger scope="match" filter="water_lane_mode=1" action="activate-water-lane-mode"/>
+</actions>
+<regions>
+    <union id="bases">
+        <union id="red-base">
+            <cuboid min="-33,7,-2" max="-21,oo,8"/>
+            <cuboid min="-32,7,-3" max="-22,oo,9"/>
+            <cuboid min="-21,6,-1" max="-10,oo,7"/>
+            <cuboid min="-10,6,-2" max="-9,oo,8"/>
+        </union>
+        <union id="blue-base">
+            <cuboid min="127,7,8" max="115,oo,-2"/>
+            <cuboid min="126,7,9" max="116,oo,-3"/>
+            <cuboid min="115,6,7" max="104,oo,-1"/>
+            <cuboid min="104,6,8" max="103,oo,-2"/>
+        </union>
+    </union>
+    <union id="woolrooms">
+        <union id="red-wrs"> <!-- blue capture, red defend -->
+            <cuboid id="pink-wr" min="-64,8,13" max="-49,oo,25"/>
+            <cuboid id="magenta-wr" min="-64,8,-19" max="-49,oo,-7"/>
+        </union>
+        <union id="blue-wrs"> <!-- red capture, blue defend -->
+            <cuboid id="lime-wr" min="158,8,-7" max="143,oo,-19"/>
+            <cuboid id="green-wr" min="158,8,25" max="143,oo,13"/>
+        </union>
+    </union>
+    <complement id="bulidable-area">
+        <union id="map">
+            <cuboid min="-9,0,-42" max="103,oo,48"/>
+            <cuboid min="-64,0,13" max="-9,oo,25"/>
+            <cuboid min="-64,0,-19" max="-9,oo,-7"/>
+            <cuboid min="-33,0,-2" max="-21,oo,8"/>
+            <cuboid min="-32,0,-3" max="-22,oo,9"/>
+            <cuboid min="-21,0,-1" max="-10,oo,7"/>
+            <cuboid min="-10,0,-2" max="-9,oo,8"/>
+            <cuboid min="158,0,-7" max="103,oo,-19"/>
+            <cuboid min="158,0,25" max="103,oo,13"/>
+            <cuboid min="127,0,8" max="115,oo,-2"/>
+            <cuboid min="126,0,9" max="116,oo,-3"/>
+            <cuboid min="115,0,7" max="104,oo,-1"/>
+            <cuboid min="104,0,8" max="103,oo,-2"/>
+        </union>
+        <union id="underside">
+            <!-- red right / blue left side island -->
+            <cuboid min="-9,0,37" max="103,6,48"/>
+            <cuboid min="14,6,37" max="80,7,48"/>
+            <cuboid min="16,7,37" max="78,8,48"/>
+            <cuboid min="-9,0,36" max="-2,6,37"/>
+            <cuboid min="96,0,36" max="103,6,37"/>
+            <cuboid min="41,0,37" max="53,7,25"/>
+            <complement>
+                <cuboid min="41,0,25" max="53,6,9"/>
+                <half origin="0,6,23" normal="0,4,-1"/>
+            </complement>
+            <!-- red left / blue right side island -->
+            <cuboid min="103,0,-31" max="-9,6,-42"/>
+            <cuboid min="80,6,-31" max="14,7,-42"/>
+            <cuboid min="78,7,-31" max="16,8,-42"/>
+            <cuboid min="103,0,-30" max="96,6,-31"/>
+            <cuboid min="-2,0,-30" max="-9,6,-31"/>
+            <cuboid min="53,0,-31" max="41,7,-19"/>
+            <complement>
+                <cuboid min="53,0,-19" max="41,6,-3"/>
+                <half origin="0,6,-17" normal="0,4,1"/>
+            </complement>
+            <!-- red team side -->
+            <cuboid min="-64,0,13" max="-50,8,25"/>
+            <cuboid min="-50,0,13" max="-32,7,25"/>
+            <cuboid min="-32,0,13" max="17,6,25"/>
+            <cuboid min="17,0,14" max="25,6,25"/>
+            <cuboid min="-64,0,-19" max="-50,8,-7"/>
+            <cuboid min="-50,0,-19" max="-32,7,-7"/>
+            <cuboid min="-32,0,-19" max="25,6,-7"/>
+            <cuboid min="-33,0,-2" max="-21,7,8"/>
+            <cuboid min="-32,0,-3" max="-22,7,9"/>
+            <cuboid min="-21,0,-1" max="-10,6,7"/>
+            <cuboid min="-10,0,-2" max="-2,6,8"/>
+            <complement>
+                <cuboid min="-2,0,-1" max="6,6,7"/>
+                <half origin="-2,6,0" normal="1,2,0"/>
+            </complement>
+            <cuboid min="6,0,-1" max="7,1,7"/>
+            <cuboid min="-9,0,-20" max="-3,6,26"/>
+            <cuboid min="-3,0,11" max="-2,6,26"/>
+            <cuboid min="-3,0,-20" max="-2,6,-5"/>
+            <cuboid min="-2,0,12" max="-1,6,13"/>
+            <cuboid min="-2,0,-7" max="-1,6,-6"/>
+            <complement>
+                <cuboid min="17,0,14" max="25,5,9"/>
+                <half origin="0,5,14" normal="0,1,-1"/>
+            </complement>
+            <complement>
+                <cuboid min="25,0,-7" max="17,5,-2"/>
+                <half origin="0,5,-7" normal="0,1,1"/>
+            </complement>
+            <!-- blue team side -->
+            <cuboid min="158,0,-7" max="144,8,-19"/>
+            <cuboid min="144,0,-7" max="126,7,-19"/>
+            <cuboid min="126,0,-7" max="77,6,-19"/>
+            <cuboid min="77,0,-8" max="69,6,-19"/>
+            <cuboid min="158,0,25" max="144,8,13"/>
+            <cuboid min="144,0,25" max="126,7,13"/>
+            <cuboid min="126,0,25" max="69,6,13"/>
+            <cuboid min="127,0,8" max="115,7,-2"/>
+            <cuboid min="126,0,9" max="116,7,-3"/>
+            <cuboid min="115,0,7" max="104,6,-1"/>
+            <cuboid min="104,0,8" max="96,6,-2"/>
+            <complement>
+                <cuboid min="96,0,7" max="88,6,-1"/>
+                <half origin="96,6,0" normal="-1,2,0"/>
+            </complement>
+            <cuboid min="88,0,7" max="87,1,-1"/>
+            <cuboid min="103,0,26" max="97,6,-20"/>
+            <cuboid min="97,0,-5" max="96,6,-20"/>
+            <cuboid min="97,0,26" max="96,6,11"/>
+            <cuboid min="96,0,-6" max="95,6,-7"/>
+            <cuboid min="96,0,13" max="95,6,12"/>
+            <complement>
+                <cuboid min="77,0,-8" max="69,5,-3"/>
+                <half origin="0,5,-7.5" normal="0,1,1"/>
+            </complement>
+            <complement>
+                <cuboid min="69,0,13" max="77,5,8"/>
+                <half origin="0,5,12.5" normal="0,1,-1"/>
+            </complement>
+        </union>
+    </complement>
+    <negative id="void-area">
+        <region id="map"/>
+    </negative>
+    <cuboid id="red-monument" min="10,23,2" max="12,30,4"/>
+    <cuboid id="blue-monument" min="84,23,4" max="82,30,2"/>
+    <complement id="under-water-lanes">
+        <union id="water-lanes">
+            <complement> <!-- pink wool room lane -->
+                <rectangle min="-21,25" max="-9,48"/>
+                <half origin="-20.5,0,27" normal="-2,0,1"/>
+            </complement>
+            <complement> <!-- magenta wool room lane -->
+                <rectangle min="-21,-42" max="-9,-19"/>
+                <half origin="-20.5,0,-21" normal="-2,0,-1"/>
+            </complement>
+            <complement> <!-- lime wool room lane -->
+                <rectangle min="115,-19" max="103,-42"/>
+                <half origin="114.5,0,-21" normal="2,0,-1"/>
+            </complement>
+            <complement> <!-- green wool room lane -->
+                <rectangle min="115,48" max="103,25"/>
+                <half origin="114.5,0,27" normal="2,0,1"/>
+            </complement>
+        </union>
+        <above y="7"/>
+    </complement>
+    <union id="water-lane-fill-region">
+        <complement> <!-- pink wool room lane -->
+            <cuboid min="-21,6,25" max="-9,7,48"/>
+            <half origin="-20.5,0,27" normal="-2,0,1"/>
+        </complement>
+        <complement> <!-- magenta wool room lane -->
+            <cuboid min="-21,6,-42" max="-9,7,-19"/>
+            <half origin="-20.5,0,-21" normal="-2,0,-1"/>
+        </complement>
+        <complement> <!-- lime wool room lane -->
+            <cuboid min="115,6,-19" max="103,7,-42"/>
+            <half origin="114.5,0,-21" normal="2,0,-1"/>
+        </complement>
+        <complement> <!-- green wool room lane -->
+            <cuboid min="115,6,48" max="103,7,25"/>
+            <half origin="114.5,0,27" normal="2,0,1"/>
+        </complement>
+    </union>
+    <union id="void-guideline">
+        <cuboid min="-11,7,26" max="-10,8,36"/>
+        <cuboid min="-11,7,-30" max="-10,8,-20"/>
+        <cuboid min="105,7,-20" max="104,8,-30"/>
+        <cuboid min="105,7,36" max="104,8,26"/>
+    </union>
+    <apply use="deny(trap-door)" region="bases"/>
+    <apply enter="red-team" region="red-base" message="You may not enter the enemy's base!"/>
+    <apply enter="blue-team" region="blue-base" message="You may not enter the enemy's base!"/>
+    <apply enter="red-team" region="blue-wrs" message="You may not enter your own wool room!"/>
+    <apply enter="blue-team" region="red-wrs" message="You may not enter your own wool room!"/>
+    <apply block="never" region="bases" message="You may not edit the bases!"/>
+    <apply block="deny(not-water-cause-world)" region="woolrooms"/>
+    <apply block="deny(chest)" region="woolrooms" message="You may not break or place chests in the wool rooms!"/>
+    <apply block="red-team" region="blue-wrs" message="You may not interfere with your team's wool rooms!"/>
+    <apply block="blue-team" region="red-wrs" message="You may not interfere with your team's wool rooms!"/>
+    <apply block="all(water_lane_mode=1,water-lane-filter)" region="under-water-lanes"/>
+    <apply block="water_lane_mode=1" region="water-lanes" message="You may not edit the void!"/>
+    <apply block="never" region="void-area" message="You may not edit the void!"/>
+    <apply block="never" region="underside" message="You may not do any underbridging!"/>
+    <apply block-physics="deny(wall-sign)" region="bases"/>
+</regions>
+<wools craftable="false">
+    <wool team="red-team" color="lime" location="152,16,-13">
+        <monument>
+            <block>-31,16,0</block>
+        </monument>
+    </wool>
+    <wool team="red-team" color="green" location="152,16,19">
+        <monument>
+            <block>-31,16,5</block>
+        </monument>
+    </wool>
+    <wool team="blue-team" color="pink" location="-58,16,19">
+        <monument>
+            <block>124,16,5</block>
+        </monument>
+    </wool>
+    <wool team="blue-team" color="magenta" location="-58,16,-13">
+        <monument>
+            <block>124,16,0</block>
+        </monument>
+    </wool>
+</wools>
+<destroyables name="Monument" material="ender stone" show-progress="true" mode-changes="true">
+    <destroyable owner="red-team" region="red-monument"/>
+    <destroyable owner="blue-team" region="blue-monument"/>
+</destroyables>
+<modes>
+    <mode name="`dEfficiency II`3 near the `6monuments" action="eff_mode:=1" after="20m" show-before="1m"/>
+    <mode name="`aDiagonal `bwater lanes `3added" action="activate-water-lane-mode" after="25m" show-before="5m"/>
+</modes>
+<renewables>
+    <renewable rate="2.5" region="bulidable-area" renew-filter="only-iron" replace-filter="only-air"/>
+</renewables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>ender stone</item>
+    <item>stained clay:5</item>
+    <item>stained clay:13</item>
+    <item>glowstone dust</item>
+    <item>string</item>
+    <item>redstone</item>
+    <item>redstone torch on</item>
+</itemremove>
+<itemkeep>
+    <item>wood:2</item>
+    <item>glass</item>
+    <item>bucket</item>
+    <item>golden apple</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16" damage="2" material="wood"/>
+        <item amount="8" material="glass"/>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>32</maxbuildheight>
+<respawns>
+    <respawn delay="3s" filter="not(after-25m)"/>
+    <respawn delay="3.5s" filter="all(after-25m,not(after-45m))"/>
+    <respawn delay="4s" filter="after-45m"/>
+</respawns>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
