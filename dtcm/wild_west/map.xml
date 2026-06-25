@@ -1,137 +1,169 @@
-<?xml version="1.0"?>
-<map proto="1.4.1">
+<map proto="1.5.1">
 <name>Wild West</name>
-<version>1.0.0</version>
-<phase>development</phase>
+<version>1.0.1</version>
 <objective>Leak the lava from the enemy's core.</objective>
+<created>2016-10-28</created>
+<phase>development</phase>
+<include id="gapple-kill-reward"/>
 <authors>
-    <author uuid="0fdf1faa-6a98-4f27-983c-968648e12720"/>
-    <!-- AMSGamingTQ -->
-    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
-    <!-- rockymine -->
+    <author uuid="0fdf1faa-6a98-4f27-983c-968648e12720"/> <!-- AMSGamingTQ -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
 </authors>
 <teams>
     <team id="red-team" color="dark red" max="16">Red</team>
     <team id="blue-team" color="blue" max="16">Blue</team>
 </teams>
 <kits>
-    <kit id="spawn">
-        <helmet material="iron helmet"/>
-        <item slot="0" unbreakable="true" material="stone sword"/>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
         <item slot="1" unbreakable="true" material="bow"/>
-        <item slot="2" unbreakable="true" enchantment="dig speed:1" material="diamond pickaxe"/>
-        <item slot="3" unbreakable="true" material="stone axe"/>
-        <item slot="4" amount="16" material="log"/>
-        <item slot="5" amount="32" material="bread"/>
-        <item slot="19" amount="3" material="stick"/>
+        <item slot="2" unbreakable="true" enchantment="efficiency" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="64" material="wood"/>
+        <item slot="5" amount="16" material="glass"/>
+        <item slot="8" material="golden apple"/>
         <item slot="28" amount="64" material="arrow"/>
-        <effect duration="5" amplifier="1">instant_health</effect>
-    </kit>
-    <kit id="red-kit" parents="spawn">
-        <chestplate color="993333" unbreakable="true" material="leather chestplate"/>
-        <leggings color="993333" unbreakable="true" material="leather leggings"/>
-        <boots color="993333" unbreakable="true" material="leather boots"/>
-    </kit>
-    <kit id="blue-kit" parents="spawn">
-        <chestplate color="334CB2" unbreakable="true" material="leather chestplate"/>
-        <leggings color="334CB2" unbreakable="true" material="leather leggings"/>
-        <boots color="334CB2" unbreakable="true" material="leather boots"/>
+        <item slot="30" unbreakable="true" material="iron spade"/>
+        <helmet unbreakable="true" material="iron helmet"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" team-color="true" material="leather leggings"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="5s" amplifier="5">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
-    <spawn team="blue-team" kit="blue-kit">
-        <regions yaw="90">
-            <cuboid min="16,14,84" max="15,14,85"/>
-        </regions>
+    <spawn team="red-team" kit="spawn-kit" yaw="-90">
+        <region>
+            <cylinder base="-15,14,-84" radius="0.5" height="0"/>
+        </region>
     </spawn>
-    <spawn team="red-team" kit="red-kit">
-        <regions yaw="-90">
-            <cuboid min="-16,14,-84" max="-15,14,-85"/>
-        </regions>
+    <spawn team="blue-team" kit="spawn-kit" yaw="90">
+        <region>
+            <cylinder base="16,14,85" radius="0.5" height="0"/>
+        </region>
     </spawn>
-    <default>
-        <regions yaw="0">
-            <point>-57,67,0</point>
-        </regions>
+    <default yaw="-90">
+        <region>
+            <point>-56.5,67,0.5</point>
+        </region>
     </default>
 </spawns>
-<respawn delay="3s"/>
 <filters>
-    <not id="deny-explosions">
-        <cause>explosion</cause>
-    </not>
-	<team id="only-red">red-team</team>
-	<team id="only-blue">blue-team</team>
+    <material id="only-iron">iron block</material>
+    <material id="only-air">air</material>
+    <carrying id="eff-carrying-lvl-1" ignore-metadata="true" ignore-enchantments="false">
+        <item material="diamond pickaxe" enchantment="efficiency:1"/>
+    </carrying>
+    <carrying id="eff-carrying-lvl-2" ignore-metadata="true" ignore-enchantments="false">
+        <item material="diamond pickaxe" enchantment="efficiency:2"/>
+    </carrying>
+    <carrying id="eff-carrying-lvl-3" ignore-metadata="true" ignore-enchantments="false">
+        <item material="diamond pickaxe" enchantment="efficiency:3"/>
+    </carrying>
+    <any id="efficiency-filter">
+        <all>
+            <team>red-team</team>
+            <resize min="5,6,5" max="5,4,5" region="blue-core"/>
+        </all>
+        <all>
+            <team>blue-team</team>
+            <resize min="5,6,5" max="5,4,5" region="red-core"/>
+        </all>
+    </any>
+    <time id="after-15m">15m</time>
+    <time id="after-30m">30m</time>
+    <time id="after-45m">45m</time>
 </filters>
+<variables>
+    <variable id="eff_level" scope="match" default="1"/>
+</variables>
+<actions>
+    <action id="activate-eff-mode" scope="player" expose="true">
+        <enchant-item enchantment="efficiency" level="eff_level" ignore-metadata="true">
+            <find material="diamond pickaxe"/>
+        </enchant-item>
+    </action>
+    <action id="deactivate-eff-mode" scope="player" expose="true">
+        <enchant-item enchantment="efficiency" level="1" ignore-metadata="true">
+            <find material="diamond pickaxe"/>
+        </enchant-item>
+    </action>
+    <trigger scope="player" filter="all(efficiency-filter,any(all(not(eff_level=1),eff-carrying-lvl-1),all(not(eff_level=2),eff-carrying-lvl-2),all(not(eff_level=3),eff-carrying-lvl-3)))" action="activate-eff-mode"/>
+    <trigger scope="player" filter="all(not(efficiency-filter),any(eff-carrying-lvl-2,eff-carrying-lvl-3))" action="deactivate-eff-mode"/>
+    <set id="eff-increase-level" var="eff_level" value="eff_level+1" scope="match"/>
+</actions>
 <regions>
-	<rectangle id="map" min="-39,124" max="40,-123"/>
-    <rectangle id="red-spawn" min="-7,-75" max="-19,-90"/>
-    <rectangle id="blue-spawn" min="8,76" max="20,91"/>
-	<union id="spawns">
-		<region id="red-spawn"/>
-		<region id="blue-spawn"/>
-	</union>	
-	<apply block="never" region="spawns"/>
-	<apply enter="only-blue" region="blue-spawn"/>
-	<apply enter="only-red" region="red-spawn"/>
-    <apply block="deny-explosions" region="red-spawn"/>
-    <apply block="deny-explosions" region="blue-spawn"/>
-    <apply block="never" message="You may not edit blocks outside the map!">
-        <region>
-            <negative>
-                <region id="map"/>
-            </negative>
-        </region>
-    </apply>
+    <union id="spawns">
+        <rectangle id="red-spawn" min="-7,-75" max="-19,-90"/>
+        <rectangle id="blue-spawn" min="8,76" max="20,91"/>
+    </union>
+    <negative id="outside-map">
+        <rectangle id="map" min="-39,124" max="40,-123"/>
+    </negative>
+    <union id="red-core">
+        <cuboid min="19,21,-79" max="22,25,-84"/>
+        <cuboid min="18,21,-80" max="23,25,-83"/>
+        <cuboid min="19,20,-80" max="22,26,-83"/>
+    </union>
+    <union id="blue-core">
+        <cuboid min="-18,21,80" max="-21,25,85"/>
+        <cuboid min="-17,21,81" max="-22,25,84"/>
+        <cuboid min="-18,20,81" max="-21,26,84"/>
+    </union>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply block="never" region="spawns" message="You may not edit the spawns!"/>
+    <apply block="never" region="outside-map" message="You may not build outside the map!"/>
 </regions>
-<cores>
-    <core name="Core" team="red-team" leak="5" mode-changes="false">
-        <region>
-            <cuboid min="18,20,-79" max="23,26,-84"/>
-        </region>
-    </core>
-    <core name="Core" team="blue-team" leak="5" mode-changes="false">
-        <region>
-            <cuboid min="-17,20,85" max="-22,26,80"/>
-        </region>
-    </core>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core team="red-team" region="red-core"/>
+    <core team="blue-team" region="blue-core"/>
 </cores>
-<itemremove>
-  <item>leather chestplate</item>
-  <item>leather leggings</item>
-  <item>leather boots</item>
-  <item>obsidian</item>
-</itemremove>
+<modes>
+    <mode name="`dEfficiency II`3 near the `6cores" action="eff-increase-level" after="15m"/>
+    <mode name="`dEfficiency III`3 near the `6cores" action="eff-increase-level" after="30m"/>
+</modes>
+<renewables>
+    <renewable region="map" renew-filter="only-iron" replace-filter="only-air"/>
+</renewables>
 <toolrepair>
-    <tool>iron helmet</tool>
-    <tool>stone sword</tool>
+    <tool>iron sword</tool>
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
-    <tool>stone axe</tool>
-    <tool>stone axe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
 </toolrepair>
-<gamerules>
-    <doFireTick>false</doFireTick>
-</gamerules>
-<timelock>on</timelock>
-<renewables>
-	<renewable rate="1" grow="true" particles="true" sound="true" avoid-entities="true">
-		<region>
-			<region id="map"/>
-		</region>
-		<renew>iron block</renew>
-		<replace>air</replace>
-		<replace>wood</replace>
-		<replace>sand</replace>
-		<replace>sandstone</replace>
-		<replace>log</replace>
-		<replace>stained clay</replace>
-	</renewable>
-</renewables>
-<killreward>
-	<item amount="8">wood</item>
-	<item>golden apple</item>
-	<item amount="8">arrow</item>
-</killreward>
+<itemremove>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>seeds</item>
+    <item>clay ball</item>
+</itemremove>
+<itemkeep>
+    <item>wood:0</item>
+    <item>glass</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item material="wood" amount="16"/>
+        <item material="glass" amount="4"/>
+        <item material="arrow" amount="16"/>
+    </kill-reward>
+</kill-rewards>
 <maxbuildheight>35</maxbuildheight>
+<respawns>
+    <respawn delay="3s" filter="not(after-15m)"/>
+    <respawn delay="3.2s" filter="all(after-15m,not(after-30m))"/>
+    <respawn delay="3.5s" filter="all(after-30m,not(after-45m))"/>
+    <respawn delay="4s" filter="after-45m"/>
+</respawns>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
 </map>
