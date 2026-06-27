@@ -76,6 +76,11 @@
     <material id="trap-door">trap door</material>
     <material id="wall-sign">wall sign</material>
     <material id="ladder">ladder</material>
+    <any id="stones">
+        <material>stone:0</material>
+        <material>stone:5</material>
+        <material>stained clay:9</material>
+    </any>
 </filters>
 <regions>
     <union id="spawns">
@@ -141,14 +146,14 @@
     <apply use="deny(trap-door)" region="spawns"/>
     <apply enter="cyan-team" region="cyan-spawn-enter-prot" message="You may not enter the opponent's spawn!"/>
     <apply enter="purple-team" region="purple-spawn-enter-prot" message="You may not enter the opponent's spawn!"/>
-    <apply enter="cyan-team" region="purple-wrs" message="You may not enter your own woolroom!"/>
-    <apply enter="purple-team" region="cyan-wrs" message="You may not enter your own woolroom!"/>
+    <apply enter="cyan-team" region="purple-wrs" message="You may not enter your team's own wool rooms!"/>
+    <apply enter="purple-team" region="cyan-wrs" message="You may not enter your team's own wool rooms!"/>
     <apply block-place="never" region="default-ceiling" message="`cYou have reached the maximum build height (`b29 `cblocks) for this part of the map."/>
     <apply block-place="never" region="island-ceiling" message="`cYou have reached the maximum build height (`b22 `cblocks) for this part of the map."/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You may only break iron blocks in spawn!"/>
-    <apply block="cyan-woolroom-blocks" use="cyan-team" region="purple-wrs" message="You may not modify the woolroom!"/>
-    <apply block="purple-woolroom-blocks" use="purple-team" region="cyan-wrs" message="You may not modify the woolroom!"/>
-    <apply block-place="deny(void)" block-break="deny(all(void,wall-sign))" region="everywhere" message="You may not edit the void!"/>
+    <apply block="cyan-woolroom-blocks" use="cyan-team" region="purple-wrs" message="You may not modify the wool rooms!"/>
+    <apply block="purple-woolroom-blocks" use="purple-team" region="cyan-wrs" message="You may not modify the wool rooms!"/>
+    <apply block-place="deny(void)" block-break="deny(all(void,wall-sign))" message="You may not edit the void!"/>
     <apply block-physics="deny(wall-sign)" region="spawns"/>
     <apply block-physics="deny(ladder)" region="woolrooms"/>
 </regions>
@@ -210,14 +215,7 @@
     <item>golden apple</item>
 </itemkeep>
 <block-drops>
-    <rule>
-        <filter>
-            <any>
-                <material>stone:0</material>
-                <material>stone:5</material>
-                <material>stained clay:9</material>
-            </any>
-        </filter>
+    <rule filter="stones">
         <drops>
             <item material="cobblestone"/>
         </drops>
