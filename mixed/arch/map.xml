@@ -129,7 +129,6 @@
         </enchant-item>
     </action>
     <action id="activate-water-lane-mode" scope="match" expose="true">
-        <set var="water_lane_mode" value="1"/> <!-- water lanes start -->
         <fill region="water-lane-fill-region" material="water" filter="only-air"/> <!-- place water lanes -->
         <fill region="void-guideline" material="air" filter="only-cobweb"/> <!-- remove legacy void guidelines -->
     </action>
@@ -316,8 +315,8 @@
     <apply use="deny(trap-door)" region="bases"/>
     <apply enter="red-team" region="red-base" message="You may not enter the enemy's base!"/>
     <apply enter="blue-team" region="blue-base" message="You may not enter the enemy's base!"/>
-    <apply enter="red-team" region="blue-wrs" message="You may not enter your own wool room!"/>
-    <apply enter="blue-team" region="red-wrs" message="You may not enter your own wool room!"/>
+    <apply enter="red-team" region="blue-wrs" message="You may not enter your team's wool rooms!"/>
+    <apply enter="blue-team" region="red-wrs" message="You may not enter your team's wool rooms!"/>
     <apply block="never" region="bases" message="You may not edit the bases!"/>
     <apply block="deny(not-water-cause-world)" region="woolrooms"/>
     <apply block="deny(chest)" region="woolrooms" message="You may not break or place chests in the wool rooms!"/>
@@ -357,7 +356,7 @@
 </destroyables>
 <modes>
     <mode name="`dEfficiency II`3 near the `6monuments" action="eff_mode:=1" after="20m" show-before="1m"/>
-    <mode name="`aDiagonal `bwater lanes `3added" action="activate-water-lane-mode" after="25m" show-before="5m"/>
+    <mode name="`aDiagonal `bwater lanes `3added" action="water_lane_mode:=1" after="25m" show-before="5m"/>
 </modes>
 <renewables>
     <renewable rate="2.5" region="bulidable-area" renew-filter="only-iron" replace-filter="only-air"/>
