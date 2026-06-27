@@ -72,6 +72,10 @@
 <filters>
     <material id="only-iron">iron block</material>
     <material id="only-air">air</material>
+    <any id="stones">
+        <material>stone:0</material>
+        <material>stone:5</material>
+    </any>
 </filters>
 <regions>
     <union id="spawns">
@@ -109,7 +113,8 @@
     <apply enter="red-team" region="red-spawn" message="You may not enter the opponent's spawn!"/>
     <apply block="never" region="spawns" message="You may not edit the spawns!"/>
     <apply block="never" region="outside-map" message="You may not build outside the map!"/>
-    <!-- union id="iron-mines">
+    <!-- temporarily disable iron mine protection
+    <union id="iron-mines">
         <union id="blue-iron-mine">
             <cylinder base="-62.5,8,-10.5" radius="5" height="8"/>
             <cylinder base="-62.5,15,-10.5" radius="3" height="5"/>
@@ -126,7 +131,8 @@
     <apply enter="blue-team" region="blue-iron-mine" message="You may not enter the opponent's iron mine!"/>
     <apply enter="red-team" region="red-iron-mine" message="You may not enter the opponent's iron mine!"/>
     <apply block="only-iron" region="iron-mines" message="You may only break iron in the iron mines!"/ >
-    <apply block="never" region="iron-entrances" message="You may not block or edit the iron mine entrance!"/ -->
+    <apply block="never" region="iron-entrances" message="You may not block or edit the iron mine entrance!"/>
+    -->
 </regions>
 <if variant="default">
     <cores material="obsidian" leak="3" mode-changes="true">
@@ -166,6 +172,7 @@
     <item>glowstone dust</item>
     <item>log 2:0</item>
     <item>stained clay:5</item>
+    <item>stained clay:9</item>
     <item>stained clay:13</item>
     <item>step:0</item>
     <item>sapling</item>
@@ -178,14 +185,7 @@
     <item>golden apple</item>
 </itemkeep>
 <block-drops>
-    <rule>
-        <filter>
-            <any>
-                <material>stone:0</material>
-                <material>stone:5</material>
-                <material>stained clay:9</material>
-            </any>
-        </filter>
+    <rule filter="stones">
         <drops>
             <item material="cobblestone"/>
         </drops>
