@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Moonlight Summit</name>
-<version>1.5.10</version>
+<version>1.5.11</version>
+<created>2014-04-12</created>
 <objective>Destroy 90% of all three of the enemy's monuments!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
