@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>CotBot</name>
-<version>1.0.11</version>
+<version>1.0.12</version>
+<created>2013-05-02</created>
 <objective>Eliminate the other team before 7 minutes is up</objective>
 <gamemode>blitz</gamemode>
 <authors>
