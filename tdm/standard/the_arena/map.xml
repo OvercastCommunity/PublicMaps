@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>The Arena</name>
-<version>1.0.6</version>
+<version>1.0.7</version>
+<created>2012-09-29</created>
 <slug>the_arena_redux</slug>
 <phase>staging</phase>
 <objective>Be the team with the least amount of deaths after 12 minutes.</objective>
