@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>DATAbase</name>
-<version>1.0.5</version>
+<version>1.0.6</version>
+<created>2014-03-25</created>
 <objective>Destroy 75% of both of the enemy's battle ships! You only have 15 minutes!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
