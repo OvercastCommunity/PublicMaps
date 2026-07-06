@@ -1,7 +1,8 @@
 <map proto="1.5.0">
 <name>Bamboo Valley III</name>
 <variant id="halloween" world="halloween" override="true">Bam-BOOO Valley III</variant>
-<version>1.7.1</version>
+<version>1.7.2</version>
+<created>2014-04-15</created>
 <include id="gapple-kill-reward"/>
 <authors>
     <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
