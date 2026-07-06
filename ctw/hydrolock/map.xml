@@ -1,7 +1,8 @@
 <map proto="1.5.0">
 <name>Hydrolock</name>
 <variant id="aerolock" world="aerolock" override="true">Aerolock</variant>
-<version>1.3.2</version>
+<version>1.3.3</version>
+<created>2013-01-22</created>
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <include id="gapple-kill-reward"/>
 <if variant="aerolock">
