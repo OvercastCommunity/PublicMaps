@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <map proto="1.0.0">
 <name>Solitude</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
+<created>2013-10-30</created>
 <objective>Leak lava from the enemy's two cores.</objective>
 <authors>
     <author uuid="82d03646-d1a1-4383-a533-9509b130f751"/> <!-- iLifting -->
