@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Aerobellum</name>
-<version>1.2.9</version>
+<version>1.2.10</version>
+<created>2013-03-05</created>
 <variant id="classic" world="classic">Classic</variant>
 <objective>Leak lava from the enemy team's engine to win the match!</objective>
 <include id="gapple-kill-reward"/>
