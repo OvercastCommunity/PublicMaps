@@ -431,7 +431,8 @@
     </hunger>
 </unless>
 <if variant="classic">
-    <version>0.55.3</version>
+    <version>0.55.4</version>
+    <created>2014-04-27</created>
     <phase>staging</phase>
     <objective>Attackers have 20 minutes to destroy the Ice Pillar, while the Defenders try to hold them back.</objective>
     <authors>
