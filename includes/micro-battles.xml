@@ -1,7 +1,7 @@
 <map>
 <!-- "Micro Battles" gamemode include file -->
 <!-- Created by Eliminate, based on the original "Cozy Cove" XML by Owehttamy -->
-<!-- Version 2026.06-30-1 -->
+<!-- Version 2026.07-08-1 -->
 <include id="gapple-kill-reward"/>
 <constants fallback="true"> <!-- Default values - Can be overriden by an individual map's code -->
     <constant id="use-default-teams">true</constant> <!-- Make sure this is ABOVE the include statement in your map's XML if changing to "false" -->
@@ -119,6 +119,7 @@
                 </action>
             </action>
         </trigger>
+        <trigger filter="match-finished" action="is_map_crumbling := 0" />
     </if>
 </actions>
 <if constant="use-map-crumbling" constant-value="true">
