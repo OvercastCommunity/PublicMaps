@@ -1,0 +1,254 @@
+<map proto="1.5.0">
+<name>Nucleus</name>
+<gamemode>koth</gamemode>
+<version>1.0.0</version>
+<objective>Capture and hold the nucleus!</objective>
+<phase>staging</phase>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Map recreation, extensive terraforming, class system creation"/> <!-- Stealth5061 -->
+    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Spawner technicals, assistance and suggestions"/> <!-- xXFracXx -->
+    <author contribution="Original map design, class design">Valve Corporation</author>
+</authors>
+<contributors>
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML making/breaking"/> <!-- dinner1111 -->
+    <contributor uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87" contribution="Help with class testing"/> <!-- Torn_Ares -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="10">RED</team>
+    <team id="blue-team" color="blue" max="10">BLU</team>
+</teams>
+<classes family="tf2">
+    <class name="Soldier" default="true" description="I'm the rocket man." icon="iron spade">
+        <kit>
+            <item slot="0" unbreakable="true" name="`b`oShovel" material="iron spade">
+                <enchantment>sharpness</enchantment>
+            </item>
+            <item slot="1" unbreakable="true" name="`b`oRocket Laucher" attributes="generic.movementSpeed:base:-0.35" material="bow">
+                <enchantment>power</enchantment>
+                <enchantment>punch</enchantment>
+            </item>
+            <item slot="2" name="`4Battalion's Backup" damage="16391" material="potion">
+                <effect duration="1s" amplifier="2">instant health</effect>
+                <effect duration="15s" amplifier="2">resistance</effect>
+                <effect duration="30s">fire resistance</effect>
+            </item>
+            <item slot="8" amount="3" material="arrow"/>
+            <effect amplifier="3">health boost</effect>
+            <effect duration="2s" amplifier="3">instant health</effect>
+            <chestplate unbreakable="true" color="1D1F1C" locked="true" material="leather chestplate"/>
+        </kit>
+    </class>
+    <class name="Pyro" description="Mmph mmmph mph-mph mmph mmmmph!" icon="iron axe">
+        <kit>
+            <item slot="0" unbreakable="true" name="`b`oFire Axe" material="iron axe">
+                <enchantment>fire aspect</enchantment>
+            </item>
+            <item slot="1" unbreakable="true" name="`b`oShotgun" material="bow"/>
+            <item slot="2" name="`b`oFlare Gun" damage="377" material="bow">
+                <enchantment>flame</enchantment>
+            </item>
+            <item slot="8" amount="16" material="arrow"/>
+            <effect amplifier="2">health boost</effect>
+            <effect amplifier="1">fire resistance</effect>
+            <effect duration="2s" amplifier="3">instant health</effect>
+            <chestplate unbreakable="true" color="1D1F1C" enchantment="thorns:1;durability:3" locked="true" material="leather chestplate"/>
+        </kit>
+    </class>
+    <class name="Scout" description="Too. Much. Caffeine." icon="feather">
+        <kit>
+            <item slot="0" unbreakable="true" enchantment="knockback" attributes="generic.attackDamage:add:4.5" name="`b`oBat" material="wood sword">
+                <enchantment>knockback</enchantment>
+            </item>
+            <item slot="1" unbreakable="true" enchantment="arrow_knockback" name="`b`oScattergun" attributes="generic.movementSpeed:base:-0.15" material="bow">
+                <enchantment>punch</enchantment>
+            </item>
+            <item slot="2" name="`4Bonk! `eAtomic Punch" damage="7" material="potion">
+                <effect duration="8s" amplifier="10">resistance</effect>
+                <effect duration="8s" amplifier="11">weakness</effect>
+                <effect duration="3s">speed</effect>
+            </item>
+            <item slot="8" amount="12" material="arrow"/>
+            <effect amplifier="1">jump boost</effect>
+            <chestplate unbreakable="true" color="1D1F1C" enchantments="protection environmental:1;protection projectile:1" attributes="generic.movementSpeed:base:0.33" locked="true" material="leather chestplate"/>
+        </kit>
+    </class>
+    <class name="Heavy" description="Shooting Good." icon="anvil">
+        <kit>
+            <item slot="0" name="`7`lHeavy Anvil" material="anvil"/>
+            <item slot="1" unbreakable="true" name="`b`oShotgun" attributes="generic.movementSpeed:base:-0.10" material="bow"/>
+            <item slot="2" name="`aSandwich" damage="7" attributes="generic.movementSpeed:base:-0.75" material="potion">
+                <effect duration="1s" amplifier="9">instant health</effect>
+            </item>
+            <item slot="8" amount="16" material="arrow"/>
+            <effect duration="2s" amplifier="3">instant health</effect>
+            <effect amplifier="4">health boost</effect>
+            <effect amplifier="2">increase damage</effect>
+            <effect amplifier="1">slow digging</effect>
+            <effect amplifier="-1">jump boost</effect>
+            <chestplate unbreakable="true" color="1D1F1C" attributes="generic.movementSpeed:base:-0.33;generic.knockbackResistance:base:10.00" enchantment="protection_projectile:2;durability:3" locked="true" material="leather chestplate"/>
+        </kit>
+    </class>
+    <class name="Demoman" description="Boom Boom Baby." icon="tnt">
+        <kit>
+            <item slot="0" unbreakable="true" name="`b`oEyelander" attributes="generic.movementSpeed:base:-0.10" material="iron sword"/>
+            <item slot="1" unbreakable="true" name="`b`oShotgun" material="bow"/>
+            <item slot="2" amount="1" name="`b`oSticky Bomb" material="tnt"/>
+            <item slot="3" amount="6" name="`6`lGrenade" grenade="true" material="snow ball"/>
+            <item slot="4" name="`8Chargin' Targe" damage="16391" material="potion">
+                <effect duration="4s" amplifier="7">speed</effect>
+            </item>
+            <item slot="8" amount="16" material="arrow"/>
+            <effect amplifier="2">health boost</effect>
+            <effect duration="2s" amplifier="3">instant health</effect>
+            <chestplate unbreakable="true" color="1D1F1C" enchantment="protection explosions:2" attributes="generic.movementSpeed:base:-0.07" locked="true" material="leather chestplate"/>
+        </kit>
+    </class>
+    <class name="Sniper" description="Pink Cloud of Death." icon="bow">
+        <kit>
+            <item slot="0" unbreakable="true" name="`b`oKukri" material="wood sword"/>
+            <item slot="1" unbreakable="true" name="`b`oSniper Rifle" enchantment="arrow damage;arrow knockback" attributes="generic.movementSpeed:base:-0.30" material="bow"/>
+            <item slot="2" name="`6Jarate" damage="16391" material="potion">
+                <effect duration="15s">weakness</effect>
+                <effect duration="15s" amplifier="2">slowness</effect>
+                <effect duration="15s" amplifier="2">mining fatigue</effect>
+                <effect duration="15s">nausea</effect>
+            </item>
+            <item slot="8" amount="8" material="arrow"/>
+            <effect duration="2s" amplifier="3">instant health</effect>
+            <chestplate unbreakable="true" color="1D1F1C" locked="true" material="leather chestplate"/>
+        </kit>
+    </class>
+    <class name="Medic" description="Prepare for your examination." icon="potion">
+        <kit>
+            <item slot="0" unbreakable="true" name="`b`oBonesaw" attributes="generic.movementSpeed:base:0.10" material="wood sword"/>
+            <item slot="1" unbreakable="true" name="`b`oSyringe Gun" material="bow"/>
+            <item slot="2" name="`b`oMedi Gun" damage="16391" amount="10" material="potion">
+                <effect duration="1s" amplifier="2">instant health</effect>
+                <effect duration="60s" amplifier="2">absorption</effect>
+                <effect duration="10s" amplifier="2">resistance</effect>
+            </item>
+            <item slot="3" name="`d`lUBER-CHARGE" damage="16391" material="potion">
+                <effect duration="20s" amplifier="2">slowness</effect>
+                <effect duration="20s" amplifier="3">regeneration</effect>
+                <effect duration="20s" amplifier="10">resistance</effect>
+            </item>
+            <item slot="8" amount="24" material="arrow"/>
+            <effect duration="2s" amplifier="3">instant health</effect>
+            <effect>regeneration</effect>
+            <chestplate unbreakable="true" color="1D1F1C" attributes="generic.movementSpeed:base:0.07" locked="true" material="leather chestplate"/>
+        </kit>
+    </class>
+</classes>
+<kits>
+    <kit id="kill-kit" force="true">
+        <effect amplifier="-4">health boost</effect>
+        <effect amplifier="-10">jump boost</effect>
+        <effect>blindness</effect>
+    </kit>
+    <kit id="spawn-kit">
+        <leggings unbreakable="true" team-color="true" locked="true">leather leggings</leggings>
+        <boots unbreakable="true" color="240A03" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="spawn-kit" yaw="0">
+        <regions>
+            <cuboid min="-29,29,-34" max="-34,29,-31"/>
+        </regions>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit" yaw="180">
+        <regions>
+            <cuboid min="-29,29,74" max="-34,29,71"/>
+        </regions>
+    </spawn>
+    <default yaw="90">
+        <regions>
+            <cylinder base="-57,44.3,20" radius="2.5" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <material id="only-tnt">tnt</material>
+    <deny id="deny-some">
+        <any>
+            <material>beacon</material>
+            <material>furnace</material>
+        </any>
+    </deny>
+</filters>
+<regions>
+    <union id="red-spawn">
+        <cuboid min="-39,29,-12" max="-14,35,-22"/>
+        <cuboid min="-39,29,-12" max="-35,24,-20"/>
+    </union>
+    <union id="blue-spawn">
+        <cuboid min="-39,29,52" max="-14,35,62"/>
+        <cuboid min="-39,29,52" max="-35,24,60"/>
+    </union>
+    <union id="spawn-sides">
+        <rectangle min="-38,52" max="-14,79"/>
+        <rectangle min="-38,-12" max="-14,-38"/>
+    </union>
+    <cylinder id="pit" base="-31,0,20" radius="20" height="20"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply block="never" region="spawn-sides"/>
+    <apply use="deny-some" block="only-tnt"/>
+    <apply kit="kill-kit" region="pit"/>
+</regions>
+<control-points>
+    <control-point name="Nucleus" neutral-state="true" incremental="true" required="false" capture-time="10s" points="1">
+        <capture>
+            <cuboid min="-34,28,16" max="-27,32,23"/>
+        </capture>
+        <progress>
+            <cuboid min="-40,27,15" max="-26,35,25"/>
+        </progress>
+        <captured>
+            <cuboid min="-35,33,24" max="-26,33,15"/>
+        </captured>
+    </control-point>
+</control-points>
+<broadcasts>
+    <tip after="10s" every="2m">`6You can change your class with `9/class`6!</tip>
+    <tip after="12s" every="2m">`6View all the classes with `9/classes`6!</tip>
+    <tip after="30s" every="3m">`6The hill is located in the center! It's vital that you capture it!</tip>
+    <tip after="60s" every="3m">`6Get your health topped up by using the health stations at spawn!</tip>
+    <tip after="1m30s" every="3m">`6Be careful near the center! You may fall into the void of doom...</tip>
+</broadcasts>
+<score>
+    <limit>360</limit>
+</score>
+<disabledamage>
+    <damage enemy="false">block explosion</damage>
+</disabledamage>
+<itemremove>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>potion</item>
+    <item>bow</item>
+    <item>stone axe</item>
+    <item>iron spade</item>
+    <item>glass bottle</item>
+    <item>leather chestplate</item>
+    <item>stone sword</item>
+    <item>tnt</item>
+    <item>iron sword</item>
+    <item>potion</item>
+    <item>wood sword</item>
+    <item>iron axe</item>
+    <item>anvil</item>
+    <item>snow ball</item>
+</itemremove>
+<timelock>on</timelock>
+<tnt>
+    <instantignite>true</instantignite>
+    <friendly-defuse>false</friendly-defuse>
+    <blockdamage>false</blockdamage>
+    <fuse>3s</fuse>
+    <power>5</power>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
