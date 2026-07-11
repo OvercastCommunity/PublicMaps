@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>Autunno</name>
-<version>1.2.1</version>
+<version>1.2.2</version>
+<created>2013-10-11</created>
 <objective>Capture all the hills to be the first to 1250 points!</objective>
 <constant id="damage-resistance">6s</constant>
 <constant id="respawn-timer">2s</constant>

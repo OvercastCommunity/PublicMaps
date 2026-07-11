@@ -1,7 +1,8 @@
 <map proto="1.5.0">
 <name>Shave</name>
 <variant id="christmas" world="christmas">Santa</variant>
-<version>1.2.2</version>
+<version>1.2.3</version>
+<created>2014-05-20</created>
 <objective>Shave off the other team's beard to win.</objective>
 <rules>
     <rule>Players have resistance and reduced knockback in spawn!</rule>

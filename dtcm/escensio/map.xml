@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Escensio</name>
-<version>1.0.11</version>
+<version>1.0.12</version>
+<created>2013-03-11</created>
 <objective>Destroy the three enemy flags to win the match.</objective>
 <include id="gapple-kill-reward"/>
 <authors>

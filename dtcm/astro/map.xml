@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Astro</name>
-<version>1.0.16</version>
+<version>1.0.17</version>
+<created>2014-01-19</created>
 <objective>Destroy the enemy team's core!</objective>
 <include id="gapple-kill-reward"/>
 <authors>

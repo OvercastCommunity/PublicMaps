@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Bessemer's Process</name>
-<version>1.1</version>
+<version>1.1.1</version>
+<created>2013-02-19</created>
 <objective>Leak lava from the enemy's obsidian core.</objective>
 <include id="gapple-kill-reward"/>
 <authors>

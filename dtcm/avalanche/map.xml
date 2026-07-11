@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>Avalanche</name>
-<version>1.2.12</version>
+<version>1.2.13</version>
+<created>2012-08-01</created>
 <objective>Leak lava from the enemy's mountaintop core.</objective>
 <include id="gapple-kill-reward"/>
 <authors>

@@ -1,6 +1,7 @@
 <map proto="1.5.0">
 <name>NextGen</name>
-<version>3.4.11</version>  <!-- Based upon the TE edition -->
+<version>3.4.12</version>  <!-- Based upon the TE edition -->
+<created>2014-09-01</created>
 <objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
 <include id="gapple-kill-reward"/>
 <authors>

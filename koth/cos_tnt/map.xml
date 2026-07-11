@@ -1,6 +1,7 @@
 <map proto="1.4.2">
 <name>cos(tnt)</name>
-<version>0.90.7</version>
+<version>0.90.8</version>
+<created>2014-06-16</created>
 <objective>You must be the first team to get to 2,500 points!</objective>
 <gamemode>koth</gamemode>
 <gamemode>tdm</gamemode>
