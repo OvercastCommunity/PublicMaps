@@ -1,6 +1,6 @@
 <map proto="1.5.1">
 <name>Blooming</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Reach 750 points before the opposing team!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -8,8 +8,8 @@
 	<author uuid="770d4106-52cb-4c04-a771-4987330be3ec"/> <!-- NonSense -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="5" max-overfill="5">Blue</team>
-    <team id="red" color="dark red" max="5" max-overfill="5">Red</team>
+    <team id="blue" color="blue" max="12" max-overfill="16">Blue</team>
+    <team id="red" color="dark red" max="12" max-overfill="16">Red</team>
 </teams>
 <kits>
     <kit id="conquest">

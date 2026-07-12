@@ -1,6 +1,6 @@
 <map proto="1.5.1">
 <name>Dojo</name>
-<version>1.0.0</version>
+<version>1.0.1</version>
 <objective>Score points by killing your opponents or redeeming emeralds in the score box!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -13,8 +13,8 @@
 <created>2025-07-27</created>
 <time result="score" overtime="1m" max-overtime="7m">10m</time>
 <teams>
-    <team id="blue-team" color="blue" max="5" max-overfill="5">Blue</team>
-    <team id="red-team" color="dark red" max="5" max-overfill="5">Red</team>
+    <team id="blue-team" color="blue" max="8" max-overfill="10">Blue</team>
+    <team id="red-team" color="dark red" max="8" max-overfill="10">Red</team>
 </teams>
 <respawn delay="6s" auto="true" blackout="true"/>
 <kits>
