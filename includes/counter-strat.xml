@@ -8,7 +8,7 @@
 -->
 <!-- Counter-Strat gamemode include file -->
 <!-- Created by zzuf (GitHub @zzufx) -->
-<!-- Version 2026.04.12-1 -->
+<!-- Version 2026.07.16-1 -->
 <include id="bridge"/>
 <include id="gapple-kill-reward"/>
 <constants fallback="true">
@@ -428,7 +428,6 @@
         projectile="Snowball"
         velocity="1.5"
         click="right"
-        power="4"
         damage="8"
         throwable="true"
         destroy-filter="never"
