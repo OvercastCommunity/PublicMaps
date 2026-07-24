@@ -12,6 +12,7 @@
 <if variant="blitz">
     <gamemode>blitz</gamemode>
     <gamemode>mixed</gamemode>
+    <phase>staging</phase>
 </if>
 <authors>
     <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
