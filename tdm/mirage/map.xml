@@ -1,6 +1,6 @@
 <map proto="1.5.1">
 <name>Mirage</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Score points by killing your opponents or redeeming emeralds in the score box!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -95,6 +95,7 @@
 	<item>emerald block</item>
 </itemremove>
 <itemkeep>
+    <item>golden apple</item>
     <item>arrow</item>
 </itemkeep>
 <kill-reward>
