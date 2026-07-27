@@ -1,6 +1,6 @@
 <map proto="1.5.1">
 <name>Dojo</name>
-<version>1.0.2</version>
+<version>1.0.3</version>
 <objective>Score points by killing your opponents or redeeming emeralds in the score box!</objective>
 <include id="gapple-kill-reward"/>
 <authors>
@@ -11,7 +11,7 @@
     <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->	
 </contributors>
 <created>2025-07-27</created>
-<time result="score" overtime="1m" max-overtime="7m">10m</time>
+<time result="score">8m</time>
 <teams>
     <team id="blue-team" color="blue" max="8" max-overfill="10">Blue</team>
     <team id="red-team" color="dark red" max="8" max-overfill="10">Red</team>
@@ -63,6 +63,7 @@
     <action id="mark-carrier" scope="player" filter="carrying-emerald" untrigger-filter="not-carrying-emerald">
         <kit id="emerald-helmet-kit"/>
 		<message text="`e`kxxxxxxx `r`aYou are being marked as `2`lEMERALD CARRIER`r`a!`r`e`kxxxxxxx`r"/>
+		<message text="`e`kxxxx `r`aScore the `2`lemerald`r`a in the enemy `f`lscorebox`r`a! `r`e`kxxxx`r"/>
 		<sound preset="custom" volume="10"/>
     </action>
     <action id="unmark-carrier" scope="player" filter="not-carrying-emerald">
