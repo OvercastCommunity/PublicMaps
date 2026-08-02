@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.05.12-1 -->
+<!-- Version 2026.08.01-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -45,6 +45,7 @@
     <constant id="instaheal-default">1</constant> <!-- 0: gapple healing; 1: instaheal; 2: flag carrier dependent -->
     <constant id="instaheal-required">8</constant>
     <constant id="one-pass-default">1</constant> <!-- 0: one pass rule disabled; 1: enabled -->
+    <constant id="end-zone-default">1</constant> <!-- 0: flag carriers permitted in own end zone; 1: not permitted -->
     <!-- Maps can define these if needed, but these are sane defaults -->
     <constant id="team-one-pitch">0</constant>
     <constant id="team-two-pitch">0</constant>
@@ -99,6 +100,7 @@
     <variable id="flag_carrier" scope="player" exclusive="1"/>
     <variable id="instaheal" scope="match" default="${instaheal-default}"/>
     <variable id="one_pass_rule" scope="match" default="${one-pass-default}"/>
+    <variable id="end_zone_rule" scope="match" default="${end-zone-default}"/>
     <variable id="passed_once" scope="match" default="0"/>
     <variable id="last_damage_type" scope="player" default="0"/> <!-- 0: non-melee damage; 1: melee damage -->
 </variables>
@@ -113,7 +115,8 @@
     <tip filter="show_tutorial=1" after="25s" every="2m">Score by running into the end zone on the enemies' side!</tip>
 </broadcasts>
 <rules>
-    <rule>When one pass rule is in effect, a player must pass the flag to a teammate before it is capturable. End zone strips are exempt from this rule. This does not apply when matches are lower than 2v2.</rule>
+    <rule>When the end zone rule is in effect, the flag will automatically be dropped if the flag carrier enters their own end zone.</rule>
+    <rule>When the one pass rule is in effect, a player must pass the flag to a teammate before it is capturable. End zone strips are exempt from this rule. This does not apply when matches are lower than 2v2.</rule>
 </rules>
 <teams>
     <team id="team-one" color="${team-one-color}" max="${team-size}" max-overfill="${max-overfill}">${team-one-name}</team>
@@ -415,6 +418,16 @@
         <all>
             <filter id="team-two"/>
             <region id="team-one-portal"/>
+        </all>
+    </any>
+    <any id="in-own-capture-region">
+        <all>
+            <filter id="team-one"/>
+            <region id="team-one-portal"/>
+        </all>
+        <all>
+            <filter id="team-two"/>
+            <region id="team-two-portal"/>
         </all>
     </any>
     <cause id="melee-damage">melee</cause>
@@ -802,6 +815,20 @@
         <action>
             <message text=" `e⚠ `cYou must pass the flag to a teammate before scoring!"/>
             <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
+        </action>
+    </trigger>
+    <!-- Drop flag if end zone rule enabled and flag carrier enters own end zone -->
+    <trigger filter="all(has-flag,in-own-capture-region,end_zone_rule=1)" scope="player">
+        <action filter="can_score=1">
+            <!-- Use throw state because we gate on that for relevant follow up actions -->
+            <set var="player_state" value="${throw}"/>
+            <set var="game_state" value="${throw}"/>
+            <set var="flag_carrier" value="0"/>
+            <switch-scope inner="match">
+                <drop-flag flag="flag"/>
+                <message text=" `e`l»`c The Flag carrier entered their own end zone!" actionbar="`cFlag carrier entered own end zone!"/>
+                <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
+            </switch-scope>
         </action>
     </trigger>
 </actions>
