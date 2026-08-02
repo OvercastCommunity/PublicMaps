@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.08.01-1 -->
+<!-- Version 2026.08.01-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -9,8 +9,9 @@
     <constant id="initial">0</constant>
     <constant id="carry">1</constant>
     <constant id="throw">2</constant>
+    <constant id="removed">3</constant>
     <!-- Additional game_state value -->
-    <constant id="death">3</constant>
+    <constant id="death">4</constant>
     <!-- Maps need to define the following constants -->
     <!--
     <constant id="team-size"></constant>
@@ -311,10 +312,9 @@
     <after id="flag-fire-go" filter="do_fire=1" duration="1s"/>
     <after id="match-start-delay" filter="match-started" duration="0.1s"/>
     <all id="initiate-reset">
-        <any>
-            <variable var="game_state">${throw}</variable>
-            <variable var="game_state">${death}</variable>
-        </any>
+        <not>
+            <variable var="game_state">${initial}</variable>
+        </not>
         <not id="not-carried">
             <flag-carried>flag</flag-carried>
         </not>
@@ -340,10 +340,9 @@
     </victim>
     <all id="reset-observer-variables">
         <observing/>
-        <any>
-            <variable var="player_state">${carry}</variable>
-            <variable var="player_state">${throw}</variable>
-        </any>
+        <not>
+            <variable var="player_state">${initial}</variable>
+        </not>
     </all>
     <all id="should-teleport">
         <any id="one-pass-enforcement">
@@ -612,7 +611,7 @@
             <action id="pickup-sounds"/>
         </switch-scope>
     </action>
-    <action id="reset-after-throw" scope="player" filter="player_state=${throw}">
+    <action id="reset-after-drop" scope="player" filter="any(player_state=${throw},player_state=${removed})">
         <action id="reset-player-state">
             <set var="player_state" value="${initial}"/>
         </action>
@@ -637,7 +636,7 @@
     <trigger action="flag-pickup-event" filter="all(has-flag,not(player_state=${carry}))" scope="player"/>
     <trigger action="pickup-flag" filter="all(flag-pickup-via-entity,not(player_state=${carry}))" scope="player"/>
     <trigger action="reset-fire" filter="just-before-reset" scope="match"/>
-    <trigger action="reset-after-throw" filter="just-before-reset" scope="player"/>
+    <trigger action="reset-after-drop" filter="just-before-reset" scope="player"/>
     <trigger action="reset-flag" filter="flag-reset" scope="match"/>
     <trigger action="reset-after-capture" filter="immediately-after-capture" scope="match"/>
     <trigger action="reset-flag" filter="flag-respawn" scope="match"/>
@@ -820,9 +819,8 @@
     <!-- Drop flag if end zone rule enabled and flag carrier enters own end zone -->
     <trigger filter="all(has-flag,in-own-capture-region,end_zone_rule=1)" scope="player">
         <action filter="can_score=1">
-            <!-- Use throw state because we gate on that for relevant follow up actions -->
-            <set var="player_state" value="${throw}"/>
-            <set var="game_state" value="${throw}"/>
+            <set var="player_state" value="${removed}"/>
+            <set var="game_state" value="${removed}"/>
             <set var="flag_carrier" value="0"/>
             <switch-scope inner="match">
                 <drop-flag flag="flag"/>
@@ -929,7 +927,7 @@
     <damage>fall</damage>
     <damage ally="${disable-ally-damage}" enemy="false" other="false">entity attack</damage>
 </disabledamage>
-<damage attacker-action="reset-after-throw" victim-action="damage-receive-event">
+<damage attacker-action="reset-after-drop" victim-action="damage-receive-event">
     <unless constant="disable-ally-damage" constant-value="false">
         <deny>
             <all>
