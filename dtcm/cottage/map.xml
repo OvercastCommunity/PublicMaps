@@ -1,0 +1,205 @@
+<map proto="1.5.1">
+<name>Cottage</name>
+<variant id="dtm" world="dtm" override="true">Cottage DTM</variant>
+<version>1.1</version>
+<if variant="default">
+    <objective>Leak lava from the opponent's obsidian core!</objective>
+    <created>2019-02-05</created>
+    <phase>staging</phase>
+</if>
+<if variant="dtm">
+    <objective>Break the opponent's obsidian monument!</objective>
+    <created>2026-05-16</created>
+    <phase>development</phase>
+    <constants>
+        <constant id="eff.team-1">blue-team</constant>
+        <constant id="eff.team-2">red-team</constant>
+        <constant id="eff.t1-m1-region">red-monument</constant>
+        <constant id="eff.t2-m1-region">blue-monument</constant>
+        <constant id="eff.modes-preset">every-10m</constant>
+    </constants>
+    <include id="efficiency-variables"/>
+</if>
+<include id="gapple-kill-reward"/>
+<authors>
+    <author uuid="74e59389-2b3e-490d-954a-a7af1fb1eded"/> <!-- Dowly_ -->
+</authors>
+<if variant="dtm">
+    <contributors>
+        <contributor uuid="84d0f14a-1aae-447f-838c-8ac742667d67" contribution="DTM-ification"/> <!-- limefox3054 -->
+    </contributors>
+</if>
+<teams>
+    <team id="blue-team" color="blue" max="10">Blue</team>
+    <team id="red-team" color="dark red" max="10">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="infinity" material="bow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" enchantment="efficiency" material="iron axe"/>
+        <item slot="4" amount="48" damage="4" material="wood"/>
+        <item slot="5" amount="16" material="glass"/>
+        <item slot="6" amount="8" material="torch"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <helmet unbreakable="true" team-color="true" material="leather helmet"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
+        <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <boots unbreakable="true" team-color="true" material="leather boots"/>
+        <effect duration="4s" amplifier="5">damage resistance</effect>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <region>
+            <point>0.5,44.2,0.5</point>
+        </region>
+    </default>
+    <spawn team="blue-team" kit="spawn-kit" yaw="-45">
+        <region>
+            <cuboid min="-67,24,-20" max="-66,24,-19"/>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit" yaw="135">
+        <region>
+            <cuboid min="68,24,21" max="67,24,20"/>
+        </region>
+    </spawn>
+</spawns>
+<filters>
+    <material id="only-iron">iron block</material>
+    <material id="only-air">air</material>
+    <any id="stones">
+        <material>stone:0</material>
+        <material>stone:5</material>
+    </any>
+</filters>
+<regions>
+    <union id="spawns">
+        <complement id="blue-spawn">
+            <cylinder base="-70,21,-23" radius="13" height="oo"/>
+            <half origin="-58.5,0,-24" normal="4,0,1"/>
+            <half origin="-61.5,0,-14" normal="1,0,1"/>
+            <rectangle min="-62,-15" max="-61,-14"/>
+            <region id="outside-map"/>
+        </complement>
+        <complement id="red-spawn">
+            <cylinder base="71,21,24" radius="13" height="oo"/>
+            <half origin="59.5,0,25" normal="-4,0,-1"/>
+            <half origin="62.5,0,15" normal="-1,0,-1"/>
+            <rectangle min="63,16" max="62,15"/>
+            <region id="outside-map"/>
+        </complement>
+    </union>
+    <union id="iron-mine">
+        <cuboid min="-69,10,-18" max="-56,14,-6"/> <!-- blue iron mine -->
+        <cuboid min="70,10,19" max="57,14,7"/> <!-- red iron mine -->
+    </union>
+    <negative id="outside-map">
+        <cuboid id="map" min="-70,0,-23" max="71,oo,24"/>
+    </negative>
+    <if variant="default">
+        <cuboid id="blue-core" min="-52,17,9" max="-47,22,14"/>
+        <cuboid id="red-core" min="53,17,-8" max="48,22,-13"/>
+    </if>
+    <if variant="dtm">
+        <cuboid id="blue-monument" min="-50,17,11" max="-49,20,12"/>
+        <cuboid id="red-monument" min="51,17,-10" max="50,20,-11"/>
+    </if>
+    <apply enter="blue-team" region="blue-spawn" message="You may not enter the opponent's spawn!"/>
+    <apply enter="red-team" region="red-spawn" message="You may not enter the opponent's spawn!"/>
+    <apply block="never" region="spawns" message="You may not edit the spawns!"/>
+    <apply block="never" region="outside-map" message="You may not build outside the map!"/>
+    <!-- temporarily disable iron mine protection
+    <union id="iron-mines">
+        <union id="blue-iron-mine">
+            <cylinder base="-62.5,8,-10.5" radius="5" height="8"/>
+            <cylinder base="-62.5,15,-10.5" radius="3" height="5"/>
+        </union>
+    <union id="red-iron-mine">
+        <cylinder base="63.5,8,11.5" radius="5" height="8"/>
+        <cylinder base="63.5,15,11.5" radius="3" height="3"/>
+    </union>
+    </union>
+    <union id="iron-entrances">
+        <cuboid id="blue-iron-entrance" min="-57,10,2" max="-65,17,-4"/>
+        <cuboid id="red-iron-entrance" min="58,10,-1" max="66,17,3"/>
+    </union>
+    <apply enter="blue-team" region="blue-iron-mine" message="You may not enter the opponent's iron mine!"/>
+    <apply enter="red-team" region="red-iron-mine" message="You may not enter the opponent's iron mine!"/>
+    <apply block="only-iron" region="iron-mines" message="You may only break iron in the iron mines!"/ >
+    <apply block="never" region="iron-entrances" message="You may not block or edit the iron mine entrance!"/>
+    -->
+</regions>
+<if variant="default">
+    <cores material="obsidian" leak="3" mode-changes="true">
+        <core team="blue-team" region="blue-core"/>
+        <core team="red-team" region="red-core"/>
+    </cores>
+    <modes>
+        <mode after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    </modes>
+</if>
+<if variant="dtm">
+    <destroyables name="Monument" material="obsidian" mode-changes="true">
+        <destroyable owner="red-team" region="red-monument"/>
+        <destroyable owner="blue-team" region="blue-monument"/>
+    </destroyables>
+</if>
+<renewables>
+    <renewable rate="2" region="iron-mine" renew-filter="only-iron" replace-filter="only-air"/>
+</renewables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item> <!-- still present in the dispenser tile entities -->
+    <item>obsidian</item>
+    <if variant="default">
+        <item>gold block</item>
+    </if>
+    <item>glowstone dust</item>
+    <item>log 2:0</item>
+    <item>stained clay:5</item>
+    <item>stained clay:9</item>
+    <item>stained clay:13</item>
+    <item>step:0</item>
+    <item>sapling</item>
+    <item>apple</item>
+</itemremove>
+<itemkeep>
+    <item>wood:4</item>
+    <item>glass</item>
+    <item>torch</item>
+    <item>golden apple</item>
+</itemkeep>
+<block-drops>
+    <rule filter="stones">
+        <drops>
+            <item material="cobblestone"/>
+        </drops>
+    </rule>
+</block-drops>
+<kill-rewards>
+    <kill-reward>
+        <item material="wood" amount="12"/>
+        <item material="glass" amount="4"/>
+        <item material="torch" amount="2"/>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>31</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>
