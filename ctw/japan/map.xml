@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Japan</name>
-<version>1.1.4</version>
+<version>1.1.5</version>
 <include id="gapple-kill-reward"/>
 <objective>Bring the enemy's wool back to your own side.</objective>
 <authors>
@@ -75,7 +75,8 @@
     <apply block="deny(any(orange,only-chest))" region="red-for-green" message="You may not modify chests in the wool room, or modify your team's own wool room."/>
     <apply block="deny(any(green,only-chest))" region="cyan-for-orange" message="You may not modify chests in the wool room, or modify your team's own wool room."/>
     <apply block="never" region="spawns" message="You may not modify the spawns!"/>
-    <apply block-break="deny(void,only-obsidian)" region="void-area" message="You may not place or break blocks here!"/>
+    <apply block-place="deny(void)" region="void-area" message="You may not place or break blocks here!"/>
+    <apply block="deny(only-obsidian)" early-warning="true" message="You may not break this block!"/>
 </regions>
 <wools>
     <wool team="green" color="red" location="-81,12,31">
