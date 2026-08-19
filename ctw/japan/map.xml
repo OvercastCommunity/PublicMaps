@@ -1,14 +1,15 @@
-<map proto="1.5.0">
+<map proto="1.5.1">
 <name>Japan</name>
-<version>1.1.5</version>
-<include id="gapple-kill-reward"/>
+<version>1.1.6</version>
 <objective>Bring the enemy's wool back to your own side.</objective>
+<created>2017-09-30</created> <!-- earliest GitHub pull request in Warzone map submissions -->
+<include id="gapple-kill-reward"/>
 <authors>
     <author uuid="bf331953-4f92-43ee-8abc-7544b8234936"/> <!-- ViceWatercolour -->
 </authors>
 <teams>
-    <team id="orange" color="gold" max="14">Orange</team>
-    <team id="green" color="green" max="14">Green</team>
+    <team id="orange-team" color="gold" max="14">Orange</team>
+    <team id="green-team" color="green" max="14">Green</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -29,30 +30,31 @@
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
         <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" material="iron boots"/>
-        <effect duration="5s" amplifier="255">damage resistance</effect>
+        <effect duration="5s" amplifier="5">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
     <default>
         <region>
-            <point>18.5,22.5,-49.5</point>
+            <point>18.5,22.2,-49.5</point>
         </region>
     </default>
-    <spawn team="green" kit="spawn-kit">
+    <spawn team="green-team" kit="spawn-kit">
         <region yaw="-90">
             <point>62.5,11,21.5</point>
         </region>
     </spawn>
-    <spawn team="orange" kit="spawn-kit">
+    <spawn team="orange-team" kit="spawn-kit">
         <region yaw="90">
             <point>-25.5,11,-46.5</point>
         </region>
     </spawn>
 </spawns>
 <filters>
-    <material id="only-chest">chest</material>
-    <material id="only-beacon">beacon</material>
-    <material id="only-obsidian">obsidian</material>
+    <material id="chest">chest</material>
+    <material id="beacon">beacon</material>
+    <material id="obsidian">obsidian</material>
+    <material id="leaves">leaves</material>
 </filters>
 <regions>
     <union id="spawns">
@@ -60,43 +62,54 @@
         <rectangle id="orange-spawn" min="-38,-54" max="-17,-34"/>
     </union>
     <union id="wool-rooms">
-        <cuboid id="cyan-for-orange" min="105,0,-65" max="123,64,-49"/>
-        <cuboid id="red-for-green" min="-86,0,24" max="-68,64,40"/>
+        <rectangle id="cyan-for-orange" min="105,-65" max="123,-49"/>
+        <rectangle id="red-for-green" min="-86,24" max="-68,40"/>
     </union>
-    <complement id="void-area">
-        <everywhere/>
-        <rectangle min="-6,-21" max="31,-4"/> <!-- Mid Region -->
-    </complement>
-    <apply use="deny(only-beacon)"/>
-    <apply enter="orange" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="green" region="green-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="green" use="green" region="red-for-green" message="You may not enter your team's own wool room!"/>
-    <apply enter="orange" use="orange" region="cyan-for-orange" message="You may not enter your team's own wool room!"/>
-    <apply block="deny(any(orange,only-chest))" region="red-for-green" message="You may not modify chests in the wool room, or modify your team's own wool room."/>
-    <apply block="deny(any(green,only-chest))" region="cyan-for-orange" message="You may not modify chests in the wool room, or modify your team's own wool room."/>
+    <negative id="void-area">
+        <rectangle min="6,-21" max="31,-4"/> <!-- Mid Region -->
+    </negative>
+    <union id="leaves-floor">
+        <cuboid min="-43,0,-53" max="-15,1,-9"/>
+        <cuboid min="52,0,-16" max="80,1,28"/>
+    </union>
+    <apply use="deny(beacon)" message="You may not use the beacon!"/>
+    <apply enter="orange-team" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="green-team" region="green-spawn" message="You may not enter the enemy's spawn!"/>
+    <apply enter="orange-team" use="orange-team" region="cyan-for-orange" message="You may not enter your team's own wool room!"/>
+    <apply enter="green-team" use="green-team" region="red-for-green" message="You may not enter your team's own wool room!"/>
     <apply block="never" region="spawns" message="You may not modify the spawns!"/>
-    <apply block-place="deny(void)" region="void-area" message="You may not place or break blocks here!"/>
-    <apply block="deny(only-obsidian)" early-warning="true" message="You may not break this block!"/>
+    <apply block="deny(chest)" region="wool-rooms" message="You may not break or place chests in the wool room!"/>
+    <apply block="green-team" region="red-for-green" message="You may not modify your team's own wool room!"/>
+    <apply block="orange-team" region="cyan-for-orange" message="You may not modify your team's own wool room!"/>
+    <apply block-place="deny(void)" region="void-area" message="You may not build in the void area!"/>
+    <apply block="deny(obsidian)" early-warning="true" message="You may not break this block!"/>
 </regions>
-<wools>
-    <wool team="green" color="red" location="-81,12,31">
+<wools craftable="false">
+    <wool team="green-team" color="red" location="-81,12,31">
         <monument>
             <block>60,12,21</block>
         </monument>
     </wool>
-    <wool team="orange" color="cyan" location="117,12,-57">
+    <wool team="orange-team" color="cyan" location="117,12,-57">
         <monument>
             <block>-24,12,-47</block>
         </monument>
     </wool>
 </wools>
+<actions>
+    <trigger scope="match" filter="any(match-started,match-starting)">
+        <action>
+            <fill material="air" region="leaves-floor" filter="leaves"/>
+        </action>
+    </trigger>
+</actions>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>bow</tool>
     <tool>diamond pickaxe</tool>
     <tool>iron axe</tool>
-    <tool>shears</tool>
     <tool>iron spade</tool>
+    <tool>shears</tool>
     <tool>arrow</tool>
 </toolrepair>
 <itemremove>
@@ -104,25 +117,20 @@
     <item>leather chestplate</item>
     <item>chainmail leggings</item>
     <item>iron boots</item>
-    <item>glowstone dust</item>
     <item>beacon</item>
     <item>gold block</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>string</item>
+    <item>redstone</item>
+    <item>redstone torch on</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>seeds</item>
+    <item>glowstone dust</item>
 </itemremove>
-<block-drops>
-    <rule>
-        <filter>
-            <any>
-                <material>wood</material>
-                <material>glass</material>
-            </any>
-        </filter>
-        <drops>
-            <item chance="0" material="glass"/>
-        </drops>
-    </rule>
-</block-drops>
 <itemkeep>
-    <item>wood</item>
+    <item>wood:5</item>
     <item>glass</item>
     <item>golden apple</item>
 </itemkeep>
