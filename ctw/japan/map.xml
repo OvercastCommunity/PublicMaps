@@ -53,6 +53,7 @@
 <filters>
     <material id="chest">chest</material>
     <material id="beacon">beacon</material>
+    <material id="bedrock">bedrock</material>
     <material id="obsidian">obsidian</material>
     <material id="leaves">leaves</material>
 </filters>
@@ -75,12 +76,12 @@
     <apply use="deny(beacon)" message="You may not use the beacon!"/>
     <apply enter="orange-team" region="orange-spawn" message="You may not enter the enemy's spawn!"/>
     <apply enter="green-team" region="green-spawn" message="You may not enter the enemy's spawn!"/>
-    <apply enter="orange-team" use="orange-team" region="cyan-for-orange" message="You may not enter your team's own wool room!"/>
-    <apply enter="green-team" use="green-team" region="red-for-green" message="You may not enter your team's own wool room!"/>
+    <apply enter="orange-team" region="cyan-for-orange" message="You may not enter your team's own wool room!"/>
+    <apply enter="green-team" region="red-for-green" message="You may not enter your team's own wool room!"/>
     <apply block="never" region="spawns" message="You may not modify the spawns!"/>
     <apply block="deny(chest)" region="wool-rooms" message="You may not break or place chests in the wool room!"/>
-    <apply block="green-team" region="red-for-green" message="You may not modify your team's own wool room!"/>
-    <apply block="orange-team" region="cyan-for-orange" message="You may not modify your team's own wool room!"/>
+    <apply block="green-team" use="deny(all(orange-team,not(bedrock)))" region="red-for-green" message="You may not modify your team's own wool room!"/>
+    <apply block="orange-team" use="deny(all(green-team,not(bedrock)))" region="cyan-for-orange" message="You may not modify your team's own wool room!"/>
     <apply block-place="deny(void)" region="void-area" message="You may not build in the void area!"/>
     <apply block="deny(obsidian)" early-warning="true" message="You may not break this block!"/>
 </regions>
