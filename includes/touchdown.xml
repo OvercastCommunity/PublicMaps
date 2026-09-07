@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.09.06-1 -->
+<!-- Version 2026.09.06-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -602,6 +602,9 @@
         <action id="flag-receive-event" scope="player" filter="valid-receive">
             <if constant="experimental-flag-land" constant-value="true">
                 <set var="flag_on_floor" value="0" />
+                <switch-scope inner="match">
+                    <action id="reset-landing-zone" />
+                </switch-scope>
             </if>
             <set var="player_state" value="${carry}"/>
             <set var="game_state" value="${carry}"/>
