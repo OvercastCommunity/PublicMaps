@@ -1,6 +1,6 @@
 <map proto="1.5.1">
 <name>Outcrop</name>
-<version>1.0.4</version>
+<version>1.0.5</version>
 <objective>Capture the opponent's wools and place them on your wool monuments!</objective>
 <created>2019-03-02</created>
 <phase>staging</phase>
@@ -30,30 +30,39 @@
         <item slot="30" unbreakable="true" material="iron spade"/>
         <item slot="31" amount="32" material="wood"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <leggings unbreakable="true" material="chainmail leggings"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
-        <effect duration="4s" amplifier="5">damage resistance</effect>
+        <effect duration="3s" amplifier="5">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
-    <default yaw="90">
-        <region>
-            <point>1,47,0</point>
+    <default>
+        <region yaw="90">
+            <point>1,46,0</point>
         </region>
     </default>
-    <spawn team="cyan-team" kit="spawn-kit" yaw="-135">
-        <region>
-            <cuboid min="-57,12,21" max="-56,12,20"/>
+    <spawn team="cyan-team" kit="spawn-kit">
+        <region yaw="-135">
+            <cylinder base="-56.5,11,20.5" radius="0.5" height="0"/>
         </region>
     </spawn>
-    <spawn team="purple-team" kit="spawn-kit" yaw="45">
-        <region>
-            <cuboid min="57,12,-21" max="56,12,-20"/>
+    <spawn team="purple-team" kit="spawn-kit">
+        <region yaw="45">
+            <cylinder base="56.5,11,-20.5" radius="0.5" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
+    <blocks id="woolroom-blocks" region="woolrooms">
+        <any>
+            <material>air</material>
+            <material>stained glass</material>
+            <material>web</material>
+            <material>redstone wire</material>
+            <material>redstone torch on</material>
+        </any>
+    </blocks>
     <all id="cyan-woolroom-blocks">
         <team>cyan-team</team>
         <filter id="woolroom-blocks"/>
@@ -62,57 +71,50 @@
         <team>purple-team</team>
         <filter id="woolroom-blocks"/>
     </all>
-    <blocks id="woolroom-blocks" region="woolrooms">
-        <any>
-            <material>air</material>
-            <material>web</material>
-            <material>stained glass</material>
-        </any>
-    </blocks>
     <all id="only-iron-regen">
         <material id="only-iron">iron block</material>
         <cause>world</cause>
     </all>
     <material id="trap-door">trap door</material>
     <material id="wall-sign">wall sign</material>
-    <material id="ladder">ladder</material>
+    <material id="only-ladder">ladder</material>
+    <blocks id="woolroom-ladder-blocks" region="woolrooms" filter="only-ladder"/>
     <any id="stones">
         <material>stone:0</material>
         <material>stone:5</material>
-        <material>stained clay:9</material>
     </any>
 </filters>
 <regions>
     <union id="spawns">
         <union id="cyan-spawn">
-            <complement>
+            <complement> <!-- cyan main spawn -->
                 <cuboid min="-60,0,24" max="-46,oo,10"/>
-                <cuboid min="-47,0,11" max="-46,oo,10"/>
                 <half origin="-60,0,12.5" normal="-1,0,-2"/>
                 <half origin="-48.5,0,24" normal="2,0,1"/>
+                <rectangle min="-47,11" max="-46,10"/>
             </complement>
             <complement> <!-- cyan iron mine -->
-                <cuboid min="-55,0,19" max="-42,10,6"/>
-                <half origin="-54.5,0,8" normal="-2,0,-1"/>
-                <half origin="-44,0,18.5" normal="1,0,2"/>
-                <half origin="-46.5,0,6" normal="1,0,-1"/>
+                <cuboid min="-55,0,19" max="-41,9,5"/>
+                <half origin="-53.5,0,5" normal="-5,0,-2"/>
+                <half origin="-41,0,17.5" normal="2,0,5"/>
+                <half origin="-46,0,5" normal="1,0,-1"/>
             </complement>
-            <cuboid min="-56,10,25" max="-53,oo,24"/>
+            <cuboid min="-56,9,25" max="-53,oo,24"/>
         </union>
         <union id="purple-spawn">
-            <complement>
+            <complement> <!-- purple main spawn -->
                 <cuboid min="60,0,-24" max="46,oo,-10"/>
-                <cuboid min="47,0,-11" max="46,oo,-10"/>
                 <half origin="60,0,-12.5" normal="1,0,2"/>
                 <half origin="48.5,0,-24" normal="-2,0,-1"/>
+                <rectangle min="47,-11" max="46,-10"/>
             </complement>
             <complement> <!-- purple iron mine -->
-                <cuboid min="55,0,-19" max="42,10,-6"/>
-                <half origin="54.5,0,-8" normal="2,0,1"/>
-                <half origin="44,0,-18.5" normal="-1,0,-2"/>
-                <half origin="46.5,0,-6" normal="-1,0,1"/>
+                <cuboid min="55,0,-19" max="41,9,-5"/>
+                <half origin="53.5,0,-5" normal="5,0,2"/>
+                <half origin="41,0,-17.5" normal="-2,0,-5"/>
+                <half origin="46,0,-5" normal="-1,0,1"/>
             </complement>
-            <cuboid min="56,10,-25" max="53,oo,-24"/>
+            <cuboid min="56,9,-25" max="53,oo,-24"/>
         </union>
     </union>
     <complement id="cyan-spawn-enter-prot"> <!-- minus the area where other team can run through -->
@@ -125,57 +127,80 @@
     </complement>
     <union id="woolrooms">
         <union id="cyan-wrs"> <!-- purple capture, cyan defend -->
-            <cuboid id="pink-wr" min="-78,0,42" max="-65,42,30"/>
-            <cuboid id="magenta-wr" min="-66,0,18" max="-78,42,5"/>
+            <cuboid id="pink-wr" min="-78,0,42" max="-65,41,30"/>
+            <cuboid id="magenta-wr" min="-66,0,18" max="-78,41,5"/>
         </union>
         <union id="purple-wrs"> <!-- cyan capture, purple defend -->
-            <cuboid id="lime-wr" min="78,0,-42" max="65,42,-30"/>
-            <cuboid id="lightblue-wr" min="66,0,-18" max="78,42,-5"/>
+            <cuboid id="lime-wr" min="78,0,-42" max="65,41,-30"/>
+            <cuboid id="lightblue-wr" min="66,0,-18" max="78,41,-5"/>
         </union>
     </union>
-    <union id="island-ceiling"> <!-- 22 maxheight -->
-        <cuboid id="default-ceiling" min="-78,29,42" max="78,oo,-42"/> <!-- 29 maxheight -->
-        <cuboid min="-63,22,-18" max="-18,oo,-42"/>
-        <cuboid min="-18,22,42" max="18,oo,-42"/>
-        <cuboid min="18,22,42" max="63,oo,18"/>
+    <union id="woolrooms-ceiling">
+        <intersect id="cyan-wrs-ceiling">
+            <region id="cyan-wrs"/>
+            <region id="default-ceiling"/>
+        </intersect>
+        <intersect id="purple-wrs-ceiling">
+            <region id="purple-wrs"/>
+            <region id="default-ceiling"/>
+        </intersect>
     </union>
+    <negative id="restricted-void-area">
+        <union> <!-- buildable void area -->
+            <rectangle min="-63,-18" max="-18,-42"/>
+            <rectangle min="-18,42" max="18,-42"/>
+            <rectangle min="18,42" max="63,18"/>
+        </union>
+    </negative>
+    <complement id="default-ceiling"> <!-- 28 maxheight -->
+        <above y="28"/>
+        <union id="island-ceiling"> <!-- 21 maxheight -->
+            <cuboid min="-78,21,-18" max="-18,oo,-42"/>
+            <cuboid min="-18,21,42" max="18,oo,-42"/>
+            <cuboid min="18,21,42" max="78,oo,18"/>
+        </union>
+    </complement>
     <union id="anti-jump-area">
         <rectangle min="-79,25" max="-65,23"/>
         <rectangle min="79,-25" max="65,-23"/>
     </union>
     <apply use="deny(trap-door)" region="spawns"/>
+    <apply use="cyan-team" region="purple-wrs"/>
+    <apply use="purple-team" region="cyan-wrs"/>
     <apply enter="cyan-team" region="cyan-spawn-enter-prot" message="You may not enter the opponent's spawn!"/>
     <apply enter="purple-team" region="purple-spawn-enter-prot" message="You may not enter the opponent's spawn!"/>
-    <apply enter="cyan-team" region="purple-wrs" message="You may not enter your team's own wool rooms!"/>
-    <apply enter="purple-team" region="cyan-wrs" message="You may not enter your team's own wool rooms!"/>
-    <apply block-place="never" region="default-ceiling" message="`cYou have reached the maximum build height (`b29 `cblocks) for this part of the map."/>
-    <apply block-place="never" region="island-ceiling" message="`cYou have reached the maximum build height (`b22 `cblocks) for this part of the map."/>
-    <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You may only break iron blocks in spawn!"/>
-    <apply block="cyan-woolroom-blocks" use="cyan-team" region="purple-wrs" message="You may not modify the wool rooms!"/>
-    <apply block="purple-woolroom-blocks" use="purple-team" region="cyan-wrs" message="You may not modify the wool rooms!"/>
-    <apply block-place="deny(void)" block-break="deny(all(void,wall-sign))" message="You may not edit the void!"/>
+    <apply enter="cyan-team" region="purple-wrs" message="You may not enter your own wool rooms!"/>
+    <apply enter="purple-team" region="cyan-wrs" message="You may not enter your own wool rooms!"/>
+    <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You may only break iron blocks in the spawn!"/>
+    <apply block-place="deny(purple-team)" region="cyan-wrs-ceiling" message="`cYou have reached the maximum build height (`b28 `cblocks) for this part of the map."/>
+    <apply block-place="deny(cyan-team)" region="purple-wrs-ceiling" message="`cYou have reached the maximum build height (`b28 `cblocks) for this part of the map."/>
+    <apply block="cyan-woolroom-blocks" region="purple-wrs" message="You may not modify the wool rooms!"/>
+    <apply block="purple-woolroom-blocks" region="cyan-wrs" message="You may not modify the wool rooms!"/>
+    <apply block-place="deny(void)" block-break="deny(all(void,wall-sign))" region="restricted-void-area" message="You may not edit the void!"/>
+    <apply block-place="never" region="default-ceiling" message="`cYou have reached the maximum build height (`b28 `cblocks) for this part of the map."/>
+    <apply block-place="never" region="island-ceiling" message="`cYou have reached the maximum build height (`b21 `cblocks) for this part of the map."/>
     <apply block-physics="deny(wall-sign)" region="spawns"/>
-    <apply block-physics="deny(ladder)" region="woolrooms"/>
+    <apply block-physics="deny(woolroom-ladder-blocks)" region="woolrooms"/>
 </regions>
 <wools craftable="false">
-    <wool team="cyan-team" color="lime" location="71.5,20,-36">
+    <wool team="cyan-team" color="lime" location="71.5,19,-36">
         <monument>
-            <block>-49,12,18</block>
+            <block>-49,11,18</block>
         </monument>
     </wool>
-    <wool team="cyan-team" color="light blue" location="72,20,-11.5">
+    <wool team="cyan-team" color="light blue" location="72,19,-11.5">
         <monument>
-            <block>-55,12,12</block>
+            <block>-55,11,12</block>
         </monument>
     </wool>
-    <wool team="purple-team" color="pink" location="-71.5,20,36">
+    <wool team="purple-team" color="pink" location="-71.5,19,36">
         <monument>
-            <block>48,12,-19</block>
+            <block>48,11,-19</block>
         </monument>
     </wool>
-    <wool team="purple-team" color="magenta" location="-72,20,11.5">
+    <wool team="purple-team" color="magenta" location="-72,19,11.5">
         <monument>
-            <block>54,12,-13</block>
+            <block>54,11,-13</block>
         </monument>
     </wool>
 </wools>
@@ -199,6 +224,8 @@
     <item>chainmail leggings</item>
     <item>leather boots</item>
     <item>string</item>
+    <item>redstone</item>
+    <item>redstone torch on</item>
     <item>seeds</item>
     <item>long grass</item>
     <item>red rose</item>
@@ -208,6 +235,7 @@
     <item>apple</item>
     <item>flint</item>
     <item>clay ball</item>
+    <item>stained clay:9</item>
 </itemremove>
 <itemkeep>
     <item>wood:0</item>
@@ -223,12 +251,16 @@
 </block-drops>
 <kill-rewards>
     <kill-reward>
-        <item material="wood" amount="24"/>
-        <item material="glass" amount="8"/>
+        <item amount="24" material="wood"/>
+        <item amount="8" material="glass"/>
     </kill-reward>
 </kill-rewards>
 <crafting>
     <disable>boat</disable>
+    <if min-server-version="1.9">
+        <disable>boat spruce</disable>
+        <disable>boat birch</disable>
+    </if>
     <disable>minecart</disable>
 </crafting>
 <hunger>
