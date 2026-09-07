@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.08.01-2 -->
+<!-- Version 2026.09.06-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -80,6 +80,20 @@
     <constant id="disable-ally-damage">true</constant>
     <constant id="friendly-fire-refund">off</constant>
     <constant id="gapple-slot">8</constant>
+    <constant id="experimental-flag-land">false</constant>
+    <if constant="experimental-flag-land" constant-value="true">
+        <constant id="DRAG">0.99</constant>
+        <constant id="GRAVITY">0.03</constant>
+        <constant id="SPEED">1.5</constant>
+        <constant id="EYE">1.62</constant>
+        <constant id="PI">3.141592</constant>
+        <!-- Maps need to define the following constants if experimental-flag-land is enabled -->
+        <!--
+        <constant id="valid-landing-area-min"></constant>
+        <constant id="valid-landing-area-max"></constant>
+        <constant id="ground_y"></constant>
+        -->
+    </if>
 </constants>
 <variables>
     <variable id="prev_score" scope="team"/>
@@ -104,6 +118,27 @@
     <variable id="end_zone_rule" scope="match" default="${end-zone-default}"/>
     <variable id="passed_once" scope="match" default="0"/>
     <variable id="last_damage_type" scope="player" default="0"/> <!-- 0: non-melee damage; 1: melee damage -->
+    <if constant="experimental-flag-land" constant-value="true">
+        <variable id="ball_x" scope="match" />
+        <variable id="ball_y" scope="match" />
+        <variable id="ball_z" scope="match" />
+        <variable id="ball_vel_x" scope="match" />
+        <variable id="ball_vel_y" scope="match" />
+        <variable id="ball_vel_z" scope="match" />
+        <variable id="ball_prev_x" scope="match" />
+        <variable id="ball_prev_y" scope="match" />
+        <variable id="ball_prev_z" scope="match" />
+        <variable id="flight_ticks" scope="match" />
+        <variable id="in_flight" scope="match" />
+        <variable id="impact_fraction" scope="match" />
+        <variable id="impact_x" scope="match" />
+        <variable id="impact_z" scope="match" />
+        <variable id="flag_on_floor" scope="match" />
+        <variable id="throw_yaw_rad" scope="player" />
+        <variable id="throw_pitch_rad" scope="player" />
+        <cuboid id="landing_zone" min="0,0,0" max="1,1,1" />
+        <cuboid id="valid_landing_area" min="${valid-landing-area-min}" max="${valid-landing-area-max}" />
+    </if>
 </variables>
 <include id="void-death"/>
 <include id="gapple-kill-reward"/>
@@ -275,6 +310,8 @@
     <consumable id="use-snowball" on="right click" override="false" action="snowball-thrown" consume="false"/>
 </consumables>
 <filters>
+    <material id="air">air</material>
+    <material id="banner">standing banner</material>
     <any id="remove-entities">
         <entity>snowball</entity>
         <entity>dropped item</entity>
@@ -325,9 +362,14 @@
     <all id="valid-receive">
         <variable var="can_score">1</variable>
         <variable var="game_state">${throw}</variable>
-        <damager id="snowball-damage">
-            <entity>snowball</entity>
-        </damager>
+        <any>
+            <if constant="experimental-flag-land" constant-value="true">
+                <region id="landing_zone" />
+            </if>
+            <damager id="snowball-damage">
+                <entity>snowball</entity>
+            </damager>
+        </any>
         <victim>
             <region id="playing-field"/>
         </victim>
@@ -434,6 +476,7 @@
     <relation id="enemy-damage">enemy</relation>
     <after id="0.1-seconds" filter="match-running" duration="0.1s"/>
     <after id="3-seconds" filter="match-running" duration="3s"/>
+    <after id="5-seconds" filter="match-running" duration="5s"/>
     <all id="tied-match">
         <rank team="team-one">1</rank>
         <rank team="team-two">1</rank>
@@ -453,6 +496,9 @@
             </message>
             <action id="throw-sounds"/>
         </switch-scope>
+        <if constant="experimental-flag-land" constant-value="true">
+            <action id="calculate-trajectory" />
+        </if>
     </action>
     <action id="throw-sounds" scope="match">
         <sound key="${entity.snowball.throw}" volume="1" pitch="0.5"/>
@@ -531,6 +577,10 @@
                 <action id="reset-player-state"/>
             </switch-scope>
         </action>
+        <if constant="experimental-flag-land" constant-value="true">
+            <set var="flag_on_floor" value="0" />
+            <action id="reset-landing-zone" />
+        </if>
         <unless constant="indicator-outer-material" constant-comparison="defined delete">
             <fill region="flag-indicator-upper" material="${indicator-outer-material}"/>
             <fill region="flag-indicator-lower" material="${indicator-outer-material}"/>
@@ -550,6 +600,9 @@
     </action>
     <action id="damage-receive-event" scope="player">
         <action id="flag-receive-event" scope="player" filter="valid-receive">
+            <if constant="experimental-flag-land" constant-value="true">
+                <set var="flag_on_floor" value="0" />
+            </if>
             <set var="player_state" value="${carry}"/>
             <set var="game_state" value="${carry}"/>
             <action id="apply-heal"/>
@@ -809,6 +862,15 @@
             <sound preset="alert"/>
         </action>
     </trigger>
+    <if constant="experimental-flag-land" constant-value="true">
+        <!-- Announce if experimental flag landing is active -->
+        <trigger filter="5-seconds" scope="match">
+            <action>
+                <message text=" `e⚠ Thrown flags land where they fall instead of returning."/>
+                <sound preset="alert" pitch="1.5"/>
+            </action>
+        </trigger>
+    </if>
     <!-- Tell player why they can't capture the flag if one pass enabled -->
     <trigger filter="all(has-flag,in-capture-region,not(one-pass-enforcement))" scope="player">
         <action>
@@ -829,6 +891,105 @@
             </switch-scope>
         </action>
     </trigger>
+    <if constant="experimental-flag-land" constant-value="true">
+        <trigger scope="player">
+            <filter>
+                <pulse duration="0.05s" period="0.1s" filter="flag_on_floor=1" />
+            </filter>
+            <action>
+                <action filter="landing_zone">
+                    <action id="flag-receive-event" />
+                    <switch-scope inner="match">
+                        <action id="reset-landing-zone" />
+                    </switch-scope>
+                </action>
+            </action>
+        </trigger>
+        <action id="calculate-trajectory" scope="player">
+            <set var="throw_yaw_rad" value="player.yaw * ${PI} / 180" />
+            <set var="throw_pitch_rad" value="player.pitch * ${PI} / 180" />
+            <!-- snowball spawn point: eye level minus 0.1, offset 0.16 sideways
+                from the player's center (vanilla 1.8 throwing offset) -->
+            <set var="ball_x" value="player.x - cos(throw_yaw_rad) * 0.16" />
+            <set var="ball_y" value="player.y + ${EYE} - 0.1" />
+            <set var="ball_z" value="player.z - sin(throw_yaw_rad) * 0.16" />
+            <!-- initial velocity in blocks per tick: unit look vector scaled by
+                the throw speed (1.5 in vanilla) -->
+            <set var="ball_vel_x" value="-sin(throw_yaw_rad) * cos(throw_pitch_rad) * ${SPEED}" />
+            <set var="ball_vel_y" value="-sin(throw_pitch_rad) * ${SPEED}" />
+            <set var="ball_vel_z" value="cos(throw_yaw_rad) * cos(throw_pitch_rad) * ${SPEED}" />
+            <!-- seed the previous position with the spawn point, so the first
+                pulse has a valid segment to interpolate against -->
+            <set var="ball_prev_x" value="ball_x" />
+            <set var="ball_prev_y" value="ball_y" />
+            <set var="ball_prev_z" value="ball_z" />
+            <!-- reset the flight timer and arm the simulation pulse.
+                keep in_flight last, everything else must be set before it runs -->
+            <set var="flight_ticks" value="0" />
+            <set var="in_flight" value="1" />
+        </action>
+        <trigger scope="match">
+            <filter>
+                <pulse period="0.1s" duration="0.05s" filter="all(in_flight=1,not(game_state=${carry}))" />
+            </filter>
+            <action>
+                <!-- save where the ball was, so we can interpolate the
+                    exact ground crossing if it lands during this step -->
+                <set var="ball_prev_x" value="ball_x" />
+                <set var="ball_prev_y" value="ball_y" />
+                <set var="ball_prev_z" value="ball_z" />
+                <!-- advance two ticks of vanilla physics at once.
+                    1.99 = 1 + 0.99 (drag applied on the second tick) -->
+                <set var="ball_x" value="ball_x + ball_vel_x * 1.99" />
+                <set var="ball_y" value="ball_y + ball_vel_y * 1.99 - 0.03" />
+                <set var="ball_z" value="ball_z + ball_vel_z * 1.99" />
+                <!-- two ticks of drag and gravity:
+                    0.9801 = 0.99^2, 0.0597 = 0.03 + 0.03 * 0.99 -->
+                <set var="ball_vel_x" value="ball_vel_x * 0.9801" />
+                <set var="ball_vel_y" value="ball_vel_y * 0.9801 - 0.0597" />
+                <set var="ball_vel_z" value="ball_vel_z * 0.9801" />
+                <set var="flight_ticks" value="flight_ticks + 2" />
+                <!-- ball crossed the ground plane during this step -->
+                <action filter="ball_y=..${ground_y}">
+                    <!-- how far along the last segment the crossing happened -->
+                    <set var="impact_fraction" value="(ball_prev_y - ${ground_y}) / (ball_prev_y - ball_y)" />
+                    <set var="impact_x" value="ball_prev_x + (ball_x - ball_prev_x) * impact_fraction" />
+                    <set var="impact_z" value="ball_prev_z + (ball_z - ball_prev_z) * impact_fraction" />
+                    <action filter="all(
+                        impact_x-valid_landing_area[0]=0..,
+                        impact_x-valid_landing_area[3]=..0,
+                        impact_z-valid_landing_area[2]=0..,
+                        impact_z-valid_landing_area[5]=..0
+                    )">
+                        <!-- place banner -->
+                        <set var="landing_zone" index="0" value="floor(impact_x)" />
+                        <set var="landing_zone" index="1" value="${ground_y}" />
+                        <set var="landing_zone" index="2" value="floor(impact_z)" />
+                        <set var="landing_zone" index="3" value="floor(impact_x) + 1" />
+                        <set var="landing_zone" index="4" value="${ground_y} + 1" />
+                        <set var="landing_zone" index="5" value="floor(impact_z) + 1" />
+                        <fill region="landing_zone" material="STANDING_BANNER" filter="air" />
+                        <set var="flag_on_floor" value="1" />
+                        <set var="landing_zone" index="4" value="${ground_y} + 2" />
+                    </action>
+                    <set var="in_flight" value="0" />
+                </action>
+                <!-- safety cut -->
+                <action filter="flight_ticks=300..">
+                    <set var="in_flight" value="0" />
+                </action>
+            </action>
+        </trigger>
+        <action id="reset-landing-zone" scope="match">
+            <fill region="landing_zone" material="air" filter="banner" />
+            <set var="landing_zone" index="0" value="0" />
+            <set var="landing_zone" index="1" value="0" />
+            <set var="landing_zone" index="2" value="0" />
+            <set var="landing_zone" index="3" value="1" />
+            <set var="landing_zone" index="4" value="1" />
+            <set var="landing_zone" index="5" value="1" />
+        </action>
+    </if>
 </actions>
 <regions>
     <!-- Maps must define the portal regions and playing-field -->
