@@ -54,6 +54,16 @@
     </spawn>
 </spawns>
 <filters>
+    <!-- used with deny inline filters to prevent block destruction caused by water flow -->
+    <all id="not-water-cause-world">
+        <not>
+            <any>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+        </not>
+        <cause>world</cause>
+    </all>
     <blocks id="woolroom-blocks" region="woolrooms">
         <any>
             <material>air</material>
@@ -172,6 +182,7 @@
     <apply enter="cyan-team" region="purple-wrs" message="You may not enter your own wool rooms!"/>
     <apply enter="purple-team" region="cyan-wrs" message="You may not enter your own wool rooms!"/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You may only break iron blocks in the spawn!"/>
+    <apply block="deny(not-water-cause-world)" region="woolrooms"/>
     <apply block-place="deny(purple-team)" region="cyan-wrs-ceiling" message="`cYou have reached the maximum build height (`b28 `cblocks) for this part of the map."/>
     <apply block-place="deny(cyan-team)" region="purple-wrs-ceiling" message="`cYou have reached the maximum build height (`b28 `cblocks) for this part of the map."/>
     <apply block="cyan-woolroom-blocks" region="purple-wrs" message="You may not modify the wool rooms!"/>
