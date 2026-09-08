@@ -163,30 +163,26 @@
     <apply block-place="deny(void)" block-break="deny(all(void,cobweb))" region="restricted-void-area" message="You may not modify the void area!"/>
 </regions>
 <wools>
-    <wools team="blue-team">
-        <wool color="orange" location="24.5,15,213.5">
-            <monument>
-                <block>-130,17,320</block>
-            </monument>
-        </wool>
-        <wool color="yellow" location="-27.5,15,161.5">
-            <monument>
-                <block>-135,17,315</block>
-            </monument>
-        </wool>
-    </wools>
-    <wools team="red-team">
-        <wool color="pink" location="-141.5,15,275.5">
-            <monument>
-                <block>12,17,168</block>
-            </monument>
-        </wool>
-        <wool color="purple" location="-89.5,15,327.5">
-            <monument>
-                <block>17,17,173</block>
-            </monument>
-        </wool>
-    </wools>
+    <wool team="blue-team" color="orange" location="24.5,15,213.5">
+        <monument>
+            <block>-130,17,320</block>
+        </monument>
+    </wool>
+    <wool team="blue-team" color="yellow" location="-27.5,15,161.5">
+        <monument>
+            <block>-135,17,315</block>
+        </monument>
+    </wool>
+    <wool team="red-team" color="pink" location="-141.5,15,275.5">
+        <monument>
+            <block>12,17,168</block>
+        </monument>
+    </wool>
+    <wool team="red-team" color="purple" location="-89.5,15,327.5">
+        <monument>
+            <block>17,17,173</block>
+        </monument>
+    </wool>
 </wools>
 <toolrepair>
     <tool>stone sword</tool>
