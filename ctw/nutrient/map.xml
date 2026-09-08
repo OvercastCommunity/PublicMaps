@@ -194,8 +194,8 @@
     <tool>iron pickaxe</tool>
     <tool>iron axe</tool>
     <tool>iron spade</tool>
-    <tool>arrow</tool>
     <tool>shears</tool>
+    <tool>arrow</tool>
 </toolrepair>
 <itemremove>
     <item>leather helmet</item>
