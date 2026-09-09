@@ -170,6 +170,12 @@
             <cuboid min="18,21,42" max="78,oo,18"/>
         </union>
     </complement>
+    <union id="breakable-sign">
+        <block>-47,11,11</block>
+        <block>-48,11,10</block>
+        <block>46,11,-12</block>
+        <block>47,11,-11</block>
+    </union>
     <union id="anti-jump-area">
         <rectangle min="-79,25" max="-65,23"/>
         <rectangle min="79,-25" max="65,-23"/>
@@ -181,6 +187,7 @@
     <apply enter="purple-team" region="purple-spawn-enter-prot" message="You may not enter the opponent's spawn!"/>
     <apply enter="cyan-team" region="purple-wrs" message="You may not enter your own wool rooms!"/>
     <apply enter="purple-team" region="cyan-wrs" message="You may not enter your own wool rooms!"/>
+    <apply block-break="wall-sign" region="breakable-sign" message="You may only break iron blocks in the spawn!"/>
     <apply block-place="only-iron-regen" block-break="only-iron" region="spawns" message="You may only break iron blocks in the spawn!"/>
     <apply block="deny(not-water-cause-world)" region="woolrooms"/>
     <apply block-place="deny(purple-team)" region="cyan-wrs-ceiling" message="`cYou have reached the maximum build height (`b28 `cblocks) for this part of the map."/>
@@ -190,7 +197,6 @@
     <apply block-place="deny(void)" block-break="deny(all(void,wall-sign))" region="restricted-void-area" message="You may not edit the void!"/>
     <apply block-place="never" region="default-ceiling" message="`cYou have reached the maximum build height (`b28 `cblocks) for this part of the map."/>
     <apply block-place="never" region="island-ceiling" message="`cYou have reached the maximum build height (`b21 `cblocks) for this part of the map."/>
-    <apply block-physics="deny(wall-sign)" region="spawns"/>
     <apply block-physics="deny(woolroom-ladder-blocks)" region="woolrooms"/>
 </regions>
 <wools craftable="false">
