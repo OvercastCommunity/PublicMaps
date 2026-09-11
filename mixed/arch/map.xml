@@ -1,6 +1,6 @@
 <map proto="1.5.1">
 <name>Arch</name>
-<version>1.0.15</version>
+<version>1.0.16</version>
 <objective>Capture both wools and destroy the end stone monument!</objective>
 <created>2016-12-11</created>
 <phase>staging</phase>
@@ -30,16 +30,20 @@
     <kit id="spawn-kit">
         <clear/>
         <item slot="0" unbreakable="true" material="iron sword"/>
-        <item slot="1" unbreakable="true" enchantment="infinity" material="bow"/>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment>infinity</enchantment>
+        </item>
         <item slot="2" unbreakable="true" material="iron pickaxe"/>
-        <item slot="3" unbreakable="true" enchantment="efficiency" material="iron axe"/>
+        <item slot="3" unbreakable="true" material="iron axe">
+            <enchantment>efficiency</enchantment>
+        </item>
         <item slot="4" amount="48" damage="2" material="wood"/>
         <item slot="5" amount="16" material="glass"/>
         <item slot="7" material="bucket"/>
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
         <item slot="30" unbreakable="true" material="iron spade"/>
-        <effect duration="4s" amplifier="5">damage resistance</effect>
+        <effect duration="4.5s" amplifier="5">damage resistance</effect>
     </kit>
     <!-- separate kits for armor colors are intentional -->
     <kit id="red-kit" parent="spawn-kit">
@@ -52,18 +56,21 @@
     </kit>
 </kits>
 <spawns>
-    <spawn team="red-team" kit="red-kit" yaw="-90">
-        <region>
+    <spawn team="red-team" kit="red-kit">
+        <region yaw="-90">
             <point>-27,15.2,3</point>
         </region>
     </spawn>
-    <spawn team="blue-team" kit="blue-kit" yaw="90">
-        <region>
+    <spawn team="blue-team" kit="blue-kit">
+        <region yaw="90">
             <point>121,15.2,3</point>
         </region>
     </spawn>
-    <default yaw="90">
-        <region>
+    <default>
+        <region yaw="90">
+            <point>47,48.2,3</point>
+        </region>
+        <region yaw="-90">
             <point>47,48.2,3</point>
         </region>
     </default>
@@ -130,7 +137,7 @@
     </action>
     <action id="activate-water-lane-mode" scope="match" expose="true">
         <fill region="water-lane-fill-region" material="water" filter="only-air"/> <!-- place water lanes -->
-        <fill region="void-guideline" material="air" filter="only-cobweb"/> <!-- remove legacy void guidelines -->
+        <fill region="void-guideline" material="air" filter="only-cobweb"/> <!-- remove legacy void guideline -->
     </action>
     <trigger scope="player" filter="all(efficiency-filter,any(all(not(eff_mode=0),no-eff-carrying),all(not(eff_mode=1),eff-carrying)))" action="activate-eff-mode"/>
     <trigger scope="player" filter="all(not(efficiency-filter),eff-carrying)" action="deactivate-eff-mode"/>
@@ -224,11 +231,11 @@
             <cuboid min="-2,0,-7" max="-1,6,-6"/>
             <complement>
                 <cuboid min="17,0,14" max="25,5,9"/>
-                <half origin="0,5,14" normal="0,1,-1"/>
+                <half origin="0,5,13.5" normal="0,1,-1"/>
             </complement>
             <complement>
                 <cuboid min="25,0,-7" max="17,5,-2"/>
-                <half origin="0,5,-7" normal="0,1,1"/>
+                <half origin="0,5,-6.5" normal="0,1,1"/>
             </complement>
             <!-- blue team side -->
             <cuboid min="158,0,-7" max="144,8,-19"/>
@@ -312,21 +319,27 @@
         <cuboid min="105,7,-20" max="104,8,-30"/>
         <cuboid min="105,7,36" max="104,8,26"/>
     </union>
+    <union id="breakable-sign">
+        <block>-10,15,-1</block>
+        <block>-10,15,6</block>
+        <block>103,15,6</block>
+        <block>103,15,-1</block>
+    </union>
     <apply use="deny(trap-door)" region="bases"/>
     <apply enter="red-team" region="red-base" message="You may not enter the enemy's base!"/>
     <apply enter="blue-team" region="blue-base" message="You may not enter the enemy's base!"/>
-    <apply enter="red-team" region="blue-wrs" message="You may not enter your team's wool rooms!"/>
-    <apply enter="blue-team" region="red-wrs" message="You may not enter your team's wool rooms!"/>
+    <apply enter="red-team" region="blue-wrs" message="You may not enter your own wool rooms!"/>
+    <apply enter="blue-team" region="red-wrs" message="You may not enter your own wool rooms!"/>
+    <apply block-break="wall-sign" region="breakable-sign" message="You may not edit the bases!"/>
     <apply block="never" region="bases" message="You may not edit the bases!"/>
     <apply block="deny(not-water-cause-world)" region="woolrooms"/>
     <apply block="deny(chest)" region="woolrooms" message="You may not break or place chests in the wool rooms!"/>
-    <apply block="red-team" region="blue-wrs" message="You may not interfere with your team's wool rooms!"/>
-    <apply block="blue-team" region="red-wrs" message="You may not interfere with your team's wool rooms!"/>
-    <apply block="all(water_lane_mode=1,water-lane-filter)" region="under-water-lanes"/>
+    <apply block="red-team" region="blue-wrs" message="You may not interfere with your own wool rooms!"/>
+    <apply block="blue-team" region="red-wrs" message="You may not interfere with your own wool rooms!"/>
+    <apply block="all(water_lane_mode=1,water-lane-filter)" region="under-water-lanes" message="You may not edit the void!"/>
     <apply block="water_lane_mode=1" region="water-lanes" message="You may not edit the void!"/>
     <apply block="never" region="void-area" message="You may not edit the void!"/>
     <apply block="never" region="underside" message="You may not do any underbridging!"/>
-    <apply block-physics="deny(wall-sign)" region="bases"/>
 </regions>
 <wools craftable="false">
     <wool team="red-team" color="lime" location="152,16,-13">
@@ -356,10 +369,10 @@
 </destroyables>
 <modes>
     <mode name="`dEfficiency II`3 near the `6monuments" action="eff_mode:=1" after="20m" show-before="1m"/>
-    <mode name="`aDiagonal `bwater lanes `3added" action="water_lane_mode:=1" after="25m" show-before="5m"/>
+    <mode name="`aDiagonal `bwater lanes `3added" action="water_lane_mode:=1" after="25m" show-before="3m"/>
 </modes>
 <renewables>
-    <renewable rate="2.5" region="bulidable-area" renew-filter="only-iron" replace-filter="only-air"/>
+    <renewable renew-filter="only-iron" replace-filter="only-air" rate="2.5"/>
 </renewables>
 <toolrepair>
     <tool>iron sword</tool>
@@ -373,23 +386,25 @@
     <item>leather chestplate</item>
     <item>leather boots</item>
     <item>ender stone</item>
-    <item>stained clay:5</item>
-    <item>stained clay:13</item>
-    <item>glowstone dust</item>
     <item>string</item>
     <item>redstone</item>
     <item>redstone torch on</item>
+    <item>stained clay:5</item>
+    <item>stained clay:7</item>
+    <item>stained clay:13</item>
+    <item>glowstone dust</item>
 </itemremove>
 <itemkeep>
     <item>wood:2</item>
     <item>glass</item>
     <item>bucket</item>
+    <item>water bucket</item>
     <item>golden apple</item>
 </itemkeep>
 <kill-rewards>
     <kill-reward>
-        <item amount="16" damage="2" material="wood"/>
-        <item amount="8" material="glass"/>
+        <item amount="12" damage="2" material="wood"/>
+        <item amount="4" material="glass"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>32</maxbuildheight>
