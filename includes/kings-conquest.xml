@@ -8,7 +8,7 @@
        \/       \//_____/     \/          \/            \/    |__|           \/     \/
 -->
 <!-- Created by mitchiii, based on the King's Conquest maps by Chicky -->
-<!-- Version 2025.12.19 -->
+<!-- Version 2026.09.13 -->
 <objective>Kill the enemy team's ${king-noun} to win!</objective>
 <gamemode>arcade</gamemode>
 <game>${king-noun} Health</game>
@@ -812,14 +812,16 @@
             </switch-scope>
         </action>
     </trigger>
-    <trigger scope="match" filter="world-border-start">
-        <action>
-            <message text=" "/>
-            <message text="`6» » » `c`lThe world border is shrinking `6« « «"/>
-            <message text="`bYou will no longer be able to respawn once all spawn locations are outside of the border."/>
-            <message text=" "/>
-        </action>
-    </trigger>
+    <unless constant="world-border-center" constant-comparison="defined delete">
+        <trigger scope="match" filter="world-border-start">
+            <action>
+                <message text=" "/>
+                <message text="`6» » » `c`lThe world border is shrinking `6« « «"/>
+                <message text="`bYou will no longer be able to respawn once all spawn locations are outside of the border."/>
+                <message text=" "/>
+            </action>
+        </trigger>
+    </unless>
     <trigger scope="player" filter="super-dead">
         <action>
             <message text=" "/>
@@ -979,9 +981,9 @@
     <action scope="player" id="gapple-weak">
         <action filter="is_king=1">
             <switch-scope inner="team">
-                <set var="king_health_recovery_amount" value="king_health_recovery_amount + 1"/>
+                <set var="king_health_recovery_amount" value="king_health_recovery_amount + 2"/>
                 <action filter="show-debug-message">
-                    <message text="`7» `bKing recovery increased by 1 (gapple)"/>
+                    <message text="`7» `bKing recovery increased by 2 (gapple)"/>
                 </action>
             </switch-scope>
         </action>
