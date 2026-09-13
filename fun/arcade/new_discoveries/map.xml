@@ -1,6 +1,6 @@
 <map proto="1.5.0" max-server-version="1.8.9"> <!-- 1.9+ breaks fun bow mechanics -->
 <name>New Discoveries</name>
-<version>1.0</version>
+<version>1.0.1</version>
 <created>2025-12-20</created>
 <objective>Score against the enemy team via parkour completion times!</objective>
 <game>2 Player Parkour</game>
