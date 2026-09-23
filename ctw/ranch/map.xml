@@ -58,12 +58,14 @@
     </spawn>
 </spawns>
 <filters>
-    <!-- used with deny inline filters to prevent block destruction caused by water flow -->
-    <all id="not-water-cause-world">
+    <all id="not-materials-cause-world"> <!-- should be used with deny inline filters -->
         <not>
             <any>
+                <!-- prevent block destruction caused by water flow -->
                 <material>water</material>
                 <material>stationary water</material>
+                <!-- maintain gravity-affected block behavior -->
+                <material>sand:1</material>
             </any>
         </not>
         <cause>world</cause>
@@ -149,7 +151,7 @@
     <apply enter="blue-team" region="red-wool-rooms" message="You may not enter your own wool rooms!"/>
     <apply enter="red-team" region="blue-wool-rooms" message="You may not enter your own wool rooms!"/>
     <apply block-break="only-iron" block-place="only-iron-regen" region="spawns" message="You may only break iron blocks in the spawn!"/>
-    <apply block="deny(not-water-cause-world)" region="wool-rooms"/>
+    <apply block="deny(not-materials-cause-world)" region="wool-rooms"/>
     <apply block="blue-wool-room-blocks" region="red-wool-rooms" message="You may not modify the wool rooms!"/>
     <apply block="red-wool-room-blocks" region="blue-wool-rooms" message="You may not modify the wool rooms!"/>
     <apply block="deny(void)" region="restricted-void-area" message="You may not edit the void!"/>
