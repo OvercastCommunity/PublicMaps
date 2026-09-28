@@ -1,11 +1,12 @@
 <map proto="1.5.1">
 <name>Cottage</name>
 <variant id="dtm" world="dtm" override="true">Cottage DTM</variant>
-<version>1.1</version>
+<version>1.1.1</version>
 <if variant="default">
     <objective>Leak lava from the opponent's obsidian core!</objective>
     <created>2019-02-05</created>
     <phase>staging</phase>
+    <constant id="team-size">10</constant>
 </if>
 <if variant="dtm">
     <objective>Break the opponent's obsidian monument!</objective>
@@ -17,6 +18,7 @@
         <constant id="eff.t1-m1-region">red-monument</constant>
         <constant id="eff.t2-m1-region">blue-monument</constant>
         <constant id="eff.modes-preset">every-10m</constant>
+        <constant id="team-size">12</constant>
     </constants>
     <include id="efficiency-variables"/>
 </if>
@@ -30,8 +32,8 @@
     </contributors>
 </if>
 <teams>
-    <team id="blue-team" color="blue" max="10">Blue</team>
-    <team id="red-team" color="dark red" max="10">Red</team>
+    <team id="blue-team" color="blue" max="${team-size}">Blue</team>
+    <team id="red-team" color="dark red" max="${team-size}">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
@@ -46,10 +48,10 @@
         <item slot="8" material="golden apple"/>
         <item slot="28" material="arrow"/>
         <helmet unbreakable="true" team-color="true" material="leather helmet"/>
-        <leggings unbreakable="true" material="chainmail leggings"/>
         <chestplate unbreakable="true" team-color="true" material="leather chestplate"/>
+        <leggings unbreakable="true" enchantment="projectile protection" material="chainmail leggings"/>
         <boots unbreakable="true" team-color="true" material="leather boots"/>
-        <effect duration="4s" amplifier="5">damage resistance</effect>
+        <effect duration="3s" amplifier="5">damage resistance</effect>
     </kit>
 </kits>
 <spawns>
@@ -58,20 +60,21 @@
             <point>0.5,44.2,0.5</point>
         </region>
     </default>
-    <spawn team="blue-team" kit="spawn-kit" yaw="-45">
-        <region>
-            <cuboid min="-67,24,-20" max="-66,24,-19"/>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="-45">
+            <cylinder base="-66.5,24,-19.5" radius="0.5" height="0"/>
         </region>
     </spawn>
-    <spawn team="red-team" kit="spawn-kit" yaw="135">
-        <region>
-            <cuboid min="68,24,21" max="67,24,20"/>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="135">
+            <cylinder base="67.5,24,20.5" radius="0.5" height="0"/>
         </region>
     </spawn>
 </spawns>
 <filters>
     <material id="only-iron">iron block</material>
     <material id="only-air">air</material>
+    <material id="trap-door">trap door</material>
     <any id="stones">
         <material>stone:0</material>
         <material>stone:5</material>
@@ -94,45 +97,26 @@
             <region id="outside-map"/>
         </complement>
     </union>
-    <union id="iron-mine">
+    <union id="iron-mines">
         <cuboid min="-69,10,-18" max="-56,14,-6"/> <!-- blue iron mine -->
         <cuboid min="70,10,19" max="57,14,7"/> <!-- red iron mine -->
     </union>
     <negative id="outside-map">
-        <cuboid id="map" min="-70,0,-23" max="71,oo,24"/>
+        <rectangle id="map" min="-70,-23" max="71,24"/>
     </negative>
     <if variant="default">
         <cuboid id="blue-core" min="-52,17,9" max="-47,22,14"/>
         <cuboid id="red-core" min="53,17,-8" max="48,22,-13"/>
     </if>
     <if variant="dtm">
-        <cuboid id="blue-monument" min="-50,17,11" max="-49,20,12"/>
-        <cuboid id="red-monument" min="51,17,-10" max="50,20,-11"/>
+        <cuboid id="blue-monument" min="-50,17,11" max="-49,19,12"/>
+        <cuboid id="red-monument" min="51,17,-10" max="50,19,-11"/>
     </if>
+    <apply use="deny(trap-door)" region="spawns"/>
     <apply enter="blue-team" region="blue-spawn" message="You may not enter the opponent's spawn!"/>
     <apply enter="red-team" region="red-spawn" message="You may not enter the opponent's spawn!"/>
     <apply block="never" region="spawns" message="You may not edit the spawns!"/>
-    <apply block="never" region="outside-map" message="You may not build outside the map!"/>
-    <!-- temporarily disable iron mine protection
-    <union id="iron-mines">
-        <union id="blue-iron-mine">
-            <cylinder base="-62.5,8,-10.5" radius="5" height="8"/>
-            <cylinder base="-62.5,15,-10.5" radius="3" height="5"/>
-        </union>
-    <union id="red-iron-mine">
-        <cylinder base="63.5,8,11.5" radius="5" height="8"/>
-        <cylinder base="63.5,15,11.5" radius="3" height="3"/>
-    </union>
-    </union>
-    <union id="iron-entrances">
-        <cuboid id="blue-iron-entrance" min="-57,10,2" max="-65,17,-4"/>
-        <cuboid id="red-iron-entrance" min="58,10,-1" max="66,17,3"/>
-    </union>
-    <apply enter="blue-team" region="blue-iron-mine" message="You may not enter the opponent's iron mine!"/>
-    <apply enter="red-team" region="red-iron-mine" message="You may not enter the opponent's iron mine!"/>
-    <apply block="only-iron" region="iron-mines" message="You may only break iron in the iron mines!"/ >
-    <apply block="never" region="iron-entrances" message="You may not block or edit the iron mine entrance!"/>
-    -->
+    <apply block="never" region="outside-map" message="You may not build outside of the map!"/>
 </regions>
 <if variant="default">
     <cores material="obsidian" leak="3" mode-changes="true">
@@ -145,12 +129,12 @@
 </if>
 <if variant="dtm">
     <destroyables name="Monument" material="obsidian" mode-changes="true">
-        <destroyable owner="red-team" region="red-monument"/>
         <destroyable owner="blue-team" region="blue-monument"/>
+        <destroyable owner="red-team" region="red-monument"/>
     </destroyables>
 </if>
 <renewables>
-    <renewable rate="2" region="iron-mine" renew-filter="only-iron" replace-filter="only-air"/>
+    <renewable region="iron-mines" renew-filter="only-iron" replace-filter="only-air" rate="2"/>
 </renewables>
 <toolrepair>
     <tool>iron sword</tool>
@@ -169,12 +153,12 @@
     <if variant="default">
         <item>gold block</item>
     </if>
-    <item>glowstone dust</item>
     <item>log 2:0</item>
     <item>stained clay:5</item>
     <item>stained clay:9</item>
     <item>stained clay:13</item>
     <item>step:0</item>
+    <item>glowstone dust</item>
     <item>sapling</item>
     <item>apple</item>
 </itemremove>
@@ -193,9 +177,8 @@
 </block-drops>
 <kill-rewards>
     <kill-reward>
-        <item material="wood" amount="12"/>
-        <item material="glass" amount="4"/>
-        <item material="torch" amount="2"/>
+        <item amount="12" damage="4" material="wood"/>
+        <item amount="4" material="glass"/>
     </kill-reward>
 </kill-rewards>
 <maxbuildheight>31</maxbuildheight>
