@@ -146,20 +146,6 @@
             <filter id="block-list"/>
         </not>
     </deny>
-    <all id="team-one-scored">
-        <team>team-one</team>
-        <region id="team-two-portal"/>
-        <variable var="can_score">1</variable>
-        <match-running/>
-        <alive/>
-    </all>
-    <all id="team-two-scored">
-        <team>team-two</team>
-        <region id="team-one-portal"/>
-        <variable var="can_score">1</variable>
-        <match-running/>
-        <alive/>
-    </all>
     <variable id="round-0" var="round_status">0</variable>
     <variable id="round-1" var="round_status">1</variable>
     <all id="should-teleport">
@@ -300,7 +286,6 @@
 </variables>
 <actions>
     <action id="increment-round" scope="player">
-        <set var="score" value="score+1"/>
         <set var="player_score" value="player_score+1"/>
         <action filter="goal_scorer_enabled=1">
             <message text=" `2You have scored `e{amount} `2goal(s) in this match.">
@@ -317,6 +302,12 @@
         </switch-scope>
         <action id="tiebreaker-win"/>
         <action id="message-score-display-player"/>
+        <action filter="team-one">
+            <action id="set-team-one"/>
+        </action>
+        <action filter="team-two">
+            <action id="set-team-two"/>
+        </action>
     </action>
     <action id="set-buytime" scope="match" filter="pre_round=1">
         <set var="buytime" value="1"/>
@@ -368,8 +359,6 @@
         </replace-item>
     </action>
     <trigger filter="arrow-regen" action="give-arrow" scope="player"/>
-    <trigger filter="team-one-scored" action="increment-round" scope="player"/>
-    <trigger filter="team-two-scored" action="increment-round" scope="player"/>
     <trigger filter="all(can_score=0,not(match-finished),pre_round=1)" action="create-cages" scope="match"/>
     <trigger filter="all(cage-time,pre_round=1)" action="remove-cages" scope="match"/>
     <trigger filter="all(after-round-1,pre_round=0,not(match-finished))" action="remove-cages" scope="match"/>
@@ -495,8 +484,6 @@
             <set var="scoring_team" value="2"/>
         </switch-scope>
     </action>
-    <trigger filter="team-one-scored" action="set-team-one" scope="player"/>
-    <trigger filter="team-two-scored" action="set-team-two" scope="player"/>
     <action id="round-variables" scope="player">
         <set var="player.fire_ticks" value="-20"/>
     </action>
@@ -596,8 +583,8 @@
     <portal destination="team-two-spawn-point" filter="team-two-buytime" region="not-cages" yaw="@${team-two-yaw}" pitch="@${team-two-pitch}"/>
 </portals>
 <score display="circle">
-    <box filter="team-one" region="team-two-portal" points="0" silent="true"/>
-    <box filter="team-two" region="team-one-portal" points="0" silent="true"/>
+    <box filter="team-one" region="team-two-portal" points="1" action="increment-round" silent="true"/>
+    <box filter="team-two" region="team-one-portal" points="1" action="increment-round" silent="true"/>
     <limit>${score-limit}</limit>
     <mercy>${mercy-limit}</mercy>
 </score>
