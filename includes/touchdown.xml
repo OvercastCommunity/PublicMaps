@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.09.30-1 -->
+<!-- Version 2026.09.06-2 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -96,8 +96,11 @@
     </if>
 </constants>
 <variables>
+    <variable id="prev_score" scope="team"/>
     <with-team id="team_one_score" var="score" team="team-one"/>
     <with-team id="team_two_score" var="score" team="team-two"/>
+    <with-team id="team_one_prev_score" var="prev_score" team="team-one"/>
+    <with-team id="team_two_prev_score" var="prev_score" team="team-two"/>
     <variable id="game_state" scope="match" default="${initial}"/>
     <variable id="can_score" scope="match" default="1"/>
     <variable id="round_status" scope="match" default="1"/> <!-- 0: team scored; 1: flag is active -->
@@ -217,6 +220,10 @@
             </action>
             <kit id="${armor-kit}"/>
             <action id="apply-heal"/>
+        </action>
+        <action filter="score-prev_score=1..">
+            <set var="prev_score" value="score"/>
+            <action id="increment-round"/>
         </action>
     </kit>
     <kit id="pre-round-kit">
@@ -701,7 +708,7 @@
             </switch-scope>
         </action>
     </trigger>
-    <action id="increment-round" scope="player">
+    <action id="increment-round" filter="score-prev_score=0" scope="player">
         <action filter="team-one">
             <set var="scoring_team" value="1"/>
         </action>
@@ -1045,8 +1052,8 @@
           show-effects="false"
           capture-filter="all(carrying-football,alive,one-pass-enforcement)"
           allow-manual-drop="false">
-        <net region="team-one-portal" capture-filter="team-two" points="${score-points}" capture-action="increment-round"/>
-        <net region="team-two-portal" capture-filter="team-one" points="${score-points}" capture-action="increment-round"/>
+        <net region="team-one-portal" capture-filter="team-two" points="${score-points}"/>
+        <net region="team-two-portal" capture-filter="team-one" points="${score-points}"/>
         <post yaw="${flag-yaw}" respawn-time="${flag-respawn}" recover-time="0s" pickup-filter="can-pickup-flag">
             <post respawn-filter="never">${flag-post}</post>
             <if constant="team-flag-posts" constant-value="true">
