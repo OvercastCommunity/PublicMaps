@@ -101,44 +101,12 @@
     </union>
     <union id="wool-rooms">
         <union id="blue-wool-rooms"> <!-- red capture, blue defend -->
-            <!-- purple wool room -->
-            <complement>
-                <cuboid min="-677,0,-688" max="-650,128,-712"/>
-                <half origin="-668.5,0,-688" normal="-1,0,1"/>
-                <half origin="-677,0,-700.5" normal="-1,0,-1"/>
-                <half origin="-661.5,0,-712" normal="1,0,-1"/>
-                <half origin="-650,0,-696.5" normal="1,0,1"/>
-            </complement>
-            <cuboid min="-670,0,-688" max="-657,128,-689"/>
-            <!-- yellow wool room -->
-            <complement>
-                <cuboid min="-773,0,-688" max="-746,128,-712"/>
-                <half origin="-764.5,0,-688" normal="-1,0,1"/>
-                <half origin="-773,0,-700.5" normal="-1,0,-1"/>
-                <half origin="-757.5,0,-712" normal="1,0,-1"/>
-                <half origin="-746,0,-696.5" normal="1,0,1"/>
-            </complement>
-            <cuboid min="-766,0,-688" max="-753,128,-689"/>
-        </union>
+            <cuboid id="purple-wool-room" min="-677,0,-688" max="-650,48,-712"/>
+            <cuboid id="yellow-wool-room" min="-773,0,-688" max="-746,48,-712"/>
+        </union>	
         <union id="red-wool-rooms"> <!-- blue capture, red defend -->
-            <!-- green wool room -->
-            <complement>
-                <cuboid min="-650,0,-436" max="-677,128,-412"/>
-                <half origin="-658.5,0,-436" normal="1,0,-1"/>
-                <half origin="-650,0,-423.5" normal="1,0,1"/>
-                <half origin="-665.5,0,-412" normal="-1,0,1"/>
-                <half origin="-677,0,-427.5" normal="-1,0,-1"/>
-            </complement>
-            <cuboid min="-657,0,-436" max="-670,128,-435"/>
-            <!-- magenta wool room -->
-            <complement>
-                <cuboid min="-746,0,-436" max="-773,128,-412"/>
-                <half origin="-754.5,0,-436" normal="1,0,-1"/>
-                <half origin="-746,0,-423.5" normal="1,0,1"/>
-                <half origin="-761.5,0,-412" normal="-1,0,1"/>
-                <half origin="-773,0,-427.5" normal="-1,0,-1"/>
-            </complement>
-            <cuboid min="-753,0,-436" max="-766,128,-435"/>
+            <cuboid id="green-wool-room" min="-650,0,-436" max="-677,48,-412"/>
+            <cuboid id="magenta-wool-room" min="-746,0,-436" max="-773,48,-412"/>
         </union>
     </union>
     <negative id="restricted-void-area">
@@ -152,9 +120,9 @@
     <apply enter="red-team" region="blue-wool-rooms" message="You may not enter your own wool rooms!"/>
     <apply block-break="only-iron" block-place="only-iron-regen" region="spawns" message="You may only break iron blocks in the spawn!"/>
     <apply block="deny(not-materials-cause-world)" region="wool-rooms"/>
+    <apply block="deny(void)" region="restricted-void-area" message="You may not edit the void!"/>
     <apply block="blue-wool-room-blocks" region="red-wool-rooms" message="You may not modify the wool rooms!"/>
     <apply block="red-wool-room-blocks" region="blue-wool-rooms" message="You may not modify the wool rooms!"/>
-    <apply block="deny(void)" region="restricted-void-area" message="You may not edit the void!"/>
 </regions>
 <wools craftable="false">
     <wool team="blue-team" color="magenta" location="-759.5,12,-425.5">
