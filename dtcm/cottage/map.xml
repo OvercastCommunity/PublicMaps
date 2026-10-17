@@ -5,20 +5,16 @@
 <if variant="default">
     <objective>Leak lava from the opponent's obsidian core!</objective>
     <created>2019-02-05</created>
-    <phase>staging</phase>
-    <constant id="team-size">10</constant>
 </if>
 <if variant="dtm">
     <objective>Break the opponent's obsidian monument!</objective>
     <created>2026-05-16</created>
-    <phase>development</phase>
     <constants>
         <constant id="eff.team-1">blue-team</constant>
         <constant id="eff.team-2">red-team</constant>
         <constant id="eff.t1-m1-region">red-monument</constant>
         <constant id="eff.t2-m1-region">blue-monument</constant>
         <constant id="eff.modes-preset">every-10m</constant>
-        <constant id="team-size">12</constant>
     </constants>
     <include id="efficiency-variables"/>
 </if>
@@ -32,8 +28,8 @@
     </contributors>
 </if>
 <teams>
-    <team id="blue-team" color="blue" max="${team-size}">Blue</team>
-    <team id="red-team" color="dark red" max="${team-size}">Red</team>
+    <team id="blue-team" color="blue" max="10">Blue</team>
+    <team id="red-team" color="dark red" max="10">Red</team>
 </teams>
 <kits>
     <kit id="spawn-kit">
