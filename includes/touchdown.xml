@@ -1,7 +1,7 @@
 <map>
 <!-- Touchdown gamemode include file -->
 <!-- XML by mameBT, zzuf, arcadeboss, MewTwoKing, Furrie, TommyHillfigger, KuNet & honeyfuggle -->
-<!-- Version 2026.10.01-1 -->
+<!-- Version 2026.10.25-1 -->
 <game>Touchdown</game>
 <objective>Capture the flag at the end zone on the enemies' side!</objective>
 <constants fallback="true">
@@ -117,6 +117,7 @@
     <variable id="one_pass_rule" scope="match" default="${one-pass-default}"/>
     <variable id="end_zone_rule" scope="match" default="${end-zone-default}"/>
     <variable id="passed_once" scope="match" default="0"/>
+    <variable id="is_intercept" scope="match" default="0"/> <!-- 0: same-team catch; 1: cross-team -->
     <variable id="last_damage_type" scope="player" default="0"/> <!-- 0: non-melee damage; 1: melee damage -->
     <if constant="experimental-flag-land" constant-value="true">
         <variable id="ball_x" scope="match"/>
@@ -620,17 +621,23 @@
             <action filter="ally-damage">
                 <switch-scope inner="match">
                     <set var="passed_once" value="1"/>
+                    <set var="is_intercept" value="0"/>
                 </switch-scope>
             </action>
             <action filter="enemy-damage">
                 <switch-scope inner="match">
                     <set var="passed_once" value="0"/>
+                    <set var="is_intercept" value="1"/>
                 </switch-scope>
             </action>
             <switch-scope inner="match">
-                <message text=" `e`l»`r {player}`6 caught the `cFootball`6!`r" actionbar="`r{player}`6 caught!">
+                <message text=" `e`l»`r {player}`6 {verb} the `cFootball`6!`r" actionbar="`r{player}`6 {verb}!">
                     <replacements>
                         <player id="player" var="flag_carrier"/>
+                        <switch id="verb" value="is_intercept">
+                            <case match="0" result="caught"/>
+                            <case match="1" result="intercepted"/>
+                        </switch>
                     </replacements>
                 </message>
                 <action id="pickup-sounds"/>
