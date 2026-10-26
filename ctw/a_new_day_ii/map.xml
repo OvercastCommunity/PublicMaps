@@ -1,6 +1,6 @@
 <map proto="1.5.1">
 <name>A New Day II</name>
-<version>1.0.11</version>
+<version>1.0.12</version>
 <include id="gapple-kill-reward"/>
 <objective>Capture the enemy's wools!</objective>
 <created>2017-11-14</created>
@@ -69,6 +69,13 @@
     </deny>
 </filters>
 <regions>
+    <negative id="void-area">
+        <union id="buildable-area">
+            <rectangle min="65,199" max="-18,180"/>
+            <rectangle min="-18,243" max="65,224"/>
+            <rectangle min="20,199" max="27,224"/>
+        </union>
+    </negative>
     <union id="spawns">
         <rectangle id="blue-spawn" max="132,225" min="84,197"/>
         <rectangle id="red-spawn" max="-37,197" min="-85,225"/>
@@ -85,7 +92,9 @@
         <cuboid min="125,9,208" max="128,11,215"/>
         <cuboid min="-78,9,215" max="-81,11,208"/>
     </union>
-    <rectangle id="mid-map" min="-18,179" max="64,243"/>
+    <rectangle id="mid-map" min="-18,177" max="64,245"/>
+    <below id="below-y-1" y="1"/>
+    <apply block="never" region="below-y-1"/>
     <apply enter="only-blue" message="You may not enter the enemy's spawn!" region="blue-spawn"/>
     <apply enter="only-red" message="You may not enter the enemy's spawn!" region="red-spawn"/>
     <apply enter="only-blue" message="You may not enter your own wool rooms!" region="red-wool-rooms"/>
@@ -95,7 +104,7 @@
     <apply block="blue-in-wr" use="only-blue" region="red-wool-rooms"/>
     <apply block="red-in-wr" use="only-red" region="blue-wool-rooms"/>
     <apply block="deny-web" region="mid-map"/>
-    <apply block-place="deny(void)" message="You may not build in the void!"/>
+    <apply block-place="deny(void)" region="void-area" message="You may not build in the void!"/>
 </regions>
 <renewables>
     <renewable renew-filter="only-iron" region="spawns"/>
