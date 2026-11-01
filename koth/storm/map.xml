@@ -15,8 +15,8 @@
     <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba"/> <!-- SajinZero -->
 </authors>
 <teams>
-    <team id="blue" color="blue" max="32">Blue</team>
-    <team id="red" color="dark red" max="32">Red</team>
+    <team id="blue" color="blue" max="${team-size}">Blue</team>
+    <team id="red" color="dark red" max="${team-size}">Red</team>
 </teams>
 <filters>
     <deny id="no-gui">
@@ -35,24 +35,30 @@
 </regions>
 <spawns>
     <default yaw="90" region="spawn-default"/>
-    <spawn team="blue" kit="base-kit" region="blue-spawn"/>
-    <spawn team="red" kit="base-kit" yaw="180" region="red-spawn"/>
+    <spawn team="blue" kit="base-kit" yaw="${yaw-blue}" region="blue-spawn"/>
+    <spawn team="red" kit="base-kit" yaw="${yaw-red}" region="red-spawn"/>
 </spawns>
 <constants>
-    <unless variant="classic">
+    <if variant="classic">
         <constant id="mid-capture-time">5</constant>
         <constant id="a-b-capture-time">5</constant>
+        <constant id="team-size">32</constant>
         <constant id="mid-points">3.5</constant>
         <constant id="a-b-points">2.75</constant>
         <constant id="score">2500</constant>
-    </unless>
-    <if variant="classic">
+        <constant id="yaw-blue">-90</constant>
+        <constant id="yaw-red">90</constant>
+    </if>
+    <unless variant="classic">
         <constant id="mid-capture-time">15</constant>
         <constant id="a-b-capture-time">10</constant>
         <constant id="mid-points">1</constant>
         <constant id="a-b-points">1</constant>
+        <constant id="team-size">24</constant>
         <constant id="score">750</constant>
-    </if>
+        <constant id="yaw-blue">0</constant>
+        <constant id="yaw-red">-180</constant>
+    </unless>
 </constants>
 <king>
     <hills required="false" time-multiplier="0" show-progress="true" neutral-state="true" incremental="true" permanent="false">
