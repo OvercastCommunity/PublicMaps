@@ -1,6 +1,6 @@
 <map proto="1.5.0">
 <name>Tebulas</name>
-<version>1.1.2</version>
+<version>1.1.3</version>
 <created>2014-03-24</created>
 <objective>Be the team with the most kills after 8 minutes!</objective>
 <authors>
@@ -52,7 +52,7 @@
     </kit>
 </kits>
 <spawns angle="19,14,-59">
-    <default kit="default-kit">
+    <default angle="19,82.6,-59" kit="default-kit">
         <region>
             <cuboid min="20,81,-58" max="18,81,-60"/>
         </region>
