@@ -8,7 +8,7 @@
        \/       \//_____/     \/          \/            \/    |__|           \/     \/
 -->
 <!-- Created by mitchiii, based on the King's Conquest maps by Chicky -->
-<!-- Version 2026.09.13 -->
+<!-- Version 2026.11.14 -->
 <objective>Kill the enemy team's ${king-noun} to win!</objective>
 <gamemode>arcade</gamemode>
 <game>${king-noun} Health</game>
@@ -689,7 +689,7 @@
         <action>
             <fill region="initial-spawn-points" material="air"/>
             <if constant="king-race-start" constant-comparison="defined delete">
-                <set var="phase" value="${phase-running}"/>
+                <set var="phase" value="${phase-prematch}"/>
                 <switch-scope inner="team" filter="not(own-team-has-king)">
                     <action id="crown-random-king"/>
                 </switch-scope>
@@ -703,7 +703,7 @@
                 <sound key="${block.note_block.bass}" volume="1" pitch="0.75"/>
                 <message text="`cUnable to crown you ${king-noun} as you have not joined a team."/>
             </action>
-            <action id="announce-king" filter="any(all(team-one, any(not(team-one-banner-carried), carrying-team-one-banner)), 
+            <action id="announce-king" filter="any(all(team-one, any(not(team-one-banner-carried), carrying-team-one-banner)),
                                                    all(team-two, any(not(team-two-banner-carried), carrying-team-two-banner)))">
                 <sound key="${entity.player.levelup}"/>
                 <set var="callout_player" value="1"/>
@@ -737,7 +737,8 @@
             </action>
         </action>
     </trigger>
-    <trigger scope="player" filter="all(is_king=1, match-running, phase=${phase-prematch}, not(match-running-delayed))" action="announce-king"/>
+    <!-- tt.: the case below should be covered by the above. probably fine to remove but keeping it here in case it breaks -->
+    <!-- <trigger scope="player" filter="all(is_king=1, match-running, phase=${phase-prematch}, not(match-running-delayed))" action="announce-king"/> -->
     <trigger scope="player" filter="all(is_king=1, match-running)">
         <action>
             <message text=" "/>
@@ -803,7 +804,7 @@
     </unless>
     <trigger scope="match" filter="conquest-started">
         <action>
-            <set var="phase" value="1"/>
+            <set var="phase" value="${phase-running}"/>
             <switch-scope inner="player">
                 <kit id="main-kit"/>
                 <action filter="is_king=1">
