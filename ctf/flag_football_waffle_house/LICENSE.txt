@@ -1,4 +1,4 @@
-Copyright 2024 Xerorca
+Copyright 2026 Xerorca
 
 Please carefully read this license. This license is not a copy-pasted legal document. It has actual restrictions in it. If this license does not suit your purposes, contact Xerorca and sort something out, don't just ignore it.
 
@@ -12,3 +12,5 @@ By using this map, you agree to the terms in this license. If you do not agree t
 Using this map is defined as distributing it or providing access to it or portions of it in any way. This includes but is not limited to running matches on the map, copying the map or portions of the map to other maps, or using screenshots of the map.
 
 This map is provided "as-is".
+
+https://github.com/Xerocoles/stratus-maps/tree/master/competitive/waffle_house
