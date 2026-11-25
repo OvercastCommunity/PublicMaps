@@ -51,7 +51,6 @@
     <constant id="time-limit">8</constant>
     <constant id="overtime" delete="true"/>
     <constant id="max-overtime" delete="true"/>
-    <phase>development</phase>
 </if>
 <unless variant="tdm">
     <objective>Capture the enemy's flag as many times as possible in ${time-limit} minutes to win!</objective>
